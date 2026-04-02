@@ -1,0 +1,796 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>P4A: Freight Import Logistics — Race Start Warmth GTM</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0e1a;--surface:#111827;--card:#1a2332;--border:#2a3a4e;--accent:#10b981;--accent2:#3b82f6;--text:#e2e8f0;--muted:#94a3b8;--white:#fff;--red:#ef4444;--amber:#f59e0b;--green:#10b981}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+/* Nav */
+nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
+nav .inner{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;max-width:1200px;margin:0 auto}
+nav .brand{font-weight:700;font-size:15px;color:var(--accent)}
+nav .links{display:flex;gap:8px;flex-wrap:wrap}
+nav .links a{color:var(--muted);font-size:13px;padding:4px 10px;border-radius:6px;transition:.2s}
+nav .links a:hover,nav .links a.active{color:var(--white);background:var(--card);text-decoration:none}
+/* Hero */
+.hero{padding:60px 0 40px;text-align:center}
+.hero h1{font-size:2.4em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:1.1em;max-width:700px;margin:0 auto}
+/* Stats bar */
+.stats{display:flex;justify-content:center;gap:32px;padding:24px 0;flex-wrap:wrap}
+.stat{text-align:center}.stat .num{font-size:1.8em;font-weight:800;color:var(--white)}.stat .label{font-size:.75em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+/* Cards */
+.grid{display:grid;gap:16px;margin:24px 0}
+.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}
+.grid-3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;transition:.2s}
+.card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.card h3{font-size:1.1em;margin-bottom:8px}.card p{color:var(--muted);font-size:.9em}
+.card .badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:8px}
+.card .meta{font-size:.8em;color:var(--muted);margin-top:12px}
+/* Section */
+.section{padding:40px 0}.section h2{font-size:1.6em;font-weight:700;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+/* Table */
+table{width:100%;border-collapse:collapse;font-size:.85em;margin:16px 0}
+th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:52px}
+td{padding:8px 12px;border-bottom:1px solid var(--border)}
+tr:hover td{background:rgba(16,185,129,.05)}
+.status-complete{color:var(--green);font-weight:600}.status-not{color:var(--muted)}
+/* Progress */
+.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:8px}
+.progress .bar{height:100%;background:var(--accent);border-radius:3px}
+/* Back link */
+.back{display:inline-block;color:var(--muted);font-size:.9em;margin-bottom:20px}
+.back:hover{color:var(--accent)}
+/* Download */
+.dl-card{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin:8px 0;transition:.2s}
+.dl-card:hover{border-color:var(--accent);text-decoration:none}
+.dl-card .icon{font-size:2em}.dl-card .info h4{color:var(--white);margin-bottom:4px}.dl-card .info p{color:var(--muted);font-size:.85em}
+/* Footer */
+footer{text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px}
+@media(max-width:768px){.stats{gap:16px}.stat .num{font-size:1.3em}nav .links{gap:4px}nav .links a{font-size:11px;padding:3px 6px}.hero h1{font-size:1.6em}}
+
+.doc-content{max-width:900px;margin:0 auto;padding:20px 0}
+.doc-content h1{font-size:1.8em;font-weight:800;color:var(--white);margin:32px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.doc-content h2{font-size:1.4em;font-weight:700;color:var(--accent);margin:28px 0 12px}
+.doc-content h3{font-size:1.15em;font-weight:600;color:var(--accent2);margin:20px 0 10px}
+.doc-content p{margin:8px 0;line-height:1.7}
+.doc-content table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85em}
+.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;border:1px solid var(--border)}
+.doc-content td{padding:8px 12px;border:1px solid var(--border);vertical-align:top}
+.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.doc-content ul,.doc-content ol{margin:8px 0 8px 24px}
+.doc-content li{margin:4px 0;line-height:1.6}
+.doc-content strong{color:var(--white)}
+.doc-content em{color:var(--muted)}
+.doc-content blockquote{border-left:3px solid var(--accent);padding:8px 16px;margin:12px 0;background:var(--card);border-radius:0 8px 8px 0}
+.nav-sub{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 24px;padding:12px 16px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
+.nav-sub a{font-size:.8em;color:var(--muted);padding:4px 10px;border-radius:4px;transition:.2s;white-space:nowrap}
+.nav-sub a:hover,.nav-sub a.active{color:var(--white);background:var(--surface);text-decoration:none}
+</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a></div></div></nav><div class="container">
+    <div style="padding-top:30px">
+        <a href="p4.html" class="back">← 📦 P4: Supply Chain</a>
+        <div class="nav-sub"><a href="p4.html">📦 P4 Overview</a><a href="sub-p4a.html" class="active">P4A</a><a href="sub-p4b.html">P4B</a><a href="sub-p4c.html">P4C</a><a href="sub-p4d.html">P4D</a></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px">
+            <div>
+                <span style="background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px">P4A</span>
+                <span style="color:var(--muted);font-size:.85em;margin-left:8px">P4: Supply Chain</span>
+            </div>
+            <a href="files/P4A_Freight_Import_Logistics.docx" style="font-size:.85em;color:var(--accent);padding:6px 14px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
+        </div>
+        <div class="doc-content">
+            <p><strong>P4A: FREIGHT &amp; IMPORT</strong></p>
+<p><strong>LOGISTICS</strong></p>
+<p>Sub-Project P4A | Supply Chain &amp; Fulfillment | Weeks 16–19</p>
+<p><em>Complete Import Playbook: 5-Forwarder Comparison, HTS Tariff
+Classification, Customs Documentation, Race-Season Shipping Timeline,
+Marine Cargo Insurance, and 8-Point Receiving Inspection</em></p>
+<p>March 2026 | Confidential</p>
+<p>Executive Summary</p>
+<p><strong>Freight and import logistics connect the factory to the
+warehouse.</strong> A perfectly manufactured poncho sitting in a
+container at the Port of Long Beach is worth $0 to a runner standing in
+a cold corral. This document ensures that the poncho moves from factory
+door to 3PL shelf with: correct tariff classification (avoiding
+unexpected duties or penalties), proper customs documentation (avoiding
+CBP holds), insurance coverage (protecting a $15,000–$50,000 inventory
+investment), a shipping timeline aligned to the race calendar (arriving
+weeks before the first fall marathon, not weeks after), and a rigorous
+receiving inspection (catching transit damage before inventory enters
+the fulfillment system).</p>
+<p><strong>Key decisions in this section:</strong> (1) Freight forwarder
+selection — Flexport for digital-first visibility or Shapiro for complex
+customs expertise. (2) HTS classification — most likely 3926.20.9050
+(“articles of plastics, apparel”) at 3.4% + possible Section 301
+surcharge; confirm with customs broker before first shipment. (3)
+Shipping method — ocean LCL for cost efficiency (25–35 days), air for
+emergencies (5–7 days at 4–5× cost), UK courier for Parkside orders (3–5
+days). (4) Insurance — All-Risk marine cargo at 0.3–0.8% of CIF value;
+non-negotiable for any shipment &gt;$5,000.</p>
+<p>1. Freight Forwarder Selection</p>
+<p><strong>A freight forwarder coordinates the entire shipment from
+factory to warehouse:</strong> export customs in the origin country,
+ocean/air booking, import customs clearance in the US, and last-mile
+trucking to the 3PL. For a first-time importer, the forwarder is your
+guide through the process. Choose based on: China–US lane experience,
+customs brokerage capability (in-house or partnered), shipment tracking
+visibility, and responsiveness to questions.</p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 9%" />
+<col style="width: 21%" />
+<col style="width: 10%" />
+<col style="width: 16%" />
+<col style="width: 27%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Forwarder</strong></td>
+<td><strong>Website</strong></td>
+<td><strong>Strengths</strong></td>
+<td><strong>Modes</strong></td>
+<td><strong>Est. Cost (China→US)</strong></td>
+<td><strong>Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Flexport</strong></td>
+<td>flexport.com</td>
+<td>Digital-first platform; real-time tracking dashboard; integrated
+customs brokerage; best for startups</td>
+<td>Ocean LCL, FCL, Air, Truck</td>
+<td>$500–$2,000 (LCL 1–5 cbm China→US West Coast); $3,000–5,000 (FCL
+20ft)</td>
+<td>Strong tech platform; transparent pricing; customs expertise. Higher
+cost than traditional forwarders but better visibility and support for
+first-time importers.</td>
+</tr>
+<tr class="odd">
+<td><strong>Freightos / Ship4wd</strong></td>
+<td>freightos.com</td>
+<td>Marketplace; instant quotes from multiple carriers; price
+comparison; good for small shippers</td>
+<td>Ocean LCL, FCL, Air</td>
+<td>$400–$1,800 (LCL); varies by carrier</td>
+<td>Marketplace model lets you compare 10+ quotes instantly. Good for
+price shopping. Less hand-holding than Flexport for customs
+complexity.</td>
+</tr>
+<tr class="even">
+<td><strong>GORTO Freight</strong></td>
+<td>gortofreight.com</td>
+<td>China-specialist; 18 years experience; “Super Fast” sea channel
+(18–24 days door-to-door); DDP services</td>
+<td>Ocean LCL, FCL, Air, Express</td>
+<td>$400–$1,500 (LCL); customized FCL pricing</td>
+<td>China-origin specialist. Handles both Chinese export and US import
+customs. Good for China-manufactured ponchos.</td>
+</tr>
+<tr class="odd">
+<td><strong>Shapiro (Samuel Shapiro &amp; Co.)</strong></td>
+<td>shapiro.com</td>
+<td>Traditional full-service forwarder; 100+ years; strong customs
+brokerage; US-based</td>
+<td>Ocean, Air, Truck</td>
+<td>$500–$2,500 (LCL); quote-based</td>
+<td>Most experienced. Best for: complex customs situations, products
+requiring special classification (compostable products may need HTS
+ruling). In-house customs brokerage.</td>
+</tr>
+<tr class="even">
+<td><strong>DHL Global Forwarding</strong></td>
+<td>dhl.com/global-forwarding</td>
+<td>Global network; integrated express + freight; temperature-controlled
+options available</td>
+<td>Ocean, Air, Express, Temperature-controlled</td>
+<td>$600–$2,500 (LCL); premium pricing</td>
+<td>Best for: temperature-sensitive shipments (summer deliveries per P2E
+Section 11.3). Offers climate-controlled containers. Highest cost but
+most comprehensive service.</td>
+</tr>
+</tbody>
+</table>
+<p>1.1 Forwarder Selection Recommendation</p>
+<p>FOR CHINA SOURCING (ShinHigh or Alibaba converter): Use Flexport
+(best for startup importers, real-time tracking, integrated customs) or
+GORTO Freight (China specialist, fast sea channel). Get quotes from BOTH
++ one additional forwarder for price comparison. FOR UK SOURCING
+(Parkside): DHL Global Forwarding or direct DHL Express. UK shipments
+are simpler: no ocean transit, no ISF filing, faster clearance. DHL
+Express handles everything door-to-door including customs. FOR US
+SOURCING (ProAmpac): No freight forwarder needed. Standard domestic
+ground freight via UPS Freight, FedEx Freight, or XPO Logistics. 3–7
+days, $100–$500 for LTL (less than truckload). DECISION: engage 3
+forwarders for quotes during Week 16. Provide: origin (factory city +
+country), destination (3PL zip code), cargo description (compostable
+ponchos, HTS 3926.20), estimated weight and volume, desired Incoterm
+(FOB or CIF), and target delivery date. Compare: total cost (all-in
+door-to-door), transit time, customs clearance inclusion Y/N, and
+communication quality during the quoting process.</p>
+<p>2. HTS Tariff Classification</p>
+<p><strong>The HTS (Harmonized Tariff Schedule) code determines the duty
+rate paid on imported goods.</strong> Misclassification can result in:
+overpaying duties (correctable with a post-entry amendment but
+cumbersome), underpaying duties (CBP penalty of 20–40% of underpaid
+amount + interest), or shipment hold pending classification review.
+Getting the HTS code right BEFORE the first shipment is essential.</p>
+<table>
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 16%" />
+<col style="width: 21%" />
+<col style="width: 9%" />
+<col style="width: 16%" />
+<col style="width: 23%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>HTS Code</strong></td>
+<td><strong>Description</strong></td>
+<td><strong>Argument for This Code</strong></td>
+<td><strong>Base Duty Rate</strong></td>
+<td><strong>Section 301 Tariff Exposure</strong></td>
+<td><strong>Assessment</strong></td>
+</tr>
+<tr class="even">
+<td><strong>3926.20.9050</strong></td>
+<td>Articles of plastics: other articles of apparel and clothing
+accessories</td>
+<td>Compostable poncho classified as “article of plastics” (PLA is a
+thermoplastic polymer). “Apparel” includes disposable garments.</td>
+<td>3.4% (MFN / Column 1 General)</td>
+<td>Possible. Section 301 List 4A applies 7.5% additional tariff to many
+HTS 3926 subheadings. VERIFY: check USTR List 4A exclusion status for
+3926.20. If applied: total duty = 3.4% + 7.5% = 10.9%.</td>
+<td>MOST LIKELY classification. PLA poncho is an “article of plastics”
+for “apparel” use. Confirm with customs broker using product sample +
+tech spec.</td>
+</tr>
+<tr class="odd">
+<td><strong>6210.10.5000</strong></td>
+<td>Garments of nonwoven fabric: other garments</td>
+<td>Poncho classified as a “garment” made from nonwoven (PLA spunbond).
+The outer layer IS nonwoven fabric.</td>
+<td>2.8% (MFN)</td>
+<td>Possible but less likely. Section 301 applies to Chapter 62
+selectively. Check specific subheading.</td>
+<td>ALTERNATIVE classification. If customs determines the PLA spunbond
+nonwoven makes this a “garment of nonwoven” rather than an “article of
+plastics.” Lower base duty (2.8% vs 3.4%) but different Section 301
+exposure.</td>
+</tr>
+<tr class="even">
+<td><strong>6307.90.9889</strong></td>
+<td>Other made-up textile articles: other</td>
+<td>Catch-all for textile articles not elsewhere classified. Poncho
+could fall here if classified as a “made-up textile article” (the
+nonwoven layer is a textile).</td>
+<td>7.0% (MFN)</td>
+<td>Possible. Chapter 63 has varying Section 301 exposure.</td>
+<td>LEAST FAVORABLE classification. Higher base duty. Argue against this
+classification with customs broker by emphasizing the PLA plastic
+(non-textile) component.</td>
+</tr>
+</tbody>
+</table>
+<p>2.1 Classification Strategy</p>
+<p>STEP 1: Provide the customs broker (or Flexport’s customs team) with:
+a physical product sample (ship 2–3 ponchos to the broker), the P2B
+factory tech spec (material composition, dimensions, intended use), and
+a product description: “Disposable compostable warmth poncho for
+athletic events. Construction: vacuum-metallized regenerated cellulose
+film (NatureFlex NM, 23µm) ultrasonically bonded to PLA spunbond
+nonwoven (35 gsm). With elastic hood, laser-perforated tear-away lines.
+Single-use, intended for marathon race start lines.”</p>
+<p>STEP 2: Customs broker provides their recommended HTS code with
+rationale. STEP 3: If the broker recommends 3926.20 (articles of
+plastics): ACCEPT. This is the most defensible classification for a
+PLA-based product used as apparel. STEP 4: If uncertain about Section
+301 applicability: request a BINDING RULING from CBP. File via the CBP
+CROSS (Customs Rulings Online Search System) or through your broker. A
+binding ruling costs $0 (CBP processes for free) but takes 30–90 days.
+The ruling provides legal certainty on the duty rate for all future
+shipments. STEP 5: Budget for duties at the HIGHER estimate until the
+ruling is received. Example: if base rate is 3.4% and Section 301 may
+add 7.5%, budget at 10.9% until confirmed. On a $15,000 CIF shipment:
+$1,635 worst-case vs. $510 best-case. The $1,125 difference is worth
+getting right.</p>
+<p>2.2 Section 301 Tariff Monitoring</p>
+<p><strong>SUPPLIER CLARIFICATION:</strong> <em>The Section 301 tariff
+analysis below applies ONLY if sourcing from China (e.g., ShinHigh
+Packaging or other Alibaba-sourced converters). The primary production
+supplier, Parkside UK, is NOT subject to Section 301 tariffs. UK imports
+are subject to standard duty only (3.4% under HTS 3926.20.9050 or 0%
+under 6210.10.5000). If all production is sourced from Parkside UK, the
+Section 301 analysis is relevant only as a contingency reference for
+future China-sourced backup production. See P3A Factory Selection &amp;
+Negotiation for the final supplier decision (Parkside UK primary,
+ProAmpac US backup).</em></p>
+<p>Section 301 tariffs on Chinese goods have changed multiple times
+since 2018 and may change again. As of early 2026, List 4A applies a
+7.5% additional tariff to many consumer goods from China, but exclusions
+and modifications are ongoing. MONITOR: USTR.gov for exclusion lists and
+modifications. STRATEGY: (1) If Section 301 adds significant duty burden
+(&gt;5% on top of base rate): evaluate UK sourcing (Parkside) which is
+exempt from Section 301 (UK is not China). (2) If sourcing from China:
+ensure the total landed cost (COGS + duty + freight) still supports the
+P0F unit economics model. At $1.15 COGS + $0.15 freight + $0.13 duty
+(10.9% on $1.15) = $1.43 landed. Still within the $1.34–$2.48 COGS range
+from P0F.</p>
+<p>3. Customs Clearance: Documentation &amp; Process</p>
+<p><strong>US customs clearance requires 7 key documents.</strong> Most
+are prepared by the factory (seller) or the freight forwarder/customs
+broker. The importer’s (buyer’s) responsibility is to: ensure all
+documents are accurate and consistent, provide the HTS code and product
+description to the broker, arrange the customs bond, and respond
+promptly to any CBP queries during clearance.</p>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 10%" />
+<col style="width: 40%" />
+<col style="width: 34%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Document</strong></td>
+<td><strong>Prepared By</strong></td>
+<td><strong>Key Contents</strong></td>
+<td><strong>Critical Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Commercial Invoice</strong></td>
+<td>Factory (seller)</td>
+<td>Seller + buyer names/addresses, product description (“compostable
+warmth poncho, metallized PLA/cellulose film + PLA spunbond nonwoven”),
+HTS code, quantity, unit price, total value (FOB or CIF), currency
+(USD), country of origin, Incoterm, payment terms, PO number</td>
+<td>MUST match the packing list and B/L exactly on: quantity, value, and
+description. Discrepancies cause CBP holds and delays. Review factory’s
+invoice BEFORE shipment departs; correct errors at origin, not at US
+port.</td>
+</tr>
+<tr class="odd">
+<td><strong>Packing List</strong></td>
+<td>Factory (seller)</td>
+<td>Carton count, units per carton, total units, gross weight per
+carton, net weight, carton dimensions, pallet count, total weight (gross
++ net), container/truck loading plan</td>
+<td>Customs uses this to verify cargo against the invoice. Also used by
+3PL for receiving verification (Section 6).</td>
+</tr>
+<tr class="even">
+<td><strong>Bill of Lading (B/L) or Air Waybill (AWB)</strong></td>
+<td>Carrier / Freight forwarder</td>
+<td>Shipper, consignee (buyer or customs broker), notify party, port of
+loading, port of discharge, container number (ocean), flight number
+(air), description of goods, number of packages, weight</td>
+<td>The B/L is the legal document of title — it proves ownership of the
+cargo. ORIGINAL B/L required for ocean freight release at destination
+port. For air freight: AWB serves as receipt + contract of carriage (not
+a document of title). Telex release (electronic B/L) is increasingly
+common and avoids physical document courier.</td>
+</tr>
+<tr class="odd">
+<td><strong>ISF 10+2 (Importer Security Filing)</strong></td>
+<td>Importer (buyer) or customs broker</td>
+<td>10 data elements from importer + 2 from carrier. Filed
+electronically with CBP at least 24 hours before vessel loading at
+origin port. Includes: seller, buyer, manufacturer, ship-to address, HTS
+code, container stuffing location</td>
+<td>MANDATORY for all ocean freight to the US since 2009. Penalty for
+late or missing ISF: $5,000 per violation. Your freight forwarder or
+customs broker typically files this on your behalf. Provide all data at
+least 48 hours before vessel loading.</td>
+</tr>
+<tr class="even">
+<td><strong>Certificate of Origin</strong></td>
+<td>Factory or local chamber of commerce</td>
+<td>States the country where the goods were manufactured. Required by
+CBP for duty assessment and for determining eligibility for preferential
+trade programs.</td>
+<td>If shipping from China: straightforward (“Country of Origin:
+China”). If shipping from UK (Parkside): confirm post-Brexit UK-US trade
+treatment. No FTA exists between US and UK as of 2026; MFN rates
+apply.</td>
+</tr>
+<tr class="odd">
+<td><strong>Customs Bond</strong></td>
+<td>Customs broker (on importer’s behalf)</td>
+<td>A financial guarantee to CBP that duties, taxes, and fees will be
+paid. REQUIRED for all commercial imports &gt;$2,500. Single-entry bond:
+covers one shipment ($50–$100 per entry). Continuous bond: covers all
+imports for 12 months ($300–$600/year, recommended if importing ≥3
+shipments per year).</td>
+<td>MUST be in place BEFORE the shipment arrives at the US port. If no
+bond: cargo is held. Your customs broker arranges the bond. For a
+startup importing 2–4 times per year: a continuous bond ($300–$600/year)
+is more cost-effective than single-entry bonds.</td>
+</tr>
+<tr class="even">
+<td><strong>Arrival Notice</strong></td>
+<td>Carrier (automatic)</td>
+<td>Notification that the vessel/aircraft has arrived at the US port.
+Sent to the consignee and notify party listed on the B/L. Triggers the
+customs clearance process.</td>
+<td>Upon receiving the arrival notice: your customs broker begins the
+entry filing process. Typical clearance time: 1–3 business days for
+standard goods with correct documentation. If CBP selects the shipment
+for examination: add 3–7 business days + examination fees
+($200–$500).</td>
+</tr>
+</tbody>
+</table>
+<p>3.1 FDA Considerations</p>
+<p>The poncho is NOT a food-contact product and does NOT require FDA
+clearance for import. However: if ANY marketing material, Amazon
+listing, or packaging claims the product is “food-safe” or “food-contact
+approved” (which it should NOT — per P2D Section 6 sustainability claims
+document), FDA may flag the import for review. PREVENTION: do NOT use
+food-contact language on any packaging, listing, or commercial invoice.
+The product description should always read: “compostable warmth poncho
+for athletic events” — not “compostable food-grade poncho” or
+similar.</p>
+<p>3.2 CBP Examination Risk</p>
+<p>CBP randomly selects approximately 3–5% of imports for physical
+examination. If selected: (1) The cargo is moved to a CBP examination
+facility (CES — Centralized Examination Station). (2) Examination fees:
+$200–$500 (paid by importer). (3) Timeline: 3–7 additional business
+days. (4) CBP inspects for: correct classification, value, country of
+origin, restricted materials, and counterfeit goods. (5) After
+examination: if compliant, cargo is released. If issues found: CBP may
+assess additional duties, penalties, or detain the cargo. MITIGATION:
+accurate documentation eliminates the most common causes of
+examination-related problems. The product is low-risk (not food, not
+pharmaceutical, not weapons-related), so examination is unlikely to
+cause issues beyond delay.</p>
+<p>4. Shipping Timeline: Aligned to Fall Race Season</p>
+<p><strong>The shipping timeline is reverse-engineered from the first
+major fall race.</strong> If the Chicago Marathon is October 11,
+inventory must be at the 3PL and FBA-ready by mid-September. Working
+backward through transit, customs, and production determines when the PO
+must be placed. THIS timeline is the critical path for the entire Fall
+2026 launch.</p>
+<table>
+<colgroup>
+<col style="width: 19%" />
+<col style="width: 9%" />
+<col style="width: 26%" />
+<col style="width: 45%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Milestone</strong></td>
+<td><strong>Day Count</strong></td>
+<td><strong>Activity</strong></td>
+<td><strong>Details</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Factory ships (Week 17–18)</strong></td>
+<td>Day 0</td>
+<td>Factory completes production, passes pre-shipment inspection,
+receives 70% payment. Packs into containers or consolidates for LCL.
+Contacts freight forwarder for pickup.</td>
+<td>Factory provides: commercial invoice, packing list, certificate of
+origin. Freight forwarder arranges: container booking (ocean) or cargo
+booking (air), Chinese export customs clearance, truck from factory to
+port.</td>
+</tr>
+<tr class="odd">
+<td><strong>Ocean transit (China)</strong></td>
+<td>Day 3–35</td>
+<td>LCL: 25–35 days port-to-port (Shanghai/Ningbo to LA/Long Beach or
+NYC/Newark). FCL: 18–28 days (direct service, no transshipment). Air:
+5–7 days (Shanghai/Guangzhou to LAX/JFK/ORD).</td>
+<td>Track via carrier website or Flexport/Freightos dashboard. ISF 10+2
+filed before vessel loading. Founder monitors: no delays, no route
+changes, vessel on schedule.</td>
+</tr>
+<tr class="even">
+<td><strong>UK transit (Parkside)</strong></td>
+<td>Day 3–7</td>
+<td>Courier/freight: 3–5 days (DHL Express or freight consolidator from
+Normanton, UK to US 3PL). No ocean transit needed.</td>
+<td>UK shipments avoid: ocean transit delays, ISF filing, customs bond
+(still need entry filing for formal imports &gt;$2,500). Faster but
+higher per-unit shipping cost than China ocean.</td>
+</tr>
+<tr class="odd">
+<td><strong>US customs clearance</strong></td>
+<td>Day 28–38 (ocean) or Day 6–8 (air/UK)</td>
+<td>Customs broker files entry with CBP. CBP reviews: HTS
+classification, value, country of origin, Section 301 applicability. If
+cleared: cargo released to trucking company for delivery. If examined:
+add 3–7 days + fees.</td>
+<td>CRITICAL: all documentation must be error-free. Commercial invoice
+must match B/L and packing list on quantity, value, and description. Any
+mismatch triggers a CBP hold.</td>
+</tr>
+<tr class="even">
+<td><strong>Domestic delivery to 3PL</strong></td>
+<td>Day 35–42 (ocean) or Day 8–12 (air/UK)</td>
+<td>Trucking from port to 3PL warehouse (or Amazon FBA prep center).
+Drayage (port to warehouse within 50 miles): $200–$500. Longer-distance
+trucking: $0.50–$2.00/mile.</td>
+<td>Coordinate with 3PL: provide advance shipping notice (ASN) with: PO
+number, expected arrival date, carton count, total units, any special
+handling (temperature-sensitive per P2E Section 11.3). 3PL prepares
+receiving dock and labor.</td>
+</tr>
+<tr class="odd">
+<td><strong>3PL receiving + inspection</strong></td>
+<td>Day 42–45 (ocean) or Day 12–15 (air/UK)</td>
+<td>3PL receives pallets, verifies against packing list (carton count,
+unit count, condition). Founder or QC representative conducts receiving
+inspection per Section 6 of this document. If all checks pass: inventory
+is “received” in the WMS and available for fulfillment.</td>
+<td>TARGET: inventory available for fulfillment by 3 weeks before the
+first fall race. For Fall 2026: if Chicago Marathon is Oct 11, inventory
+must be at 3PL by mid-September. Work BACKWARD: mid-Sep arrival − 5
+weeks ocean transit − 4 weeks production = PO by early June.</td>
+</tr>
+</tbody>
+</table>
+<p>4.1 Buffer Planning</p>
+<p>BUILD IN 2 WEEKS OF BUFFER at every critical handoff: production
+completion (target Week 17, not Week 18), port loading (book vessel 1
+week before needed), customs clearance (prepare all documents before
+vessel arrives, not after), and 3PL receiving (alert 3PL 2 weeks before
+expected arrival). The buffer absorbs: factory production delays (1–3
+days common), vessel schedule changes (1–5 days common), customs
+examination (3–7 days if selected), and trucking delays (1–2 days for
+port congestion). WITHOUT buffer: a single 3-day delay at any point
+pushes inventory past the race date. WITH buffer: up to 14 cumulative
+days of delay are absorbed without impact.</p>
+<p>4.2 UK Shipping (Parkside): Simplified Timeline</p>
+<p>If primary factory is Parkside (UK): the timeline compresses
+dramatically. Factory completes production (Week 17) → DHL Express
+pickup (Day 0) → UK export clearance (Day 0–1) → Air transit UK→US (Day
+1–2) → US customs clearance (Day 2–3) → Domestic delivery to 3PL (Day
+3–5). TOTAL: 3–5 business days factory-to-3PL. This speed advantage is a
+key argument for UK sourcing despite higher per-unit cost. For a
+first-season launch with tight timing: UK sourcing may be worth the
+premium to guarantee on-time arrival.</p>
+<p>5. Marine Cargo Insurance</p>
+<p><strong>Insurance protects the brand’s $15,000–$50,000 inventory
+investment during transit.</strong> An uninsured ocean container that
+falls overboard, is damaged by water, or is stolen at port represents a
+total loss with no recovery. Insurance is non-negotiable for any
+shipment exceeding $5,000 in value.</p>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 81%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Attribute</strong></td>
+<td><strong>Specification</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Type</strong></td>
+<td>Marine cargo insurance (All-Risk coverage, also called Institute
+Cargo Clauses A)</td>
+</tr>
+<tr class="odd">
+<td><strong>What it covers</strong></td>
+<td>Physical loss or damage to cargo during transit: water damage,
+theft, container loss overboard, fire, collision, handling damage,
+temperature excursion (if climate-controlled option selected). All-Risk
+is the broadest coverage — covers all perils except specifically
+excluded ones (war, strikes, nuclear, inherent vice).</td>
+</tr>
+<tr class="even">
+<td><strong>What it does NOT cover</strong></td>
+<td>Inherent vice (material degradation from PLA shelf-life issues is
+NOT transit damage — it’s a product characteristic). Delay (if vessel
+arrives late, insurance does not cover lost sales). Improper packaging
+(if cartons are crushed because they weren’t palletized correctly,
+insurer may deny). War/strikes/civil commotion (optional add-on
+available).</td>
+</tr>
+<tr class="odd">
+<td><strong>Coverage amount</strong></td>
+<td>110% of CIF value (Cost + Insurance + Freight). The 10% margin
+covers incidental costs like customs clearance fees on damaged goods.
+Example: $15,000 CIF shipment → insure for $16,500.</td>
+</tr>
+<tr class="even">
+<td><strong>Cost</strong></td>
+<td>0.3–0.8% of insured value for standard ocean cargo (All-Risk,
+China→US). Example: $16,500 insured value × 0.5% = $82.50 premium. Air
+freight: 0.2–0.5% (lower risk, shorter transit). UK courier:
+0.2–0.3%.</td>
+</tr>
+<tr class="odd">
+<td><strong>How to arrange</strong></td>
+<td>Option A: Through the freight forwarder — most forwarders offer
+cargo insurance as an add-on when booking. Convenient: single point of
+contact. Option B: Through an independent marine insurance broker —
+companies like Roanoke Insurance Group (roanoke.com), Chubb Marine, or
+Travelers. May offer better rates for larger shipments. Option C:
+Through the factory’s insurance (if CIF Incoterm) — the factory arranges
+and pays for insurance. Verify: coverage is All-Risk, amount is 110%
+CIF, and the policy names you (the buyer) as the beneficiary.</td>
+</tr>
+<tr class="even">
+<td><strong>When to arrange</strong></td>
+<td>BEFORE the shipment departs the factory. Ideally: at the time of PO
+placement or when the shipping plan is created. The insurance must be in
+force from the moment cargo leaves the factory door until it arrives at
+the 3PL warehouse door (warehouse-to-warehouse coverage).</td>
+</tr>
+<tr class="odd">
+<td><strong>Claims process</strong></td>
+<td>If cargo is damaged: (1) Document damage immediately upon receipt
+with photographs. (2) Note damage on the carrier’s delivery receipt
+(“Received with visible carton damage, [X] cartons affected”). (3)
+Notify insurer within 3–5 business days with: policy number, commercial
+invoice, packing list, B/L, photographs, estimated loss value. (4)
+Insurer sends adjuster or requests inspection report. (5) Settlement:
+typically 30–60 days. CRITICAL: if you sign the delivery receipt as
+“received in good condition” and later discover damage, the claim may be
+denied. ALWAYS inspect before signing “good condition.”</td>
+</tr>
+</tbody>
+</table>
+<p>COST EXAMPLE: $20,000 CIF shipment. Insured value: $22,000 (110% of
+CIF). Premium at 0.5%: $110. This $110 protects against a $20,000 total
+loss. The ROI on cargo insurance is effectively infinite if a claim
+occurs and effectively negligible if it doesn’t. ALWAYS insure.</p>
+<p>6. Receiving Inspection: 8-Point Protocol</p>
+<p><strong>The receiving inspection is the FINAL quality gate before
+inventory enters the fulfillment system.</strong> It catches: transit
+damage that escaped packaging protection, temperature exceedance during
+hot-weather shipping, factory errors that passed pre-shipment
+inspection, and counting/labeling discrepancies between factory and 3PL.
+Conduct this inspection BEFORE signing the delivery receipt as “received
+in good condition.”</p>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 42%" />
+<col style="width: 42%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Check</strong></td>
+<td><strong>Procedure</strong></td>
+<td><strong>If Fails</strong></td>
+</tr>
+<tr class="even">
+<td><strong>1. Carton count</strong></td>
+<td>Count total cartons received vs. packing list quantity</td>
+<td>If short: note on delivery receipt, photograph, notify freight
+forwarder + factory within 24 hours. File shortage claim with
+carrier.</td>
+</tr>
+<tr class="odd">
+<td><strong>2. Carton condition</strong></td>
+<td>Inspect exterior of all cartons for: water damage, crush damage,
+punctures, tape tampering, evidence of opening/resealing</td>
+<td>If damaged: photograph all affected cartons from multiple angles.
+Open damaged cartons and inspect contents. Separate damaged units from
+undamaged. Note damage count on delivery receipt.</td>
+</tr>
+<tr class="even">
+<td><strong>3. Temperature indicators</strong></td>
+<td>Check temperature indicator strips (1 per 10 cartons per P3D Section
+4)</td>
+<td>If ANY indicator shows heat exceedance (&gt;40°C): quarantine
+affected cartons. Spot-check 5 units from quarantined cartons: flex test
+for brittleness, tape test for metallization adhesion. If units pass:
+release. If units fail: reject carton, file claim.</td>
+</tr>
+<tr class="odd">
+<td><strong>4. Unit count</strong></td>
+<td>Count units in 3 randomly selected cartons</td>
+<td>Must match carton label quantity (±0 tolerance — exact count
+required). If short: extrapolate across all cartons and calculate total
+shortage. Notify factory.</td>
+</tr>
+<tr class="even">
+<td><strong>5. Random QC spot-check</strong></td>
+<td>Pull 10 units from 5 different cartons (50 units total). Run
+abbreviated QC: visual inspection (metallization, bonding, print),
+dimensional check (tape measure body width + length on 3 units),
+tear-away quick test (1 tear per unit, room temp — clean path Y/N?)</td>
+<td>If ≥2/10 units fail any check: escalate to full P2E 20-point
+inspection on 200-unit AQL sample before releasing inventory. If
+&lt;2/10: inventory passes receiving inspection and is released for
+fulfillment.</td>
+</tr>
+<tr class="odd">
+<td><strong>6. FNSKU verification</strong></td>
+<td>Scan 5 FNSKU labels with a barcode scanner app (for DTC/FBA
+units)</td>
+<td>Barcodes must scan correctly and match the Amazon ASIN. If barcodes
+don’t scan: labels are defective. Re-label before sending to FBA (cost:
+$0.03–$0.05/label + labor).</td>
+</tr>
+<tr class="even">
+<td><strong>7. Co-brand separation</strong></td>
+<td>Verify co-brand cartons are labeled correctly and separated from
+standard inventory</td>
+<td>Each co-brand design must be stored separately at 3PL with clear
+location identifiers. Mislabeled cartons cause wrong-product shipments
+to race venues — a brand-damaging error.</td>
+</tr>
+<tr class="odd">
+<td><strong>8. Documentation</strong></td>
+<td>File in /Manufacturing/[Factory Name]/Receiving/: signed delivery
+receipt (with any damage notes), packing list (annotated with actual
+counts), QC spot-check results + photographs, temperature indicator
+status, any discrepancy notes</td>
+<td>This documentation is the evidence base for: carrier damage claims,
+factory quality disputes, insurance claims, and inventory
+reconciliation.</td>
+</tr>
+</tbody>
+</table>
+<p>6.1 Who Conducts the Inspection</p>
+<p>OPTION A: Founder inspects personally at the 3PL. Best for: first
+shipment (hands-on learning), small shipments (&lt;50 cartons), and any
+shipment with suspected issues. OPTION B: 3PL staff conducts inspection
+using the checklist. Best for: ongoing shipments after the first has
+been inspected personally. Provide the 3PL with: a printed laminated
+checklist, golden sample photos for visual reference, and clear
+instructions for escalation if any check fails. Cost: $0.10–$0.25/unit
+as part of 3PL receiving fee, or $50–$150 flat fee for spot-check
+inspection. OPTION C: Third-party inspector at the 3PL (QIMA or
+equivalent). Best for: high-value shipments (&gt;$25K) or any shipment
+where quality concerns exist from the pre-shipment inspection.</p>
+<p>7. Timeline &amp; Budget</p>
+<p><strong>WEEK 16: Request quotes from 3 freight forwarders. Provide:
+origin, destination, cargo details, HTS code, Incoterm, timeline. Begin
+HTS classification process with customs broker (send product samples +
+tech spec). Research customs bond options (single-entry vs.
+continuous).</strong></p>
+<p><strong>WEEK 17: Select freight forwarder based on quotes + service
+level. Purchase customs bond (continuous recommended: $300–$600/year).
+Arrange marine cargo insurance (0.3–0.8% of CIF value). Confirm shipping
+timeline with factory + forwarder. Alert 3PL of incoming shipment with
+expected arrival date, carton count, and special handling
+instructions.</strong></p>
+<p><strong>WEEK 18: Factory completes production and passes pre-shipment
+inspection (P3B Section 4). Factory hands cargo to freight forwarder.
+ISF 10+2 filed (ocean only). Insurance policy in force. Track shipment
+departure. For UK origin: shipment arrives at 3PL within 3–5
+days.</strong></p>
+<p><strong>WEEK 19: Ocean shipment in transit (monitor tracking daily).
+Prepare receiving inspection checklist and brief 3PL staff. For air/UK
+shipments: cargo arrives, clears customs, delivers to 3PL. Conduct
+receiving inspection (Section 6). If all checks pass: inventory released
+for fulfillment. HANDOFF to P4B (Warehousing &amp; 3PL Setup) for FBA
+prep and B2B fulfillment activation.</strong></p>
+<p>BUDGET: Freight forwarder (ocean LCL China→US): $500–$2,000 per
+shipment. Freight forwarder (UK express): $300–$800. Customs bond
+(continuous): $300–$600/year. Customs broker fee (if separate from
+forwarder): $150–$300 per entry. Marine cargo insurance: $50–$200 per
+shipment. HTS binding ruling (if needed): $0 (CBP processes free, 30–90
+day wait). Drayage (port to 3PL): $200–$500. TOTAL P4A per shipment:
+$1,500–$4,400 (ocean from China) or $450–$1,700 (UK express).</p>
+<p>8. Conclusion: Logistics Is Invisible Until It Fails</p>
+<p><strong>Good logistics is invisible: the poncho appears on the 3PL
+shelf, ready for fulfillment, exactly when needed.</strong> Bad
+logistics is spectacular: a container stuck at the Port of Long Beach
+during the week of the NYC Marathon, a CBP hold because the commercial
+invoice says “5,000 units” but the packing list says “4,800 units,” or
+an uninsured shipment lost to a container fire in the Pacific. Every
+document, every timeline buffer, every insurance policy in this section
+exists to keep logistics invisible.</p>
+<p><strong>The single most important action: START EARLY.</strong>
+Engage the freight forwarder in Week 16 — not Week 18 when the factory
+is ready to ship and you’re scrambling. Classify the HTS code in Week 16
+— not at the port when customs asks for it. Buy the customs bond in Week
+17 — not when the cargo arrives and you discover you can’t clear it.
+Logistics rewards preparation and punishes procrastination with a
+severity unmatched by any other part of the business.</p>
+
+        </div>
+    </div></div>
+<footer style="text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px">
+Sustainable Race-Start Warmth Poncho — D2C Brand GTM Project · 60 Subprojects · 391 Tasks · ~15,500¶ · April 2026
+</footer></body></html>

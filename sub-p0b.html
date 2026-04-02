@@ -1,0 +1,873 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>P0B: Competitive Landscape Incumbent Analysis — Race Start Warmth GTM</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0e1a;--surface:#111827;--card:#1a2332;--border:#2a3a4e;--accent:#10b981;--accent2:#3b82f6;--text:#e2e8f0;--muted:#94a3b8;--white:#fff;--red:#ef4444;--amber:#f59e0b;--green:#10b981}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+/* Nav */
+nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
+nav .inner{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;max-width:1200px;margin:0 auto}
+nav .brand{font-weight:700;font-size:15px;color:var(--accent)}
+nav .links{display:flex;gap:8px;flex-wrap:wrap}
+nav .links a{color:var(--muted);font-size:13px;padding:4px 10px;border-radius:6px;transition:.2s}
+nav .links a:hover,nav .links a.active{color:var(--white);background:var(--card);text-decoration:none}
+/* Hero */
+.hero{padding:60px 0 40px;text-align:center}
+.hero h1{font-size:2.4em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:1.1em;max-width:700px;margin:0 auto}
+/* Stats bar */
+.stats{display:flex;justify-content:center;gap:32px;padding:24px 0;flex-wrap:wrap}
+.stat{text-align:center}.stat .num{font-size:1.8em;font-weight:800;color:var(--white)}.stat .label{font-size:.75em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+/* Cards */
+.grid{display:grid;gap:16px;margin:24px 0}
+.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}
+.grid-3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;transition:.2s}
+.card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.card h3{font-size:1.1em;margin-bottom:8px}.card p{color:var(--muted);font-size:.9em}
+.card .badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:8px}
+.card .meta{font-size:.8em;color:var(--muted);margin-top:12px}
+/* Section */
+.section{padding:40px 0}.section h2{font-size:1.6em;font-weight:700;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+/* Table */
+table{width:100%;border-collapse:collapse;font-size:.85em;margin:16px 0}
+th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:52px}
+td{padding:8px 12px;border-bottom:1px solid var(--border)}
+tr:hover td{background:rgba(16,185,129,.05)}
+.status-complete{color:var(--green);font-weight:600}.status-not{color:var(--muted)}
+/* Progress */
+.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:8px}
+.progress .bar{height:100%;background:var(--accent);border-radius:3px}
+/* Back link */
+.back{display:inline-block;color:var(--muted);font-size:.9em;margin-bottom:20px}
+.back:hover{color:var(--accent)}
+/* Download */
+.dl-card{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin:8px 0;transition:.2s}
+.dl-card:hover{border-color:var(--accent);text-decoration:none}
+.dl-card .icon{font-size:2em}.dl-card .info h4{color:var(--white);margin-bottom:4px}.dl-card .info p{color:var(--muted);font-size:.85em}
+/* Footer */
+footer{text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px}
+@media(max-width:768px){.stats{gap:16px}.stat .num{font-size:1.3em}nav .links{gap:4px}nav .links a{font-size:11px;padding:3px 6px}.hero h1{font-size:1.6em}}
+
+.doc-content{max-width:900px;margin:0 auto;padding:20px 0}
+.doc-content h1{font-size:1.8em;font-weight:800;color:var(--white);margin:32px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.doc-content h2{font-size:1.4em;font-weight:700;color:var(--accent);margin:28px 0 12px}
+.doc-content h3{font-size:1.15em;font-weight:600;color:var(--accent2);margin:20px 0 10px}
+.doc-content p{margin:8px 0;line-height:1.7}
+.doc-content table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85em}
+.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;border:1px solid var(--border)}
+.doc-content td{padding:8px 12px;border:1px solid var(--border);vertical-align:top}
+.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.doc-content ul,.doc-content ol{margin:8px 0 8px 24px}
+.doc-content li{margin:4px 0;line-height:1.6}
+.doc-content strong{color:var(--white)}
+.doc-content em{color:var(--muted)}
+.doc-content blockquote{border-left:3px solid var(--accent);padding:8px 16px;margin:12px 0;background:var(--card);border-radius:0 8px 8px 0}
+.nav-sub{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 24px;padding:12px 16px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
+.nav-sub a{font-size:.8em;color:var(--muted);padding:4px 10px;border-radius:4px;transition:.2s;white-space:nowrap}
+.nav-sub a:hover,.nav-sub a.active{color:var(--white);background:var(--surface);text-decoration:none}
+</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a></div></div></nav><div class="container">
+    <div style="padding-top:30px">
+        <a href="p0.html" class="back">← 🔍 P0: Market Research</a>
+        <div class="nav-sub"><a href="p0.html">🔍 P0 Overview</a><a href="sub-p0a.html">P0A</a><a href="sub-p0b.html" class="active">P0B</a><a href="sub-p0c.html">P0C</a><a href="sub-p0d.html">P0D</a><a href="sub-p0e.html">P0E</a><a href="sub-p0f.html">P0F</a><a href="sub-p0g.html">P0G</a><a href="sub-p0h.html">P0H</a><a href="sub-p0.html">P0</a></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px">
+            <div>
+                <span style="background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px">P0B</span>
+                <span style="color:var(--muted);font-size:.85em;margin-left:8px">P0: Market Research</span>
+            </div>
+            <a href="files/P0B_Competitive_Landscape_Incumbent_Analysis.docx" style="font-size:.85em;color:var(--accent);padding:6px 14px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
+        </div>
+        <div class="doc-content">
+            <p><strong>P0B: COMPETITIVE LANDSCAPE &amp;</strong></p>
+<p><strong>INCUMBENT ANALYSIS</strong></p>
+<p>Sub-Project P0B | Market Research &amp; Concept Validation | Weeks
+1–3</p>
+<p><em>Comprehensive Competitive Intelligence for the Sustainable
+Race-Start Warmth Layer D2C Brand</em></p>
+<p>March 2026 | Confidential</p>
+<p>Executive Summary</p>
+<p><strong>A compostable, thermally-reflective warmth poncho for
+marathon start lines does not exist anywhere on the market today —
+confirming genuine whitespace.</strong> The enabling technologies
+(metallized compostable films from Futamura, Celplast, Parkside, and
+TIPA) are commercially available and certified, but nobody has combined
+compostability, thermal reflectivity, and poncho wearability into a
+single product for races.</p>
+<p>Heatsheets (AFM Inc.) has held near-monopoly control of the race
+finish-line warmth market for 46 years with
+recyclable-but-not-compostable LDPE products, while the pre-race warmth
+problem remains solved by throwaway thrift-store clothing and garbage
+bags — generating 200–400+ tons of textile waste annually across major
+marathons alone.</p>
+<p><strong>This report delivers exhaustive findings across 12 research
+domains:</strong> Heatsheets deep dive, global compostable poncho
+manufacturers, NYC Marathon finish poncho, Valencia/Berlin/London
+programs, RetiSports/GRD/GreenGear competitors, mylar blanket market,
+throwaway clothing ecosystem, emerging competitors, enabling material
+technology, runner sentiment, Amazon landscape, and competitive threat
+assessment.</p>
+<p>1. Heatsheets (AFM Inc.): 46-Year Incumbent Deep Dive</p>
+<p>1.1 Company Profile &amp; Leadership</p>
+<p>Advanced Flexible Materials, Inc. (AFM Inc.), now operating as AFM
+Heatsheets LLC, was founded in 1980 by David Deigan, a former Director
+of Sales &amp; Marketing at National Metalizing (Cranbury, NJ). National
+Metalizing manufactured the reflective material used for NASA’s Skylab
+sunshield in 1973. Deigan provided the first thin plastic blankets with
+radiant barrier technology at the 1980 NYC Marathon.</p>
+<p>In 2013, Chris Falk purchased Heatsheets with a partner from founder
+David Deigan. Falk’s background spans 20+ years as an investment banker
+and corporate attorney; he founded Cadence Advisory Partners
+(middle-market consulting). He is an avid endurance athlete with Ironman
+triathlons, Leadville 100, and multiple marathons. VP Lacie Whyte was
+hired January 2014. Total headcount is estimated at 3–8 employees — an
+extremely lean operation. Headquarters: Chicago, Illinois.</p>
+<p>1.2 Silver Lining® Technology</p>
+<p>Silver Lining® is Heatsheets’ proprietary brand name for their
+metallized film — vaporized aluminum deposited on a thin LDPE plastic
+substrate via vacuum metallization, creating a radiant barrier. The
+silver side reflects up to 90% of the body’s radiant infrared heat back
+to the wearer. Wind-resistant and waterproof. The “Flip-It” feature
+(silver side out) deflects external heat for warm-weather races. In
+1996, the technology was inducted into the Space Foundation’s Space
+Technology Hall of Fame®.</p>
+<p><strong>No specific patents were found.</strong> The underlying
+radiant barrier technology has been in the public domain for 30+ years.
+Their competitive moat is brand recognition, race relationships, and
+distribution systems — not patent protection.</p>
+<p>1.3 Full Product Line &amp; Pricing</p>
+<table>
+<colgroup>
+<col style="width: 26%" />
+<col style="width: 19%" />
+<col style="width: 26%" />
+<col style="width: 14%" />
+<col style="width: 13%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Product</strong></td>
+<td><strong>Dimensions</strong></td>
+<td><strong>Material</strong></td>
+<td><strong>Pack Price</strong></td>
+<td><strong>Per-Unit</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Classic Blankets (200/carton)</strong></td>
+<td>72″ × 47.25″</td>
+<td>1 mil white metallized LDPE #4</td>
+<td>$285.00</td>
+<td>$1.43</td>
+</tr>
+<tr class="odd">
+<td><strong>Classic Blankets (100/carton)</strong></td>
+<td>72″ × 47.25″</td>
+<td>Same</td>
+<td>$150.00</td>
+<td>$1.50</td>
+</tr>
+<tr class="even">
+<td><strong>Classic Blankets (50 = 2×25)</strong></td>
+<td>72″ × 47.25″</td>
+<td>Same</td>
+<td>$90.00</td>
+<td>$1.80</td>
+</tr>
+<tr class="odd">
+<td><strong>Individually Packed (100/ctn)</strong></td>
+<td>47.25″ × 72″</td>
+<td>Same</td>
+<td>$230.00</td>
+<td>$2.30</td>
+</tr>
+<tr class="even">
+<td><strong>Race Ponchos (100/carton)</strong></td>
+<td>Hooded, arm holes</td>
+<td>1 mil white metallized LDPE #4</td>
+<td>$430.00</td>
+<td>$4.30</td>
+</tr>
+<tr class="odd">
+<td><strong>Emergency Blankets (100/ctn)</strong></td>
+<td>56″ × 84″</td>
+<td>1.25 mil yellow metallized LDPE</td>
+<td>$455.00</td>
+<td>$4.55</td>
+</tr>
+<tr class="even">
+<td><strong>Hands-Free Tape (2,500/roll)</strong></td>
+<td>N/A</td>
+<td>Adhesive tape</td>
+<td>$150.00</td>
+<td>$0.06</td>
+</tr>
+<tr class="odd">
+<td><strong>Rapid Unwind Racks (set of 2)</strong></td>
+<td>N/A</td>
+<td>Metal racks</td>
+<td>$300.00</td>
+<td>$150 ea.</td>
+</tr>
+</tbody>
+</table>
+<p>B2B tiered pricing is available for orders of 15+ cartons (3,000+
+blankets). Estimated bulk price at scale: $0.80–$1.20/blanket. Custom
+branded blankets require a minimum 3,000 units. All products produced in
+North America.</p>
+<p>1.4 Race Clients &amp; Market Reach</p>
+<p>Heatsheets claims to supply virtually all major US long-distance road
+races and triathlons. Confirmed clients: NYC Marathon (46-year flagship
+since 1980), Boston Marathon (Official B.A.A. Licensee since October
+2015), Chicago Marathon (45,000+ finishers; Blankets to Boards since
+2018), LA Marathon, Pittsburgh Marathon, Big Sur, Cherry Blossom 10
+Mile, Flying Pig, Grandma’s Marathon, Hartford Marathon, Kansas City,
+Kiawah Island, Vermont City, St. Jude Memphis, CIM Sacramento, Rock ’n’
+Roll series, San Francisco Marathon. International: exported to Japan
+(D. Nagata Co., 2M+ consumers), Mexico (Queretaro), and Scotiabank
+events.</p>
+<p><strong>Estimated annual volume: 500,000–1,000,000+ blankets</strong>
+for endurance events plus emergency/public safety and outdoor retail
+channels. Estimated total revenue: $2–5 million annually.</p>
+<p>1.5 Blankets to Boards™ Recycling Program</p>
+<p>Piloted in 2008, officially launched February 2011 with Trex Company.
+Free for events of any size. Process: Green Team volunteers collect
+blankets → drop at Trex-affiliated retailer → shipped to Trex HQ in
+Virginia → recycled into composite wood-alternative decking. It takes
+~500 Heatsheets to make one park bench.</p>
+<p><strong>Recovery rates are dismally low:</strong> Pittsburgh Marathon
+(2012) recovered ~10%; SunTrust National Marathon (2011) recovered ~16%
+of 12,000 blankets; Chicago Marathon (2019) collected ~5,500 of 45,000+
+distributed (~12%). The vast majority are kept as souvenirs or
+trashed.</p>
+<p>1.6 Critical Weakness: NOT Compostable</p>
+<p>LDPE is recyclable but absolutely not compostable or biodegradable.
+LDPE takes hundreds to thousands of years to decompose. Only ~6.2% of
+LDPE generated in the US is actually recycled. Metallized aluminum
+coating further complicates end-of-life. With only 10–16% of distributed
+Heatsheets recovered at events, a major marathon like Chicago sends
+~39,000–40,000 Heatsheets to landfill after a single race.</p>
+<p><strong>No evidence was found</strong> of any R&amp;D, product
+launches, or announcements related to compostable or biodegradable
+materials from Heatsheets. This is the core vulnerability a compostable
+competitor can exploit.</p>
+<p>2. Global Directory of Compostable Poncho Manufacturers</p>
+<p>The following table represents the most comprehensive directory of
+certified compostable poncho manufacturers globally. No manufacturer
+currently offers insulation, warmth layers, or metallized films — adding
+thermal properties is the engineering challenge your product must
+solve.</p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 13%" />
+<col style="width: 13%" />
+<col style="width: 18%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Manufacturer</strong></td>
+<td><strong>Location</strong></td>
+<td><strong>Material</strong></td>
+<td><strong>Certifications</strong></td>
+<td><strong>MOQ</strong></td>
+<td><strong>Price/Unit</strong></td>
+<td><strong>Lead Time</strong></td>
+</tr>
+<tr class="even">
+<td><strong>EverBen / PonchoSupplier.com</strong></td>
+<td>China (Hebei)</td>
+<td>PLA + PBAT</td>
+<td>EN 13432, ASTM D6400, OK Compost</td>
+<td>2,000–10,000</td>
+<td>$0.45–$0.85</td>
+<td>30 days</td>
+</tr>
+<tr class="odd">
+<td><strong>Universal Plastic (UPM)</strong></td>
+<td>Hong Kong/China</td>
+<td>PLA blend</td>
+<td>OK Compost Industrial + HOME, EN 13432</td>
+<td>5,000</td>
+<td>Quote</td>
+<td>4–6 weeks</td>
+</tr>
+<tr class="even">
+<td><strong>RAINRAVER</strong></td>
+<td>USA (Sheridan, WY)</td>
+<td>Cornstarch + sugarcane</td>
+<td>HOME compostable EN 13432</td>
+<td>B2B custom</td>
+<td>Premium</td>
+<td>Custom</td>
+</tr>
+<tr class="odd">
+<td><strong>Ecosmart / Bio Poncho</strong></td>
+<td>Australia</td>
+<td>100% cornstarch</td>
+<td>EN 13432, carbon-neutral</td>
+<td>B2B custom</td>
+<td>Quote</td>
+<td>Custom</td>
+</tr>
+<tr class="even">
+<td><strong>JOSANTO LLC</strong></td>
+<td>USA (Lincoln, NE)</td>
+<td>PLA + cornstarch</td>
+<td>None verified</td>
+<td>200 (lowest!)</td>
+<td>$2–$4 est.</td>
+<td>5–10 days</td>
+</tr>
+<tr class="odd">
+<td><strong>PromoMission</strong></td>
+<td>UK</td>
+<td>100µm corn-plastic (PLA)</td>
+<td>None verified</td>
+<td>500</td>
+<td>£1.50/unit</td>
+<td>4–5 weeks</td>
+</tr>
+<tr class="even">
+<td><strong>GRD Green Guard Pro</strong></td>
+<td>USA (Amazon-native)</td>
+<td>Plant-based bioplastic</td>
+<td>None verified</td>
+<td>DTC only</td>
+<td>~$3–$4/unit</td>
+<td>N/A</td>
+</tr>
+<tr class="odd">
+<td><strong>GreenGear Supply Co.</strong></td>
+<td>USA</td>
+<td>Sugarcane PE (Braskem)</td>
+<td>NOT compostable; recyclable #4</td>
+<td>2,000</td>
+<td>~$6.50/unit</td>
+<td>Custom</td>
+</tr>
+<tr class="even">
+<td><strong>Alibaba suppliers (236+)</strong></td>
+<td>China (Hebei mostly)</td>
+<td>PLA/PBAT/cornstarch</td>
+<td>Varies; verify individually</td>
+<td>1,000–10,000</td>
+<td>$0.20–$3.50</td>
+<td>15–30 days</td>
+</tr>
+</tbody>
+</table>
+<p>2.1 EverBen (PonchoSupplier.com) — Top Recommended Supplier</p>
+<p>Hebei Province, China. 800 workers, 20,000 pcs/day capacity. Full
+OEM/ODM with custom logo, Pantone matching, up to 8-color rotogravure
+printing. Standard dimensions: 52″×80″, thickness 0.03–0.4mm. Shelf
+life: 12–18 months. Decomposition: 90–180 days industrial composting.
+Walmart and Disney audited. BSCI certified. This is the most
+production-ready and cost-effective option for a first production
+run.</p>
+<p>2.2 Key Shelf Life Warning</p>
+<p><strong>Cornstarch-based ponchos degrade over time.</strong> Total
+Merchandise reports ~9 months shelf life; EverBen states 12–18 months.
+This is a critical procurement consideration for a product that must be
+ordered 3–6 months before race season and may sit in warehouse.
+Temperature and humidity accelerate degradation. Storage conditions must
+be specified in supplier agreements.</p>
+<p>3. Complete Competitive Matrix</p>
+<p>This matrix maps every solution currently used at race start lines
+and finish lines against the five dimensions that matter: material,
+warmth, compostability, price, and distribution channel.</p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 19%" />
+<col style="width: 14%" />
+<col style="width: 13%" />
+<col style="width: 13%" />
+<col style="width: 11%" />
+<col style="width: 15%" />
+<col style="width: 12%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Product</strong></td>
+<td><strong>Material</strong></td>
+<td><strong>Warmth?</strong></td>
+<td><strong>Compostable?</strong></td>
+<td><strong>Price</strong></td>
+<td><strong>Distribution</strong></td>
+<td><strong>Threat</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Heatsheets (AFM Inc.)</strong></td>
+<td>Metallized LDPE</td>
+<td>Yes (reflects 90% IR)</td>
+<td>No (recyclable #4 only)</td>
+<td>$1.43–$4.30</td>
+<td>B2B: 100+ races</td>
+<td>HIGH</td>
+</tr>
+<tr class="odd">
+<td><strong>GreenGear EcoRain</strong></td>
+<td>Sugarcane PE</td>
+<td>No (rain/wind only)</td>
+<td>No (recyclable #4)</td>
+<td>~$6.50 retail</td>
+<td>NYRR staff ponchos</td>
+<td>MEDIUM</td>
+</tr>
+<tr class="even">
+<td><strong>RAINRAVER</strong></td>
+<td>Cornstarch/sugarcane</td>
+<td>No (rain only)</td>
+<td>Yes (HOME compostable)</td>
+<td>Premium B2B</td>
+<td>Festival/event focus</td>
+<td>MEDIUM</td>
+</tr>
+<tr class="odd">
+<td><strong>RetiSports Marathon Kit</strong></td>
+<td>PE + aluminum mylar</td>
+<td>Yes (reflective)</td>
+<td>No</td>
+<td>$13–$20 retail</td>
+<td>Amazon DTC</td>
+<td>LOW-MED</td>
+</tr>
+<tr class="even">
+<td><strong>GRD Green Guard Pro</strong></td>
+<td>Plant-based bioplastic</td>
+<td>No (rain only)</td>
+<td>Claimed, unverified</td>
+<td>~$3–$4/unit</td>
+<td>Amazon, near-zero sales</td>
+<td>LOW</td>
+</tr>
+<tr class="odd">
+<td><strong>JOSANTO</strong></td>
+<td>PLA + cornstarch</td>
+<td>No (rain only)</td>
+<td>Yes (compostable)</td>
+<td>$2–$4 est.</td>
+<td>B2B event focus</td>
+<td>MEDIUM</td>
+</tr>
+<tr class="even">
+<td><strong>Bio Poncho (Ecosmart)</strong></td>
+<td>100% cornstarch</td>
+<td>No (rain only)</td>
+<td>Yes (EN 13432)</td>
+<td>B2B quote</td>
+<td>Event Network (70M guests)</td>
+<td>MEDIUM</td>
+</tr>
+<tr class="odd">
+<td><strong>Sheddable Shells</strong></td>
+<td>Poly-spun PE/PP</td>
+<td>Yes (warm as fleece)</td>
+<td>No (disposable plastic)</td>
+<td>$10.35/garment</td>
+<td>DTC niche</td>
+<td>LOW</td>
+</tr>
+<tr class="even">
+<td><strong>Garbage bag</strong></td>
+<td>Polyethylene</td>
+<td>Minimal (wind block)</td>
+<td>No</td>
+<td>$0.05–$0.15</td>
+<td>Universal default</td>
+<td>N/A</td>
+</tr>
+<tr class="odd">
+<td><strong>Goodwill sweatshirt</strong></td>
+<td>Cotton/poly textile</td>
+<td>Yes (good warmth)</td>
+<td>No (textile waste)</td>
+<td>$1–$5</td>
+<td>Universal default</td>
+<td>N/A</td>
+</tr>
+<tr class="even">
+<td><strong>YOUR PRODUCT</strong></td>
+<td>PLA + compostable metallized film</td>
+<td>YES (thermal + insulated)</td>
+<td>YES (compostable)</td>
+<td>$2.50–$4 B2B</td>
+<td>THE WHITESPACE</td>
+<td>FIRST MOVER</td>
+</tr>
+</tbody>
+</table>
+<p><strong>The whitespace is clear:</strong> No product in the market
+combines compostability + thermal warmth in poncho format. Your product
+occupies the only empty cell in the matrix. The two closest competitors
+— Heatsheets (thermal but not compostable) and RAINRAVER (compostable
+but not thermal) — each solve only half the problem.</p>
+<p>4. NYC Marathon Finish Line Poncho: A Different Product</p>
+<p>NYRR announced the finish line poncho in August 2012 as part of a new
+No-Baggage Policy. Hurricane Sandy cancelled the 2012 race, so the
+poncho was first distributed at the 2013 NYC Marathon. Initially bright
+orange (2013), then blue from 2014 onward with TCS title
+sponsorship.</p>
+<p><strong>This is a post-race product</strong> — a water-repellent,
+hooded, fleece-lined garment (100% polyester, Velcro front closure)
+given to all finishers alongside their medal. It is NOT a disposable
+warmth layer. The 2024 race had 55,000+ finishers, so production likely
+exceeds 60,000+ units annually. Manufacturer not disclosed by NYRR.</p>
+<p>Runner feedback has been generally positive. ESPN reported runners
+calling them “really warm, even hot” in 40°F weather. A significant
+resale market exists: ponchos sold for $59–$80+ on eBay and Poshmark. An
+upcycling trend emerged on TikTok with an Etsy shop converting ponchos
+into vests and tote bags.</p>
+<p>4.1 GreenGear Supply Co. — NYRR Connection is Limited</p>
+<p>GreenGear (founded by Duke and Yale alumni) makes the EcoRain® Poncho
+using &gt;99% sugarcane-based PE (Braskem I’m Green™ bioplastic), 92%
+bio-based per ASTM D6866. B Corp Certified, 1% For The Planet member.
+NYRR partnership is limited to event staff/volunteer ponchos only —
+completely separate from the fleece-lined finisher poncho.</p>
+<p><strong>Critical distinction: GreenGear’s product is NOT
+compostable</strong> (recyclable #4 only) and provides no thermal
+warmth. They explicitly argue recyclability is environmentally superior
+to compostability given limited US composting infrastructure. Retail:
+$32.50 for a 5-pack (~$6.50/poncho). B2B MOQ: 2,000 units.</p>
+<p>5. European Race Programs: Valencia, Berlin, London</p>
+<p>5.1 Valencia Marathon — Purchase-to-Keep Reusable Model</p>
+<p>In June 2019, Valencia Marathon announced reusable thermal ponchos to
+replace non-recyclable single-use Mylar blankets. Runners buy the poncho
+for €10 via registration or at the ExpoDeporte. Waterproof, thermal,
+hooded with adhesive velcro. No collection/redistribution system.
+Manufacturer not disclosed. By 2023, it appeared to become a standard
+finisher kit inclusion. Valencia’s broader sustainability: 14,600 kg
+waste recovered (2025); World Athletics and COE sustainability
+certifications; 2,167 kg solidarity clothing collected at start
+lines.</p>
+<p>5.2 Berlin Marathon — Closed-Loop Blanket Recycling</p>
+<p>BMW Berlin Marathon provides traditional foil blankets at finish with
+closed-loop recycling: used blankets pressed into bales on-site →
+returned to manufacturer → recycled into new blankets. 290 kg returned
+after 2023 race. Holds EMAS certification (since 2018) and ISO 20121
+(2024). Clothing donated at start goes to Berliner Stadtmission. No
+plans announced for reusable ponchos.</p>
+<p>5.3 London Marathon — Cautionary Reusable Cape Failure</p>
+<p><strong>London achieved Evergreen CRS certification in 2025 — first
+UK marathon.</strong> But critically: London’s 2019 trial of 500
+reusable capes was DISCONTINUED because the environmental impact in
+production and washing outweighed the waste reduction benefits. This
+lifecycle analysis finding reinforces that a disposable-but-compostable
+approach is more defensible than reusable-but-high-footprint.</p>
+<p>6. Direct Competitor Profiles</p>
+<p>6.1 RetiSports Marathon Kit</p>
+<p>San Diego-based. Marathon Kit (emergency mylar poncho + arm sleeves +
+gloves) on Amazon. 28µm PE with aluminum coating reflecting 90% body
+heat. Bright orange/reversible silver, hooded with arm openings. $13–$20
+retail. Founded by avid marathon runners. Also sells Marathon Pace Band
+Holder (patent pending). One of the only products specifically branded
+for marathon pre-race warmth — but NOT eco-friendly (PE + aluminum,
+non-compostable). Limited Amazon traction suggests small scale.</p>
+<p>6.2 GRD Green Guard Pro</p>
+<p>Amazon-native brand (5-pack biodegradable rain ponchos). Plant-based
+bioplastic from cornstarch and sugarcane. Launched September 2025. BSR
+#1,007,201 — near-zero sales (&lt;1 unit/day). No third-party
+certifications found (BPI, ASTM D6400, EN 13432 absent). Not targeting
+marathons specifically; no warmth properties. Threat level: LOW for the
+marathon warmth space.</p>
+<p>6.3 Sheddable Shells — The Anti-Sustainability Competitor</p>
+<p>Marathon jacket ($10.35) and tear-away pants ($10.35) from poly-spun
+PE/PP blend. Waterproof, windproof, “warm as fleece,” under 3 oz.
+Criticized by TriplePundit as “The World’s Most Unsustainable Business
+Plan” — disposable plastic running attire. Validates the demand for
+purpose-built disposable start-line warmth but represents the opposite
+sustainability philosophy from your product.</p>
+<p>7. Enabling Technology: Metallized Compostable Films EXIST</p>
+<p><strong>The core technical challenge — creating a compostable film
+with thermal reflective properties — has been solved.</strong> Multiple
+companies produce metallized films that are certified compostable.
+Nobody has commercialized this technology in poncho form for races.</p>
+<table>
+<colgroup>
+<col style="width: 22%" />
+<col style="width: 20%" />
+<col style="width: 20%" />
+<col style="width: 24%" />
+<col style="width: 11%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Company/Product</strong></td>
+<td><strong>Technology</strong></td>
+<td><strong>Certifications</strong></td>
+<td><strong>Key Detail</strong></td>
+<td><strong>Relevance</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Futamura NatureFlex NM</strong></td>
+<td>Metallized cellulose film</td>
+<td>EN 13432 + ASTM D6400</td>
+<td>Al &lt;0.02% of weight; delays degradation by days only</td>
+<td>HIGHEST</td>
+</tr>
+<tr class="odd">
+<td><strong>Celplast ENVIROMET PLA</strong></td>
+<td>Metallized PLA (Metacoat™)</td>
+<td>Compostable (PLA-based)</td>
+<td>First to demonstrate metallized PLA at packaging grade</td>
+<td>HIGH</td>
+</tr>
+<tr class="even">
+<td><strong>Parkside Flexible Packaging</strong></td>
+<td>Metallized compostable structures</td>
+<td>DIN CERTCO home compostable</td>
+<td>26-week degradation; HCFD6/HCFD7/HCFT2 grades</td>
+<td>HIGH</td>
+</tr>
+<tr class="odd">
+<td><strong>TIPA Corp (Israel)</strong></td>
+<td>Compostable flexible packaging</td>
+<td>EN 13432 + home compostable</td>
+<td>Makes metallized finishes + compostable garment bags</td>
+<td>HIGH</td>
+</tr>
+<tr class="even">
+<td><strong>Imaflex Inc.</strong></td>
+<td>Reflective metallized agricultural film</td>
+<td>ASTM D6400</td>
+<td>Proves compostable + reflective metallization is feasible</td>
+<td>MEDIUM</td>
+</tr>
+<tr class="odd">
+<td><strong>NatureWorks Ingeo Extend</strong></td>
+<td>PLA resin platform</td>
+<td>Compostable (base resin)</td>
+<td>8x faster compostability; launched March 2025</td>
+<td>MEDIUM</td>
+</tr>
+</tbody>
+</table>
+<p>Futamura NatureFlex NM is the most promising: metallized cellulose
+film where aluminum comprises &lt;0.02% of weight and delays degradation
+by only days. EN 13432 and ASTM D6400 certified, with some grades home
+compostable. TIPA Corp (Israel) is the highest-threat enabling company:
+they already make compostable metallized packaging and compostable
+garment bags — combining these capabilities into a poncho is a natural
+extension.</p>
+<p>8. Mylar/Space Blanket Market: Ripe for Disruption</p>
+<p>Standard space blankets are metallized PET/BoPET, 12 microns thick.
+They reflect 90–97% of radiated body heat but have no insulating
+properties and tear easily. The technology traces to NASA’s 1964
+development for the Echo II satellite.</p>
+<p>8.1 Cost Structure for Race Organizers</p>
+<p>Budget generic PET mylar: $0.50–$0.75/unit. Mid-range UMB LDPE
+marathon blankets: $0.66–$0.81/unit. Premium Heatsheets: estimated
+$0.80–$1.80 depending on volume. Universal Marathon Blankets (UMB)
+offers custom-printed blankets with MOQ 2,500 at ~$0.80–$1.00/unit.</p>
+<p>8.2 Market Size</p>
+<p><strong>Estimated US race blanket consumption: 8–15 million
+blankets/year. Global: 15–25 million units/year.</strong> Standard mylar
+composites are NOT recyclable through municipal systems. Only 10–16% of
+Heatsheets are recovered at events. Estimated total addressable market
+for race finish-line warmth products: $10–20 million/year (US), $15–30
+million/year (global).</p>
+<p>9. Throwaway Clothing Ecosystem: The Current “Solution”</p>
+<p>The practice is virtually universal at cold-weather marathons.
+Runners arrive 2+ hours early, wear old/cheap clothing for warmth during
+30–120 minute corral waits, then shed everything before the gun fires.
+The garbage bag hack is extremely common and widely recommended.</p>
+<table>
+<colgroup>
+<col style="width: 19%" />
+<col style="width: 19%" />
+<col style="width: 25%" />
+<col style="width: 35%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Race</strong></td>
+<td><strong>Annual Clothing Volume</strong></td>
+<td><strong>Charity Partner</strong></td>
+<td><strong>Collection Logistics</strong></td>
+</tr>
+<tr class="even">
+<td><strong>NYC Marathon</strong></td>
+<td>120,000–200,000 lbs</td>
+<td>Goodwill of Greater NY &amp; NJ (2012–23); All of Us Clothing
+(2024+)</td>
+<td>320 blue bins, 200+ volunteers, 9 trucks</td>
+</tr>
+<tr class="odd">
+<td><strong>Boston Marathon</strong></td>
+<td>42,000–52,000 lbs</td>
+<td>Big Brothers Big Sisters of MA Bay</td>
+<td>201 volunteers, 10 moving trucks, led by Judy Pitasi</td>
+</tr>
+<tr class="even">
+<td><strong>Chicago Marathon</strong></td>
+<td>54,500 lbs (2024)</td>
+<td>IL AMVETS + Salvation Army</td>
+<td>Green Team volunteers; Evergreen CRS certified</td>
+</tr>
+<tr class="odd">
+<td><strong>London Marathon</strong></td>
+<td>18.9 tonnes (2024)</td>
+<td>Salvation Army Trading Co.</td>
+<td>Fibersort textile sorting; 55% reused as clothing</td>
+</tr>
+<tr class="even">
+<td><strong>Berlin Marathon</strong></td>
+<td>Not quantified</td>
+<td>Berliner Stadtmission (City Mission)</td>
+<td>Runners asked to donate at designated points</td>
+</tr>
+<tr class="odd">
+<td><strong>Big Sur Marathon</strong></td>
+<td>4.32 tons (combined)</td>
+<td>Last Chance Mercantile</td>
+<td>200 Green Team volunteers; zero standard garbage cans</td>
+</tr>
+<tr class="even">
+<td><strong>Houston Marathon</strong></td>
+<td>~6,000 lbs (3 tons)</td>
+<td>Star of Hope</td>
+<td>Ongoing annual donation program</td>
+</tr>
+<tr class="odd">
+<td><strong>LA Marathon</strong></td>
+<td>5,825 lbs (2019)</td>
+<td>Goodwill Industries</td>
+<td>Evergreen CRS certified (2025)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Key nuance:</strong> The throwaway clothing pipeline
+generates meaningful charitable revenue ($10K+ per race for partner
+charities). London data shows 55% of collected clothing is reused as
+clothing. A compostable poncho product narrative must address this
+social value dimension — not just environmental superiority. Position
+as: reducing waste while preserving charitable partnerships (races can
+still collect genuine clothing donations alongside compostable
+ponchos).</p>
+<p>10. Competitive Threat Assessment</p>
+<table>
+<colgroup>
+<col style="width: 21%" />
+<col style="width: 12%" />
+<col style="width: 12%" />
+<col style="width: 52%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Entity</strong></td>
+<td><strong>Threat Level</strong></td>
+<td><strong>Time Horizon</strong></td>
+<td><strong>Rationale</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Heatsheets/AFM Inc.</strong></td>
+<td>HIGH</td>
+<td>1–3 years</td>
+<td>Could pivot to compostable materials; has all race relationships and
+46 years of trust</td>
+</tr>
+<tr class="odd">
+<td><strong>TIPA Corp</strong></td>
+<td>MEDIUM-HIGH</td>
+<td>2–4 years</td>
+<td>Has compostable metallized films AND garment bag capabilities;
+well-funded</td>
+</tr>
+<tr class="even">
+<td><strong>JOSANTO</strong></td>
+<td>MEDIUM</td>
+<td>1–2 years</td>
+<td>Already makes compostable event ponchos; thermal layer is
+incremental addition</td>
+</tr>
+<tr class="odd">
+<td><strong>RAINRAVER</strong></td>
+<td>MEDIUM</td>
+<td>1–2 years</td>
+<td>Home-compostable event ponchos; thick enough for some warmth;
+festival/sports focus</td>
+</tr>
+<tr class="even">
+<td><strong>Ecosmart/Bio Poncho</strong></td>
+<td>MEDIUM</td>
+<td>2–3 years</td>
+<td>Event Network distribution reaching 70M guests/year; could add
+thermal</td>
+</tr>
+<tr class="odd">
+<td><strong>New startup entrant</strong></td>
+<td>MEDIUM</td>
+<td>1–3 years</td>
+<td>Whitespace is obvious to anyone researching this space; low barrier
+to entry</td>
+</tr>
+<tr class="even">
+<td><strong>Major race org (NYRR etc.)</strong></td>
+<td>LOW-MEDIUM</td>
+<td>2–4 years</td>
+<td>Could develop in-house; more likely to partner/procure than
+manufacture</td>
+</tr>
+</tbody>
+</table>
+<p>10.1 No Crowdfunding or Patent Threats Found</p>
+<p>No Kickstarter or Indiegogo campaigns found for compostable race
+warmth ponchos, biodegradable thermal blankets, or sustainable
+start-line products. No patent exists for a compostable thermal/space
+blanket or biodegradable reflective warmth garment for running/sports.
+The combination of compostable substrate + aluminum metallization +
+poncho format appears to be unpatented territory.</p>
+<p>11. Runner Sentiment: Pre-Race Warmth Is the Primary Unmet Need</p>
+<p>Multiple sources consistently identify the pre-race corral wait
+(30–120 minutes) as the dominant warmth challenge. Post-race warmth is
+better served by Heatsheets/blankets provided by virtually all major
+races. The pre-race gap forces runners to self-solve.</p>
+<blockquote>
+<p><em>I don’t mind running in the rain — I do mind standing around in
+the rain for 2 hours before the race. — WDWMAGIC forum, Disney
+Marathon</em></p>
+<p><em>The thin shiny plastic sheet has no insulating qualities... I
+learned this personally, at the finish line of the New York Marathon in
+1979. — Traditional Mountaineering blog</em></p>
+<p><em>A TRASH BAG IS NOT GOING TO DO THE TRICK for extended pre-race
+waits of 1–2+ hours in extreme cold. — Team Z marathon gear
+guide</em></p>
+</blockquote>
+<p>11.1 Willingness-to-Pay Indicators</p>
+<p>Runners spend $1–10 on throwaway clothing (thrift store $1–5;
+Sheddable Shells $10.35). NYC Marathon ponchos resell for $59–80+.
+RetiSports retails at $13–20. These data points suggest a compostable
+warmth poncho priced at $5–$8/unit for B2B and $10–15 for DTC would be
+competitive.</p>
+<p>12. Conclusion: Confirmed Whitespace with Available Technology</p>
+<p><strong>The competitive landscape analysis reveals a market stuck in
+a 46-year status quo.</strong> Heatsheets dominates the post-race finish
+line with recyclable-but-not-compostable LDPE. The pre-race start-line
+warmth problem has no dedicated commercial solution. No crowdfunding
+campaigns, no patents, and no startups are pursuing a compostable
+thermally-reflective warmth poncho.</p>
+<p>Three critical strategic insights from this research:</p>
+<p><strong>1. The enabling technology already exists
+commercially</strong> (Futamura NatureFlex NM, Celplast ENVIROMET PLA,
+TIPA metallized compostable films), meaning product development is an
+engineering and supply chain challenge, not a materials science
+breakthrough.</p>
+<p><strong>2. Heatsheets’ competitive moat is relationships rather than
+patents,</strong> making it vulnerable to a sustainability-driven
+challenger that demonstrates clearly superior environmental credentials
+to race directors pursuing zero-waste certifications.</p>
+<p><strong>3. The throwaway clothing ecosystem generates meaningful
+charitable value,</strong> so product messaging must address the social
+dimension. London Marathon’s failed 2019 reusable cape trial reinforces
+that lifecycle analysis must demonstrably favor the new product over
+existing donation pathways.</p>
+
+        </div>
+    </div></div>
+<footer style="text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px">
+Sustainable Race-Start Warmth Poncho — D2C Brand GTM Project · 60 Subprojects · 391 Tasks · ~15,500¶ · April 2026
+</footer></body></html>

@@ -1,0 +1,847 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>P4C: B2B Distribution Logistics — Race Start Warmth GTM</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0e1a;--surface:#111827;--card:#1a2332;--border:#2a3a4e;--accent:#10b981;--accent2:#3b82f6;--text:#e2e8f0;--muted:#94a3b8;--white:#fff;--red:#ef4444;--amber:#f59e0b;--green:#10b981}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+/* Nav */
+nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
+nav .inner{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;max-width:1200px;margin:0 auto}
+nav .brand{font-weight:700;font-size:15px;color:var(--accent)}
+nav .links{display:flex;gap:8px;flex-wrap:wrap}
+nav .links a{color:var(--muted);font-size:13px;padding:4px 10px;border-radius:6px;transition:.2s}
+nav .links a:hover,nav .links a.active{color:var(--white);background:var(--card);text-decoration:none}
+/* Hero */
+.hero{padding:60px 0 40px;text-align:center}
+.hero h1{font-size:2.4em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:1.1em;max-width:700px;margin:0 auto}
+/* Stats bar */
+.stats{display:flex;justify-content:center;gap:32px;padding:24px 0;flex-wrap:wrap}
+.stat{text-align:center}.stat .num{font-size:1.8em;font-weight:800;color:var(--white)}.stat .label{font-size:.75em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+/* Cards */
+.grid{display:grid;gap:16px;margin:24px 0}
+.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}
+.grid-3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;transition:.2s}
+.card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.card h3{font-size:1.1em;margin-bottom:8px}.card p{color:var(--muted);font-size:.9em}
+.card .badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:8px}
+.card .meta{font-size:.8em;color:var(--muted);margin-top:12px}
+/* Section */
+.section{padding:40px 0}.section h2{font-size:1.6em;font-weight:700;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+/* Table */
+table{width:100%;border-collapse:collapse;font-size:.85em;margin:16px 0}
+th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:52px}
+td{padding:8px 12px;border-bottom:1px solid var(--border)}
+tr:hover td{background:rgba(16,185,129,.05)}
+.status-complete{color:var(--green);font-weight:600}.status-not{color:var(--muted)}
+/* Progress */
+.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:8px}
+.progress .bar{height:100%;background:var(--accent);border-radius:3px}
+/* Back link */
+.back{display:inline-block;color:var(--muted);font-size:.9em;margin-bottom:20px}
+.back:hover{color:var(--accent)}
+/* Download */
+.dl-card{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin:8px 0;transition:.2s}
+.dl-card:hover{border-color:var(--accent);text-decoration:none}
+.dl-card .icon{font-size:2em}.dl-card .info h4{color:var(--white);margin-bottom:4px}.dl-card .info p{color:var(--muted);font-size:.85em}
+/* Footer */
+footer{text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px}
+@media(max-width:768px){.stats{gap:16px}.stat .num{font-size:1.3em}nav .links{gap:4px}nav .links a{font-size:11px;padding:3px 6px}.hero h1{font-size:1.6em}}
+
+.doc-content{max-width:900px;margin:0 auto;padding:20px 0}
+.doc-content h1{font-size:1.8em;font-weight:800;color:var(--white);margin:32px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.doc-content h2{font-size:1.4em;font-weight:700;color:var(--accent);margin:28px 0 12px}
+.doc-content h3{font-size:1.15em;font-weight:600;color:var(--accent2);margin:20px 0 10px}
+.doc-content p{margin:8px 0;line-height:1.7}
+.doc-content table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85em}
+.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;border:1px solid var(--border)}
+.doc-content td{padding:8px 12px;border:1px solid var(--border);vertical-align:top}
+.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.doc-content ul,.doc-content ol{margin:8px 0 8px 24px}
+.doc-content li{margin:4px 0;line-height:1.6}
+.doc-content strong{color:var(--white)}
+.doc-content em{color:var(--muted)}
+.doc-content blockquote{border-left:3px solid var(--accent);padding:8px 16px;margin:12px 0;background:var(--card);border-radius:0 8px 8px 0}
+.nav-sub{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 24px;padding:12px 16px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
+.nav-sub a{font-size:.8em;color:var(--muted);padding:4px 10px;border-radius:4px;transition:.2s;white-space:nowrap}
+.nav-sub a:hover,.nav-sub a.active{color:var(--white);background:var(--surface);text-decoration:none}
+</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a></div></div></nav><div class="container">
+    <div style="padding-top:30px">
+        <a href="p4.html" class="back">← 📦 P4: Supply Chain</a>
+        <div class="nav-sub"><a href="p4.html">📦 P4 Overview</a><a href="sub-p4a.html">P4A</a><a href="sub-p4b.html">P4B</a><a href="sub-p4c.html" class="active">P4C</a><a href="sub-p4d.html">P4D</a></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px">
+            <div>
+                <span style="background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px">P4C</span>
+                <span style="color:var(--muted);font-size:.85em;margin-left:8px">P4: Supply Chain</span>
+            </div>
+            <a href="files/P4C_B2B_Distribution_Logistics.docx" style="font-size:.85em;color:var(--accent);padding:6px 14px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
+        </div>
+        <div class="doc-content">
+            <p><strong>P4C: B2B DISTRIBUTION</strong></p>
+<p><strong>LOGISTICS</strong></p>
+<p>Sub-Project P4C | Supply Chain &amp; Fulfillment | Weeks 18–22</p>
+<p><em>Complete B2B Operations: 7-Step Ordering Workflow, Invoicing
+System, Race-Venue Delivery Protocol, Expo Inventory &amp; Logistics
+Plan, 10-Point Packing/Shipping Checklist, and Automated Shipment
+Tracking Notifications</em></p>
+<p>March 2026 | Confidential</p>
+<p>Executive Summary</p>
+<p><strong>B2B distribution is the revenue backbone of the
+business.</strong> While DTC generates brand visibility and consumer
+reviews, B2B generates the volume: a single race director ordering 5,000
+co-branded ponchos produces more revenue ($17,500–$25,000) than 6 months
+of Amazon sales. But B2B has zero tolerance for error: a wrong shipment,
+a late delivery, or an incorrect invoice doesn’t just cost a sale — it
+costs a relationship with a race director who speaks with 50 other race
+directors.</p>
+<p><strong>This document builds the end-to-end B2B distribution
+system:</strong> a 7-step ordering workflow from first inquiry through
+post-race follow-up, an invoicing system with 5-tier payment terms and
+automated overdue management, a race-venue delivery protocol with 6-step
+coordination process, an expo inventory and logistics plan covering 5
+inventory categories, a 10-point packing and shipping checklist designed
+for zero errors on the first 10 shipments, and a 6-stage automated
+notification system that keeps race directors informed from order
+confirmation through pre-race check-in.</p>
+<p>1. B2B Ordering Workflow: 7 Steps</p>
+<p><strong>Every B2B order follows the same 7-step workflow from inquiry
+to post-race follow-up.</strong> The workflow is designed for: speed
+(24-hour response at every stage), accuracy (PO-matched fulfillment with
+zero substitutions), traceability (every communication documented in
+CRM), and relationship-building (the post-race follow-up converts
+one-time orders into annual partnerships).</p>
+<table>
+<colgroup>
+<col style="width: 4%" />
+<col style="width: 23%" />
+<col style="width: 38%" />
+<col style="width: 33%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Step</strong></td>
+<td><strong>Trigger</strong></td>
+<td><strong>Process</strong></td>
+<td><strong>Timeline / Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>1. Inquiry</strong></td>
+<td>Race director contacts brand via: B2B landing page form (P3C Section
+5), email, expo meeting, sample kit follow-up, referral from another
+race director, or cold outreach response</td>
+<td>Within 24 hours: (A) Send pricing sheet + co-brand process overview
+(P3C summary). (B) Ask qualifying questions: race name, race date,
+expected quantity, co-brand interest Y/N, sponsor involvement Y/N,
+budget range, decision timeline. (C) Log in CRM pipeline: race name,
+contact, date, est. quantity, stage = INQUIRY.</td>
+<td>If inquiry arrives &gt;12 weeks before race date: full co-brand
+timeline available. If 8–12 weeks: standard timeline tight but feasible.
+If &lt;8 weeks: rush timeline only (surcharge per P3C Section 3.1). If
+&lt;4 weeks: evaluate if rush production + air freight can meet the
+date; if not, offer next-season commitment.</td>
+</tr>
+<tr class="odd">
+<td><strong>2. Quote</strong></td>
+<td>Founder prepares a formal quote based on the race director’s
+requirements</td>
+<td>Quote document (1-page PDF, branded per P1B): race name, product
+description, quantity, unit price (per P3C Section 4 pricing tier),
+co-brand setup fee (if applicable), estimated shipping cost (per P4B
+Section 3.1), total cost. Payment terms: 50% deposit / 50% on shipment
+(first order) or 30/70 (repeat). Valid for 30 days.</td>
+<td>Send quote within 48 hours of qualifying the inquiry. Include: the
+co-brand mockup (if logos already received — P3C Section 2) alongside
+the quote. The mockup + quote combination converts at 3–5× vs. quote
+alone. Follow up at Day 3, Day 7, and Day 14 if no response.</td>
+</tr>
+<tr class="even">
+<td><strong>3. PO / LOI</strong></td>
+<td>Race director issues a Purchase Order (PO) or signs a Letter of
+Intent (LOI)</td>
+<td>PO: formal order document from the race organization with: quantity,
+price, delivery address, required delivery date, billing information, PO
+number. LOI: less formal commitment letter specifying intent to order
+with estimated quantity and timeline (typically used 3–6 months before
+race when final quantities are TBD). Accept PO via email confirmation
+within 24 hours.</td>
+<td>PO = binding order. LOI = commitment but quantities may change. For
+production planning: PO quantities are 100% confirmed. LOI quantities
+use probability weighting per P3E Section 2 (LOI signed = 50%
+probability until PO issued).</td>
+</tr>
+<tr class="odd">
+<td><strong>4. Production / Fulfillment</strong></td>
+<td>Standard units pulled from inventory. Co-brand units produced (if
+new design) or pulled from co-brand inventory (if repeat design)</td>
+<td>If from INVENTORY: pick from 3PL or home stock, verify quantity,
+verify co-brand design matches PO. If NEW CO-BRAND: trigger P3C co-brand
+workflow (logo → mockup → approval → factory production → 3–5 weeks).
+Coordinate: co-brand production timeline + shipping timeline must total
+≤3 weeks before race date.</td>
+<td>For inventory orders: ship within 5 business days of PO + deposit
+receipt. For co-brand orders: ship per co-brand timeline (P3C Section
+3.1). Notify race director of expected ship date within 48 hours of PO
+acceptance.</td>
+</tr>
+<tr class="even">
+<td><strong>5. Delivery</strong></td>
+<td>Ship to race venue or race organization’s designated warehouse</td>
+<td>Per P4B Section 3: select shipping method based on order size (UPS
+Ground / LTL / FTL). Generate tracking number. Send shipping
+notification email to race director: carrier, tracking number, expected
+delivery date, packing list. Include “Receiving Instructions” card on
+lead carton.</td>
+<td>Ship ≥3 weeks before race date. Follow up by phone on expected
+delivery day to confirm receipt. If delivery fails (wrong address,
+missed delivery, carrier damage): resolve within 48 hours — reship from
+safety stock if needed.</td>
+</tr>
+<tr class="odd">
+<td><strong>6. Invoice + Payment</strong></td>
+<td>Send invoice upon shipment. Collect balance payment per agreed
+terms.</td>
+<td>Invoice sent via QuickBooks/Wave within 24 hours of shipment
+(Section 2 of this document). Invoice includes: PO number, quantity
+shipped, unit price, co-brand fees, shipping cost, total due, payment
+terms, wire/ACH details. If 50/50 terms: balance due upon shipment. If
+net-30: balance due 30 days from invoice date.</td>
+<td>Track: invoice date, due date, payment received Y/N, amount. Set
+automated reminder at due date + 3 days (friendly) and due date + 10
+days (firm). Overdue &gt;30 days: phone call. Overdue &gt;60 days: pause
+future orders until resolved.</td>
+</tr>
+<tr class="even">
+<td><strong>7. Post-Race Follow-Up</strong></td>
+<td>Debrief with race director within 7 days of race</td>
+<td>Call or email: (A) Product feedback (warmth, tear-away, durability
+in weather). (B) Operations feedback (delivery, receiving, distribution
+to runners, collection). (C) Composting feedback (bins used, collection
+rate, facility acceptance). (D) Reorder intent for next year Y/N. (E)
+Referral willingness (“Can you connect me with other race directors who
+might benefit?”). (F) Testimonial/photo permission for marketing.</td>
+<td>Log ALL feedback in CRM + P2F Section 1 feedback framework. If
+reorder: send next-season PO within 30 days (lock in pricing +
+production slot early). If referral: follow up with referred contact
+within 1 week.</td>
+</tr>
+</tbody>
+</table>
+<p>1.1 CRM Pipeline Stages</p>
+<p>Track every B2B prospect through these stages in the CRM (HubSpot
+free tier, Pipedrive $15/month, or even a Google Sheet for Season 1):
+INQUIRY (first contact, no commitment) → QUALIFIED (race date confirmed,
+quantity estimated, budget exists) → QUOTE SENT (formal quote delivered)
+→ SAMPLE KIT SENT (physical samples in race director’s hands) → LOI
+SIGNED (written commitment to order) → PROOF APPROVED (co-brand mockup
+approved) → PO RECEIVED (binding order, deposit collected) → SHIPPED
+(fulfillment complete) → DELIVERED (receipt confirmed) → RACE COMPLETE
+(post-race feedback collected) → REORDER (next-season order initiated).
+Each stage has a conversion rate: track weekly to identify bottlenecks.
+If conversion drops below 50% between SAMPLE KIT SENT and LOI SIGNED:
+the product or pricing isn’t convincing enough in-person. If conversion
+drops between LOI and PO: follow-up timing or payment terms may be the
+barrier.</p>
+<p>2. B2B Invoicing System</p>
+<p><strong>Professional, accurate invoicing signals operational
+maturity.</strong> A race organization’s accounts payable team processes
+invoices from dozens of vendors. A clear, branded invoice with correct
+PO references, explicit payment instructions, and automated reminders
+ensures your invoice gets paid on time — not buried in a queue.</p>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 81%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Element</strong></td>
+<td><strong>Specification</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Platform</strong></td>
+<td>QuickBooks Online Simple Start ($30/month) or Wave (free). Both
+handle: invoice creation, payment tracking, expense tracking, basic
+financial reports. QuickBooks is recommended if the founder plans to
+work with an accountant (industry standard). Wave is acceptable for
+bootstrapping.</td>
+</tr>
+<tr class="odd">
+<td><strong>Invoice template</strong></td>
+<td>Branded with P1B visual identity: brand logo (top left), Earth Green
+accent stripe, company legal name + address, “INVOICE” header. Fields:
+invoice number (INV-2026-001), date, due date, PO reference number,
+bill-to (race organization name + address), ship-to (race venue or
+warehouse), line items (product name, SKU, quantity, unit price, line
+total), subtotal, co-brand setup fee, shipping, tax (if applicable —
+most B2B is tax-exempt; verify state-by-state), total due, payment
+terms, payment instructions (bank name, routing, account number for
+wire/ACH; or PayPal/Stripe link).</td>
+</tr>
+<tr class="even">
+<td><strong>Invoice numbering</strong></td>
+<td>Sequential: INV-2026-001, INV-2026-002, etc. Reset annually. NEVER
+skip or reuse numbers. Link each invoice to the corresponding PO number
+for cross-reference.</td>
+</tr>
+<tr class="odd">
+<td><strong>Payment methods</strong></td>
+<td>Wire transfer / ACH (primary for B2B): provide bank details on every
+invoice. ACH is preferred (lower fees: $0–$0.25/transaction vs. $15–50
+for international wire). Credit card (via Stripe or QuickBooks
+Payments): convenient for smaller orders (&lt;$2,000). Processing fee:
+2.9% + $0.30. Check: accepted but slow (5–10 business days mail +
+processing). Not recommended for time-sensitive payments. PayPal
+Business: option for international customers or race organizations that
+prefer PayPal. Fee: 2.89% + $0.49.</td>
+</tr>
+<tr class="even">
+<td><strong>Payment terms by customer tier</strong></td>
+<td>NEW CUSTOMER (first order): 50% deposit on PO acceptance, 50%
+balance on shipment. REPEAT CUSTOMER (2nd+ order, paid on time
+previously): 30% deposit, 70% net-30 from invoice date. ENTERPRISE
+CUSTOMER (annual agreement, &gt;$10K/year): net-30 full invoice amount
+(no deposit). Sponsor-funded orders: invoice the sponsor directly per
+P3C Section 4 Sponsor-Funded tier.</td>
+</tr>
+<tr class="odd">
+<td><strong>Overdue management</strong></td>
+<td>Day 0 (due date): automated payment reminder email (“Just a friendly
+reminder that invoice INV-2026-XXX for $X,XXX is due today”). Day +3:
+second reminder (“This is a reminder that your payment is now 3 days
+past due”). Day +10: firm follow-up (“Your payment is now 10 days
+overdue. Please remit payment within 5 business days to avoid service
+interruption on future orders”). Day +30: phone call to accounts payable
+contact. Day +45: pause future orders + send formal demand letter. Day
++60: consider collections or write off (for amounts &lt;$500, write-off
+is more cost-effective than collections).</td>
+</tr>
+<tr class="even">
+<td><strong>Tax considerations</strong></td>
+<td>Sales tax: varies by state. Many B2B transactions are exempt (race
+organizations may have tax-exempt status). Request a tax exemption
+certificate from the buyer. If buyer is NOT tax-exempt: charge
+applicable state sales tax and remit via state filing. RECOMMENDATION:
+use TaxJar ($19–$99/month) or Avalara for automated sales tax
+calculation and filing once DTC + B2B combined revenue exceeds
+$100K/year or transactions span &gt;5 states.</td>
+</tr>
+</tbody>
+</table>
+<p>2.1 Invoice-to-Cash Cycle</p>
+<p>TARGET: 30 days average from invoice to cash receipt for repeat
+customers. REALITY: race organizations often have 45–60 day payment
+cycles (municipal/government organizations can be slower). MITIGATION:
+(1) The 50% deposit on first orders provides upfront cash for COGS
+coverage. (2) For repeat customers on net-30: invoice on shipment day,
+not on delivery day (this starts the clock earlier). (3) For
+enterprise/sponsor-funded orders: negotiate net-15 or
+payment-on-delivery if possible. (4) Offer 2% early-payment discount for
+payment within 10 days (“2/10 net 30”). This costs $100 on a $5,000
+invoice but accelerates cash by 20 days. ACCOUNTING: use QuickBooks’
+“Invoice” and “Payment” tracking to maintain real-time accounts
+receivable (AR) aging. Review AR weekly during race season. Flag: any
+invoice &gt;45 days overdue.</p>
+<p>3. Race-Venue Delivery Protocol</p>
+<p><strong>Delivering to a race venue is not like delivering to a
+warehouse.</strong> Race venues are convention centers, parks, city
+streets, and fairgrounds — many with restricted access, limited
+receiving hours, no forklift, and no permanent staff. A delivery that
+arrives at the wrong entrance, at the wrong time, or without advance
+coordination sits on a loading dock in the heat for 72 hours while the
+operations manager tries to figure out what it is.</p>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 81%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Phase</strong></td>
+<td><strong>Process</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Pre-delivery coordination (6–8 weeks before
+race)</strong></td>
+<td>Contact race operations manager (not just the race director —
+operations handles logistics). Obtain: (A) Delivery address (specific
+venue building, loading dock, storage room). (B) Delivery window (days
+and hours accepted; many venues restrict to Mon–Fri 8 AM–5 PM). (C)
+Contact person on-site for delivery day (name, mobile phone). (D) Any
+venue-specific requirements (advance security clearance, loading dock
+appointment, forklift availability for pallets, elevator restrictions
+for upper-floor storage). (E) Storage conditions at venue
+(climate-controlled Y/N — if outdoor or non-climate storage, flag heat
+risk per P2E Section 11.3).</td>
+</tr>
+<tr class="odd">
+<td><strong>Delivery scheduling (3–4 weeks before race)</strong></td>
+<td>Schedule the shipment to arrive ≥3 weeks before race date. For LTL
+freight: carrier provides a 1–2 day delivery window; communicate this to
+venue contact. For UPS/FedEx: provide tracking for precise delivery
+date. NEVER schedule delivery on the weekend before race weekend (venue
+staff are busy with expo setup; receiving may be delayed or units stored
+improperly).</td>
+</tr>
+<tr class="even">
+<td><strong>Shipping label + documentation</strong></td>
+<td>Shipping label MUST include: race organization name (“Attn:
+[Operations Manager Name]”), specific venue address, “COMPOSTABLE
+PONCHOS — STORE INDOORS, BELOW 77°F” on the outside of every carton, PO
+number on the carton label, founder’s phone number for delivery issues.
+Inside lead carton: packing list, composting logistics guide, receiving
+instructions card.</td>
+</tr>
+<tr class="odd">
+<td><strong>Delivery confirmation</strong></td>
+<td>On expected delivery day: text or call venue contact to confirm
+receipt. If delivered: request photo of cartons in storage location (for
+records + insurance documentation). If NOT delivered: contact carrier
+immediately with tracking number. Escalate to carrier customer service
+within 4 hours of missed delivery window.</td>
+</tr>
+<tr class="even">
+<td><strong>Race-day distribution setup</strong></td>
+<td>Provide race director with a “Poncho Distribution Guide” (1-page,
+included with shipment): WHERE to distribute (start-line corral
+entrance, volunteer staging area, or gear check). WHEN to distribute
+(30–60 minutes before gun time, when runners are gathering and cold).
+HOW to distribute (open master cartons, hand individually to runners
+entering corrals, or set up self-serve bins at corral entrance).
+VOLUNTEERS: 2–4 volunteers per distribution point, each with 1–2 open
+cartons. Brief volunteers: “Hand to every runner who looks cold or asks.
+Show them how to tear off at the start (pull tab). Point to the compost
+bin after the start.”</td>
+</tr>
+<tr class="odd">
+<td><strong>Post-race collection coordination</strong></td>
+<td>Coordinate with race operations + composting partner (P4D) for
+post-start collection: WHERE to place compost bins (immediately past the
+start line, every 100m for 500m). WHEN to collect (0–30 minutes after
+the last corral starts). WHO collects (race volunteers + composting
+partner staff). Provide race with: compostable collection bags
+(60-gallon, BPI-certified — source from BioBag or Novamont), sorting
+signs (“COMPOSTABLE PONCHOS ONLY — No plastic, no clothing” per P4D
+Section 3).</td>
+</tr>
+</tbody>
+</table>
+<p>3.1 Multiple-Venue Logistics</p>
+<p>Some races have multiple distribution points: start line (main
+corral), satellite start areas (wave-start races), elite athlete area,
+wheelchair/adaptive start area, and volunteer staging. For multi-venue
+distribution: (1) Pack separate shipments for each venue (or separate
+cartons within a shipment, labeled per venue: “Main Corral — 3,000
+units,” “Wave 2 Start — 1,000 units,” “Adaptive Start — 500 units”). (2)
+Coordinate delivery addresses for each venue with the operations
+manager. (3) Provide separate distribution guides for each point if
+procedures differ.</p>
+<p>4. Expo Inventory &amp; Logistics</p>
+<p><strong>Running expos are the highest-conversion B2B and DTC sales
+environment.</strong> 10,000–50,000 runners pass through a major
+marathon expo in 2 days. They are actively thinking about race-day
+preparation. A well-executed expo booth generates: DTC sales (50–200
+units), B2B contacts (5–15 race directors), email sign-ups (100–500),
+press/influencer connections, and UGC (runners sharing photos with the
+product).</p>
+<p>4.1 Expo Inventory Plan</p>
+<table>
+<colgroup>
+<col style="width: 19%" />
+<col style="width: 9%" />
+<col style="width: 71%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Category</strong></td>
+<td><strong>Quantity</strong></td>
+<td><strong>Purpose</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Expo booth ponchos (display + demo)</strong></td>
+<td>10–20 units</td>
+<td>Open 3–5 for display: hung on a rack, laid flat on table, 1 worn by
+a booth staffer. Remaining sealed for “pick up and feel” — runners grab
+a sealed poncho, feel the weight and metallized warmth, see the
+packaging. These units may get opened/handled — budget as marketing
+expense, not saleable inventory.</td>
+</tr>
+<tr class="odd">
+<td><strong>Expo booth retail stock</strong></td>
+<td>50–200 units (based on expected expo attendance and conversion
+rate)</td>
+<td>Sell at $9.99/unit (cash, card via Square reader, or Shopify POS).
+Estimate: 1–3% of expo foot traffic stops at booth, 20–40% of those buy.
+Example: 5,000 expo attendees × 2% stop × 30% buy = 30 units. For a
+20,000-attendee expo: up to 120 units. Bring 2× the estimate to avoid
+selling out on Day 1 of a 2-day expo.</td>
+</tr>
+<tr class="even">
+<td><strong>Expo 3-pack and 6-pack bundles</strong></td>
+<td>20–50 multi-packs</td>
+<td>Upsell opportunity: “Buy a 3-pack for your running crew” ($24.99).
+Display next to single units with price comparison visible. Multi-packs
+have higher AOV and higher margin per transaction.</td>
+</tr>
+<tr class="odd">
+<td><strong>B2B sample kits (for race directors visiting
+expo)</strong></td>
+<td>10–20 kits</td>
+<td>Identify race directors at the expo (they often attend as VIPs or
+speakers). Hand-deliver a sample kit (P3B Section 6) during a personal
+conversation. These are the highest-conversion B2B interactions.</td>
+</tr>
+<tr class="even">
+<td><strong>Co-brand mockup printouts</strong></td>
+<td>20–30 printed mockups (card stock, color)</td>
+<td>Generic co-brand mockup showing a placeholder race logo. Hand to
+interested race directors: “This is what your race poncho could look
+like with your logo.” Supplement with the live Canva mockup on a tablet
+(create their race’s mockup on the spot if possible).</td>
+</tr>
+<tr class="odd">
+<td><strong>Printed marketing materials</strong></td>
+<td>100–200 pieces</td>
+<td>B2B data sheets (50–100), DTC product cards (50–100 with QR code for
+Amazon listing), composting infographic handouts (50). Business cards
+(100).</td>
+</tr>
+</tbody>
+</table>
+<p>4.2 Expo Logistics Plan</p>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 81%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Phase</strong></td>
+<td><strong>Process</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Pre-expo (4–6 weeks before)</strong></td>
+<td>Register for booth ($500–$2,500 depending on expo size). Order:
+pop-up banner ($100–$300, per P1D Section 6 expo display plan), table
+display fixtures (poncho hanging rack $30–50, acrylic display stands
+$10–20), Square card reader ($0 for reader, 2.6% + $0.10 per swipe),
+Shopify POS integration (if using Shopify). Prepare: poncho inventory in
+travel-ready case or box.</td>
+</tr>
+<tr class="odd">
+<td><strong>Expo setup (Day 0)</strong></td>
+<td>Arrive 1–2 hours before expo opens. Set up: banner, table, poncho
+display (1 hung, 2–3 laid flat, sealed units in a basket for “pick up
+and feel”), pricing signs, QR code poster (link to Amazon listing),
+stack of marketing materials. Ensure: Square reader is charged +
+connected, Shopify POS is synced, change for cash ($50 in small
+bills).</td>
+</tr>
+<tr class="even">
+<td><strong>During expo</strong></td>
+<td>Staff booth with 1–2 people at all times. Pitch: “We make a
+compostable warmth poncho for race start lines. It keeps you warm in the
+corral and composts after the race. No more garbage bags.” Demo: invite
+runners to tear the perforated tear-away — this is the wow moment.
+Collect: emails (tablet with signup form or QR code to P1E landing
+page), race director contacts (hand-deliver sample kits), and sales
+(Square/Shopify POS).</td>
+</tr>
+<tr class="odd">
+<td><strong>Post-expo (same day)</strong></td>
+<td>Count remaining inventory (units sold = units brought − units
+remaining − demo/opened units). Record: total units sold, total revenue,
+total emails collected, total B2B contacts made. Pack remaining
+inventory securely for transport. Process: email all new sign-ups a
+welcome sequence within 24 hours (P1E Section 4). Follow up with all B2B
+contacts within 48 hours.</td>
+</tr>
+<tr class="even">
+<td><strong>Leftover inventory handling</strong></td>
+<td>Sealed, undamaged units: return to home inventory or 3PL.
+Opened/handled demo units: not sellable. Options: (A) Donate to a local
+running club (“Thanks for stopping by — here’s a poncho for your next
+cold training run”), (B) Use for photography/video, (C) Compost. NEVER
+sell opened units — they cannot be verified as unused.</td>
+</tr>
+</tbody>
+</table>
+<p>4.3 Expo ROI Estimation</p>
+<p>INVESTMENT: booth fee ($500–$2,500), banner + display ($130–$370),
+travel ($200–$800), product inventory cost at COGS ($100–$400 for 50–200
+units), sample kits ($150–$300 for 10–20 kits), printed materials
+($30–$60). TOTAL: $1,110–$4,430. RETURN: DTC sales: 50 units × $9.99 =
+$500 (immediate). B2B leads: 5 qualified race director contacts. If 2
+convert to 2,000-unit orders: $8,000–$10,000 in B2B revenue. Email
+sign-ups: 200 emails × 10% purchase rate × $9.99 = $200 (over 6 months).
+TOTAL ESTIMATED RETURN: $8,700–$10,700. ROI: 2–9× investment. Expos are
+the highest-ROI marketing activity in Year 1.</p>
+<p>5. Packing &amp; Shipping Checklist: 10-Point Zero-Error Protocol</p>
+<p><strong>The first 10 B2B shipments define the brand’s operational
+reputation.</strong> If all 10 arrive on time, complete, and
+defect-free: the brand earns a reputation for reliability that race
+directors share with each other. If even 1 of 10 has a wrong SKU, short
+count, or late arrival: the brand earns a reputation for unreliability
+that also gets shared. This 10-point checklist is designed to make
+errors structurally impossible.</p>
+<table>
+<colgroup>
+<col style="width: 4%" />
+<col style="width: 42%" />
+<col style="width: 52%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Step</strong></td>
+<td><strong>Action</strong></td>
+<td><strong>Why / Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>1. Verify PO details</strong></td>
+<td>Pull up the PO. Confirm: race name, SKU (standard or co-brand),
+quantity, ship-to address, required delivery date, any special
+instructions.</td>
+<td>Mismatch between PO and shipment is the #1 B2B error. Print the PO
+and tape it to the packing table as a reference for the entire
+fulfillment process.</td>
+</tr>
+<tr class="odd">
+<td><strong>2. Pull inventory</strong></td>
+<td>Pull correct SKU from storage. Standard: master cartons labeled
+“RSW-STD-GRN.” Co-brand: cartons labeled with specific race name per P3D
+Section 4. Count units vs. PO quantity.</td>
+<td>If pulling from multiple cartons: verify ALL cartons are the same
+SKU and same production batch (batch number on carton label). NEVER mix
+batches in a single shipment unless absolutely necessary.</td>
+</tr>
+<tr class="even">
+<td><strong>3. Spot-check 3 units</strong></td>
+<td>Open 3 random units from the pull. Visual inspection: metallization
+intact, print quality good, inner bag sealed, card/sleeve present, no
+odor or discoloration.</td>
+<td>If any unit fails: pull 10 more for spot-check. If 2+ of 10 fail:
+quarantine the entire pull and conduct full P2E AQL inspection before
+shipping. Do NOT ship suspect inventory.</td>
+</tr>
+<tr class="odd">
+<td><strong>4. Pack into shipping cartons</strong></td>
+<td>For pallet/LTL orders: use master cartons as-is (already packed by
+factory). For smaller orders: repack from master cartons into
+appropriately sized shipping boxes. Include: packing list inside lead
+carton, composting logistics guide (1 per order), “Receiving
+Instructions” card on outside.</td>
+<td>Use void fill (recycled kraft paper) only if cartons are not full.
+The product is lightweight and not fragile — excessive void fill is
+unnecessary and wasteful.</td>
+</tr>
+<tr class="even">
+<td><strong>5. Label cartons</strong></td>
+<td>Apply shipping labels (carrier-generated) to each carton. Apply
+carton content labels (SKU, quantity, batch, PO number) if not already
+factory-applied. For multi-carton shipments: number cartons (“1 of 5,”
+“2 of 5” etc.).</td>
+<td>Double-check: ship-to address matches PO. Incorrect address =
+delivery failure = missed race date. Verify ZIP code especially.</td>
+</tr>
+<tr class="odd">
+<td><strong>6. Generate shipping documents</strong></td>
+<td>Create shipment in carrier system (UPS/FedEx/LTL portal). Generate:
+shipping labels, Bill of Lading (LTL), tracking number. Print packing
+list (2 copies: 1 inside, 1 in clear adhesive pouch on outside of lead
+carton).</td>
+<td>For LTL shipments: the BOL must accurately state: number of
+pallets/cartons, total weight, freight class (likely Class 125–150 for
+light manufactured goods), and shipper/consignee details.</td>
+</tr>
+<tr class="even">
+<td><strong>7. Schedule pickup</strong></td>
+<td>Schedule carrier pickup or arrange drop-off. For UPS/FedEx: schedule
+online (same-day or next-day pickup). For LTL: schedule 24–48 hours in
+advance (carrier sends truck). Ensure: shipment is ready at the dock or
+pickup location with labels applied.</td>
+<td>If shipping from home: schedule pickup from home address or drop off
+at the nearest carrier facility (UPS Store, FedEx Office). For
+heavy/pallet shipments: a carrier truck pickup is required.</td>
+</tr>
+<tr class="odd">
+<td><strong>8. Send shipping notification</strong></td>
+<td>Email race director within 1 hour of pickup: “Your order has
+shipped! [Quantity] units via [Carrier], tracking number [XXX], expected
+delivery [date]. Please confirm receipt upon delivery.”</td>
+<td>Also update: CRM pipeline (stage = SHIPPED), inventory tracker
+(deduct shipped units), and B2B order log (ship date, carrier,
+tracking).</td>
+</tr>
+<tr class="even">
+<td><strong>9. Post-shipment verification</strong></td>
+<td>Day after expected delivery: check tracking. If “Delivered”: wait 24
+hours for race director confirmation. If no confirmation: call/text
+venue contact. If NOT “Delivered”: contact carrier with tracking number
+immediately.</td>
+<td>The shipment is not COMPLETE until delivery is confirmed by the
+recipient. An unconfirmed delivery is an open risk — the package may be
+at the wrong address, sitting on a loading dock unnoticed, or
+stolen.</td>
+</tr>
+<tr class="odd">
+<td><strong>10. File documentation</strong></td>
+<td>Save in /Orders/[PO Number]/: PO (original), packing list (signed if
+available), shipping label copy, tracking number, carrier BOL (LTL),
+invoice, payment receipt, delivery confirmation email/photo, and any
+post-delivery feedback notes.</td>
+<td>This folder is the complete audit trail for the order. Used for:
+accounting reconciliation, dispute resolution, quality tracking, and
+annual business review.</td>
+</tr>
+</tbody>
+</table>
+<p>6. Shipment Tracking &amp; Notifications</p>
+<p><strong>Race directors are busy people managing hundreds of vendors
+for a single event.</strong> Proactive communication — telling them
+what’s happening before they have to ask — differentiates the brand from
+every other vendor who requires follow-up. The 6-stage notification
+system keeps the race director informed at every milestone from order
+confirmation through pre-race check-in.</p>
+<table>
+<colgroup>
+<col style="width: 12%" />
+<col style="width: 16%" />
+<col style="width: 40%" />
+<col style="width: 12%" />
+<col style="width: 18%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Stage</strong></td>
+<td><strong>Trigger</strong></td>
+<td><strong>Message</strong></td>
+<td><strong>Channel</strong></td>
+<td><strong>Timing</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Order confirmed</strong></td>
+<td>PO accepted + deposit received</td>
+<td>“Your order for [X] units has been confirmed! We’re preparing your
+ponchos for shipment. Expected ship date: [date]. You’ll receive a
+tracking number when your order ships.”</td>
+<td>Email (branded template)</td>
+<td>Within 24 hours of PO + deposit</td>
+</tr>
+<tr class="odd">
+<td><strong>Order shipped</strong></td>
+<td>Carrier picks up shipment</td>
+<td>“Your [X] ponchos are on the way! Carrier: [name]. Tracking: [link].
+Expected delivery: [date]. Upon receipt, please spot-check 3–5 units and
+confirm with us.”</td>
+<td>Email + SMS (if mobile provided)</td>
+<td>Within 1 hour of pickup</td>
+</tr>
+<tr class="even">
+<td><strong>Out for delivery</strong></td>
+<td>Carrier tracking shows “out for delivery”</td>
+<td>“Your ponchos are out for delivery today! Please ensure someone is
+available at [address] to receive [X] cartons/pallets.”</td>
+<td>SMS (if mobile provided)</td>
+<td>Same day as “out for delivery” scan</td>
+</tr>
+<tr class="odd">
+<td><strong>Delivered</strong></td>
+<td>Carrier tracking shows “delivered”</td>
+<td>“Your ponchos have been delivered! Please confirm receipt and
+spot-check 3–5 units. If everything looks good, reply CONFIRMED. If any
+issues, let us know immediately.”</td>
+<td>Email + SMS</td>
+<td>Within 2 hours of delivery scan</td>
+</tr>
+<tr class="even">
+<td><strong>Delivery follow-up</strong></td>
+<td>No confirmation 48 hours after delivery</td>
+<td>“Just checking in — were you able to receive the poncho shipment
+that was delivered on [date]? Please let us know if everything arrived
+in good condition.”</td>
+<td>Email or phone call</td>
+<td>48 hours after delivery</td>
+</tr>
+<tr class="odd">
+<td><strong>Pre-race check-in</strong></td>
+<td>1 week before race date</td>
+<td>“Your race is next week! Just checking: do you have everything you
+need for poncho distribution? Attached: Poncho Distribution Guide +
+Composting Collection Guide. We’re here if you need last-minute
+support.”</td>
+<td>Email</td>
+<td>7 days before race date</td>
+</tr>
+</tbody>
+</table>
+<p>6.1 Automation Options</p>
+<p>MANUAL (Season 1, &lt;20 orders/season): Founder sends each
+notification via email manually. Use email templates (saved in
+Gmail/Outlook as templates or Canned Responses) to maintain consistency.
+Tracking link inserted manually. Cost: $0, time: 5–10 minutes per order
+per notification stage. SEMI-AUTOMATED (Season 2, 20–50 orders): Use
+Mailchimp Transactional ($20/month) or Klaviyo with custom triggers.
+Pre-built email templates send automatically when the founder updates
+the CRM stage. Still requires: manual CRM stage update, manual tracking
+number entry. Cost: $20–$45/month. FULLY AUTOMATED (Season 3+, 50+
+orders): Integrate CRM (HubSpot) + shipping API (ShipStation) + email
+(Klaviyo). When a shipment is created in ShipStation, tracking number
+auto-populates the email template and sends to the race director. CRM
+stage updates automatically. Cost: $100–$200/month in combined SaaS.</p>
+<p>7. Timeline &amp; Budget</p>
+<p><strong>WEEK 18: Build B2B ordering workflow (Section 1). Set up
+QuickBooks Online ($30/month) and create branded invoice template.
+Create B2B packing checklist (print and laminate 3 copies: 1 for packing
+station, 1 for 3PL, 1 spare). Draft shipping notification email
+templates (6 stages).</strong></p>
+<p><strong>WEEK 19: Set up CRM pipeline stages in HubSpot (free) or
+Google Sheet. Create the B2B quote template (branded 1-page PDF). Begin
+race-venue delivery coordination for confirmed Fall 2026 pilot races:
+contact operations managers, obtain delivery addresses and receiving
+windows.</strong></p>
+<p><strong>WEEK 20: Plan expo attendance for Fall 2026 races. Register
+for booth at 1–2 priority expos. Order expo display materials (banner,
+fixtures). Prepare expo inventory plan (Section 4).</strong></p>
+<p><strong>WEEK 21: Finalize packing checklist with actual PO data from
+first confirmed B2B orders. Conduct a dry-run: pack and label a mock B2B
+order of 50 units, time the process, identify bottlenecks. Ship first
+B2B orders (if inventory has arrived from P4A).</strong></p>
+<p><strong>WEEK 22: Set up automated shipment tracking notifications
+(manual or semi-automated per Section 6.1). Verify: first B2B delivery
+confirmed by race director. Collect feedback. Log in CRM. HANDOFF to P4D
+(Composting Partner Network) for race-day collection
+logistics.</strong></p>
+<p>BUDGET: QuickBooks Online: $30/month. CRM (HubSpot free or
+Pipedrive): $0–$15/month. Expo booth (1 event): $500–$2,500. Expo
+display materials: $130–$370. Expo travel: $200–$800. Packing supplies
+(first batch): $50–$100. Square card reader: $0 (hardware free). Email
+templates: $0 (manual) to $20–$45/month (Klaviyo). TOTAL P4C setup:
+$910–$3,835 + $30–$90/month recurring.</p>
+<p>8. Conclusion: B2B Operations Are Relationship Operations</p>
+<p><strong>Every B2B touchpoint — from the first email response to the
+pre-race check-in call — builds or erodes the relationship with the race
+director.</strong> Race directors talk to each other. They attend the
+same conferences (RRCA Convention), sit on the same committees, and
+share vendor recommendations in group chats. A race director who
+receives a flawless delivery, a proactive check-in, and a helpful
+composting guide will recommend the brand to 5 colleagues. A race
+director who receives a late shipment with a confusing invoice will warn
+10.</p>
+<p><strong>The 10-point packing checklist exists because one wrong SKU
+in one carton undoes six months of sales work.</strong> The 6-stage
+notification system exists because one proactive text message on
+delivery day builds more trust than a dozen marketing emails. The
+post-race follow-up exists because the relationship doesn’t end at
+delivery — it ends when next season’s PO is signed. Every process in
+this document is designed around one principle: the race director should
+never have to wonder what’s happening with their order. They should
+always know, because the brand told them first.</p>
+
+        </div>
+    </div></div>
+<footer style="text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px">
+Sustainable Race-Start Warmth Poncho — D2C Brand GTM Project · 60 Subprojects · 391 Tasks · ~15,500¶ · April 2026
+</footer></body></html>

@@ -1,0 +1,722 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>P0D: Customer Discovery Individual Runners DTC — Race Start Warmth GTM</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0e1a;--surface:#111827;--card:#1a2332;--border:#2a3a4e;--accent:#10b981;--accent2:#3b82f6;--text:#e2e8f0;--muted:#94a3b8;--white:#fff;--red:#ef4444;--amber:#f59e0b;--green:#10b981}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+/* Nav */
+nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
+nav .inner{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;max-width:1200px;margin:0 auto}
+nav .brand{font-weight:700;font-size:15px;color:var(--accent)}
+nav .links{display:flex;gap:8px;flex-wrap:wrap}
+nav .links a{color:var(--muted);font-size:13px;padding:4px 10px;border-radius:6px;transition:.2s}
+nav .links a:hover,nav .links a.active{color:var(--white);background:var(--card);text-decoration:none}
+/* Hero */
+.hero{padding:60px 0 40px;text-align:center}
+.hero h1{font-size:2.4em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:1.1em;max-width:700px;margin:0 auto}
+/* Stats bar */
+.stats{display:flex;justify-content:center;gap:32px;padding:24px 0;flex-wrap:wrap}
+.stat{text-align:center}.stat .num{font-size:1.8em;font-weight:800;color:var(--white)}.stat .label{font-size:.75em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+/* Cards */
+.grid{display:grid;gap:16px;margin:24px 0}
+.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}
+.grid-3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;transition:.2s}
+.card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.card h3{font-size:1.1em;margin-bottom:8px}.card p{color:var(--muted);font-size:.9em}
+.card .badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:8px}
+.card .meta{font-size:.8em;color:var(--muted);margin-top:12px}
+/* Section */
+.section{padding:40px 0}.section h2{font-size:1.6em;font-weight:700;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+/* Table */
+table{width:100%;border-collapse:collapse;font-size:.85em;margin:16px 0}
+th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:52px}
+td{padding:8px 12px;border-bottom:1px solid var(--border)}
+tr:hover td{background:rgba(16,185,129,.05)}
+.status-complete{color:var(--green);font-weight:600}.status-not{color:var(--muted)}
+/* Progress */
+.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:8px}
+.progress .bar{height:100%;background:var(--accent);border-radius:3px}
+/* Back link */
+.back{display:inline-block;color:var(--muted);font-size:.9em;margin-bottom:20px}
+.back:hover{color:var(--accent)}
+/* Download */
+.dl-card{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin:8px 0;transition:.2s}
+.dl-card:hover{border-color:var(--accent);text-decoration:none}
+.dl-card .icon{font-size:2em}.dl-card .info h4{color:var(--white);margin-bottom:4px}.dl-card .info p{color:var(--muted);font-size:.85em}
+/* Footer */
+footer{text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px}
+@media(max-width:768px){.stats{gap:16px}.stat .num{font-size:1.3em}nav .links{gap:4px}nav .links a{font-size:11px;padding:3px 6px}.hero h1{font-size:1.6em}}
+
+.doc-content{max-width:900px;margin:0 auto;padding:20px 0}
+.doc-content h1{font-size:1.8em;font-weight:800;color:var(--white);margin:32px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.doc-content h2{font-size:1.4em;font-weight:700;color:var(--accent);margin:28px 0 12px}
+.doc-content h3{font-size:1.15em;font-weight:600;color:var(--accent2);margin:20px 0 10px}
+.doc-content p{margin:8px 0;line-height:1.7}
+.doc-content table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85em}
+.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;border:1px solid var(--border)}
+.doc-content td{padding:8px 12px;border:1px solid var(--border);vertical-align:top}
+.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.doc-content ul,.doc-content ol{margin:8px 0 8px 24px}
+.doc-content li{margin:4px 0;line-height:1.6}
+.doc-content strong{color:var(--white)}
+.doc-content em{color:var(--muted)}
+.doc-content blockquote{border-left:3px solid var(--accent);padding:8px 16px;margin:12px 0;background:var(--card);border-radius:0 8px 8px 0}
+.nav-sub{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 24px;padding:12px 16px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
+.nav-sub a{font-size:.8em;color:var(--muted);padding:4px 10px;border-radius:4px;transition:.2s;white-space:nowrap}
+.nav-sub a:hover,.nav-sub a.active{color:var(--white);background:var(--surface);text-decoration:none}
+</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a></div></div></nav><div class="container">
+    <div style="padding-top:30px">
+        <a href="p0.html" class="back">← 🔍 P0: Market Research</a>
+        <div class="nav-sub"><a href="p0.html">🔍 P0 Overview</a><a href="sub-p0a.html">P0A</a><a href="sub-p0b.html">P0B</a><a href="sub-p0c.html">P0C</a><a href="sub-p0d.html" class="active">P0D</a><a href="sub-p0e.html">P0E</a><a href="sub-p0f.html">P0F</a><a href="sub-p0g.html">P0G</a><a href="sub-p0h.html">P0H</a><a href="sub-p0.html">P0</a></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px">
+            <div>
+                <span style="background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px">P0D</span>
+                <span style="color:var(--muted);font-size:.85em;margin-left:8px">P0: Market Research</span>
+            </div>
+            <a href="files/P0D_Customer_Discovery_Individual_Runners_DTC.docx" style="font-size:.85em;color:var(--accent);padding:6px 14px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
+        </div>
+        <div class="doc-content">
+            <p><strong>P0D: CUSTOMER DISCOVERY —</strong></p>
+<p><strong>INDIVIDUAL RUNNERS (DTC)</strong></p>
+<p>Sub-Project P0D | Market Research &amp; Concept Validation | Weeks
+3–8</p>
+<p><em>Complete DTC Customer Intelligence for the Sustainable Race-Start
+Warmth Poncho</em></p>
+<p>March 2026 | Confidential</p>
+<p>Executive Summary</p>
+<p><strong>A compostable warmth poncho targets 2.5M+ annual US marathon
+and half-marathon finishers</strong> who currently rely on garbage bags
+and thrift-store clothes in a $5–15 price tier with zero direct
+competitors. The core customer is affluent (73% earn $75K+),
+college-educated (76%+), digitally connected via Strava (180M users) and
+Instagram, and increasingly eco-aware — though sustainability ranks last
+among gear purchase criteria, behind fit, comfort, performance, and
+price.</p>
+<p><strong>This report synthesizes findings across 10 research
+domains:</strong> demographics, pre-race behavior, sustainability
+attitudes (and the intention-action gap), price sensitivity ($7.99–$9.99
+sweet spot), marketing channels, Amazon/e-commerce dynamics, community
+engagement strategies, customer interview methodology, runner personas,
+and a 7-week concept testing roadmap with $1,700–$2,750 total
+budget.</p>
+<p>1. Marathon Runner Demographics: A Premium Consumer Base</p>
+<p>US marathon finishers reached 432,562 in 2024 (RunRepeat), with
+half-marathon finishers adding ~2M more. Combined with shorter
+distances, the total US road race finisher pool is 17M+ annually across
+85,000+ events.</p>
+<table>
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 29%" />
+<col style="width: 46%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Demographic</strong></td>
+<td><strong>Data Point</strong></td>
+<td><strong>Key Detail</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Age 25–29</strong></td>
+<td>Largest single cohort (2024)</td>
+<td>NYC 2025: 24% under 30 (up from 17% in 2022)</td>
+</tr>
+<tr class="odd">
+<td><strong>Age 30–39</strong></td>
+<td>~31% globally</td>
+<td>Historically dominant; now being overtaken by younger</td>
+</tr>
+<tr class="even">
+<td><strong>Age 40–49</strong></td>
+<td>~24% (Running USA)</td>
+<td>Stable share; high spending power</td>
+</tr>
+<tr class="odd">
+<td><strong>Age 50+</strong></td>
+<td>~20% combined</td>
+<td>Growing; Boomers staying active longer</td>
+</tr>
+<tr class="even">
+<td><strong>Gender (Marathon)</strong></td>
+<td>59% male / 41% female</td>
+<td>Women peaked at 47% in 2017; declining slightly</td>
+</tr>
+<tr class="odd">
+<td><strong>Gender (Half)</strong></td>
+<td>55–60% female</td>
+<td>Women are majority in halfs and shorter distances</td>
+</tr>
+<tr class="even">
+<td><strong>Income $75K+</strong></td>
+<td>73.3%</td>
+<td>vs. US median ~$80K household</td>
+</tr>
+<tr class="odd">
+<td><strong>Income $100K+</strong></td>
+<td>~58%</td>
+<td>Dramatically above general population</td>
+</tr>
+<tr class="even">
+<td><strong>College degree+</strong></td>
+<td>76–79%</td>
+<td>vs. 30.4% US adult average</td>
+</tr>
+<tr class="odd">
+<td><strong>Married</strong></td>
+<td>65–72%</td>
+<td>Higher among male runners (72%) than female (61%)</td>
+</tr>
+</tbody>
+</table>
+<p>1.1 Geographic Concentration</p>
+<p>Top states by per-capita marathon participation: Hawaii (#1, 1,338
+per 100K), followed by New York (34 marathons/year, ~57,000 finishers),
+Illinois (53,000+), California (57 marathons, 34,478 finishers), and
+Massachusetts (27,500+). The top marathon cities — NYC, Chicago, Boston,
+LA — are all cold-weather or cold-morning race markets.</p>
+<p>1.2 Psychographic Profile</p>
+<p>Primary motivations: staying healthy (72%), stress relief (38%),
+enjoyment (33%), personal challenges (31%). Approximately half of
+marathon participants are first-timers; only 12% repeat the same event
+year-over-year. Runners average $1,748/year in running spending, train
+208+ days per year, and purchase 3+ pairs of shoes annually. Brand
+loyalty is extremely high: 54% prefer repeat purchases.</p>
+<p>1.3 Strava Users: The Ideal Target</p>
+<p>Strava’s 180M+ users are 194% more likely to be in the top
+socioeconomic segment, 48% more likely to be high-net-worth, and 218%
+more likely to buy products to access community. 87% are more likely to
+buy premium versions. Running is the #1 activity on the platform. This
+is the single most valuable audience for DTC marketing.</p>
+<p>2. The Start-Line Warmth Problem: Universal, Miserable,
+Unresolved</p>
+<p>2.1 Wait Times by Race</p>
+<p>NYC Marathon: 3–5 hours total (buses depart 5:45 AM, start at 10:40
+AM). Boston Marathon: 1–2+ hours in Athletes’ Village after a 45-minute
+shuttle. Chicago Marathon: corrals close 30–60 minutes before gun,
+runners arrive 30–45 minutes earlier. CIM Sacramento: December start can
+see 24°F. REVEL series: cold mountain starts at 7,000–7,600 ft
+elevation.</p>
+<blockquote>
+<p><em>Stepping off the bus, the temperature dropped about 40 degrees. I
+could see my breath and feel my skin shiver. — Boston Marathon
+runner</em></p>
+<p><em>I was too cold to feel my feet when the corral opened. — NYC
+Marathon participant</em></p>
+<p><em>A TRASH BAG IS NOT GOING TO DO THE TRICK for extended pre-race
+waits of 1–2+ hours in extreme cold. — Team Z marathon gear
+guide</em></p>
+</blockquote>
+<p>2.2 Current Solutions Ranked</p>
+<table>
+<colgroup>
+<col style="width: 21%" />
+<col style="width: 9%" />
+<col style="width: 9%" />
+<col style="width: 31%" />
+<col style="width: 28%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Solution</strong></td>
+<td><strong>Usage Est.</strong></td>
+<td><strong>Cost</strong></td>
+<td><strong>Drawbacks</strong></td>
+<td><strong>Warmth</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Thrift store / old clothes</strong></td>
+<td>40–50%</td>
+<td>$1–5</td>
+<td>Requires planning; creates 200+ tons/yr waste at majors</td>
+<td>Moderate—not designed for static standing</td>
+</tr>
+<tr class="odd">
+<td><strong>Garbage bags</strong></td>
+<td>20–30%</td>
+<td>$0</td>
+<td>Undignified; minimal warmth; adds to landfill</td>
+<td>Low—windproof but no insulation</td>
+</tr>
+<tr class="even">
+<td><strong>Hand/toe warmers</strong></td>
+<td>30–40%</td>
+<td>$1–3/pair</td>
+<td>Supplement only; doesn’t cover torso</td>
+<td>Targeted heat to extremities</td>
+</tr>
+<tr class="odd">
+<td><strong>Mylar/space blankets</strong></td>
+<td>10–15%</td>
+<td>$1–3</td>
+<td>Awkward; not poncho-shaped; tears easily</td>
+<td>Moderate—reflects IR but no insulation</td>
+</tr>
+<tr class="even">
+<td><strong>Tyvek suits/jackets</strong></td>
+<td>5–10%</td>
+<td>$8–12</td>
+<td>Industrial look; non-compostable plastic</td>
+<td>Good—windproof + some warmth</td>
+</tr>
+<tr class="odd">
+<td><strong>Heatsheets poncho</strong></td>
+<td>&lt;5%</td>
+<td>$4.30/unit</td>
+<td>Sold out at Boston expo; recyclable not compostable</td>
+<td>Good—NASA IR + poncho form</td>
+</tr>
+<tr class="even">
+<td><strong>Nothing extra</strong></td>
+<td>5–10%</td>
+<td>$0</td>
+<td>Hardcore runners only; miserable for most</td>
+<td>None</td>
+</tr>
+<tr class="odd">
+<td><strong>YOUR PONCHO</strong></td>
+<td>TARGET</td>
+<td>$5–8 retail</td>
+<td>Compostable + thermal + poncho form = whitespace</td>
+<td>BEST—warmth + eco + dignity</td>
+</tr>
+</tbody>
+</table>
+<p><strong>The critical gap:</strong> No compostable, purpose-built
+warmth poncho exists. Heatsheets validated the poncho form factor by
+selling out 1,200+ units at a single Boston Marathon expo, proving
+demand for a dedicated start-line product.</p>
+<p>3. Sustainability Attitudes: The Intention-Action Gap</p>
+<p>The central tension: runners say sustainability matters but won’t pay
+significantly more for it.</p>
+<table>
+<colgroup>
+<col style="width: 27%" />
+<col style="width: 14%" />
+<col style="width: 21%" />
+<col style="width: 35%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Metric</strong></td>
+<td><strong>Data Point</strong></td>
+<td><strong>Source</strong></td>
+<td><strong>Context</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Sustainability important in purchases</strong></td>
+<td>63–80%</td>
+<td>Formula4Media, PwC 2024</td>
+<td>Stated preference (surveys)</td>
+</tr>
+<tr class="odd">
+<td><strong>Would pay a green premium</strong></td>
+<td>80% (avg 9.7%)</td>
+<td>PwC 2024 (20K respondents)</td>
+<td>Stated preference; overstates 2–3x</td>
+</tr>
+<tr class="even">
+<td><strong>Actually follow through</strong></td>
+<td>26%</td>
+<td>HBR / BBMG/GlobeScan</td>
+<td>Observed behavior</td>
+</tr>
+<tr class="odd">
+<td><strong>Willing to pay 5–10% more</strong></td>
+<td>47%</td>
+<td>Blue Yonder 2025</td>
+<td>Moderate green premium ceiling</td>
+</tr>
+<tr class="even">
+<td><strong>Willing to pay 20%+ more</strong></td>
+<td>4%</td>
+<td>Blue Yonder 2025</td>
+<td>Extreme minority</td>
+</tr>
+<tr class="odd">
+<td><strong>Sustainability ranking in running gear</strong></td>
+<td>LAST</td>
+<td>Formula4Media Women Runners</td>
+<td>Behind fit, comfort, performance, price</td>
+</tr>
+<tr class="even">
+<td><strong>Green Bib opt-in (Toronto WFM)</strong></td>
+<td>6.7%</td>
+<td>CRS 2024</td>
+<td>Actively eco-committed minority</td>
+</tr>
+<tr class="odd">
+<td><strong>Trees not Tees opt-in</strong></td>
+<td>~20%</td>
+<td>Various races</td>
+<td>Moderate eco-active segment</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Strategic implication:</strong> Lead with function (“the
+warmest start-line poncho ever designed”), layer sustainability as a
+differentiator (“and it composts in 90 days”). Sustainability is a
+tiebreaker, not a driver. Price the green premium at ≤5–10% above
+alternatives.</p>
+<p>3.1 Running Brands Setting the Sustainability Baseline</p>
+<p>Brooks Ghost 14 was the first carbon-neutral major running shoe.
+Adidas uses Parley ocean plastic in shoe uppers. Allbirds labels CO₂
+footprint on every product. Tracksmith sources responsible fibers. Janji
+donates 2% to clean water projects. Niche brand Unsanctioned Running
+adopts a “if you CAN’T make it sustainably, DON’T make it at all” ethos.
+This competitive landscape creates expectation for eco-friendly race
+products.</p>
+<p>4. Price Sensitivity: $7.99–$9.99 Sweet Spot</p>
+<p>4.1 Competitive Price Anchors</p>
+<p>Garbage bags: $0. Generic PE rain ponchos: $0.50–$1.50. Thrift-store
+clothes: $1–5. Emergency mylar ponchos: $3–5. RetiSports Marathon Kit:
+$7.99 (poncho + sleeves + gloves). Sheddable Shells jacket: $10.35.
+Tyvek suits: $8–12. NYC Marathon finisher poncho resale: $59–80+ on
+eBay.</p>
+<p>4.2 Recommended Pricing Architecture</p>
+<table>
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 19%" />
+<col style="width: 57%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Price Point</strong></td>
+<td><strong>Range</strong></td>
+<td><strong>Rationale</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Too cheap (quality doubt)</strong></td>
+<td>$2–3</td>
+<td>Below this, indistinguishable from a garbage bag</td>
+</tr>
+<tr class="odd">
+<td><strong>Bargain / good value</strong></td>
+<td>$4–6</td>
+<td>Clear upgrade from free alternatives; impulse-buy zone</td>
+</tr>
+<tr class="even">
+<td><strong>Getting expensive</strong></td>
+<td>$7–9</td>
+<td>Matches Sheddable Shells; ceiling for single-use items</td>
+</tr>
+<tr class="odd">
+<td><strong>Too expensive</strong></td>
+<td>$10+</td>
+<td>Runners revert to thrift-store clothes or Tyvek</td>
+</tr>
+<tr class="even">
+<td><strong>Recommended single</strong></td>
+<td>$7.99–$9.99</td>
+<td>Undercuts Tyvek; above commodity ponchos</td>
+</tr>
+<tr class="odd">
+<td><strong>Recommended 2-pack</strong></td>
+<td>$14.99</td>
+<td>$7.50/unit; encourages sharing with training partner</td>
+</tr>
+<tr class="even">
+<td><strong>Recommended Race Kit</strong></td>
+<td>$12.99</td>
+<td>Poncho + compostable gloves; matches RetiSports pricing</td>
+</tr>
+<tr class="odd">
+<td><strong>B2B wholesale</strong></td>
+<td>$2.50–$4.00/unit</td>
+<td>Race organizer/sponsor-funded inclusion in packets</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Van Westendorp methodology is ideal here</strong> because it
+excels with new-to-world products. Collect 200+ responses using four
+standard questions. Apply 25–35% deflation to optimal price point for
+hypothetical bias (stated WTP overstates actual by ~21%).</p>
+<p>5. Marketing Channels: Where 2.5 Million Runners Spend Time</p>
+<table>
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 20%" />
+<col style="width: 22%" />
+<col style="width: 27%" />
+<col style="width: 12%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Channel</strong></td>
+<td><strong>Reach</strong></td>
+<td><strong>Behavior</strong></td>
+<td><strong>How to Use</strong></td>
+<td><strong>Priority</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Strava</strong></td>
+<td>180M+ users; 1M clubs</td>
+<td>Daily engagement; running #1 activity</td>
+<td>Sponsored challenges ($30K+); free branded clubs</td>
+<td>HIGHEST</td>
+</tr>
+<tr class="odd">
+<td><strong>Instagram</strong></td>
+<td>Dominant visual platform</td>
+<td>Race photos, training updates</td>
+<td>Reels, Stories polls, influencer seeding</td>
+<td>HIGH</td>
+</tr>
+<tr class="even">
+<td><strong>Reddit (r/running)</strong></td>
+<td>3.5–4M subscribers</td>
+<td>Honest reviews; product discovery</td>
+<td>Organic engagement; Reddit Ads; AMAs</td>
+<td>HIGH</td>
+</tr>
+<tr class="odd">
+<td><strong>TikTok</strong></td>
+<td>1.3B+ running views</td>
+<td>Fastest-growing; Gen Z dominant</td>
+<td>Short-form video; #runtok</td>
+<td>MEDIUM-HIGH</td>
+</tr>
+<tr class="even">
+<td><strong>Facebook Groups</strong></td>
+<td>100K+ across major groups</td>
+<td>Marathon training communities; older demo</td>
+<td>Group discussions; event-based targeting</td>
+<td>MEDIUM</td>
+</tr>
+<tr class="odd">
+<td><strong>YouTube</strong></td>
+<td>Top channels 170K–810K subs</td>
+<td>Gear reviews, race vlogs</td>
+<td>Product seeding; “What’s in my race bag” content</td>
+<td>MEDIUM</td>
+</tr>
+<tr class="even">
+<td><strong>Podcasts</strong></td>
+<td>Ali on the Run: 20M+ downloads</td>
+<td>High trust; intimate format</td>
+<td>Host-read ads at $25–50 CPM</td>
+<td>HIGH</td>
+</tr>
+<tr class="odd">
+<td><strong>Race Expos</strong></td>
+<td>100K+ visitors at NYC alone</td>
+<td>Captive high-intent audience; 75% buy</td>
+<td>Booth sales; sampling; data collection</td>
+<td>HIGHEST</td>
+</tr>
+<tr class="even">
+<td><strong>Fleet Feet</strong></td>
+<td>312 stores; 40 states</td>
+<td>Weekly group runs; gear authority</td>
+<td>In-store placement; group run sampling</td>
+<td>HIGH</td>
+</tr>
+<tr class="odd">
+<td><strong>Amazon</strong></td>
+<td>88% pre-purchase research</td>
+<td>Volume channel; Prime logistics</td>
+<td>Listing optimization; PPC; Vine reviews</td>
+<td>HIGH</td>
+</tr>
+</tbody>
+</table>
+<p>5.1 Top Running Podcasts</p>
+<p>Ali on the Run Show: 650+ episodes, 20M+ downloads, 3,000+ five-star
+reviews — clear leader. Marathon Training Academy: 100,000+
+downloads/month. The Morning Shakeout: highly respected in competitive
+circles. Another Mother Runner: targets runner-mom demographic.
+Host-read podcast ads carry exceptional trust at CPMs of $25–50.</p>
+<p>5.2 YouTube Running Ecosystem</p>
+<p>The Running Channel (~813K subs), Nick Symmonds (~1.7M), Sage Canaday
+(~252K, 49M+ views), Kofuzi (~230K), Seth James DeMoor (~172K, 3,000+
+videos). Best approach: product seeding for “What’s in my race bag”
+videos. Running YouTubers have smaller but significantly more engaged
+audiences than general fitness creators.</p>
+<p>5.3 Running Websites</p>
+<p>Runner’s World: ~9–11M monthly visits. LetsRun: ~3.3–4.5M/month.
+Marathon Handbook: ~735K–920K/month with 257,000+ newsletter
+subscribers. A Runner’s World “Best Gear” feature provides massive
+credibility for new products.</p>
+<p>6. Amazon &amp; E-Commerce Strategy</p>
+<p>6.1 Amazon Category Landscape</p>
+<p>The “rain ponchos for adults” category: 1,172 products, 17,544 weekly
+searches. Top 3 ASINs command 37.73% click-through share with 19.25%
+conversion rate. Dominant price tier: $10–20 (36.73% of products). No
+compostable warmth poncho exists in any Amazon category — confirmed
+whitespace.</p>
+<p>6.2 Key E-Commerce Benchmarks</p>
+<p>Amazon sitewide conversion: 10–15% (vs. 1–4% standalone e-commerce).
+Products under $20 convert at 15–20%. Average consumer reads 10 reviews
+before purchase; 100+ reviews increase conversion by 37%. Launch target:
+10 reviews by weeks 3–6 via Amazon Vine, 30+ by week 12 at 4.5★+. Free
+Prime shipping eliminates friction (93% of shoppers prefer it).</p>
+<p>6.3 DTC vs. Amazon</p>
+<p>Amazon for volume, discoverability, and Prime logistics. Shopify DTC
+for brand storytelling, email list building, and higher-margin bundles
+(season 3-packs, Race Day Kits). Race expos for trial and brand
+awareness. Fleet Feet (312 stores) for specialty retail credibility.
+Hybrid approach maximizes reach while protecting brand equity.</p>
+<p>7. Community Engagement: Reddit, Strava &amp; Running Clubs</p>
+<p>7.1 Reddit Strategy</p>
+<p>r/running (~3.5–4M subscribers): supportive, beginner-friendly,
+strictly anti-promotional. r/AdvancedRunning (~469K):
+performance-oriented, data-driven. r/firstmarathon: HIGHEST-INTENT
+community — first-timers asking about race-day logistics.
+r/RunningShoeGeeks: obsessively detail-oriented about gear. All
+subreddits follow the 90/10 rule: 90% genuine participation, 10% brand
+mention.</p>
+<p><strong>Best approach:</strong> Build authentic presence by engaging
+in race-day gear threads. Time content around marathon seasons (Oct–Nov,
+Apr). Use a founder story AMA format. Target r/firstmarathon most
+aggressively. Never disguise marketing as organic content.</p>
+<p>7.2 Strava Brand Building</p>
+<p>Create a free branded Strava Club as the first step. Engage in
+existing clubs before promoting. For larger budgets ($30K+), Strava
+sponsored challenges drive massive reach. Strava’s business platform
+supports sponsored challenges, branded clubs, and community content.
+Brands like Hoka, Brooks, and Chipotle use clubs effectively.</p>
+<p>7.3 Offline Community Touchpoints</p>
+<p>Fleet Feet (312 stores): weekly group runs; propose product feedback
+sessions. November Project (57 locations, ~4,500 weekly attendees):
+ideal cold-weather sampling venue. parkrun USA (96 events, 217K
+finishers): lower priority (5K focus). RRCA (1,100+ clubs nationwide):
+grassroots partnership channel.</p>
+<p>8. Customer Discovery Interview Guide</p>
+<p>8.1 Mom Test–Compliant Questions</p>
+<p>Focus on past behavior, not hypothetical futures. Seven key
+questions:</p>
+<p>1. “Walk me through your morning of your last cold-weather race, from
+waking up to the gun going off.”</p>
+<p>2. “What did you wear while waiting at the start line? What happened
+to those clothes?”</p>
+<p>3. “The last time you were cold at a start line, what specifically
+did you do about it?”</p>
+<p>4. “How much did you spend on race-related gear for your last
+marathon?”</p>
+<p>5. “When you see trash and discarded clothing at race start lines,
+how does that make you feel?”</p>
+<p>6. “Have you ever chosen a running product specifically because of
+its environmental claims?”</p>
+<p>7. “What’s the one thing you wish existed for race-morning comfort
+that doesn’t today?”</p>
+<p>8.2 Recruitment &amp; Incentives</p>
+<p>Recruit from: local running clubs (15–25% conversion), Reddit posts
+with mod approval (1–3% of views), Strava clubs (5–10% of members), race
+expos ($10 coffee card for 15-min intercepts). Target 20–30 qualitative
+interviews + 200+ quantitative survey responses. Budget: $2,000–$5,000
+over 8 weeks.</p>
+<p>8.3 Commitment Testing</p>
+<p>Escalate through: email signup (weak signal), prototype testing at
+their next race (moderate), pre-ordering at a specific price (strong),
+referring a running friend (moderate). Pre-order behavior with real
+money is the ultimate validation. As Rob Fitzpatrick writes: “People
+stop lying when you ask them for money.”</p>
+<p>9. Three Target Personas</p>
+<p>9.1 Primary: “The Eco-Conscious Multi-Racer”</p>
+<p>Female, 30–38, married, college-educated, $100K+ HHI, 3–5 races/year.
+Uses Strava daily, follows Brooks/Janji/Tracksmith on Instagram. Current
+solution: thrift-store sweatshirt + garbage bag (feels guilty).
+Discovers via Instagram ad or Reddit thread. Buys 2-pack at $14.99 on
+Amazon Prime 2–3 weeks before race. Compostable angle is the tiebreaker.
+Shares race-morning photo tagging the brand.</p>
+<p>9.2 Secondary: “The Practical Convenience Buyer”</p>
+<p>Male, 42–52, married with kids, $125K+ HHI, 1–2 marathons/year. Uses
+Amazon heavily; passive Strava user. Current solution: old sweatshirt
+(works at home races, fails at destination races). Discovers at race
+expo or Amazon search 3 days before race. Buys 2–3 at expo without
+hesitation. Warmth and packability are primary drivers; compostability
+is a nice bonus. Willing to pay up to $12.99.</p>
+<p>9.3 Tertiary: “The Anxious First-Timer”</p>
+<p>Female or male, 26–34, $65–90K HHI, training for first marathon.
+Heavy TikTok and Instagram user. No warmth strategy yet — will Google
+“what to wear at marathon start line” 2 weeks before race. Discovers via
+YouTube “First Marathon Tips” video or Reddit recommendation. Buys on
+Amazon 1–2 weeks before race. Convenience and peace of mind are
+paramount (“one less thing to worry about”). Price-conscious:
+$7.99–$9.99 range.</p>
+<p>10. Seven-Week Concept Testing Roadmap</p>
+<table>
+<colgroup>
+<col style="width: 13%" />
+<col style="width: 17%" />
+<col style="width: 48%" />
+<col style="width: 20%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Timing</strong></td>
+<td><strong>Phase</strong></td>
+<td><strong>Activities</strong></td>
+<td><strong>Est. Budget</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Week 1–3</strong></td>
+<td>Qualitative Interviews</td>
+<td>20–30 interviews via running clubs, Reddit, Fleet Feet</td>
+<td>$1,250 (incentives)</td>
+</tr>
+<tr class="odd">
+<td><strong>Week 3–5</strong></td>
+<td>Quantitative Survey</td>
+<td>200+ respondents; Van Westendorp + MaxDiff</td>
+<td>$200–$500 (tools)</td>
+</tr>
+<tr class="even">
+<td><strong>Week 3–5</strong></td>
+<td>Brand Name Testing</td>
+<td>PickFu polls; 50–200 respondents per matchup</td>
+<td>$100–$300</td>
+</tr>
+<tr class="odd">
+<td><strong>Week 5–7</strong></td>
+<td>Concept Ad Testing</td>
+<td>$50–100 Facebook/Instagram ads; CTR + email capture</td>
+<td>$100–$200</td>
+</tr>
+<tr class="even">
+<td><strong>Week 5–7</strong></td>
+<td>Landing Page Validation</td>
+<td>Carrd/Unbounce; email capture; &gt;5% = strong signal</td>
+<td>$0–$19/mo</td>
+</tr>
+<tr class="odd">
+<td><strong>Total</strong></td>
+<td>7-Week Roadmap</td>
+<td>Complete concept validation</td>
+<td>$1,700–$2,750</td>
+</tr>
+</tbody>
+</table>
+<p>10.1 Concept Ad Testing Benchmarks</p>
+<p>CTR &lt; 1.0%: Weak concept. CTR 1.0–1.5%: Average, needs refinement.
+CTR 1.5–2.5%: Strong, above-average resonance. CTR &gt; 2.5%: Excellent
+concept-market fit. For email capture on landing page: &gt;5% of
+visitors = strong validation; &gt;10% = very strong. Sports &amp;
+Recreation Facebook ads average just $0.41 CPC — favorable economics for
+testing.</p>
+<p>11. Conclusion: Lead with Warmth, Close with Compostability</p>
+<p><strong>Three critical launch principles:</strong> (1) Lead with
+performance — the poncho must be warmer than a garbage bag, more
+convenient than a Goodwill sweatshirt, and more dignified than both. (2)
+Price at $7.99–$9.99 retail, with 2-packs at $14.99. (3) Build
+credibility through community before selling — the running community is
+tight-knit, skeptical of marketing, and fiercely loyal to brands that
+earn trust through authentic participation.</p>
+<p><strong>The dual-channel strategy:</strong> expo-heavy initially
+(75%+ purchase rate among captive high-intent audiences), DTC-heavy
+long-term (Amazon for volume, Shopify for brand, Strava/Reddit/podcasts
+for organic growth, Fleet Feet for specialty credibility). The customer
+discovery process should launch immediately with 20–30 interviews,
+followed by quantitative validation and pre-order testing within 7 weeks
+at a total budget of $1,700–$2,750.</p>
+
+        </div>
+    </div></div>
+<footer style="text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px">
+Sustainable Race-Start Warmth Poncho — D2C Brand GTM Project · 60 Subprojects · 391 Tasks · ~15,500¶ · April 2026
+</footer></body></html>

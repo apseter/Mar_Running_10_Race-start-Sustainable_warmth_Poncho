@@ -1,0 +1,768 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>P0E: Material Science Warmth Testing — Race Start Warmth GTM</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0e1a;--surface:#111827;--card:#1a2332;--border:#2a3a4e;--accent:#10b981;--accent2:#3b82f6;--text:#e2e8f0;--muted:#94a3b8;--white:#fff;--red:#ef4444;--amber:#f59e0b;--green:#10b981}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+/* Nav */
+nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
+nav .inner{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;max-width:1200px;margin:0 auto}
+nav .brand{font-weight:700;font-size:15px;color:var(--accent)}
+nav .links{display:flex;gap:8px;flex-wrap:wrap}
+nav .links a{color:var(--muted);font-size:13px;padding:4px 10px;border-radius:6px;transition:.2s}
+nav .links a:hover,nav .links a.active{color:var(--white);background:var(--card);text-decoration:none}
+/* Hero */
+.hero{padding:60px 0 40px;text-align:center}
+.hero h1{font-size:2.4em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:1.1em;max-width:700px;margin:0 auto}
+/* Stats bar */
+.stats{display:flex;justify-content:center;gap:32px;padding:24px 0;flex-wrap:wrap}
+.stat{text-align:center}.stat .num{font-size:1.8em;font-weight:800;color:var(--white)}.stat .label{font-size:.75em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+/* Cards */
+.grid{display:grid;gap:16px;margin:24px 0}
+.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}
+.grid-3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;transition:.2s}
+.card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.card h3{font-size:1.1em;margin-bottom:8px}.card p{color:var(--muted);font-size:.9em}
+.card .badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:8px}
+.card .meta{font-size:.8em;color:var(--muted);margin-top:12px}
+/* Section */
+.section{padding:40px 0}.section h2{font-size:1.6em;font-weight:700;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+/* Table */
+table{width:100%;border-collapse:collapse;font-size:.85em;margin:16px 0}
+th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:52px}
+td{padding:8px 12px;border-bottom:1px solid var(--border)}
+tr:hover td{background:rgba(16,185,129,.05)}
+.status-complete{color:var(--green);font-weight:600}.status-not{color:var(--muted)}
+/* Progress */
+.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:8px}
+.progress .bar{height:100%;background:var(--accent);border-radius:3px}
+/* Back link */
+.back{display:inline-block;color:var(--muted);font-size:.9em;margin-bottom:20px}
+.back:hover{color:var(--accent)}
+/* Download */
+.dl-card{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin:8px 0;transition:.2s}
+.dl-card:hover{border-color:var(--accent);text-decoration:none}
+.dl-card .icon{font-size:2em}.dl-card .info h4{color:var(--white);margin-bottom:4px}.dl-card .info p{color:var(--muted);font-size:.85em}
+/* Footer */
+footer{text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px}
+@media(max-width:768px){.stats{gap:16px}.stat .num{font-size:1.3em}nav .links{gap:4px}nav .links a{font-size:11px;padding:3px 6px}.hero h1{font-size:1.6em}}
+
+.doc-content{max-width:900px;margin:0 auto;padding:20px 0}
+.doc-content h1{font-size:1.8em;font-weight:800;color:var(--white);margin:32px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.doc-content h2{font-size:1.4em;font-weight:700;color:var(--accent);margin:28px 0 12px}
+.doc-content h3{font-size:1.15em;font-weight:600;color:var(--accent2);margin:20px 0 10px}
+.doc-content p{margin:8px 0;line-height:1.7}
+.doc-content table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85em}
+.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;border:1px solid var(--border)}
+.doc-content td{padding:8px 12px;border:1px solid var(--border);vertical-align:top}
+.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.doc-content ul,.doc-content ol{margin:8px 0 8px 24px}
+.doc-content li{margin:4px 0;line-height:1.6}
+.doc-content strong{color:var(--white)}
+.doc-content em{color:var(--muted)}
+.doc-content blockquote{border-left:3px solid var(--accent);padding:8px 16px;margin:12px 0;background:var(--card);border-radius:0 8px 8px 0}
+.nav-sub{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 24px;padding:12px 16px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
+.nav-sub a{font-size:.8em;color:var(--muted);padding:4px 10px;border-radius:4px;transition:.2s;white-space:nowrap}
+.nav-sub a:hover,.nav-sub a.active{color:var(--white);background:var(--surface);text-decoration:none}
+</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a></div></div></nav><div class="container">
+    <div style="padding-top:30px">
+        <a href="p0.html" class="back">← 🔍 P0: Market Research</a>
+        <div class="nav-sub"><a href="p0.html">🔍 P0 Overview</a><a href="sub-p0a.html">P0A</a><a href="sub-p0b.html">P0B</a><a href="sub-p0c.html">P0C</a><a href="sub-p0d.html">P0D</a><a href="sub-p0e.html" class="active">P0E</a><a href="sub-p0f.html">P0F</a><a href="sub-p0g.html">P0G</a><a href="sub-p0h.html">P0H</a><a href="sub-p0.html">P0</a></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px">
+            <div>
+                <span style="background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px">P0E</span>
+                <span style="color:var(--muted);font-size:.85em;margin-left:8px">P0: Market Research</span>
+            </div>
+            <a href="files/P0E_Material_Science_Warmth_Testing.docx" style="font-size:.85em;color:var(--accent);padding:6px 14px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
+        </div>
+        <div class="doc-content">
+            <p><strong>P0E: MATERIAL SCIENCE &amp;</strong></p>
+<p><strong>WARMTH TESTING</strong></p>
+<p>Sub-Project P0E | Market Research &amp; Concept Validation | Weeks
+4–10</p>
+<p><em>Complete Technical Dossier: Metallized Compostable Films, Thermal
+Science, Certification, and Prototyping</em></p>
+<p>March 2026 | Confidential</p>
+<p>Executive Summary</p>
+<p><strong>A compostable metallized poncho is technically feasible
+today.</strong> Vacuum-deposited aluminum on compostable cellulose or
+PLA film reflects 90–97% of infrared body heat — thermally equivalent to
+conventional Heatsheets blankets — while fully passing EN 13432 and ASTM
+D6400 compostability standards because aluminum constitutes &lt;0.02% of
+film weight.</p>
+<p><strong>At 100K-unit volumes, a single-layer poncho costs $0.78/unit
+(3.1× LDPE); the recommended two-layer laminate costs $1.15/unit (4.6×
+LDPE).</strong> The fastest path to a wearable prototype is 2–3 weeks
+using off-the-shelf NatureFlex NM film and a tabletop heat sealer, at a
+total cost under $400. Full compostability certification (BPI + TÜV)
+takes 12–18 months and costs $35K–$75K.</p>
+<p>1. Global Directory of Metallized Compostable Film Suppliers</p>
+<p>Ten commercial sources of metallized compostable film have been
+identified, spanning cellulose, PLA, and proprietary polymer
+platforms:</p>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 12%" />
+<col style="width: 18%" />
+<col style="width: 20%" />
+<col style="width: 30%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Supplier</strong></td>
+<td><strong>Location</strong></td>
+<td><strong>Product</strong></td>
+<td><strong>Certifications</strong></td>
+<td><strong>Key Detail</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Futamura NatureFlex NM</strong></td>
+<td>Wigton UK / Tecumseh KS</td>
+<td>Metallized cellulose (23µm)</td>
+<td>EN 13432, ASTM D6400, OK Compost HOME, BPI, marine</td>
+<td>Heat-sealable; 90%+ biobased; &lt;0.02% Al; 60-day raw shelf life
+warning</td>
+</tr>
+<tr class="odd">
+<td><strong>Futamura NatureFlex NKME</strong></td>
+<td>Same</td>
+<td>High-barrier met cellulose (20–30µm)</td>
+<td>Same full suite</td>
+<td>OTR 0.03 cc/100in²/day; best barrier; PVdC coating present</td>
+</tr>
+<tr class="even">
+<td><strong>Celplast ENVIROMET PLA</strong></td>
+<td>Toronto, Canada</td>
+<td>Metallized BOPLA (15–40µm)</td>
+<td>ASTM D6400, BPI</td>
+<td>Metacoat® top-coating; 6–10× barrier improvement vs. standard
+met</td>
+</tr>
+<tr class="odd">
+<td><strong>Celplast DURAMET PLA</strong></td>
+<td>Toronto, Canada</td>
+<td>Top-coated met BOPLA</td>
+<td>ASTM D6400, BPI</td>
+<td>WVTR 0.93; OTR 1.4 — best-in-class PLA barrier</td>
+</tr>
+<tr class="even">
+<td><strong>Parkside HCFT1</strong></td>
+<td>Normanton UK</td>
+<td>Dual-met cellulose triplex</td>
+<td>DIN CERTCO home compostable</td>
+<td>Two met layers; max UV/moisture/O₂ protection; 26-wk home
+compost</td>
+</tr>
+<tr class="odd">
+<td><strong>Parkside HCFD6/D7</strong></td>
+<td>Normanton UK</td>
+<td>Single-met cellulose duplex</td>
+<td>DIN CERTCO home compostable</td>
+<td>Sachets/flow wrap; fossil-plastic-free</td>
+</tr>
+<tr class="even">
+<td><strong>TIPA 312MET Premium</strong></td>
+<td>Israel / global mfg</td>
+<td>Met compostable barrier film</td>
+<td>EN 13432, ASTM D6400, OK Home, BPI</td>
+<td>Feb 2025 launch; no separate sealant needed; garment bag
+experience</td>
+</tr>
+<tr class="odd">
+<td><strong>Earthfirst Films</strong></td>
+<td>Columbus OH / Ghent BE</td>
+<td>Met PLA sealant (80–120ga)</td>
+<td>DIN CERTCO, ASTM D6400, EN 13432</td>
+<td>PouchReady high-barrier; metallized + soft metallized options</td>
+</tr>
+<tr class="even">
+<td><strong>Taghleef NATIVIA</strong></td>
+<td>Italy</td>
+<td>Met silver-gloss PLA (25–30µm)</td>
+<td>EN 13432 (DIN CERTCO)</td>
+<td>NATIVIA Plus (PHA-based) for home compostability</td>
+</tr>
+<tr class="odd">
+<td><strong>NatureWorks Ingeo Extend</strong></td>
+<td>Plymouth MN</td>
+<td>PLA resin (4950D grade)</td>
+<td>Base certified compostable</td>
+<td>8× faster compost; 7× stretch ratio; Mar 2025 launch</td>
+</tr>
+</tbody>
+</table>
+<p>1.1 Futamura NatureFlex: The Leading Platform</p>
+<p>Futamura Chemical Company produces NatureFlex from regenerated
+cellulose (FSC-certified wood pulp). Metallized grades use vacuum
+deposition of aluminum at 1,500–1,800°C, depositing a layer just 10–50
+nm thick. The aluminum naturally oxidizes to Al₂O₃, an inert soil
+mineral. NM grade: 23µm, heat-sealable at 240–340°F, 90%+ biobased
+carbon, BPI #C119399. US: +1 770 818 3012; info@futamuragroup.com.</p>
+<p>1.2 Celplast ENVIROMET: Best Barrier Performance</p>
+<p>Toronto-based Celplast metallizes BOPLA film using patented Metacoat®
+in-vacuum inline flexo top-coating (2017 AIMCAL Technology of the Year).
+DURAMET PLA achieves WVTR of 0.93 g/m²/day and OTR of 1.4 cc/m²/day —
+best-in-class for compostable film. Contact: (416) 293-4330;
+celplast.com.</p>
+<p>1.3 TIPA 312MET Premium: Newest Entry (Feb 2025)</p>
+<p>Israeli startup TIPA launched 312MET Premium — an advanced
+home-compostable metallized high-barrier film eliminating the need for a
+separate sealant layer. Holds EN 13432, ASTM D6400, OK Compost Home, and
+BPI certifications. MOQ: 500 kg per size or 25,000 units. Serves
+fashion/garment bag applications — directly relevant to poncho
+manufacturing. Contact: tipa-corp.com.</p>
+<p>2. Thermal Science: How Metallized Film Keeps Runners Warm</p>
+<p>2.1 Heat Loss Mechanisms at Rest in 35–55°F</p>
+<p>The human body at rest generates 80–105 watts. In the 35–55°F range
+with wind, heat loss can reach 150–300W, creating a dangerous
+deficit:</p>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 18%" />
+<col style="width: 20%" />
+<col style="width: 40%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Mechanism</strong></td>
+<td><strong>% at rest, calm</strong></td>
+<td><strong>% at rest, 15 mph wind</strong></td>
+<td><strong>Impact of film barrier</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Radiation</strong></td>
+<td>40–65%</td>
+<td>30–45%</td>
+<td>Met aluminum reflects 95–97% IR (emissivity 0.03–0.05)</td>
+</tr>
+<tr class="odd">
+<td><strong>Convection</strong></td>
+<td>10–18%</td>
+<td>25–40%</td>
+<td>Any windproof film eliminates forced convection</td>
+</tr>
+<tr class="even">
+<td><strong>Evaporation</strong></td>
+<td>20–25%</td>
+<td>15–20%</td>
+<td>Vapor-impermeable films block evaporative cooling</td>
+</tr>
+<tr class="odd">
+<td><strong>Conduction</strong></td>
+<td>2–3%</td>
+<td>2–3%</td>
+<td>Minimal effect from thin films</td>
+</tr>
+</tbody>
+</table>
+<p>2.2 Comparative Insulation Values (CLO)</p>
+<table>
+<colgroup>
+<col style="width: 31%" />
+<col style="width: 18%" />
+<col style="width: 18%" />
+<col style="width: 31%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Material</strong></td>
+<td><strong>CLO (calm)</strong></td>
+<td><strong>CLO (windy)</strong></td>
+<td><strong>Comfort Floor Temperature</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Metallized blanket/poncho + air gap</strong></td>
+<td>2.4–2.9</td>
+<td>1.5–1.9</td>
+<td>~35°F calm; ~45°F windy</td>
+</tr>
+<tr class="odd">
+<td><strong>Cotton sweatshirt</strong></td>
+<td>0.28–0.35</td>
+<td>0.15–0.25</td>
+<td>~60°F</td>
+</tr>
+<tr class="even">
+<td><strong>Garbage bag (PE film)</strong></td>
+<td>0.01 + wind block</td>
+<td>0.3–0.5 effective</td>
+<td>~45–50°F</td>
+</tr>
+<tr class="odd">
+<td><strong>Tyvek fabric</strong></td>
+<td>0.1–0.2</td>
+<td>0.1–0.15</td>
+<td>~55°F</td>
+</tr>
+<tr class="even">
+<td><strong>YOUR PONCHO (Config B: met film + nonwoven)</strong></td>
+<td>2.5–3.0</td>
+<td>1.7–2.2</td>
+<td>~30–40°F</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Key finding:</strong> A metallized compostable NatureFlex
+poncho uses identical aluminum physics as Heatsheets. The IR
+reflectivity difference between metallized cellulose and metallized LDPE
+is negligible — both achieve 0.03–0.10 emissivity. Predicted thermal
+performance is 85–95% equivalent to Heatsheets.</p>
+<p>2.3 The 2018 Boston Marathon: Start-Line Hypothermia Case Study</p>
+<p>On April 16, 2018, 2,527 athletes were treated for weather-related
+conditions. Temperatures: mid-30s°F, 30–35 mph gusts, torrential rain,
+wind chill in the low-to-mid 20s°F. 81 runners hospitalized; 23 elites
+dropped out. DNF rate nearly doubled. Medical encounters spike when WBGT
+drops below 4.4°C (40°F) — precisely the conditions where start-line
+waits of 30–90+ minutes create peak hypothermia risk.</p>
+<p>3. Material Stack Configurations Ranked</p>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 25%" />
+<col style="width: 10%" />
+<col style="width: 10%" />
+<col style="width: 22%" />
+<col style="width: 13%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Configuration</strong></td>
+<td><strong>Materials</strong></td>
+<td><strong>Weight</strong></td>
+<td><strong>CLO</strong></td>
+<td><strong>Tradeoffs</strong></td>
+<td><strong>Cost</strong></td>
+</tr>
+<tr class="even">
+<td><strong>A: Single-layer met film</strong></td>
+<td>NatureFlex NM (23µm)</td>
+<td>45–55g</td>
+<td>2.4–2.9</td>
+<td>Tears easily; noisy; plastic feel</td>
+<td>$0.78 at 100K</td>
+</tr>
+<tr class="odd">
+<td><strong>B: Met film + PLA nonwoven (RECOMMENDED)</strong></td>
+<td>NatureFlex NM + 40gsm PLA spunbond</td>
+<td>100–120g</td>
+<td>2.5–3.0</td>
+<td>Good tear resistance; textile feel; low noise</td>
+<td>$1.15 at 100K</td>
+</tr>
+<tr class="even">
+<td><strong>C: Three-layer sandwich</strong></td>
+<td>Nonwoven / met film / nonwoven</td>
+<td>130–160g</td>
+<td>3.0–3.5</td>
+<td>Excellent durability; textile both sides</td>
+<td>$1.50–$1.80 at 100K</td>
+</tr>
+<tr class="odd">
+<td><strong>D: Insulated premium</strong></td>
+<td>Nonwoven + PLA batting + met film</td>
+<td>150–200g</td>
+<td>3.5–4.0+</td>
+<td>Maximum warmth; highest cost; likely overkill</td>
+<td>$2.50–$5.00 at 100K</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Recommendation: Configuration B (metallized film + PLA
+nonwoven)</strong> delivers the optimal balance of warmth (~2.5–3.0
+CLO), durability, comfort, compostability, and cost ($1.15/unit at
+100K). The nonwoven adds tear resistance, reduces noise, provides
+textile hand, and creates a micro air layer.</p>
+<p>3.1 Bonding Methods That Preserve Compostability</p>
+<p>Ultrasonic point-bonding is preferred — uses no adhesives, works well
+with PLA thermoplastics at 20–35 kHz, preserves softness between bond
+points. Equipment: Herrmann Ultrasonics, Branson (Emerson). For adhesive
+bonding: BASF EPOTAL CF 430 (first BPI-certified compostable laminating
+adhesive), Tecbond 214B (EN 13432 certified hot-melt), H.B. Fuller
+Flextra® Compostable.</p>
+<p>4. Compostability Certification: Requirements, Costs &amp;
+Timeline</p>
+<p><strong>Aluminum metallization is NOT a certification
+barrier.</strong> Aluminum is absent from the regulated heavy metals
+list in both EN 13432 and ASTM D6400. At &lt;0.02% of film weight, it
+oxidizes to naturally occurring Al₂O₃ and passes all ecotoxicity
+testing. Multiple metallized films already hold full certifications.</p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 13%" />
+<col style="width: 31%" />
+<col style="width: 13%" />
+<col style="width: 20%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Certification</strong></td>
+<td><strong>Standard</strong></td>
+<td><strong>Requirements</strong></td>
+<td><strong>Timeline</strong></td>
+<td><strong>Budget</strong></td>
+</tr>
+<tr class="even">
+<td><strong>BPI Commercial (US)</strong></td>
+<td>ASTM D6400</td>
+<td>58°C; 90% biodegrade in 6mo; 90% disintegrate 12wk</td>
+<td>9–12 months</td>
+<td>$15K–$25K total</td>
+</tr>
+<tr class="odd">
+<td><strong>BPI Commercial + Home</strong></td>
+<td>ASTM D6400 + ambient</td>
+<td>+ 90% biodegrade 12mo at 20–30°C</td>
+<td>12–18+ months</td>
+<td>$25K–$45K total</td>
+</tr>
+<tr class="even">
+<td><strong>TÜV OK Compost Industrial</strong></td>
+<td>EN 13432</td>
+<td>58°C; same as above</td>
+<td>6–9 months</td>
+<td>€8K–€20K</td>
+</tr>
+<tr class="odd">
+<td><strong>TÜV OK Compost HOME</strong></td>
+<td>EN 13432 + ambient</td>
+<td>20–30°C; 90% in 12mo; disintegrate 26wk</td>
+<td>9–14 months</td>
+<td>€12K–€25K</td>
+</tr>
+<tr class="even">
+<td><strong>DIN CERTCO (Industrial)</strong></td>
+<td>EN 13432</td>
+<td>Same as TÜV Industrial</td>
+<td>6–9 months</td>
+<td>€5K–€15K</td>
+</tr>
+<tr class="odd">
+<td><strong>Dual BPI + TÜV (full)</strong></td>
+<td>All above</td>
+<td>Comprehensive global coverage</td>
+<td>12–18 months</td>
+<td>$35K–$75K TOTAL</td>
+</tr>
+</tbody>
+</table>
+<p>4.1 Recommended Testing Laboratories</p>
+<p>Normec OWS (Ghent, Belgium + Kettering, OH): gold standard,
+recognized by ALL bodies (BPI, DIN CERTCO, TÜV Austria). Contact:
+maggie.mcdonald@normecgroup.com. Aropha (US): transparent pricing — ASTM
+D6400 full suite $7,499–$12,899. Other BPI-approved labs: RespirTek
+(MS), WIST at UW-Stevens Point (WI), Advanced Materials Center (IL),
+Control Laboratories (CA).</p>
+<p>5. Shelf Life: The Critical Constraint</p>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 22%" />
+<col style="width: 20%" />
+<col style="width: 31%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Material</strong></td>
+<td><strong>Shelf Life (climate-controlled)</strong></td>
+<td><strong>Shelf Life (hot warehouse)</strong></td>
+<td><strong>Degradation Mechanism</strong></td>
+</tr>
+<tr class="even">
+<td><strong>PLA/PBAT blends</strong></td>
+<td>12–18 months</td>
+<td>3–6 months</td>
+<td>Hydrolysis of ester bonds</td>
+</tr>
+<tr class="odd">
+<td><strong>Cellulose (NatureFlex)</strong></td>
+<td>60 days (raw film)</td>
+<td>Days to weeks</td>
+<td>Hygroscopic moisture absorption</td>
+</tr>
+<tr class="even">
+<td><strong>Metallized PLA</strong></td>
+<td>6–12+ months</td>
+<td>3–6 months</td>
+<td>Hydrolysis (met layer is protective)</td>
+</tr>
+<tr class="odd">
+<td><strong>TIPA compostable films</strong></td>
+<td>6 months guaranteed</td>
+<td>3–4 months</td>
+<td>Proprietary blends; TIPA FAQ</td>
+</tr>
+<tr class="even">
+<td><strong>PLA containers (rigid)</strong></td>
+<td>Up to 24 months</td>
+<td>~12 months</td>
+<td>Slower hydrolysis than film</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Storage requirements are non-negotiable:</strong> 50–75°F
+(10–24°C), below 50% RH, no UV exposure. PLA hydrolysis rate roughly
+doubles for every 10°C increase. Individual ponchos must be sealed in
+moisture-barrier packaging. FIFO inventory management essential.
+Production should be timed as close to race day as feasible.</p>
+<p>Metallized PLA films achieve 6–12+ month shelf life because the met
+layer itself is protective — it reduces moisture, oxygen, and UV ingress
+to the polymer substrate. This is significantly better than raw
+NatureFlex’s 60-day recommendation.</p>
+<p>6. Warmth Testing Protocols</p>
+<table>
+<colgroup>
+<col style="width: 13%" />
+<col style="width: 18%" />
+<col style="width: 22%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 22%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Tier</strong></td>
+<td><strong>Standards</strong></td>
+<td><strong>Measures</strong></td>
+<td><strong>Cost</strong></td>
+<td><strong>Timeline</strong></td>
+<td><strong>Labs</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Tier 1: Hot Plate</strong></td>
+<td>ASTM F1868 / ISO 11092</td>
+<td>Material Rct (m²·K/W) + IR emissivity</td>
+<td>$2K–$3K</td>
+<td>2–4 weeks</td>
+<td>NC State TPACC, KSU IER, Hohenstein</td>
+</tr>
+<tr class="odd">
+<td><strong>Tier 2: Thermal Manikin</strong></td>
+<td>ASTM F1291 / F2370</td>
+<td>Whole-garment CLO at 3 conditions</td>
+<td>$30K–$60K</td>
+<td>4–8 weeks</td>
+<td>NC State TPACC, KSU IER, Thermetrics</td>
+</tr>
+<tr class="even">
+<td><strong>Tier 3: Human Subjects</strong></td>
+<td>Field crossover study</td>
+<td>Skin temp, core temp, thermal comfort</td>
+<td>$5K–$20K</td>
+<td>3–6 months (+ IRB)</td>
+<td>University partner with ethics board</td>
+</tr>
+</tbody>
+</table>
+<p>6.1 Lab Recommendations</p>
+<p>Kansas State University IER (Manhattan, KS): guarded hot plate +
+thermal manikin + environmental chambers. ISO 17025 accredited. Contact:
+785-532-5620. NC State TPACC (Raleigh, NC): 34-zone Newton sweating
+manikin; only US academic center combining comfort and protective
+performance. Contact: 919-515-6550. Thermetrics (Seattle, WA): Newton
+manikin rentals for flexible durations. Contact: (206) 456-9119.</p>
+<p>6.2 DIY Testing for Prototypes</p>
+<p>Use FLIR ONE smartphone thermal camera (~$200–$300) to compare body
+surface temperature with/without poncho after 10 minutes outdoors.
+Digital thermometer probes taped to skin at 4+ sites. Durability:
+stress-test seams manually, flex film 50× at creases to check
+metallization delamination, spray-test water resistance. Transition to
+formal lab testing once concept is validated.</p>
+<p>7. Manufacturing Process</p>
+<p>7.1 Supply Chain Requires Multiple Specialists</p>
+<p>No existing disposable poncho manufacturer has vacuum metallization
+capability. The practical flow: (1) Film producer (Futamura,
+NatureWorks) → base compostable film; (2) Metallizer (Celplast, or
+Futamura in-house for NM) → aluminum deposition; (3) Converter
+(Printpack, Parkside, ProAmpac) → printing, cutting, sealing into poncho
+form; (4) Packager → individual wrapping and carton packing.</p>
+<p>7.2 Heat-Sealing Compostable Films</p>
+<p>PLA seals at 65–98°C (narrow ±5°C window, 1.5–2.5 second dwell).
+NatureFlex NM seals at 90–200°C on the non-metallized surface.
+Ultrasonic welding is preferred: heat generated internally at the
+interface, better process control, 25–75% less energy, sub-second weld
+cycles. Equipment: Branson (Emerson), Herrmann Ultrasonics.</p>
+<p>7.3 Printing Requires Certified Compostable Inks</p>
+<p>If ink exceeds 1% of package weight per color, it must independently
+pass compostability testing. Certified options: Sun Chemical SunUno
+Solimax AP (TÜV OK Compost, flexo), hubergroup (6 flexo series, OK
+Compost Home), INX International INXhrc™ (biorenewable). Avoid
+UV-curable inks.</p>
+<p>8. Cost Modeling Across Production Volumes</p>
+<table>
+<colgroup>
+<col style="width: 34%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 17%" />
+<col style="width: 14%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Configuration</strong></td>
+<td><strong>10K units</strong></td>
+<td><strong>50K units</strong></td>
+<td><strong>100K units</strong></td>
+<td><strong>vs. LDPE</strong></td>
+</tr>
+<tr class="even">
+<td><strong>A: Single-layer NatureFlex NM</strong></td>
+<td>$1.32</td>
+<td>$0.95</td>
+<td>$0.78</td>
+<td>3.1×</td>
+</tr>
+<tr class="odd">
+<td><strong>B: NatureFlex NM + PLA nonwoven</strong></td>
+<td>$2.00</td>
+<td>$1.43</td>
+<td>$1.15</td>
+<td>4.6×</td>
+</tr>
+<tr class="even">
+<td><strong>C: Metallized PLA film only</strong></td>
+<td>$1.06</td>
+<td>$0.64</td>
+<td>$0.48</td>
+<td>1.9×</td>
+</tr>
+<tr class="odd">
+<td><strong>D: Standard LDPE (Heatsheets)</strong></td>
+<td>$0.53</td>
+<td>$0.32</td>
+<td>$0.25</td>
+<td>1.0×</td>
+</tr>
+</tbody>
+</table>
+<p>8.1 Raw Material Costs</p>
+<p>NatureFlex NM (23µm, met included): $0.30–$0.50/m². PLA BOPLA (25µm,
+unmet): $0.11–$0.19/m². PLA spunbond nonwoven (35 gsm): $0.11–$0.18/m².
+Toll metallization of PLA: $0.04–$0.10/m² at commercial scale.
+Converting costs: $0.31–$0.60/unit at 10K, $0.11–$0.24/unit at 100K.</p>
+<p>8.2 Market Pricing Context</p>
+<p>Heatsheets blankets wholesale at $0.90–$1.80/unit; their poncho at
+$4.30/unit. Standard PE ponchos from China: $0.09–$0.30/unit. A
+compostable metallized poncho at $1.50–$2.50 wholesale (Config B at
+50–100K) represents a 0–75% premium over Heatsheets pricing. Estimated
+supportable retail: $3.99–$8.99 depending on configuration.</p>
+<p>9. Environmental Lifecycle Assessment</p>
+<p>9.1 Production-Phase Carbon Advantage</p>
+<p>PLA’s cradle-to-gate carbon footprint: 0.50–1.63 kg CO₂e/kg vs. LDPE
+at 1.8–3.0 and PET at 2.15–5.91. NatureFlex cellulose: 5.35 kg CO₂e/kg
+(higher due to chemical regeneration process). Production-phase
+advantage: 30–75% lower fossil carbon vs. petroleum plastics.</p>
+<p>9.2 End-of-Life Determines Real Environmental Benefit</p>
+<p><strong>Critical caveat:</strong> If landfilled, the benefit
+disappears or reverses. Landfills generate methane (28× more potent than
+CO₂). A 2023 horticultural LCA found all biodegradable alternatives have
+HIGHER carbon footprint under current landfill waste management. Race
+organizers must provide composting collection infrastructure for the
+poncho to deliver its environmental promise.</p>
+<p>9.3 Legally Defensible Claims</p>
+<p>✅ “Certified industrially compostable (ASTM D6400 / EN 13432)”. ✅
+“Made from 90%+ renewable plant-based materials.” ✅ “Lower carbon
+footprint in production vs. conventional plastic” (with certified LCA).
+❌ “Eco-friendly,” “green,” “sustainable” without qualification. ❌
+“Carbon neutral” based on offsets (banned under EU directive Sept
+2026).</p>
+<p>10. From Concept to Wearable Prototype in Under 3 Weeks</p>
+<table>
+<colgroup>
+<col style="width: 34%" />
+<col style="width: 13%" />
+<col style="width: 52%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Item</strong></td>
+<td><strong>Cost</strong></td>
+<td><strong>Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>NatureFlex NM sample film (5–10 m²)</strong></td>
+<td>$0–$50</td>
+<td>Free samples often available from Futamura</td>
+</tr>
+<tr class="odd">
+<td><strong>Impulse heat sealer (12–16″, adjustable)</strong></td>
+<td>$80–$150</td>
+<td>Amazon; set to 120–150°C for NatureFlex</td>
+</tr>
+<tr class="even">
+<td><strong>Compostable cellulose tape (2–3 rolls)</strong></td>
+<td>$15–$25</td>
+<td>Reinforce neck hole and stress points</td>
+</tr>
+<tr class="odd">
+<td><strong>Rotary cutter, mat, ruler</strong></td>
+<td>$30–$50</td>
+<td>Standard craft supplies</td>
+</tr>
+<tr class="even">
+<td><strong>Compostable hot-melt slugs (Tecbond 214B)</strong></td>
+<td>$20–$40</td>
+<td>EN 13432 certified; standard glue gun</td>
+</tr>
+<tr class="odd">
+<td><strong>Template + miscellaneous</strong></td>
+<td>$40–$60</td>
+<td>Kraft paper pattern; markers; scissors</td>
+</tr>
+<tr class="even">
+<td><strong>TOTAL for 5–10 prototypes</strong></td>
+<td>$185–$375</td>
+<td>Achievable in 1–2 weeks once materials arrive</td>
+</tr>
+</tbody>
+</table>
+<p>10.1 Immediate Action Items</p>
+<p>1. Email Futamura (info@futamuragroup.com) requesting NatureFlex NM
+evaluation sheets. Specify novel application (compostable emergency
+poncho). Free A4/A3 sheets typical; small rolls at cost. Lead: 1–3
+weeks.</p>
+<p>2. Contact TIPA (tipa-corp.com) requesting 312MET Premium samples.
+North American manufacturing may enable faster delivery. Lead: 2–4
+weeks.</p>
+<p>3. Email Parkside (info@parksideflex.com). As a converter, they may
+produce refined prototypes using HCFT1/T2 structures. Lead: 2–4
+weeks.</p>
+<p>4. Contact ProAmpac (800-543-7030) — they will make a single pouch or
+sample if required. Their ProActive Compostable line and short-run
+capability make them ideal for early iterations.</p>
+<p>10.2 Development Timeline</p>
+<p>Phase 1 (Hand prototype): 1–2 weeks. Phase 2 (Material sourcing): 3–6
+weeks. Phase 3 (Refined prototypes with converter): 4–8 weeks. Phase 4
+(Testing &amp; iteration): 4–8 weeks. Phase 5 (Production-ready sample):
+4–6 weeks. Total: 16–30 weeks (4–7 months). Fast-track possible in 8–12
+weeks with pre-sourced films.</p>
+<p>11. Conclusion: Three Critical Path Decisions</p>
+<p><strong>1. Material platform:</strong> NatureFlex NM offers broadest
+certifications (including home compostable) but 60-day raw shelf life
+demands careful management. Metallized BOPLA (Celplast/Ingeo Extend)
+offers better shelf life and potentially lower cost but fewer home
+certifications.</p>
+<p><strong>2. Configuration:</strong> The two-layer metallized film +
+PLA nonwoven laminate (Config B) delivers optimal balance of warmth
+(~2.5–3.0 CLO), durability, comfort, and cost ($1.15/unit at 100K
+scale). This is the recommended product architecture.</p>
+<p><strong>3. Certification timing:</strong> BPI + TÜV dual
+certification takes 12–18 months and costs $35K–$75K. This is the
+longest lead item and should start IMMEDIATELY, leveraging existing
+NatureFlex NM certifications through BPI sublicensing to reduce testing
+burden. The fastest path: hand prototype this month, formal thermal
+testing Q2, certification submission Q3, production-ready samples Q4
+2026.</p>
+
+        </div>
+    </div></div>
+<footer style="text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px">
+Sustainable Race-Start Warmth Poncho — D2C Brand GTM Project · 60 Subprojects · 391 Tasks · ~15,500¶ · April 2026
+</footer></body></html>

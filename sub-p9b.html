@@ -1,0 +1,708 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>P9B: Intellectual Property — Race Start Warmth GTM</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0e1a;--surface:#111827;--card:#1a2332;--border:#2a3a4e;--accent:#10b981;--accent2:#3b82f6;--text:#e2e8f0;--muted:#94a3b8;--white:#fff;--red:#ef4444;--amber:#f59e0b;--green:#10b981}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+/* Nav */
+nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
+nav .inner{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;max-width:1200px;margin:0 auto}
+nav .brand{font-weight:700;font-size:15px;color:var(--accent)}
+nav .links{display:flex;gap:8px;flex-wrap:wrap}
+nav .links a{color:var(--muted);font-size:13px;padding:4px 10px;border-radius:6px;transition:.2s}
+nav .links a:hover,nav .links a.active{color:var(--white);background:var(--card);text-decoration:none}
+/* Hero */
+.hero{padding:60px 0 40px;text-align:center}
+.hero h1{font-size:2.4em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:1.1em;max-width:700px;margin:0 auto}
+/* Stats bar */
+.stats{display:flex;justify-content:center;gap:32px;padding:24px 0;flex-wrap:wrap}
+.stat{text-align:center}.stat .num{font-size:1.8em;font-weight:800;color:var(--white)}.stat .label{font-size:.75em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+/* Cards */
+.grid{display:grid;gap:16px;margin:24px 0}
+.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}
+.grid-3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;transition:.2s}
+.card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.card h3{font-size:1.1em;margin-bottom:8px}.card p{color:var(--muted);font-size:.9em}
+.card .badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:8px}
+.card .meta{font-size:.8em;color:var(--muted);margin-top:12px}
+/* Section */
+.section{padding:40px 0}.section h2{font-size:1.6em;font-weight:700;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+/* Table */
+table{width:100%;border-collapse:collapse;font-size:.85em;margin:16px 0}
+th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:52px}
+td{padding:8px 12px;border-bottom:1px solid var(--border)}
+tr:hover td{background:rgba(16,185,129,.05)}
+.status-complete{color:var(--green);font-weight:600}.status-not{color:var(--muted)}
+/* Progress */
+.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:8px}
+.progress .bar{height:100%;background:var(--accent);border-radius:3px}
+/* Back link */
+.back{display:inline-block;color:var(--muted);font-size:.9em;margin-bottom:20px}
+.back:hover{color:var(--accent)}
+/* Download */
+.dl-card{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin:8px 0;transition:.2s}
+.dl-card:hover{border-color:var(--accent);text-decoration:none}
+.dl-card .icon{font-size:2em}.dl-card .info h4{color:var(--white);margin-bottom:4px}.dl-card .info p{color:var(--muted);font-size:.85em}
+/* Footer */
+footer{text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px}
+@media(max-width:768px){.stats{gap:16px}.stat .num{font-size:1.3em}nav .links{gap:4px}nav .links a{font-size:11px;padding:3px 6px}.hero h1{font-size:1.6em}}
+
+.doc-content{max-width:900px;margin:0 auto;padding:20px 0}
+.doc-content h1{font-size:1.8em;font-weight:800;color:var(--white);margin:32px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.doc-content h2{font-size:1.4em;font-weight:700;color:var(--accent);margin:28px 0 12px}
+.doc-content h3{font-size:1.15em;font-weight:600;color:var(--accent2);margin:20px 0 10px}
+.doc-content p{margin:8px 0;line-height:1.7}
+.doc-content table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85em}
+.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;border:1px solid var(--border)}
+.doc-content td{padding:8px 12px;border:1px solid var(--border);vertical-align:top}
+.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.doc-content ul,.doc-content ol{margin:8px 0 8px 24px}
+.doc-content li{margin:4px 0;line-height:1.6}
+.doc-content strong{color:var(--white)}
+.doc-content em{color:var(--muted)}
+.doc-content blockquote{border-left:3px solid var(--accent);padding:8px 16px;margin:12px 0;background:var(--card);border-radius:0 8px 8px 0}
+.nav-sub{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 24px;padding:12px 16px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
+.nav-sub a{font-size:.8em;color:var(--muted);padding:4px 10px;border-radius:4px;transition:.2s;white-space:nowrap}
+.nav-sub a:hover,.nav-sub a.active{color:var(--white);background:var(--surface);text-decoration:none}
+</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a></div></div></nav><div class="container">
+    <div style="padding-top:30px">
+        <a href="p9.html" class="back">← ⚖️ P9: Legal & Compliance</a>
+        <div class="nav-sub"><a href="p9.html">⚖️ P9 Overview</a><a href="sub-p9a.html">P9A</a><a href="sub-p9b.html" class="active">P9B</a><a href="sub-p9c.html">P9C</a><a href="sub-p9d.html">P9D</a><a href="sub-p9e.html">P9E</a></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px">
+            <div>
+                <span style="background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px">P9B</span>
+                <span style="color:var(--muted);font-size:.85em;margin-left:8px">P9: Legal & Compliance</span>
+            </div>
+            <a href="files/P9B_Intellectual_Property.docx" style="font-size:.85em;color:var(--accent);padding:6px 14px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
+        </div>
+        <div class="doc-content">
+            <p><strong>P9B: INTELLECTUAL</strong></p>
+<p><strong>PROPERTY</strong></p>
+<p>Sub-Project P9B | Legal, Compliance &amp; Sustainability Certs |
+Weeks 4–12</p>
+<p><em>Complete IP Protection Strategy: Brand Name Trademark Filing,
+Tagline Trademark Analysis, Design/Utility Patent for Tear-Away
+Mechanism, Digital IP Security, Trade Secret Documentation, NDA
+Template, and Quarterly IP Monitoring</em></p>
+<p>March 2026 | Confidential | NOT LEGAL ADVICE — Consult a Trademark
+Attorney</p>
+<p>Executive Summary</p>
+<p><strong>Intellectual property is the ONLY asset a competitor cannot
+replicate by spending money.</strong> A competitor can: source the same
+materials (NatureFlex NM is commercially available), hire the same
+factories (Parkside accepts multiple clients), copy the same marketing
+strategy (content calendars are not proprietary), and target the same
+customers (race directors are publicly listed). But a competitor CANNOT:
+use the brand’s registered trademark, replicate the patented tear-away
+mechanism, or access the brand’s trade secrets (supplier pricing,
+customer relationships, composting partner terms). IP protection
+creates: the legal walls that turn a first-mover advantage into a
+durable competitive moat.</p>
+<p><strong>Seven IP protections are established:</strong> (1) trademark
+registration for the brand name in Class 25 (clothing), (2) trademark
+analysis for the tagline with conflict assessment, (3) provisional
+patent application for the tear-away mechanism establishing “Patent
+Pending” status, (4) digital IP security covering domain, social
+handles, email, and brand asset storage, (5) trade secret documentation
+and protection measures for 8 categories of proprietary information, (6)
+an NDA template for use with suppliers, investors, and partners, and (7)
+quarterly IP monitoring across USPTO, Amazon, Google, social media, and
+domain registrations.</p>
+<p>1. Trademark: Brand Name</p>
+<p><strong>The brand name trademark is the MOST IMPORTANT IP
+asset.</strong> It protects: the exclusive right to use the brand name
+in connection with the product category, the ability to enforce against
+copycats on Amazon (Brand Registry), and the brand equity built through
+years of marketing, PR, and customer relationships. Without a trademark:
+anyone can use a confusingly similar name and free-ride on the brand’s
+reputation.</p>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width:50%">
+<col style="width: 35%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Element</strong></td>
+<td><strong>Process</strong></td>
+<td><strong>Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Pre-filing search</strong></td>
+<td>Before filing: conduct a trademark search on: (1) USPTO TESS
+database (tmsearch.uspto.gov) — search for the exact brand name and
+phonetic variations. (2) Google search — search the brand name +
+“poncho,” “running,” “sustainable” to find unregistered but actively
+used marks. (3) State trademark databases — some brands register only at
+the state level. (4) Domain availability (check if brand.com is
+available or already owned by another entity). If the search reveals a
+CONFUSINGLY SIMILAR mark in the same class: choose a different name
+BEFORE filing ($250–$350 saved) or consult a trademark attorney
+($200–$500 opinion letter) for risk assessment.</td>
+<td>A trademark application that is REFUSED due to a confusingly similar
+mark wastes: the filing fee ($250–$350, non-refundable), 3–6 months of
+waiting, and the opportunity cost of building brand equity on a name
+that will be challenged. Do the search FIRST.</td>
+</tr>
+<tr class="odd">
+<td><strong>Filing application</strong></td>
+<td>File via USPTO TEAS Plus (teas.gov) — the online application system.
+TEAS Plus: $250 per class (lower fee, requires selecting from
+pre-approved descriptions of goods/services). TEAS Standard: $350 per
+class (allows custom descriptions). RECOMMENDED: TEAS Plus for cost
+savings. Application includes: applicant name (the LLC, not the founder
+personally), applicant address, mark (the brand name in standard
+characters — covers all fonts/styles), class(es) of goods, description
+of goods, basis (1a: already in use, or 1b: intent to use), specimen (if
+1a: a photo showing the mark used on the product or in advertising —
+e.g., product packaging with the brand name, or the Shopify product page
+showing the brand name).</td>
+<td>File under the LLC’s name (not the founder’s personal name). This
+ensures: the trademark is owned by the BUSINESS entity and transfers
+with the business if sold. If filing 1b (intent to use): the mark is
+reserved but the founder must file a “Statement of Use” (with specimen)
+before the registration issues. The Statement of Use has a 6-month
+deadline with extensions available (up to 3 years total).</td>
+</tr>
+<tr class="even">
+<td><strong>Classes to file</strong></td>
+<td>CLASS 25: Clothing, footwear, headwear. Covers: the poncho as a
+wearable garment. Description: “Ponchos; rain ponchos; warming ponchos;
+compostable ponchos for athletic use.” CLASS 24 (optional, recommended
+if budget allows): Textiles and textile goods. Covers: the poncho as a
+textile product. Description: “Compostable textile ponchos for athletic
+events.” Filing in 2 classes: $500–$700 total (TEAS Plus). Filing in 1
+class: $250–$350. RECOMMENDATION: file in Class 25 initially. Add Class
+24 in Year 2 if budget allows and brand expansion warrants broader
+protection.</td>
+<td>Each class is a separate $250–$350 filing fee. A brand name
+registered in Class 25 is only protected against confusingly similar
+marks in Class 25 (clothing/apparel). A competitor could potentially use
+a similar name in a different class (e.g., Class 28: sporting goods).
+Filing in multiple classes broadens protection but increases cost.</td>
+</tr>
+<tr class="odd">
+<td><strong>Timeline</strong></td>
+<td>Filing to registration: 8–12 months (typical). After filing (Day 0):
+application assigned to an examining attorney (3–4 months). Examination:
+the attorney reviews for: confusing similarity with existing marks,
+descriptiveness issues, and compliance. If no issues: the mark is
+published for opposition (30 days for anyone to object). If no
+opposition: registration issues (2–3 months after publication). If the
+examiner issues an “Office Action” (objection): the applicant has 3
+months to respond. Common issues: the mark is too descriptive
+(“Compostable Poncho” is descriptive and unregistrable; a coined brand
+name is registrable), the specimen doesn’t show the mark in use, or a
+similar mark exists.</td>
+<td>During the 8–12 month processing period: the founder can use ™ (TM)
+symbol next to the brand name (indicates a claimed, unregistered
+trademark). After registration: use ® (R) symbol (indicates a federally
+registered trademark). The ™ symbol provides some common-law protection
+even before registration.</td>
+</tr>
+<tr class="even">
+<td><strong>Amazon Brand Registry</strong></td>
+<td>After filing (with a serial number from USPTO): apply for Amazon
+Brand Registry via the IP Accelerator program ($600–$1,500 via an
+Amazon-partnered law firm per P6C Section 1). Brand Registry provides:
+A+ Content, Sponsored Brands ads, brand analytics, and IP protection —
+all critical for Amazon success. IP Accelerator allows enrollment with a
+PENDING trademark (no need to wait 8–12 months for registration). The IP
+Accelerator firm files or adopts the existing application and certifies
+it to Amazon.</td>
+<td>If budget is tight: file the trademark ($250) first, then apply for
+IP Accelerator ($600–$1,500) when Amazon Brand Registry becomes a
+priority (Week 12–14 per P6C). Total: $850–$1,850 for trademark + Brand
+Registry. Without Brand Registry: the Amazon listing lacks A+ Content,
+which reduces conversion by 3–10%.</td>
+</tr>
+</tbody>
+</table>
+<p>2. Trademark: Tagline</p>
+<p><strong>A distinctive tagline can be trademarked separately from the
+brand name,</strong> providing an additional layer of brand protection.
+However: tagline trademarks are LOWER PRIORITY than the brand name and
+should only be pursued if: the tagline is truly distinctive (not a
+common phrase), the tagline will be used consistently for 2+ years, and
+the budget allows the additional $250–$350 filing fee.</p>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width:50%">
+<col style="width: 35%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Element</strong></td>
+<td><strong>Details</strong></td>
+<td><strong>Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Candidate taglines</strong></td>
+<td>“Race Warm. Leave No Trace.” or the winning tagline from P1A/P1C
+brand development. The tagline must be: distinctive (not a common
+phrase), associated with the brand (used consistently in marketing), and
+not merely descriptive or informational.</td>
+<td>File a tagline trademark ONLY if: the tagline is central to brand
+identity, will be used for 2+ years, and is sufficiently distinctive to
+be registrable. Generic phrases (“Stay Warm”) or commonly used slogans
+(“Leave No Trace” — which is a registered mark of the Leave No Trace
+Center for Outdoor Ethics) may NOT be registrable or may conflict.</td>
+</tr>
+<tr class="odd">
+<td><strong>Leave No Trace conflict</strong></td>
+<td>“Leave No Trace” is a REGISTERED trademark of the Leave No Trace
+Center for Outdoor Ethics. Using “Leave No Trace” in the brand’s tagline
+risks: a cease-and-desist from the LNT organization, a trademark
+opposition if the brand tries to register it, and reputational damage
+from appearing to co-opt an established environmental organization’s
+mark.</td>
+<td>MITIGATION: (A) modify the tagline to avoid the exact phrase “Leave
+No Trace” (e.g., “Race Warm. Leave Zero Waste.” or “Race Warm. Nothing
+Left Behind.”), (B) contact the Leave No Trace organization proactively
+to discuss: a licensing arrangement, a partnership (1% of revenue
+donated per P9E), or permission to use the phrase in a clearly different
+context, or (C) use the tagline descriptively (not as a trademark) —
+descriptive fair use may allow the phrase in marketing copy but not as a
+registered mark.</td>
+</tr>
+<tr class="even">
+<td><strong>Filing if proceeding</strong></td>
+<td>Same process as brand name (Section 1): TEAS Plus, $250 per class,
+Class 25 and/or Class 35 (advertising and business services). File the
+tagline as a STANDARD CHARACTER mark (protects all fonts/styles).
+Provide: a specimen showing the tagline used in advertising (website
+screenshot, product packaging, social media post with the tagline).</td>
+<td>Tagline trademark filing is LOWER PRIORITY than the brand name.
+File: Month 6–8 after the tagline has been used consistently and the
+brand name trademark is in process. Budget: $250–$350 additional.</td>
+</tr>
+</tbody>
+</table>
+<p>3. Patent: Tear-Away Mechanism</p>
+<p><strong>The laser-perforated tear-away system is the product’s most
+novel feature.</strong> If it is truly novel (no existing product uses a
+similar perforation pattern for rapid garment removal), patent
+protection can prevent: competitors from copying the specific tear-away
+design, and provides: “Patent Pending” marketing language that signals
+innovation and deters copycats.</p>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width:50%">
+<col style="width: 35%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Element</strong></td>
+<td><strong>Details</strong></td>
+<td><strong>Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Tear-away mechanism</strong></td>
+<td>The laser-perforated tear-away system (P2C Section 2: 2mm perforated
+/ 1mm bridge pattern, 3–5N tear force) is a NOVEL DESIGN feature. If no
+existing product uses a similar perforation pattern on a wearable
+garment for rapid removal: a design patent may protect the APPEARANCE of
+the perforation pattern and the garment’s overall design. A utility
+patent would protect the FUNCTION (the method of removing a garment
+using laser-perforated tear-away). Design patent: protects ornamental
+appearance, easier to obtain, cheaper ($500–$1,500 attorney + $200–$300
+USPTO fees), 15-year term. Utility patent: protects functional
+invention, harder to obtain, more expensive ($5,000–$15,000 attorney +
+$1,500–$3,000 USPTO fees), 20-year term.</td>
+<td>RECOMMENDATION: file a provisional patent application ($150 USPTO
+fee + $500–$1,500 attorney) that describes BOTH the design and the
+function of the tear-away mechanism. The provisional application:
+establishes a priority date (locks in the invention date for 12 months),
+allows the use of “Patent Pending” on all marketing materials, and
+provides 12 months to decide whether to: file a full design patent, file
+a full utility patent, or let the provisional lapse (no further cost).
+“Patent Pending” status is a MARKETING ASSET: it signals innovation to
+customers and deters competitors.</td>
+</tr>
+<tr class="odd">
+<td><strong>Prior art search</strong></td>
+<td>Before filing: conduct a prior art search to determine if the
+tear-away mechanism is truly novel. Search: Google Patents
+(patents.google.com) for: perforated garment, tear-away clothing,
+rapid-removal apparel, laser-perforated textile. Also search: existing
+products (medical gowns with tear-away snaps, emergency blankets with
+perforations, disposable surgical drapes). If SIMILAR prior art exists:
+a patent may still be obtainable if the brand’s specific application
+(race-start-line poncho with specific perforation pattern for specific
+tear force) is sufficiently distinct.</td>
+<td>A patent attorney ($200–$400/hour) can conduct a more thorough prior
+art search and provide a patentability opinion ($500–$1,500). This
+opinion assesses: likelihood of obtaining a patent, scope of protection
+achievable, and whether the investment is worthwhile. For a startup: the
+provisional patent ($150–$1,650 total) is often the best first step —
+it’s cheap, fast, and provides 12 months to evaluate.</td>
+</tr>
+<tr class="even">
+<td><strong>Patent Pending marketing</strong></td>
+<td>Once a provisional or non-provisional patent application is filed:
+immediately add “Patent Pending” to: product packaging (P3D), Amazon
+listing (bullet point #3 or A+ Content), Shopify product page, B2B data
+sheet, press release (P7C), and pitch deck (P8D Section 4). “Patent
+Pending” communicates: this product is innovative, the IP is protected,
+and copying carries legal risk. It deters: competitors who might
+otherwise replicate the tear-away design, and it signals: quality and
+innovation to race directors and DTC customers.</td>
+<td>Do NOT claim “Patented” until a patent is actually GRANTED (making a
+false patent claim is illegal under 35 U.S.C. § 292). “Patent Pending”
+is appropriate from the moment of filing through the entire examination
+process. If the application is ultimately rejected: remove “Patent
+Pending” from all materials.</td>
+</tr>
+</tbody>
+</table>
+<p>4. Digital IP: 4 Assets</p>
+<p><strong>Digital IP is the brand’s online identity.</strong> A domain
+name, social media handles, professional email, and organized brand
+assets are: the first things a customer, journalist, race director, or
+investor encounters when they search for the brand. Losing any of these
+to: squatters, imposters, or accidental deletion is costly and
+time-consuming to recover.</p>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width:50%">
+<col style="width: 35%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Element</strong></td>
+<td><strong>Specification</strong></td>
+<td><strong>Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Domain name</strong></td>
+<td>Register brand.com (and .co, .net, .org if available and budget
+allows). Use: Namecheap ($8–$15/year per domain), Google Domains, or
+Cloudflare Registrar ($8–$12/year, at-cost pricing). Enable: WHOIS
+privacy (included free with most registrars) to keep the founder’s
+personal information off public domain records. Set: auto-renewal ON to
+prevent losing the domain due to expired registration.</td>
+<td>The domain is one of the brand’s most valuable digital assets. If
+the brand name is “RaceStart Warmth”: secure racestartwarmth.com BEFORE
+announcing the brand publicly. Domain squatters monitor trademark
+filings and register domains of newly filed brands. Register the domain
+BEFORE or simultaneously with the trademark filing.</td>
+</tr>
+<tr class="odd">
+<td><strong>Social media handles</strong></td>
+<td>Secure handles on: Instagram (@brandname), TikTok (@brandname),
+Facebook (facebook.com/brandname), Twitter/X (@brandname), LinkedIn
+(company page), YouTube (channel), Pinterest, and Strava (club name).
+Even if the brand won’t use all platforms immediately: securing the
+handle prevents: squatters, imposters, and confusion if the brand
+expands to new platforms later.</td>
+<td>Register ALL handles in the same session (30–45 minutes). Use the
+SAME handle across all platforms for consistency. If the exact handle is
+taken on one platform: use a close variation (e.g., @brandnamerun,
+@brandnameofficial) but secure the primary version on as many platforms
+as possible.</td>
+</tr>
+<tr class="even">
+<td><strong>Google Workspace</strong></td>
+<td>Set up Google Workspace ($6/user/month) or use free Gmail with a
+professional email forwarding setup. A professional email
+(founder@brandname.com) is essential for: B2B outreach (race directors
+take founder@gmail.com less seriously than founder@brandname.com), press
+inquiries, and investor communication. Google Workspace includes: custom
+email, Google Drive (document storage), Google Calendar (scheduling),
+and Google Meet (video calls).</td>
+<td>The $6/month for Google Workspace is one of the highest-ROI
+investments in the entire playbook. Every B2B email sent from
+@brandname.com is more credible than @gmail.com. Every press pitch from
+@brandname.com looks more professional. Every investor update from
+@brandname.com signals operational maturity.</td>
+</tr>
+<tr class="odd">
+<td><strong>Brand asset security</strong></td>
+<td>Store ALL brand assets (logo files, brand guidelines, photography,
+video, design templates) in a dedicated Google Drive folder with:
+organized subfolders (per P1B Section 8 brand assets), restricted
+sharing (view-only links for contractors, full access only for the
+founder), and version control (name files with dates:
+Logo_v2_2026-03-15.png). Backup: monthly export of the entire brand
+assets folder to a separate location (external drive or second cloud
+storage).</td>
+<td>Brand assets represent: hundreds of hours of creative development.
+Losing them to: accidental deletion, cloud storage failure, or
+unauthorized access would cost thousands of dollars to recreate. Protect
+them with the same diligence as financial records.</td>
+</tr>
+</tbody>
+</table>
+<p>5. Trade Secrets: Documentation &amp; Protection</p>
+<p><strong>Trade secrets protect information that gives the business a
+competitive advantage AND is kept confidential.</strong> Unlike
+trademarks and patents (which are publicly registered), trade secrets
+are protected through SECRECY. The moment a trade secret becomes public:
+it loses protection permanently. The protection measures below ensure:
+proprietary information stays confidential and is legally defensible if
+misappropriated.</p>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 81%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Element</strong></td>
+<td><strong>Specification</strong></td>
+</tr>
+<tr class="even">
+<td><strong>What qualifies</strong></td>
+<td>Trade secrets are: confidential business information that provides a
+competitive advantage. For this business: supplier names and contact
+details (Futamura, Parkside, ProAmpac per P3A), negotiated pricing tiers
+with factories (per P3A Section 4), B2B pricing structure and volume
+discount tiers (per P5A Section 3), B2B customer list and CRM data (race
+director contacts, deal history, preferences), material formulation
+specifications (NatureFlex NM 23µm + PLA spunbond 35gsm lamination per
+P2A), perforation pattern specifications (2mm/1mm, 3–5N per P2C),
+composting partner agreements and terms (per P4D), and financial models
+and projections (per P8A).</td>
+</tr>
+<tr class="odd">
+<td><strong>Protection measures</strong></td>
+<td>(1) RESTRICT ACCESS: only share trade secret information with people
+who NEED it (suppliers get material specs but not pricing; ambassadors
+get product details but not supplier names). (2) LABEL DOCUMENTS: mark
+confidential documents with “CONFIDENTIAL — [BRAND] Trade Secret”
+headers. (3) USE NDAs: require NDAs before sharing trade secret
+information with: suppliers, potential partners, investors, consultants,
+and any contractor with access to proprietary data (NDA template in
+Section 6). (4) DIGITAL SECURITY: use strong passwords, 2FA on all
+accounts, and restricted sharing permissions on Google Drive. (5)
+EMPLOYEE/CONTRACTOR AGREEMENTS: include confidentiality and
+non-disclosure provisions in all contractor agreements (per P9D Section
+2).</td>
+</tr>
+<tr class="even">
+<td><strong>Enforcement</strong></td>
+<td>If a trade secret is misappropriated (a former contractor shares
+supplier information with a competitor, or an employee leaks pricing
+data): the business can pursue legal action under the Defend Trade
+Secrets Act (DTSA, federal) and state trade secret laws (most states
+have adopted the Uniform Trade Secrets Act). To SUCCEED in a trade
+secret claim: the business must prove: (A) the information was actually
+a secret (not publicly available), (B) reasonable measures were taken to
+protect it (NDAs, access restrictions, labeling), and (C) it was
+acquired through improper means (breach of NDA, theft, espionage).
+Documentation of protection measures (steps 1–5 above) is the FOUNDATION
+of any trade secret claim.</td>
+</tr>
+</tbody>
+</table>
+<p>6. NDA Template</p>
+<p><strong>The NDA (Non-Disclosure Agreement) is the legal tool that
+binds third parties to confidentiality.</strong> Without an NDA:
+information shared with a supplier, investor, or contractor has NO legal
+protection. The supplier could share material specs with a competitor,
+the investor could share the financial model with a competing portfolio
+company, or the contractor could use the brand’s customer list to launch
+their own business. The NDA makes these actions illegal and
+enforceable.</p>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 81%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Element</strong></td>
+<td><strong>Specification</strong></td>
+</tr>
+<tr class="even">
+<td><strong>When to use</strong></td>
+<td>BEFORE sharing confidential information with: potential
+manufacturing partners (during factory selection per P3A), potential
+investors (during fundraising per P8D), potential co-branding partners
+(during initial conversations per P5C), consultants and freelancers
+(before providing access to brand assets, pricing data, or customer
+information), and any other third party who will receive proprietary
+information.</td>
+</tr>
+<tr class="odd">
+<td><strong>Key provisions</strong></td>
+<td>(1) DEFINITION OF CONFIDENTIAL INFORMATION: “All non-public
+information disclosed by [BRAND] including but not limited to: product
+designs, material specifications, manufacturing processes, pricing,
+customer lists, financial data, marketing strategies, and business
+plans.” (2) OBLIGATIONS: “Receiving Party shall: not disclose
+Confidential Information to any third party, use Confidential
+Information only for the purpose of evaluating or performing under the
+business relationship, and protect Confidential Information with at
+least the same degree of care as its own confidential information.” (3)
+EXCLUSIONS: information that is: publicly available, independently
+developed, or required to be disclosed by law. (4) TERM: 2–3 years from
+the date of disclosure (standard for business NDAs). (5)
+RETURN/DESTRUCTION: upon termination, the receiving party must return or
+destroy all Confidential Information and certify destruction in
+writing.</td>
+</tr>
+<tr class="even">
+<td><strong>Template sources</strong></td>
+<td>FREE: Rocket Lawyer NDA template (customize online), Docracy
+(docracy.com, open-source legal templates), or SCORE (score.org, free
+business mentoring with template library). PAID: attorney-drafted NDA
+($200–$500 one-time, then reusable). RECOMMENDATION: use a free template
+for most situations. Engage an attorney to review the NDA ONLY for:
+major investor conversations (where the NDA may need to be mutual — the
+investor also shares confidential information), international suppliers
+(where governing law and jurisdiction provisions matter), or potential
+acquisition/partnership discussions (where the scope of confidential
+information is broader).</td>
+</tr>
+<tr class="odd">
+<td><strong>Mutual vs. one-way</strong></td>
+<td>ONE-WAY NDA: the brand discloses, the other party protects. Use for:
+suppliers, contractors, and consultants. MUTUAL NDA: both parties
+disclose and protect each other’s information. Use for: investors (who
+share fund details and portfolio information), potential partners (who
+share their own business data), and co-branding discussions (where both
+parties share proprietary brand and product information). Most templates
+can be converted from one-way to mutual by adding reciprocal
+obligations.</td>
+</tr>
+</tbody>
+</table>
+<p>7. IP Monitoring: Quarterly</p>
+<p><strong>IP protection is not a one-time filing — it is an ONGOING
+process.</strong> A trademark that is registered but not monitored can
+be diluted by: competitors using similar names, counterfeiters selling
+knockoff products on Amazon, or domain squatters registering confusingly
+similar URLs. Quarterly monitoring detects these threats early, when
+they are cheapest to address (a cease-and-desist letter costs $500; a
+trademark opposition costs $3,000; a full trademark lawsuit costs
+$50,000+).</p>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 81%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Channel</strong></td>
+<td><strong>Process</strong></td>
+</tr>
+<tr class="even">
+<td><strong>USPTO TESS monitoring</strong></td>
+<td>Quarterly: search USPTO TESS for: the brand name, phonetic
+variations, and key product terms (“compostable poncho,” “race warmth”).
+Look for: new applications in Class 25 or Class 24 that are confusingly
+similar. If a conflicting application is found: file an opposition
+during the 30-day opposition window (requires a trademark attorney,
+$300–$1,500).</td>
+</tr>
+<tr class="odd">
+<td><strong>Amazon competitive monitoring</strong></td>
+<td>Monthly: search Amazon for: “compostable poncho,” “race start line
+warmth,” “sustainable race poncho.” Look for: new product listings that
+copy the brand’s: product title keywords, A+ Content structure, product
+images, or brand name/logo. If a counterfeit or infringing listing is
+found: report via Amazon Brand Registry IP violation reporting tool
+(requires Brand Registry). If Brand Registry is not yet active: report
+via Seller Central “Report a violation”.</td>
+</tr>
+<tr class="even">
+<td><strong>Google Alerts</strong></td>
+<td>Set up Google Alerts (google.com/alerts, free) for: the brand name
+(exact match), “compostable race poncho,” “sustainable marathon poncho,”
+and competitor brand names. Alerts are emailed daily or weekly when new
+web content matches the search terms. Use: to monitor for trademark
+infringement (someone using the brand name), competitive launches (new
+compostable poncho products), and press coverage (mentions of the brand
+or category).</td>
+</tr>
+<tr class="odd">
+<td><strong>Social media monitoring</strong></td>
+<td>Monthly: search Instagram, TikTok, and Facebook for: the brand name,
+the branded hashtag (#RaceWarmLeaveNoTrace), and product-related terms.
+Look for: accounts impersonating the brand, unauthorized use of the
+brand’s photos or content, and competitors using confusingly similar
+branding. If infringement is found: report via each platform’s IP
+violation reporting form (Instagram: Help → Report → Intellectual
+Property; TikTok: IP Infringement Report Form; Facebook: IP Report
+Form).</td>
+</tr>
+<tr class="even">
+<td><strong>Domain monitoring</strong></td>
+<td>Annually: check for: domains registered with the brand name or
+confusingly similar variations (brandname.net, brand-name.com,
+brandnameponcho.com). Tools: WhoisXML API (free basic search), or
+Namecheap domain search. If a squatter has registered a confusingly
+similar domain: options include: UDRP (Uniform Domain-Name
+Dispute-Resolution Policy) filing through WIPO ($1,500–$3,000 for
+single-domain dispute), direct negotiation with the registrant, or
+ignoring if the domain is not being used to compete or cause
+confusion.</td>
+</tr>
+</tbody>
+</table>
+<p>7.1 IP Monitoring Calendar</p>
+<p>QUARTERLY (January, April, July, October): USPTO TESS search for
+conflicting marks (15 minutes). Amazon product search for knockoffs or
+infringing listings (15 minutes). Review Google Alerts for brand name
+mentions (5 minutes, alerts arrive automatically). Social media search
+for impersonation or unauthorized brand use (15 minutes). ANNUALLY:
+domain monitoring for squatted domains (10 minutes). TOTAL: 50 minutes
+per quarter + 10 minutes per year. The lowest-time-investment section in
+the entire playbook with some of the highest protection value.</p>
+<p>8. Timeline &amp; Budget</p>
+<p><strong>WEEK 4–6: Conduct trademark search (USPTO TESS + Google +
+state databases). Secure domain name and ALL social media handles. Set
+up Google Workspace for professional email. If search is clear: file
+trademark application (TEAS Plus, $250 per class).</strong></p>
+<p><strong>WEEK 6–8: File trademark application for brand name in Class
+25 (if not done in Week 4–6). Assess tagline for trademark viability
+(conflict analysis for “Leave No Trace”). Conduct prior art search for
+tear-away mechanism (Google Patents + product search). If novel: file
+provisional patent application ($150 USPTO + $500–$1,500 attorney =
+$650–$1,650).</strong></p>
+<p><strong>WEEK 8–10: Document all trade secrets (8 categories per
+Section 5). Create the NDA template (free template, customize, or
+attorney review $200–$500). Begin using NDAs with: suppliers (before
+sharing material specs), and any consultants/contractors with access to
+proprietary information.</strong></p>
+<p><strong>WEEK 10–12: Set up IP monitoring: Google Alerts (free,
+immediate), quarterly USPTO/Amazon/social monitoring reminders. Apply
+for Amazon Brand Registry via IP Accelerator ($600–$1,500) when Amazon
+launch timing aligns. Add “Patent Pending” to all marketing materials if
+provisional patent is filed. ONGOING: quarterly IP monitoring (50
+minutes/quarter).</strong></p>
+<p>BUDGET: Trademark filing (Class 25): $250–$350. Tagline trademark (if
+filed): $250–$350. Provisional patent: $650–$1,650. Amazon IP
+Accelerator: $600–$1,500. Domain registration: $8–$50/year. Google
+Workspace: $72/year ($6/month). NDA template (attorney review): $0–$500.
+Google Alerts: $0. TOTAL P9B: $1,830–$4,422. The trademark ($250–$350)
+is the MINIMUM viable IP investment. The provisional patent
+($650–$1,650) is the highest-value optional investment.</p>
+<p>9. Conclusion: IP Is the Moat</p>
+<p><strong>A competitor who launches a compostable poncho in Year 2 will
+face:</strong> a registered trademark that prevents them from using a
+confusingly similar brand name, a “Patent Pending” tear-away design that
+creates legal risk if they copy it, an Amazon Brand Registry that
+enables IP violation reporting against knockoff listings, a trade secret
+portfolio that keeps supplier pricing, customer data, and composting
+partnerships confidential, and 12+ months of brand equity (reviews,
+press coverage, race director relationships) that cannot be replicated
+by spending money. The IP protections in this document don’t just defend
+the brand — they create the conditions for the brand to win
+long-term.</p>
+
+        </div>
+    </div></div>
+<footer style="text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px">
+Sustainable Race-Start Warmth Poncho — D2C Brand GTM Project · 60 Subprojects · 391 Tasks · ~15,500¶ · April 2026
+</footer></body></html>

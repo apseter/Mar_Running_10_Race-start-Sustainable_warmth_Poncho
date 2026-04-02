@@ -1,0 +1,815 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>P7F: Seasonal Marketing Campaigns — Race Start Warmth GTM</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0e1a;--surface:#111827;--card:#1a2332;--border:#2a3a4e;--accent:#10b981;--accent2:#3b82f6;--text:#e2e8f0;--muted:#94a3b8;--white:#fff;--red:#ef4444;--amber:#f59e0b;--green:#10b981}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+/* Nav */
+nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
+nav .inner{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;max-width:1200px;margin:0 auto}
+nav .brand{font-weight:700;font-size:15px;color:var(--accent)}
+nav .links{display:flex;gap:8px;flex-wrap:wrap}
+nav .links a{color:var(--muted);font-size:13px;padding:4px 10px;border-radius:6px;transition:.2s}
+nav .links a:hover,nav .links a.active{color:var(--white);background:var(--card);text-decoration:none}
+/* Hero */
+.hero{padding:60px 0 40px;text-align:center}
+.hero h1{font-size:2.4em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:1.1em;max-width:700px;margin:0 auto}
+/* Stats bar */
+.stats{display:flex;justify-content:center;gap:32px;padding:24px 0;flex-wrap:wrap}
+.stat{text-align:center}.stat .num{font-size:1.8em;font-weight:800;color:var(--white)}.stat .label{font-size:.75em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+/* Cards */
+.grid{display:grid;gap:16px;margin:24px 0}
+.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}
+.grid-3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;transition:.2s}
+.card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.card h3{font-size:1.1em;margin-bottom:8px}.card p{color:var(--muted);font-size:.9em}
+.card .badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:8px}
+.card .meta{font-size:.8em;color:var(--muted);margin-top:12px}
+/* Section */
+.section{padding:40px 0}.section h2{font-size:1.6em;font-weight:700;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+/* Table */
+table{width:100%;border-collapse:collapse;font-size:.85em;margin:16px 0}
+th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:52px}
+td{padding:8px 12px;border-bottom:1px solid var(--border)}
+tr:hover td{background:rgba(16,185,129,.05)}
+.status-complete{color:var(--green);font-weight:600}.status-not{color:var(--muted)}
+/* Progress */
+.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:8px}
+.progress .bar{height:100%;background:var(--accent);border-radius:3px}
+/* Back link */
+.back{display:inline-block;color:var(--muted);font-size:.9em;margin-bottom:20px}
+.back:hover{color:var(--accent)}
+/* Download */
+.dl-card{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin:8px 0;transition:.2s}
+.dl-card:hover{border-color:var(--accent);text-decoration:none}
+.dl-card .icon{font-size:2em}.dl-card .info h4{color:var(--white);margin-bottom:4px}.dl-card .info p{color:var(--muted);font-size:.85em}
+/* Footer */
+footer{text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px}
+@media(max-width:768px){.stats{gap:16px}.stat .num{font-size:1.3em}nav .links{gap:4px}nav .links a{font-size:11px;padding:3px 6px}.hero h1{font-size:1.6em}}
+
+.doc-content{max-width:900px;margin:0 auto;padding:20px 0}
+.doc-content h1{font-size:1.8em;font-weight:800;color:var(--white);margin:32px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.doc-content h2{font-size:1.4em;font-weight:700;color:var(--accent);margin:28px 0 12px}
+.doc-content h3{font-size:1.15em;font-weight:600;color:var(--accent2);margin:20px 0 10px}
+.doc-content p{margin:8px 0;line-height:1.7}
+.doc-content table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85em}
+.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;border:1px solid var(--border)}
+.doc-content td{padding:8px 12px;border:1px solid var(--border);vertical-align:top}
+.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.doc-content ul,.doc-content ol{margin:8px 0 8px 24px}
+.doc-content li{margin:4px 0;line-height:1.6}
+.doc-content strong{color:var(--white)}
+.doc-content em{color:var(--muted)}
+.doc-content blockquote{border-left:3px solid var(--accent);padding:8px 16px;margin:12px 0;background:var(--card);border-radius:0 8px 8px 0}
+.nav-sub{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 24px;padding:12px 16px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
+.nav-sub a{font-size:.8em;color:var(--muted);padding:4px 10px;border-radius:4px;transition:.2s;white-space:nowrap}
+.nav-sub a:hover,.nav-sub a.active{color:var(--white);background:var(--surface);text-decoration:none}
+</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a></div></div></nav><div class="container">
+    <div style="padding-top:30px">
+        <a href="p7.html" class="back">← 📣 P7: Marketing & PR</a>
+        <div class="nav-sub"><a href="p7.html">📣 P7 Overview</a><a href="sub-p7a.html">P7A</a><a href="sub-p7b.html">P7B</a><a href="sub-p7c.html">P7C</a><a href="sub-p7d.html">P7D</a><a href="sub-p7e.html">P7E</a><a href="sub-p7f.html" class="active">P7F</a></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px">
+            <div>
+                <span style="background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px">P7F</span>
+                <span style="color:var(--muted);font-size:.85em;margin-left:8px">P7: Marketing & PR</span>
+            </div>
+            <a href="files/P7F_Seasonal_Marketing_Campaigns.docx" style="font-size:.85em;color:var(--accent);padding:6px 14px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
+        </div>
+        <div class="doc-content">
+            <p><strong>P7F: SEASONAL MARKETING</strong></p>
+<p><strong>CAMPAIGNS</strong></p>
+<p>Sub-Project P7F | Marketing, PR &amp; Community | Weeks
+16–Ongoing</p>
+<p><em>Complete Seasonal Strategy: Fall 2026 Campaign, Spring 2027
+Campaign, Holiday Gift Campaign, Race-Week Flash Sales, Earth Day
+Activation, 12-Month Race Calendar Content Map, and Year 1 Marketing ROI
+Report Framework</em></p>
+<p>March 2026 | Confidential</p>
+<p>Executive Summary</p>
+<p><strong>Marketing for a seasonal product requires seasonal
+campaigns.</strong> The poncho’s demand is driven by the race calendar:
+55–65% in fall (Sep–Nov), 25–35% in spring (Mar–May), and the remainder
+from holiday gifting and off-season preparation. Every marketing dollar
+must be timed to when runners are thinking about their next race — not
+scattered evenly across 12 months. This document structures ALL
+marketing activity into: 5 defined campaigns (Fall, Spring, Holiday,
+Earth Day, and Race-Week Flash Sales) mapped onto a 12-month race
+calendar content plan, with a Year 1 Marketing ROI Report framework that
+measures performance across all 7 marketing channels.</p>
+<p><strong>The annual marketing rhythm:</strong> Fall campaign (Sep–Nov)
+is the LAUNCH and BIGGEST push: first pilot races, first case studies,
+highest ad spend, maximum content velocity. Holiday campaign (Nov–Dec)
+extends the selling season with gift positioning. Spring campaign
+(Feb–May) leverages fall results to accelerate spring race partnerships.
+Earth Day (April 22) is the annual sustainability moment for maximum PR
+impact. Race-week flash sales (throughout) drive urgency around every
+major race weekend. The 12-month calendar ensures there is ALWAYS a
+campaign running, a race to prepare for, or a moment to leverage.</p>
+<p>1. Fall 2026 Campaign: “The Cold Is Coming”</p>
+<p><strong>Fall is the make-or-break season.</strong> The brand launches
+into the running world during the 13-week window that contains: the 4
+largest US cold-weather marathons (Chicago, MCM, NYC, Philadelphia), the
+highest DTC purchase intent (runners actively preparing for fall races),
+and the strongest B2B conversion environment (pilot races executing,
+case studies being produced, expo booths generating leads). Every
+marketing system built in P5–P7 converges on this window.</p>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 81%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Element</strong></td>
+<td><strong>Specification</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Campaign name</strong></td>
+<td>“Fall Race Season 2026”</td>
+</tr>
+<tr class="odd">
+<td><strong>Duration</strong></td>
+<td>September 1 – November 30 (13 weeks)</td>
+</tr>
+<tr class="even">
+<td><strong>Key races</strong></td>
+<td>Chicago Marathon (Oct 11), Marine Corps (Oct 27), Detroit (Oct 19),
+Twin Cities (Oct 4), NYC Marathon (Nov 1), Philadelphia (Nov 22),
+Richmond (Nov 15), Sacramento CIM (Dec 7)</td>
+</tr>
+<tr class="odd">
+<td><strong>Campaign theme</strong></td>
+<td>“The cold is coming. Be ready.” — builds anticipation from
+September, peaks during October–November race weekends, and winds down
+post-Thanksgiving.</td>
+</tr>
+<tr class="even">
+<td><strong>Social content plan</strong></td>
+<td>Weeks 1–4 (Sep): daily fall-themed content. Waste stats infographics
+for Chicago + Twin Cities + Detroit. Countdown timers for early-October
+races. Ambassador race-day previews. Start Line Stories featuring fall
+memories. Weeks 5–8 (Oct): PEAK CONTENT. Race-specific posts for each
+weekend’s major marathon. Live race-day content from pilot races (P5B).
+Post-race composting data. Ambassador race-day Reels. Weeks 9–13 (Nov):
+NYC Marathon content surge (largest race of the year). Post-NYC
+composting report. Transition to Thanksgiving messaging (“Thankful for
+runners who choose sustainability”). Tease: holiday gift campaign.</td>
+</tr>
+<tr class="odd">
+<td><strong>Email plan</strong></td>
+<td>Sep 1: “Fall race season is HERE.” Welcome to the season, link to
+race-specific landing pages. Race-week emails (P7B Section 8) for EACH
+major race: 6-week, 4-week, 2-week, race-week, race-day, post-race
+sequence. Oct–Nov: weekly newsletter with: race recaps, composting data,
+ambassador spotlights, and product promotions. Black Friday (Nov 27):
+early access email to subscribers with exclusive discount.</td>
+</tr>
+<tr class="even">
+<td><strong>Paid ads</strong></td>
+<td>Per P7D Section 5 budget concentration: $20–40/day during Sep–Nov
+peak. Race-weekend surge campaigns for Chicago, MCM, NYC, Philadelphia.
+Creative: race-specific urgency ads + UGC video + waste stats carousel.
+Retargeting at maximum frequency during race weeks.</td>
+</tr>
+<tr class="odd">
+<td><strong>B2B integration</strong></td>
+<td>Fall pilot races execute (P5B). Post-race debriefs and case studies
+produced. B2B sample kits distributed at expos (P5D). Sponsor outreach
+peaks: sponsors planning next year’s budgets in Q4 respond to fall pitch
+decks (P5E).</td>
+</tr>
+<tr class="even">
+<td><strong>KPIs</strong></td>
+<td>DTC units sold (target: 500–1,500 across Amazon + Shopify). B2B
+units shipped (target: 3,000–10,000 across pilot + early-adopter races).
+Email list growth (target: +500–1,000 subscribers). Social followers
+(target: +1,000–2,000 across Instagram + TikTok). Revenue (target:
+$8,000–$25,000 DTC + $10,000–$40,000 B2B).</td>
+</tr>
+</tbody>
+</table>
+<p>2. Spring 2027 Campaign: “New Season. Same Warmth.”</p>
+<p><strong>Spring is the SECOND WAVE that proves the brand is not a
+one-season wonder.</strong> Spring marketing benefits from: real fall
+data (composting reports, runner surveys, case studies), refined
+creative (fall testing identified winning ads and content), a growing
+email list (fall sign-ups become spring customers), and an expanding B2B
+pipeline (fall pilot race directors reorder + referrals generate new
+spring partners).</p>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 81%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Element</strong></td>
+<td><strong>Specification</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Campaign name</strong></td>
+<td>“Spring Racing Season 2027”</td>
+</tr>
+<tr class="odd">
+<td><strong>Duration</strong></td>
+<td>February 1 – May 31 (17 weeks)</td>
+</tr>
+<tr class="even">
+<td><strong>Key races</strong></td>
+<td>Boston Marathon (Apr 21), London Marathon (Apr, if international
+expansion), Nashville (Apr), Pittsburgh (May), Big Sur (Apr), Eugene
+(May), Grandma’s Marathon (Jun)</td>
+</tr>
+<tr class="odd">
+<td><strong>Campaign theme</strong></td>
+<td>“New season. Same warmth. Zero waste.” — positions spring as a
+continuation of the fall momentum with updated messaging reflecting fall
+case study data.</td>
+</tr>
+<tr class="even">
+<td><strong>Content updates</strong></td>
+<td>Refresh all content with FALL RESULTS: “Last fall, we composted [X]
+lbs at [Y] races. This spring, we’re going bigger.” Update: waste stats
+infographics with actual composting data (not just estimates). New
+ambassador content from fall race-day photos. New Start Line Stories
+from fall runners. Race-specific landing pages for Boston, Big Sur,
+Nashville.</td>
+</tr>
+<tr class="odd">
+<td><strong>Email plan</strong></td>
+<td>Feb 1: “Spring race season preview.” Feature: updated product (V1.5
+if improvements made per P2F), new case studies, early-bird spring
+pricing. Race-week emails for Boston (6–1 week sequence starting
+mid-March). Monthly newsletter: spring training tips + sustainability
+content.</td>
+</tr>
+<tr class="even">
+<td><strong>Paid ads</strong></td>
+<td>Per P7D: $15–30/day during Mar–May. Race-specific campaigns for
+Boston (largest spring race). Google Ads activated for spring race
+keywords. Creative refresh: new UGC from fall ambassadors, updated waste
+stats with real data, and spring-themed visuals (cherry blossoms for DC,
+dogwoods for Boston).</td>
+</tr>
+<tr class="odd">
+<td><strong>Year 2 planning</strong></td>
+<td>Spring campaign execution overlaps with Year 2 fall planning:
+confirm reorders from Year 1 fall partners, initiate new B2B outreach
+with fall case studies, negotiate Year 2 pricing with factory (P3E
+Section 6), and begin production planning for Fall 2027 (P3E Section
+5).</td>
+</tr>
+</tbody>
+</table>
+<p>3. Holiday Gift Campaign: “The Runner’s Gift Guide”</p>
+<p><strong>The holiday campaign extends the poncho beyond race season
+into year-round gifting.</strong> Runners receive gifts from non-runners
+who search: “gifts for marathon runners,” “stocking stuffers for
+runners,” and “sustainable gifts.” The 3-pack at $24.99 fits perfectly
+in the $20–$30 gift bracket: thoughtful, unique, sustainable, and
+useful. The holiday campaign transforms a seasonal product into a
+year-round brand.</p>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 81%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Element</strong></td>
+<td><strong>Specification</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Campaign name</strong></td>
+<td>“The Runner’s Gift Guide”</td>
+</tr>
+<tr class="odd">
+<td><strong>Duration</strong></td>
+<td>November 15 – December 25 (6 weeks)</td>
+</tr>
+<tr class="even">
+<td><strong>Theme</strong></td>
+<td>“The perfect gift for the runner who has everything.” Position the
+3-pack as a thoughtful, unique, eco-friendly stocking stuffer or gift
+for running friends. Holiday messaging: “Give warmth. Leave no trace.
+The gift that keeps runners warm AND composts after the race.”</td>
+</tr>
+<tr class="odd">
+<td><strong>Product focus</strong></td>
+<td>3-PACK ($24.99) as the PRIMARY gift SKU. Price point is ideal for:
+stocking stuffers ($25 budget), running club Secret Santa, and “gift for
+the runner in your life” search. Consider: limited-edition holiday
+packaging (kraft gift box with ribbon, $0.50–$1.00 premium — only if
+volume justifies the packaging run).</td>
+</tr>
+<tr class="even">
+<td><strong>Email sequence</strong></td>
+<td>Email 1 (Nov 15): “Gift guide for runners: 5 ideas they’ll actually
+love.” Poncho = #1 pick. Email 2 (Dec 1): “25 days to Christmas. Order
+by [date] for delivery.” Urgency + free shipping. Email 3 (Dec 10):
+“Last call for holiday delivery.” Final shipping cutoff. Email 4 (Dec
+20): “Digital gift card available instantly.” For last-minute shoppers:
+Shopify gift card sent via email ($10, $25, $50 denominations).</td>
+</tr>
+<tr class="odd">
+<td><strong>Paid ads</strong></td>
+<td>Holiday-specific creatives: “Gift for the runner who has everything”
+static image (poncho in a gift box with a bow). Target: audiences
+interested in running + gift-giving (Meta’s “Engaged Shoppers” behavior
+targeting). Google Shopping: activate for “running gift,” “marathon
+gift,” “sustainable gift for runners” keywords. Budget: $10–20/day for 4
+weeks (Dec 1–25).</td>
+</tr>
+<tr class="even">
+<td><strong>Social content</strong></td>
+<td>Gift guide carousel (“5 Gifts for the Runner in Your Life” — poncho
+featured alongside other running brands’ products for broader appeal).
+Unboxing videos: ambassador unboxing the holiday packaging. “Why this is
+the most thoughtful running gift” explainer Reel. Customer testimonials:
+“I gave this to my running partner and she loved it.”</td>
+</tr>
+<tr class="odd">
+<td><strong>Revenue target</strong></td>
+<td>200–500 3-packs sold in the 6-week holiday window. At $24.99:
+$5,000–$12,500 holiday revenue. If the holiday campaign generates 15–20%
+of annual DTC revenue: the poncho has successfully extended beyond a
+pure race-season product into a year-round gifting item.</td>
+</tr>
+</tbody>
+</table>
+<p>4. Race-Week Flash Sales</p>
+<p><strong>Flash sales create micro-urgency around every major race
+weekend.</strong> A runner browsing the expo booth on Saturday who
+didn’t buy can purchase online Saturday night at the same price. A
+subscriber who has been considering the product sees “24-hour Race
+Weekend Special” and finally commits. Flash sales convert the
+race-weekend energy into DTC revenue.</p>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 81%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Element</strong></td>
+<td><strong>Specification</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Trigger</strong></td>
+<td>Major race expo opens (Thursday or Friday before a Sunday race)</td>
+</tr>
+<tr class="odd">
+<td><strong>Duration</strong></td>
+<td>24–48 hours (aligned with expo days)</td>
+</tr>
+<tr class="even">
+<td><strong>Offer</strong></td>
+<td>“Race Weekend Flash Sale: 3-Pack for $19.99” (20% off, same as expo
+pricing per P5D Section 6). Or: “Free shipping on ALL orders this
+weekend.” The offer MATCHES the expo pricing so runners who saw the
+product at the expo but didn’t buy can purchase online at the same
+price.</td>
+</tr>
+<tr class="odd">
+<td><strong>Channels</strong></td>
+<td>Email blast to: all subscribers in the race city (geographic
+segment) + all subscribers who visited the race-specific landing page
+(behavioral segment). Instagram Story + feed post with countdown timer.
+TikTok: “Race weekend flash sale — link in bio.” Meta ad: race-weekend
+urgency creative (P7D Section 2 Creative 6) at surge budget.</td>
+</tr>
+<tr class="even">
+<td><strong>Landing page</strong></td>
+<td>Shopify discount code (auto-applied via URL:
+brand.com/flash?discount=RACEWEEKEND20). Landing page shows: the
+discounted 3-pack, a countdown timer to sale end, and “Ships Monday —
+arrives before your next race.”</td>
+</tr>
+<tr class="odd">
+<td><strong>Post-sale</strong></td>
+<td>Email to purchasers: “Thanks for your race-weekend order! Good luck
+this weekend. Tag us in your start-line photo: #RaceWarmLeaveNoTrace.”
+Track: flash sale revenue, units sold, discount code redemptions, new
+vs. returning customers. Feed data into: P7D monthly ad performance
+review.</td>
+</tr>
+<tr class="even">
+<td><strong>Expected results</strong></td>
+<td>Per flash sale event: 20–50 3-packs sold ($400–$1,000 revenue). At
+5–8 flash sales per fall season: $2,000–$8,000 in flash sale revenue.
+Flash sales also drive: email list engagement (subscribers learn to
+watch for sales), social urgency (followers see time-limited offers),
+and expo-to-online conversion (runners who browsed at the booth purchase
+online).</td>
+</tr>
+</tbody>
+</table>
+<p>5. Earth Day Campaign (April 22)</p>
+<p><strong>Earth Day is the ONE DAY per year when the entire media
+landscape focuses on sustainability.</strong> Every news outlet, every
+brand, and every consumer is thinking about environmental impact on
+April 22. For a sustainability brand: Earth Day is the equivalent of
+Black Friday — the day when the brand’s message resonates most broadly
+and reaches audiences who might not otherwise engage with sustainability
+content.</p>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 81%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Element</strong></td>
+<td><strong>Specification</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Date</strong></td>
+<td>April 22 (annual)</td>
+</tr>
+<tr class="odd">
+<td><strong>Theme</strong></td>
+<td>“Every poncho composted is a garbage bag that didn’t reach the
+landfill.” Earth Day messaging centers on: the cumulative impact (total
+waste diverted to date), the individual action (each poncho purchase is
+a choice), and the systemic change (replacing single-use plastic at
+athletic events).</td>
+</tr>
+<tr class="even">
+<td><strong>Content</strong></td>
+<td>IMPACT REPORT: publish the annual sustainability report (cumulative
+composting data from all races to date) on brand.com/impact. Share key
+stats as: Instagram carousel (“Our Year 1 impact: [X] ponchos composted,
+[Y] lbs diverted, [Z] races served”), TikTok video (time-lapse of
+composting footage + impact data overlay), and email to entire list
+(“Your impact on Earth Day: here’s what WE’VE accomplished together”).
+LIMITED EDITION: consider a special Earth Day colorway (e.g., “Ocean
+Blue” or “Forest Green” per P2F Section 5 color variations) or a
+co-branded poncho with an environmental organization (1% for the Planet,
+Leave No Trace per P5C Section 5).</td>
+</tr>
+<tr class="odd">
+<td><strong>Promotion</strong></td>
+<td>“Earth Day Special: plant a tree with every 3-pack purchase.”
+Partner with: One Tree Planted ($1/tree, onetreeplanted.org) to plant a
+tree for every 3-pack sold during Earth Week (Apr 20–26). Cost: $1 per
+3-pack × 50–100 estimated sales = $50–$100. Marketing value: “Your
+poncho composts AND plants a tree” is a powerful Earth Day message.
+Display: “Tree planted!” badge on the product page during Earth
+Week.</td>
+</tr>
+<tr class="even">
+<td><strong>PR</strong></td>
+<td>Issue an Earth Day press release: “[BRAND] Publishes Year 1
+Sustainability Report: [X] lbs of Race-Day Waste Composted.” Pitch to:
+sustainability media (P7C Section 3), local news (Earth Day angle), and
+running media (“How the running industry is getting greener”). Earth Day
+is the HIGHEST-VOLUME sustainability news day of the year — media
+outlets actively seek Earth Day stories.</td>
+</tr>
+<tr class="odd">
+<td><strong>Social activation</strong></td>
+<td>Instagram: post the impact report infographic + a “Thank you to
+every runner who chose sustainability” message. TikTok: “What we’ve
+composted so far” video with rising counter animation. Strava Club:
+Earth Day challenge (“Run 4.22 miles on April 22 — post your Strava
+activity with #RaceWarmLeaveNoTrace”). Reddit: post the impact report in
+r/sustainability and r/ZeroWaste (genuine contribution, not promotion —
+the data IS the value).</td>
+</tr>
+</tbody>
+</table>
+<p>6. 12-Month Race Calendar Content Map</p>
+<p><strong>The race calendar IS the marketing calendar.</strong> Every
+month has: a race to prepare for, a content theme to execute, and a
+campaign element to activate. The 12-month map below integrates ALL
+content, email, social, and advertising activities into a single
+calendar that the founder can reference every Monday when planning the
+week’s activities.</p>
+<table>
+<colgroup>
+<col style="width: 9%" />
+<col style="width: 11%" />
+<col style="width: 78%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Month</strong></td>
+<td><strong>Season</strong></td>
+<td><strong>Activities</strong></td>
+</tr>
+<tr class="even">
+<td><strong>January</strong></td>
+<td>OFF-SEASON</td>
+<td>Content: Year 1 annual review blog post, spring race preview,
+early-bird pricing announcement for spring races. Email: quarterly B2B
+newsletter (P5F Section 6). Social: New Year’s resolution content
+(“Resolve to race sustainably in 2027”).</td>
+</tr>
+<tr class="odd">
+<td><strong>February</strong></td>
+<td>PRE-SPRING</td>
+<td>Content: Boston Marathon landing page published/refreshed. Spring
+training tips. Ambassador recruitment wave for spring races. Email:
+spring early-bird reminder. Ads: begin spring race-specific Google
+Ads.</td>
+</tr>
+<tr class="even">
+<td><strong>March</strong></td>
+<td>SPRING RAMP</td>
+<td>Content: race-week content for early-spring races. Waste stats
+infographic for Boston. Start Line Stories spring edition. Email:
+race-week sequences for March–April races. Ads: $15–30/day, race-city
+targeting.</td>
+</tr>
+<tr class="odd">
+<td><strong>April</strong></td>
+<td>SPRING PEAK</td>
+<td>Content: Boston Marathon coverage (largest spring race). Earth Day
+campaign (Apr 22). Post-race composting reports. Email: Boston race-week
+sequence + Earth Day impact email. Ads: peak spring spend, Boston
+surge.</td>
+</tr>
+<tr class="even">
+<td><strong>May</strong></td>
+<td>LATE SPRING</td>
+<td>Content: race recaps for May races (Pittsburgh, Eugene).
+End-of-spring summary. Transition: begin fall planning content. Email:
+spring recap + “early-bird fall pricing opens [date]” teaser.</td>
+</tr>
+<tr class="odd">
+<td><strong>June</strong></td>
+<td>OFF-SEASON / PLANNING</td>
+<td>Content: behind-the-scenes (factory visit, production planning).
+V1.5 product update announcement (if improvements per P2F). Ambassador
+appreciation content. Email: fall early-bird pricing announcement. B2B:
+quarterly newsletter.</td>
+</tr>
+<tr class="even">
+<td><strong>July</strong></td>
+<td>PRE-FALL</td>
+<td>Content: “Fall race season preview: here’s what’s coming.”
+Race-specific landing pages published/refreshed for all fall target
+races. Training content for fall marathons. Email: early-bird pricing
+deadline reminder. Ads: begin pre-season ramp ($10–20/day).</td>
+</tr>
+<tr class="odd">
+<td><strong>August</strong></td>
+<td>FALL RAMP</td>
+<td>Content: waste stats infographics for Chicago, Twin Cities, Detroit.
+Countdown timers for early-October races. Ambassador kit shipping for
+fall race season. Email: race-week sequence starts for early-October
+races. Ads: increase to $15–25/day, activate race-city targeting.</td>
+</tr>
+<tr class="even">
+<td><strong>September</strong></td>
+<td>FALL LAUNCH</td>
+<td>Content: PEAK production. Daily fall-themed posts. Race-specific
+content for each upcoming weekend. Ambassador pre-race content. Email:
+race-week sequences in full swing. Ads: $20–40/day, race-weekend surge
+campaigns activate.</td>
+</tr>
+<tr class="odd">
+<td><strong>October</strong></td>
+<td>PEAK SEASON</td>
+<td>Content: live race-day coverage from pilot/partner races. Post-race
+composting reports. Ambassador race-day Reels. Case study production.
+Email: race-week sequences for MCM, NYC. Ads: MAXIMUM spend. Flash sales
+during each race expo weekend.</td>
+</tr>
+<tr class="even">
+<td><strong>November</strong></td>
+<td>LATE FALL + HOLIDAY</td>
+<td>Content: NYC Marathon coverage, post-fall season recap, Thanksgiving
+gratitude post, holiday gift guide launch. Email: NYC race-week sequence
++ Black Friday/holiday campaign launch. Ads: transition from race-week
+surge to holiday campaign ($10–20/day).</td>
+</tr>
+<tr class="odd">
+<td><strong>December</strong></td>
+<td>HOLIDAY + PLANNING</td>
+<td>Content: holiday gift content, year-end impact report preview,
+“Thank you” to community. Email: holiday gift campaign (final shipping
+cutoff reminders + gift card option). Ads: holiday campaign through Dec
+25. Year 2 planning: compile marketing ROI report (Section 7).</td>
+</tr>
+</tbody>
+</table>
+<p>7. Year 1 Marketing ROI Report</p>
+<p><strong>At the end of Year 1 (Month 12): compile a comprehensive
+marketing ROI report</strong> that answers the question: “For every
+dollar invested in marketing, how many dollars of revenue were
+generated?” This report informs: Year 2 budget allocation (invest more
+in what works, less in what doesn’t), investor presentations (if
+fundraising per P8), and strategic planning (which channels to double
+down on, which to sunset).</p>
+<p>7.1 ROI by Channel</p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 16%" />
+<col style="width: 7%" />
+<col style="width: 47%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Channel</strong></td>
+<td><strong>Investment</strong></td>
+<td><strong>Return</strong></td>
+<td><strong>ROI</strong></td>
+<td><strong>Optimization Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Paid advertising (Meta + Google + Amazon PPC)</strong></td>
+<td>$4,250–$8,680 (per P7D) + $3,600–$7,200 Amazon PPC (per P6C)</td>
+<td>$8,500–$26,040 Meta/Google attributed + $10,800–$21,600 Amazon PPC
+attributed</td>
+<td>1.2–2.5× blended</td>
+<td>Track: ROAS by platform, CAC by channel. Optimize: shift budget from
+underperformers to winners monthly per P7D Section 7.</td>
+</tr>
+<tr class="odd">
+<td><strong>Ambassador program</strong></td>
+<td>$720–$3,520 (per P7A)</td>
+<td>$4,190–$9,440 (direct + indirect per P7A Section 5.2)</td>
+<td>3–8×</td>
+<td>Track: code redemptions, UGC content value, review generation.
+Hardest to measure precisely due to dark social influence.</td>
+</tr>
+<tr class="even">
+<td><strong>Content marketing (social + blog + SEO)</strong></td>
+<td>$85–$230 one-time + $19–$31/month (per P7B) + $50–$100 SEO one-time
+(per P6D)</td>
+<td>Organic traffic value: 500–2,000 monthly organic visits × $4–$8
+equivalent CPC = $2,000–$16,000/month by Month 12</td>
+<td>10–50× (compounds over time)</td>
+<td>Track: organic sessions (GA4), keyword rankings (Ahrefs), blog post
+traffic by URL. Content ROI increases every month as SEO authority
+builds.</td>
+</tr>
+<tr class="odd">
+<td><strong>PR + media</strong></td>
+<td>$271–$605 (per P7C)</td>
+<td>2–3 published articles: 100K–1M reader impressions + 2–3 DR 50+
+backlinks ($1,000–$5,000 SEO value) + “As Featured In” credibility
+badges</td>
+<td>5–20×</td>
+<td>Track: articles published, total reach, backlinks acquired, earned
+media value estimate. PR ROI is lumpy: 1 major feature = massive return;
+no features = $0 return.</td>
+</tr>
+<tr class="even">
+<td><strong>Community building</strong></td>
+<td>$46–$270 (per P7E)</td>
+<td>Word-of-mouth revenue (untrackable but estimated at 10–20% of DTC
+sales) + Strava/Reddit brand awareness + running club endorsements</td>
+<td>10–50× (estimated)</td>
+<td>Hardest to measure. Proxy metrics: Strava club membership, hashtag
+volume, club code redemptions, Reddit mentions.</td>
+</tr>
+<tr class="odd">
+<td><strong>Expos</strong></td>
+<td>$2,760–$8,370 (per P5D)</td>
+<td>$3,000–$6,000 DTC + $15,000–$50,000+ B2B pipeline value (per P5D
+Section 8.2)</td>
+<td>3–8×</td>
+<td>Track: per-expo revenue, B2B leads generated, email captures,
+post-expo conversions. Expos are profitable because of the B2B
+multiplier.</td>
+</tr>
+<tr class="even">
+<td><strong>Email marketing (Klaviyo)</strong></td>
+<td>$0–$240/year ($0–20/month per P6B)</td>
+<td>$36–$42 return per $1 spent (DMA industry data). At $240/year
+investment: $8,640–$10,080 estimated email-attributed revenue</td>
+<td>36–42×</td>
+<td>Track: email revenue (Klaviyo attribution), flow performance
+(welcome, abandoned cart, post-purchase), campaign performance
+(race-week, holiday). Highest-ROI channel by far.</td>
+</tr>
+</tbody>
+</table>
+<p>7.2 Year 1 Marketing Summary</p>
+<table>
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 21%" />
+<col style="width: 54%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Metric</strong></td>
+<td><strong>Value</strong></td>
+<td><strong>Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Total marketing spend</strong></td>
+<td>Sum all channel investments: ads + ambassadors + content + PR +
+community + expos + email tools</td>
+<td>$8,182–$21,915</td>
+</tr>
+<tr class="odd">
+<td><strong>Total marketing-attributed revenue</strong></td>
+<td>Sum all channel returns: ad-attributed + ambassador-attributed +
+organic traffic value + email-attributed + expo DTC + B2B pipeline
+conversion</td>
+<td>$42,000–$140,000 (estimated Year 1 range across all channels)</td>
+</tr>
+<tr class="even">
+<td><strong>Blended marketing ROI</strong></td>
+<td>Total revenue ÷ total spend</td>
+<td>5–10× blended ROI</td>
+</tr>
+<tr class="odd">
+<td><strong>Highest-ROI channel</strong></td>
+<td>Email marketing (36–42×) followed by content/SEO (10–50×) and
+community (10–50×)</td>
+<td>These 3 channels are: lowest cost, highest long-term value, and most
+scalable without increasing budget.</td>
+</tr>
+<tr class="even">
+<td><strong>Lowest-ROI channel (Year 1)</strong></td>
+<td>Paid advertising (1.2–2.5×)</td>
+<td>Paid ads are the LOWEST ROI but serve a critical function:
+accelerating first-90-day sales velocity for Amazon ranking and
+generating the retargeting audiences that other channels leverage. Ads
+become MORE efficient over time as: creative quality improves,
+retargeting pools grow, and organic channels reduce dependence on paid
+traffic.</td>
+</tr>
+<tr class="odd">
+<td><strong>Year 2 recommendation</strong></td>
+<td>Increase: content production (1–2 posts/month → 2–4), ambassador
+count (30 → 50), and PR outreach (submit for major awards). Maintain:
+paid ad budget at similar levels (reallocate from underperformers to
+winners). Reduce: dependency on paid for DTC (organic should grow to
+40–60% of traffic by Month 18). Add: podcast sponsorships on running
+podcasts ($200–$500/episode × 4–8 episodes = $800–$4,000) as a new
+awareness channel.</td>
+<td>Year 2 should be MORE efficient than Year 1: lower CAC (brand
+awareness reduces cold outreach cost), higher organic traffic (SEO
+compounds), larger retargeting audiences (more efficient paid ads), and
+proven creative (Year 1 testing identified winners).</td>
+</tr>
+</tbody>
+</table>
+<p>8. Timeline &amp; Budget</p>
+<p><strong>WEEK 16–18: Build the Fall 2026 campaign plan (Section 1).
+Create fall-themed social content templates in Canva. Design
+race-specific ad creatives for Chicago, MCM, NYC, Philadelphia. Schedule
+race-week email sequences in Klaviyo for all fall races. Prepare flash
+sale discount codes and landing pages.</strong></p>
+<p><strong>WEEK 20–22: Launch Fall 2026 campaign (September 1). Activate
+paid ads at peak budget. Execute race-week email sequences for
+early-October races. Run first flash sale during Chicago Marathon expo
+weekend. Begin producing race-day content from pilot races.</strong></p>
+<p><strong>WEEK 24–26: Peak fall campaign execution (October–November).
+NYC Marathon content surge. Post-race composting reports from all
+pilot/partner races. Launch holiday gift campaign (November 15). Black
+Friday email to subscribers. Plan Earth Day campaign
+framework.</strong></p>
+<p><strong>WEEK 28–30: Holiday campaign executes through December 25.
+Year-end: compile Year 1 Marketing ROI Report (Section 7). Plan Spring
+2027 campaign (Section 2). Begin spring B2B outreach with fall case
+studies. Set Year 2 marketing budget based on ROI data.</strong></p>
+<p>BUDGET: Fall campaign (incremental beyond existing channel budgets):
+$500–$1,500 (additional ad spend concentration, race-specific creative
+production, flash sale setup). Holiday campaign: $300–$800 (holiday ad
+spend, gift packaging if applicable, One Tree Planted partnership
+$50–$100). Earth Day: $50–$200 (One Tree Planted, impact report design).
+Flash sales: $0 (no incremental cost beyond existing ad spend
+reallocation). TOTAL P7F incremental: $850–$2,500. NOTE: most P7F spend
+is REALLOCATION of existing channel budgets (P7D paid ads, P6B Shopify,
+P6C Amazon PPC) into seasonal concentration, not NET NEW spend.</p>
+<p>9. Conclusion: The Calendar Is the Strategy</p>
+<p><strong>A seasonal product doesn’t need a marketing “strategy” in the
+abstract sense.</strong> It needs a CALENDAR. When is the next race?
+What are runners thinking about right now? What content serves them
+today? Every marketing decision flows from the race calendar: September
+means Chicago Marathon content, October means NYC Marathon surge,
+December means holiday gifts, April means Boston Marathon + Earth Day.
+The founder who opens the 12-month map on January 1 and follows it week
+by week will never miss a race, never scramble for content, and never
+wonder “what should we post today?”</p>
+<p><strong>Year 1 marketing ROI will likely be 5–10× blended across all
+channels.</strong> Email will be the highest ROI at 36–42×. Content/SEO
+will compound from 0 to 10–50× over 12 months. Ambassadors will deliver
+3–8× in direct + indirect value. Paid ads will be the lowest ROI at
+1.2–2.5× but will serve the critical function of accelerating
+first-90-day momentum. The Year 2 plan reallocates: more to content,
+SEO, and email (compounding channels), same to ambassadors and community
+(relationship channels), and more EFFICIENT paid spend (better creative,
+larger retargeting pools, higher organic baseline reduces paid
+dependency). The flywheel doesn’t need more fuel each year — it needs
+the SAME fuel spinning a LARGER wheel.</p>
+
+        </div>
+    </div></div>
+<footer style="text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px">
+Sustainable Race-Start Warmth Poncho — D2C Brand GTM Project · 60 Subprojects · 391 Tasks · ~15,500¶ · April 2026
+</footer></body></html>

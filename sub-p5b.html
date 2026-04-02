@@ -1,0 +1,855 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>P5B: Pilot Race Execution — Race Start Warmth GTM</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0e1a;--surface:#111827;--card:#1a2332;--border:#2a3a4e;--accent:#10b981;--accent2:#3b82f6;--text:#e2e8f0;--muted:#94a3b8;--white:#fff;--red:#ef4444;--amber:#f59e0b;--green:#10b981}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+/* Nav */
+nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
+nav .inner{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;max-width:1200px;margin:0 auto}
+nav .brand{font-weight:700;font-size:15px;color:var(--accent)}
+nav .links{display:flex;gap:8px;flex-wrap:wrap}
+nav .links a{color:var(--muted);font-size:13px;padding:4px 10px;border-radius:6px;transition:.2s}
+nav .links a:hover,nav .links a.active{color:var(--white);background:var(--card);text-decoration:none}
+/* Hero */
+.hero{padding:60px 0 40px;text-align:center}
+.hero h1{font-size:2.4em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:1.1em;max-width:700px;margin:0 auto}
+/* Stats bar */
+.stats{display:flex;justify-content:center;gap:32px;padding:24px 0;flex-wrap:wrap}
+.stat{text-align:center}.stat .num{font-size:1.8em;font-weight:800;color:var(--white)}.stat .label{font-size:.75em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+/* Cards */
+.grid{display:grid;gap:16px;margin:24px 0}
+.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}
+.grid-3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;transition:.2s}
+.card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.card h3{font-size:1.1em;margin-bottom:8px}.card p{color:var(--muted);font-size:.9em}
+.card .badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:8px}
+.card .meta{font-size:.8em;color:var(--muted);margin-top:12px}
+/* Section */
+.section{padding:40px 0}.section h2{font-size:1.6em;font-weight:700;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+/* Table */
+table{width:100%;border-collapse:collapse;font-size:.85em;margin:16px 0}
+th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:52px}
+td{padding:8px 12px;border-bottom:1px solid var(--border)}
+tr:hover td{background:rgba(16,185,129,.05)}
+.status-complete{color:var(--green);font-weight:600}.status-not{color:var(--muted)}
+/* Progress */
+.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:8px}
+.progress .bar{height:100%;background:var(--accent);border-radius:3px}
+/* Back link */
+.back{display:inline-block;color:var(--muted);font-size:.9em;margin-bottom:20px}
+.back:hover{color:var(--accent)}
+/* Download */
+.dl-card{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin:8px 0;transition:.2s}
+.dl-card:hover{border-color:var(--accent);text-decoration:none}
+.dl-card .icon{font-size:2em}.dl-card .info h4{color:var(--white);margin-bottom:4px}.dl-card .info p{color:var(--muted);font-size:.85em}
+/* Footer */
+footer{text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px}
+@media(max-width:768px){.stats{gap:16px}.stat .num{font-size:1.3em}nav .links{gap:4px}nav .links a{font-size:11px;padding:3px 6px}.hero h1{font-size:1.6em}}
+
+.doc-content{max-width:900px;margin:0 auto;padding:20px 0}
+.doc-content h1{font-size:1.8em;font-weight:800;color:var(--white);margin:32px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.doc-content h2{font-size:1.4em;font-weight:700;color:var(--accent);margin:28px 0 12px}
+.doc-content h3{font-size:1.15em;font-weight:600;color:var(--accent2);margin:20px 0 10px}
+.doc-content p{margin:8px 0;line-height:1.7}
+.doc-content table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85em}
+.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;border:1px solid var(--border)}
+.doc-content td{padding:8px 12px;border:1px solid var(--border);vertical-align:top}
+.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.doc-content ul,.doc-content ol{margin:8px 0 8px 24px}
+.doc-content li{margin:4px 0;line-height:1.6}
+.doc-content strong{color:var(--white)}
+.doc-content em{color:var(--muted)}
+.doc-content blockquote{border-left:3px solid var(--accent);padding:8px 16px;margin:12px 0;background:var(--card);border-radius:0 8px 8px 0}
+.nav-sub{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 24px;padding:12px 16px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
+.nav-sub a{font-size:.8em;color:var(--muted);padding:4px 10px;border-radius:4px;transition:.2s;white-space:nowrap}
+.nav-sub a:hover,.nav-sub a.active{color:var(--white);background:var(--surface);text-decoration:none}
+</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a></div></div></nav><div class="container">
+    <div style="padding-top:30px">
+        <a href="p5.html" class="back">← 🤝 P5: B2B Sales</a>
+        <div class="nav-sub"><a href="p5.html">🤝 P5 Overview</a><a href="sub-p5a.html">P5A</a><a href="sub-p5b.html" class="active">P5B</a><a href="sub-p5c.html">P5C</a><a href="sub-p5d.html">P5D</a><a href="sub-p5e.html">P5E</a><a href="sub-p5f.html">P5F</a></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px">
+            <div>
+                <span style="background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px">P5B</span>
+                <span style="color:var(--muted);font-size:.85em;margin-left:8px">P5: B2B Sales</span>
+            </div>
+            <a href="files/P5B_Pilot_Race_Execution.docx" style="font-size:.85em;color:var(--accent);padding:6px 14px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
+        </div>
+        <div class="doc-content">
+            <p><strong>P5B: PILOT RACE</strong></p>
+<p><strong>EXECUTION</strong></p>
+<p>Sub-Project P5B | B2B Sales Engine | Weeks 16–26</p>
+<p><em>Complete Pilot Playbook: 10-Section Agreement Template, Co-Brand
+Coordination Timeline, Race-Day Minute-by-Minute Plan, 8-Category Data
+Collection Framework, 7-Step Debrief Protocol, Case Study Structure, and
+Reorder Strategy</em></p>
+<p>March 2026 | Confidential</p>
+<p>Executive Summary</p>
+<p><strong>The pilot race is the moment of truth.</strong> Eighteen
+months of market research, product design, brand development,
+manufacturing, and supply chain converge on a single morning: 5:45 AM, a
+cold race start line, and 2,000 runners reaching for a compostable
+poncho for the first time. What happens in the next 3 hours determines
+whether the brand has product-market fit or needs to iterate. The pilot
+is simultaneously: a product test (does the poncho keep runners warm?
+does the tear-away work?), an operations test (does the composting chain
+function?), a sales tool (the data and photos become the case study that
+sells the next 10 races), and a relationship test (does the race
+director want to reorder?).</p>
+<p><strong>This document covers the complete pilot lifecycle:</strong> a
+10-section pilot agreement template that formalizes the partnership, a
+6-phase co-brand production coordination timeline (Week -10 to Week -3),
+a minute-by-minute race-day plan from 5 AM arrival through 12 PM
+wrap-up, an 8-category data collection framework capturing every metric
+needed for the case study, a 7-step post-race debrief protocol, a case
+study structure with 8 components for maximum B2B sales impact, and a
+5-part reorder strategy that converts pilots into annual
+partnerships.</p>
+<p>1. Pilot Agreement: 10-Section Template</p>
+<p><strong>The pilot agreement formalizes the partnership between the
+brand and the race organization.</strong> It is NOT a complex legal
+contract — it is a clear, simple document (2–3 pages) that ensures both
+parties understand: what is being provided, at what cost, when it
+arrives, how composting works, what data will be collected, and how the
+case study will be used. Ambiguity in any of these areas causes race-day
+confusion.</p>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 42%" />
+<col style="width: 42%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Section</strong></td>
+<td><strong>Content</strong></td>
+<td><strong>Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Race name + date</strong></td>
+<td>[Race Name], [City, State], [Date]</td>
+<td>Confirms which race and which edition. Prevents confusion if a race
+has multiple events (half, full, 10K).</td>
+</tr>
+<tr class="odd">
+<td><strong>Quantity + SKU</strong></td>
+<td>[X] standard units + [Y] co-brand units. Total: [Z] units.</td>
+<td>Quantity confirmed via PO. Include ±15% adjustment clause (P3B
+Section 2). Specify: standard only, co-brand only, or mixed.</td>
+</tr>
+<tr class="even">
+<td><strong>Unit price</strong></td>
+<td>$[X.XX]/unit (standard), $[X.XX]/unit (co-brand). Setup fee: $[X]
+(if applicable). Total: $[Z,ZZZ.ZZ].</td>
+<td>Pilot pricing may be discounted (at cost or 10–20% below standard)
+as an incentive. Document clearly: “This pilot pricing is for the first
+order only. Subsequent orders will be at standard B2B pricing per the
+current rate card.”</td>
+</tr>
+<tr class="odd">
+<td><strong>Payment terms</strong></td>
+<td>50% deposit on PO acceptance, 50% on shipment (first order). Or:
+at-cost pilot with 100% payment on PO (smallest possible
+commitment).</td>
+<td>Simpler terms for pilot = lower barrier to entry. If the race
+director balks at 50/50: offer 100% on shipment for pilot-sized orders
+(&lt;2,000 units).</td>
+</tr>
+<tr class="even">
+<td><strong>Delivery details</strong></td>
+<td>Ship to: [venue address or 3PL]. Required arrival: [date, ≥3 weeks
+before race]. Delivery contact: [name, phone]. Special instructions:
+[storage requirements, receiving window].</td>
+<td>Per P4C Section 3 race-venue delivery protocol. Confirm delivery
+logistics 6–8 weeks before race date.</td>
+</tr>
+<tr class="odd">
+<td><strong>Co-brand specifications</strong></td>
+<td>Logos provided by: [date]. Mockup approval by: [date]. Print method:
+[1-color flexo / 2-color / screen]. Colors: [Pantone references].</td>
+<td>Per P3C co-brand workflow. Start co-brand process ≥10 weeks before
+race date for standard timeline, ≥8 weeks for rush.</td>
+</tr>
+<tr class="even">
+<td><strong>Composting plan</strong></td>
+<td>Composting partner: [facility name]. Collection bins: [X] bins,
+placed by [race ops / brand]. Bin signage: provided by brand. Composting
+bags: provided by brand. Volunteer sorting: provided by race ([X]
+volunteers). Pickup: [partner] truck at [staging area] by [time].</td>
+<td>Per P4D race-day collection guide. All composting logistics
+coordinated in advance — NOT improvised on race morning. Composting
+partner must confirm acceptance in writing before the agreement is
+signed.</td>
+</tr>
+<tr class="odd">
+<td><strong>Data collection</strong></td>
+<td>Brand will collect the following data at/after the race: (A) Units
+distributed, (B) Units collected for composting, (C) Runner satisfaction
+survey (50–100 responses), (D) Photographs, (E) Race director feedback.
+Race agrees to: allow brand founder/rep access to the start-line area,
+permit photography, and distribute optional survey links to runners (via
+post-race email or social media).</td>
+<td>Data collection is the PRIMARY purpose of the pilot. Without data,
+the pilot is just a sale. With data, it becomes a case study (Section 6)
+that sells the next 10 races.</td>
+</tr>
+<tr class="even">
+<td><strong>Case study permission</strong></td>
+<td>Race director grants permission for brand to use: race name, race
+logo (in context of the co-brand), aggregate data, and quotes from the
+race director in marketing materials including: brand website, B2B pitch
+deck, press releases, and social media.</td>
+<td>Get this permission IN WRITING as part of the agreement. Verbal
+permission is insufficient — the race director may leave and the next
+director may not honor verbal commitments.</td>
+</tr>
+<tr class="odd">
+<td><strong>Term + renewal</strong></td>
+<td>This agreement covers the [Season Year] edition of [Race Name] only.
+Reorder for the next season is subject to a new PO at the then-current
+pricing. Either party may decline to renew without cause.</td>
+<td>Keep pilot agreements simple and non-binding beyond the current
+season. The goal is to earn the reorder through performance, not to lock
+the race into a multi-year contract during a pilot.</td>
+</tr>
+</tbody>
+</table>
+<p>1.1 Pilot Pricing Strategy</p>
+<p>Three pricing options for pilot races: OPTION A (At Cost): $3.50/unit
+(covers COGS + basic handling). No margin for the brand. Best for:
+converting skeptical race directors, first-ever pilot, races in flagship
+cities (NYC, Chicago, Boston) where the case study value exceeds the
+margin value. OPTION B (Discounted): $4.00–$4.50/unit (10–20% below
+standard B2B pricing). Small margin for the brand. Best for: races that
+are willing but price-sensitive. Position as: “pilot rate” that
+automatically transitions to standard pricing on reorder. OPTION C
+(Standard): $3.50–$5.00/unit (full B2B pricing). Full margin. Best for:
+races that are already committed (Champion tier per P5A Section 2) and
+don’t need a pricing incentive to try. RECOMMENDED: use Option A for the
+first 2–3 pilots (the case study data is worth more than the margin),
+then transition to Option B or C for subsequent races.</p>
+<p>2. Co-Brand Production Coordination</p>
+<p><strong>Co-brand production for pilot races requires 10 weeks of lead
+time from agreement to delivery.</strong> This timeline is
+non-negotiable for first-time designs (proof sample required). Rush
+timelines (8 weeks) are possible by skipping the proof sample, but NOT
+recommended for pilot races where print quality must be flawless.</p>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 9%" />
+<col style="width: 42%" />
+<col style="width: 33%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Phase</strong></td>
+<td><strong>Timing</strong></td>
+<td><strong>Activity</strong></td>
+<td><strong>Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Week −10 (10 weeks before race)</strong></td>
+<td>Pilot agreement signed. PO confirmed with payment terms.</td>
+<td>Send “Logo Requirements” email to race director (P3C Section 1 Step
+2). Attach: logo specification sheet, deadline calendar, co-brand
+process overview 1-pager.</td>
+<td>If race date is Oct 15: this is approximately Aug 6. Earlier is
+better.</td>
+</tr>
+<tr class="odd">
+<td><strong>Week −9</strong></td>
+<td>Race director provides logos.</td>
+<td>Create co-brand mockup within 24 hours of receiving logos (P3C
+Section 1 Step 3). Email mockup PDF for approval.</td>
+<td>If logos haven’t arrived: send reminder on Day 5 and Day 8. On Day
+10: call race director. Explain: late logos compress the timeline and
+may force rush production surcharges.</td>
+</tr>
+<tr class="even">
+<td><strong>Week −8</strong></td>
+<td>Race director approves mockup proof.</td>
+<td>Convert approved mockup to production-ready artwork (EPS/AI with
+Pantone separations). Send to factory with PO reference.</td>
+<td>If revisions needed: turn around within 24 hours. Maximum 3 free
+revision rounds per P3C Section 1 Step 4.</td>
+</tr>
+<tr class="odd">
+<td><strong>Week −7 to −5</strong></td>
+<td>Factory produces proof sample (if first-time design).</td>
+<td>Ship proof sample to founder express. Inspect: color accuracy,
+registration, adhesion, legibility. Approve or request corrections.</td>
+<td>For pilot races: proof sample is MANDATORY (this is the first time
+the product is produced with a real race’s logo). Do NOT skip this
+step.</td>
+</tr>
+<tr class="even">
+<td><strong>Week −5 to −3</strong></td>
+<td>Factory produces co-brand run within bulk production batch.</td>
+<td>Monitor weekly per P3B Section 4 production monitoring checklist.
+Co-brand QC: check first, middle, and last unit off press.</td>
+<td>Co-brand units packed in separate, clearly labeled master cartons
+per P3D Section 4.</td>
+</tr>
+<tr class="odd">
+<td><strong>Week −3</strong></td>
+<td>Ship to race venue or 3PL.</td>
+<td>Per P4C Section 3 race-venue delivery protocol. Include: packing
+list, composting logistics guide, receiving instructions card, proof
+sample reference copy.</td>
+<td>Ship ≥3 weeks before race date. Follow up on expected delivery day
+to confirm receipt.</td>
+</tr>
+</tbody>
+</table>
+<p>3. Race-Day Plan: Minute-by-Minute</p>
+<p><strong>The founder MUST attend every pilot race in person.</strong>
+This is non-negotiable for Season 1. The founder is the: distribution
+coordinator, composting logistics manager, data collector, photographer,
+runner surveyor, and brand ambassador — all in one person. After Season
+1, operational playbooks can be delegated to staff. But for the first
+2–5 races: the founder must see, feel, and experience every detail
+firsthand.</p>
+<table>
+<colgroup>
+<col style="width: 7%" />
+<col style="width: 23%" />
+<col style="width: 69%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Time</strong></td>
+<td><strong>Activity</strong></td>
+<td><strong>Details</strong></td>
+</tr>
+<tr class="even">
+<td><strong>5:00 AM</strong></td>
+<td>Arrive at race venue. Check in with race operations.</td>
+<td>Meet the race operations manager (pre-arranged contact). Confirm:
+poncho distribution locations, volunteer assignments, compost bin
+placements. Locate: brand’s collection staging area, volunteer check-in
+area.</td>
+</tr>
+<tr class="odd">
+<td><strong>5:15 AM</strong></td>
+<td>Set up compost bins + signage.</td>
+<td>Place bins per P4D Section 3 Step 1 (every 50–100m past start line,
+both sides, 500m total). Attach signage to every bin (zip ties). Line
+bins with compostable bags. Photograph: bin deployment, signage
+visibility.</td>
+</tr>
+<tr class="even">
+<td><strong>5:30 AM</strong></td>
+<td>Brief sorting volunteers.</td>
+<td>15-minute briefing per P4D Section 3 Step 3: job description,
+sorting rules, pocket cards distributed, gloves distributed. Assign: 1
+volunteer per 3–5 bins. Photograph: volunteer team.</td>
+</tr>
+<tr class="odd">
+<td><strong>5:45 AM</strong></td>
+<td>Poncho distribution begins.</td>
+<td>Volunteers at corral entrances hand ponchos to runners. OR:
+self-serve bins at corral entrance with “TAKE ONE” signage. Monitor: are
+runners taking them? Are they wearing them? Photograph + video: runners
+in ponchos, corral atmosphere.</td>
+</tr>
+<tr class="even">
+<td><strong>6:00–7:00 AM</strong></td>
+<td>Gun time(s). Runners start; ponchos shed.</td>
+<td>Ponchos are shed in the first 0–30 minutes. OBSERVE: tear-away
+performance (clean tears? difficulty?), where runners discard (bins vs.
+ground vs. keep wearing). Photograph: shed ponchos on course, runners
+tearing off at the gun, ponchos in bins.</td>
+</tr>
+<tr class="odd">
+<td><strong>6:30–8:00 AM</strong></td>
+<td>Collection + sorting.</td>
+<td>Volunteers sort ponchos into bins. Remove contamination (bottles,
+clothing). Tie full bags, replace liners. Stage filled bags at
+collection point. Count bags. Photograph: sorting in action, staged
+bags.</td>
+</tr>
+<tr class="even">
+<td><strong>8:00–9:00 AM</strong></td>
+<td>Composting partner pickup.</td>
+<td>Truck arrives at staging area. Load all bags. Record: bag count,
+estimated weight, pickup time. Photograph: truck loading. Confirm:
+composting partner driver provides a receipt or load ticket.</td>
+</tr>
+<tr class="odd">
+<td><strong>8:30–10:00 AM</strong></td>
+<td>Runner surveys.</td>
+<td>Position at: finish-line chute exit, post-race food/beer garden, or
+gear check. Approach runners wearing or carrying the poncho: “Hi! You
+wore one of the compostable ponchos at the start — quick question: how
+was the warmth? 1–5 scale?” Collect 50–100 responses. Use: clipboard
+survey or QR code linking to a Typeform/Google Form on the founder’s
+phone. Target: 50–100 responses for statistical significance. Questions:
+warmth rating (1–5), tear-away ease (1–5), overall satisfaction (1–5),
+would you use again (Y/N), would you buy one yourself (Y/N), free-text
+comment.</td>
+</tr>
+<tr class="even">
+<td><strong>10:00 AM–12:00 PM</strong></td>
+<td>Wrap-up + documentation.</td>
+<td>Final photograph sweep: any remaining ponchos on course, empty/full
+bins, post-race cleanup. Thank volunteers. Collect volunteer feedback
+(“Anything confusing? Any suggestions?”). Record all data in a master
+document: units distributed, bags collected, weight estimate, survey
+summary, photos, observations, issues.</td>
+</tr>
+</tbody>
+</table>
+<p>3.1 Race-Day Equipment Checklist</p>
+<p>Bring to every pilot race: (1) Smartphone (fully charged, 2 portable
+battery packs) for photography, video, survey QR code, and
+communication. (2) Clipboard + printed runner survey forms (50 copies)
+as backup if QR code has connectivity issues. (3) Portable luggage scale
+($10–20, for weighing collection bags). (4) Roll of 2″ green tape (to
+mark bin placements on the ground if bins aren’t already positioned).
+(5) Zip ties (50+ for attaching signage to bins). (6) Spare compostable
+bags (10 extra beyond what’s deployed). (7) Business cards (100, to hand
+to runners and race staff who ask about the product). (8) B2B sample
+kits (5, for any race directors encountered at the event). (9) Warm
+clothing for yourself (the founder standing outside at 5 AM collecting
+data is COLD — wear a production poncho for the ultimate product demo).
+(10) Notebook + pen (for real-time observations that don’t fit into
+structured data categories).</p>
+<p>4. Pilot Data Collection: 8 Categories</p>
+<p><strong>Data transforms a pilot from “we tried it at a race” into “we
+proved it works at a race.”</strong> The 8 data categories below provide
+every metric needed for: the case study (Section 6), the post-race
+composting report (P4D Section 4), the P2F Section 1 feedback framework
+(product improvement), and the reorder conversation (Section 7).</p>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 33%" />
+<col style="width: 38%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Category</strong></td>
+<td><strong>Metric</strong></td>
+<td><strong>Collection Method</strong></td>
+<td><strong>Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Units distributed</strong></td>
+<td>Count of ponchos distributed to runners</td>
+<td>Factory production count − remaining undistributed units (count
+remaining cartons × units/carton + loose units)</td>
+<td>Record: total produced for this race, total shipped, total opened
+for distribution, total remaining undistributed. Distributed = shipped −
+remaining.</td>
+</tr>
+<tr class="odd">
+<td><strong>Collection rate</strong></td>
+<td>% of distributed ponchos collected in compost bins</td>
+<td>(Bags collected × estimated ponchos/bag) ÷ total distributed × 100.
+Estimate ponchos/bag: weigh 3 bags, count contents of 3 bags,
+average.</td>
+<td>Target: 60–75% for Season 1. Track by bin location (which bins
+filled fastest?) to optimize placement for next race.</td>
+</tr>
+<tr class="even">
+<td><strong>Runner satisfaction</strong></td>
+<td>1–5 rating across warmth, tear-away, overall satisfaction</td>
+<td>50–100 runner surveys at the finish area. Calculate: mean, median, %
+rating 4–5 (“satisfied”).</td>
+<td>4.0+ average = strong product-market fit. &lt;3.5 average =
+investigate specific complaints and feed into P2F product
+improvement.</td>
+</tr>
+<tr class="odd">
+<td><strong>Waste diverted</strong></td>
+<td>Weight of compostable ponchos diverted from landfill</td>
+<td>Weigh 3 bags on a portable luggage scale ($10–20), average, multiply
+by total bags. OR: composting partner’s truck has a scale — request the
+total weight from the partner’s load ticket.</td>
+<td>Convert to: equivalent trash bags avoided (weight ÷ 10 lbs/bag),
+equivalent CO₂e avoided (weight in tons × 0.5 metric tons CO₂e per P4D
+Section 4).</td>
+</tr>
+<tr class="even">
+<td><strong>Contamination rate</strong></td>
+<td>% of non-compostable items in the collection stream</td>
+<td>Volunteer observation: during sorting, estimate the ratio of
+non-poncho items removed vs. total items handled. OR: composting partner
+provides a contamination report after processing.</td>
+<td>Target: &lt;5% with proper signage + trained volunteers. If &gt;10%:
+revise signage, add more volunteers, or reposition bins away from
+trash/recycling.</td>
+</tr>
+<tr class="odd">
+<td><strong>Temperature + weather</strong></td>
+<td>Race-morning temperature, precipitation, wind, humidity</td>
+<td>Record from weather.gov or Weather app at gun time. Multiple
+readings if wave starts.</td>
+<td>Correlates with: distribution rate (colder = more runners take
+ponchos), satisfaction scores (colder = higher warmth appreciation), and
+collection rate (rain = ponchos kept longer).</td>
+</tr>
+<tr class="even">
+<td><strong>Photography</strong></td>
+<td>200+ photos + 5–10 short video clips</td>
+<td>Photograph per P1D Amazon photography plan adapted for race day:
+ponchos in corrals, runners tearing off, shed ponchos, bins, volunteers
+sorting, truck loading. Video: 15–30 sec clips of distribution, tearing,
+collection, and a 30–60 sec time-lapse if possible.</td>
+<td>Photos and videos become: case study visuals, Amazon lifestyle
+images (with runner permission), social media content, B2B pitch deck
+slides, press kit assets. The race day is the content GOLDMINE.</td>
+</tr>
+<tr class="odd">
+<td><strong>Race director feedback</strong></td>
+<td>Qualitative assessment from the race director</td>
+<td>Post-race debrief (Section 5): ask the race director to evaluate:
+delivery logistics, runner reception, operations impact, composting
+experience, and willingness to reorder.</td>
+<td>The race director’s quote is the single most valuable piece of case
+study content. “[Race Director Name], Race Director of [Race Name]:
+‘[quote].’”</td>
+</tr>
+</tbody>
+</table>
+<p>5. Post-Race Debrief: 7-Step Protocol</p>
+<p><strong>The debrief is the most valuable 30 minutes in the entire
+pilot process.</strong> The race director’s unfiltered assessment — what
+worked, what didn’t, and whether they’d do it again — determines the
+reorder outcome and shapes every product and process improvement for the
+next race.</p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 4%" />
+<col style="width: 47%" />
+<col style="width: 47%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Step</strong></td>
+<td><strong>Framework</strong></td>
+<td><strong>Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>1. Schedule</strong></td>
+<td>Within 7 days of race. 30-minute call (Zoom/phone). Email race
+director: “I’d love to do a quick 30-minute debrief to hear how things
+went from your perspective. When works for you this week?”</td>
+<td>Strike while the iron is hot — the race director’s impressions are
+freshest in the first week. After 2 weeks, they’ve moved on to the next
+event.</td>
+</tr>
+<tr class="odd">
+<td><strong>2. Product performance</strong></td>
+<td>Questions: How did the ponchos perform in terms of warmth? Did
+runners seem comfortable? Did you notice any issues with the tear-away
+(difficulty tearing, tearing too easily, incomplete tears)? Did you
+receive any complaints from runners? Any positive feedback?</td>
+<td>LISTEN for: specific complaints (these feed into P2F product
+improvement), specific praise (these become case study quotes), and
+comparisons to previous solutions (“runners seemed much warmer than when
+we used garbage bags”).</td>
+</tr>
+<tr class="even">
+<td><strong>3. Operations experience</strong></td>
+<td>Questions: How was the delivery? Was the receiving process smooth?
+Did the distribution volunteers have any issues? Was the signage clear?
+How was the composting collection process? Was the composting truck on
+time? How did the experience compare to managing garbage bag or
+Heatsheets distribution?</td>
+<td>LISTEN for: logistics friction (delivery timing, carton labeling,
+composting coordination) that can be improved for the next race. If the
+operations team says “it was easier than what we did before,” that’s a
+powerful selling point.</td>
+</tr>
+<tr class="odd">
+<td><strong>4. Data sharing</strong></td>
+<td>Share the brand’s pilot data with the race director: units
+distributed, collection rate, survey results (mean satisfaction scores),
+waste diverted estimate. Ask: does this data help you justify the
+investment to your board/sponsors?</td>
+<td>Sharing data first demonstrates transparency and professionalism. It
+also gives the race director ammunition to advocate internally for a
+reorder.</td>
+</tr>
+<tr class="even">
+<td><strong>5. Reorder intent</strong></td>
+<td>Questions: Based on this experience, would you like to order ponchos
+for next season’s edition of [Race Name]? If yes: approximately how many
+units? Would you want co-branding again? Should we discuss pricing for a
+larger order? If not: what would need to change for you to consider
+it?</td>
+<td>DO NOT pressure. The pilot data should speak for itself. If the
+answer is “not yet”: ask what would change their mind and plan to
+address those concerns. Follow up in 2 months with: updated product (if
+V1.5 improvements made), additional pilot case studies from other
+races.</td>
+</tr>
+<tr class="odd">
+<td><strong>6. Referral + testimonial</strong></td>
+<td>Questions: Would you be comfortable referring me to other race
+directors who might benefit from this product? Could I use a quote from
+you in our marketing materials? Would you be willing to write a brief
+testimonial?</td>
+<td>If yes to referral: ask for 2–3 specific names and introductions
+(“Could you email [name] and CC me with a quick intro?”). Warm
+introductions convert at 5–10× cold outreach. If yes to testimonial:
+send a draft for their approval (easier than asking them to write from
+scratch).</td>
+</tr>
+<tr class="even">
+<td><strong>7. Document + follow-up</strong></td>
+<td>Send a thank-you email within 24 hours: summary of key discussion
+points, any agreed next steps (reorder timeline, referral introductions,
+testimonial draft). Update CRM: deal stage to RACE COMPLETE, log all
+debrief notes, set follow-up date for reorder discussion.</td>
+<td>The debrief email becomes part of the permanent record. If the race
+director changes and a new person takes over: the debrief notes ensure
+continuity.</td>
+</tr>
+</tbody>
+</table>
+<p>6. Case Study: 8-Component Structure</p>
+<p><strong>The case study is the #1 B2B sales tool after the
+pilot.</strong> It replaces the generic B2B data sheet for all future
+outreach. Instead of “Here’s our product specification,” every email,
+sample kit, and meeting now leads with: “Here’s what happened when [Race
+Name] tried our compostable ponchos.” The case study sells through:
+quantified results (data), social proof (race director quote), and
+visual evidence (race-day photos).</p>
+<table>
+<colgroup>
+<col style="width: 11%" />
+<col style="width:50%">
+<col style="width: 38%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Component</strong></td>
+<td><strong>Content</strong></td>
+<td><strong>Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Headline</strong></td>
+<td>“[Race Name] Replaces Garbage Bags with Compostable Ponchos — [X]
+lbs Diverted from Landfill”</td>
+<td>Specific, quantified, outcome-focused. NOT: “Great Partnership with
+[Race Name].”</td>
+</tr>
+<tr class="odd">
+<td><strong>Challenge</strong></td>
+<td>1–2 paragraphs: describe the race’s start-line waste problem before
+the poncho. Quote the race director on the pain point: “Every year, we
+cleaned up 500 lbs of garbage bags from the start area. It was
+embarrassing for a race that prides itself on environmental
+responsibility.”</td>
+<td>Use the race director’s OWN WORDS from the debrief (Section 5).
+Paraphrasing is acceptable if they approve the paraphrase.</td>
+</tr>
+<tr class="even">
+<td><strong>Solution</strong></td>
+<td>1–2 paragraphs: describe what the brand provided. Co-branded
+ponchos, composting logistics, volunteer training, bin placement, truck
+coordination. Include a photo of the co-branded poncho with the race’s
+logo.</td>
+<td>Keep it factual: what was delivered, when, how. Let the results
+speak for the value.</td>
+</tr>
+<tr class="odd">
+<td><strong>Results</strong></td>
+<td>Data table or infographic: ponchos distributed, collection rate (%),
+waste diverted (lbs), runner satisfaction score (X/5), contamination
+rate (&lt;X%), runner quote. Before/after comparison: “Before: 500 lbs
+LDPE waste to landfill. After: 450 lbs composted, 0 lbs to
+landfill.”</td>
+<td>NUMBERS sell B2B. Race directors and their boards respond to
+quantified impact. Use the P4D post-race composting report data.</td>
+</tr>
+<tr class="even">
+<td><strong>Race director quote</strong></td>
+<td>Pull quote in large text: “The compostable ponchos were a
+game-changer for our sustainability program. Runners loved them, our
+operations team found them easier to manage than garbage bags, and we
+composted every single one. We’ve already committed to using them again
+next year.” — [Name], Race Director, [Race Name]</td>
+<td>The quote is the TRUST element. Other race directors read this and
+think: “If [peer] trusts this product, I can too.” Get explicit written
+approval for the quote.</td>
+</tr>
+<tr class="odd">
+<td><strong>Visual assets</strong></td>
+<td>4–6 photographs: (A) runners in ponchos at dawn in the corral, (B)
+close-up of co-branded poncho with race logo, (C) runners tearing off
+ponchos at the gun, (D) collection bins with signage, (E) composting
+truck loading bags, (F) before/after comparison (garbage bags vs.
+compostable ponchos).</td>
+<td>Professional quality preferred but authentic race-day photos are
+more credible than staged studio shots. The iPhone photos from 5:45 AM
+in the corral ARE the content.</td>
+</tr>
+<tr class="even">
+<td><strong>CTA (Call to Action)</strong></td>
+<td>“Ready to make your race start line waste-free? Contact us for a
+free sample kit and co-brand mockup: brand.com/b2b or [email].”</td>
+<td>The case study IS a sales tool. It needs a clear path to action.
+Include: QR code to the B2B landing page, founder’s direct email, and
+phone number.</td>
+</tr>
+<tr class="odd">
+<td><strong>Format</strong></td>
+<td>2–4 page branded PDF (P1B design system). Also posted as a webpage
+at brand.com/case-studies/[race-name]. Also condensed into a 1-page
+summary for inclusion in B2B sample kits (replaces or supplements the
+generic data sheet after the first pilot is complete).</td>
+<td>The case study PDF replaces the generic B2B data sheet for all
+future outreach. “Here’s what happened when [Race Name] tried our
+ponchos” is 10× more persuasive than “Here’s our product
+specification.”</td>
+</tr>
+</tbody>
+</table>
+<p>6.1 Case Study Production Timeline</p>
+<p>WEEK 1 post-race: Write the Challenge and Solution sections. Compile
+race-day photos. Draft the Results section with preliminary data
+(collection rate, survey scores, weight diverted). WEEK 2–3: Request
+race director quote and approval. Receive composting partner’s
+Certificate of Composting (may take up to 30 days). Finalize Results
+with confirmed data. WEEK 3–4: Design case study PDF in Canva or P1B
+design system. Review with race director for accuracy and approval. WEEK
+4–6: Publish on brand.com/case-studies. Add to B2B sample kit. Include
+in all future email outreach (replace the generic data sheet with the
+case study). Post condensed version on LinkedIn and social media.</p>
+<p>7. Reorder Strategy: 5-Part Framework</p>
+<p><strong>The pilot is a success only when the race director
+reorders.</strong> A single pilot with no reorder is a marketing
+expense. A pilot that converts to an annual partnership is a revenue
+asset worth $5,000–$50,000+ per year for the lifetime of the
+relationship. The reorder strategy starts DURING the debrief and
+continues through 5 structured touchpoints.</p>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 42%" />
+<col style="width: 42%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Strategy</strong></td>
+<td><strong>Framework</strong></td>
+<td><strong>Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Timing</strong></td>
+<td>Initiate reorder conversation during the post-race debrief (within 7
+days of race). Follow up with formal quote within 30 days of race.
+Target: PO signed within 60 days of race — while the positive experience
+is fresh and before the race director moves on to other priorities.</td>
+<td>Race directors who commit early (6+ months before next race) get
+early-bird pricing (P5F Section 4: 10–15% discount). This incentivizes
+early commitment and gives the brand production planning certainty.</td>
+</tr>
+<tr class="odd">
+<td><strong>Volume adjustment</strong></td>
+<td>Ask: “Based on this pilot, would you want to increase the quantity
+for next year? What quantity would cover your full start-line needs?”
+Typical progression: pilot (500–2,000 units) → first full order
+(2,000–5,000 units) → second year (5,000–10,000+ including multiple
+events if the race has a half + full + 10K).</td>
+<td>Volume increase is the natural outcome of a successful pilot. The
+race director WANTS to scale if the product works — they don’t want to
+run out at the start line.</td>
+</tr>
+<tr class="even">
+<td><strong>Co-brand evolution</strong></td>
+<td>Offer: “Would you like to include sponsor logos this year? We can
+add 1–2 additional colors for a small surcharge. This creates a
+potential revenue stream for your race — sponsors pay for the co-branded
+ponchos.” Transition from race-funded to sponsor-funded per P3C Section
+4 Sponsor-Funded tier.</td>
+<td>The sponsor-funded model is the ultimate lock-in: the race director
+pays nothing, the sponsor gets visibility, the brand gets volume. Once a
+sponsor is involved, the relationship has 3 stakeholders invested in
+continuing.</td>
+</tr>
+<tr class="odd">
+<td><strong>Multi-year commitment</strong></td>
+<td>After 2 successful seasons: propose a 2–3 year framework agreement
+with: guaranteed annual volume, locked pricing (±5% escalation/year),
+priority production slots, and first-right-of-refusal on new product
+features (V2 premium poncho, bib sleeve, finish-line wrap per P2F
+roadmap).</td>
+<td>Multi-year agreements provide revenue predictability and production
+planning certainty. Offer a 3–5% additional discount for 2-year
+commitments and 5–10% for 3-year commitments.</td>
+</tr>
+<tr class="even">
+<td><strong>Win-back for lost pilots</strong></td>
+<td>If a pilot race does NOT reorder: send a “learned from you” email at
+60 days: “We took your feedback seriously and made the following
+improvements: [list]. Would you be open to revisiting for [next
+season]?” Follow up at 6 months with the updated case study from other
+races.</td>
+<td>Not every pilot converts. Target: 80% reorder rate. The 20% that
+don’t convert provide the most valuable FEEDBACK — ask specifically what
+would change their mind.</td>
+</tr>
+</tbody>
+</table>
+<p>8. Timeline &amp; Budget</p>
+<p><strong>WEEK 16–20: Confirm 2–5 pilot races with signed agreements.
+Begin co-brand production coordination for earliest race. Confirm
+composting partners for each pilot city. Book travel for founder
+attendance.</strong></p>
+<p><strong>WEEK 18–22: Co-brand production completes. Shipments
+delivered to race venues (≥3 weeks before race). Prepare race-day
+equipment checklist. Finalize runner survey (Typeform or Google Form).
+Print backup survey forms.</strong></p>
+<p><strong>WEEK 22–26: Attend pilot races in person. Execute race-day
+plan (Section 3). Collect all data (Section 4). Conduct post-race
+debriefs within 7 days (Section 5). Begin case study production within 2
+weeks of each race.</strong></p>
+<p><strong>WEEK 24–28: Complete case studies for all pilot races.
+Publish on website and add to B2B materials. Secure reorder commitments
+from pilot race directors. Generate referral introductions. Feed product
+feedback into P2F improvement cycle.</strong></p>
+<p>BUDGET: Pilot product (at cost, 2–5 races × 500–2,000 units ×
+$3.50/unit): $3,500–$35,000 (covered by race director payment — net cost
+to brand is $0 if at-cost pricing, or margin if discounted/standard
+pricing). Composting logistics (brand-paid for pilots, 2–5 races):
+$400–$4,000 per P4D. Travel (founder attendance, 2–5 races): $500–$3,000
+(flights + 1–2 nights hotel + ground transport per race). Race-day
+supplies (scale, zip ties, tape, extra bags, printed surveys): $50–$100
+per race. Case study design (Canva): $0–$13/month. TOTAL P5B net brand
+cost: $1,350–$8,100 (excluding product cost recovered from race
+payments). This investment generates: 2–5 case studies, 50–100 runner
+survey responses, 200+ photographs, and 2–5 reorder commitments worth
+$10,000–$50,000+ in Year 2 revenue.</p>
+<p>9. Conclusion: The Pilot Is the Brand’s Origin Story</p>
+<p><strong>Every great brand has an origin moment: the first race where
+the product was tested, the first runner who wore it, the first race
+director who said “this is better than garbage bags.”</strong> The pilot
+race IS that moment. The photographs from 5:45 AM — runners in ponchos,
+the start-line glowing with metallized lining in the dawn light,
+volunteers sorting compostable bags into a green truck — these become
+the brand’s founding images. The race director’s quote becomes the
+foundational testimonial. The data becomes the proof.</p>
+<p><strong>Attend every pilot in person. Photograph everything. Talk to
+every runner who will stop.</strong> Shake the race director’s hand at 5
+AM and again at the debrief. Hand business cards to every operations
+staffer who mentions another race they work with. The pilot is not just
+a product test — it is the brand’s introduction to the running industry.
+The impression left on race morning echoes through every B2B
+conversation for the next 5 years.</p>
+
+        </div>
+    </div></div>
+<footer style="text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px">
+Sustainable Race-Start Warmth Poncho — D2C Brand GTM Project · 60 Subprojects · 391 Tasks · ~15,500¶ · April 2026
+</footer></body></html>

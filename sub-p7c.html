@@ -1,0 +1,827 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>P7C: PR Media — Race Start Warmth GTM</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0e1a;--surface:#111827;--card:#1a2332;--border:#2a3a4e;--accent:#10b981;--accent2:#3b82f6;--text:#e2e8f0;--muted:#94a3b8;--white:#fff;--red:#ef4444;--amber:#f59e0b;--green:#10b981}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+/* Nav */
+nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
+nav .inner{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;max-width:1200px;margin:0 auto}
+nav .brand{font-weight:700;font-size:15px;color:var(--accent)}
+nav .links{display:flex;gap:8px;flex-wrap:wrap}
+nav .links a{color:var(--muted);font-size:13px;padding:4px 10px;border-radius:6px;transition:.2s}
+nav .links a:hover,nav .links a.active{color:var(--white);background:var(--card);text-decoration:none}
+/* Hero */
+.hero{padding:60px 0 40px;text-align:center}
+.hero h1{font-size:2.4em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:1.1em;max-width:700px;margin:0 auto}
+/* Stats bar */
+.stats{display:flex;justify-content:center;gap:32px;padding:24px 0;flex-wrap:wrap}
+.stat{text-align:center}.stat .num{font-size:1.8em;font-weight:800;color:var(--white)}.stat .label{font-size:.75em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+/* Cards */
+.grid{display:grid;gap:16px;margin:24px 0}
+.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}
+.grid-3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;transition:.2s}
+.card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.card h3{font-size:1.1em;margin-bottom:8px}.card p{color:var(--muted);font-size:.9em}
+.card .badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:8px}
+.card .meta{font-size:.8em;color:var(--muted);margin-top:12px}
+/* Section */
+.section{padding:40px 0}.section h2{font-size:1.6em;font-weight:700;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+/* Table */
+table{width:100%;border-collapse:collapse;font-size:.85em;margin:16px 0}
+th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:52px}
+td{padding:8px 12px;border-bottom:1px solid var(--border)}
+tr:hover td{background:rgba(16,185,129,.05)}
+.status-complete{color:var(--green);font-weight:600}.status-not{color:var(--muted)}
+/* Progress */
+.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:8px}
+.progress .bar{height:100%;background:var(--accent);border-radius:3px}
+/* Back link */
+.back{display:inline-block;color:var(--muted);font-size:.9em;margin-bottom:20px}
+.back:hover{color:var(--accent)}
+/* Download */
+.dl-card{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin:8px 0;transition:.2s}
+.dl-card:hover{border-color:var(--accent);text-decoration:none}
+.dl-card .icon{font-size:2em}.dl-card .info h4{color:var(--white);margin-bottom:4px}.dl-card .info p{color:var(--muted);font-size:.85em}
+/* Footer */
+footer{text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px}
+@media(max-width:768px){.stats{gap:16px}.stat .num{font-size:1.3em}nav .links{gap:4px}nav .links a{font-size:11px;padding:3px 6px}.hero h1{font-size:1.6em}}
+
+.doc-content{max-width:900px;margin:0 auto;padding:20px 0}
+.doc-content h1{font-size:1.8em;font-weight:800;color:var(--white);margin:32px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.doc-content h2{font-size:1.4em;font-weight:700;color:var(--accent);margin:28px 0 12px}
+.doc-content h3{font-size:1.15em;font-weight:600;color:var(--accent2);margin:20px 0 10px}
+.doc-content p{margin:8px 0;line-height:1.7}
+.doc-content table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85em}
+.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;border:1px solid var(--border)}
+.doc-content td{padding:8px 12px;border:1px solid var(--border);vertical-align:top}
+.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.doc-content ul,.doc-content ol{margin:8px 0 8px 24px}
+.doc-content li{margin:4px 0;line-height:1.6}
+.doc-content strong{color:var(--white)}
+.doc-content em{color:var(--muted)}
+.doc-content blockquote{border-left:3px solid var(--accent);padding:8px 16px;margin:12px 0;background:var(--card);border-radius:0 8px 8px 0}
+.nav-sub{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 24px;padding:12px 16px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
+.nav-sub a{font-size:.8em;color:var(--muted);padding:4px 10px;border-radius:4px;transition:.2s;white-space:nowrap}
+.nav-sub a:hover,.nav-sub a.active{color:var(--white);background:var(--surface);text-decoration:none}
+</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a></div></div></nav><div class="container">
+    <div style="padding-top:30px">
+        <a href="p7.html" class="back">← 📣 P7: Marketing & PR</a>
+        <div class="nav-sub"><a href="p7.html">📣 P7 Overview</a><a href="sub-p7a.html">P7A</a><a href="sub-p7b.html">P7B</a><a href="sub-p7c.html" class="active">P7C</a><a href="sub-p7d.html">P7D</a><a href="sub-p7e.html">P7E</a><a href="sub-p7f.html">P7F</a></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px">
+            <div>
+                <span style="background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px">P7C</span>
+                <span style="color:var(--muted);font-size:.85em;margin-left:8px">P7: Marketing & PR</span>
+            </div>
+            <a href="files/P7C_PR_Media.docx" style="font-size:.85em;color:var(--accent);padding:6px 14px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
+        </div>
+        <div class="doc-content">
+            <p><strong>P7C: PR &amp; MEDIA</strong></p>
+<p>Sub-Project P7C | Marketing, PR &amp; Community | Weeks 16–28</p>
+<p><em>Complete PR Strategy: 10-Section Press Release Template, 6
+Running Media Targets, 5 Sustainability Media Targets, 4 Local News
+Channels, PR Coverage Documentation System, and 6 Awards
+Submissions</em></p>
+<p>March 2026 | Confidential</p>
+<p>Executive Summary</p>
+<p><strong>PR is the most cost-effective way to reach large audiences
+with high credibility.</strong> An ad says “we’re great.” A Runner’s
+World article says “Runner’s World thinks they’re great.” The difference
+in consumer trust is 5–10×. Earned media (press coverage you don’t pay
+for) provides: credibility that advertising cannot buy, backlinks that
+boost SEO ranking permanently, social proof that strengthens every other
+marketing channel, and reach into audiences the brand cannot access
+through its own channels.</p>
+<p><strong>This document builds the complete PR system:</strong> a
+10-section press release template ready for the product launch, pitching
+strategies for 6 running media outlets, 5 sustainability publications,
+and 4 local news channels per pilot race city, a 10-field PR coverage
+documentation system for tracking every mention, and 6 award submissions
+targeting Green Sports Alliance, Outside Best Gear, Running USA
+Innovation, B Corp Certification, 1% for the Planet, and Fast Company
+World Changing Ideas.</p>
+<p>1. Press Release: 10-Section Template</p>
+<p><strong>The press release is the foundational PR document.</strong>
+It is sent to every journalist, editor, and media outlet alongside the
+pitch email. It is also posted on brand.com/press for journalists who
+discover the brand independently. The press release follows the INVERTED
+PYRAMID structure: the most important information first, progressively
+less important details after, so that an editor who reads only the first
+paragraph still gets the full story.</p>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width:50%">
+<col style="width: 35%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Section</strong></td>
+<td><strong>Content</strong></td>
+<td><strong>Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Headline</strong></td>
+<td>“First Compostable Warmth Poncho for Marathon Start Lines Launches
+to Eliminate Race-Day Waste”</td>
+<td>Lead with: WHAT is new (first compostable poncho), WHO it’s for
+(marathon start lines), and WHY it matters (eliminate waste).
+Journalists scan headlines in 2 seconds — the headline must convey the
+news hook instantly.</td>
+</tr>
+<tr class="odd">
+<td><strong>Subheadline</strong></td>
+<td>“BPI-certified poncho replaces single-use garbage bags worn by 3+
+million US marathon runners annually; composts in 12–24 weeks”</td>
+<td>Adds: certification (credibility), scale of the problem (3M+
+runners), and the solution’s key metric (12–24 weeks). The subheadline
+provides the detail that the headline promises.</td>
+</tr>
+<tr class="even">
+<td><strong>Dateline</strong></td>
+<td>[CITY, STATE] — [Date] —</td>
+<td>Standard press release format. Use the founder’s city/state and the
+release date.</td>
+</tr>
+<tr class="odd">
+<td><strong>Lead paragraph</strong></td>
+<td>[BRAND], a runner-founded sustainability brand, today announced the
+launch of the first BPI-certified compostable warmth poncho designed
+specifically for marathon and race start lines. The poncho provides
+equivalent warmth to conventional single-use plastic alternatives while
+composting completely in 12–24 weeks at commercial composting
+facilities. It replaces the estimated 3+ million garbage bags and
+single-use plastic ponchos discarded at US marathon start lines each
+year.</td>
+<td>The lead paragraph answers: WHO (brand), WHAT (compostable poncho),
+WHEN (today), WHERE (US marathons), WHY (replaces waste), and HOW
+(BPI-certified, composts in 12–24 weeks). Every journalist reads ONLY
+the lead paragraph to decide whether to continue. It must contain the
+entire story in 3 sentences.</td>
+</tr>
+<tr class="even">
+<td><strong>Problem paragraph</strong></td>
+<td>“At the start line of a major marathon, 20,000–50,000 runners wear
+garbage bags, donated clothing, or single-use Mylar blankets to stay
+warm in the cold morning corral,” said [Founder Name], founder of
+[BRAND]. “Within minutes of the starting gun, those items are discarded
+— generating 700–1,200 lbs of non-recyclable waste per race. Across the
+US marathon season, that’s an estimated 60,000–120,000 lbs of LDPE
+plastic going to landfill each year from start lines alone.”</td>
+<td>The problem paragraph establishes the SCALE and URGENCY of the waste
+issue using data from P0A. The founder’s quote makes it personal and
+quotable for journalists.</td>
+</tr>
+<tr class="odd">
+<td><strong>Solution paragraph</strong></td>
+<td>The [BRAND] poncho is constructed from vacuum-metallized regenerated
+cellulose film bonded to a PLA spunbond nonwoven — materials that
+provide genuine warmth through infrared reflection while meeting ASTM
+D6400 commercial composting standards. The poncho features a
+patent-pending laser-perforated tear-away system that allows runners to
+shed the garment in under 3 seconds at the starting gun. The brand
+handles end-to-end composting logistics: placing collection bins at the
+start line, coordinating with local composting facilities, and providing
+post-race composting verification reports to race organizers.</td>
+<td>Describes the product’s technology and the brand’s operational
+model. Avoids jargon: explain what the materials DO (provide warmth,
+compost) not just what they ARE (NatureFlex NM, PLA spunbond). Mention
+the patent-pending tear-away (novelty hook for journalists).</td>
+</tr>
+<tr class="even">
+<td><strong>Pilot data (if available)</strong></td>
+<td>“In a recent pilot at [Race Name], [X] compostable ponchos were
+distributed to runners. [Y]% were collected at the start line and
+commercially composted, diverting [Z] lbs from landfill. Post-race
+surveys showed [W]% runner satisfaction.”</td>
+<td>Include this paragraph ONLY after pilot races (P5B) are complete. If
+no pilot data yet: omit and replace with a forward-looking statement:
+“The brand will debut at [first pilot race] in [month], with plans to
+serve [X] races in its first season.”</td>
+</tr>
+<tr class="odd">
+<td><strong>Availability + pricing</strong></td>
+<td>The [BRAND] compostable poncho is available now at brand.com and
+Amazon.com. Individual ponchos retail for $9.99, with 3-packs at $24.99
+and 6-packs at $49.99. Race organizers can order custom co-branded
+ponchos starting at 500 units, with composting logistics included. For
+more information, visit brand.com or contact [email].</td>
+<td>Provides the purchase path for both DTC and B2B audiences. Include:
+website, Amazon, and B2B inquiry contact.</td>
+</tr>
+<tr class="even">
+<td><strong>Boilerplate</strong></td>
+<td>About [BRAND]: [BRAND] is a runner-founded sustainability brand
+creating compostable alternatives to single-use plastic at athletic
+events. The company’s flagship product, the BPI-certified compostable
+warmth poncho, replaces garbage bags at marathon start lines and
+composts completely in 12–24 weeks. Founded in [year] by [Founder Name],
+[BRAND] partners with race organizers and composting facilities to
+provide end-to-end sustainable warmth solutions. Learn more at
+brand.com.</td>
+<td>The boilerplate is the brand’s standard description, used in EVERY
+press release and media communication. Write it once, reuse forever.
+Keep it to 3–4 sentences.</td>
+</tr>
+<tr class="odd">
+<td><strong>Media contact</strong></td>
+<td>[Founder Name], Founder and CEO. Email: [email]. Phone: [phone].
+Website: brand.com. Press kit: brand.com/press</td>
+<td>The press kit page (brand.com/press) should contain: the press
+release PDF, high-resolution product photos, founder headshot, brand
+logos (EPS/PNG), FLIR thermal comparison image, pilot race photos (when
+available), and the brand’s boilerplate. Make everything easily
+downloadable so journalists don’t have to ask.</td>
+</tr>
+</tbody>
+</table>
+<p>1.1 Press Release Distribution</p>
+<p>OPTION A (Free): email the press release directly to targeted
+journalists (Sections 2–4 of this document) with a personalized pitch
+email. Attach the press release as a PDF + paste the lead paragraph in
+the email body. This is the HIGHEST-CONVERSION distribution method
+because the pitch is personalized and the journalist receives it
+directly. OPTION B (Paid, $99–$400): use a press release distribution
+service (PR Newswire $99 for startup tier, EIN Presswire $99, or
+Newswire $149) that distributes to: news wire feeds (AP, Reuters),
+online news aggregators, and industry-specific media lists. This
+provides BROAD distribution but low personalization. Best for:
+supplementing direct pitches, appearing on news aggregator sites for SEO
+backlinks, and establishing a press release archive on the wire service.
+OPTION C (Paid, $400–$2,000): PR Newswire full distribution to national
+and regional newsrooms. Appropriate for: major announcements (Series A
+funding, Fortune 500 sponsor partnership, 1M+ ponchos composted
+milestone). Not cost-effective for a product launch press release.
+RECOMMENDATION: Option A (free, direct pitch) as the PRIMARY method. Add
+Option B ($99 wire distribution) for the SEO backlink value and the
+professional appearance of having a wire-distributed release.</p>
+<p>2. Running Media Pitches: 6 Targets</p>
+<p><strong>Running media outlets reach the core DTC customer:
+recreational marathon runners.</strong> A gear review in Runner’s World
+or iRunFar puts the product in front of hundreds of thousands of runners
+who are actively researching gear. The pitch must be: personalized
+(reference the journalist’s recent work), concise (3–4 sentences in the
+email body, press release attached), and offer-laden (free samples,
+founder interview, pilot data).</p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 14%" />
+<col style="width: 33%" />
+<col style="width: 28%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Publication</strong></td>
+<td><strong>Website</strong></td>
+<td><strong>Contact</strong></td>
+<td><strong>Pitch Strategy</strong></td>
+<td><strong>Value</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Runner’s World</strong></td>
+<td>runnersworld.com</td>
+<td>Gear editor, sustainability editor, or news desk</td>
+<td>Pitch as: gear launch for “New Gear” column, OR environmental
+feature for sustainability coverage. Subject: “New: First compostable
+poncho for marathon start lines replaces garbage bags.” Attach: press
+release + 3 high-res images (product on white, lifestyle at start line,
+FLIR comparison).</td>
+<td>DR 85+. If Runner’s World covers the product: the article becomes
+the #1 Google result for “compostable race poncho” and generates 100K+
+reader impressions. LONG SHOT for launch, but ALWAYS worth
+pitching.</td>
+</tr>
+<tr class="odd">
+<td><strong>Outside</strong></td>
+<td>outsideonline.com</td>
+<td>Sustainability editor or gear desk</td>
+<td>Pitch as: sustainability innovation feature. Outside’s audience is
+highly eco-conscious and receptive to products that solve environmental
+problems. Subject: “This compostable poncho could eliminate 60,000 lbs
+of marathon waste per year.”</td>
+<td>DR 85+. Outside’s sustainability coverage reaches an audience that
+OVER-INDEXES on eco-conscious purchasing decisions.</td>
+</tr>
+<tr class="even">
+<td><strong>iRunFar</strong></td>
+<td>irunfar.com</td>
+<td>Gear reviews editor (contact via website)</td>
+<td>Pitch as: gear review specific to ultrarunning and trail running.
+The poncho’s relevance: cold mountain starts, pre-dawn ultras, exposed
+aid station waiting. Subject: “Gear review request: compostable warmth
+poncho for cold race starts.” Send: 2–3 samples for hands-on
+testing.</td>
+<td>iRunFar’s audience is niche but INTENSELY engaged. A positive gear
+review circulates through the ultra/trail community and generates
+word-of-mouth recommendations.</td>
+</tr>
+<tr class="odd">
+<td><strong>Marathon Handbook</strong></td>
+<td>marathonhandbook.com</td>
+<td>Editor or contributor (contact via website)</td>
+<td>Pitch as: gear review or guest article (“The Hidden Waste Problem at
+Marathon Start Lines” — repurpose Blog 1 from P6D). Marathon Handbook
+publishes accessible content for recreational marathon runners.</td>
+<td>DR 50+. High relevance: the site’s entire audience is marathon
+runners preparing for races.</td>
+</tr>
+<tr class="even">
+<td><strong>Canadian Running</strong></td>
+<td>canadianrunningmagazine.com</td>
+<td>Gear editor</td>
+<td>Pitch for Year 2 international expansion (P2F Section 6). Canadian
+running = very cold start lines. Subject: “Compostable poncho designed
+for cold-weather race starts — launching in Canada [Year 2].”</td>
+<td>Sets up Year 2 Canadian market entry. Canadian Running reaches a
+highly relevant audience for the product’s cold-weather value
+proposition.</td>
+</tr>
+<tr class="odd">
+<td><strong>Podium Runner / Women’s Running</strong></td>
+<td>podiumrunner.com, womensrunning.com</td>
+<td>Gear editors</td>
+<td>Pitch as: gear launch or “products we love” feature. Women’s Running
+audience: female runners who are 60%+ of marathon participants and
+over-index on sustainability interest.</td>
+<td>Women represent 57% of half marathon finishers and a growing share
+of marathon finishers. A feature in Women’s Running reaches the majority
+of the target DTC customer base.</td>
+</tr>
+</tbody>
+</table>
+<p>2.1 Running Media Pitch Template</p>
+<p>SUBJECT: Compostable marathon poncho replaces garbage bags — gear
+review / story pitch. BODY: “Hi [Journalist Name], I’m [Founder Name],
+founder of [BRAND]. I’ve been reading your coverage of [recent article
+topic] and thought you might be interested in a new product we’ve
+launched: the first BPI-certified compostable warmth poncho for marathon
+start lines. It replaces the garbage bags that 35,000+ runners wear and
+discard at every major marathon. We just [launched on Amazon / piloted
+at Race Name / composted X lbs]. I’d love to send you samples for review
+or discuss a feature. Attached is our press release with full details.
+Would either interest you? Best, [Founder Name]” ATTACH: press release
+PDF + 3 high-res images. FOLLOW-UP: if no response in 7 days, send ONE
+follow-up: “Just bumping this in case it got buried. Happy to send
+samples anytime.” If no response to the follow-up: move on. Do NOT send
+a 3rd email. Journalists receive 100+ pitches per week — respect their
+inbox.</p>
+<p>3. Sustainability Media Pitches: 5 Targets</p>
+<p><strong>Sustainability media reaches the eco-conscious consumer AND
+the corporate sustainability professional.</strong> A feature in
+GreenBiz or Sustainable Brands is seen by: the CSO at a race sponsor
+(who may fund compostable ponchos per P5E), the sustainability director
+at a race series (who may champion the product internally), and the
+eco-conscious runner who subscribes to TreeHugger (who becomes a DTC
+customer). Sustainability media serves BOTH B2B and DTC conversion.</p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 14%" />
+<col style="width: 33%" />
+<col style="width: 28%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Publication</strong></td>
+<td><strong>Website</strong></td>
+<td><strong>Contact</strong></td>
+<td><strong>Pitch Strategy</strong></td>
+<td><strong>Value</strong></td>
+</tr>
+<tr class="even">
+<td><strong>GreenBiz</strong></td>
+<td>greenbiz.com</td>
+<td>Editorial desk or contributor pitch</td>
+<td>Pitch as: circular economy innovation in the events industry.
+GreenBiz covers: sustainable business models, corporate sustainability,
+and circular economy. Subject: “How a compostable poncho is creating a
+circular economy for marathon start lines.” Angle: the composting
+logistics model (collection, transport, verification) as a BUSINESS
+MODEL innovation, not just a product.</td>
+<td>GreenBiz readers include: corporate sustainability professionals,
+ESG analysts, and green business founders. A feature here reaches the
+SPONSOR audience (P5E) and positions the brand as a circular economy
+leader.</td>
+</tr>
+<tr class="odd">
+<td><strong>TreeHugger</strong></td>
+<td>treehugger.com</td>
+<td>Product reviews or sustainability news desk</td>
+<td>Pitch as: sustainable product review. TreeHugger regularly features
+eco-friendly products with practical applications. Subject: “This
+compostable poncho replaces 35,000 garbage bags at the NYC Marathon.”
+Include: specific race data for maximum impact.</td>
+<td>DR 80+. TreeHugger’s audience is eco-conscious consumers who
+actively seek sustainable alternatives. A feature drives both DTC sales
+and high-authority backlinks for SEO.</td>
+</tr>
+<tr class="even">
+<td><strong>Sustainable Brands</strong></td>
+<td>sustainablebrands.com</td>
+<td>Content editor or community pitch</td>
+<td>Pitch as: brand innovation case study. Sustainable Brands covers:
+brands that are creating sustainable products and business models.
+Subject: “From garbage bags to compost: how [BRAND] is transforming
+marathon start-line waste.”</td>
+<td>Sustainable Brands reaches: brand managers, sustainability
+directors, and marketing professionals. A feature here may attract:
+sponsor interest (brands looking for sustainability activations to
+sponsor) and B2B leads from event organizations.</td>
+</tr>
+<tr class="odd">
+<td><strong>Triple Pundit</strong></td>
+<td>triplepundit.com</td>
+<td>Editor (pitches accepted via email)</td>
+<td>Pitch as: social enterprise / sustainability innovation. Triple
+Pundit covers: companies making money while doing good. Subject: “A
+runner-founded brand is proving that compostable products can scale at
+mass events.”</td>
+<td>Triple Pundit’s audience includes: impact investors, social
+entrepreneurs, and sustainability professionals. A feature here may
+attract: investment interest (angel/pre-seed per P8) and industry
+partnership inquiries.</td>
+</tr>
+<tr class="even">
+<td><strong>Eco-Business</strong></td>
+<td>eco-business.com</td>
+<td>Asia-Pacific focused but covers global sustainability</td>
+<td>Pitch for Year 2 international expansion. Eco-Business’s global
+audience includes: event sustainability professionals in Asia, Europe,
+and Oceania. Subject: “Compostable race poncho launches in the US with
+plans to go global.”</td>
+<td>Long-term positioning for international expansion (P2F Section 6: 8
+international markets targeted for Year 2–3).</td>
+</tr>
+</tbody>
+</table>
+<p>3.1 Sustainability Pitch Angle</p>
+<p>The sustainability pitch is DIFFERENT from the running media pitch.
+Running media cares about: does it keep runners warm, is it easy to use,
+how does it compare to alternatives. Sustainability media cares about:
+what is the environmental IMPACT, what is the BUSINESS MODEL that
+enables circularity, and what SYSTEMIC CHANGE does this represent. Frame
+the pitch as: “A new circular economy model for athletic events” not “a
+new poncho for runners.” The COMPOSTING LOGISTICS are as newsworthy as
+the product itself: collection bins, partner facilities, verification
+certificates, post-race composting reports. This is an END-TO-END
+sustainability story, not just a product launch.</p>
+<p>4. Local News Pitches: 4 Channels</p>
+<p><strong>Local news is the EASIEST media coverage to earn.</strong> A
+national outlet receives 1,000+ pitches per day. A local newspaper’s
+environment reporter receives 10–20. The competition for attention is
+50–100× lower. And the LOCAL angle (“[City] Marathon debuts compostable
+ponchos”) is inherently newsworthy for a local audience that follows the
+marathon as a community event.</p>
+<table>
+<colgroup>
+<col style="width: 9%" />
+<col style="width: 16%" />
+<col style="width: 14%" />
+<col style="width: 33%" />
+<col style="width: 26%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Channel</strong></td>
+<td><strong>Outlets</strong></td>
+<td><strong>Contact</strong></td>
+<td><strong>Pitch Strategy</strong></td>
+<td><strong>Value</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Pilot race city newspapers</strong></td>
+<td>Chicago Tribune, New York Post/Daily News, Boston Globe, Washington
+Post, Philadelphia Inquirer</td>
+<td>Contact: sports desk or environment/sustainability reporter</td>
+<td>Pitch AFTER the pilot race (P5B) with LOCAL data: “[City] Marathon
+debuts compostable ponchos — [X] lbs of waste composted instead of
+landfilled.” Attach: press release + 3–5 race-day photos from the pilot.
+The LOCAL angle makes this newsworthy: it’s a [city] marathon story, not
+a national product launch.</td>
+<td>Local newspapers have: lower pitch competition than national media
+(fewer startups pitching the sports/environment desk), high relevance
+(runners in the city read the paper), and DR 50–80 for SEO backlinks. A
+Chicago Tribune article about composting at the Chicago Marathon reaches
+500K+ Chicagoans.</td>
+</tr>
+<tr class="odd">
+<td><strong>Local TV news</strong></td>
+<td>ABC/NBC/CBS/FOX affiliates in pilot race cities</td>
+<td>Contact: assignment desk or environmental/health reporter</td>
+<td>Pitch as: visual story for race-morning coverage. Offer: founder
+available for on-camera interview at the start line on race morning (4–5
+AM call time for live morning news). Visual hook: the poncho’s
+metallized lining, the tear-away demo, the composting bins, runners in
+ponchos at dawn.</td>
+<td>TV coverage has MASSIVE reach (local affiliates reach 500K–2M+
+viewers) and is FREE (earned media, not paid). The visual nature of the
+product (shimmering metallized lining, satisfying tear-away) is PERFECT
+for TV. Offer B-roll: 30-second pre-produced clip of the tear-away demo
++ composting that the station can use in their segment.</td>
+</tr>
+<tr class="even">
+<td><strong>Local radio</strong></td>
+<td>NPR affiliates, sports radio stations</td>
+<td>Contact: morning show producer or environment segment producer</td>
+<td>Pitch as: 3–5 minute phone interview. Subject: “Local runner-founded
+brand creates compostable poncho to clean up marathon start lines.” NPR
+affiliates are especially receptive to sustainability stories. Sports
+radio: pitch during race week when the marathon is the top local sports
+story.</td>
+<td>Radio reaches: commuters and casual listeners who may not follow
+running media but are aware of the local marathon. A 3-minute NPR
+interview reaches a highly educated, eco-conscious audience. Low effort
+(phone interview from anywhere) with high reach.</td>
+</tr>
+<tr class="odd">
+<td><strong>Local business journals</strong></td>
+<td>Crain’s Chicago Business, NYC Business Journal, Boston Business
+Journal</td>
+<td>Contact: startups/entrepreneurship reporter</td>
+<td>Pitch as: local startup story. Subject: “[City]-based founder
+launches compostable race poncho — pilots at [City] Marathon.” Angle:
+the business model (DTC + B2B + composting logistics), funding status,
+growth targets. Business journals love: first-time founders,
+sustainability businesses, and products with a clear market
+opportunity.</td>
+<td>Business journal coverage reaches: local investors, potential
+mentors/advisors, and professional network contacts. A Crain’s article
+about a Chicago-based startup often leads to: inbound investor interest,
+local accelerator invitations, and speaking opportunities.</td>
+</tr>
+</tbody>
+</table>
+<p>4.1 Local News Timing</p>
+<p>Pitch local news at 3 moments per race: PRE-RACE (2–3 weeks before):
+“[City] Marathon to feature compostable ponchos at start line for the
+first time.” Angle: preview of the innovation coming to the local
+marathon. Offer: founder interview + product demo + composting plan
+overview. RACE DAY: “Founder available for on-camera interview at the
+start line, 4–5 AM.” Offer: B-roll of runners in ponchos, tear-away
+demo, composting bins. Visual story = TV gold. POST-RACE (1–2 days
+after): “[X] compostable ponchos composted at [City] Marathon, diverting
+[Y] lbs from landfill.” Angle: results and data. Attach: post-race
+composting report (P4D Section 4) + race-day photos. The POST-RACE pitch
+has the HIGHEST conversion rate: it’s a results story with real data,
+not a “coming soon” teaser.</p>
+<p>5. PR Coverage Documentation</p>
+<p><strong>Every piece of media coverage is a marketing asset that
+should be: tracked, archived, leveraged, and reported.</strong> A
+TreeHugger article published in Month 3 should still be generating value
+in Month 12 (as an “As Featured In” badge, a B2B pitch slide, a social
+media reshare, and an SEO backlink). The documentation system ensures no
+coverage is forgotten or underutilized.</p>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 81%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Field</strong></td>
+<td><strong>Description</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Publication name</strong></td>
+<td>The outlet that published the coverage</td>
+</tr>
+<tr class="odd">
+<td><strong>Article title + URL</strong></td>
+<td>Full title and permanent URL (for linking and social sharing)</td>
+</tr>
+<tr class="even">
+<td><strong>Publication date</strong></td>
+<td>Date the article was published</td>
+</tr>
+<tr class="odd">
+<td><strong>Type</strong></td>
+<td>Article, review, mention, interview, podcast, TV segment, radio
+segment, social media feature</td>
+</tr>
+<tr class="even">
+<td><strong>Reach estimate</strong></td>
+<td>Publication’s monthly unique visitors (SimilarWeb free tier), TV
+viewership (Nielsen estimates from the station’s media kit), or social
+media followers for social features</td>
+</tr>
+<tr class="odd">
+<td><strong>Domain Rating (DR)</strong></td>
+<td>Ahrefs or Moz domain authority score. Measures the SEO value of the
+backlink. DR 50+ = significant. DR 70+ = excellent. DR 80+ =
+transformative.</td>
+</tr>
+<tr class="even">
+<td><strong>Sentiment</strong></td>
+<td>Positive / Neutral / Negative. Include: key quotes or phrases that
+characterize the coverage tone</td>
+</tr>
+<tr class="odd">
+<td><strong>Backlink status</strong></td>
+<td>Did the article link to brand.com? If yes: link URL, anchor text,
+follow/nofollow status. If no: can we request a link be added? (Politely
+email the journalist: “Thanks for the great piece! Would it be possible
+to add a link to brand.com so readers can find us?”)</td>
+</tr>
+<tr class="even">
+<td><strong>Screenshot / PDF</strong></td>
+<td>Save a screenshot or PDF of the article for: the press kit page,
+investor presentations, B2B pitch deck “As Featured In” slide, and
+social media sharing</td>
+</tr>
+<tr class="odd">
+<td><strong>Follow-up action</strong></td>
+<td>Thank the journalist within 24 hours (email: “Thank you for covering
+[BRAND]! We really appreciate the thoughtful piece. Please don’t
+hesitate to reach out for any future stories — we’re always happy to
+provide data, samples, or interviews.”). Share the article on all social
+channels (with UTM-tagged link). Add the publication logo to the “As
+Featured In” section of the website and B2B materials. Send to all B2B
+prospects in the CRM as a credibility touchpoint.</td>
+</tr>
+</tbody>
+</table>
+<p>5.1 Press Kit Page</p>
+<p>Create brand.com/press with: (1) the most recent press release
+(downloadable PDF), (2) a “Media Coverage” section with links to all
+published articles (updated monthly), (3) a “Download Assets” section
+with: high-res product photos (5–10 images, JPEG + PNG, 300 DPI),
+founder headshot (professional quality), brand logos (EPS + PNG,
+full-color + white + black versions), FLIR thermal comparison image,
+pilot race photos (4–6 best), and infographics from the waste stats
+series (P7B Section 3). (4) A “Media Inquiries” contact: founder’s email
++ phone + response-time commitment (“We respond to all media inquiries
+within 24 hours”). The press kit page should be SELF-SERVICE: a
+journalist should be able to write a story about the brand using ONLY
+the materials on this page, without needing to email the founder.</p>
+<p>6. Awards Submissions: 6 Targets</p>
+<p><strong>Awards provide: external validation (a third party has judged
+the product/brand worthy), press coverage (award announcements generate
+media coverage), and marketing assets (award badges on packaging,
+website, and Amazon listing).</strong> The ROI on awards is uniquely
+high: the submission cost ($0–$200) is minimal, and a win generates
+coverage and credibility worth $5,000–$50,000+ in equivalent
+advertising.</p>
+<table>
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 11%" />
+<col style="width: 38%" />
+<col style="width: 33%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Award</strong></td>
+<td><strong>Timing</strong></td>
+<td><strong>Fit</strong></td>
+<td><strong>Impact</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Green Sports Alliance Innovation Award</strong></td>
+<td>Annual, submission typically Q1–Q2</td>
+<td>Recognizes innovations in sustainable sports. The poncho is a DIRECT
+fit: sustainable innovation for athletic events. Apply after first pilot
+race with data.</td>
+<td>Win provides: GSA endorsement, press release from GSA, trophy/badge
+for marketing, and credibility with sustainability-committed race
+directors and sponsors.</td>
+</tr>
+<tr class="odd">
+<td><strong>Outside Best Gear / Gear of the Year</strong></td>
+<td>Annual, nominations typically mid-year for next year’s
+publication</td>
+<td>Outside Magazine’s prestigious gear awards. Extremely competitive.
+Submit: product samples + data sheet + press release. Must be purchased
+by Outside’s testing team.</td>
+<td>A “Gear of the Year” badge on the product page and Amazon listing is
+the ULTIMATE social proof for outdoor/running consumers. Worth pursuing
+even if the odds are long.</td>
+</tr>
+<tr class="even">
+<td><strong>Running USA Industry Innovation Award</strong></td>
+<td>Annual, at Running USA Conference (February–March)</td>
+<td>Recognizes innovations in the running industry. The poncho is a
+novel product category with measurable environmental impact. Submit:
+product description, pilot data, race director testimonials.</td>
+<td>Running USA awards are seen by: every race director, series
+operator, and running industry professional at the conference. An award
+here = immediate B2B pipeline acceleration.</td>
+</tr>
+<tr class="odd">
+<td><strong>B Corp Certification</strong></td>
+<td>Rolling application, 6–12 month process</td>
+<td>B Corp certification (bcorporation.net) verifies the company meets
+high standards of social and environmental performance, accountability,
+and transparency. Requires: completing the B Impact Assessment (200+
+questions), scoring 80+/200, and legal entity amendment to include
+stakeholder consideration.</td>
+<td>B Corp certification is a LONG-TERM brand asset. It provides:
+consumer trust (B Corp logo on packaging), investor alignment (impact
+investors prefer B Corps), media credibility (B Corp brands get more
+sustainability coverage), and employee/ambassador attraction. Target:
+Year 2 application after the business has 12 months of operational data
+for the assessment.</td>
+</tr>
+<tr class="even">
+<td><strong>1% for the Planet Environmental Partner Award</strong></td>
+<td>Annual, submission to 1% for the Planet</td>
+<td>If the brand joins 1% for the Planet (per P5C Section 5): eligible
+for their partner recognition awards. These celebrate members who
+demonstrate exceptional environmental commitment.</td>
+<td>1% for the Planet awards reach: the entire 1% member network (5,000+
+businesses including Patagonia, Cotopaxi, Klean Kanteen). Exposure to
+this network generates: partnership inquiries, co-marketing
+opportunities, and consumer trust.</td>
+</tr>
+<tr class="odd">
+<td><strong>Fast Company World Changing Ideas</strong></td>
+<td>Annual, applications typically October–December for next year’s
+publication</td>
+<td>Fast Company’s award for products and ideas that are making the
+world better. Category: sustainability, consumer products, or
+sports/wellness. Submit: product description, impact data, founder
+story.</td>
+<td>Fast Company reaches: business leaders, investors, and innovators. A
+“World Changing Ideas” mention generates: national press coverage,
+investor inbound, and mainstream consumer awareness beyond the running
+niche.</td>
+</tr>
+</tbody>
+</table>
+<p>6.1 Awards Submission Calendar</p>
+<p>SEASON 1 (Year 1): submit to Green Sports Alliance Innovation Award
+(after first pilot race data) and Running USA Industry Innovation Award
+(for February–March conference). These are the most relevant and
+achievable for a new brand with pilot data. YEAR 1–2: submit to Outside
+Best Gear (mid-year for next year’s publication), 1% for the Planet
+Environmental Partner (after joining 1% per P5C Section 5), and Fast
+Company World Changing Ideas (October–December). YEAR 2: begin B Corp
+Certification process (6–12 month process, requires 12 months of
+operational data). ONGOING: monitor new awards in the sustainability,
+running, and startup spaces. Many industry awards are announced annually
+with application windows of 2–4 months. Set calendar reminders for each
+award’s application deadline.</p>
+<p>7. Timeline &amp; Budget</p>
+<p><strong>WEEK 16: Draft the press release (Section 1). Build the press
+kit page (brand.com/press) with: release PDF, product photos, founder
+headshot, brand logos, and FLIR image. Research journalist contacts for
+running media (Section 2) and sustainability media (Section 3): find
+name, email, and recent article to reference in the pitch.</strong></p>
+<p><strong>WEEK 18–20: Send press release + personalized pitches to: 6
+running media outlets and 5 sustainability outlets. Follow up at Day 7
+if no response. Ship product samples to journalists who express interest
+(2–3 ponchos + press kit). Research local news contacts in pilot race
+cities.</strong></p>
+<p><strong>WEEK 22–26: Pitch local news in pilot race cities using the
+3-moment strategy (pre-race, race day, post-race per Section 4.1).
+Document all coverage in the PR tracker (Section 5). Update the press
+kit page with links to published articles. Share all coverage on social
+media with UTM-tagged links. Add media badges to website and Amazon
+listing.</strong></p>
+<p><strong>WEEK 26–28: Submit for: Green Sports Alliance Innovation
+Award and Running USA Industry Innovation Award (if timing aligns).
+Compile Year 1 PR report: total coverage, reach, sentiment, backlinks
+acquired, and estimated earned media value. Plan Year 2 PR strategy:
+expand to: Outside Best Gear, Fast Company World Changing Ideas, B Corp
+Certification application.</strong></p>
+<p>BUDGET: Press release wire distribution (Option B): $99 one-time.
+Product samples for journalists (15 outlets × 2–3 ponchos each): $52–$81
+in product COGS + $120–$225 in shipping. Press kit page: $0 (built on
+existing Shopify site). Award application fees: $0–$200 (most are free
+or low-cost). PR tracking tools: $0 (Google Sheet). TOTAL P7C:
+$271–$605. EXPECTED RETURN: if even 2–3 outlets publish coverage:
+100K–1M+ reader impressions, 2–3 DR 50+ backlinks (worth $1,000–$5,000
+in equivalent SEO value), and “As Featured In” badges that enhance every
+other marketing channel.</p>
+<p>8. Conclusion: Earned Media Earns Trust</p>
+<p><strong>A Facebook ad reaches a runner who has never heard of the
+brand and says “buy this.”</strong> A Runner’s World article reaches the
+same runner and says “a credible third party evaluated this product and
+thought it was worth covering.” The difference in trust is immeasurable.
+PR coverage is the credibility accelerator that makes every other
+marketing dollar work harder: the Instagram ad converts better because
+the runner recognizes the brand from an Outside article, the Amazon
+listing converts better because “As Featured In Runner’s World” appears
+in the A+ Content, and the B2B pitch closes faster because the case
+study includes a press clipping.</p>
+<p><strong>PR requires patience.</strong> Most pitches will not result
+in coverage. A 10–20% response rate from targeted pitches is excellent.
+A 5–10% coverage rate (actual published articles from pitches sent) is
+industry-standard. But the 2–3 articles that DO get published from 20
+pitches generate value that no amount of advertising can replicate. One
+Runner’s World feature is worth more than $10,000 in Facebook ads — and
+it lasts forever on their website, forever in Google’s index, and
+forever in the brand’s press kit.</p>
+
+        </div>
+    </div></div>
+<footer style="text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px">
+Sustainable Race-Start Warmth Poncho — D2C Brand GTM Project · 60 Subprojects · 391 Tasks · ~15,500¶ · April 2026
+</footer></body></html>

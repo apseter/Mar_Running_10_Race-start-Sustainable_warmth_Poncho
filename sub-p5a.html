@@ -1,0 +1,728 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>P5A: B2B Pipeline Development — Race Start Warmth GTM</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0e1a;--surface:#111827;--card:#1a2332;--border:#2a3a4e;--accent:#10b981;--accent2:#3b82f6;--text:#e2e8f0;--muted:#94a3b8;--white:#fff;--red:#ef4444;--amber:#f59e0b;--green:#10b981}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+/* Nav */
+nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
+nav .inner{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;max-width:1200px;margin:0 auto}
+nav .brand{font-weight:700;font-size:15px;color:var(--accent)}
+nav .links{display:flex;gap:8px;flex-wrap:wrap}
+nav .links a{color:var(--muted);font-size:13px;padding:4px 10px;border-radius:6px;transition:.2s}
+nav .links a:hover,nav .links a.active{color:var(--white);background:var(--card);text-decoration:none}
+/* Hero */
+.hero{padding:60px 0 40px;text-align:center}
+.hero h1{font-size:2.4em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:1.1em;max-width:700px;margin:0 auto}
+/* Stats bar */
+.stats{display:flex;justify-content:center;gap:32px;padding:24px 0;flex-wrap:wrap}
+.stat{text-align:center}.stat .num{font-size:1.8em;font-weight:800;color:var(--white)}.stat .label{font-size:.75em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+/* Cards */
+.grid{display:grid;gap:16px;margin:24px 0}
+.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}
+.grid-3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;transition:.2s}
+.card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.card h3{font-size:1.1em;margin-bottom:8px}.card p{color:var(--muted);font-size:.9em}
+.card .badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:8px}
+.card .meta{font-size:.8em;color:var(--muted);margin-top:12px}
+/* Section */
+.section{padding:40px 0}.section h2{font-size:1.6em;font-weight:700;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+/* Table */
+table{width:100%;border-collapse:collapse;font-size:.85em;margin:16px 0}
+th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:52px}
+td{padding:8px 12px;border-bottom:1px solid var(--border)}
+tr:hover td{background:rgba(16,185,129,.05)}
+.status-complete{color:var(--green);font-weight:600}.status-not{color:var(--muted)}
+/* Progress */
+.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:8px}
+.progress .bar{height:100%;background:var(--accent);border-radius:3px}
+/* Back link */
+.back{display:inline-block;color:var(--muted);font-size:.9em;margin-bottom:20px}
+.back:hover{color:var(--accent)}
+/* Download */
+.dl-card{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin:8px 0;transition:.2s}
+.dl-card:hover{border-color:var(--accent);text-decoration:none}
+.dl-card .icon{font-size:2em}.dl-card .info h4{color:var(--white);margin-bottom:4px}.dl-card .info p{color:var(--muted);font-size:.85em}
+/* Footer */
+footer{text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px}
+@media(max-width:768px){.stats{gap:16px}.stat .num{font-size:1.3em}nav .links{gap:4px}nav .links a{font-size:11px;padding:3px 6px}.hero h1{font-size:1.6em}}
+
+.doc-content{max-width:900px;margin:0 auto;padding:20px 0}
+.doc-content h1{font-size:1.8em;font-weight:800;color:var(--white);margin:32px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.doc-content h2{font-size:1.4em;font-weight:700;color:var(--accent);margin:28px 0 12px}
+.doc-content h3{font-size:1.15em;font-weight:600;color:var(--accent2);margin:20px 0 10px}
+.doc-content p{margin:8px 0;line-height:1.7}
+.doc-content table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85em}
+.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;border:1px solid var(--border)}
+.doc-content td{padding:8px 12px;border:1px solid var(--border);vertical-align:top}
+.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.doc-content ul,.doc-content ol{margin:8px 0 8px 24px}
+.doc-content li{margin:4px 0;line-height:1.6}
+.doc-content strong{color:var(--white)}
+.doc-content em{color:var(--muted)}
+.doc-content blockquote{border-left:3px solid var(--accent);padding:8px 16px;margin:12px 0;background:var(--card);border-radius:0 8px 8px 0}
+.nav-sub{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 24px;padding:12px 16px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
+.nav-sub a{font-size:.8em;color:var(--muted);padding:4px 10px;border-radius:4px;transition:.2s;white-space:nowrap}
+.nav-sub a:hover,.nav-sub a.active{color:var(--white);background:var(--surface);text-decoration:none}
+</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a></div></div></nav><div class="container">
+    <div style="padding-top:30px">
+        <a href="p5.html" class="back">← 🤝 P5: B2B Sales</a>
+        <div class="nav-sub"><a href="p5.html">🤝 P5 Overview</a><a href="sub-p5a.html" class="active">P5A</a><a href="sub-p5b.html">P5B</a><a href="sub-p5c.html">P5C</a><a href="sub-p5d.html">P5D</a><a href="sub-p5e.html">P5E</a><a href="sub-p5f.html">P5F</a></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px">
+            <div>
+                <span style="background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px">P5A</span>
+                <span style="color:var(--muted);font-size:.85em;margin-left:8px">P5: B2B Sales</span>
+            </div>
+            <a href="files/P5A_B2B_Pipeline_Development.docx" style="font-size:.85em;color:var(--accent);padding:6px 14px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
+        </div>
+        <div class="doc-content">
+            <p><strong>P5A: B2B PIPELINE</strong></p>
+<p><strong>DEVELOPMENT</strong></p>
+<p>Sub-Project P5A | B2B Sales Engine | Weeks 6–12</p>
+<p><em>Complete B2B Sales Playbook: CRM Setup, 3-Tier Prospect
+Segmentation, 3-Email Outreach Sequence, 12-Week Campaign Cadence,
+Sample Kit Protocol, 7-Step Sales Meeting Framework, and Pipeline
+Milestone Targets</em></p>
+<p>March 2026 | Confidential</p>
+<p>Executive Summary</p>
+<p><strong>The B2B pipeline is the revenue engine that drives the
+business from concept to cash.</strong> Every poncho sold through B2B
+was once a name in a CRM that nobody had emailed yet. This document
+transforms the P0C database of 53 researched races into a structured
+outreach system that generates $30K–$100K+ in pipeline value within 12
+weeks. The system is designed for a solo founder: 30 minutes per day of
+outreach activity, supported by templated emails, a structured CRM, and
+a clear cadence that converts strangers into pilot race partners.</p>
+<p><strong>The approach is built on a simple insight:</strong> race
+directors don’t buy products from emails — they buy from SAMPLES. The
+email gets attention. The sample kit (5 ponchos + co-brand mockup) does
+the selling. The discovery call closes the deal. The 3-email sequence is
+designed to get a mailing address for the sample kit, not to close a
+sale over email. The sample does the selling, the follow-up call does
+the closing, and the pilot race does the proving.</p>
+<p>1. CRM Setup: HubSpot Configuration</p>
+<p><strong>The CRM is the operational foundation of B2B sales.</strong>
+Without it, outreach is random, follow-ups are forgotten, and pipeline
+value is invisible. HubSpot’s free CRM provides everything a solo
+founder needs: contact management, deal pipeline, email tracking,
+meeting scheduler, and basic reporting. It takes 2–3 hours to configure
+and saves 5+ hours per week in manual tracking.</p>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 81%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Element</strong></td>
+<td><strong>Specification</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Platform</strong></td>
+<td>HubSpot CRM Free (hubspot.com/crm). Unlimited contacts, pipeline
+management, email tracking, meeting scheduler, basic reporting.
+$0/month. Upgrade to Starter ($20/month) only if: email sequences
+(automated follow-ups), more than 5 email templates, or custom reporting
+are needed.</td>
+</tr>
+<tr class="odd">
+<td><strong>Contact fields</strong></td>
+<td>Standard: name, title, email, phone, company (race name), LinkedIn
+URL. Custom: race date, race city, expected finisher count,
+sustainability commitment level (Champion/Pragmatic/Skeptic per Section
+2), last outreach date, sample kit shipped Y/N, sample kit shipped date,
+pipeline stage, estimated order value, notes.</td>
+</tr>
+<tr class="even">
+<td><strong>Pipeline stages</strong></td>
+<td>11 stages per P4C Section 1.1: INQUIRY → QUALIFIED → QUOTE SENT →
+SAMPLE KIT SENT → LOI SIGNED → PROOF APPROVED → PO RECEIVED → SHIPPED →
+DELIVERED → RACE COMPLETE → REORDER. Each stage has: probability weight
+(10% to 100%), expected time in stage, and required action to
+advance.</td>
+</tr>
+<tr class="odd">
+<td><strong>Deal properties</strong></td>
+<td>Deal name: [Race Name] — [Season Year] (e.g., “NYC Marathon — Fall
+2026”). Deal value: estimated order value (quantity × unit price). Close
+date: expected PO date. Pipeline: B2B Sales. Stage: current stage from
+the 11 above.</td>
+</tr>
+<tr class="even">
+<td><strong>Weekly review cadence</strong></td>
+<td>EVERY MONDAY MORNING (30 minutes): (1) Review pipeline dashboard:
+total deals by stage, total pipeline value, deals with no activity in
+&gt;7 days. (2) Identify stalled deals: any deal sitting in the same
+stage for &gt;2 weeks without founder action. (3) Plan the week’s
+outreach: which contacts to email, which to call, which sample kits to
+ship. (4) Update deal stages for any advances from the previous
+week.</td>
+</tr>
+<tr class="odd">
+<td><strong>Data sources for 100+ contacts</strong></td>
+<td>P0C race director database (53 races already researched). Marathon
+Guide (marathonguide.com) — comprehensive US marathon calendar with race
+director contact info. Running USA (runningusa.org) — industry
+association, member directory. RRCA (rrca.org) — Road Runners Club of
+America, chapter and race listings. LinkedIn: search “race director” +
+city name. Race websites: most list staff/board with email. ACTIVE.com
+race listings (organizer contact often accessible).</td>
+</tr>
+</tbody>
+</table>
+<p>1.1 Contact Import: Building the 100+ List</p>
+<p>START WITH P0C: the 53 races researched in P0C (Race Director
+Discovery, Section 4 database) provide the first 53 contacts. Import
+into HubSpot: race name, director name (if identified), city, estimated
+finisher count, race date, and sustainability tier (from P0C’s
+competitive categorization). ADD 50+ MORE from: MarathonGuide.com
+(filter by: US races, &gt;1,000 finishers, fall/spring dates,
+cold-weather cities), Running USA member directory, RRCA event listings,
+and LinkedIn searches (“race director” + [city name]). For each new
+contact: find the race director’s NAME and EMAIL. Generic “info@” emails
+convert at 3–5× lower rates than personalized emails to named directors.
+Check: race website “About” or “Contact” page, race’s LinkedIn company
+page (staff tab), RaceRaves.com reviews (sometimes list director names),
+or call the race’s general phone number and ask for the race director’s
+email.</p>
+<p>2. Prospect Segmentation: 3 Tiers</p>
+<p><strong>Not all race directors are equally likely to buy.</strong>
+Segmenting prospects by their SUSTAINABILITY COMMITMENT LEVEL
+determines: which email template to use (different messaging for
+Champions vs. Skeptics), which prospects to prioritize (Champions first,
+Skeptics last), and what conversion rate to expect (Champions 60–80%,
+Skeptics 10–20%).</p>
+<table>
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 21%" />
+<col style="width: 8%" />
+<col style="width: 14%" />
+<col style="width: 45%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Tier</strong></td>
+<td><strong>Identification Criteria</strong></td>
+<td><strong>% of Prospects</strong></td>
+<td><strong>Conversion Probability</strong></td>
+<td><strong>Outreach Strategy</strong></td>
+</tr>
+<tr class="even">
+<td><strong>CHAMPION (Active Green)</strong></td>
+<td>Race already has visible sustainability initiatives: zero-waste
+goals, recycling programs, plastic-free pledges, compost stations,
+reusable cup programs, partnership with environmental orgs</td>
+<td>30–40% of prospects</td>
+<td>HIGHEST conversion probability (60–80%). These directors are
+actively LOOKING for sustainable alternatives to garbage bags and Mylar
+blankets. They will respond to: sustainability data (waste diversion
+metrics), BPI certification, composting logistics support, and the brand
+story.</td>
+<td>Lead with sustainability: “We saw that [Race Name] has committed to
+reducing waste by [X]%. Our BPI-certified compostable poncho eliminates
+start-line garbage bag waste entirely.” Include P0A waste data specific
+to their race (or city) if available.</td>
+</tr>
+<tr class="odd">
+<td><strong>PRAGMATIC (Cost-Conscious)</strong></td>
+<td>Race cares about sustainability but prioritizes cost, logistics, and
+operational simplicity. May use Heatsheets or garbage bags currently.
+Open to switching if the alternative is competitively priced and easy to
+implement.</td>
+<td>40–50% of prospects</td>
+<td>MODERATE conversion probability (30–50%). These directors need to
+see: competitive pricing vs. Heatsheets (P0B Section 4: $4.55/blanket
+vs. $3.50–$5.00/poncho), operational simplicity (we handle co-branding,
+composting logistics, delivery), and proof that it works (pilot race
+case studies, runner satisfaction data).</td>
+<td>Lead with value + simplicity: “We provide a compostable warmth
+poncho at competitive pricing, and we handle everything: co-branding
+with your logo, delivery to your venue, and composting logistics. Zero
+operational burden for your team.”</td>
+</tr>
+<tr class="even">
+<td><strong>SKEPTIC (Status Quo)</strong></td>
+<td>Race has no visible sustainability initiatives. Uses garbage bags or
+nothing. Race director may be resistant to change, skeptical of
+compostable products (“does it actually work?”), or constrained by
+budget.</td>
+<td>10–20% of prospects</td>
+<td>LOW conversion probability (10–20%) in Season 1. These directors
+need: proof of performance (thermal test data, runner testimonials from
+pilot races), zero risk (free pilot offer, no commitment beyond trial),
+and peer validation (“[Other Race Name] just switched to compostable
+ponchos — here’s what they said”).</td>
+<td>Lead with proof + zero risk: “Would you be open to a small pilot?
+We’ll send 500 ponchos at cost, handle the composting, and share the
+results with you. No commitment beyond the pilot.” Prioritize Skeptics
+only AFTER Champions and Pragmatics have been worked.</td>
+</tr>
+</tbody>
+</table>
+<p>2.1 How to Identify Sustainability Commitment</p>
+<p>For each contact: spend 5 minutes on the race’s website and social
+media. CHAMPION signals: sustainability page or tab on the website,
+partnership with environmental organizations (Green Sports Alliance, 1%
+for the Planet), zero-waste or carbon-neutral goals, compostable cups or
+reusable alternatives at aid stations, press releases about
+environmental initiatives, race has won a sustainability award.
+PRAGMATIC signals: general mention of “eco-friendly” or “green” without
+specific programs, recycling bins at the event but no composting, no
+dedicated sustainability page. SKEPTIC signals: no mention of
+sustainability on website or social media, known use of garbage bags at
+start line, no visible environmental partnerships.</p>
+<p>3. Email Outreach Templates: 3-Email Sequence</p>
+<p><strong>The 3-email sequence is designed for ONE goal: get the sample
+kit into the race director’s hands.</strong> Email 1 introduces the
+product and offers a call. Email 2 follows up and offers free samples.
+Email 3 proposes a zero-risk pilot and adds social proof. After 3 emails
+with no response, the contact goes dormant. No 4th email.</p>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width:50%">
+<col style="width: 35%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Template</strong></td>
+<td><strong>Content</strong></td>
+<td><strong>Usage Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Email 1: Cold Introduction</strong></td>
+<td>SUBJECT: Replacing garbage bags at [Race Name]’s start line —
+compostable alternative Hi [First Name], I’m [Founder Name], founder of
+[BRAND]. I noticed [Race Name] is one of the top [marathon/half/10K]
+events in [City]. I wanted to introduce a product we’ve developed
+specifically for race start lines: a compostable warmth poncho that
+keeps runners warm in the corral and composts after the race. No more
+garbage bags littering the course. Quick specs: • BPI-certified
+compostable (ASTM D6400) • Metallized cellulose lining for genuine
+warmth • Custom co-branding with your race logo (500-unit minimum) • We
+handle composting logistics at the venue • Competitively priced vs.
+Heatsheets Would you be open to a 15-minute call to see if this might be
+a fit for [Race Name]? I’d also love to send you a free sample kit with
+5 ponchos to feel the product firsthand. Best, [Founder Name] [Title],
+[BRAND] [Phone] | [brand.com]</td>
+<td>SEND TO: all 100+ contacts in the CRM. TIMING: Tuesday or Wednesday
+morning, 8–10 AM recipient’s time zone (highest open rates for B2B
+email). PERSONALIZATION: the [Race Name], [City], and
+[marathon/half/10K] fields MUST be customized for each recipient.
+Generic emails with “your race” instead of the race name convert at 5×
+lower rates. FOLLOW-UP: if no response in 5 business days, send Email
+2.</td>
+</tr>
+<tr class="odd">
+<td><strong>Email 2: Follow-Up + Sample Offer</strong></td>
+<td>SUBJECT: Re: Compostable poncho for [Race Name] — happy to send a
+free sample Hi [First Name], Just following up on my note last week
+about our compostable warmth poncho for race start lines. I know you’re
+busy, so I’ll keep this short: I’d love to mail you a sample kit (5
+ponchos + a mockup of what your race poncho could look like with your
+logo) so you can see and feel the product. No obligation. Shall I send
+one to your office? If so, just reply with your mailing address and I’ll
+have it out within 48 hours. Best, [Founder Name]</td>
+<td>SEND TO: contacts who did NOT respond to Email 1. TIMING: 5 business
+days after Email 1. KEY MOVE: the sample kit offer. This converts the
+email from “read and decide” to “read and receive a gift.” Many
+directors respond to the sample offer even if they wouldn’t have
+responded to a call request. The sample does the selling. FOLLOW-UP: if
+no response in 7 business days, send Email 3.</td>
+</tr>
+<tr class="even">
+<td><strong>Email 3: Pilot Proposal + Social Proof</strong></td>
+<td>SUBJECT: Quick idea for [Race Name] — zero-cost pilot Hi [First
+Name], Last touch on this — I wanted to share one more thought. We’re
+offering a limited number of races a zero-risk pilot for Fall 2026:
+we’ll provide 500 compostable ponchos at cost ($3.50/unit, $1,750
+total), handle the composting logistics at your venue, and produce a
+post-race sustainability report you can share with your board and
+sponsors. [IF PILOT CASE STUDY EXISTS: “We just completed a pilot with
+[Race Name], where [X]% of ponchos were collected and composted,
+diverting [Y] lbs from landfill. Here’s what their race director said:
+[quote].”] If this sounds interesting, I’d love a quick 10-minute call
+to see if the timing works for [Race Name]. Either way, thanks for your
+time and best of luck with the [Year] race! Best, [Founder Name]</td>
+<td>SEND TO: contacts who did NOT respond to Emails 1 and 2. TIMING: 7
+business days after Email 2. KEY MOVE: the zero-cost pilot offer. This
+removes every objection: “too expensive” (at cost), “too risky” (500
+units, not 5,000), “too much work” (we handle composting). Social proof
+(case study) adds peer validation. AFTER EMAIL 3: if no response, move
+contact to “DORMANT” in CRM. Re-engage in 3 months with new content
+(case study, press mention, product update). Do NOT send a 4th cold
+email — 3 touches is the maximum before the outreach becomes
+intrusive.</td>
+</tr>
+</tbody>
+</table>
+<p>3.1 Email Deliverability Best Practices</p>
+<p>To avoid spam filters and maximize deliverability: (1) Send from a
+professional email address (founder@brand.com, not a gmail.com). Set up:
+SPF, DKIM, and DMARC records on the domain (DNS settings, 15 minutes
+with domain registrar support). (2) Warm the email domain: send 10–20
+emails/day for the first 2 weeks, then increase to 30–50/day. Do NOT
+send 100 emails on Day 1 — the domain will be flagged. (3) Keep emails
+short (&lt;200 words). Long emails trigger spam filters and don’t get
+read. (4) Avoid spam trigger words: “free,” “guarantee,” “limited time
+offer,” excessive exclamation marks, ALL CAPS. (5) Include an
+unsubscribe link (HubSpot adds this automatically — CAN-SPAM
+compliance). (6) Personalize: emails with the recipient’s first name and
+company name in the subject line have 26–50% higher open rates.</p>
+<p>4. Outreach Campaign: 12-Week Cadence</p>
+<p><strong>The 12-week cadence processes 100+ contacts through the
+3-email sequence in 5 batches.</strong> Champions are contacted first
+(Weeks 1–2), Pragmatics next (Weeks 3–5), and Skeptics last (Weeks 6–7).
+Weeks 8–12 shift from outreach to conversion: following up with engaged
+contacts, conducting meetings, and closing pilot agreements.</p>
+<table>
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 28%" />
+<col style="width: 26%" />
+<col style="width: 34%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Period</strong></td>
+<td><strong>Activity</strong></td>
+<td><strong>Expected Results</strong></td>
+<td><strong>Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Week 1–2</strong></td>
+<td>Send Email 1 (Cold Introduction) to Batch A: 20 CHAMPION
+contacts</td>
+<td>Target: 30–40% open rate, 8–12% reply rate (2–3 replies from 20
+emails)</td>
+<td>Personalize every email. Research the race’s website for
+sustainability language before writing. Reference specific
+sustainability initiatives in the email.</td>
+</tr>
+<tr class="odd">
+<td><strong>Week 3</strong></td>
+<td>Send Email 2 (Sample Offer) to Batch A non-responders. Send Email 1
+to Batch B: 20 PRAGMATIC contacts.</td>
+<td>Ship sample kits within 48 hours of “send me samples” replies.
+Follow up by email 5 days after kit delivery: “Did you get a chance to
+open the sample kit?”</td>
+<td>Track: emails sent, opened, replied, sample kits shipped, meetings
+booked.</td>
+</tr>
+<tr class="even">
+<td><strong>Week 4–5</strong></td>
+<td>Send Email 3 (Pilot Proposal) to Batch A non-responders. Send Email
+2 to Batch B non-responders. Send Email 1 to Batch C: 20 PRAGMATIC
+contacts.</td>
+<td>Continue shipping sample kits. Begin scheduling discovery
+calls/meetings with interested directors.</td>
+<td>Expect: 5–10 total interested contacts from 40 emails sent (12–25%
+engagement rate across all 3 touches).</td>
+</tr>
+<tr class="odd">
+<td><strong>Week 6–7</strong></td>
+<td>Complete Email 3 to remaining non-responders. Send Email 1 to Batch
+D: 20 SKEPTIC contacts. Send Email 1 to Batch E: 20 mixed/new
+contacts.</td>
+<td>100 contacts now outreached. Pipeline should show: 10–20 contacts in
+QUALIFIED or later stages, 5–10 sample kits shipped, 3–5 meetings
+scheduled or completed.</td>
+<td>Review pipeline value. Target: $30K+ pipeline (Bootstrap) or $100K+
+(Full Launch) by end of Week 12.</td>
+</tr>
+<tr class="even">
+<td><strong>Week 8–12</strong></td>
+<td>Ongoing: follow up with all active pipeline contacts. Ship
+additional sample kits. Conduct sales meetings (Section 6). Convert
+meetings to LOIs and POs.</td>
+<td>Focus shifts from outreach (top of funnel) to conversion
+(middle/bottom of funnel). New outreach only for contacts discovered
+via: referrals from existing contacts, RRCA Convention networking, expo
+encounters, LinkedIn inbound.</td>
+<td>Close 2–5 pilot race agreements by Week 16 (handoff to P5B Pilot
+Race Execution).</td>
+</tr>
+</tbody>
+</table>
+<p>4.1 LinkedIn Outreach (Parallel Channel)</p>
+<p>In PARALLEL with email outreach: connect with race directors on
+LinkedIn. (1) Send a personalized connection request: “Hi [First Name],
+I’m building a compostable warmth poncho for marathon start lines and
+would love to connect with race directors who are thinking about
+sustainability. Great to see what you’re doing with [Race Name].” (2)
+After they accept: send a brief DM with the same value proposition as
+Email 1 (but shorter, 2–3 sentences). (3) If they engage: transition to
+email for the formal sample kit offer and meeting scheduling. LinkedIn
+is especially effective for: directors who don’t respond to email
+(different channel, different attention), directors at large races with
+email gatekeepers (LinkedIn bypasses the general inbox), and
+younger/tech-savvy directors active on LinkedIn.</p>
+<p>5. Sample Kit Shipping Protocol</p>
+<p><strong>The sample kit is the B2B conversion weapon.</strong> A race
+director who opens a branded kraft box, pulls out a poncho, feels the
+metallized lining, tears the perforated tab, and sees their race’s logo
+on a professional co-brand mockup is 3–5× more likely to order than one
+who only reads an email. The kit sells the product through TOUCH, not
+words.</p>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 42%" />
+<col style="width: 42%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Element</strong></td>
+<td><strong>Specification</strong></td>
+<td><strong>Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Trigger</strong></td>
+<td>Contact replies to outreach with interest, requests samples, or
+agrees to a meeting</td>
+<td>Ship a sample kit BEFORE the meeting if timeline allows. The
+director should have the physical product in hand during the
+call/meeting.</td>
+</tr>
+<tr class="odd">
+<td><strong>Kit contents</strong></td>
+<td>Per P3B Section 6: 5 ponchos in full packaging, co-brand mockup, B2B
+data sheet, pricing sheet, BPI cert/status letter, composting logistics
+guide, FLIR thermal card, QR code card, in branded kraft box with
+handwritten thank-you note.</td>
+<td>The kit costs $15–$25 in product + materials. The co-brand mockup
+showing THEIR race logo is the #1 conversion tool. If their logo is
+available online: create the mockup BEFORE shipping the kit.</td>
+</tr>
+<tr class="even">
+<td><strong>Shipping</strong></td>
+<td>USPS Priority Mail (2–3 day, $8–$15) or UPS Ground (3–5 day,
+$10–$20). Ship within 48 hours of request — speed signals
+professionalism and urgency. Include tracking and email the tracking
+number to the director.</td>
+<td>48-hour shipping turnaround is a stated competitive advantage. If it
+takes a week to send samples, the director assumes the whole operation
+is slow.</td>
+</tr>
+<tr class="odd">
+<td><strong>Follow-up</strong></td>
+<td>Day 1 after delivery: email “Your sample kit should have arrived
+today! Let me know if you have any questions after checking out the
+ponchos.” Day 5: email or call “Did you get a chance to open the kit?
+I’d love to hear your thoughts and discuss how this could work for [Race
+Name].” Day 10: if no response, one more attempt: “Just wanted to make
+sure the samples arrived safely. Happy to jump on a quick call whenever
+it’s convenient.”</td>
+<td>If no response after 3 follow-ups: move to DORMANT in CRM. The kit
+is a long-term marketing asset — the director may circle back months
+later when planning next season.</td>
+</tr>
+<tr class="even">
+<td><strong>Budget</strong></td>
+<td>40 kits × $15–$25/kit = $600–$1,000 in product + materials. 40 kits
+× $8–$15 shipping = $320–$600. TOTAL: $920–$1,600 for 40 sample kits.
+Expected conversion: 8–12 kits result in meetings, 3–5 result in pilot
+agreements. Cost per pilot: $184–$533. Compare to: industry average B2B
+customer acquisition cost for CPG = $200–$500. Sample kits are
+cost-competitive with digital marketing for B2B acquisition.</td>
+<td>Track: kits shipped, kits resulting in meetings, meetings resulting
+in POs. This is the B2B funnel conversion data.</td>
+</tr>
+</tbody>
+</table>
+<p>6. B2B Sales Meeting: 7-Step Framework</p>
+<p><strong>15 minutes is enough.</strong> Race directors are busy people
+managing a volunteer organization with a tiny staff. A 15-minute meeting
+that is focused, prepared, and respectful of their time converts better
+than a 45-minute presentation that meanders. The 7-step framework keeps
+the meeting tight: 2 minutes rapport, 5 minutes listening, 5 minutes
+presenting, 3 minutes closing.</p>
+<table>
+<colgroup>
+<col style="width: 7%" />
+<col style="width: 92%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Step</strong></td>
+<td><strong>Framework</strong></td>
+</tr>
+<tr class="even">
+<td><strong>1. Research (pre-meeting, 15 min)</strong></td>
+<td>Before every meeting: review the race’s website, social media, and
+sustainability page. Note: race size (finishers), current start-line
+protocol (garbage bags? Heatsheets? nothing?), sustainability
+initiatives, sponsors, race date, and any press coverage of waste
+issues. Check: did the director open the sample kit? (HubSpot email
+tracking shows if the follow-up email was opened.)</td>
+</tr>
+<tr class="odd">
+<td><strong>2. Open (2 min)</strong></td>
+<td>Thank them for their time. Establish rapport: “I saw that [Race
+Name] had [X] finishers last year — congratulations, that’s incredible
+growth.” Or: “I noticed your sustainability commitment on the race
+website — that’s great to see.” Set the agenda: “I’d love to learn about
+how your start line currently works, share what we’re building, and see
+if there’s a fit.”</td>
+</tr>
+<tr class="even">
+<td><strong>3. Discovery (5 min)</strong></td>
+<td>Ask 3–4 questions: “What do runners currently use for warmth at the
+start line?” “How does the post-race cleanup work at the start area?”
+“Have you considered compostable alternatives before? Any concerns?”
+“What would a successful pilot look like for you?” LISTEN. The answers
+reveal: their pain points (waste, cleanup cost, runner complaints),
+their constraints (budget, logistics, committee approvals), and their
+decision process (sole decision vs. board approval).</td>
+</tr>
+<tr class="odd">
+<td><strong>4. Present (5 min)</strong></td>
+<td>Share the product: “Let me show you what we’ve built.” If on Zoom:
+share screen with the co-brand mockup showing THEIR logo. Walk through:
+material technology (metallized cellulose + PLA spunbond), warmth
+performance (FLIR thermal images), tear-away demo (if in person: tear a
+sample — the sound and ease are the wow moment), composting lifecycle
+(4-step icon sequence), BPI certification, and pricing (“at
+$3.50–$5.00/unit, it’s competitive with Heatsheets at $4.55”).</td>
+</tr>
+<tr class="even">
+<td><strong>5. Address objections (3 min)</strong></td>
+<td>Common objections and responses: “It’s too expensive” → “At
+$3.50/unit for 3,000+, we’re actually below Heatsheets. And we handle
+composting logistics, which saves your ops team time.” “Does it actually
+keep runners warm?” → “Here’s the FLIR thermal data: 8–12°F warmer than
+bare skin at 40°F. Runners describe it as genuinely warm.” “We don’t
+have composting at our venue” → “We handle that entirely. We partner
+with [local composting facility] and coordinate pickup day-of.” “What if
+runners don’t use them?” → “In pilot races, 85–90% of distributed
+ponchos were worn. Runners prefer these to garbage bags.” “Our
+board/committee needs to approve” → “Happy to present to your board or
+provide a one-page summary they can review. Would a pilot at reduced
+volume make the approval easier?”</td>
+</tr>
+<tr class="odd">
+<td><strong>6. Close (2 min)</strong></td>
+<td>Match the close to the prospect’s readiness: READY TO ORDER: “Shall
+I send over a quote for [quantity] units with your co-brand? I can have
+a mockup with your logo within 24 hours.” INTERESTED BUT NOT READY:
+“Would a small pilot make sense? 500 units at cost, we handle
+everything, and you see the results before committing.” NEEDS BOARD
+APPROVAL: “I’ll send you a 1-page pilot proposal you can share with your
+board. What’s the timeline for their next meeting?” TIMING NOT RIGHT:
+“Totally understand. Can I follow up in [month] when you’re planning for
+[next season]? I’ll send you our pilot case study when it’s ready.”</td>
+</tr>
+<tr class="even">
+<td><strong>7. Follow-up (within 24 hours)</strong></td>
+<td>Send thank-you email: “Great speaking with you today! As discussed:
+[summary of agreed next steps]. I’ll [send quote / send pilot proposal /
+follow up in X months].” Attach: co-brand mockup (if created), 1-page
+B2B data sheet, pilot proposal (if applicable). Update CRM: advance deal
+stage, log notes from the conversation, set next follow-up date.</td>
+</tr>
+</tbody>
+</table>
+<p>7. Pipeline Tracker: Milestone Targets</p>
+<p><strong>The pipeline tracker answers ONE question every Monday: are
+we on track?</strong> Targets below define what “on track” looks like at
+Weeks 8, 12, 16, and 24. If actual pipeline is below these targets:
+increase outreach volume (more contacts per week) or improve conversion
+(refine email copy, improve sample kit, adjust pricing).</p>
+<table>
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 83%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Milestone</strong></td>
+<td><strong>Targets</strong></td>
+</tr>
+<tr class="even">
+<td><strong>By Week 8</strong></td>
+<td>OUTREACH: 40+ contacts emailed (Batches A + B). SAMPLE KITS: 5–10
+shipped. MEETINGS: 2–3 scheduled. PIPELINE VALUE: $10K–15K (2–3 deals in
+early stages).</td>
+</tr>
+<tr class="odd">
+<td><strong>By Week 12</strong></td>
+<td>OUTREACH: 80–100+ contacts emailed (all batches). SAMPLE KITS: 15–20
+shipped. MEETINGS: 8–12 completed. PIPELINE VALUE: $30K+ (Bootstrap) or
+$60K+ (Moderate). LOIS: 2–4 signed.</td>
+</tr>
+<tr class="even">
+<td><strong>By Week 16</strong></td>
+<td>OUTREACH: 100+ contacts outreached. SAMPLE KITS: 25–30 shipped.
+MEETINGS: 15+ completed. PIPELINE VALUE: $50K+ (Bootstrap) or $100K+
+(Full Launch). POS: 2–5 signed for pilot races. HANDOFF to P5B: pilot
+race agreements confirmed.</td>
+</tr>
+<tr class="odd">
+<td><strong>By Week 24 (Season 1 close)</strong></td>
+<td>TOTAL RACES SERVED: 3–8 (pilot + early adopter). TOTAL B2B REVENUE:
+$15K–$50K (Bootstrap) or $40K–$120K (Full Launch). REORDER RATE: target
+80%+ of pilot races commit to next season. REFERRALS: 3–5 new contacts
+generated from satisfied race directors.</td>
+</tr>
+</tbody>
+</table>
+<p>7.1 Pipeline Value Calculation</p>
+<p>Pipeline value = sum of all active deals × probability weight by
+stage. Example: Deal A (NYC Marathon, 5,000 units × $4.50 = $22,500
+value, stage LOI SIGNED, 50% probability) = $11,250 weighted. Deal B
+(Detroit Marathon, 2,000 units × $4.00 = $8,000 value, stage QUALIFIED,
+20% probability) = $1,600 weighted. Deal C (Local 5K, 500 units × $5.00
+= $2,500, stage PO RECEIVED, 95% probability) = $2,375 weighted. TOTAL
+WEIGHTED PIPELINE: $15,225. This is the expected revenue if all deals
+progress as estimated. Track weekly. If weighted pipeline drops below
+target: re-energize outreach or revisit stalled deals.</p>
+<p>8. Timeline &amp; Budget</p>
+<p><strong>WEEK 6: Set up HubSpot CRM. Import 53 contacts from P0C
+database. Begin sourcing additional contacts to reach 100+. Configure
+pipeline stages, contact fields, and deal properties. Create branded
+email signature.</strong></p>
+<p><strong>WEEK 7–8: Segment all contacts into
+Champion/Pragmatic/Skeptic tiers. Finalize 3 email templates. Set up
+email domain authentication (SPF, DKIM, DMARC). Warm the domain with
+10–20 personal emails/day. Assemble 40 sample kits (per P3B Section
+6).</strong></p>
+<p><strong>WEEK 8–9: Launch Email 1 to Batch A (20 Champions). Begin
+personalized LinkedIn connection requests. Ship first sample kits within
+48 hours of requests.</strong></p>
+<p><strong>WEEK 10–12: Complete all 5 batches of outreach (100+
+contacts). Ship 15–20 sample kits. Conduct 8–12 sales meetings. Target:
+$30K–$60K weighted pipeline. Secure 2–4 LOIs for pilot
+races.</strong></p>
+<p>BUDGET: HubSpot CRM: $0/month (free tier). Email domain setup: $0
+(included with domain hosting). Sample kits: $920–$1,600 for 40 kits
+(product + shipping). LinkedIn Premium (optional): $30–$60/month (for
+InMail if needed). Zoom: $0 (free for 40-minute meetings). TOTAL P5A:
+$920–$1,600 + $0–$60/month.</p>
+<p>9. Conclusion: Pipeline Is Patience Multiplied by Process</p>
+<p><strong>B2B sales for a new product from a new brand is a patience
+game.</strong> Most race directors will not respond to the first email.
+Many will not respond to the second. Some will open the sample kit, feel
+the product, and still not call back for three months. This is normal.
+The CRM exists to ensure that no conversation is forgotten, no follow-up
+is missed, and no interested director falls through the cracks because
+the founder got busy.</p>
+<p><strong>The conversion math:</strong> 100 contacts → 30–40 open Email
+1 → 12–20 engage (reply, request samples, connect on LinkedIn) → 8–12
+attend a meeting → 3–5 sign pilot agreements. That’s a 3–5%
+contact-to-pilot rate. It sounds low, but 3 pilot races with 2,000 units
+each = 6,000 B2B units at $4.00 = $24,000 in Year 1 B2B revenue from 100
+emails and 40 sample kits. The ROI is extraordinary if the founder shows
+up consistently, follows up promptly, and lets the product do the
+talking.</p>
+
+        </div>
+    </div></div>
+<footer style="text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px">
+Sustainable Race-Start Warmth Poncho — D2C Brand GTM Project · 60 Subprojects · 391 Tasks · ~15,500¶ · April 2026
+</footer></body></html>

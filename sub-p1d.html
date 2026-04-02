@@ -1,0 +1,1108 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>P1D: Brand Film Visual Content — Race Start Warmth GTM</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0e1a;--surface:#111827;--card:#1a2332;--border:#2a3a4e;--accent:#10b981;--accent2:#3b82f6;--text:#e2e8f0;--muted:#94a3b8;--white:#fff;--red:#ef4444;--amber:#f59e0b;--green:#10b981}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+/* Nav */
+nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
+nav .inner{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;max-width:1200px;margin:0 auto}
+nav .brand{font-weight:700;font-size:15px;color:var(--accent)}
+nav .links{display:flex;gap:8px;flex-wrap:wrap}
+nav .links a{color:var(--muted);font-size:13px;padding:4px 10px;border-radius:6px;transition:.2s}
+nav .links a:hover,nav .links a.active{color:var(--white);background:var(--card);text-decoration:none}
+/* Hero */
+.hero{padding:60px 0 40px;text-align:center}
+.hero h1{font-size:2.4em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:1.1em;max-width:700px;margin:0 auto}
+/* Stats bar */
+.stats{display:flex;justify-content:center;gap:32px;padding:24px 0;flex-wrap:wrap}
+.stat{text-align:center}.stat .num{font-size:1.8em;font-weight:800;color:var(--white)}.stat .label{font-size:.75em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+/* Cards */
+.grid{display:grid;gap:16px;margin:24px 0}
+.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}
+.grid-3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;transition:.2s}
+.card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.card h3{font-size:1.1em;margin-bottom:8px}.card p{color:var(--muted);font-size:.9em}
+.card .badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:8px}
+.card .meta{font-size:.8em;color:var(--muted);margin-top:12px}
+/* Section */
+.section{padding:40px 0}.section h2{font-size:1.6em;font-weight:700;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+/* Table */
+table{width:100%;border-collapse:collapse;font-size:.85em;margin:16px 0}
+th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:52px}
+td{padding:8px 12px;border-bottom:1px solid var(--border)}
+tr:hover td{background:rgba(16,185,129,.05)}
+.status-complete{color:var(--green);font-weight:600}.status-not{color:var(--muted)}
+/* Progress */
+.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:8px}
+.progress .bar{height:100%;background:var(--accent);border-radius:3px}
+/* Back link */
+.back{display:inline-block;color:var(--muted);font-size:.9em;margin-bottom:20px}
+.back:hover{color:var(--accent)}
+/* Download */
+.dl-card{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin:8px 0;transition:.2s}
+.dl-card:hover{border-color:var(--accent);text-decoration:none}
+.dl-card .icon{font-size:2em}.dl-card .info h4{color:var(--white);margin-bottom:4px}.dl-card .info p{color:var(--muted);font-size:.85em}
+/* Footer */
+footer{text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px}
+@media(max-width:768px){.stats{gap:16px}.stat .num{font-size:1.3em}nav .links{gap:4px}nav .links a{font-size:11px;padding:3px 6px}.hero h1{font-size:1.6em}}
+
+.doc-content{max-width:900px;margin:0 auto;padding:20px 0}
+.doc-content h1{font-size:1.8em;font-weight:800;color:var(--white);margin:32px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.doc-content h2{font-size:1.4em;font-weight:700;color:var(--accent);margin:28px 0 12px}
+.doc-content h3{font-size:1.15em;font-weight:600;color:var(--accent2);margin:20px 0 10px}
+.doc-content p{margin:8px 0;line-height:1.7}
+.doc-content table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85em}
+.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;border:1px solid var(--border)}
+.doc-content td{padding:8px 12px;border:1px solid var(--border);vertical-align:top}
+.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.doc-content ul,.doc-content ol{margin:8px 0 8px 24px}
+.doc-content li{margin:4px 0;line-height:1.6}
+.doc-content strong{color:var(--white)}
+.doc-content em{color:var(--muted)}
+.doc-content blockquote{border-left:3px solid var(--accent);padding:8px 16px;margin:12px 0;background:var(--card);border-radius:0 8px 8px 0}
+.nav-sub{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 24px;padding:12px 16px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
+.nav-sub a{font-size:.8em;color:var(--muted);padding:4px 10px;border-radius:4px;transition:.2s;white-space:nowrap}
+.nav-sub a:hover,.nav-sub a.active{color:var(--white);background:var(--surface);text-decoration:none}
+</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a></div></div></nav><div class="container">
+    <div style="padding-top:30px">
+        <a href="p1.html" class="back">← 🎨 P1: Brand Development</a>
+        <div class="nav-sub"><a href="p1.html">🎨 P1 Overview</a><a href="sub-p1a.html">P1A</a><a href="sub-p1b.html">P1B</a><a href="sub-p1c.html">P1C</a><a href="sub-p1d.html" class="active">P1D</a><a href="sub-p1e.html">P1E</a><a href="sub-p1.html">P1</a></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px">
+            <div>
+                <span style="background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px">P1D</span>
+                <span style="color:var(--muted);font-size:.85em;margin-left:8px">P1: Brand Development</span>
+            </div>
+            <a href="files/P1D_Brand_Film_Visual_Content.docx" style="font-size:.85em;color:var(--accent);padding:6px 14px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
+        </div>
+        <div class="doc-content">
+            <p><strong>P1D: BRAND FILM &amp;</strong></p>
+<p><strong>VISUAL CONTENT</strong></p>
+<p>Sub-Project P1D | Brand Development &amp; Identity | Weeks 8–10</p>
+<p><em>Complete Production Playbook: Brand Film Storyboard, Product
+Photography, Race Documentation, B2B Pitch Deck, and Video Asset
+Library</em></p>
+<p>March 2026 | Confidential</p>
+<p>Executive Summary</p>
+<p><strong>Visual content is the #1 conversion driver across every
+channel.</strong> Amazon listings with lifestyle images convert 18%
+higher. Brand films drive 6M+ views for Tracksmith. Race-day photography
+provides the most powerful B2B sales collateral — a single image of
+60,000 discarded sweatshirts says more than any data sheet.</p>
+<p><strong>This document provides:</strong> scene-by-scene storyboards
+for 90-second and 60-second brand films at 4 production tiers ($0–$50K),
+a 9-shot product photography plan optimized for Amazon’s 2026
+requirements (2000px, RGB 255,255,255 white, 85% frame fill), a 7-moment
+race-day photography guide, a 7-cut video asset library plan, a complete
+10-slide B2B pitch deck structure, equipment recommendations from
+bootstrap to professional, and budgets from $600 to $20,000.</p>
+<p>1. Brand Film Storyboard: 90-Second Version</p>
+<p><strong>The brand film is the single most powerful storytelling
+asset.</strong> Tracksmith’s approach — “storytelling over selling” —
+generated 280% growth over 3 years. Our film follows the same principle:
+the product appears only after the emotional story is established. As
+Tracksmith Brand President Ryan Eckel says: “A strong brand narrative
+pulls people in by making them feel something deeper than the products
+themselves.”</p>
+<table>
+<colgroup>
+<col style="width: 9%" />
+<col style="width: 17%" />
+<col style="width: 31%" />
+<col style="width: 19%" />
+<col style="width: 21%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Time</strong></td>
+<td><strong>Scene</strong></td>
+<td><strong>Visual Description</strong></td>
+<td><strong>Audio</strong></td>
+<td><strong>Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>00:00–00:08</strong></td>
+<td>OPENING: Aerial dawn shot</td>
+<td>Drone rises over a city skyline at golden hour. Fog hangs over a
+river. Title fades in: “[BRAND NAME]”</td>
+<td>Ambient city dawn sounds; gentle piano begins</td>
+<td>Emotional tone: anticipation, calm before the storm</td>
+</tr>
+<tr class="odd">
+<td><strong>00:08–00:18</strong></td>
+<td>THE PROBLEM: Waste montage</td>
+<td>Quick cuts: garbage bags on runners, thrift-store sweatshirts being
+shed, massive clothing piles on a road. Text overlay: “230,000+ lbs of
+clothing waste. Three races.”</td>
+<td>Piano builds; no voiceover yet</td>
+<td>Show the problem viscerally. Real footage or b-roll.</td>
+</tr>
+<tr class="even">
+<td><strong>00:18–00:28</strong></td>
+<td>THE RUNNERS: Corral scene</td>
+<td>Close-ups of hands holding coffee cups, breath visible in cold air,
+nervous stretching, checking watches. Runners huddled in garbage
+bags.</td>
+<td>Ambient sounds: crowd murmur, shuffling feet</td>
+<td>Empathy. Every viewer has been this person.</td>
+</tr>
+<tr class="odd">
+<td><strong>00:28–00:38</strong></td>
+<td>THE MOMENT: Race start</td>
+<td>Close-up of announcer counting down. Runners shed garbage bags and
+sweatshirts. Clothing flies into the air. Starting gun fires. Thousands
+surge forward.</td>
+<td>Crowd roar; music swells</td>
+<td>The shedding moment is the emotional pivot.</td>
+</tr>
+<tr class="even">
+<td><strong>00:38–00:48</strong></td>
+<td>THE AFTERMATH: Waste reality</td>
+<td>Slow-motion: volunteers collecting mountains of discarded clothing.
+Goodwill trucks loading. Trash bags lining the road. Text: “This doesn’t
+have to be the story.”</td>
+<td>Music drops to silence</td>
+<td>Silence creates weight. The problem demands attention.</td>
+</tr>
+<tr class="odd">
+<td><strong>00:48–01:05</strong></td>
+<td>THE SOLUTION: Product reveal</td>
+<td>Close-up of hands unfolding the compostable poncho. Metallic lining
+catches the light. Runner slips it on. Cut to: runner in corral, warm,
+calm, smiling. Poncho catches golden light.</td>
+<td>New melodic motif begins — warmer, hopeful</td>
+<td>First time we see the product. It should feel like relief.</td>
+</tr>
+<tr class="even">
+<td><strong>01:05–01:18</strong></td>
+<td>THE SHED: Start-line action</td>
+<td>Starting gun fires. Runner tears off poncho at the tear-away seam.
+Poncho falls into a collection bin. Runner sprints forward with the
+pack. Text: “Use it. Shed it. Done.”</td>
+<td>Music peaks with the gun; energetic</td>
+<td>The product works in 2 seconds. Show it.</td>
+</tr>
+<tr class="odd">
+<td><strong>01:18–01:30</strong></td>
+<td>THE RETURN: Composting sequence</td>
+<td>Time-lapse: poncho in composting bin breaks down over weeks. Final
+frame: rich dark compost. A hand scoops it. Text: “Gone in 90
+days.”</td>
+<td>Music resolves to calm; nature sounds fade in</td>
+<td>Payoff: the product literally disappears. This IS the brand
+story.</td>
+</tr>
+<tr class="even">
+<td><strong>01:30–01:38</strong></td>
+<td>CLOSE: Brand + tagline</td>
+<td>Logo appears. Tagline: “Race Warm. Leave No Trace.” Website URL.
+Social handles.</td>
+<td>Final piano chord resolves</td>
+<td>Clean, memorable. No hard sell. The story IS the sell.</td>
+</tr>
+</tbody>
+</table>
+<p>2. Brand Film Storyboard: 60-Second Social Cut</p>
+<p>Compressed version optimized for Instagram Reels, TikTok, and
+Facebook video ads. Must hook viewers in first 3 seconds (the garbage
+bag visual). Front-load the problem; compress the solution.</p>
+<table>
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 54%" />
+<col style="width: 33%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Time</strong></td>
+<td><strong>Visual</strong></td>
+<td><strong>Text Overlay</strong></td>
+</tr>
+<tr class="even">
+<td><strong>00:00–00:05</strong></td>
+<td>Aerial dawn over a marathon start line. Fog. Thousands of
+runners.</td>
+<td>Title: [BRAND NAME]</td>
+</tr>
+<tr class="odd">
+<td><strong>00:05–00:12</strong></td>
+<td>Quick cuts: garbage bags on runners, clothing piles, volunteer
+sorting.</td>
+<td>Text: “230,000+ lbs of waste. Every season.”</td>
+</tr>
+<tr class="even">
+<td><strong>00:12–00:22</strong></td>
+<td>Close-up: runner unfolds compostable poncho. Metallic lining glows.
+Slips it on. Warm breath, calm face.</td>
+<td>Text: “Reflects 95% of body heat.”</td>
+</tr>
+<tr class="odd">
+<td><strong>00:22–00:32</strong></td>
+<td>Starting gun. Runner tears off poncho. It drops into collection bin.
+Runner sprints.</td>
+<td>Text: “Use it. Shed it.”</td>
+</tr>
+<tr class="even">
+<td><strong>00:32–00:45</strong></td>
+<td>Time-lapse: poncho composts. Rich dark earth. Hand scoops
+compost.</td>
+<td>Text: “Gone in 90 days.”</td>
+</tr>
+<tr class="odd">
+<td><strong>00:45–01:00</strong></td>
+<td>Logo + tagline + URL. Optional: quick montage of real runners in
+ponchos at multiple races.</td>
+<td>Tagline: “Race Warm. Leave No Trace.”</td>
+</tr>
+</tbody>
+</table>
+<p>3. Production Tiers: $0 to $50,000</p>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 12%" />
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 29%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Tier</strong></td>
+<td><strong>Camera</strong></td>
+<td><strong>Lighting</strong></td>
+<td><strong>Editing</strong></td>
+<td><strong>Crew</strong></td>
+<td><strong>Production Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Bootstrap ($0–$500)</strong></td>
+<td>iPhone 14/15 Pro + GoPro</td>
+<td>Natural light at local race</td>
+<td>iMovie / CapCut / DaVinci Resolve (free)</td>
+<td>Founder + 1 friend</td>
+<td>Use royalty-free music (Epidemic Sound $15/mo). Attend 1–2 races as
+spectator. Capture real footage. Edit into 60s cut. Imperfect but
+authentic.</td>
+</tr>
+<tr class="odd">
+<td><strong>Mid-Range ($1,000–$5,000)</strong></td>
+<td>Mirrorless camera (Sony a6400 or rental $100/day)</td>
+<td>Natural + LED panel</td>
+<td>DaVinci Resolve / Premiere Pro</td>
+<td>Freelance videographer ($500–1,500/day)</td>
+<td>Hire local videographer for 1 race day shoot. Add drone footage (FAA
+Part 107 required). Semi-professional grade. 60s + 90s cuts.</td>
+</tr>
+<tr class="even">
+<td><strong>Professional ($5,000–$15,000)</strong></td>
+<td>Cinema camera (RED / Sony FX3)</td>
+<td>Professional lighting + grip</td>
+<td>Premiere Pro + After Effects</td>
+<td>Director + DP + editor + sound</td>
+<td>Full production: 2-day shoot (race day + studio). Custom music
+composition ($500–2,000). Color grading. Sound design. 60s + 90s + 30s
+social cuts.</td>
+</tr>
+<tr class="odd">
+<td><strong>Agency ($15,000–$50,000+)</strong></td>
+<td>Full cinema package</td>
+<td>Full grip + lighting crew</td>
+<td>Full post suite</td>
+<td>Agency team (5–10 people)</td>
+<td>Tracksmith-level cinematic brand film. Multiple race locations.
+Professional talent. Original score. Only if raising capital or have
+sponsor funding.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>RECOMMENDED: Mid-Range ($1,000–$5,000).</strong> Hire a
+freelance videographer for one race-day shoot. Source on: Thumbtack
+($500–1,500/day), local film school graduates ($300–$800/day), or
+Upwork/Fiverr ($500–2,000 for complete project). The videographer shoots
+everything at the race; you edit using DaVinci Resolve (free) or hire an
+editor ($200–$500 for a 60–90s cut). One well-shot race morning produces
+enough footage for the brand film, 30+ social posts, product demo, and
+B2B explainer.</p>
+<p>4. Video Asset Library: 7 Essential Cuts</p>
+<table>
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 21%" />
+<col style="width: 30%" />
+<col style="width: 30%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Cut</strong></td>
+<td><strong>Where It Plays</strong></td>
+<td><strong>Content</strong></td>
+<td><strong>Purpose</strong></td>
+</tr>
+<tr class="even">
+<td><strong>90-second Brand Film</strong></td>
+<td>YouTube, website hero, pitch deck embed, expo booth loop</td>
+<td>Full narrative arc: problem → runners → solution → composting →
+brand</td>
+<td>The definitive brand story. Plays on loop at expos.</td>
+</tr>
+<tr class="odd">
+<td><strong>60-second Social Cut</strong></td>
+<td>Instagram Reels, TikTok, Facebook video ads, Amazon product
+video</td>
+<td>Compressed narrative: problem → product → use → compost → CTA</td>
+<td>Must hook in first 3 seconds. Front-load the garbage bag
+visual.</td>
+</tr>
+<tr class="even">
+<td><strong>30-second Ad Cut</strong></td>
+<td>Instagram/Facebook paid ads, pre-roll YouTube</td>
+<td>Single message: warmth OR compostability (A/B test both)</td>
+<td>Two versions: “warmth” cut (performance-first) + “compost” cut
+(sustainability-first)</td>
+</tr>
+<tr class="odd">
+<td><strong>15-second Story Cut</strong></td>
+<td>Instagram Stories, TikTok ads, Snapchat</td>
+<td>Product demo only: unfold → wear → shed → done</td>
+<td>Maximum simplicity. No narrative, just demonstration.</td>
+</tr>
+<tr class="even">
+<td><strong>6-second Bumper</strong></td>
+<td>YouTube pre-roll, programmatic display</td>
+<td>Single shot: runner tears off poncho at start. Logo.</td>
+<td>Builds brand recognition. One visual, one moment.</td>
+</tr>
+<tr class="odd">
+<td><strong>Product Demo (2–3 min)</strong></td>
+<td>Amazon product video, website product page, B2B sales follow-up</td>
+<td>Detailed walkthrough: unboxing, features, wear test, comparison to
+garbage bag, composting explanation</td>
+<td>Amazon allows one video per listing. This is the conversion
+driver.</td>
+</tr>
+<tr class="even">
+<td><strong>B2B Explainer (3–5 min)</strong></td>
+<td>Sales emails, pitch deck embed, trade show booth</td>
+<td>Operational pitch: waste problem → product solution → co-brand
+template → pricing → pilot program</td>
+<td>Designed for race directors watching alone. Must work without
+presenter.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Amazon product video is the highest-ROI video asset.</strong>
+Amazon allows one video per listing; it auto-plays on mobile and appears
+in search results. A 2–3 minute product demo video showing unboxing,
+wear-test, comparison to garbage bag, and composting explanation can
+increase conversion rate by 9–15% based on seller benchmarks. Produce
+this FIRST if budget is limited.</p>
+<p>5. Product Photography: 9-Shot Plan for Amazon + Shopify</p>
+<p><strong>Amazon 2026 requirements:</strong> Main image: pure white
+background (RGB 255,255,255), product fills 85%+ of frame, 2000px
+minimum on longest side, JPEG format, no text/logos/props. Secondary
+images (slots 2–9): allow lifestyle shots, infographics, multiple
+angles. Fill ALL 9 slots — sellers who use all slots consistently
+outperform those with fewer images. Lifestyle images alone increase
+conversion by 18%.</p>
+<table>
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 28%" />
+<col style="width: 28%" />
+<col style="width: 30%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Shot #</strong></td>
+<td><strong>Description</strong></td>
+<td><strong>Technical Specs</strong></td>
+<td><strong>Strategic Purpose</strong></td>
+</tr>
+<tr class="even">
+<td><strong>1. Main image (Amazon)</strong></td>
+<td>Poncho in compostable packaging, flat lay on pure white background
+(RGB 255,255,255)</td>
+<td>Fills 85%+ of frame; 2000px minimum; JPEG; no text/logos/props</td>
+<td>MANDATORY for Amazon. Product outside packaging shown clearly.</td>
+</tr>
+<tr class="odd">
+<td><strong>2. Unfolded product</strong></td>
+<td>Poncho fully opened showing metallic lining on one side, plant-based
+exterior on other</td>
+<td>White or light gray background; flat lay or suspended</td>
+<td>Shows full size + dual material surfaces</td>
+</tr>
+<tr class="even">
+<td><strong>3. Being worn — front</strong></td>
+<td>Model wearing poncho with hood up in simulated corral setting (cold
+weather, crowd bg)</td>
+<td>Lifestyle shot; model standing; golden-hour or overcast
+lighting</td>
+<td>PRIMARY conversion driver — +18% CVR from lifestyle imagery</td>
+</tr>
+<tr class="odd">
+<td><strong>4. Being worn — back</strong></td>
+<td>Model from behind showing co-brand area (back panel with placeholder
+race logo)</td>
+<td>Same setting as front shot; shows co-branding opportunity</td>
+<td>B2B relevance: race directors see their logo placement</td>
+</tr>
+<tr class="even">
+<td><strong>5. Comparison shot</strong></td>
+<td>Side-by-side: garbage bag on left, compostable poncho on right, same
+model same setting</td>
+<td>Split-frame or single image; dramatic difference visible</td>
+<td>Addresses the core purchase trigger: upgrade from garbage bag</td>
+</tr>
+<tr class="odd">
+<td><strong>6. Warmth infographic</strong></td>
+<td>Product image with callout lines showing features: metallized
+lining, tear-away seam, hood, compostable material</td>
+<td>Infographic overlay on product photo; max 5 callouts; 30pt+
+text</td>
+<td>Amazon secondary image; communicates specs visually</td>
+</tr>
+<tr class="even">
+<td><strong>7. Composting lifecycle</strong></td>
+<td>4-panel sequence: (A) use in corral, (B) shed at start, (C) in
+compost bin, (D) becomes compost</td>
+<td>Clean icons or real photos in sequence; directional arrows</td>
+<td>Unique selling point visualization; works across all channels</td>
+</tr>
+<tr class="odd">
+<td><strong>8. Size/scale reference</strong></td>
+<td>Poncho folded next to gel packet, phone, and energy bar for
+scale</td>
+<td>White background; familiar objects show compactness</td>
+<td>Answers “will it fit in my race bag?” question</td>
+</tr>
+<tr class="even">
+<td><strong>9. Group lifestyle</strong></td>
+<td>3–5 runners wearing ponchos in corral, golden hour, diverse group,
+authentic energy</td>
+<td>Outdoor lifestyle; documentary style; NOT stock-photo perfect</td>
+<td>Community/belonging messaging; Instagram hero image</td>
+</tr>
+</tbody>
+</table>
+<p>5.1 DIY Product Photography Setup ($100–$300)</p>
+<p>Equipment: 24–36″ lightbox/shooting tent ($30–$80), LED ring light or
+panel ($30–$80), tripod with phone mount ($20–$50), iPhone 14/15 Pro
+(owned). Process: (1) Set lightbox on stable surface. (2) Place product
+in center. (3) Position LED light at 45° angle. (4) Shoot in Portrait
+mode (for shallow depth) or Standard mode (for product detail). (5) Edit
+in Snapseed or Lightroom Mobile: increase whites, ensure pure white
+background. (6) Check RGB 255,255,255 with color picker before
+uploading.</p>
+<p>5.2 Professional Product Photography ($500–$1,500)</p>
+<p>Hire a product photographer for a half-day studio session (9 images)
++ half-day outdoor lifestyle session. Source on: Thumbtack (search
+“product photographer [city]”), Sortlist, or photography schools.
+Provide the P1B Visual Identity document as the brief. Deliver: high-res
+JPEG + PNG for all 9 shots, white background pre-processed, lifestyle
+shots color-graded to brand warm tone (Kodak Portra emulation).</p>
+<p>6. Race Start-Line Waste Photography: The Most Valuable Content</p>
+<p><strong>Race-day waste photography is FREE and
+irreplaceable.</strong> A single photo of 50,000 discarded sweatshirts
+is more persuasive than any financial model. Attend 2–3 fall races as a
+spectator (free) with an iPhone or mirrorless camera. Target: 50+
+high-quality images building a race-waste photo library.</p>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 30%" />
+<col style="width: 23%" />
+<col style="width: 30%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Time Window</strong></td>
+<td><strong>What to Capture</strong></td>
+<td><strong>Equipment</strong></td>
+<td><strong>Why It Matters</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Pre-race (4:30–6:00 AM)</strong></td>
+<td>Arrival at start area: buses, darkness, headlamps, anticipation</td>
+<td>iPhone or mirrorless; high ISO for low light</td>
+<td>The “before” documentation; shows the cold reality</td>
+</tr>
+<tr class="odd">
+<td><strong>Corral loading (6:00–7:30 AM)</strong></td>
+<td>Runners in garbage bags, thrift-store layers; huddling; nervous
+energy</td>
+<td>Telephoto lens for candid close-ups; wide for crowd scale</td>
+<td>THE MONEY SHOTS — every runner in a garbage bag is content</td>
+</tr>
+<tr class="even">
+<td><strong>Golden hour (7:00–8:00 AM)</strong></td>
+<td>Sunrise hitting the corral; fog; breath visible; warm light on
+faces</td>
+<td>Low angle; shoot into the light for silhouettes and lens flare</td>
+<td>Most visually striking footage; brand film hero shots</td>
+</tr>
+<tr class="odd">
+<td><strong>Start-line shed (gun time)</strong></td>
+<td>Massive clothing shed: sweatshirts flying, garbage bags falling,
+runners surging</td>
+<td>Burst mode or video (240fps for slow-motion); elevated position</td>
+<td>The most dramatic moment; shows the waste in real-time</td>
+</tr>
+<tr class="even">
+<td><strong>Post-start waste (gun + 5 min)</strong></td>
+<td>Roads covered in discarded clothing; volunteers beginning
+collection</td>
+<td>Wide establishing shots; close-ups of specific garments in road</td>
+<td>The “problem” documentation; most powerful B2B imagery</td>
+</tr>
+<tr class="odd">
+<td><strong>Post-start collection (gun + 30 min)</strong></td>
+<td>Volunteer teams sorting, bagging, loading trucks. Goodwill bins
+overflowing.</td>
+<td>Documentary style; show scale of operation</td>
+<td>B2B messaging support: “Replace 200 volunteers with a compost
+bin”</td>
+</tr>
+<tr class="even">
+<td><strong>Finish line (for context)</strong></td>
+<td>Runners receiving Heatsheets blankets at finish</td>
+<td>Telephoto from spectator area</td>
+<td>Shows the competitor’s product in context; establishes market</td>
+</tr>
+</tbody>
+</table>
+<p>6.1 Target Races for Photography (Fall 2026)</p>
+<p>Priority 1 (World Majors, largest waste volumes): NYC Marathon (Nov
+1), Chicago Marathon (Oct 11), Boston Marathon (Apr 20, 2027). Priority
+2 (cold-weather, accessible): Philadelphia Marathon (Nov 22), Marine
+Corps Marathon (Oct 25), Detroit Marathon (Oct 18). Priority 3 (pilot
+partner races): whichever races agree to pilot the poncho. Attend at
+least 2 races in Fall 2026 as a spectator/photographer. No credential
+needed to photograph start-line areas from spectator zones.</p>
+<p>6.2 Legal Considerations</p>
+<p>Photography at public events (marathons on public roads) is generally
+permitted under the First Amendment. No model releases needed for
+documentary/editorial use. For commercial use (ads), use shots of crowds
+(not identifiable individuals) or get signed model releases from any
+identifiable person. Best practice: get 5–10 runner friends to sign
+releases and photograph them intentionally for commercial hero
+shots.</p>
+<p>6.3 Printable Race-Day Shot Checklist</p>
+<p><strong>[GAP #7 CLOSED]</strong> Print this one-page checklist and
+carry it on race morning. Race start-line access windows are short and
+chaotic — a structured checklist ensures no critical shots are missed.
+Check off each shot as captured.</p>
+<p><strong>PRE-RACE (4:00–6:00 AM):</strong></p>
+<p>□ Bus/transit arrival at start area (athletes emerging into darkness,
+headlamps visible)</p>
+<p>□ Gear check tents and bag drop queues (shows logistics scale)</p>
+<p>□ Porta-potty lines in pre-dawn (universal marathon experience,
+humanizing)</p>
+<p>□ Coffee cups and hand warmers (close-up details of cold-weather
+coping)</p>
+<p>□ Wide establishing shot of start area at first light (scale +
+atmosphere)</p>
+<p><strong>CORRAL LOADING (6:00–7:30 AM):</strong></p>
+<p>□ Runners in garbage bags — CLOSE-UP (the money shot; the problem
+visualized)</p>
+<p>□ Runners in garbage bags — WIDE (scale of the problem; thousands in
+plastic)</p>
+<p>□ Thrift-store sweatshirts being layered on (the $3 solution)</p>
+<p>□ Mylar blankets/foil capes (Heatsheets competitor in the wild)</p>
+<p>□ Breath visible in cold air — close-up of face (emotional,
+cinematic)</p>
+<p>□ Nervous stretching, checking watches, adjusting gear
+(anticipation)</p>
+<p>□ Huddled runner groups sharing warmth (community moment)</p>
+<p>□ Signs/banners showing race name + start-area staging (establishes
+location)</p>
+<p><strong>GOLDEN HOUR (7:00–8:00 AM):</strong></p>
+<p>□ Sunrise hitting the corral — low angle into light (hero shot; brand
+film material)</p>
+<p>□ Lens flare through fog/breath (cinematic atmosphere)</p>
+<p>□ Warm light on runner faces (emotional warmth matches product
+warmth)</p>
+<p>□ Silhouettes of runners against sunrise (iconic, shareable)</p>
+<p><strong>RACE START / GUN (exact start time):</strong></p>
+<p>□ Announcer countdown / starting gun moment (audio cue for video)</p>
+<p>□ MASSIVE CLOTHING SHED — sweatshirts/bags flying in air (the most
+dramatic moment)</p>
+<p>□ Close-up of specific garments hitting the road (texture, detail,
+waste evidence)</p>
+<p>□ Runners surging forward — wide shot from elevated position (energy,
+scale)</p>
+<p>□ Abandoned clothing on empty road — wide establishing (the
+aftermath; the problem)</p>
+<p><strong>POST-START (gun + 5–45 min):</strong></p>
+<p>□ Road covered in discarded clothing — WIDE (most powerful B2B
+image)</p>
+<p>□ Volunteer teams beginning collection (shows operational burden)</p>
+<p>□ Close-up of individual garments in the road (humanizes the
+waste)</p>
+<p>□ Goodwill/charity bins overflowing (scale of the collection
+operation)</p>
+<p>□ Trash bags being filled with discarded clothing (waste stream in
+progress)</p>
+<p>□ Empty road after collection complete (the clean-up; before/after
+potential)</p>
+<p>TOTAL: 28 shots. Prioritize starred items (□ with bold headers) if
+time is limited. Aim to capture at least 15 of 28 on any single race
+morning. Transfer photos to laptop same day; tag with race name, date,
+and time window. Back up to Google Photos or cloud storage
+immediately.</p>
+<p>7. FLIR Thermal Camera Content: Proving Warmth Visually</p>
+<p><strong>A FLIR ONE smartphone thermal camera ($200–$300) creates the
+single most compelling piece of product proof.</strong> Thermal imaging
+shows heat retention in real-time: the poncho glows bright red/orange
+(retained body heat) while exposed skin shows blue/green (heat loss).
+This visual proof is: (1) the hero image for the Amazon “warmth
+infographic” shot, (2) the key B2B slide proving equivalence to
+Heatsheets, (3) viral social content (thermal imaging is inherently
+shareable), (4) press release visual for earned media.</p>
+<p>FLIR testing protocol: (1) Subject stands outdoors for 5 minutes in
+35–50°F conditions without poncho — capture thermal baseline. (2)
+Subject puts on poncho for 10 minutes. (3) Remove poncho — capture
+thermal image immediately (shows heat retention on skin). (4) Capture
+side-by-side: poncho on (warm zones) vs. garbage bag (cold zones) vs.
+nothing (coldest). This produces a 3-panel comparison image that
+communicates warmth superiority instantly.</p>
+<p>8. B2B Pitch Deck: 10-Slide Structure</p>
+<p><strong>The pitch deck is the #1 B2B sales tool alongside the
+co-brand mockup template (P1B).</strong> It must work two ways: (1)
+presented live by the founder (10–15 minutes with narration), and (2)
+viewed standalone by a race director forwarded the PDF (must be
+self-explanatory without a presenter). Every slide must have a single
+clear message. No slide should have more than 20 words of body text.</p>
+<table>
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 45%" />
+<col style="width: 38%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Slide</strong></td>
+<td><strong>Content</strong></td>
+<td><strong>Design Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Slide 1: Title</strong></td>
+<td>[BRAND NAME] — The Compostable Warmth Poncho for Marathon Start
+Lines. Logo + tagline + founding year.</td>
+<td>Clean; brand colors; no clutter. Sets premium tone.</td>
+</tr>
+<tr class="odd">
+<td><strong>Slide 2: The Problem</strong></td>
+<td>Every cold-weather marathon creates 10,000–60,000 lbs of start-line
+clothing waste. Photo: massive clothing pile at NYC Marathon.</td>
+<td>Single powerful photo + one stat. Let the image do the work.</td>
+</tr>
+<tr class="even">
+<td><strong>Slide 3: The Scale</strong></td>
+<td>230,000+ lbs at 3 races. 1,100+ US marathons. 2.5M+ finishers
+annually. Map showing cold-weather race concentration.</td>
+<td>Data visualization: US map with race dots sized by participant
+count.</td>
+</tr>
+<tr class="odd">
+<td><strong>Slide 4: Current Solutions (Broken)</strong></td>
+<td>Garbage bags ($0, no warmth, landfill). Thrift-store sweatshirts
+($3, creates waste). Heatsheets blankets ($1.43, recyclable NOT
+compostable, finish-line only). Quote from frustrated race
+director.</td>
+<td>Competitive landscape in 4 quadrants. Show the whitespace.</td>
+</tr>
+<tr class="even">
+<td><strong>Slide 5: Our Solution</strong></td>
+<td>Product photo. 3 key benefits: (1) Reflects 95% body heat, (2)
+Certified compostable, (3) Custom co-brand ready. 15-second demo video
+thumbnail.</td>
+<td>Product hero shot with metallic lining visible. Premium feel.</td>
+</tr>
+<tr class="odd">
+<td><strong>Slide 6: How It Works</strong></td>
+<td>4-step lifecycle: Pack → Wear → Shed → Compost. Icons + timeline
+(30–180 min use, 12 weeks to compost).</td>
+<td>Simple, visual, memorable. The composting story in 4 frames.</td>
+</tr>
+<tr class="even">
+<td><strong>Slide 7: The Business Model</strong></td>
+<td>3 revenue channels: B2B direct ($1.75–$2.50/unit), Registration
+add-on ($9.99, 60% net margin), DTC Amazon/Shopify ($9.99). Year 1
+projection: $155–$175K.</td>
+<td>Revenue waterfall chart. Show multi-channel model.</td>
+</tr>
+<tr class="odd">
+<td><strong>Slide 8: Traction &amp; Validation</strong></td>
+<td>Pilot race commitments (logos). LOIs. Runner survey data. Thermal
+test results. BPI certification status.</td>
+<td>Logos, numbers, evidence. This slide builds over time.</td>
+</tr>
+<tr class="even">
+<td><strong>Slide 9: Co-Branding Opportunity</strong></td>
+<td>Mockup of custom poncho with race logo + sponsor logo. “60,000
+runners wearing your brand for 30–90 minutes.”</td>
+<td>THE CLOSER for race directors. Show their logo on the product.</td>
+</tr>
+<tr class="odd">
+<td><strong>Slide 10: Next Steps / Ask</strong></td>
+<td>For race directors: “Request a free 50-unit sample kit.” For
+sponsors: “Let’s build your sustainability activation.” Contact info +
+QR code.</td>
+<td>Clear CTA. One action. Make it easy.</td>
+</tr>
+</tbody>
+</table>
+<p>8.1 Pitch Deck Production</p>
+<p>Tool: Canva Pro ($13/mo, best for non-designers), Google Slides
+(free, collaborative), Keynote (Mac, best for live presentation), or
+PowerPoint. Design: use P1B color palette (Earth Green + Dawn Gold on
+Mist White backgrounds). Typography: DM Sans for headings, Inter for
+body. Every slide should have one full-bleed photo or data
+visualization. Avoid bullet-point slides — this is a visual document,
+not a text document.</p>
+<p>Embed the 60-second brand film directly into Slide 5 (product reveal)
+for live presentations. For PDF sends, include a thumbnail with a link
+to the video hosted on YouTube (unlisted) or Vimeo.</p>
+<p>8.2 Complete Slide Copy: Word-for-Word Content for All 10 Slides</p>
+<p><strong>[GAP #8 CLOSED]</strong> The following provides the exact
+headline, subhead, data callouts, and speaker notes for each slide. A
+designer can build the deck directly from this copy without additional
+briefing.</p>
+<p><strong>SLIDE 1: TITLE</strong></p>
+<p>Headline: [BRAND NAME]</p>
+<p>Subhead: The Compostable Warmth Poncho for Marathon Start Lines</p>
+<p>Bottom: [Tagline] | Founded 2026 | [website URL]</p>
+<p>Speaker notes: “Hi, I’m [name], founder of [brand]. We’ve built the
+first warmth product designed for the start line — and designed to
+disappear after. I want to show you why this matters for [RACE NAME] in
+the next 10 minutes.”</p>
+<p><strong>SLIDE 2: THE PROBLEM</strong></p>
+<p>Headline: The Start Line Is the Most Wasteful Moment in the Marathon
+Experience</p>
+<p>Data callout (large): 230,000+ lbs</p>
+<p>Subhead: of discarded clothing at NYC + Chicago + Boston alone —
+every year.</p>
+<p>Visual: full-bleed photo of clothing waste pile at marathon
+start.</p>
+<p>Speaker notes: “Every cold-weather marathon creates an enormous waste
+problem before the race even starts. Runners buy $3 thrift-store
+sweatshirts, wear them for 90 minutes, and throw them on the road. At
+NYC, volunteers collect 60 tons of clothing from a single race. Your
+race faces the same challenge.”</p>
+<p><strong>SLIDE 3: THE SCALE</strong></p>
+<p>Headline: This Problem Is Everywhere Cold-Weather Runners Are</p>
+<p>Data callouts: 432,000 US marathon finishers | 2.1M half-marathon
+finishers | 1,100+ US marathons annually</p>
+<p>Visual: US map with dots sized by participant count, cold-weather
+states highlighted.</p>
+<p>Speaker notes: “This isn’t just a big-city problem. 432,000 marathon
+finishers and 2.1 million half-marathon finishers face this every year.
+Any race with start-line temps below 55°F has this issue — and that’s
+most fall and spring races in the northern half of the country.”</p>
+<p><strong>SLIDE 4: CURRENT SOLUTIONS ARE BROKEN</strong></p>
+<p>Headline: Every Existing Solution Creates a New Problem</p>
+<p>4-quadrant grid: (1) Garbage bags: $0, no warmth, landfill. (2)
+Thrift-store sweatshirts: $3, creates 10K–60K lbs waste, requires
+Goodwill coordination + 200 volunteers. (3) Heatsheets blankets: $1.43,
+recyclable but NOT compostable, designed for finish line not start line.
+(4) Nothing: runners shiver, muscles tighten, DNF risk increases.</p>
+<p>Speaker notes: “Right now, race directors choose between bad options.
+Garbage bags end up in landfill. Thrift-store sweatshirts create a
+massive logistics burden — your team sorts, bags, and ships thousands of
+garments to Goodwill, who can’t sell most of them either. Heatsheets
+owns the finish line but doesn’t address the start. There’s a gap
+here.”</p>
+<p><strong>SLIDE 5: OUR SOLUTION</strong></p>
+<p>Headline: A Warmth Poncho That Keeps Runners Warm and Composts
+Completely</p>
+<p>3 benefit icons with text: ✅ Reflects 95% of body heat (same radiant
+barrier as Heatsheets) | ✅ Certified compostable (BPI, ASTM D6400) | ✅
+Custom co-brand ready (your race + sponsor logos)</p>
+<p>Visual: product hero shot, metallic lining catching light.</p>
+<p>Speaker notes: “This is a compostable warmth poncho built
+specifically for the start line. The metallized lining reflects 95% of
+body heat — same aluminum physics used in space blankets and Heatsheets.
+The difference: our film is plant-based and composts completely. Your
+runners stay warm. Your waste stream disappears. And the back panel is
+ready for your race logo and sponsor logo.”</p>
+<p><strong>SLIDE 6: HOW IT WORKS</strong></p>
+<p>Headline: Pack. Wear. Shed. Compost.</p>
+<p>4-icon lifecycle: (1) PACK: folds to gel-packet size, 4 oz. (2) WEAR:
+slip on in corral; reflects body heat for 30–180 min. (3) SHED:
+tear-away seam; remove in 2 seconds at the gun. (4) COMPOST: breaks down
+in 12 weeks (industrial) or 26 weeks (home).</p>
+<p>Speaker notes: “The poncho folds to the size of a gel packet —
+runners toss it in their race bag. In the corral, they slip it on like
+any poncho. When the gun fires, they tear it off at the perforated seam
+and drop it into your collection bin. Within 12 weeks in a composting
+facility, it’s gone. No sorting. No Goodwill truck. No landfill.”</p>
+<p><strong>SLIDE 7: THE BUSINESS MODEL</strong></p>
+<p>Headline: Three Ways to Put This Poncho in Your Runners’ Hands</p>
+<p>3 channels: (1) Direct purchase: $1.75–$2.50/unit at volume. Your
+race buys and distributes in bib packets. (2) Registration add-on: $9.99
+via RunSignUp. Runner buys during registration. You earn revenue share
+at zero cost. (3) Sponsor-funded: Co-branded poncho paid for by your
+sustainability sponsor. $0 cost to your race.</p>
+<p>Speaker notes: “We’ve designed this to be flexible. You can purchase
+directly at volume pricing that fits within your existing warmth-product
+budget. Or you can add it as a registration add-on through RunSignUp —
+runners buy it themselves, and your race earns revenue with zero
+inventory risk. Or, the most powerful model: your sustainability sponsor
+pays for co-branded ponchos. The sponsor gets 60,000 impressions. Your
+runners get warmth. Your race gets a sustainability story. Everyone
+wins.”</p>
+<p><strong>SLIDE 8: TRACTION &amp; VALIDATION</strong></p>
+<p>Headline: Proven Science. Growing Momentum.</p>
+<p>Evidence grid (update as traction builds): ✅ Materials:
+BPI-certified compostable film (NatureFlex NM, TIPA 312MET) | ✅ Warmth:
+95–97% IR reflection confirmed by thermal testing | ✅ Economics:
+$1.34–$1.94 COGS at 25–100K units | ✅ Pilots: [X] races committed for
+Fall 2026 (add logos) | ✅ Interest: [X] race directors in active
+conversations</p>
+<p>Speaker notes: “Let me share where we are. The materials are proven —
+we’re using the same certified compostable metallized films already used
+in food packaging. Thermal testing confirms equivalent warmth to
+Heatsheets. Our unit economics work at your volumes. And we already have
+[X] race directors in conversation for Fall 2026 pilots. [Customize with
+specific evidence available at time of presentation.]”</p>
+<p><strong>SLIDE 9: CO-BRANDING OPPORTUNITY</strong></p>
+<p>Headline: Your Logo. Your Sponsor’s Logo. 60,000 Runners. 90 Minutes
+of Visibility.</p>
+<p>Visual: mockup of custom poncho with [RACE NAME] logo and [SPONSOR]
+logo prominently displayed.</p>
+<p>Subhead: Custom co-branded ponchos starting at 3,000-unit MOQ. Turn
+the start line into a sustainability activation.</p>
+<p>Speaker notes: “This is what your poncho looks like. [Show mockup
+with their race logo.] Your logo, front and center, on every runner at
+the start line. Your sponsor’s logo right alongside. For 30 to 90
+minutes, before the race even begins, your brand is literally wrapping
+60,000 people. And the story — “the first compostable start-line warmth
+product” — generates earned media coverage you can’t buy. We can have a
+mockup with your actual logo to you within 24 hours.”</p>
+<p><strong>SLIDE 10: NEXT STEPS</strong></p>
+<p>Headline: Let’s Get a Sample in Your Hands</p>
+<p>CTA box: “Request a free 50-unit sample kit for your team to evaluate
+at your next race. No commitment. Just feedback.”</p>
+<p>Contact: [Founder name] | [email] | [phone] | [website]</p>
+<p>QR code: links directly to sample request form.</p>
+<p>Speaker notes: “I’d love to send you a sample kit — 50 ponchos your
+team can test at your next cold-weather event. There’s no commitment.
+We’ll include a data collection template so your volunteers can gather
+feedback from runners. If your runners love it, we’ll talk about a
+partnership for next season. If they have feedback, we want to hear it.
+The QR code on screen takes you directly to the request form. Can I get
+your shipping address before we wrap up?”</p>
+<p>9. Equipment &amp; Software Recommendations</p>
+<table>
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 30%" />
+<col style="width: 14%" />
+<col style="width: 42%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Tier</strong></td>
+<td><strong>Item</strong></td>
+<td><strong>Cost</strong></td>
+<td><strong>Capabilities</strong></td>
+</tr>
+<tr class="even">
+<td><strong>BOOTSTRAP</strong></td>
+<td>iPhone 14/15 Pro</td>
+<td>$0 (owned)</td>
+<td>4K video, ProRes, 48MP photos, night mode, portrait mode</td>
+</tr>
+<tr class="odd">
+<td><strong>BOOTSTRAP</strong></td>
+<td>GoPro Hero 12/13</td>
+<td>$250–$400</td>
+<td>Wide-angle for crowd shots, waterproof, stabilized, slow-motion
+240fps</td>
+</tr>
+<tr class="even">
+<td><strong>BOOTSTRAP</strong></td>
+<td>FLIR ONE thermal camera</td>
+<td>$200–$300</td>
+<td>Thermal imaging for warmth demonstration content (shows heat
+reflection)</td>
+</tr>
+<tr class="odd">
+<td><strong>BOOTSTRAP</strong></td>
+<td>DJI Mini 4 Pro drone</td>
+<td>$760</td>
+<td>Aerial footage of start lines, sub-250g (no FAA registration
+required in many cases)</td>
+</tr>
+<tr class="even">
+<td><strong>BUDGET</strong></td>
+<td>Lightbox / shooting tent (24–36″)</td>
+<td>$30–$80</td>
+<td>Product photography on white background for Amazon main image</td>
+</tr>
+<tr class="odd">
+<td><strong>BUDGET</strong></td>
+<td>LED ring light or panel</td>
+<td>$30–$80</td>
+<td>Consistent lighting for product shots and video</td>
+</tr>
+<tr class="even">
+<td><strong>BUDGET</strong></td>
+<td>Tripod + phone mount</td>
+<td>$20–$50</td>
+<td>Stable product photography; eliminates blur</td>
+</tr>
+<tr class="odd">
+<td><strong>MID-RANGE</strong></td>
+<td>Sony a6400 or Fuji X-T4 (rental)</td>
+<td>$80–$150/day</td>
+<td>Mirrorless camera for professional-grade stills and video</td>
+</tr>
+<tr class="even">
+<td><strong>MID-RANGE</strong></td>
+<td>50mm f/1.8 lens</td>
+<td>$150–$250 (buy)</td>
+<td>Portrait and product photography with shallow depth of field</td>
+</tr>
+<tr class="odd">
+<td><strong>PROFESSIONAL</strong></td>
+<td>Hire videographer</td>
+<td>$500–1,500/day</td>
+<td>Includes camera, lenses, audio, and basic editing</td>
+</tr>
+<tr class="even">
+<td><strong>PROFESSIONAL</strong></td>
+<td>Hire photographer</td>
+<td>$300–1,000/day</td>
+<td>Product + lifestyle photography; includes retouching</td>
+</tr>
+</tbody>
+</table>
+<p>10. Content Production Timeline</p>
+<p><strong>WEEK 8: Storyboard review and approval. Book freelance
+videographer. Order FLIR ONE camera. Set up DIY product photography
+lightbox. Identify 2–3 target races for attendance.</strong></p>
+<p><strong>WEEK 8–9: DIY product photography session (9 Amazon shots).
+FLIR thermal comparison test (create warmth infographic content). Begin
+B2B pitch deck design in Canva/Google Slides.</strong></p>
+<p><strong>WEEK 9: First race attendance for waste photography (if Fall
+race available). Complete product demo video (2–3 min for Amazon).
+Review and finalize pitch deck with 2 race director contacts for
+feedback.</strong></p>
+<p><strong>WEEK 9–10: Freelance videographer shoots at target race
+(brand film footage). Capture lifestyle photography (runners in ponchos
+at actual race). Compile social media content library.</strong></p>
+<p><strong>WEEK 10: Edit brand film: 90s master + 60s social + 30s ad +
+15s story + 6s bumper. Edit B2B explainer video (3–5 min). Finalize all
+product images for Amazon upload. Complete pitch deck. Upload Amazon
+product video.</strong></p>
+<p>ONGOING: Attend 1–2 additional Fall 2026 races for expanded
+photo/video library. Create new social content from each race. Update
+pitch deck with pilot results and testimonials.</p>
+<p>11. Budget Summary by Tier</p>
+<table>
+<colgroup>
+<col style="width: 28%" />
+<col style="width: 19%" />
+<col style="width: 52%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Item</strong></td>
+<td><strong>Cost Range</strong></td>
+<td><strong>Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Brand film (bootstrap)</strong></td>
+<td>$0–$500</td>
+<td>iPhone at 1–2 local races + free editing software</td>
+</tr>
+<tr class="odd">
+<td><strong>Brand film (mid-range)</strong></td>
+<td>$1,000–$5,000</td>
+<td>Freelance videographer at 1 race + drone + editing</td>
+</tr>
+<tr class="even">
+<td><strong>Product photography (DIY)</strong></td>
+<td>$100–$300</td>
+<td>Lightbox + LED + iPhone; process 9 Amazon images yourself</td>
+</tr>
+<tr class="odd">
+<td><strong>Product photography (pro)</strong></td>
+<td>$500–1,500</td>
+<td>Professional photographer, 1 half-day studio + 1 half-day
+outdoor</td>
+</tr>
+<tr class="even">
+<td><strong>Race waste photography</strong></td>
+<td>$0–$200</td>
+<td>Attend 2–3 races as spectator with iPhone/camera. Free access.</td>
+</tr>
+<tr class="odd">
+<td><strong>B2B pitch deck design</strong></td>
+<td>$200–$800</td>
+<td>Canva Pro ($13/mo) for DIY; or Fiverr designer $200–$500; or agency
+$800+</td>
+</tr>
+<tr class="even">
+<td><strong>Social media template kit</strong></td>
+<td>$100–$300</td>
+<td>20+ Canva templates from P1B design system</td>
+</tr>
+<tr class="odd">
+<td><strong>FLIR thermal camera</strong></td>
+<td>$200–$300</td>
+<td>One-time purchase; reusable for ongoing content</td>
+</tr>
+<tr class="even">
+<td><strong>TOTAL (Bootstrap)</strong></td>
+<td>$600–$1,800</td>
+<td>iPhone + 2 race shoots + DIY product photos + Canva deck</td>
+</tr>
+<tr class="odd">
+<td><strong>TOTAL (Mid-Range)</strong></td>
+<td>$2,500–$7,000</td>
+<td>Freelance videographer + pro photographer + designed deck</td>
+</tr>
+<tr class="even">
+<td><strong>TOTAL (Professional)</strong></td>
+<td>$8,000–$20,000</td>
+<td>Full production + pro photography + agency deck + drone</td>
+</tr>
+</tbody>
+</table>
+<p>12. Conclusion: One Race Morning = 6 Months of Content</p>
+<p><strong>The most important content production insight: one
+well-documented race morning produces enough visual assets for 6 months
+of marketing.</strong> A single marathon start line delivers: brand film
+footage (8–10 usable scenes), 50+ waste documentation photos (B2B
+sales), 20+ social media posts (DTC awareness), product-in-action
+footage (Amazon/Shopify), and race-director networking (future pilot
+partnerships).</p>
+<p><strong>Priority order if budget is limited:</strong> (1) Amazon
+product photography (9 shots, DIY or pro — directly drives conversion),
+(2) Amazon product video (2–3 min demo — 9–15% CVR lift), (3) FLIR
+thermal comparison (viral + B2B proof), (4) B2B pitch deck (10 slides
+for race-director outreach), (5) brand film (60s social cut first, 90s
+master second). Everything else is an enhancement, not a
+requirement.</p>
+<p><strong>The visual standard to aspire to:</strong> Tracksmith’s
+cinematic storytelling + Allbirds’ product transparency + Patagonia’s
+activist documentation. The product is beautiful (metallized silver
+catching golden light), the problem is visual (mountains of discarded
+clothing), and the solution is demonstrable (FLIR thermal proof +
+composting time-lapse). Every image should make a runner feel: “I want
+to be part of this.”</p>
+
+        </div>
+    </div></div>
+<footer style="text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px">
+Sustainable Race-Start Warmth Poncho — D2C Brand GTM Project · 60 Subprojects · 391 Tasks · ~15,500¶ · April 2026
+</footer></body></html>

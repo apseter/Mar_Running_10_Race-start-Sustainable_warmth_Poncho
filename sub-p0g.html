@@ -1,0 +1,816 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>P0G: B2B Channel Intelligence — Race Start Warmth GTM</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0e1a;--surface:#111827;--card:#1a2332;--border:#2a3a4e;--accent:#10b981;--accent2:#3b82f6;--text:#e2e8f0;--muted:#94a3b8;--white:#fff;--red:#ef4444;--amber:#f59e0b;--green:#10b981}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+/* Nav */
+nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
+nav .inner{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;max-width:1200px;margin:0 auto}
+nav .brand{font-weight:700;font-size:15px;color:var(--accent)}
+nav .links{display:flex;gap:8px;flex-wrap:wrap}
+nav .links a{color:var(--muted);font-size:13px;padding:4px 10px;border-radius:6px;transition:.2s}
+nav .links a:hover,nav .links a.active{color:var(--white);background:var(--card);text-decoration:none}
+/* Hero */
+.hero{padding:60px 0 40px;text-align:center}
+.hero h1{font-size:2.4em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:1.1em;max-width:700px;margin:0 auto}
+/* Stats bar */
+.stats{display:flex;justify-content:center;gap:32px;padding:24px 0;flex-wrap:wrap}
+.stat{text-align:center}.stat .num{font-size:1.8em;font-weight:800;color:var(--white)}.stat .label{font-size:.75em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+/* Cards */
+.grid{display:grid;gap:16px;margin:24px 0}
+.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}
+.grid-3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;transition:.2s}
+.card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.card h3{font-size:1.1em;margin-bottom:8px}.card p{color:var(--muted);font-size:.9em}
+.card .badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:8px}
+.card .meta{font-size:.8em;color:var(--muted);margin-top:12px}
+/* Section */
+.section{padding:40px 0}.section h2{font-size:1.6em;font-weight:700;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+/* Table */
+table{width:100%;border-collapse:collapse;font-size:.85em;margin:16px 0}
+th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:52px}
+td{padding:8px 12px;border-bottom:1px solid var(--border)}
+tr:hover td{background:rgba(16,185,129,.05)}
+.status-complete{color:var(--green);font-weight:600}.status-not{color:var(--muted)}
+/* Progress */
+.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:8px}
+.progress .bar{height:100%;background:var(--accent);border-radius:3px}
+/* Back link */
+.back{display:inline-block;color:var(--muted);font-size:.9em;margin-bottom:20px}
+.back:hover{color:var(--accent)}
+/* Download */
+.dl-card{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin:8px 0;transition:.2s}
+.dl-card:hover{border-color:var(--accent);text-decoration:none}
+.dl-card .icon{font-size:2em}.dl-card .info h4{color:var(--white);margin-bottom:4px}.dl-card .info p{color:var(--muted);font-size:.85em}
+/* Footer */
+footer{text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px}
+@media(max-width:768px){.stats{gap:16px}.stat .num{font-size:1.3em}nav .links{gap:4px}nav .links a{font-size:11px;padding:3px 6px}.hero h1{font-size:1.6em}}
+
+.doc-content{max-width:900px;margin:0 auto;padding:20px 0}
+.doc-content h1{font-size:1.8em;font-weight:800;color:var(--white);margin:32px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.doc-content h2{font-size:1.4em;font-weight:700;color:var(--accent);margin:28px 0 12px}
+.doc-content h3{font-size:1.15em;font-weight:600;color:var(--accent2);margin:20px 0 10px}
+.doc-content p{margin:8px 0;line-height:1.7}
+.doc-content table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85em}
+.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;border:1px solid var(--border)}
+.doc-content td{padding:8px 12px;border:1px solid var(--border);vertical-align:top}
+.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.doc-content ul,.doc-content ol{margin:8px 0 8px 24px}
+.doc-content li{margin:4px 0;line-height:1.6}
+.doc-content strong{color:var(--white)}
+.doc-content em{color:var(--muted)}
+.doc-content blockquote{border-left:3px solid var(--accent);padding:8px 16px;margin:12px 0;background:var(--card);border-radius:0 8px 8px 0}
+.nav-sub{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 24px;padding:12px 16px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
+.nav-sub a{font-size:.8em;color:var(--muted);padding:4px 10px;border-radius:4px;transition:.2s;white-space:nowrap}
+.nav-sub a:hover,.nav-sub a.active{color:var(--white);background:var(--surface);text-decoration:none}
+</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a></div></div></nav><div class="container">
+    <div style="padding-top:30px">
+        <a href="p0.html" class="back">← 🔍 P0: Market Research</a>
+        <div class="nav-sub"><a href="p0.html">🔍 P0 Overview</a><a href="sub-p0a.html">P0A</a><a href="sub-p0b.html">P0B</a><a href="sub-p0c.html">P0C</a><a href="sub-p0d.html">P0D</a><a href="sub-p0e.html">P0E</a><a href="sub-p0f.html">P0F</a><a href="sub-p0g.html" class="active">P0G</a><a href="sub-p0h.html">P0H</a><a href="sub-p0.html">P0</a></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px">
+            <div>
+                <span style="background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px">P0G</span>
+                <span style="color:var(--muted);font-size:.85em;margin-left:8px">P0: Market Research</span>
+            </div>
+            <a href="files/P0G_B2B_Channel_Intelligence.docx" style="font-size:.85em;color:var(--accent);padding:6px 14px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
+        </div>
+        <div class="doc-content">
+            <p><strong>P0G: B2B CHANNEL</strong></p>
+<p><strong>INTELLIGENCE</strong></p>
+<p>Sub-Project P0G | Market Research &amp; Concept Validation | Weeks
+6–12</p>
+<p><em>Complete B2B Distribution, Retail, Expo, Registration,
+Sponsorship &amp; International Channel Playbook</em></p>
+<p>March 2026 | Confidential</p>
+<p>Executive Summary</p>
+<p><strong>Eight distinct B2B channels can deliver the compostable
+warmth poncho to race directors and runners.</strong> Registration
+add-ons via RunSignUp (50%+ US market share) offer the highest margin at
+56–60% net with near-zero fixed costs. Fleet Feet’s vendor partner
+program (280+ stores, 19 brands, history of launching HOKA and On)
+provides specialty retail credibility. Marathon expos deliver brand
+awareness and race-director networking despite thin direct margins.
+Sustainability certifications (CRS, Racing for Sustainability) serve as
+powerful B2B selling tools — the poncho directly earns credit under CRS
+waste management criteria.</p>
+<p>1. Complete B2B Channel Map</p>
+<table>
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 21%" />
+<col style="width: 19%" />
+<col style="width: 19%" />
+<col style="width: 21%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Channel</strong></td>
+<td><strong>How It Works</strong></td>
+<td><strong>Economics</strong></td>
+<td><strong>Terms/Access</strong></td>
+<td><strong>Who Uses It</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Direct B2B (Heatsheets model)</strong></td>
+<td>Race directors via email/phone</td>
+<td>Highest margin; relationship-driven</td>
+<td>Net 30; 3,000+ MOQ for custom print</td>
+<td>World Marathon Majors, 10K+ events</td>
+</tr>
+<tr class="odd">
+<td><strong>Registration Add-Ons (RunSignUp)</strong></td>
+<td>Integrated into registration flow</td>
+<td>56–60% net margin; 6% + $1/cart fee</td>
+<td>Race director configures; vendor fulfills</td>
+<td>50%+ of US races use RunSignUp</td>
+</tr>
+<tr class="even">
+<td><strong>Registration Add-Ons (ACTIVE.com)</strong></td>
+<td>Vendor portal with auto revenue share</td>
+<td>Similar margin; ~$0.99 + 5.9% fee</td>
+<td>Dedicated vendor portal</td>
+<td>47K+ organizations; 93M+ registrations</td>
+</tr>
+<tr class="odd">
+<td><strong>Specialty Retail (Fleet Feet)</strong></td>
+<td>280+ stores; vendor partner program</td>
+<td>50–60% retail margin required</td>
+<td>Central buying team + store-level</td>
+<td>19 vendor partners; launched HOKA, On</td>
+</tr>
+<tr class="even">
+<td><strong>Marathon Expos</strong></td>
+<td>Booth sales at pre-race expos</td>
+<td>High brand awareness; thin/negative margin</td>
+<td>$2,100–$19,100 all-in per expo</td>
+<td>NYC: 100K+ visitors; 79% purchase rate</td>
+</tr>
+<tr class="odd">
+<td><strong>Race Supply Distributors</strong></td>
+<td>MDS Associates, Universal Packaging</td>
+<td>15–25% distributor margin</td>
+<td>Standard wholesale terms</td>
+<td>Small/mid-size races without direct relationships</td>
+</tr>
+<tr class="even">
+<td><strong>Amazon Business</strong></td>
+<td>B2B purchasing portal</td>
+<td>Amazon fees apply</td>
+<td>Standard Amazon terms</td>
+<td>Small races using Amazon for procurement</td>
+</tr>
+<tr class="odd">
+<td><strong>Trade Shows (TRE, Running USA)</strong></td>
+<td>Industry events for B2B networking</td>
+<td>Investment in relationships</td>
+<td>$425–$15K per event</td>
+<td>357 exhibitors at TRE 2025</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Channel priority ranking:</strong> (1) Registration add-ons —
+highest margin, lowest fixed cost; (2) Direct B2B to race directors —
+relationship-driven, highest volume per deal; (3) Fleet Feet retail —
+brand credibility + consumer trial; (4) Expos — brand awareness + B2B
+networking; (5) Trade shows — industry relationship building; (6)
+Distributors — reach for small races; (7) Amazon Business — passive B2B;
+(8) International — Year 2+ expansion.</p>
+<p>2. Race Supply Distribution: How Products Actually Reach Races</p>
+<p>2.1 The Heatsheets Direct-Sales Model</p>
+<p>Heatsheets (Advanced Flexible Materials) sells primarily direct to
+race organizers via email and phone relationships built over 45+ years.
+Their webshop (shop.heatsheets.com) serves smaller orders; bulk orders
+(15+ cartons / 3,000+ blankets) require emailing info@heatsheets.com for
+tiered pricing. Custom-printed blankets require 3,000-unit MOQ. All
+products are produced, printed, and converted in North America. Free
+shipping on orders under 120 lbs to US addresses.</p>
+<p><strong>Key insight:</strong> Heatsheets’ model is
+relationship-driven with high switching costs. Race directors reorder
+annually from established contacts. Breaking in requires offering
+something Heatsheets cannot: compostability + CRS certification credit +
+sponsor sustainability narrative.</p>
+<p>2.2 MDS Associates: Medical/Safety Distributor</p>
+<p>MDS Associates (mdsassociates.com) is a wholesale safety and medical
+supply distributor that resells generic mylar/foil blankets (Dynarex
+brand) and other emergency supplies to races, EMS, and event organizers.
+They do NOT carry Heatsheets. Their role: serving small/mid-size races
+that buy generic blankets at $0.60–$0.81/unit rather than premium
+Heatsheets at $1.43+. MDS operates on standard distributor margins of
+15–25%.</p>
+<p>2.3 Universal Marathon Blankets (UMB)</p>
+<p>Universal Packaging (direct.univpack.com) sells pre-cut 48″×72″
+marathon blankets in bulk at $0.60–$0.70/unit (250-count rolls). They
+are the primary budget alternative to Heatsheets, used by cost-conscious
+races that prioritize price over branding. UMB blankets are NOT
+recyclable through the Heatsheets/Trex partnership — they end up in
+landfill.</p>
+<p>2.4 Small vs. Large Race Procurement</p>
+<p>Small races (&lt;1,000 runners): single race director makes all
+purchasing decisions; buys via Amazon Business, local medical supply, or
+direct from UMB. Budget: $5K–$10K total. Mid-size (1,000–5,000): race
+director + small committee; mix of direct purchases and distributor
+relationships. Large (10,000+): dedicated operations staff; long-term
+vendor contracts; 6–12 month procurement cycles; Heatsheets-style direct
+relationships.</p>
+<p>3. Registration Platform Integration: The Highest-Margin Channel</p>
+<table>
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 19%" />
+<col style="width: 12%" />
+<col style="width: 21%" />
+<col style="width: 29%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Platform</strong></td>
+<td><strong>Market Position</strong></td>
+<td><strong>Fees</strong></td>
+<td><strong>Merchandise Options</strong></td>
+<td><strong>Vendor Integration</strong></td>
+</tr>
+<tr class="even">
+<td><strong>RunSignUp</strong></td>
+<td>50%+ US market share; 39K+ events</td>
+<td>6% + $1/cart</td>
+<td>Add-Ons (registrants only) + Store (public)</td>
+<td>Race director configures per-race; no cross-race auto-listing</td>
+</tr>
+<tr class="odd">
+<td><strong>ACTIVE.com</strong></td>
+<td>47K+ orgs; 93M+ registrations</td>
+<td>~$0.99 + 5.9%</td>
+<td>Dedicated vendor portal with revenue share</td>
+<td>Third-party vendors get own portal; more automated</td>
+</tr>
+<tr class="even">
+<td><strong>Race Roster</strong></td>
+<td>4,000+ organizers</td>
+<td>~$1.75 + 6%</td>
+<td>Merchandise during registration</td>
+<td>Growing platform; strong in Canada</td>
+</tr>
+<tr class="odd">
+<td><strong>Race Entry</strong></td>
+<td>Growing US presence</td>
+<td>4.97% + $1.25</td>
+<td>Add-on merchandise</td>
+<td>Smaller but expanding</td>
+</tr>
+</tbody>
+</table>
+<p>3.1 RunSignUp Add-On Technical Setup</p>
+<p>RunSignUp offers three merchandise systems: Giveaways (free, one per
+event), Add-Ons (optional during/after registration, registrants only),
+and Store (standalone e-commerce for anyone). A third-party vendor
+CANNOT auto-list across multiple races — each race director must
+individually configure the add-on in their dashboard under Race &gt;
+Giveaways/Add-Ons &gt; Registration Add Ons.</p>
+<p><strong>Practical implication:</strong> You must sell the concept to
+each race director individually, then provide them with product images,
+descriptions, and pricing to configure in their RunSignUp dashboard.
+This is a relationship sale, not a platform listing. The vendor receives
+purchase data through the race director’s participant reports
+(exportable to CSV, Google Sheets, Excel).</p>
+<p>3.2 Fulfillment: Packet Pickup vs. Direct Ship</p>
+<p>Two models: (A) Bulk-ship to race venue for inclusion in bib packet
+pickup — $1.00–$1.20/unit fulfillment, requires coordination with race
+logistics team. (B) Direct-ship to individual runners — $4.00–$5.00/unit
+shipping, margin-destructive. Model A is strongly preferred for races
+with mandatory in-person packet pickup (most majors). Model B works for
+virtual add-on purchases at races with mail-out options.</p>
+<p>3.3 ACTIVE.com Vendor Portal Advantage</p>
+<p>ACTIVE.com’s vendor portal offers a more automated integration than
+RunSignUp. Third-party vendors log into their own portal to check sales
+and fulfill orders, with automatic revenue sharing. This makes ACTIVE
+the more natural platform partner for scaling across many races.
+However, RunSignUp’s 50%+ market share makes it the volume priority.</p>
+<p>4. Fleet Feet: The Critical Specialty Retail Channel</p>
+<table>
+<colgroup>
+<col style="width: 28%" />
+<col style="width: 71%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Attribute</strong></td>
+<td><strong>Detail</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Store count</strong></td>
+<td>280+ stores across 40 US states (incl. JackRabbit + Marathon Sports
+acquisitions)</td>
+</tr>
+<tr class="odd">
+<td><strong>Vendor Partner Program</strong></td>
+<td>19 footwear, apparel &amp; accessories brands; history of launching
+HOKA, Karhu, On, hylo athletics</td>
+</tr>
+<tr class="even">
+<td><strong>Buying structure</strong></td>
+<td>Central buying team for vendor partners; individual franchisees also
+purchase from approved vendors</td>
+</tr>
+<tr class="odd">
+<td><strong>Margin requirement</strong></td>
+<td>50–60% retail margin (keystone or higher); accessories often
+55–65%</td>
+</tr>
+<tr class="even">
+<td><strong>New brand entry</strong></td>
+<td>Submit via vendor partner program application;
+sustainability-focused brands have advantage (hylo partnership Nov
+2024)</td>
+</tr>
+<tr class="odd">
+<td><strong>Community programs</strong></td>
+<td>Weekly group runs at every location; training programs; charity
+partnerships; product sampling opportunities</td>
+</tr>
+<tr class="even">
+<td><strong>CEO</strong></td>
+<td>Joey Pointer; CRO Jenny Simpson (appointed early 2026)</td>
+</tr>
+<tr class="odd">
+<td><strong>Key insight</strong></td>
+<td>Fleet Feet explicitly seeks emerging brands with sustainability
+stories — the hylo athletics partnership was driven by hylo’s “run like
+the world depends on it” mission</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Entry strategy:</strong> Fleet Feet’s vendor partner program
+explicitly seeks sustainability-focused emerging brands. The Nov 2024
+hylo athletics partnership was driven entirely by hylo’s environmental
+mission. A compostable warmth poncho aligns perfectly with Fleet Feet’s
+stated values. Approach: submit via vendor partner program application;
+emphasize sustainability story + marathon community relevance + category
+innovation (no competing product in their assortment).</p>
+<p>4.1 Margin and Pricing for Fleet Feet</p>
+<p>Fleet Feet requires 50–60% retail margin on accessories. At $9.99
+retail, wholesale must be $4.00–$5.00. With COGS of $1.59–$1.94, this
+yields 61–75% vendor gross margin. Minimum initial order: typically 2–6
+units per store for trial; Fleet Feet has 280+ stores, so a national
+rollout could mean 560–1,680 units for initial placement.</p>
+<p>4.2 Other Specialty Retail</p>
+<p>REI: submit via rei.com/vendor-relations; REI requires minimum 50%
+margin and strong sustainability credentials (important for their
+stewardship brand). Dick’s Sporting Goods: less relevant (not specialty
+running). Independent running stores: ~300–500 remaining US
+independents; approach via sales rep or direct outreach at TRE.</p>
+<p>5. Marathon Expo Vendor Programs</p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 17%" />
+<col style="width: 13%" />
+<col style="width: 17%" />
+<col style="width: 11%" />
+<col style="width: 17%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Expo</strong></td>
+<td><strong>Venue</strong></td>
+<td><strong>Est. Visitors</strong></td>
+<td><strong>Booth Cost</strong></td>
+<td><strong>Deadline</strong></td>
+<td><strong>Contact</strong></td>
+</tr>
+<tr class="even">
+<td><strong>TCS NYC Marathon</strong></td>
+<td>Javits Center, NYC</td>
+<td>100,000+</td>
+<td>$5,000–$8,000+</td>
+<td>Early summer</td>
+<td>nyrr.org/expo</td>
+</tr>
+<tr class="odd">
+<td><strong>Chicago Marathon</strong></td>
+<td>McCormick Place</td>
+<td>85,000+</td>
+<td>$4,000–$7,000+</td>
+<td>Spring</td>
+<td>chicagomarathon.com</td>
+</tr>
+<tr class="even">
+<td><strong>Boston Marathon (BAA)</strong></td>
+<td>Hynes Convention Center</td>
+<td>60,000+</td>
+<td>$3,000–$6,000+</td>
+<td>January</td>
+<td>baa.org</td>
+</tr>
+<tr class="odd">
+<td><strong>Marine Corps Marathon</strong></td>
+<td>Packet pickup expo</td>
+<td>30,000+</td>
+<td>$2,000–$4,000</td>
+<td>Summer</td>
+<td>marinemarathon.com</td>
+</tr>
+<tr class="even">
+<td><strong>LA Marathon</strong></td>
+<td>Dodger Stadium area</td>
+<td>25,000+</td>
+<td>$2,000–$4,000</td>
+<td>Fall</td>
+<td>lamarathon.com</td>
+</tr>
+<tr class="odd">
+<td><strong>Philadelphia Marathon</strong></td>
+<td>Convention Center</td>
+<td>20,000+</td>
+<td>$1,500–$3,000</td>
+<td>Summer</td>
+<td>philadelphiamarathon.com</td>
+</tr>
+<tr class="even">
+<td><strong>Twin Cities Marathon</strong></td>
+<td>Minneapolis Conv. Ctr</td>
+<td>15,000+</td>
+<td>$1,000–$2,500</td>
+<td>Spring</td>
+<td>tcmevents.org</td>
+</tr>
+<tr class="odd">
+<td><strong>Detroit Marathon</strong></td>
+<td>Cobo Center</td>
+<td>12,000+</td>
+<td>$1,000–$2,500</td>
+<td>Summer</td>
+<td>freepmarathon.com</td>
+</tr>
+<tr class="even">
+<td><strong>Grandma’s Marathon</strong></td>
+<td>DECC, Duluth</td>
+<td>10,000+</td>
+<td>$800–$1,500</td>
+<td>Winter</td>
+<td>grandmasmarathon.com</td>
+</tr>
+<tr class="odd">
+<td><strong>CIM Sacramento</strong></td>
+<td>Convention Center</td>
+<td>10,000+</td>
+<td>$800–$1,500</td>
+<td>Summer</td>
+<td>runsra.org</td>
+</tr>
+</tbody>
+</table>
+<p>5.1 NYC Marathon Expo: The Gold Standard</p>
+<p>The TCS NYC Marathon Health &amp; Fitness Expo at Javits Center runs
+3 days before race day with 100,000+ total visitors. Booth packages
+range from standard 10’×10’ ($5,000–$8,000) to premium locations
+($10,000+). Electricity ($200–$500), WiFi ($300–$500), and insurance
+($200–$400) are typically additional. Vendor selection is competitive —
+NYRR curates exhibitors for relevance to running community. Application
+deadline: typically early summer for November race.</p>
+<p>5.2 Expo Sales Strategy</p>
+<p>Primary goal at expos is NOT direct profit — it’s brand awareness,
+runner feedback, email list capture, and race-director networking. Staff
+booth with 2–3 people who are runners themselves. Offer $8.99 single /
+$14.99 2-pack impulse pricing. Collect emails with “get 15% off your
+next order” sign-up. Have a separate “Race Directors” area with B2B
+materials, sample kits, and pricing sheets.</p>
+<p>6. Race Director Outreach: The Sales Playbook</p>
+<table>
+<colgroup>
+<col style="width: 12%" />
+<col style="width: 26%" />
+<col style="width: 26%" />
+<col style="width: 34%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Timeline</strong></td>
+<td><strong>Action</strong></td>
+<td><strong>Tools/Channels</strong></td>
+<td><strong>Key Focus</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Week 1–2</strong></td>
+<td>Identify 50 target races from P0C database</td>
+<td>RunSignUp, RRCA directory, FindMyMarathon temperature filter</td>
+<td>Focus: cold-weather races with CRS cert or sustainability
+programs</td>
+</tr>
+<tr class="odd">
+<td><strong>Week 2–4</strong></td>
+<td>Warm outreach via Running USA or RRCA connections</td>
+<td>Attend RRCA Convention (Apr 2026, $425)</td>
+<td>Frame as “research on start-line sustainability”</td>
+</tr>
+<tr class="even">
+<td><strong>Week 3–6</strong></td>
+<td>Send sample kits to 10–15 interested RDs</td>
+<td>Ship 50–100 ponchos + data sheet + compostability cert</td>
+<td>Include warmth comparison data vs. Heatsheets/garbage bags</td>
+</tr>
+<tr class="odd">
+<td><strong>Week 6–10</strong></td>
+<td>Follow up for pilot commitments</td>
+<td>Offer 3-tier pilot: free sample → subsidized → full partnership</td>
+<td>Collect LOIs (Letters of Intent) as strong signals</td>
+</tr>
+<tr class="even">
+<td><strong>Week 10–16</strong></td>
+<td>Convert pilots to POs for Fall 2026 season</td>
+<td>Provide case study template + data collection guide</td>
+<td>Target: 3–5 pilot races locked by August 2026</td>
+</tr>
+<tr class="odd">
+<td><strong>Ongoing</strong></td>
+<td>Attend TRE (Dec 2026, $519+booth) + Running USA (Jan 2027)</td>
+<td>Exhibit; network; close 10+ race contracts for 2027 season</td>
+<td>Build portfolio of race-director testimonials</td>
+</tr>
+</tbody>
+</table>
+<p>6.1 Overcoming the Heatsheets Switching Cost</p>
+<p><strong>The pitch is NOT “replace Heatsheets.”</strong> Heatsheets
+owns the finish line. The pitch is: “We own the start line — a moment
+Heatsheets doesn’t serve.” This positions the poncho as complementary,
+not competitive, avoiding the switching-cost objection entirely. For
+races that DO use Heatsheets ponchos at the start: lead with
+sustainability certification credit (CRS/RFS), sponsor co-branding
+opportunity, and operational simplification (compostable = no sorting
+needed).</p>
+<p>6.2 Common Objections and Responses</p>
+<p>"Too expensive vs. garbage bags/mylar." Response: Total cost analysis
+— factor in 200+ clothing-sorting volunteers, Goodwill coordination, and
+brand/sponsor value of a co-branded compostable product.</p>
+<p>"Will it actually keep runners warm?" Response: Metallized aluminum
+reflects 95–97% IR body heat — identical physics to Heatsheets. Provide
+thermal test data (CLO comparison).</p>
+<p>"Is it really compostable?" Response: BPI certified (#pending), EN
+13432 compliant, TÜV OK Compost verified. Third-party lab results
+available.</p>
+<p>"We already have a sustainability program." Response: This poncho
+directly earns CRS certification credit under waste management criteria.
+Show exactly which CRS checklist items it satisfies.</p>
+<p>7. Sustainability Certifications as B2B Selling Tools</p>
+<table>
+<colgroup>
+<col style="width: 19%" />
+<col style="width: 24%" />
+<col style="width: 26%" />
+<col style="width: 29%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Certification</strong></td>
+<td><strong>Races That Hold/Pursue It</strong></td>
+<td><strong>How Poncho Helps</strong></td>
+<td><strong>Selling Angle</strong></td>
+</tr>
+<tr class="even">
+<td><strong>CRS Evergreen (highest)</strong></td>
+<td>Chicago, Toronto, London, LA</td>
+<td>Compostable products earn direct credit under Waste Management
+criteria</td>
+<td>Strongest selling point for certified races</td>
+</tr>
+<tr class="odd">
+<td><strong>CRS Gold</strong></td>
+<td>Hartford, Flying Pig, Grandma’s, Cherry Blossom</td>
+<td>Credit toward waste diversion and innovation metrics</td>
+<td>“Helps us maintain/achieve certification” pitch</td>
+</tr>
+<tr class="even">
+<td><strong>CRS Silver/Bronze</strong></td>
+<td>50+ additional events</td>
+<td>Stepping stone; compostable products help upgrade tier</td>
+<td>“This product moves you from Silver to Gold”</td>
+</tr>
+<tr class="odd">
+<td><strong>Racing for Sustainability</strong></td>
+<td>Small/mid races; Tina Muir network</td>
+<td>Industry Partner at $1,000/yr; toolkit + badge + promotion</td>
+<td>Access to 78%+ of races not pursuing CRS</td>
+</tr>
+<tr class="even">
+<td><strong>UN Sports for Climate Action</strong></td>
+<td>NYC Marathon (NYRR), Berlin, London</td>
+<td>Signatory commitment to reduce emissions</td>
+<td>Aligns with scope 3 supply chain goals</td>
+</tr>
+<tr class="odd">
+<td><strong>Net-zero pledges</strong></td>
+<td>NYRR (2040), Boston (ongoing), Pittsburgh</td>
+<td>Compostable products directly reduce landfill emissions</td>
+<td>“Contributes to your net-zero pathway”</td>
+</tr>
+</tbody>
+</table>
+<p>7.1 CRS Certification Credit: Specific Criteria Satisfied</p>
+<p>The Council for Responsible Sport evaluates races across 5 pillars
+with 61 best practices. A compostable poncho directly satisfies: (1)
+Waste Management — Waste Reduction: offering compostable alternatives to
+disposable products. (2) Waste Management — Diversion: achieving higher
+compost/recycling rates by replacing non-recyclable mylar. (3)
+Procurement — Sustainable Sourcing: purchasing certified
+compostable/bio-based products. (4) Innovation: introducing novel
+sustainability solutions. Each satisfied criterion earns points toward
+higher certification tiers.</p>
+<p>7.2 Racing for Sustainability Industry Partnership</p>
+<p>Racing for Sustainability (Tina Muir) offers Industry Partner
+membership at $1,000/year. Benefits: toolkit inclusion (recommended
+products list), digital badge, promotion to member races, conference
+speaking opportunities. 78% of races are too small for CRS — RFS fills
+this gap. The compostable poncho becomes a “recommended product” in the
+RFS toolkit, driving organic B2B leads.</p>
+<p>8. Sponsor-Funded Co-Branding Model</p>
+<table>
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 19%" />
+<col style="width: 24%" />
+<col style="width: 39%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Sponsor</strong></td>
+<td><strong>Marathon Spend</strong></td>
+<td><strong>Sustainability Angle</strong></td>
+<td><strong>Co-Brand Opportunity</strong></td>
+</tr>
+<tr class="even">
+<td><strong>TCS</strong></td>
+<td>$40M/yr across 5 World Majors</td>
+<td>Sustainability is stated pillar</td>
+<td>Co-branded poncho: TCS logo + “Powered by [Brand]”</td>
+</tr>
+<tr class="odd">
+<td><strong>Bank of America</strong></td>
+<td>Chicago Marathon title sponsor</td>
+<td>Requires ALL items reusable/recyclable/compostable</td>
+<td>Natural product fit; BofA pays for poncho inclusion</td>
+</tr>
+<tr class="even">
+<td><strong>Schneider Electric</strong></td>
+<td>Boston Marathon sustainability partner</td>
+<td>Dedicated sustainability sponsorship category</td>
+<td>Joint sustainability activation at start line</td>
+</tr>
+<tr class="odd">
+<td><strong>Abbott</strong></td>
+<td>World Marathon Majors series sponsor</td>
+<td>Series-wide sustainability commitment</td>
+<td>Cross-major partnership opportunity</td>
+</tr>
+<tr class="even">
+<td><strong>Brooks Running</strong></td>
+<td>#1 specialty retail shoe brand</td>
+<td>Carbon-neutral Ghost 14; Run Happy sustainability</td>
+<td>Co-branded eco warmth layer for sponsored races</td>
+</tr>
+<tr class="odd">
+<td><strong>Adidas</strong></td>
+<td>Berlin + Boston associations</td>
+<td>Parley ocean plastic; Made to be Remade</td>
+<td>Co-brand with sustainable message</td>
+</tr>
+</tbody>
+</table>
+<p>8.1 How the Heatsheets Co-Branding Model Works</p>
+<p>Heatsheets’ core business model: race directors sell blanket ad space
+to sponsors. Sponsor pays for custom-printed blankets ($2–$5/unit at
+volume) with their logo prominently displayed. Runner receives a useful
+product; sponsor gets guaranteed impressions (every finisher uses the
+blanket); race director offsets costs. Custom print MOQ: 3,000 units.
+This model translates directly to a compostable poncho: sponsor pays
+$3–$5/unit for co-branded compostable poncho + sustainability PR
+story.</p>
+<p>8.2 Approaching Race Sponsors</p>
+<p>The pitch to sponsors: “Your logo on the only compostable warmth
+product at the start line — 60,000+ runners wearing your brand for 30–90
+minutes in front of cameras, with a sustainability story that generates
+earned media.” Target sponsors with ESG mandates: Bank of America
+(requires compostable at Chicago), Schneider Electric (Boston
+sustainability partner), TCS ($40M/yr across 5 Majors with
+sustainability as stated pillar). Typical activation budget: $50K–$250K
+for a World Marathon Major sponsorship package.</p>
+<p>9. Charity &amp; Nonprofit Race Partnerships</p>
+<p>Charity races represent ~15–20% of all US running events. Major
+charity running programs include Team in Training (Leukemia &amp;
+Lymphoma Society — raised $1.5B+ since 1988), AIDS Walk/Run events,
+Susan G. Komen Race for the Cure (largest series of 5K runs globally),
+and St. Jude Heroes marathon program. Charity race budgets are typically
+10–20% tighter than for-profit races, with higher scrutiny on per-runner
+costs.</p>
+<p><strong>However, charity races are MORE likely to invest in
+sustainability</strong> because (1) their participants skew toward
+socially conscious demographics, (2) sustainability aligns with
+mission-driven branding, and (3) environmental claims help attract
+corporate sponsors. Heatsheets explicitly markets to nonprofits with a
+dedicated page showing how custom-printed blankets can be part of
+fundraising — a model to emulate.</p>
+<p>Group purchasing: no formal buying cooperative exists for US race
+supplies. However, race series operators (REVEL, Rock ’n’ Roll/Ironman,
+Spartan) centralize procurement across multiple events — one
+conversation can unlock an entire portfolio. REVEL series (7+ races at
+cold mountain starts) is the single best series target.</p>
+<p>10. International B2B Expansion Opportunities</p>
+<table>
+<colgroup>
+<col style="width: 19%" />
+<col style="width: 29%" />
+<col style="width: 19%" />
+<col style="width: 31%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Marathon</strong></td>
+<td><strong>Size &amp; Sustainability</strong></td>
+<td><strong>Certification Needed</strong></td>
+<td><strong>Opportunity Level</strong></td>
+</tr>
+<tr class="even">
+<td><strong>London Marathon</strong></td>
+<td>48,000+ finishers; failed reusable cape trial 2019</td>
+<td>EN 13432 + OK Compost required</td>
+<td>High — actively seeking alternatives to failed reusable model</td>
+</tr>
+<tr class="odd">
+<td><strong>Berlin Marathon</strong></td>
+<td>45,000+; closed-loop recycling program</td>
+<td>EN 13432 + DIN CERTCO</td>
+<td>High — strong sustainability culture; bales blankets for
+recycling</td>
+</tr>
+<tr class="even">
+<td><strong>Tokyo Marathon</strong></td>
+<td>38,000+; Japanese precision culture</td>
+<td>Japanese Green Purchasing Law compliance</td>
+<td>Medium — requires local distribution partner</td>
+</tr>
+<tr class="odd">
+<td><strong>Valencia Marathon</strong></td>
+<td>30,000+; switched to €10 reusable poncho</td>
+<td>EN 13432</td>
+<td>Medium — reusable model may be preferred</td>
+</tr>
+<tr class="even">
+<td><strong>Toronto Waterfront</strong></td>
+<td>25,000+; Green Bib (6.7% opt-in); 90%+ diversion</td>
+<td>ASTM D6400 (same as US) + CRS Evergreen</td>
+<td>Very High — eliminated mylar 2006; actively eco-innovating</td>
+</tr>
+<tr class="odd">
+<td><strong>Melbourne Marathon</strong></td>
+<td>35,000+; growing sustainability focus</td>
+<td>AS 4736 (industrial) / AS 5810 (home)</td>
+<td>Medium — Australian standards differ; TIPA already certified</td>
+</tr>
+</tbody>
+</table>
+<p>10.1 Certification Requirements by Market</p>
+<p>EU/UK: EN 13432 mandatory; TÜV OK Compost preferred. US
+certifications (ASTM D6400, BPI) are NOT recognized. Japan: Japanese
+Green Purchasing Law + JIS standards. Australia: AS 4736 (industrial) /
+AS 5810 (home compostable). Dual US + EU certification ($35K–$75K, 12–18
+months) covers the two largest marathon markets.</p>
+<p>10.2 Path to International Markets</p>
+<p>Year 1: Focus exclusively on US market. Build 3–5 pilot race case
+studies. Achieve BPI certification. Year 2: Pursue EN 13432
+certification. Approach London Marathon (TCS-sponsored, same parent as
+NYC), Berlin, and Toronto (already eliminated mylar, uses ASTM D6400).
+Year 3: Appoint regional distributors for EU and Australia. Tokyo
+requires a Japanese distribution partner due to language and regulatory
+complexity.</p>
+<p>11. Conclusion: Five B2B Launch Actions</p>
+<p><strong>1. Sign 10–15 race registration add-on partnerships by August
+2026.</strong> This is the fastest, highest-margin channel. Target
+cold-weather Fall 2026 races. Use P0C’s prioritized 53-race database as
+the prospect list.</p>
+<p><strong>2. Apply to Fleet Feet’s vendor partner program
+immediately.</strong> The hylo athletics precedent proves Fleet Feet
+actively seeks sustainability-first brands. A compostable warmth poncho
+is a category they don’t currently carry.</p>
+<p><strong>3. Attend RRCA Convention (April 2026, $425) for
+race-director networking.</strong> This is the most cost-effective B2B
+event for early-stage relationship building. Frame conversations as
+research, not sales.</p>
+<p><strong>4. Build a co-branded sponsor pitch deck for
+sustainability-mandated sponsors.</strong> Target Bank of America
+(Chicago), Schneider Electric (Boston), and TCS (NYC). The pitch: their
+logo on the only compostable start-line warmth product.</p>
+<p><strong>5. Join Racing for Sustainability as an Industry Partner
+($1,000/yr).</strong> This provides instant credibility, toolkit
+inclusion, and access to the 78% of races too small for CRS
+certification. Tina Muir’s network is the single best grassroots B2B
+channel for small/mid-size races.</p>
+
+        </div>
+    </div></div>
+<footer style="text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px">
+Sustainable Race-Start Warmth Poncho — D2C Brand GTM Project · 60 Subprojects · 391 Tasks · ~15,500¶ · April 2026
+</footer></body></html>

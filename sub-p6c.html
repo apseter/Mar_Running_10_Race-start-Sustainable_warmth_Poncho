@@ -1,0 +1,832 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>P6C: Amazon Marketplace — Race Start Warmth GTM</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0e1a;--surface:#111827;--card:#1a2332;--border:#2a3a4e;--accent:#10b981;--accent2:#3b82f6;--text:#e2e8f0;--muted:#94a3b8;--white:#fff;--red:#ef4444;--amber:#f59e0b;--green:#10b981}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+/* Nav */
+nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
+nav .inner{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;max-width:1200px;margin:0 auto}
+nav .brand{font-weight:700;font-size:15px;color:var(--accent)}
+nav .links{display:flex;gap:8px;flex-wrap:wrap}
+nav .links a{color:var(--muted);font-size:13px;padding:4px 10px;border-radius:6px;transition:.2s}
+nav .links a:hover,nav .links a.active{color:var(--white);background:var(--card);text-decoration:none}
+/* Hero */
+.hero{padding:60px 0 40px;text-align:center}
+.hero h1{font-size:2.4em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:1.1em;max-width:700px;margin:0 auto}
+/* Stats bar */
+.stats{display:flex;justify-content:center;gap:32px;padding:24px 0;flex-wrap:wrap}
+.stat{text-align:center}.stat .num{font-size:1.8em;font-weight:800;color:var(--white)}.stat .label{font-size:.75em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+/* Cards */
+.grid{display:grid;gap:16px;margin:24px 0}
+.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}
+.grid-3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;transition:.2s}
+.card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.card h3{font-size:1.1em;margin-bottom:8px}.card p{color:var(--muted);font-size:.9em}
+.card .badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:8px}
+.card .meta{font-size:.8em;color:var(--muted);margin-top:12px}
+/* Section */
+.section{padding:40px 0}.section h2{font-size:1.6em;font-weight:700;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+/* Table */
+table{width:100%;border-collapse:collapse;font-size:.85em;margin:16px 0}
+th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:52px}
+td{padding:8px 12px;border-bottom:1px solid var(--border)}
+tr:hover td{background:rgba(16,185,129,.05)}
+.status-complete{color:var(--green);font-weight:600}.status-not{color:var(--muted)}
+/* Progress */
+.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:8px}
+.progress .bar{height:100%;background:var(--accent);border-radius:3px}
+/* Back link */
+.back{display:inline-block;color:var(--muted);font-size:.9em;margin-bottom:20px}
+.back:hover{color:var(--accent)}
+/* Download */
+.dl-card{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin:8px 0;transition:.2s}
+.dl-card:hover{border-color:var(--accent);text-decoration:none}
+.dl-card .icon{font-size:2em}.dl-card .info h4{color:var(--white);margin-bottom:4px}.dl-card .info p{color:var(--muted);font-size:.85em}
+/* Footer */
+footer{text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px}
+@media(max-width:768px){.stats{gap:16px}.stat .num{font-size:1.3em}nav .links{gap:4px}nav .links a{font-size:11px;padding:3px 6px}.hero h1{font-size:1.6em}}
+
+.doc-content{max-width:900px;margin:0 auto;padding:20px 0}
+.doc-content h1{font-size:1.8em;font-weight:800;color:var(--white);margin:32px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.doc-content h2{font-size:1.4em;font-weight:700;color:var(--accent);margin:28px 0 12px}
+.doc-content h3{font-size:1.15em;font-weight:600;color:var(--accent2);margin:20px 0 10px}
+.doc-content p{margin:8px 0;line-height:1.7}
+.doc-content table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85em}
+.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;border:1px solid var(--border)}
+.doc-content td{padding:8px 12px;border:1px solid var(--border);vertical-align:top}
+.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.doc-content ul,.doc-content ol{margin:8px 0 8px 24px}
+.doc-content li{margin:4px 0;line-height:1.6}
+.doc-content strong{color:var(--white)}
+.doc-content em{color:var(--muted)}
+.doc-content blockquote{border-left:3px solid var(--accent);padding:8px 16px;margin:12px 0;background:var(--card);border-radius:0 8px 8px 0}
+.nav-sub{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 24px;padding:12px 16px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
+.nav-sub a{font-size:.8em;color:var(--muted);padding:4px 10px;border-radius:4px;transition:.2s;white-space:nowrap}
+.nav-sub a:hover,.nav-sub a.active{color:var(--white);background:var(--surface);text-decoration:none}
+</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a></div></div></nav><div class="container">
+    <div style="padding-top:30px">
+        <a href="p6.html" class="back">← 💻 P6: DTC Digital</a>
+        <div class="nav-sub"><a href="p6.html">💻 P6 Overview</a><a href="sub-p6a.html">P6A</a><a href="sub-p6b.html">P6B</a><a href="sub-p6c.html" class="active">P6C</a><a href="sub-p6d.html">P6D</a><a href="sub-p6e.html">P6E</a></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px">
+            <div>
+                <span style="background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px">P6C</span>
+                <span style="color:var(--muted);font-size:.85em;margin-left:8px">P6: DTC Digital</span>
+            </div>
+            <a href="files/P6C_Amazon_Marketplace.docx" style="font-size:.85em;color:var(--accent);padding:6px 14px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
+        </div>
+        <div class="doc-content">
+            <p><strong>P6C: AMAZON</strong></p>
+<p><strong>MARKETPLACE</strong></p>
+<p>Sub-Project P6C | DTC Digital Infrastructure | Weeks 12–16</p>
+<p><em>Complete Amazon Launch Strategy: Seller Central Setup,
+Keyword-Optimized Listing Architecture, A+ Enhanced Content, Vine Review
+Program, 5-Campaign PPC Framework, Data-Driven Listing Optimization, and
+Subscribe &amp; Save Configuration</em></p>
+<p>March 2026 | Confidential</p>
+<p>Executive Summary</p>
+<p><strong>Amazon is the volume engine.</strong> 63% of US product
+searches start on Amazon, not Google. A runner searching “marathon start
+line warmth” or “race poncho” at 10 PM the night before packet pickup
+will find the product on Amazon and have it delivered by morning with
+Prime. The Shopify store builds the brand; Amazon builds the revenue.
+Together they create a dual-channel DTC presence that captures runners
+wherever they shop.</p>
+<p><strong>This document specifies the complete Amazon launch:</strong>
+Professional Seller account with Brand Registry for A+ Content and
+advertising access, keyword-optimized listings with variation structure
+(1-pack/3-pack/6-pack on one page), A+ Enhanced Brand Content with
+comparison chart, warmth technology module, and race-day gallery, Amazon
+Vine enrollment for 10–25 reviews in 6–8 weeks ($243 total investment),
+a 5-campaign PPC framework scaling from $5/day Auto targeting to
+Sponsored Brands Video, a 5-metric optimization cadence driven by the
+Search Term Report, and Subscribe &amp; Save for recurring revenue from
+multi-race runners.</p>
+<p>1. Seller Central Setup</p>
+<p><strong>The Amazon seller account is the platform
+foundation.</strong> Professional Seller ($39.99/month) is mandatory: it
+unlocks advertising, reports, Buy Box eligibility, and Brand Registry.
+Individual Seller ($0/month) lacks all of these and is unsuitable for a
+product launch. Setup takes 1–3 days including identity
+verification.</p>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 47%" />
+<col style="width: 38%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Element</strong></td>
+<td><strong>Specification</strong></td>
+<td><strong>Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Account type</strong></td>
+<td>Professional Seller ($39.99/month). Individual Seller ($0/month but
+$0.99/item sold fee) is NOT recommended: no access to advertising,
+reports, Buy Box eligibility, or Brand Registry. Professional is
+mandatory for any serious DTC business.</td>
+<td>Register at sellercentral.amazon.com. Requires: legal business name,
+EIN or SSN, bank account for deposits, credit card for monthly fee,
+phone number for verification, government-issued ID. Approval: 1–3
+business days (may require additional identity verification
+documents).</td>
+</tr>
+<tr class="odd">
+<td><strong>Brand Registry</strong></td>
+<td>Amazon Brand Registry provides: A+ Content (enhanced product
+descriptions), Sponsored Brands ads, brand analytics, IP protection
+(report counterfeiters). Requires: a registered trademark (filed with
+USPTO). If trademark is PENDING (filed but not yet registered): Amazon’s
+IP Accelerator program allows Brand Registry enrollment with a pending
+trademark.</td>
+<td>Per P1A Section 5 trademark strategy: if trademark application is
+filed, apply for Brand Registry immediately. If not yet filed: file the
+trademark application first ($250–$350 via USPTO TEAS Plus), then enroll
+via IP Accelerator ($600–$1,500 via an Amazon-partnered law firm) to
+access Brand Registry while the trademark processes (8–12 months).</td>
+</tr>
+<tr class="even">
+<td><strong>Account health</strong></td>
+<td>Maintain: Order Defect Rate (ODR) &lt;1%, Late Shipment Rate &lt;4%,
+Pre-Fulfillment Cancel Rate &lt;2.5%. FBA handles shipping performance,
+so the primary risk is ODR (negative feedback + A-to-Z claims + credit
+card chargebacks). MITIGATION: FBA’s fulfillment reliability keeps these
+metrics healthy automatically. Monitor: Account Health dashboard
+weekly.</td>
+<td>Amazon suspends seller accounts for health metric violations. FBA
+sellers have significantly lower risk than Merchant Fulfilled (MFN)
+sellers because Amazon controls shipping quality. Using FBA exclusively
+keeps account health green.</td>
+</tr>
+<tr class="odd">
+<td><strong>Tax settings</strong></td>
+<td>Amazon collects and remits sales tax on behalf of sellers in states
+where Amazon has Marketplace Facilitator obligations (currently all 50
+states with sales tax). The seller does NOT need to separately register
+or file sales tax for Amazon orders in most cases. VERIFY: Seller
+Central → Settings → Tax Settings → confirm Marketplace Tax Collection
+is active.</td>
+<td>This is a significant advantage of selling on Amazon vs.
+Shopify-only: Amazon handles sales tax compliance automatically. No
+TaxJar or Avalara needed for Amazon channel.</td>
+</tr>
+</tbody>
+</table>
+<p>2. Listing Architecture: Keyword-Optimized</p>
+<p><strong>The Amazon listing is the product’s sales page,
+advertisement, and SEO strategy in one.</strong> Every word in the
+title, bullets, and backend keywords affects: which searches surface the
+product (discoverability), which shoppers click through (click-through
+rate), and which clickers purchase (conversion rate). The listing must
+be optimized for BOTH the algorithm (keywords) and the human (compelling
+copy).</p>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 52%" />
+<col style="width: 33%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Element</strong></td>
+<td><strong>Specification</strong></td>
+<td><strong>Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Title</strong></td>
+<td>Format: [Brand Name] Compostable Race Poncho — [Pack Size] | BPI
+Certified Marathon Start Line Warmth | Sustainable Running Gear |
+Metallized Cellulose [Color]. Example: “[BRAND] Compostable Race Poncho
+— 3-Pack | BPI Certified Marathon Start Line Warmth | Sustainable
+Running Gear | Metallized Earth Green.” MAX 200 characters. Include:
+brand name, primary keyword (compostable race poncho), pack size,
+certification (BPI), use case (marathon start line), and differentiator
+(sustainable).</td>
+<td>Amazon’s search algorithm (A10) heavily weights the title.
+Front-load the most important keywords. Do NOT keyword-stuff:
+readability matters for conversion. Use pipes (|) to separate phrases
+for readability.</td>
+</tr>
+<tr class="odd">
+<td><strong>Bullet points (5)</strong></td>
+<td>Bullet 1: WARMTH WHEN YOU NEED IT — Metallized cellulose lining
+retains body heat, keeping you 8–12°F warmer than bare skin at 40°F.
+Designed specifically for marathon and race start-line corrals. Bullet
+2: TEAR AWAY IN SECONDS — Laser-perforated tear-away design lets you
+shed the poncho at the gun in under 3 seconds. No fumbling, no fuss.
+Bullet 3: BPI CERTIFIED COMPOSTABLE — Made from NatureFlex metallized
+cellulose and PLA spunbond. Meets ASTM D6400 standards. Composts in
+12–24 weeks at commercial composting facilities. Bullet 4: ONE SIZE FITS
+ALL — 55″W × 34″L body with elastic hood. Fits XS to XXL. Lightweight
+and packable to 6″ × 4.5″ — slides easily into your race bag or drop
+bag. Bullet 5: REPLACE GARBAGE BAGS FOREVER — Stop using trash bags and
+single-use plastic at the start line. Race warm, leave no trace. Each
+poncho replaces one garbage bag that would sit in a landfill for 500+
+years.</td>
+<td>Each bullet: LEAD WITH BENEFIT IN CAPS, then explain. 200-character
+max per bullet (Amazon may truncate longer bullets on mobile). Focus on:
+what the customer GAINS, not what the product IS. Use emotional
+language: “warmth when you need it,” “replace garbage bags
+forever.”</td>
+</tr>
+<tr class="even">
+<td><strong>Backend keywords</strong></td>
+<td>Seller Central → Edit Listing → Keywords tab → Search Terms field.
+Enter up to 250 bytes of backend keywords (not visible to customers,
+used by Amazon’s search algorithm). Include: synonyms, alternate
+spellings, related terms NOT already in the title or bullets. Examples:
+marathon poncho, half marathon warmth, running start line, eco friendly
+race gear, biodegradable poncho, cold weather running, corral warmth,
+race day, endurance sport, compostable running accessory.</td>
+<td>Do NOT repeat words already in the title or bullets (Amazon ignores
+duplicates). Do NOT use competitor brand names (against Amazon TOS).
+Separate keywords with spaces (not commas). Use singular forms only
+(Amazon matches plural automatically). Use all 250 bytes — wasted
+keyword space is wasted discoverability.</td>
+</tr>
+<tr class="odd">
+<td><strong>Product description</strong></td>
+<td>If NOT Brand Registered: use the standard product description field
+(2,000 characters max). Write 3–4 paragraphs covering: the problem (cold
+corrals, garbage bag waste), the solution (compostable warmth poncho),
+how it works (pack, wear, tear, compost), and the call to action (order
+now for your next race). If Brand Registered: skip this field entirely
+and use A+ Content instead (Section 3) which appears in the same
+position but with rich formatting and images.</td>
+<td>The standard description has LOW conversion impact (it’s below the
+fold, small text, no formatting). A+ Content is 3–5× more effective at
+converting. Prioritize Brand Registry enrollment to unlock A+.</td>
+</tr>
+<tr class="even">
+<td><strong>Category</strong></td>
+<td>Primary: Sports &amp; Outdoors → Running → Accessories. Browse node:
+search for the most specific subcategory that matches. Alternative
+categories to consider: Sports &amp; Outdoors → Outdoor Recreation →
+Camping &amp; Hiking → Ponchos. If the product appears in multiple
+categories: Amazon may auto-assign based on the listing content. Request
+a category change via Seller Support if needed.</td>
+<td>The category determines: which keywords surface the listing, which
+competitor products appear alongside, and which Amazon Best Seller Rank
+(BSR) applies. “Running → Accessories” is ideal because competitors (arm
+warmers, reflective gear, hydration) are NOT direct substitutes — the
+poncho stands out.</td>
+</tr>
+<tr class="odd">
+<td><strong>Variation listing</strong></td>
+<td>Create a PARENT ASIN with 3 child variations: 1-Pack, 3-Pack,
+6-Pack. Variation theme: “Size.” This consolidates all 3 products on ONE
+product page with a dropdown selector. Benefits: all reviews appear on
+the same page (a 5-star review on the 3-pack helps sell the single), all
+ad spend drives to one landing page, and the customer sees all options
+without navigating.</td>
+<td>Do NOT create 3 separate listings. Separate listings split reviews,
+split ad traffic, and confuse customers. The variation listing is the #1
+structural decision for a multi-pack product line.</td>
+</tr>
+</tbody>
+</table>
+<p>2.1 Image Gallery: 7–9 Images</p>
+<p>Amazon allows up to 9 images + 1 video per listing. Image
+requirements: minimum 1000×1000px (2000×2000px recommended for zoom),
+white background for the HERO image (image 1 — Amazon requires pure
+white RGB 255,255,255 for the main image), JPEG or PNG format.
+RECOMMENDED image sequence per P1D Amazon photography plan: (1) Hero:
+product on white background, (2) Lifestyle: runner wearing poncho at
+dawn, (3) Scale: poncho in hand showing packability (6″×4.5″), (4)
+Detail: metallized lining close-up showing reflective technology, (5)
+Tear-away: 3-step sequence (pull tab, tear, shed), (6) Infographic:
+composting lifecycle (Pack → Wear → Tear → Compost), (7) FLIR: thermal
+comparison image (poncho vs. garbage bag vs. bare skin), (8) Size guide:
+dimensions overlaid on human silhouette, (9) Packaging: inner bag +
+card/sleeve. VIDEO (1): 30–45 second product demo from P1D Section
+3.</p>
+<p>3. A+ Enhanced Brand Content</p>
+<p><strong>A+ Content replaces the standard product description with
+rich modules: images, comparison charts, brand story, and formatted
+text.</strong> A+ Content increases conversion rate by 3–10% (Amazon’s
+published data). It appears below the bullet points and above the
+reviews — the last piece of content a shopper sees before deciding to
+buy or leave. Brand Registry is REQUIRED.</p>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width:50%">
+<col style="width: 35%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Module</strong></td>
+<td><strong>Content</strong></td>
+<td><strong>Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Brand Story module</strong></td>
+<td>Appears at the top of A+ Content. Layout: left image (founder photo
+or brand hero), right text (100-word brand story from P1C Section 1.2).
+Bottom: 3 brand value icons (Compostable, BPI Certified,
+Runner-Founded).</td>
+<td>Available to all Brand Registry sellers. Appears on EVERY product
+page in the brand’s catalog. Set once, applies everywhere.</td>
+</tr>
+<tr class="odd">
+<td><strong>Comparison chart</strong></td>
+<td>5-column table comparing: Compostable Poncho vs. Heatsheets Mylar
+Blanket vs. Garbage Bag vs. Old Clothing vs. Nothing. Rows: warmth (1–5
+rating), sustainability (compostable/recyclable/landfill), cost, ease of
+use, waste generated, custom branding available. The poncho wins every
+category except possibly cost (competitive, not cheapest).</td>
+<td>The comparison chart is the #1 conversion driver in A+ Content. It
+directly addresses the shopper’s question: “Why should I buy THIS
+instead of the alternatives I already know?” Show the poncho winning
+clearly but honestly.</td>
+</tr>
+<tr class="even">
+<td><strong>How It Works module</strong></td>
+<td>4-panel horizontal layout: PACK (sealed poncho in hand, 6″×4.5″),
+WEAR (runner in corral, dawn light), TEAR (runner pulling tab, clean
+tear), COMPOST (poncho decomposing in soil with seedling). Each panel:
+image + 1-sentence caption.</td>
+<td>Visual storytelling of the product lifecycle. This module answers:
+“How do I use this?” and “What happens after?” in 4 images.</td>
+</tr>
+<tr class="odd">
+<td><strong>Warmth technology module</strong></td>
+<td>Full-width image: FLIR thermal comparison (poncho vs. garbage bag
+vs. bare skin at 40°F). Text overlay: “8–12°F warmer than bare skin.
+Metallized cellulose technology reflects body heat.”</td>
+<td>The FLIR image is the visual proof that eliminates the #1 objection:
+“Does it actually keep you warm?” Thermal imaging is scientific and
+compelling.</td>
+</tr>
+<tr class="even">
+<td><strong>Sustainability module</strong></td>
+<td>Split layout: left image (composting lifecycle infographic from P1B
+Section 6), right text: “BPI Certified Compostable. Meets ASTM D6400.
+Composts in 12–24 weeks at commercial facilities. Every poncho replaces
+a garbage bag that would persist in a landfill for 500+ years.”</td>
+<td>Reinforces the sustainability value proposition for eco-conscious
+shoppers. Include the BPI certification logo prominently.</td>
+</tr>
+<tr class="odd">
+<td><strong>Race-day gallery</strong></td>
+<td>3–4 image banner: race-day photos from pilot races (P5B Section 3/4
+photography). Runners in ponchos at dawn, corrals, tearing off at the
+gun, composting bins with signage.</td>
+<td>Authentic race-day photos are more persuasive than studio shots at
+this point in the listing (customer has already seen studio images in
+the gallery). These photos say: “Real runners use this at real
+races.”</td>
+</tr>
+</tbody>
+</table>
+<p>3.1 A+ Content Best Practices</p>
+<p>DO: use high-resolution images (minimum 970px wide for full-width
+modules), keep text concise (the customer is SCANNING, not reading),
+front-load the comparison chart (it’s the highest-conversion module),
+and ensure all A+ Content is mobile-optimized (over 70% of Amazon
+shoppers browse on mobile — preview in Seller Central’s mobile preview
+tool). DO NOT: duplicate information already in the title/bullets (A+
+should ADD new information, not repeat), use competitor brand names in
+A+ Content (violates Amazon TOS), or include pricing, promotions, or
+shipping information in A+ (Amazon prohibits these in A+ Content).
+TIMING: publish A+ Content BEFORE enrolling in Vine. Vine reviewers
+evaluate the full listing — a listing without A+ looks incomplete.</p>
+<p>4. Amazon Vine: Initial Reviews</p>
+<p><strong>Reviews are the lifeblood of Amazon sales.</strong> A product
+with 0 reviews converts at 1–3%. The same product with 25+ reviews at
+4.5 stars converts at 10–15%. Vine is the fastest, most legitimate way
+to build the review foundation. 30 free units + $200 fee = 10–25 honest,
+detailed, photo-rich reviews in 6–8 weeks.</p>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width:50%">
+<col style="width: 35%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Element</strong></td>
+<td><strong>Specification</strong></td>
+<td><strong>Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>What is Vine?</strong></td>
+<td>Amazon Vine is an invitation-only review program. Sellers enroll
+products; Amazon sends free units to trusted Vine Voices (reviewers with
+a history of helpful, detailed reviews). Vine reviewers receive the
+product for free and must leave an honest review (positive OR negative).
+Vine reviews carry a “Vine Customer Review of Free Product” badge.</td>
+<td>Vine is the FASTEST way to get high-quality, detailed reviews on a
+new product. Vine reviewers write longer, more thoughtful reviews than
+organic reviewers — and they include photos.</td>
+</tr>
+<tr class="odd">
+<td><strong>Enrollment</strong></td>
+<td>Seller Central → Advertising → Vine. Enroll each ASIN (single,
+3-pack, 6-pack). Cost: $200 per parent ASIN (one-time fee, covers all
+child variations). Provide: up to 30 units of the product (FBA inventory
+is used — units are deducted from FBA stock and sent to Vine reviewers
+at no additional cost beyond the product COGS).</td>
+<td>Enroll ALL 3 variations under the parent ASIN ($200 total, not $200
+per variation). 30 units = 30 potential reviews. At $1.43 COGS per unit:
+product cost = $42.90. Total Vine investment: $242.90 for up to 30
+reviews. Cost per review: ~$8. Compare to: organic review acquisition
+cost of $50–$100 per review (estimated marketing spend to generate 1
+organic review). Vine is 5–10× more cost-effective.</td>
+</tr>
+<tr class="even">
+<td><strong>Timeline</strong></td>
+<td>After enrollment: Amazon invites Vine Voices to request the product.
+Reviewers typically request within 1–2 weeks. Reviews appear 2–6 weeks
+after the reviewer receives the product (Vine requires reviews within 30
+days of receipt). TOTAL: expect 10–25 Vine reviews within 6–8 weeks of
+enrollment.</td>
+<td>Do NOT enroll in Vine before the listing is fully optimized (images,
+title, bullets, A+ Content). Vine reviewers evaluate the ENTIRE
+experience: product quality, packaging, listing accuracy. A poor listing
+that doesn’t match the product = negative Vine review.</td>
+</tr>
+<tr class="odd">
+<td><strong>Managing Vine reviews</strong></td>
+<td>You CANNOT influence Vine reviews. They are honest and may include
+criticism. If a Vine reviewer writes a 3-star review citing a legitimate
+issue (e.g., “tear-away was difficult in cold weather”): respond
+publicly with a constructive comment (“Thank you for the feedback. We’ve
+noted this and are testing improvements to the tear-away force for cold
+conditions.”) and feed the feedback into P2F Section 1. If the review
+violates Amazon’s Community Guidelines (offensive content, competitor
+sabotage): report via Seller Central.</td>
+<td>Vine reviews set the TONE for all future reviews. 20 positive Vine
+reviews (4–5 stars) create a strong foundation. Even 1–2 critical Vine
+reviews are acceptable: they add authenticity (100% 5-star reviews look
+suspicious to shoppers).</td>
+</tr>
+</tbody>
+</table>
+<p>5. Amazon PPC: 5-Campaign Framework</p>
+<p><strong>Amazon PPC (Pay-Per-Click) advertising drives paid traffic to
+the listing.</strong> At launch, the product has zero organic ranking —
+no customer will find it through search without advertising. PPC serves
+two functions: (1) generating immediate sales (revenue), and (2)
+building organic ranking (every sale from PPC improves organic position,
+which generates free future traffic). The 5-campaign framework scales
+from discovery (Auto) to precision targeting (Manual Keyword + ASIN) to
+brand building (Sponsored Brands + Video).</p>
+<table>
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 52%" />
+<col style="width: 30%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Campaign</strong></td>
+<td><strong>Setup</strong></td>
+<td><strong>Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Sponsored Products (Auto)</strong></td>
+<td>Amazon automatically targets keywords based on the listing content.
+The algorithm learns which keywords convert and optimizes over time.
+Daily budget: $5–$10/day. Bid strategy: “Dynamic bids — down only”
+(Amazon reduces bids when a click is unlikely to convert, but never
+exceeds your max bid). Default bid: $0.50–$0.75.</td>
+<td>Launch Auto campaign FIRST. Let it run for 14–21 days. Then:
+download the Search Term Report (Advertising → Reports → Search Term) to
+identify which keywords actually drove clicks and conversions. These
+keywords become the seeds for the Manual campaign.</td>
+</tr>
+<tr class="odd">
+<td><strong>Sponsored Products (Manual — Keyword)</strong></td>
+<td>After 14–21 days: create a Manual campaign targeting the
+top-performing keywords from the Auto campaign Search Term Report. Match
+types: Exact Match (highest conversion, lowest volume) for proven
+keywords, Phrase Match (moderate) for keyword variations, Broad Match
+(lowest conversion, highest discovery) for new keyword exploration.
+Daily budget: $5–$10/day. Bids: start at the Auto campaign’s actual CPC
+for each keyword, then adjust based on ACoS.</td>
+<td>The Manual campaign is where profitability is optimized. Move the
+winning keywords from Auto to Manual, set tighter bids, and control
+exactly which searches trigger the ad. Keep the Auto campaign running at
+a lower budget ($3–$5/day) for continued keyword discovery.</td>
+</tr>
+<tr class="even">
+<td><strong>Sponsored Products (Manual — ASIN)</strong></td>
+<td>Target specific competitor ASINs: the ad appears on their product
+pages under “Products related to this item.” Target: Heatsheets product
+pages, emergency blanket pages, rain poncho pages, running accessories
+that runners might browse before a race. Daily budget: $3–$5/day. Bids:
+$0.30–$0.60 (ASIN targeting is typically lower CPC than keyword
+targeting).</td>
+<td>ASIN targeting is a sniper strategy: the ad appears ONLY to shoppers
+who are already looking at a related product. A runner browsing a
+Heatsheets listing who sees “Compostable Alternative — BPI Certified” as
+a sponsored product is a high-intent target.</td>
+</tr>
+<tr class="odd">
+<td><strong>Sponsored Brands (Brand Registry required)</strong></td>
+<td>Banner ad appearing at the top of search results with: brand logo,
+custom headline, and 3 product images. Headline: “Race Warm. Leave No
+Trace. — BPI Certified Compostable Ponchos.” Links to: brand Store page
+(or product listing). Daily budget: $5–$10/day. Bid: $0.50–$1.00.</td>
+<td>Sponsored Brands builds BRAND AWARENESS in search results. Even
+shoppers who don’t click see the brand name + logo + tagline. Launch
+after Sponsored Products is running profitably (Month 2–3).</td>
+</tr>
+<tr class="even">
+<td><strong>Sponsored Brands Video</strong></td>
+<td>15–45 second video ad appearing in search results. Show: product
+demo (tear-away, warmth), race-day footage, composting lifecycle. Amazon
+auto-plays the video on desktop and mobile. Daily budget: $5–$10/day.
+Bid: $0.50–$1.50 (video ads have higher CPC but significantly higher
+conversion rates).</td>
+<td>Video ads are the highest-converting Amazon ad format (2–3× the
+conversion rate of static Sponsored Products). Create the video from P1D
+Section 3 content: 30-second format showing pack → wear → tear →
+compost. Launch Month 2–3 after basic campaigns are optimized.</td>
+</tr>
+</tbody>
+</table>
+<p>5.1 PPC Metrics to Track</p>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 28%" />
+<col style="width: 57%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Metric</strong></td>
+<td><strong>Calculation</strong></td>
+<td><strong>Target / Action</strong></td>
+</tr>
+<tr class="even">
+<td><strong>ACoS (Advertising Cost of Sale)</strong></td>
+<td>Ad spend ÷ ad-attributed revenue × 100</td>
+<td>Target: &lt;30% for launch phase (Weeks 1–8, prioritizing visibility
++ reviews over profitability). Target: &lt;20% for steady-state (Month
+3+, optimizing for profitable growth). At $9.99 selling price and $5.00
+margin after Amazon fees + COGS: breakeven ACoS = 50%. ACoS &lt;30% =
+profitable advertising.</td>
+</tr>
+<tr class="odd">
+<td><strong>TACoS (Total ACoS)</strong></td>
+<td>Ad spend ÷ TOTAL revenue (ad-attributed + organic) × 100</td>
+<td>Target: &lt;15%. TACoS measures the ad spend required to sustain
+TOTAL sales (not just ad sales). As organic ranking improves (driven by
+sales velocity from ads + reviews), TACoS should decrease over time. If
+TACoS is rising: organic sales are declining and ads are doing all the
+work — investigate listing quality and review issues.</td>
+</tr>
+<tr class="even">
+<td><strong>CPC (Cost Per Click)</strong></td>
+<td>Total ad spend ÷ total clicks</td>
+<td>Average CPC in Sports &amp; Outdoors: $0.40–$0.80. If CPC exceeds
+$1.00 consistently: keywords are too competitive or targeting is too
+broad. Refine: move to exact match, lower bids, or target less
+competitive long-tail keywords.</td>
+</tr>
+<tr class="odd">
+<td><strong>Conversion rate</strong></td>
+<td>Orders ÷ clicks × 100 (for the ad)</td>
+<td>Target: 10–15% for well-optimized listings. Industry average for
+Sports &amp; Outdoors: 8–12%. If &lt;8%: the listing is not converting —
+the problem is the product page (images, bullets, price, reviews), not
+the ad. Fix the listing before increasing ad spend.</td>
+</tr>
+<tr class="even">
+<td><strong>Impressions + click-through rate</strong></td>
+<td>Impressions: how many times the ad was shown. CTR: clicks ÷
+impressions × 100.</td>
+<td>Target CTR: 0.3–0.5% for Sponsored Products (industry average),
+0.5–1.0% for Sponsored Brands, 1.0–2.0% for Video. Low CTR = the ad
+creative (title, hero image) is not compelling enough to stop scrollers.
+Test: new hero image, different title keyword front-loading.</td>
+</tr>
+</tbody>
+</table>
+<p>5.2 PPC Budget Phasing</p>
+<p>LAUNCH PHASE (Weeks 1–8): total daily budget: $10–$20/day
+($300–$600/month). Focus: Auto + Manual Keyword campaigns. Goal:
+generate sales velocity for organic ranking, collect search term data,
+and build review count. Accept ACoS up to 30–50% (investment in future
+organic ranking). GROWTH PHASE (Month 3–6): total daily budget:
+$15–$30/day ($450–$900/month). Add: ASIN targeting + Sponsored Brands.
+Goal: profitable growth with ACoS &lt;25%. Reduce Auto budget as Manual
+campaigns take over. STEADY-STATE (Month 6+): total daily budget:
+$10–$25/day ($300–$750/month). Focus: Manual Keyword (Exact) + Sponsored
+Brands Video. Goal: maintain organic ranking with ACoS &lt;20%. Auto
+runs at minimal budget ($3–$5/day) for ongoing keyword discovery.</p>
+<p>6. Listing Optimization: Data-Driven Iteration</p>
+<p><strong>The initial listing is a hypothesis. The data tells you
+whether it’s right.</strong> After 30 days of traffic and PPC data, the
+listing should be REVISED based on: which keywords actually drive sales
+(Search Term Report), which images convert best (A/B testing), which
+price point maximizes profit (price testing), and what customers are
+saying in reviews (feedback integration). The listing is never “done” —
+it’s continuously optimized.</p>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width:50%">
+<col style="width: 35%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Activity</strong></td>
+<td><strong>Process</strong></td>
+<td><strong>Action</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Search Term Report analysis</strong></td>
+<td>Download weekly (Advertising → Reports → Search Term). Identify:
+keywords with &gt;10 clicks and 0 purchases = negative keyword
+candidates (add as negative exact match to prevent future spend).
+Keywords with &gt;3 purchases and &lt;30% ACoS = winners (increase bid
+by 10–20%, add to Manual Exact Match campaign). Keywords with high
+impressions but low CTR = listing relevance issue (the ad is shown but
+not clicked — may be targeting the wrong audience).</td>
+<td>The Search Term Report is the SINGLE MOST VALUABLE data source for
+Amazon optimization. It reveals exactly what customers search before
+buying (or not buying) the product. Review religiously every week for
+the first 3 months.</td>
+</tr>
+<tr class="odd">
+<td><strong>Keyword ranking tracking</strong></td>
+<td>Use Helium 10 ($39/month) or Jungle Scout ($49/month) to track the
+product’s ORGANIC ranking for target keywords. Track 10–20 keywords:
+“compostable poncho,” “marathon start line,” “race poncho,” “sustainable
+running gear,” etc. Target: page 1 (positions 1–48) for primary keywords
+within 90 days.</td>
+<td>Organic ranking = free traffic. Every improvement in organic
+position reduces dependence on paid advertising. As organic ranking
+improves: gradually reduce PPC bids (but never eliminate — PPC protects
+organic ranking by maintaining sales velocity).</td>
+</tr>
+<tr class="even">
+<td><strong>Image A/B testing</strong></td>
+<td>Amazon’s Manage Your Experiments tool (Brand Registry required):
+test different hero images, A+ Content layouts, and bullet point
+versions. Amazon splits traffic 50/50 and measures which version has a
+higher conversion rate. Run each test for 4–8 weeks (minimum statistical
+significance).</td>
+<td>Test the hero image FIRST (highest-impact element). Test A: white
+background product shot. Test B: lifestyle shot of runner in poncho at
+dawn. Measure: conversion rate. The winner becomes the permanent hero
+image. Then test: image order (which sequence of the 7–9 images converts
+best).</td>
+</tr>
+<tr class="odd">
+<td><strong>Price testing</strong></td>
+<td>Test $9.99 vs. $8.99 vs. $7.99 for the single unit. At $9.99: higher
+margin but may lose price-sensitive shoppers. At $7.99: lower margin but
+potentially higher conversion rate and velocity. The RIGHT price is the
+one that maximizes TOTAL PROFIT (margin × units sold), not just margin
+per unit. Run price tests for 2–4 weeks and measure: units sold,
+revenue, and profit.</td>
+<td>Amazon’s algorithm factors in sales velocity: a lower price that
+doubles unit sales may improve organic ranking significantly, which then
+drives more organic (free) sales. Price is a RANKING lever, not just a
+margin lever.</td>
+</tr>
+<tr class="even">
+<td><strong>Review velocity management</strong></td>
+<td>Target: 25+ reviews in the first 90 days. Sources: Vine (10–25
+reviews in 6–8 weeks), post-purchase email request (Klaviyo
+post-purchase Email 3 per P6B Section 5, or Amazon’s “Request a Review”
+button in Seller Central), expo follow-up emails (P5D Section 7.1
+post-expo sequence), and organic reviews from satisfied customers.
+NEVER: incentivize reviews with discounts, free products (outside Vine),
+or payment. Amazon bans accounts for review manipulation.</td>
+<td>Review count and average rating are the #2 conversion factor after
+price. A product with 25 reviews at 4.5 stars converts 3–5× better than
+the same product with 3 reviews at 4.5 stars. Early review velocity is
+critical.</td>
+</tr>
+</tbody>
+</table>
+<p>7. Subscribe &amp; Save: Recurring Revenue</p>
+<p><strong>Subscribe &amp; Save transforms one-time buyers into
+recurring customers.</strong> A runner who subscribes to a quarterly
+3-pack delivery generates $95–$100/year in revenue (4 deliveries ×
+$23.74–$24.99) vs. $24.99 from a single purchase. The CLV multiplier is
+4× — and the customer requires ZERO acquisition cost after the first
+purchase.</p>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 81%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Element</strong></td>
+<td><strong>Specification</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Concept</strong></td>
+<td>Amazon Subscribe &amp; Save allows customers to set up automatic
+recurring delivery at a 5–15% discount. For the poncho: a runner who
+races 3–4 times per year subscribes to receive a 3-pack every 3 months.
+They never have to remember to reorder before a race.</td>
+</tr>
+<tr class="odd">
+<td><strong>Setup</strong></td>
+<td>Seller Central → Inventory → Manage FBA Inventory → select the
+product → enable Subscribe &amp; Save. Set: discount tier (5% for single
+subscription, 15% for subscribers with 5+ active subscriptions —
+Amazon’s standard tier structure). Frequency options: monthly, every 2
+months, every 3 months, every 4 months, every 6 months. RECOMMENDED
+default: every 3 months (quarterly, aligns with race season
+cadence).</td>
+</tr>
+<tr class="even">
+<td><strong>Economics</strong></td>
+<td>3-Pack at $24.99, 5% S&amp;S discount = $23.74/delivery. Margin:
+$23.74 − $3.56 Amazon referral fee − $3.68 FBA fee − $3.45 COGS = $13.05
+net margin per delivery (55%). At 15% discount (5+ subscriptions):
+$21.24 − fees − COGS = $10.55 net margin (49.7%). Both tiers remain
+profitable. S&amp;S builds predictable recurring revenue and increases
+customer lifetime value (CLV) by 3–5× vs. one-time purchase.</td>
+</tr>
+<tr class="odd">
+<td><strong>Target audience</strong></td>
+<td>Multi-race runners who race 3–6+ times per year (half marathons,
+marathons, trail races, relays). Running club members who need ponchos
+for every cold-weather group run. Ultra runners who race monthly. Market
+S&amp;S as: “Never forget your race poncho again. Subscribe and it
+arrives before every race.”</td>
+</tr>
+<tr class="even">
+<td><strong>Caveats</strong></td>
+<td>S&amp;S works best for products with REGULAR consumption patterns.
+The poncho is seasonal (runners don’t need ponchos in July). Mitigation:
+set default frequency to every 3 months (quarterly) rather than monthly.
+Subscribers can skip or cancel anytime. Also: S&amp;S units are
+fulfilled from FBA inventory — ensure FBA stock levels account for
+S&amp;S commitments in the P3E demand model. S&amp;S subscribers who
+experience a stockout are automatically cancelled — losing a subscriber
+is worse than losing a one-time sale.</td>
+</tr>
+</tbody>
+</table>
+<p>8. Timeline &amp; Budget</p>
+<p><strong>WEEK 12: Create Amazon Professional Seller account
+($39.99/month). Apply for Brand Registry (if trademark filed per P1A).
+Set up: account, tax settings, FBA enrollment. Begin writing listing
+copy: titles, bullets, backend keywords.</strong></p>
+<p><strong>WEEK 13–14: Create product listings: single, 3-pack, 6-pack
+as variations under one parent ASIN. Upload 7–9 images per P1D
+photography plan. Write and submit A+ Content (comparison chart, warmth
+technology, composting lifecycle, race-day gallery, brand story). Submit
+for Amazon review (A+ review typically takes 3–7 business
+days).</strong></p>
+<p><strong>WEEK 14–15: Enroll in Amazon Vine ($200 + 30 units from FBA
+inventory). First Vine reviewers request product within 1–2 weeks.
+Launch PPC Campaign 1: Sponsored Products Auto ($5–$10/day). Monitor:
+impressions, clicks, CPC, ACoS daily for the first week.</strong></p>
+<p><strong>WEEK 15–16: After 14 days of Auto campaign data: download
+Search Term Report. Create PPC Campaign 2: Sponsored Products Manual
+Keyword (top performers from Auto). Create Campaign 3: ASIN targeting
+(Heatsheets, emergency blankets, running accessories). First Vine
+reviews begin appearing (Week 6–8 from enrollment). Set up Subscribe
+&amp; Save. Optimize listings based on first 30 days: adjust keywords,
+refine images, review early feedback.</strong></p>
+<p>BUDGET: Amazon Professional Seller: $39.99/month. Brand Registry / IP
+Accelerator: $0–$1,500 (one-time, if trademark not yet filed). Amazon
+Vine: $200 + ~$43 in product COGS (30 units). PPC Launch Phase (Month
+1–2): $300–$600/month. Helium 10 or Jungle Scout: $39–$49/month (keyword
+tracking + BSR monitoring). Product photography (if not yet done per
+P1D): $200–$500 (DIY or professional). TOTAL P6C setup: $579–$2,893
+one-time + $379–$689/month.</p>
+<p>9. Conclusion: Amazon Is the Discovery Engine</p>
+<p><strong>A runner who doesn’t know the brand exists will never visit
+brand.com.</strong> But that same runner, searching “marathon race
+poncho” at midnight before their first cold-weather race, WILL find the
+product on Amazon. Amazon is where DISCOVERY happens for product
+categories that customers don’t know exist yet. “Compostable race
+poncho” is a category the brand is CREATING — and Amazon is where new
+categories find their first customers.</p>
+<p><strong>The first 90 days on Amazon determine the next 3
+years.</strong> Products that build 25+ reviews, achieve page-1 organic
+ranking for 5–10 keywords, and maintain a 4.3+ star rating in the first
+90 days establish a self-reinforcing flywheel: organic ranking drives
+free traffic → free traffic drives sales → sales drive more reviews →
+reviews drive higher conversion → higher conversion drives better
+ranking. Products that fail to build this flywheel in the first 90 days
+struggle to recover — Amazon’s algorithm favors products that
+demonstrate early momentum. Every element in this document — optimized
+listing, Vine reviews, aggressive PPC, data-driven iteration — exists to
+build that flywheel in the critical first 90 days.</p>
+
+        </div>
+    </div></div>
+<footer style="text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px">
+Sustainable Race-Start Warmth Poncho — D2C Brand GTM Project · 60 Subprojects · 391 Tasks · ~15,500¶ · April 2026
+</footer></body></html>

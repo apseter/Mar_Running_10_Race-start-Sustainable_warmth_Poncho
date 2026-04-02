@@ -1,0 +1,722 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>P6A: Analytics Tracking — Race Start Warmth GTM</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0e1a;--surface:#111827;--card:#1a2332;--border:#2a3a4e;--accent:#10b981;--accent2:#3b82f6;--text:#e2e8f0;--muted:#94a3b8;--white:#fff;--red:#ef4444;--amber:#f59e0b;--green:#10b981}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+/* Nav */
+nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
+nav .inner{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;max-width:1200px;margin:0 auto}
+nav .brand{font-weight:700;font-size:15px;color:var(--accent)}
+nav .links{display:flex;gap:8px;flex-wrap:wrap}
+nav .links a{color:var(--muted);font-size:13px;padding:4px 10px;border-radius:6px;transition:.2s}
+nav .links a:hover,nav .links a.active{color:var(--white);background:var(--card);text-decoration:none}
+/* Hero */
+.hero{padding:60px 0 40px;text-align:center}
+.hero h1{font-size:2.4em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:1.1em;max-width:700px;margin:0 auto}
+/* Stats bar */
+.stats{display:flex;justify-content:center;gap:32px;padding:24px 0;flex-wrap:wrap}
+.stat{text-align:center}.stat .num{font-size:1.8em;font-weight:800;color:var(--white)}.stat .label{font-size:.75em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+/* Cards */
+.grid{display:grid;gap:16px;margin:24px 0}
+.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}
+.grid-3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;transition:.2s}
+.card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.card h3{font-size:1.1em;margin-bottom:8px}.card p{color:var(--muted);font-size:.9em}
+.card .badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:8px}
+.card .meta{font-size:.8em;color:var(--muted);margin-top:12px}
+/* Section */
+.section{padding:40px 0}.section h2{font-size:1.6em;font-weight:700;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+/* Table */
+table{width:100%;border-collapse:collapse;font-size:.85em;margin:16px 0}
+th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:52px}
+td{padding:8px 12px;border-bottom:1px solid var(--border)}
+tr:hover td{background:rgba(16,185,129,.05)}
+.status-complete{color:var(--green);font-weight:600}.status-not{color:var(--muted)}
+/* Progress */
+.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:8px}
+.progress .bar{height:100%;background:var(--accent);border-radius:3px}
+/* Back link */
+.back{display:inline-block;color:var(--muted);font-size:.9em;margin-bottom:20px}
+.back:hover{color:var(--accent)}
+/* Download */
+.dl-card{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin:8px 0;transition:.2s}
+.dl-card:hover{border-color:var(--accent);text-decoration:none}
+.dl-card .icon{font-size:2em}.dl-card .info h4{color:var(--white);margin-bottom:4px}.dl-card .info p{color:var(--muted);font-size:.85em}
+/* Footer */
+footer{text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px}
+@media(max-width:768px){.stats{gap:16px}.stat .num{font-size:1.3em}nav .links{gap:4px}nav .links a{font-size:11px;padding:3px 6px}.hero h1{font-size:1.6em}}
+
+.doc-content{max-width:900px;margin:0 auto;padding:20px 0}
+.doc-content h1{font-size:1.8em;font-weight:800;color:var(--white);margin:32px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.doc-content h2{font-size:1.4em;font-weight:700;color:var(--accent);margin:28px 0 12px}
+.doc-content h3{font-size:1.15em;font-weight:600;color:var(--accent2);margin:20px 0 10px}
+.doc-content p{margin:8px 0;line-height:1.7}
+.doc-content table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85em}
+.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;border:1px solid var(--border)}
+.doc-content td{padding:8px 12px;border:1px solid var(--border);vertical-align:top}
+.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.doc-content ul,.doc-content ol{margin:8px 0 8px 24px}
+.doc-content li{margin:4px 0;line-height:1.6}
+.doc-content strong{color:var(--white)}
+.doc-content em{color:var(--muted)}
+.doc-content blockquote{border-left:3px solid var(--accent);padding:8px 16px;margin:12px 0;background:var(--card);border-radius:0 8px 8px 0}
+.nav-sub{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 24px;padding:12px 16px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
+.nav-sub a{font-size:.8em;color:var(--muted);padding:4px 10px;border-radius:4px;transition:.2s;white-space:nowrap}
+.nav-sub a:hover,.nav-sub a.active{color:var(--white);background:var(--surface);text-decoration:none}
+</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a></div></div></nav><div class="container">
+    <div style="padding-top:30px">
+        <a href="p6.html" class="back">← 💻 P6: DTC Digital</a>
+        <div class="nav-sub"><a href="p6.html">💻 P6 Overview</a><a href="sub-p6a.html" class="active">P6A</a><a href="sub-p6b.html">P6B</a><a href="sub-p6c.html">P6C</a><a href="sub-p6d.html">P6D</a><a href="sub-p6e.html">P6E</a></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px">
+            <div>
+                <span style="background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px">P6A</span>
+                <span style="color:var(--muted);font-size:.85em;margin-left:8px">P6: DTC Digital</span>
+            </div>
+            <a href="files/P6A_Analytics_Tracking.docx" style="font-size:.85em;color:var(--accent);padding:6px 14px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
+        </div>
+        <div class="doc-content">
+            <p><strong>P6A: ANALYTICS</strong></p>
+<p><strong>&amp; TRACKING</strong></p>
+<p>Sub-Project P6A | DTC Digital Infrastructure | Weeks 10–12</p>
+<p><em>Complete Digital Measurement Foundation: GA4 Ecommerce Setup,
+Meta Pixel + Conversions API, Google Search Console, Heatmap &amp;
+Session Recording, UTM Tracking System, and 10-KPI Performance
+Dashboard</em></p>
+<p>March 2026 | Confidential</p>
+<p>Executive Summary</p>
+<p><strong>Analytics must be installed BEFORE traffic arrives.</strong>
+Every visitor to the website before tracking is configured is invisible
+data — their behavior, their source, their conversion path is lost
+permanently. This document establishes the complete digital measurement
+infrastructure during Weeks 10–12, well before the Shopify store
+launches (P6B), Amazon listings go live (P6C), or any marketing spend
+begins (P7). The infrastructure captures: WHERE visitors come from (UTMs
++ GA4 acquisition), WHAT they do on the site (GA4 events + Clarity
+heatmaps), WHETHER they convert (GA4 ecommerce + Meta Pixel), and HOW
+much it costs to acquire them (KPI dashboard with CAC by channel).</p>
+<p><strong>Six tracking systems are configured:</strong> (1) Google
+Analytics 4 with enhanced ecommerce events tracking every step of the
+purchase funnel, (2) Meta Pixel with Conversions API for
+Facebook/Instagram ad optimization and remarketing, (3) Google Search
+Console for organic search visibility monitoring and indexing, (4)
+Microsoft Clarity for free heatmaps and session recordings revealing UX
+friction, (5) a UTM parameter system ensuring every marketing touchpoint
+is attributed correctly, and (6) a 10-KPI dashboard providing a single
+view of business health across DTC, Amazon, B2B, and sustainability
+metrics.</p>
+<p>1. Google Analytics 4: Ecommerce Tracking</p>
+<p><strong>GA4 is the foundation of all web analytics.</strong> It
+tracks: who visits the site, how they found it, what they looked at,
+whether they purchased, and how much they spent. The ecommerce-specific
+events (view_item, add_to_cart, begin_checkout, purchase) create a
+FUNNEL that shows exactly where potential customers drop off — the
+single most actionable piece of data for DTC optimization.</p>
+<table>
+<colgroup>
+<col style="width: 7%" />
+<col style="width:50%">
+<col style="width: 42%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Step</strong></td>
+<td><strong>Process</strong></td>
+<td><strong>Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Create GA4 property</strong></td>
+<td>Go to analytics.google.com. Create account (or use existing Google
+account). Create a GA4 property: property name = “[BRAND] Website,” time
+zone = US Eastern, currency = USD. GA4 generates a Measurement ID
+(format: G-XXXXXXXXXX).</td>
+<td>GA4 is the current Google Analytics version. Universal Analytics
+(UA) was sunset in July 2024. All new setups must use GA4.</td>
+</tr>
+<tr class="odd">
+<td><strong>Install on Shopify</strong></td>
+<td>Shopify Admin → Online Store → Preferences → Google Analytics. Paste
+the GA4 Measurement ID. Alternatively: install the “Google &amp;
+YouTube” Shopify app (free) for deeper integration including automatic
+enhanced ecommerce events. Verify: visit the site, then check GA4
+Realtime report — you should see 1 active user.</td>
+<td>The Shopify Google &amp; YouTube app automatically sends enhanced
+ecommerce events (view_item, add_to_cart, begin_checkout, purchase)
+without custom code. RECOMMENDED over manual tag installation.</td>
+</tr>
+<tr class="even">
+<td><strong>Configure ecommerce events</strong></td>
+<td>In GA4: Admin → Data Streams → Web → Enhanced Measurement → verify
+all toggles are ON (page views, scrolls, outbound clicks, site search,
+form interactions). Ecommerce events (add_to_cart, begin_checkout,
+purchase, view_item) are sent automatically by Shopify’s GA4
+integration. Verify: make a test purchase, then check GA4 → Reports →
+Monetization → Ecommerce Purchases.</td>
+<td>If ecommerce events are NOT appearing after 24 hours: check Google
+Tag Manager (GTM) or use GA4’s DebugView to troubleshoot. The Shopify
+Google &amp; YouTube app typically handles this automatically.</td>
+</tr>
+<tr class="odd">
+<td><strong>Set up conversions</strong></td>
+<td>In GA4: Admin → Events → mark the following events as “Conversions”:
+purchase (the PRIMARY conversion — a completed sale), add_to_cart
+(micro-conversion — tracks intent), begin_checkout (micro-conversion —
+tracks checkout initiation), generate_lead (if using a B2B inquiry form
+or email sign-up form with this event name). Custom events: create a
+“sample_kit_request” event for B2B sample kit form submissions on the
+brand.com/b2b page.</td>
+<td>Marking events as conversions enables: conversion reporting in GA4
+dashboards, conversion-based audience building for remarketing, and
+importing conversions into Google Ads (if running search/display ads in
+the future).</td>
+</tr>
+<tr class="even">
+<td><strong>Enable Google Signals</strong></td>
+<td>GA4: Admin → Data Settings → Data Collection → Enable Google
+Signals. This enables: cross-device tracking (a user who browses on
+mobile and purchases on desktop is counted as 1 user, not 2),
+demographics and interests reporting, and remarketing audience sharing
+with Google Ads.</td>
+<td>Requires: updating the site’s privacy policy to disclose Google
+Signals data collection. Add a cookie consent banner (Shopify apps:
+Pandectes GDPR, $0–$10/month, or Cookie Banner by Avada, free).</td>
+</tr>
+<tr class="odd">
+<td><strong>Link Google Ads (future)</strong></td>
+<td>GA4: Admin → Product Links → Google Ads. Link when/if Google Ads
+campaigns are launched (P7 or Year 2). This enables: importing GA4
+conversions as Google Ads conversion actions, building remarketing
+audiences in GA4 and using them in Google Ads, and seeing Google Ads
+performance data in GA4 reports.</td>
+<td>Not needed for launch — set up when Google Ads campaigns begin. But
+creating the GA4 property NOW means historical data is collecting from
+Day 1. When Google Ads launches, there will be months of baseline data
+for comparison.</td>
+</tr>
+</tbody>
+</table>
+<p>1.1 GA4 Key Reports for DTC</p>
+<p>After 2–4 weeks of data collection, the following GA4 reports become
+actionable: TRAFFIC ACQUISITION (Reports → Acquisition → Traffic
+Acquisition): shows which channels drive visits (organic search, paid
+search, social, email, direct, referral). Use to: identify which
+marketing channels are working and which need more investment. USER
+ACQUISITION (Reports → Acquisition → User Acquisition): shows how NEW
+users (first visit) find the site vs. returning users. Use to: measure
+the effectiveness of awareness campaigns. ECOMMERCE FUNNEL (Explore →
+Funnel Exploration): create a custom funnel: view_item → add_to_cart →
+begin_checkout → purchase. This shows: product page → cart conversion
+rate, cart → checkout rate, and checkout → purchase rate. If 50% drop
+off between cart and checkout: investigate checkout friction (P6E
+Section 4). LANDING PAGES (Reports → Engagement → Landing Page): shows
+which pages users land on first. Use to: identify high-performing
+content (blog posts, race-specific landing pages) and pages with high
+bounce rates that need improvement.</p>
+<p>2. Meta Pixel + Conversions API</p>
+<p><strong>The Meta Pixel tracks visitor behavior on the website and
+sends it to Meta’s ad platform.</strong> Even if you’re not running
+Facebook or Instagram ads TODAY, installing the pixel NOW means: (A) the
+pixel collects data on every visitor, building an audience pool for
+future remarketing, (B) when ads launch, the pixel has months of
+historical data to optimize against (Meta’s algorithm performs better
+with more data), and (C) custom conversions (B2B inquiry, email sign-up)
+are tracked from Day 1.</p>
+<table>
+<colgroup>
+<col style="width: 7%" />
+<col style="width:50%">
+<col style="width: 42%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Step</strong></td>
+<td><strong>Process</strong></td>
+<td><strong>Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Create Meta Pixel</strong></td>
+<td>Go to Facebook Business Manager (business.facebook.com) → Events
+Manager → Connect Data Sources → Web → Meta Pixel. Name: “[BRAND]
+Pixel.” Copy the Pixel ID (format: 15-digit number).</td>
+<td>Requires: a Facebook Business Page for the brand (create if not
+already done per P1E). A personal Facebook account is needed to create
+Business Manager.</td>
+</tr>
+<tr class="odd">
+<td><strong>Install on Shopify</strong></td>
+<td>Shopify Admin → Online Store → Preferences → Facebook Pixel. Paste
+Pixel ID. OR: install the “Facebook &amp; Instagram” Shopify sales
+channel (free) which handles pixel installation + Conversions API
+automatically. RECOMMENDED: the sales channel provides both browser-side
+pixel AND server-side Conversions API for maximum event coverage.</td>
+<td>The Conversions API (CAPI) sends conversion events from Shopify’s
+server directly to Meta, bypassing browser limitations (ad blockers, iOS
+privacy). This improves: event match quality, ad optimization accuracy,
+and attribution reliability. The Shopify Facebook &amp; Instagram app
+sets this up automatically.</td>
+</tr>
+<tr class="even">
+<td><strong>Verify standard events</strong></td>
+<td>After installation: use the Meta Pixel Helper Chrome extension (free
+from Chrome Web Store) to verify events firing on each page. Standard
+events that should fire: PageView (every page), ViewContent (product
+pages), AddToCart (add-to-cart button), InitiateCheckout (checkout
+page), Purchase (order confirmation page, includes value +
+currency).</td>
+<td>If events are NOT firing: check Shopify’s Facebook &amp; Instagram
+app settings. Ensure: Pixel ID is correct, data sharing level is set to
+“Maximum” (Customer Information + Browsing Activity), and Conversions
+API is enabled.</td>
+</tr>
+<tr class="odd">
+<td><strong>Configure custom conversions</strong></td>
+<td>In Events Manager → Custom Conversions: create conversions for: “B2B
+Inquiry” (URL rule: brand.com/b2b/thank-you or form submission event),
+“Email Sign-Up” (URL rule: brand.com/signup-confirmed), “Sample Kit
+Request” (URL rule: brand.com/b2b/sample-request-confirmed). These
+custom conversions enable: optimizing future Meta ad campaigns for
+specific B2B or DTC actions beyond just purchases.</td>
+<td>Custom conversions are NOT needed for launch but should be
+configured NOW so that when Meta ads launch (P7), the pixel has
+historical conversion data to optimize against.</td>
+</tr>
+<tr class="even">
+<td><strong>Verify with Events Manager</strong></td>
+<td>Go to Events Manager → Test Events. Enter your website URL. Browse
+the site and trigger events (view a product, add to cart, complete
+checkout). Events should appear in the Test Events tab in real time.
+Also check: Overview tab → event volume over the past 7 days. All 5
+standard events should show activity.</td>
+<td>Run this verification EVERY TIME the site is updated (new theme, new
+app installed, Shopify version change). Pixel breaks are silent — the
+only way to catch them is to check Events Manager regularly.</td>
+</tr>
+</tbody>
+</table>
+<p>2.1 Meta Audiences for Future Advertising</p>
+<p>Even before running ads, configure these audiences in Events Manager
+for future use: WEBSITE VISITORS (all visitors in the past 180 days):
+broadest remarketing audience. PRODUCT VIEWERS (viewed a product page
+but didn’t purchase in 30 days): high-intent remarketing audience.
+PURCHASERS (completed a purchase): use for: lookalike audience creation
+(Meta finds users similar to buyers), exclusion (don’t show acquisition
+ads to existing customers), and cross-sell campaigns (show 3-pack ads to
+single-unit buyers). EMAIL SUBSCRIBERS: upload Klaviyo email list to
+Meta as a custom audience (monthly sync). Use for: lookalike audience
+creation from engaged email subscribers. These audiences are GOLDMINES
+for paid social advertising in P7. Building them now means they’re ready
+when ad spend begins.</p>
+<p>3. Google Search Console</p>
+<p><strong>Search Console is the window into how Google sees the
+website.</strong> It shows: which search queries display the site in
+results (impressions), how many users click through (clicks), the
+average ranking position for each query, and any technical issues
+preventing pages from being indexed. It is the ONLY source of accurate
+organic search data — GA4 shows organic traffic volume but not the
+specific queries.</p>
+<table>
+<colgroup>
+<col style="width: 7%" />
+<col style="width:50%">
+<col style="width: 42%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Step</strong></td>
+<td><strong>Process</strong></td>
+<td><strong>Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Verify domain</strong></td>
+<td>Go to search.google.com/search-console. Add property → enter
+brand.com. Verify ownership via: DNS TXT record (recommended — paste a
+verification string into the domain’s DNS settings at the domain
+registrar), OR HTML meta tag (paste a verification tag into Shopify’s
+theme.liquid header), OR Google Analytics (if GA4 is already installed
+and verified).</td>
+<td>DNS verification is the most reliable and persists even if the site
+theme changes. Takes 5–10 minutes at the domain registrar (GoDaddy,
+Namecheap, Cloudflare, etc.).</td>
+</tr>
+<tr class="odd">
+<td><strong>Submit sitemap</strong></td>
+<td>In Search Console: Sitemaps → enter: brand.com/sitemap.xml (Shopify
+auto-generates this). Submit. Google will crawl and index the site
+within 1–7 days. Check back: Sitemaps page should show “Success” status
+with the number of discovered URLs.</td>
+<td>Shopify’s auto-generated sitemap includes: all product pages,
+collection pages, blog posts, and static pages. If a page is missing:
+check Shopify Admin → Online Store → Pages → ensure the page is
+published and not hidden from search engines.</td>
+</tr>
+<tr class="even">
+<td><strong>Request indexing</strong></td>
+<td>For critical pages (homepage, product pages, B2B landing page): use
+the URL Inspection tool in Search Console. Enter the page URL → “Request
+Indexing.” This puts the URL in Google’s priority crawl queue. Pages
+typically appear in Google Search within 1–3 days of request.</td>
+<td>Only request indexing for the 5–10 most important pages. Google’s
+regular crawl will find the rest via the sitemap. Over-requesting
+indexing doesn’t speed things up.</td>
+</tr>
+<tr class="odd">
+<td><strong>Monitor performance</strong></td>
+<td>After 2–4 weeks: check Search Console → Performance report. View:
+total impressions, total clicks, average position, and click-through
+rate (CTR) for each search query that triggered the site. Key queries to
+monitor: “compostable poncho,” “race start line warmth,” “marathon
+poncho,” “sustainable running gear.”</td>
+<td>Search Console data has a 2–3 day lag. Performance report shows the
+ACTUAL search queries people use to find the site — this data feeds
+directly into P6D SEO keyword strategy.</td>
+</tr>
+</tbody>
+</table>
+<p>3.1 Technical SEO Checks</p>
+<p>After Search Console is verified, check: (1) COVERAGE report
+(Indexing → Pages): shows how many pages are indexed vs. excluded. If
+important pages are “Excluded”: investigate the reason (noindex tag,
+crawl error, redirect issue). (2) MOBILE USABILITY report: flags pages
+with mobile display issues (text too small, clickable elements too close
+together). Fix any issues before launch — 70%+ of running shoppers
+browse on mobile (per P6B Section 7). (3) CORE WEB VITALS (Experience →
+Core Web Vitals): measures page speed and user experience. Targets: LCP
+(Largest Contentful Paint) &lt;2.5 seconds, FID (First Input Delay)
+&lt;100ms, CLS (Cumulative Layout Shift) &lt;0.1. Shopify themes
+generally score well on Core Web Vitals if: images are compressed,
+minimal third-party scripts, and no unoptimized video embeds.</p>
+<p>4. Heatmaps &amp; Session Recording</p>
+<p><strong>Heatmaps and session recordings show WHAT users actually do
+on the site</strong> — not what the founder THINKS they do. Analytics
+shows numbers (X% clicked, Y% scrolled). Heatmaps show WHERE they
+clicked and HOW FAR they scrolled. Session recordings show the ENTIRE
+user journey: mouse movement, scrolling behavior, hesitations,
+confusion, and abandonment. This is the most underutilized free tool in
+DTC e-commerce.</p>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 81%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Element</strong></td>
+<td><strong>Specification</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Platform</strong></td>
+<td>Microsoft Clarity (clarity.microsoft.com): FREE, unlimited traffic,
+heatmaps, session recordings, scroll maps, click maps, dead click
+detection, rage click detection, and insights dashboard. Alternative:
+Hotjar (free tier: 1,050 sessions/month, limited features). RECOMMENDED:
+Microsoft Clarity — completely free with no traffic limits.</td>
+</tr>
+<tr class="odd">
+<td><strong>Installation</strong></td>
+<td>Create a Clarity project. Get the tracking code (JavaScript
+snippet). Install on Shopify: Online Store → Themes → Edit Code →
+theme.liquid → paste the snippet before &lt;/head&gt;. OR: use a Shopify
+app (“Microsoft Clarity” free app from the Shopify App Store). Verify:
+visit the site, wait 5 minutes, check Clarity dashboard for the first
+recorded session.</td>
+</tr>
+<tr class="even">
+<td><strong>Key pages to monitor</strong></td>
+<td>Product page (single poncho): WHERE do users click? Do they scroll
+to the reviews section? Do they click “Add to Cart” or abandon?
+Homepage: do visitors find the product quickly? Is the B2B landing page
+link visible? Do they scroll to the impact counter? Checkout: where do
+users drop off? Is there a rage-click (frustrated clicking) on any
+element?</td>
+</tr>
+<tr class="odd">
+<td><strong>Insights to act on</strong></td>
+<td>Dead clicks: users clicking on elements that aren’t clickable (e.g.,
+clicking on a product image expecting a zoom, but no zoom is enabled).
+FIX: make the element interactive. Rage clicks: repeated rapid clicking
+on a button or link that isn’t responding. FIX: investigate broken
+links, slow loading, or confusing UI. Scroll depth: if 60%+ of users
+don’t scroll past the fold on the product page, the above-fold content
+isn’t compelling enough. FIX: move the most important content (hero
+image, price, CTA) above the fold.</td>
+</tr>
+<tr class="even">
+<td><strong>Review cadence</strong></td>
+<td>Weekly during the first month after launch (identify and fix
+critical UX issues). Monthly after the first month (ongoing
+optimization). Before any A/B test (P6E Section 3): review heatmaps +
+recordings to form a hypothesis about what to test.</td>
+</tr>
+</tbody>
+</table>
+<p>4.1 Privacy Compliance for Session Recording</p>
+<p>Microsoft Clarity and Hotjar automatically mask sensitive input
+fields (credit card numbers, passwords) in recordings. HOWEVER: ensure
+the site’s privacy policy discloses the use of session recording
+technology. Add: “We use Microsoft Clarity to understand how visitors
+interact with our website through heatmaps and session recordings.
+Personal information is masked.” Also: the cookie consent banner
+(installed for GA4 Google Signals) should include Clarity as a listed
+analytics tool. Clarity respects “Do Not Track” browser settings by
+default.</p>
+<p>5. UTM Parameter System</p>
+<p><strong>UTMs are the attribution backbone.</strong> Without UTMs, GA4
+cannot distinguish between: a visitor who came from an email campaign
+vs. one who typed the URL directly, a QR code scan from the product
+packaging vs. a QR code scan from the expo booth, or a click from a
+LinkedIn post vs. a click from an Instagram Story. Every untagged link =
+unattributed traffic = wasted marketing intelligence.</p>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 81%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Element</strong></td>
+<td><strong>Specification</strong></td>
+</tr>
+<tr class="even">
+<td><strong>UTM parameter structure</strong></td>
+<td>Every external link pointing to the website includes 5 UTM
+parameters: utm_source (where the traffic comes from: google, facebook,
+instagram, email, expo, b2b_sample_kit, linkedin, newsletter, etc.),
+utm_medium (the marketing medium: cpc, social, email, referral, direct,
+qr, etc.), utm_campaign (the specific campaign: fall2026_launch,
+early_bird_promo, expo_chicago, pilot_followup, etc.), utm_content
+(optional: differentiates links within the same campaign: hero_banner
+vs. sidebar_link, email1_vs_email2), utm_term (optional: for paid
+search, the keyword that triggered the ad).</td>
+</tr>
+<tr class="odd">
+<td><strong>UTM naming convention</strong></td>
+<td>ALL lowercase, underscores instead of spaces, consistent spelling.
+Document the convention in a shared Google Sheet (“UTM Master Sheet”)
+with columns: source, medium, campaign, content, term, URL, where used,
+date. EXAMPLES:
+brand.com?utm_source=email&amp;utm_medium=email&amp;utm_campaign=welcome_series&amp;utm_content=hero_cta.
+brand.com?utm_source=expo_chicago&amp;utm_medium=qr&amp;utm_campaign=fall2026_expo.
+brand.com/b2b?utm_source=sample_kit&amp;utm_medium=print&amp;utm_campaign=b2b_outreach_q3.</td>
+</tr>
+<tr class="even">
+<td><strong>UTM builder tool</strong></td>
+<td>Use Google’s Campaign URL Builder
+(ga-dev-tools.google/ga4/campaign-url-builder/) to generate tagged URLs.
+Paste the base URL + fill in UTM fields → copy the generated URL. For
+short links (QR codes, printed materials): shorten UTM-tagged URLs with
+Bitly ($0 for basic, $10/month for branded short links) or TinyURL.</td>
+</tr>
+<tr class="odd">
+<td><strong>Channel-specific UTMs</strong></td>
+<td>EMAIL: every link in every email (Klaviyo, Mailchimp) must have
+UTMs. Klaviyo auto-adds UTMs if configured: Settings → UTM Tracking →
+Enable. SOCIAL MEDIA: every link in Instagram bio, Facebook posts,
+LinkedIn posts, and Strava posts must have UTMs. QR CODES: every QR code
+(packaging, expo display, sample kit) links to a UTM-tagged URL.
+Packaging QR:
+utm_source=packaging&amp;utm_medium=qr&amp;utm_campaign=product_insert.
+PRINT: every URL in printed materials (B2B data sheet, business cards,
+expo signage) should be a UTM-tagged short link. B2B SAMPLE KIT: the QR
+code in the kit links to
+brand.com/b2b?utm_source=sample_kit&amp;utm_medium=qr&amp;utm_campaign=b2b_kit_fall2026.</td>
+</tr>
+<tr class="even">
+<td><strong>Verification</strong></td>
+<td>After setting up UTMs: click each tagged link and verify in GA4
+Realtime report that the correct source, medium, and campaign appear.
+Check: Traffic Acquisition report in GA4 → filter by Source/Medium →
+confirm your UTM sources are appearing as expected. Common mistake:
+forgetting UTMs on one channel — that traffic shows up as “direct” in
+GA4, making attribution impossible.</td>
+</tr>
+</tbody>
+</table>
+<p>5.1 UTM Master Sheet</p>
+<p>Create a Google Sheet (“UTM Master Sheet”) shared with anyone who
+creates links for the brand. Columns: Date Created | Channel | Source |
+Medium | Campaign | Content | Term | Full URL | Short URL (Bitly) |
+Where Used (email name, print material, social post) | Created By. RULE:
+every new link must be added to the UTM Master Sheet BEFORE it is
+published. This prevents: duplicate campaigns with different naming,
+broken URLs, and untraceable traffic sources. The UTM Master Sheet
+becomes the single source of truth for all marketing attribution.</p>
+<p>6. KPI Dashboard: 10 Metrics</p>
+<p><strong>The KPI dashboard provides a single-screen view of business
+health across all channels.</strong> Build in Google Looker Studio
+(free, formerly Data Studio) connected to: GA4 (website traffic +
+conversion), Shopify (revenue + AOV), Amazon Seller Central (BSR +
+reviews), HubSpot CRM (B2B pipeline), and manual data entry (CAC,
+composting impact). Review: daily for the first 30 days post-launch,
+then weekly.</p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 19%" />
+<col style="width: 38%" />
+<col style="width: 28%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>KPI</strong></td>
+<td><strong>Data Source</strong></td>
+<td><strong>Target / Action Trigger</strong></td>
+<td><strong>Dashboard Tool</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Daily visits</strong></td>
+<td>GA4: Users, Sessions, Pageviews</td>
+<td>Track: total traffic, traffic by source (organic, paid, social,
+email, direct, referral). Flag: any day with &lt;50% of average traffic
+= possible tracking issue or site downtime.</td>
+<td>Google Looker Studio (free) connected to GA4</td>
+</tr>
+<tr class="odd">
+<td><strong>Conversion rate</strong></td>
+<td>GA4: Ecommerce Purchase Rate (purchases ÷ sessions × 100)</td>
+<td>Target: 2–4% for a new DTC brand on Shopify (industry avg for
+specialty e-commerce). Track: overall and by traffic source. If paid
+traffic converts at &lt;1%: ad targeting or landing page needs
+optimization.</td>
+<td>Shopify Analytics (built-in) + GA4</td>
+</tr>
+<tr class="even">
+<td><strong>Average Order Value (AOV)</strong></td>
+<td>GA4: Ecommerce Revenue ÷ Ecommerce Transactions</td>
+<td>Target: $15+ (driven by multi-pack upsell). Single-unit AOV: $9.99.
+With successful 3-pack upsell: $15–$20 AOV. Track: AOV trend over time
+and by traffic source.</td>
+<td>Shopify Analytics</td>
+</tr>
+<tr class="odd">
+<td><strong>Customer Acquisition Cost (CAC)</strong></td>
+<td>Total marketing spend (ads + expo + sample kits + content) ÷ total
+new customers acquired in the period</td>
+<td>Target: &lt;$15 DTC (break even on first purchase at $9.99 − $5.00
+Amazon/fulfillment fees = $5.00 margin, so CAC must be &lt;$5 for
+Amazon; higher acceptable for Shopify where margin is better). Track: by
+channel (PPC CAC vs. email CAC vs. organic CAC).</td>
+<td>Manual calculation in Google Sheet</td>
+</tr>
+<tr class="even">
+<td><strong>Email signup rate</strong></td>
+<td>Email signups ÷ total sessions × 100</td>
+<td>Target: 3–6% of site visitors sign up for email (via popup, inline
+form, or checkout opt-in). Track: signup source (popup vs. checkout vs.
+B2B form). Use: Klaviyo analytics for signup attribution.</td>
+<td>Klaviyo dashboard</td>
+</tr>
+<tr class="odd">
+<td><strong>Amazon BSR (Best Sellers Rank)</strong></td>
+<td>Amazon Seller Central: Product Detail Page → Best Sellers Rank</td>
+<td>Track: BSR in the primary category (Sports &amp; Outdoors &gt;
+Running &gt; Accessories). Lower BSR = more sales. Target: top 10,000 in
+category within 90 days of launch. Track: daily for the first 30 days,
+then weekly.</td>
+<td>Helium 10 or Jungle Scout ($30–$50/month) for BSR tracking + keyword
+ranking</td>
+</tr>
+<tr class="even">
+<td><strong>Amazon review count + rating</strong></td>
+<td>Seller Central: Product Reviews</td>
+<td>Target: 25+ reviews within 90 days (via Vine + organic + expo
+follow-ups). Average rating target: 4.3+ stars. Track: weekly. If rating
+drops &lt;4.0: investigate specific complaints and address in P2F
+product improvement.</td>
+<td>Seller Central + Helium 10</td>
+</tr>
+<tr class="odd">
+<td><strong>B2B pipeline value</strong></td>
+<td>CRM (HubSpot): total weighted pipeline value across all deal
+stages</td>
+<td>Target: $30K+ by Week 12 (Bootstrap) or $100K+ (Full Launch) per P5A
+Section 7. Track: weekly during Monday CRM review.</td>
+<td>HubSpot CRM dashboard</td>
+</tr>
+<tr class="even">
+<td><strong>Return rate</strong></td>
+<td>Amazon: FBA Returns Report. Shopify: Returns/Refunds report.</td>
+<td>Target: &lt;5% return rate (DTC). Track: by return reason
+(defective, not as described, no longer needed). If &gt;5%: investigate
+root cause.</td>
+<td>Seller Central + Shopify Admin</td>
+</tr>
+<tr class="odd">
+<td><strong>Composting impact</strong></td>
+<td>Total units sold × weight/unit × collection rate = lbs diverted.
+Running total.</td>
+<td>Track: cumulative lbs diverted from landfill, cumulative CO₂e
+avoided. Display on homepage impact counter (P6B Section 3) and in
+annual sustainability report.</td>
+<td>Manual calculation from B2B pilot data + sales data</td>
+</tr>
+</tbody>
+</table>
+<p>6.1 Looker Studio Setup</p>
+<p>Google Looker Studio (lookerstudio.google.com): free, connects
+natively to GA4 and Google Sheets. BUILD: (1) Page 1 — Traffic Overview:
+daily sessions (line chart), sessions by source/medium (pie chart), top
+landing pages (table). (2) Page 2 — Ecommerce Performance: conversion
+rate (scorecard), AOV (scorecard), revenue by day (line chart), top
+products (table). (3) Page 3 — Marketing Efficiency: CAC by channel (bar
+chart, from Google Sheet manual input), email signup rate (from Klaviyo
+data via Google Sheet), UTM campaign performance (table). (4) Page 4 —
+Amazon Performance: BSR trend (line chart, from Google Sheet), review
+count + rating (scorecards), estimated Amazon revenue (from Seller
+Central data via Google Sheet). (5) Page 5 — B2B &amp; Impact: pipeline
+value (from HubSpot data via Google Sheet), cumulative composting impact
+(running counter). SETUP TIME: 4–6 hours for initial build. Maintenance:
+15–30 minutes weekly to update manual data inputs (CAC, Amazon data, B2B
+pipeline).</p>
+<p>7. Timeline &amp; Budget</p>
+<p><strong>WEEK 10: Create GA4 property and install on Shopify. Install
+Meta Pixel + Conversions API via Shopify Facebook &amp; Instagram app.
+Verify both with test events. Set up Google Search Console, verify
+domain, submit sitemap.</strong></p>
+<p><strong>WEEK 11: Configure GA4 ecommerce events and mark conversions.
+Enable Google Signals + update privacy policy. Install Microsoft Clarity
+and verify first session recording. Set up UTM parameter system: create
+UTM Master Sheet, define naming convention, configure Klaviyo auto-UTM.
+Create Meta custom conversions for B2B and email events.</strong></p>
+<p><strong>WEEK 12: Build KPI dashboard in Google Looker Studio (5
+pages). Connect GA4 data source. Create Google Sheet for manual data
+inputs (CAC, Amazon, B2B). Verify all tracking is working: make a test
+purchase through the full Shopify checkout — confirm: GA4 records the
+purchase event, Meta Pixel fires the Purchase event, Clarity records the
+session, UTMs are correctly attributed. Run a full “tracking audit”:
+visit the site from 3 different UTM-tagged links and verify all 3 appear
+correctly in GA4 Traffic Acquisition. HANDOFF to P6B (Shopify Store
+Build) with full tracking infrastructure live.</strong></p>
+<p>BUDGET: GA4: $0 (free). Meta Pixel: $0 (free). Google Search Console:
+$0 (free). Microsoft Clarity: $0 (free). Google Looker Studio: $0
+(free). UTM Builder: $0 (Google’s tool is free). Bitly (short links):
+$0–$10/month. Cookie consent banner (Shopify app): $0–$10/month. TOTAL
+P6A: $0–$20/month. The entire analytics infrastructure is FREE. There is
+zero reason to delay implementation.</p>
+<p>8. Conclusion: Measure Before You Market</p>
+<p><strong>Every dollar spent on marketing without tracking is a dollar
+spent blindly.</strong> A Facebook ad that drives 100 clicks but zero
+purchases is invisible without the Meta Pixel. A blog post that ranks #3
+on Google for “compostable race poncho” is invisible without Search
+Console. An expo QR code that generates 50 site visits is invisible
+without UTM tags. The analytics infrastructure in this document makes
+the invisible visible — and turns every marketing dollar into a data
+point that informs the next decision.</p>
+<p><strong>Install everything NOW. Not after the store launches. Not
+after the first ad runs. NOW.</strong> GA4 and the Meta Pixel need time
+to accumulate data before they become useful for optimization. Clarity
+needs session recordings before heatmaps are meaningful. Search Console
+needs crawl data before SEO insights emerge. The sooner tracking is
+live, the richer the data foundation when marketing spend begins. The
+best time to plant a tracking pixel was 6 months ago. The second best
+time is today.</p>
+
+        </div>
+    </div></div>
+<footer style="text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px">
+Sustainable Race-Start Warmth Poncho — D2C Brand GTM Project · 60 Subprojects · 391 Tasks · ~15,500¶ · April 2026
+</footer></body></html>

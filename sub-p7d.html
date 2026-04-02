@@ -1,0 +1,798 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>P7D: Paid Advertising — Race Start Warmth GTM</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0e1a;--surface:#111827;--card:#1a2332;--border:#2a3a4e;--accent:#10b981;--accent2:#3b82f6;--text:#e2e8f0;--muted:#94a3b8;--white:#fff;--red:#ef4444;--amber:#f59e0b;--green:#10b981}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+/* Nav */
+nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
+nav .inner{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;max-width:1200px;margin:0 auto}
+nav .brand{font-weight:700;font-size:15px;color:var(--accent)}
+nav .links{display:flex;gap:8px;flex-wrap:wrap}
+nav .links a{color:var(--muted);font-size:13px;padding:4px 10px;border-radius:6px;transition:.2s}
+nav .links a:hover,nav .links a.active{color:var(--white);background:var(--card);text-decoration:none}
+/* Hero */
+.hero{padding:60px 0 40px;text-align:center}
+.hero h1{font-size:2.4em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:1.1em;max-width:700px;margin:0 auto}
+/* Stats bar */
+.stats{display:flex;justify-content:center;gap:32px;padding:24px 0;flex-wrap:wrap}
+.stat{text-align:center}.stat .num{font-size:1.8em;font-weight:800;color:var(--white)}.stat .label{font-size:.75em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+/* Cards */
+.grid{display:grid;gap:16px;margin:24px 0}
+.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}
+.grid-3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;transition:.2s}
+.card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.card h3{font-size:1.1em;margin-bottom:8px}.card p{color:var(--muted);font-size:.9em}
+.card .badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:8px}
+.card .meta{font-size:.8em;color:var(--muted);margin-top:12px}
+/* Section */
+.section{padding:40px 0}.section h2{font-size:1.6em;font-weight:700;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+/* Table */
+table{width:100%;border-collapse:collapse;font-size:.85em;margin:16px 0}
+th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:52px}
+td{padding:8px 12px;border-bottom:1px solid var(--border)}
+tr:hover td{background:rgba(16,185,129,.05)}
+.status-complete{color:var(--green);font-weight:600}.status-not{color:var(--muted)}
+/* Progress */
+.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:8px}
+.progress .bar{height:100%;background:var(--accent);border-radius:3px}
+/* Back link */
+.back{display:inline-block;color:var(--muted);font-size:.9em;margin-bottom:20px}
+.back:hover{color:var(--accent)}
+/* Download */
+.dl-card{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin:8px 0;transition:.2s}
+.dl-card:hover{border-color:var(--accent);text-decoration:none}
+.dl-card .icon{font-size:2em}.dl-card .info h4{color:var(--white);margin-bottom:4px}.dl-card .info p{color:var(--muted);font-size:.85em}
+/* Footer */
+footer{text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px}
+@media(max-width:768px){.stats{gap:16px}.stat .num{font-size:1.3em}nav .links{gap:4px}nav .links a{font-size:11px;padding:3px 6px}.hero h1{font-size:1.6em}}
+
+.doc-content{max-width:900px;margin:0 auto;padding:20px 0}
+.doc-content h1{font-size:1.8em;font-weight:800;color:var(--white);margin:32px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.doc-content h2{font-size:1.4em;font-weight:700;color:var(--accent);margin:28px 0 12px}
+.doc-content h3{font-size:1.15em;font-weight:600;color:var(--accent2);margin:20px 0 10px}
+.doc-content p{margin:8px 0;line-height:1.7}
+.doc-content table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85em}
+.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;border:1px solid var(--border)}
+.doc-content td{padding:8px 12px;border:1px solid var(--border);vertical-align:top}
+.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.doc-content ul,.doc-content ol{margin:8px 0 8px 24px}
+.doc-content li{margin:4px 0;line-height:1.6}
+.doc-content strong{color:var(--white)}
+.doc-content em{color:var(--muted)}
+.doc-content blockquote{border-left:3px solid var(--accent);padding:8px 16px;margin:12px 0;background:var(--card);border-radius:0 8px 8px 0}
+.nav-sub{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 24px;padding:12px 16px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
+.nav-sub a{font-size:.8em;color:var(--muted);padding:4px 10px;border-radius:4px;transition:.2s;white-space:nowrap}
+.nav-sub a:hover,.nav-sub a.active{color:var(--white);background:var(--surface);text-decoration:none}
+</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a></div></div></nav><div class="container">
+    <div style="padding-top:30px">
+        <a href="p7.html" class="back">← 📣 P7: Marketing & PR</a>
+        <div class="nav-sub"><a href="p7.html">📣 P7 Overview</a><a href="sub-p7a.html">P7A</a><a href="sub-p7b.html">P7B</a><a href="sub-p7c.html">P7C</a><a href="sub-p7d.html" class="active">P7D</a><a href="sub-p7e.html">P7E</a><a href="sub-p7f.html">P7F</a></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px">
+            <div>
+                <span style="background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px">P7D</span>
+                <span style="color:var(--muted);font-size:.85em;margin-left:8px">P7: Marketing & PR</span>
+            </div>
+            <a href="files/P7D_Paid_Advertising.docx" style="font-size:.85em;color:var(--accent);padding:6px 14px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
+        </div>
+        <div class="doc-content">
+            <p><strong>P7D: PAID</strong></p>
+<p><strong>ADVERTISING</strong></p>
+<p>Sub-Project P7D | Marketing, PR &amp; Community | Weeks
+16–Ongoing</p>
+<p><em>Complete Paid Media Strategy: Meta Ad Account Setup with 3
+Audience Types, 6 Ad Creative Templates, 5 Meta Campaign Framework, 5
+Google Ads Campaigns, Race-Weekend Budget Concentration Model, 5-Segment
+Retargeting System, and Monthly Performance Review Protocol</em></p>
+<p>March 2026 | Confidential</p>
+<p>Executive Summary</p>
+<p><strong>Paid advertising accelerates what organic marketing builds
+slowly.</strong> SEO takes 3–6 months to rank. Ambassador UGC takes
+weeks to accumulate. PR coverage is unpredictable. Paid ads generate
+traffic and sales IMMEDIATELY. The trade-off: ads cost money every day
+they run, and they stop working the moment the budget stops. The
+strategy is to use paid ads to: (A) accelerate the first 90 days of
+sales velocity (critical for Amazon ranking per P6C), (B) concentrate
+spend around race-weekend windows when runner purchase intent peaks, and
+(C) retarget high-intent website visitors who didn’t purchase on their
+first visit.</p>
+<p><strong>Two platforms, complementary roles:</strong> Meta (Facebook +
+Instagram) for awareness and emotional conversion (visual storytelling,
+UGC, social proof), and Google for intent capture and direct response
+(search ads for runners actively looking for solutions). Together: Meta
+creates demand (a runner sees the poncho ad and becomes aware), Google
+captures demand (the same runner searches “compostable race poncho” and
+clicks the search ad). The budget concentrates 40–60% of annual spend in
+the 8–10 weeks surrounding major fall races, when the ROAS is
+highest.</p>
+<p>1. Meta Ad Account Setup</p>
+<p><strong>The Meta ad account is the infrastructure for all Facebook
+and Instagram advertising.</strong> Setup is done ONCE; then campaigns
+run continuously. The key setup decisions are: audience architecture
+(which groups of people see which ads) and product catalog connection
+(enabling Dynamic Product Ads that show the exact product a visitor
+viewed).</p>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 81%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Element</strong></td>
+<td><strong>Specification</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Business Manager</strong></td>
+<td>business.facebook.com → create Business Manager (if not already done
+for Meta Pixel per P6A). Business Manager houses: ad account, pixel,
+product catalog, audiences, and billing. The brand should own its own
+Business Manager (not run ads through a personal account).</td>
+</tr>
+<tr class="odd">
+<td><strong>Ad account</strong></td>
+<td>Business Manager → Ad Accounts → Create Ad Account. Name: “[BRAND]
+Ads.” Currency: USD. Time zone: US Eastern. Payment: credit card or
+debit card (billing threshold starts at $25, increases with spend
+history).</td>
+</tr>
+<tr class="even">
+<td><strong>Audiences: Core (interest-based)</strong></td>
+<td>Create 3–5 saved audiences in Ads Manager → Audiences. AUDIENCE 1
+(Marathon Runners): interests = marathon, marathon training, half
+marathon, running, 10K running. Age: 25–55. Location: US. AUDIENCE 2
+(Sustainability + Running): interests = sustainability + running,
+compostable, zero waste, AND running/marathon. AUDIENCE 3 (Competitive
+Gear Buyers): interests = GU Energy, Maurten, Hoka One One, On Running +
+behaviors: engaged shoppers. AUDIENCE 4 (Race-City Targeted): location =
+25-mile radius of a specific race city (Chicago, NYC, Boston) +
+interests = marathon. Activate 4–6 weeks before the race.</td>
+</tr>
+<tr class="odd">
+<td><strong>Audiences: Custom</strong></td>
+<td>Meta Pixel custom audiences (pre-built per P6A Section 2.1): Website
+Visitors 180 days (broadest remarketing), Product Viewers 30 days (high
+intent), Purchasers (for lookalike + exclusion), Cart Abandoners 14 days
+(highest intent non-purchasers). ALSO: upload Klaviyo email list as
+custom audience (sync monthly). Use for: lookalike creation and
+cross-channel retargeting.</td>
+</tr>
+<tr class="even">
+<td><strong>Audiences: Lookalike</strong></td>
+<td>Create 1% lookalike audiences from: Purchasers (highest-value seed,
+use after 50+ purchases), Product Viewers (use immediately as a broader
+seed), and Email Subscribers (use after 500+ subscribers). 1% lookalike
+= the top 1% of US users most similar to the seed audience = ~2.3
+million people. Lookalike audiences are Meta’s most powerful prospecting
+tool: they find new customers who behave like existing ones.</td>
+</tr>
+<tr class="odd">
+<td><strong>Product catalog</strong></td>
+<td>Connect Shopify product catalog to Meta via the Facebook &amp;
+Instagram sales channel (per P6A Section 2). This enables: Dynamic
+Product Ads (DPA) that automatically show the product the user viewed on
+the website, and Instagram Shopping (product tags in organic
+posts).</td>
+</tr>
+</tbody>
+</table>
+<p>1.1 Audience Strategy Summary</p>
+<p>THREE AUDIENCE TYPES serve three funnel stages: CORE
+(interest-based): reaches runners who have NEVER heard of the brand.
+They are targeted by: interests (marathon, running, sustainability),
+demographics (25–55, US), and geography (race-city targeting). These
+audiences are LARGE (500K–2M+ people) but LOW-INTENT. CUSTOM
+(website/email-based): reaches people who have INTERACTED with the brand
+(visited the site, opened an email, added to cart). These audiences are
+SMALL (hundreds to low thousands) but HIGH-INTENT. LOOKALIKE
+(algorithm-generated): reaches people who LOOK LIKE existing customers.
+These audiences are MEDIUM-LARGE (2–3M) and MEDIUM-HIGH INTENT. The
+campaign framework (Section 3) maps each audience type to a specific
+campaign.</p>
+<p>2. Ad Creatives: 6 Templates</p>
+<p><strong>Creative is the #1 lever in paid advertising.</strong> The
+same audience with a great creative converts 3–5× better than with a
+mediocre one. Meta’s algorithm optimizes DELIVERY (who sees the ad), but
+the CREATIVE determines whether the viewer stops scrolling, watches,
+clicks, and buys. The 6 templates below cover: awareness (UGC,
+problem/solution), consideration (FLIR proof, waste stats), and
+conversion (testimonial, race-weekend urgency).</p>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 28%" />
+<col style="width: 26%" />
+<col style="width: 30%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Creative</strong></td>
+<td><strong>Description</strong></td>
+<td><strong>Performance Notes</strong></td>
+<td><strong>Best For</strong></td>
+</tr>
+<tr class="even">
+<td><strong>UGC-Style Video (15–30 sec)</strong></td>
+<td>Ambassador or customer race-day footage repurposed as an ad. Format:
+vertical 9:16 (Reels/Stories). Content: runner putting on poncho at the
+start line, tearing it off at the gun, casual testimonial (“This kept me
+so warm and it composts!”). Text overlay: “Compostable. BPI Certified.
+Race-Ready.” Brand logo at end.</td>
+<td>UGC-style video ads outperform brand-produced video by 2–4× on CTR
+and 1.5–2× on conversion rate (Meta published data). Source from: P7A
+ambassador content (with permission per P7A Section 6.1).</td>
+<td>PROSPECTING (cold audiences: interest-based + lookalike). Best for:
+top-of-funnel awareness where authenticity matters most.</td>
+</tr>
+<tr class="odd">
+<td><strong>Problem/Solution Static</strong></td>
+<td>Split image: LEFT = runner shivering in garbage bag (dark, cold,
+miserable). RIGHT = runner in poncho (warm, golden dawn light, smiling).
+Headline: “Stop wearing garbage bags at the start line.” CTA: “Shop
+Now.”</td>
+<td>Static image ads are cheaper (lower CPM) and effective for clear
+visual contrasts. The garbage bag vs. poncho comparison is INSTANTLY
+understandable without reading text.</td>
+<td>PROSPECTING. Effective for: Facebook feed (older demographic) and
+Instagram feed (visual-first scrolling).</td>
+</tr>
+<tr class="even">
+<td><strong>FLIR Thermal Proof</strong></td>
+<td>Image or short video: FLIR thermal comparison showing poncho (warm
+yellow/red) vs. bare skin (cold blue) vs. garbage bag (minimal warmth).
+Headline: “8–12°F warmer than bare skin. And it composts.” CTA: “See the
+Science.” Link to: product page or blog post about the technology.</td>
+<td>The FLIR image is the PROOF ad: it addresses the #1 objection (“does
+it actually keep you warm?”) with scientific-looking evidence. Performs
+well with: skeptical runners and data-oriented audiences.</td>
+<td>CONSIDERATION (mid-funnel: people who have seen the brand but not
+purchased).</td>
+</tr>
+<tr class="odd">
+<td><strong>Waste Statistics Carousel</strong></td>
+<td>4–5 slide Instagram carousel ad. Slide 1: “35,000 garbage bags. 1
+marathon. 500 years in a landfill.” Slides 2–4: additional waste facts
+from the P7B Section 3 infographic series. Final slide: product image +
+CTA “There’s a better way. Shop the compostable poncho.”</td>
+<td>Carousel ads have the highest engagement rate of any Meta ad format
+(per Meta’s data). Each swipe increases engagement score, which lowers
+CPM. The waste stats hook attention; the product CTA converts.</td>
+<td>PROSPECTING. Best for: eco-conscious audiences (Audience 2:
+Sustainability + Running).</td>
+</tr>
+<tr class="even">
+<td><strong>Testimonial Quote Card</strong></td>
+<td>Static image: runner photo background (from pilot race), text
+overlay with testimonial quote (“‘Kept me warm in the corral and I
+didn’t feel guilty about the waste.’ — Sarah M., Chicago Marathon”),
+star rating, brand logo. CTA: “Join [X]+ runners who’ve switched.”</td>
+<td>Testimonial ads combine: social proof (real quote), emotional
+resonance (warmth + guilt-free), and specificity (race name + runner
+name). The race name makes it relatable for runners training for the
+same race.</td>
+<td>RETARGETING (people who visited the site but didn’t purchase). Also
+effective for: CONSIDERATION audiences.</td>
+</tr>
+<tr class="odd">
+<td><strong>Race-Weekend Urgency</strong></td>
+<td>Dynamic ad: “[Race Name] is in [X] days. Your poncho ships free.
+Order by [cutoff date].” Product image + countdown visual. CTA: “Order
+Now — Free Shipping.” Run: 4–2 weeks before each major race, targeting
+Audience 4 (race-city geographic targeting).</td>
+<td>Race-specific urgency ads have the highest ROAS because: the
+audience has a REAL deadline (race date), the product is IMMEDIATELY
+relevant (they need start-line warmth), and the CTA is time-bound (order
+by cutoff). These ads are the #1 revenue driver during race-week
+periods.</td>
+<td>CONVERSION. Target: Audience 4 (race-city) + retargeting audiences.
+Highest budget allocation during race-week windows.</td>
+</tr>
+</tbody>
+</table>
+<p>2.1 Creative Testing Protocol</p>
+<p>ALWAYS test 2–3 creatives per campaign simultaneously. Meta’s
+algorithm distributes budget to the best-performing creative
+automatically (within 3–7 days). After 7–14 days: identify the winner
+(highest ROAS or lowest CPA). Pause the losers. Replace with 1–2 new
+creatives. Repeat. This cycle runs CONTINUOUSLY: every month introduces
+at least 1 new creative and retires 1 underperformer. CREATIVE FATIGUE:
+if a winning creative’s CTR declines by &gt;20% over 2 weeks, the
+audience has seen it too many times. REFRESH: new visual (same message)
+or new message (same visual). Source new creatives from: ambassador UGC
+(P7A), pilot race footage (P5B), and seasonal variations (fall colors,
+winter themes).</p>
+<p>3. Meta Campaign Framework: 5 Campaigns</p>
+<p><strong>The 5-campaign framework covers the full funnel:</strong>
+Campaigns 1–2 are PROSPECTING (reaching new people who have never heard
+of the brand). Campaigns 3–4 are RETARGETING (re-engaging people who
+visited the site but didn’t purchase). Campaign 5 is the RACE-WEEKEND
+SURGE (concentrating maximum spend when runner purchase intent
+peaks).</p>
+<table>
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 54%" />
+<col style="width: 28%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Campaign</strong></td>
+<td><strong>Setup</strong></td>
+<td><strong>Optimization</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Campaign 1: Prospecting — Interest-Based</strong></td>
+<td>OBJECTIVE: Conversions (Purchase). AUDIENCE: Audience 1 (Marathon
+Runners) + Audience 2 (Sustainability + Running). CREATIVE: rotate 2–3
+creatives (UGC video, problem/solution static, waste carousel). BUDGET:
+$5–10/day. BID STRATEGY: lowest-cost (let Meta optimize). PLACEMENT:
+Automatic (Meta distributes across Feed, Stories, Reels, Explore,
+Audience Network).</td>
+<td>Launch first. Let run for 7–14 days before optimizing. After 14
+days: check ROAS. If &lt;1.0×: pause and test new creative or audience.
+If 1.0–2.0×: maintain and optimize. If &gt;2.0×: scale budget by 20–30%
+weekly.</td>
+</tr>
+<tr class="odd">
+<td><strong>Campaign 2: Prospecting — Lookalike</strong></td>
+<td>OBJECTIVE: Conversions (Purchase). AUDIENCE: 1% Lookalike from
+Purchasers (when 50+ purchases exist) or Product Viewers (use
+immediately). CREATIVE: same 2–3 creatives as Campaign 1. BUDGET:
+$5–10/day. Lookalike audiences typically outperform interest-based by
+20–50% on ROAS after Meta’s learning phase (3–7 days).</td>
+<td>Launch after Campaign 1 has generated 50+ purchases (seed audience
+for lookalike). If &lt;50 purchases: use Product Viewers or Email
+Subscribers as the seed. Lookalike quality improves as the seed audience
+grows.</td>
+</tr>
+<tr class="even">
+<td><strong>Campaign 3: Retargeting — Website Visitors</strong></td>
+<td>OBJECTIVE: Conversions (Purchase). AUDIENCE: Product Viewers 30 days
+(exclude Purchasers 30 days). CREATIVE: testimonial quote card + FLIR
+thermal proof. BUDGET: $3–5/day. Retargeting audiences are SMALL but
+HIGH-CONVERTING (5–15% conversion rate vs. 1–3% for prospecting).</td>
+<td>Launch when website traffic reaches 100+ product page views per week
+(enough to build a meaningful retargeting pool). Retargeting has the
+highest ROAS of any campaign type. Even at $3/day: if it generates 2–3
+purchases/week, ROAS can exceed 5–10×.</td>
+</tr>
+<tr class="odd">
+<td><strong>Campaign 4: Retargeting — Cart Abandoners</strong></td>
+<td>OBJECTIVE: Conversions (Purchase). AUDIENCE: Cart Abandoners 14 days
+(exclude Purchasers 14 days). CREATIVE: Dynamic Product Ad (DPA) showing
+the exact product left in cart + text: “Still thinking about it? Free
+shipping if you complete your order today.” BUDGET: $2–3/day.</td>
+<td>Cart abandoner retargeting works alongside the abandoned cart EMAIL
+sequence (P6E Section 5). The ad catches abandoners who don’t open the
+email. Together: email + ad recover 15–25% of abandoned carts.</td>
+</tr>
+<tr class="even">
+<td><strong>Campaign 5: Race-Weekend Surge</strong></td>
+<td>OBJECTIVE: Conversions (Purchase). AUDIENCE: Audience 4 (race-city
+geographic, 25-mile radius) + ALL retargeting audiences. CREATIVE:
+race-weekend urgency ad (Creative 6). BUDGET: 2–3× normal daily budget
+($15–30/day for 2–4 weeks before major races). Activate: 4 weeks before
+each major race, deactivate the day after the race.</td>
+<td>Race-weekend surge is the HIGHEST-ROI campaign period. Concentrate
+40–60% of monthly ad budget in the 4–6 weeks surrounding major fall
+races (Sep–Nov). A runner in Chicago seeing a “Chicago Marathon is in 14
+days — order your poncho now” ad converts at 3–5× the rate of the same
+runner seeing a generic product ad in July.</td>
+</tr>
+</tbody>
+</table>
+<p>3.1 Campaign Budget Allocation</p>
+<p>BASELINE (non-race-week): 50% prospecting (Campaigns 1–2), 30%
+retargeting (Campaigns 3–4), 20% reserve for testing. RACE-WEEK: 40%
+race-weekend surge (Campaign 5), 30% retargeting, 20% prospecting, 10%
+testing. The SHIFT during race-weeks moves money from prospecting (cold
+audiences) to race-specific targeting (warm audiences with real
+deadlines). This shift increases blended ROAS because: race-week
+audiences convert at 2–3× the rate of off-season audiences.</p>
+<p>4. Google Ads: 5 Campaigns</p>
+<p><strong>Google captures INTENT.</strong> A runner who types “marathon
+start line warmth” into Google is ACTIVELY LOOKING for a solution. They
+are further down the purchase funnel than a runner who sees a Facebook
+ad while scrolling. Google Ads intercepts this intent and directs it to
+the product page or blog post. The 5 campaigns cover: brand defense,
+problem-aware search, race-specific search, visual shopping, and
+AI-optimized cross-channel (Year 2).</p>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 54%" />
+<col style="width: 30%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Campaign</strong></td>
+<td><strong>Setup</strong></td>
+<td><strong>Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Campaign 1: Search — Brand Keywords</strong></td>
+<td>Keywords: [brand name], [brand name] poncho, [brand name]
+compostable. Match type: Exact. Bid: $0.30–$0.50 (brand keywords are
+cheap because competition is low). Budget: $2–3/day. Purpose: capture
+runners who have heard of the brand (from PR, social media,
+word-of-mouth) and search directly.</td>
+<td>DEFEND THE BRAND. Even if the brand ranks #1 organically for its own
+name: a competitor (or Amazon) may bid on the brand name and appear
+above the organic result. Brand search ads cost pennies and prevent
+competitors from stealing branded traffic.</td>
+</tr>
+<tr class="odd">
+<td><strong>Campaign 2: Search — Problem-Aware</strong></td>
+<td>Keywords: “marathon start line warmth,” “how to stay warm at
+marathon start,” “race poncho,” “marathon garbage bag alternative.”
+Match type: Phrase and Exact. Bid: $0.50–$1.50 (competition varies).
+Budget: $3–5/day. Landing page: product page or Blog 1 (The Hidden Waste
+Problem).</td>
+<td>These keywords target runners who KNOW the problem but don’t know
+the solution. The ad bridges: problem awareness → product discovery. Use
+ad copy that matches the search intent: “Tired of garbage bags at the
+start line? Try a compostable poncho that composts in 12 weeks.”</td>
+</tr>
+<tr class="even">
+<td><strong>Campaign 3: Search — Race-Specific</strong></td>
+<td>Keywords: “NYC Marathon poncho,” “Chicago Marathon start line,”
+“Boston Marathon cold weather,” “Marine Corps Marathon what to wear.”
+Match type: Phrase. Bid: $0.50–$2.00 (race-name keywords spike
+seasonally). Budget: $5–10/day during race-week windows (4–6 weeks
+before each race), $0 off-season. Landing page: race-specific landing
+page (P6D Section 3).</td>
+<td>Race-specific search ads are the HIGHEST-INTENT Google traffic. A
+runner searching “NYC Marathon start line cold” 2 weeks before the race
+is ACTIVELY looking for a solution. The race-specific landing page
+converts this intent directly. Activate/deactivate per the race
+calendar.</td>
+</tr>
+<tr class="odd">
+<td><strong>Campaign 4: Shopping (Google Merchant Center)</strong></td>
+<td>Set up Google Merchant Center (merchants.google.com). Connect
+Shopify product feed via the Google &amp; YouTube app. Products appear
+in: Google Shopping results (the product carousel at the top of search),
+Google Images shopping, and Gmail ads. Budget: $3–5/day. Google Shopping
+shows the product IMAGE + PRICE + BRAND directly in search results —
+runners see the poncho before clicking.</td>
+<td>Google Shopping is a VISUAL search format that captures runners who
+are searching for products to buy (not just information). The product
+image in search results differentiates from text-only ads and drives
+higher CTR for product-discovery queries.</td>
+</tr>
+<tr class="even">
+<td><strong>Campaign 5: Performance Max (Year 2)</strong></td>
+<td>Google’s AI-driven campaign that runs across: Search, Shopping,
+YouTube, Display, Discover, and Gmail simultaneously. Requires:
+conversion data (50+ conversions for the algorithm to optimize). Budget:
+$10–20/day. Performance Max automatically allocates budget across
+channels based on where conversions are cheapest.</td>
+<td>NOT recommended for Season 1 (insufficient conversion data for the
+algorithm). Launch in Season 2 when: 50+ monthly conversions exist, the
+Merchant Center feed is mature, and YouTube video assets are available.
+Performance Max typically outperforms individual campaigns by 15–30%
+once the algorithm has enough data.</td>
+</tr>
+</tbody>
+</table>
+<p>4.1 Google Ads Budget vs. Meta</p>
+<p>ALLOCATION: 60–70% Meta, 30–40% Google. WHY: Meta has better AUDIENCE
+tools (lookalike, interest-based) and better CREATIVE formats (video,
+carousel) for a NEW product that people don’t know exists yet. Google is
+most effective when people are SEARCHING for the product — which happens
+more as brand awareness grows. In Season 1: Google Search captures
+runners who discover the brand through PR, social, or word-of-mouth and
+then search for it. In Year 2+: Google’s share increases as branded and
+category search volume grows. Budget: Meta $8–25/day, Google $5–15/day
+at launch. Adjust based on ROAS comparison after 30 days.</p>
+<p>5. Race-Weekend Budget Concentration</p>
+<p><strong>The poncho is a SEASONAL product with razor-sharp purchase
+windows.</strong> A runner doesn’t buy a poncho in July. They buy it 2–6
+weeks before their fall or spring marathon, when the race is real, the
+forecast is checking in, and the start-line anxiety is building.
+Concentrating ad spend around these windows — and reducing it during
+off-season — maximizes ROAS by spending money ONLY when purchase intent
+is highest.</p>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 61%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Period</strong></td>
+<td><strong>Daily Budget</strong></td>
+<td><strong>Monthly Spend</strong></td>
+<td><strong>Strategy</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Off-season (Jun–Aug)</strong></td>
+<td>$5–10/day total</td>
+<td>$150–$310/month</td>
+<td>Maintain brand awareness. Run: Campaigns 1–2 (prospecting) at
+minimal budget + Campaign 3 retargeting. No race-specific ads. Focus:
+building the retargeting audience pool for fall.</td>
+</tr>
+<tr class="odd">
+<td><strong>Pre-season ramp (Aug–Sep)</strong></td>
+<td>$10–20/day total</td>
+<td>$310–$620/month</td>
+<td>Increase prospecting spend as race season approaches. Begin
+race-specific Google Ads (Campaign 3) for early-October races (Chicago,
+Detroit, Twin Cities). Activate Meta Campaign 5 (race-weekend surge) for
+earliest races.</td>
+</tr>
+<tr class="even">
+<td><strong>Peak season (Sep–Nov)</strong></td>
+<td>$20–40/day total</td>
+<td>$600–$1,240/month</td>
+<td>MAXIMUM SPEND. 40–60% of budget on race-weekend surge campaigns
+(Meta Campaign 5 + Google Campaign 3). Remaining 40–60% on prospecting +
+retargeting. Each major race gets a 4-week spending burst.</td>
+</tr>
+<tr class="odd">
+<td><strong>Post-fall / Pre-spring (Dec–Feb)</strong></td>
+<td>$5–10/day total</td>
+<td>$150–$310/month</td>
+<td>Reduce to maintenance spend. Gift campaign (P7F Section 3: holiday
+gift 3-packs) during December. Begin spring race-specific ads in
+February for March–April races (Boston, NYC Half).</td>
+</tr>
+<tr class="even">
+<td><strong>Spring season (Mar–May)</strong></td>
+<td>$15–30/day total</td>
+<td>$465–$930/month</td>
+<td>Second peak. Smaller than fall (fewer cold-weather races) but still
+significant. Race-specific campaigns for: Boston Marathon, Big Sur,
+Pittsburgh, Nashville.</td>
+</tr>
+</tbody>
+</table>
+<p>5.1 Annual Ad Budget Summary</p>
+<p>YEAR 1 TOTAL AD SPEND (estimated): Off-season 3 months
+($150–$310/month): $450–$930. Pre-season 2 months ($310–$620/month):
+$620–$1,240. Peak fall 3 months ($600–$1,240/month): $1,800–$3,720.
+Post-fall/pre-spring 3 months ($150–$310/month): $450–$930. Spring 2
+months ($465–$930/month): $930–$1,860. ANNUAL TOTAL: $4,250–$8,680. At
+2.0× blended ROAS: $8,500–$17,360 in ad-attributed revenue. At 3.0× ROAS
+(achievable with optimized retargeting + race-weekend concentration):
+$12,750–$26,040. The ad budget pays for itself IF: (A) creative quality
+is high (UGC + proof-based ads), (B) budget is concentrated during
+race-week windows, and (C) retargeting captures high-intent visitors
+efficiently.</p>
+<p>6. Retargeting: 5-Segment System</p>
+<p><strong>Retargeting is the highest-ROI ad strategy.</strong> Showing
+an ad to someone who has ALREADY visited the product page, added to
+cart, or signed up for email costs the same as showing it to a stranger
+— but converts at 5–15× the rate. The 5-segment system ensures: each
+retargeting audience sees the RIGHT message at the RIGHT frequency.</p>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 19%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Segment</strong></td>
+<td><strong>Definition</strong></td>
+<td><strong>Ad Strategy</strong></td>
+<td><strong>Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Product Viewers (30 days)</strong></td>
+<td>Visited a product page but did NOT add to cart</td>
+<td>Show: FLIR thermal proof ad + testimonial quote card. Message:
+reinforce warmth performance and social proof to overcome the “not sure
+if it works” objection that prevented add-to-cart. Frequency cap: 3
+impressions per person per week.</td>
+<td>These visitors saw the product and LEFT. They need: additional
+persuasion (proof + social proof), not a repeat of the product pitch
+they already saw.</td>
+</tr>
+<tr class="odd">
+<td><strong>Cart Abandoners (14 days)</strong></td>
+<td>Added to cart but did NOT purchase</td>
+<td>Show: Dynamic Product Ad with the exact product they carted + “Free
+shipping on your order.” Also: testimonial overlay. Frequency cap: 5
+impressions per person per week (higher frequency because intent is high
+and conversion window is short).</td>
+<td>Works alongside the abandoned cart email sequence (P6E Section 5).
+Ad catches those who don’t open emails. Combined: email + ad recover
+15–25% of abandoned carts.</td>
+</tr>
+<tr class="even">
+<td><strong>Checkout Abandoners (7 days)</strong></td>
+<td>Began checkout but did NOT complete purchase</td>
+<td>Show: “Your poncho is waiting!” + countdown if a race deadline
+applies + free shipping or 10% off. Frequency cap: 7 impressions per
+person per week (HIGHEST frequency — these are the
+most-likely-to-convert visitors on the site).</td>
+<td>Checkout abandoners are the HIGHEST-VALUE retargeting segment. They
+entered their email, selected shipping, and STOPPED. The friction point
+is usually: unexpected costs (addressed by showing free shipping) or
+distraction (addressed by simply reminding them). This audience converts
+at 10–20% with the right ad.</td>
+</tr>
+<tr class="odd">
+<td><strong>Purchasers (90–180 days)</strong></td>
+<td>Purchased previously, &gt;90 days ago</td>
+<td>Show: “New race season, new poncho. Stock up for [upcoming race
+season].” Cross-sell: 3-pack upsell if they purchased a single, 6-pack
+if they purchased a 3-pack. Frequency cap: 2 impressions per person per
+week.</td>
+<td>Repeat purchase retargeting extends Customer Lifetime Value (CLV). A
+runner who bought a single for the Chicago Marathon in October may need
+a 3-pack for the spring season. The 90-day exclusion window prevents:
+showing ads to recent purchasers (who don’t need more ponchos yet).</td>
+</tr>
+<tr class="even">
+<td><strong>Email Subscribers (non-purchasers)</strong></td>
+<td>Signed up for email but never purchased</td>
+<td>Show: “You signed up but haven’t tried us yet! Here’s 10% off your
+first order.” UGC video ad + discount code. Frequency cap: 3 per
+week.</td>
+<td>Email subscribers who haven’t purchased are WARM leads. They know
+the brand, they gave their email, but something stopped them from
+buying. A Meta ad with a discount code may be the conversion nudge they
+need (not all subscribers open every email).</td>
+</tr>
+</tbody>
+</table>
+<p>6.1 Frequency Capping</p>
+<p>Frequency capping prevents: ad fatigue (the viewer sees the same ad
+so many times they become annoyed) and wasted spend (showing an ad 20
+times to someone who has already decided NOT to buy). FREQUENCY CAPS by
+segment: Product Viewers: 3/week. Cart Abandoners: 5/week. Checkout
+Abandoners: 7/week. Purchasers: 2/week. Email Non-Purchasers: 3/week.
+Set frequency caps in: Meta Ads Manager → Campaign → Edit → Budget &amp;
+Schedule → Frequency Cap (available for Reach campaigns; for Conversion
+campaigns, manage via audience exclusions and ad scheduling to
+approximate frequency control).</p>
+<p>7. Monthly Performance Review: 6 Metrics</p>
+<p><strong>The monthly review transforms ad spend from a cost into an
+investment.</strong> Without regular review: money flows to
+underperforming campaigns while winning opportunities are under-funded.
+The 6 metrics below provide a complete view of ad performance and guide
+the budget reallocation decisions that improve ROAS over time.</p>
+<table>
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 33%" />
+<col style="width:50%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Metric</strong></td>
+<td><strong>What to Track</strong></td>
+<td><strong>Action</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Spend by channel</strong></td>
+<td>Total Meta spend, total Google spend, total by campaign</td>
+<td>Ensure: no single campaign is overspending relative to its ROAS.
+Pause: any campaign with ROAS &lt;0.8× for 2+ consecutive weeks. Scale:
+campaigns with ROAS &gt;2.0× by 20–30% weekly budget increase.</td>
+</tr>
+<tr class="odd">
+<td><strong>ROAS by campaign</strong></td>
+<td>Revenue attributed to each campaign ÷ ad spend for that
+campaign</td>
+<td>Target: 2.0×+ blended ROAS across all campaigns. Retargeting
+campaigns should deliver 3–10× ROAS. Prospecting campaigns: 1.0–2.0×
+ROAS is acceptable (they generate new customers who will repurchase).
+Below 1.0×: the campaign is losing money.</td>
+</tr>
+<tr class="even">
+<td><strong>CAC by channel</strong></td>
+<td>Total channel spend ÷ total new customers acquired from that
+channel</td>
+<td>Target: &lt;$15 CAC for Meta (Shopify purchases), &lt;$10 for Google
+(higher intent = lower CAC). If CAC exceeds $20: investigate creative
+fatigue, audience saturation, or landing page conversion issues.</td>
+</tr>
+<tr class="odd">
+<td><strong>Creative performance</strong></td>
+<td>CTR, conversion rate, and ROAS for each ad creative</td>
+<td>Identify: top-performing creative (highest ROAS), worst-performing
+creative (pause), and creatives showing fatigue (declining CTR over 2+
+weeks = audience has seen it too many times). REFRESH: introduce 1–2 new
+creatives per month to prevent fatigue. Source new creatives from:
+ambassador UGC (P7A), race-day photography (P5B), and seasonal
+variations.</td>
+</tr>
+<tr class="even">
+<td><strong>Audience performance</strong></td>
+<td>CTR, conversion rate, and ROAS for each audience</td>
+<td>Identify: which audience converts best (typically: lookalike from
+purchasers &gt; interest-based &gt; broad). If an interest-based
+audience is underperforming: refine interests or switch to lookalike. If
+retargeting audiences shrink: website traffic needs to grow (increase
+prospecting or organic content).</td>
+</tr>
+<tr class="odd">
+<td><strong>Budget reallocation</strong></td>
+<td>Based on the above: shift budget from underperforming
+campaigns/audiences/creatives to outperforming ones</td>
+<td>The monthly review is the REBALANCING moment. Money flows FROM
+campaigns that aren’t working TO campaigns that are. This is how ad
+efficiency improves over time: continuous reallocation based on data,
+not gut feeling.</td>
+</tr>
+</tbody>
+</table>
+<p>7.1 Monthly Review Template</p>
+<p>Google Sheet with tabs per month. Each tab contains: SPEND SUMMARY
+(table: campaign, spend, revenue, ROAS, CAC). CREATIVE LEADERBOARD
+(ranked by ROAS: top 3 creatives, bottom 3, new additions). AUDIENCE
+PERFORMANCE (ranked by ROAS: which audiences are working). BUDGET
+REALLOCATION (table: campaign, current daily budget, recommended
+next-month budget, change %). ACTION ITEMS (3–5 specific actions for the
+next month: e.g., “pause creative A, launch creative B, increase
+Campaign 3 budget by 20%, test new race-city audience for Boston”).
+TIME: 1–2 hours on the first Monday of each month. This is the MOST
+VALUABLE 2 hours in the marketing calendar.</p>
+<p>8. Timeline &amp; Budget</p>
+<p><strong>WEEK 16: Set up Meta Business Manager + ad account. Define
+audiences (core, custom, lookalike). Connect Shopify product catalog.
+Create first 3 ad creatives: UGC video (from ambassador content),
+problem/solution static, and waste stats carousel. Set up Google Ads
+account + Merchant Center + Shopify product feed.</strong></p>
+<p><strong>WEEK 16–18: Launch Meta Campaign 1 (prospecting,
+interest-based) at $5–10/day. Launch Google Campaign 1 (brand keywords)
+and Campaign 2 (problem-aware search) at $5–8/day total. Monitor daily
+for the first week: impressions, clicks, CTR, CPC, conversions. Adjust
+bids if CPC exceeds $1.50 (too expensive for the product’s
+margin).</strong></p>
+<p><strong>WEEK 18–20: Launch Meta Campaign 3 (retargeting, website
+visitors) once site has 100+ product page views/week. Create 2 more
+creatives: FLIR thermal proof + testimonial quote card. Launch Google
+Campaign 3 (race-specific) for the first approaching fall race. First
+monthly review at Week 20: evaluate ROAS by campaign, creative
+performance, audience performance. Reallocate budget based on
+results.</strong></p>
+<p><strong>WEEK 20–ONGOING: Launch Meta Campaign 2 (lookalike) when 50+
+purchases exist. Launch Meta Campaign 4 (cart abandoner retargeting).
+Activate Meta Campaign 5 (race-weekend surge) 4 weeks before each major
+race. Introduce 1–2 new creatives per month. Monthly performance review
+on the first Monday of each month. Continuously optimize: pause
+underperformers, scale winners, refresh creatives, and concentrate
+budget around race weekends.</strong></p>
+<p>BUDGET: Year 1 total ad spend: $4,250–$8,680 (per Section 5.1). Meta
+Ads: $2,550–$6,080 (60–70% of total). Google Ads: $1,700–$2,600
+(30–40%). Expected ROAS: 2.0–3.0× = $8,500–$26,040 in ad-attributed
+revenue. Net: $4,250–$17,360 in profit contribution from ads (revenue
+minus ad spend). Ad management tools: $0 (Meta Ads Manager and Google
+Ads are free platforms).</p>
+<p>9. Conclusion: Ads Amplify What’s Already Working</p>
+<p><strong>Paid advertising does not CREATE demand — it AMPLIFIES
+existing demand signals.</strong> An ad for a product nobody wants
+generates expensive clicks and zero sales. An ad for a product that
+runners are already discovering through PR, ambassadors, expos, and
+word-of-mouth generates cheap clicks and profitable sales. The best time
+to scale ad spend is AFTER: the listing has 25+ reviews, the site
+converts at 2%+, the retargeting pool is 1,000+, and at least 1 pilot
+case study exists.</p>
+<p><strong>The race-weekend concentration model is the competitive
+advantage.</strong> A generic sports brand runs ads at a constant
+$10/day year-round. This brand runs ads at $5/day off-season and $30/day
+during the 4 weeks before the NYC Marathon. The total annual spend may
+be the SAME — but the concentrated model generates 2–3× more revenue
+because every dollar is spent when the customer is most ready to buy.
+The race calendar IS the marketing calendar. Every ad dollar should
+answer the question: which race is next, and which runners need a poncho
+for it?</p>
+
+        </div>
+    </div></div>
+<footer style="text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px">
+Sustainable Race-Start Warmth Poncho — D2C Brand GTM Project · 60 Subprojects · 391 Tasks · ~15,500¶ · April 2026
+</footer></body></html>

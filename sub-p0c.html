@@ -1,0 +1,730 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>P0C: Customer Discovery Race Directors B2B — Race Start Warmth GTM</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0e1a;--surface:#111827;--card:#1a2332;--border:#2a3a4e;--accent:#10b981;--accent2:#3b82f6;--text:#e2e8f0;--muted:#94a3b8;--white:#fff;--red:#ef4444;--amber:#f59e0b;--green:#10b981}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+/* Nav */
+nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
+nav .inner{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;max-width:1200px;margin:0 auto}
+nav .brand{font-weight:700;font-size:15px;color:var(--accent)}
+nav .links{display:flex;gap:8px;flex-wrap:wrap}
+nav .links a{color:var(--muted);font-size:13px;padding:4px 10px;border-radius:6px;transition:.2s}
+nav .links a:hover,nav .links a.active{color:var(--white);background:var(--card);text-decoration:none}
+/* Hero */
+.hero{padding:60px 0 40px;text-align:center}
+.hero h1{font-size:2.4em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:1.1em;max-width:700px;margin:0 auto}
+/* Stats bar */
+.stats{display:flex;justify-content:center;gap:32px;padding:24px 0;flex-wrap:wrap}
+.stat{text-align:center}.stat .num{font-size:1.8em;font-weight:800;color:var(--white)}.stat .label{font-size:.75em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+/* Cards */
+.grid{display:grid;gap:16px;margin:24px 0}
+.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}
+.grid-3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;transition:.2s}
+.card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.card h3{font-size:1.1em;margin-bottom:8px}.card p{color:var(--muted);font-size:.9em}
+.card .badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:8px}
+.card .meta{font-size:.8em;color:var(--muted);margin-top:12px}
+/* Section */
+.section{padding:40px 0}.section h2{font-size:1.6em;font-weight:700;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+/* Table */
+table{width:100%;border-collapse:collapse;font-size:.85em;margin:16px 0}
+th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:52px}
+td{padding:8px 12px;border-bottom:1px solid var(--border)}
+tr:hover td{background:rgba(16,185,129,.05)}
+.status-complete{color:var(--green);font-weight:600}.status-not{color:var(--muted)}
+/* Progress */
+.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:8px}
+.progress .bar{height:100%;background:var(--accent);border-radius:3px}
+/* Back link */
+.back{display:inline-block;color:var(--muted);font-size:.9em;margin-bottom:20px}
+.back:hover{color:var(--accent)}
+/* Download */
+.dl-card{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin:8px 0;transition:.2s}
+.dl-card:hover{border-color:var(--accent);text-decoration:none}
+.dl-card .icon{font-size:2em}.dl-card .info h4{color:var(--white);margin-bottom:4px}.dl-card .info p{color:var(--muted);font-size:.85em}
+/* Footer */
+footer{text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px}
+@media(max-width:768px){.stats{gap:16px}.stat .num{font-size:1.3em}nav .links{gap:4px}nav .links a{font-size:11px;padding:3px 6px}.hero h1{font-size:1.6em}}
+
+.doc-content{max-width:900px;margin:0 auto;padding:20px 0}
+.doc-content h1{font-size:1.8em;font-weight:800;color:var(--white);margin:32px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.doc-content h2{font-size:1.4em;font-weight:700;color:var(--accent);margin:28px 0 12px}
+.doc-content h3{font-size:1.15em;font-weight:600;color:var(--accent2);margin:20px 0 10px}
+.doc-content p{margin:8px 0;line-height:1.7}
+.doc-content table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85em}
+.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;border:1px solid var(--border)}
+.doc-content td{padding:8px 12px;border:1px solid var(--border);vertical-align:top}
+.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.doc-content ul,.doc-content ol{margin:8px 0 8px 24px}
+.doc-content li{margin:4px 0;line-height:1.6}
+.doc-content strong{color:var(--white)}
+.doc-content em{color:var(--muted)}
+.doc-content blockquote{border-left:3px solid var(--accent);padding:8px 16px;margin:12px 0;background:var(--card);border-radius:0 8px 8px 0}
+.nav-sub{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 24px;padding:12px 16px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
+.nav-sub a{font-size:.8em;color:var(--muted);padding:4px 10px;border-radius:4px;transition:.2s;white-space:nowrap}
+.nav-sub a:hover,.nav-sub a.active{color:var(--white);background:var(--surface);text-decoration:none}
+</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a></div></div></nav><div class="container">
+    <div style="padding-top:30px">
+        <a href="p0.html" class="back">← 🔍 P0: Market Research</a>
+        <div class="nav-sub"><a href="p0.html">🔍 P0 Overview</a><a href="sub-p0a.html">P0A</a><a href="sub-p0b.html">P0B</a><a href="sub-p0c.html" class="active">P0C</a><a href="sub-p0d.html">P0D</a><a href="sub-p0e.html">P0E</a><a href="sub-p0f.html">P0F</a><a href="sub-p0g.html">P0G</a><a href="sub-p0h.html">P0H</a><a href="sub-p0.html">P0</a></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px">
+            <div>
+                <span style="background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px">P0C</span>
+                <span style="color:var(--muted);font-size:.85em;margin-left:8px">P0: Market Research</span>
+            </div>
+            <a href="files/P0C_Customer_Discovery_Race_Directors_B2B.docx" style="font-size:.85em;color:var(--accent);padding:6px 14px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
+        </div>
+        <div class="doc-content">
+            <p><strong>P0C: CUSTOMER DISCOVERY —</strong></p>
+<p><strong>RACE DIRECTORS (B2B)</strong></p>
+<p>Sub-Project P0C | Market Research &amp; Concept Validation | Weeks
+3–6</p>
+<p><em>The Complete B2B Intelligence Playbook for Compostable Marathon
+Start-Line Products</em></p>
+<p>March 2026 | Confidential</p>
+<p>Executive Summary</p>
+<p><strong>A compostable warmth poncho enters a market with zero branded
+competition at the start line, 230,000+ lbs of annual clothing waste at
+the top three US marathons alone, and a race industry increasingly
+pressured by sponsors and certifiers to go green.</strong> This report
+covers database building across seven platforms, 53 prioritized
+cold-weather races, procurement timelines and budgets, Mom Test
+interview frameworks, sustainability pain points, sponsor dynamics,
+registration add-on mechanics, B2B sales cycle benchmarks, pilot program
+design, and a trade show calendar.</p>
+<p>1. Building a 50+ Race Director Database: Seven Key Platforms</p>
+<p>No single directory exposes all the contact data needed. The most
+effective approach combines multiple sources, cross-referencing race
+identification (RunSignUp, FindMyMarathon) with director contact details
+(RRCA, AIMS, LinkedIn).</p>
+<table>
+<colgroup>
+<col style="width: 21%" />
+<col style="width: 21%" />
+<col style="width: 21%" />
+<col style="width: 23%" />
+<col style="width: 11%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Platform</strong></td>
+<td><strong>Coverage</strong></td>
+<td><strong>Search Capability</strong></td>
+<td><strong>Contact Data</strong></td>
+<td><strong>Cost</strong></td>
+</tr>
+<tr class="even">
+<td><strong>RunSignUp</strong></td>
+<td>39,000+ events; 50%+ US share</td>
+<td>Race search by state/date/distance</td>
+<td>Contact form only (no direct email)</td>
+<td>Free</td>
+</tr>
+<tr class="odd">
+<td><strong>RRCA Directory</strong></td>
+<td>2,700+ member clubs/events</td>
+<td>Certified Race Director listings</td>
+<td>Name, phone, address, website</td>
+<td>Free</td>
+</tr>
+<tr class="even">
+<td><strong>Running USA</strong></td>
+<td>Industry trade org; 6 tiers</td>
+<td>Member directory + conference</td>
+<td>Directory access for members</td>
+<td>$299–$2,500+/yr</td>
+</tr>
+<tr class="odd">
+<td><strong>AIMS Directory</strong></td>
+<td>457 races in 120+ countries</td>
+<td>US race director names + orgs</td>
+<td>Name, org, mailing address</td>
+<td>Free</td>
+</tr>
+<tr class="even">
+<td><strong>FindMyMarathon</strong></td>
+<td>~1,000 marathons</td>
+<td>Filter by temperature, size, BQ%</td>
+<td>Links to race websites</td>
+<td>Free</td>
+</tr>
+<tr class="odd">
+<td><strong>MarathonGuide</strong></td>
+<td>500–800+ US marathons</td>
+<td>Results, reviews, contacts</td>
+<td>Contact through system</td>
+<td>Free</td>
+</tr>
+<tr class="even">
+<td><strong>Race Directors HQ</strong></td>
+<td>9,000+ RDs in FB group</td>
+<td>Facebook group + podcast + tools</td>
+<td>Direct community engagement</td>
+<td>Free</td>
+</tr>
+<tr class="odd">
+<td><strong>Road Race Mgmt</strong></td>
+<td>Longest-serving RD database</td>
+<td>Searchable by name/event</td>
+<td>Names + event details</td>
+<td>Free</td>
+</tr>
+</tbody>
+</table>
+<p>1.1 Race Organizational Structure</p>
+<p><strong>Sustainability coordinator is NOT a standard role</strong> at
+most race organizations. Sustainability decisions go to the race
+director or operations lead directly — strategically advantageous for
+sales since there is no complex org chart to navigate.</p>
+<p>1.2 LinkedIn Search Strategy</p>
+<p>Search for people with titles “Race Director,” “Executive Race
+Director,” “Director of Race Operations” filtered to the US with
+keywords “running,” “marathon,” or “endurance.” Follow Running USA,
+RunSignUp, and Race Directors HQ pages to surface ecosystem
+connections.</p>
+<p>2. The 53 Highest-Value Cold-Weather US Races</p>
+<p>Total addressable market across these races: 350,000–400,000+
+marathon finishers annually. October is the peak month for large,
+cold-weather races.</p>
+<p>2.1 Tier 1 — Six Highest-Priority Targets</p>
+<table>
+<colgroup>
+<col style="width: 19%" />
+<col style="width: 14%" />
+<col style="width: 7%" />
+<col style="width: 10%" />
+<col style="width: 9%" />
+<col style="width: 23%" />
+<col style="width: 15%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Race</strong></td>
+<td><strong>City</strong></td>
+<td><strong>Month</strong></td>
+<td><strong>Finishers</strong></td>
+<td><strong>Start Temp</strong></td>
+<td><strong>Sustainability</strong></td>
+<td><strong>Clothing Collected</strong></td>
+</tr>
+<tr class="even">
+<td><strong>TCS NYC Marathon</strong></td>
+<td>New York, NY</td>
+<td>Nov</td>
+<td>59,124</td>
+<td>40–55°F</td>
+<td>CRS Gold (Org); net-zero 2040</td>
+<td>123,000 lbs</td>
+</tr>
+<tr class="odd">
+<td><strong>Chicago Marathon</strong></td>
+<td>Chicago, IL</td>
+<td>Oct</td>
+<td>54,180</td>
+<td>40–55°F</td>
+<td>Evergreen Inspire (highest CRS)</td>
+<td>54,500 lbs</td>
+</tr>
+<tr class="even">
+<td><strong>Boston Marathon</strong></td>
+<td>Hopkinton, MA</td>
+<td>Apr</td>
+<td>28,000</td>
+<td>40–55°F</td>
+<td>Green Team; 79% diversion</td>
+<td>42,000+ lbs</td>
+</tr>
+<tr class="odd">
+<td><strong>Marine Corps Marathon</strong></td>
+<td>Arlington, VA</td>
+<td>Oct</td>
+<td>15,000–30,000</td>
+<td>40–55°F</td>
+<td>Going Green; CRS Gold</td>
+<td>4,000 lbs</td>
+</tr>
+<tr class="even">
+<td><strong>Philadelphia Marathon</strong></td>
+<td>Philadelphia, PA</td>
+<td>Nov</td>
+<td>12,596</td>
+<td>35–50°F</td>
+<td>Green Cert; recycling programs</td>
+<td>Clothing donation</td>
+</tr>
+<tr class="odd">
+<td><strong>Grandma’s Marathon</strong></td>
+<td>Duluth, MN</td>
+<td>Jun</td>
+<td>7,542</td>
+<td>40–55°F</td>
+<td>CRS Evergreen (2025)</td>
+<td>7,511 lbs donated</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Key insight:</strong> Boston has a 2–4 hour wait in
+Hopkinton. NYC has a 2–3 hour wait on Staten Island. Point-to-point
+races with bus transport create the strongest product-market fit.</p>
+<p>2.2 Tier 2 — Fifteen High-Priority Targets</p>
+<table>
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 13%" />
+<col style="width: 7%" />
+<col style="width: 9%" />
+<col style="width: 9%" />
+<col style="width: 42%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Race</strong></td>
+<td><strong>City</strong></td>
+<td><strong>Month</strong></td>
+<td><strong>Finishers</strong></td>
+<td><strong>Start Temp</strong></td>
+<td><strong>Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>CIM Sacramento</strong></td>
+<td>Sacramento, CA</td>
+<td>Dec</td>
+<td>8,174</td>
+<td>38–50°F</td>
+<td>CRS Gold; competitive BQ field</td>
+</tr>
+<tr class="odd">
+<td><strong>Twin Cities Marathon</strong></td>
+<td>Minneapolis, MN</td>
+<td>Oct</td>
+<td>7,011</td>
+<td>35–50°F</td>
+<td>Hiccup reusable cups; free transit</td>
+</tr>
+<tr class="even">
+<td><strong>Indianapolis Monumental</strong></td>
+<td>Indianapolis, IN</td>
+<td>Nov</td>
+<td>6,674</td>
+<td>35–50°F</td>
+<td>Athletic Brewing Green Team</td>
+</tr>
+<tr class="odd">
+<td><strong>Austin Marathon</strong></td>
+<td>Austin, TX</td>
+<td>Feb</td>
+<td>5,760</td>
+<td>40–55°F</td>
+<td>Sustainability page; Styrofoam ban</td>
+</tr>
+<tr class="even">
+<td><strong>Richmond Marathon</strong></td>
+<td>Richmond, VA</td>
+<td>Nov</td>
+<td>4,938</td>
+<td>40–55°F</td>
+<td>America’s Friendliest Marathon</td>
+</tr>
+<tr class="odd">
+<td><strong>Flying Pig Marathon</strong></td>
+<td>Cincinnati, OH</td>
+<td>May</td>
+<td>4,699</td>
+<td>45–55°F</td>
+<td>CRS Certified; Greening of the Pig</td>
+</tr>
+<tr class="even">
+<td><strong>St. George Marathon</strong></td>
+<td>St. George, UT</td>
+<td>Oct</td>
+<td>4,381</td>
+<td>35–45°F</td>
+<td>High-elevation very cold start</td>
+</tr>
+<tr class="odd">
+<td><strong>Columbus Marathon</strong></td>
+<td>Columbus, OH</td>
+<td>Oct</td>
+<td>4,121</td>
+<td>40–55°F</td>
+<td>Growing sustainability focus</td>
+</tr>
+<tr class="even">
+<td><strong>Big Sur Marathon</strong></td>
+<td>Big Sur, CA</td>
+<td>Apr</td>
+<td>~4,000</td>
+<td>45–55°F</td>
+<td>CRS Evergreen; 80–98% diversion</td>
+</tr>
+<tr class="odd">
+<td><strong>Pittsburgh Marathon</strong></td>
+<td>Pittsburgh, PA</td>
+<td>May</td>
+<td>3,784</td>
+<td>45–55°F</td>
+<td>Zero-waste since 2015</td>
+</tr>
+<tr class="even">
+<td><strong>Eugene Marathon</strong></td>
+<td>Eugene, OR</td>
+<td>Apr/May</td>
+<td>3,772</td>
+<td>42–55°F</td>
+<td>Running capital of the US</td>
+</tr>
+<tr class="odd">
+<td><strong>Detroit Marathon</strong></td>
+<td>Detroit, MI</td>
+<td>Oct</td>
+<td>3,569</td>
+<td>40–55°F</td>
+<td>Net zero waste 2023–24</td>
+</tr>
+<tr class="even">
+<td><strong>Portland Marathon</strong></td>
+<td>Portland, OR</td>
+<td>Oct</td>
+<td>~3,500</td>
+<td>45–55°F</td>
+<td>33% growth; sustainability ethos</td>
+</tr>
+<tr class="odd">
+<td><strong>REVEL Big Cottonwood</strong></td>
+<td>Salt Lake City, UT</td>
+<td>Sep</td>
+<td>~3,000</td>
+<td>30–45°F</td>
+<td>Very cold mountain start 7,000 ft</td>
+</tr>
+<tr class="even">
+<td><strong>REVEL Mt. Charleston</strong></td>
+<td>Las Vegas, NV</td>
+<td>Mar</td>
+<td>2,404</td>
+<td>30–40°F</td>
+<td>Extremely cold start 7,600 ft</td>
+</tr>
+</tbody>
+</table>
+<p><strong>REVEL races deserve special attention</strong> — they already
+provide mylar blankets at cold mountain starts. One series partnership
+unlocks multiple events.</p>
+<p>3. How Race Directors Buy: Timelines, Budgets &amp; Decision
+Authority</p>
+<p>3.1 Procurement Timeline</p>
+<p><strong>For a fall race in October, sales conversations should begin
+January–March.</strong> RRCA guidelines specify 6–12 months advance
+planning. Consumable start-line supplies ordered 2–4 months before race
+day. Large events finalize procurement 6+ months out.</p>
+<p>3.2 Decision Authority &amp; Budget by Race Size</p>
+<table>
+<colgroup>
+<col style="width: 21%" />
+<col style="width: 17%" />
+<col style="width: 29%" />
+<col style="width: 31%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Race Size</strong></td>
+<td><strong>Typical Budget</strong></td>
+<td><strong>Decision Maker</strong></td>
+<td><strong>Contact Method</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Small race (&lt;1,000)</strong></td>
+<td>$5K–$10K</td>
+<td>Race Director (sole decider)</td>
+<td>Generic info@ email on website</td>
+</tr>
+<tr class="odd">
+<td><strong>Mid-size (1,000–5,000)</strong></td>
+<td>$30K–$50K</td>
+<td>RD + small committee; board for nonprofits</td>
+<td>Staff page with individual emails</td>
+</tr>
+<tr class="even">
+<td><strong>Large (10,000+)</strong></td>
+<td>$500K–$5M+</td>
+<td>Operations/procurement lead + RD + sponsors</td>
+<td>Department emails; LinkedIn for individuals</td>
+</tr>
+</tbody>
+</table>
+<p>3.3 Start-Line Product Cost Benchmarks</p>
+<p>Generic mylar: $0.50–$0.75/unit. Heatsheets: ~$1.43 retail /
+$0.80–1.20 at scale. Cheap PE ponchos: $0.40–1.00/unit. Throwaway
+clothing: free to race but creates massive logistics burden. Garbage
+bags: free; universal default.</p>
+<p>4. Customer Discovery Interviews: Mom Test for Race Directors</p>
+<p>4.1 Questions That Pass the Mom Test</p>
+<table>
+<colgroup>
+<col style="width: 53%" />
+<col style="width: 46%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Question</strong></td>
+<td><strong>Why It Works</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Walk me through how you manage the start line on a
+cold-weather race morning.</strong></td>
+<td>Opens with their reality, not your product</td>
+</tr>
+<tr class="odd">
+<td><strong>What happened with waste collection at your last
+event?</strong></td>
+<td>Specific past behavior, not hypothetical future</td>
+</tr>
+<tr class="even">
+<td><strong>How are you currently dealing with discarded clothing at the
+start line?</strong></td>
+<td>Maps existing workflow and pain points</td>
+</tr>
+<tr class="odd">
+<td><strong>What’s the most expensive or frustrating part of your
+post-race cleanup?</strong></td>
+<td>Identifies budget/operations pain</td>
+</tr>
+<tr class="even">
+<td><strong>Tell me about the last time a sponsor asked about your
+sustainability practices.</strong></td>
+<td>Tests whether sponsor pressure is real or imagined</td>
+</tr>
+<tr class="odd">
+<td><strong>What’s the last new vendor product you adopted? How did you
+evaluate it?</strong></td>
+<td>Reveals actual purchasing behavior</td>
+</tr>
+<tr class="even">
+<td><strong>Who besides you is involved in purchasing decisions for
+event supplies?</strong></td>
+<td>Maps the decision-making unit</td>
+</tr>
+</tbody>
+</table>
+<p>4.2 Format, Length &amp; Incentives</p>
+<p>In-person at events is the gold standard. Target 25–30 minutes. Best
+incentive: value exchange (share aggregated sustainability findings).
+Commitment currencies that validate real interest: time (schedule
+follow-up), money (LOI), reputation (introduce other RDs), risk (willing
+to pilot).</p>
+<p>5. Sustainability Pain Points: 230,000+ lbs of Start-Line Waste</p>
+<blockquote>
+<p><em>Jackets, shirts, hats, gloves — literally thousands of pieces of
+clothing littering the ground for blocks. — Observer, post-start Chicago
+Marathon</em></p>
+<p><em>There was a lot of trash this year because of the ponchos and
+those one-piece suits they buy at Home Depot. — Judy Pitasi, Boston
+Marathon clothing collection captain</em></p>
+</blockquote>
+<p><strong>The strongest pitch isn’t environmental — it’s
+operational.</strong> A poncho that eliminates 200+ clothing-sorting
+volunteers, 320 Goodwill bins, and charity coordination partnerships is
+a compelling operations upgrade that happens to also be green.</p>
+<p>London Marathon’s 2019 trial of 500 reusable capes was discontinued
+because the environmental impact of production/washing outweighed waste
+reduction — creating an opening specifically for compostable single-use
+products.</p>
+<p>6. Sponsor Dynamics: The $40 Million Sustainability Opportunity</p>
+<table>
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 23%" />
+<col style="width: 52%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Sponsor (Race)</strong></td>
+<td><strong>Investment/Scale</strong></td>
+<td><strong>Sustainability Requirement</strong></td>
+</tr>
+<tr class="even">
+<td><strong>TCS (NYC, London, 5 Majors)</strong></td>
+<td>$40M/yr across 15 races</td>
+<td>Sustainability is 1 of 3 stated sponsorship pillars</td>
+</tr>
+<tr class="odd">
+<td><strong>Bank of America (Chicago)</strong></td>
+<td>Title sponsor</td>
+<td>Requires all items reusable/recyclable/compostable</td>
+</tr>
+<tr class="even">
+<td><strong>Schneider Electric (Boston)</strong></td>
+<td>Official Sustainability Partner</td>
+<td>Standalone sustainability sponsorship category</td>
+</tr>
+<tr class="odd">
+<td><strong>Abbott (Chicago expo host)</strong></td>
+<td>157,000+ expo visitors</td>
+<td>Health &amp; Fitness Expo; massive brand visibility</td>
+</tr>
+<tr class="even">
+<td><strong>Nike (Chicago shirts)</strong></td>
+<td>All shirts 100% recycled poly</td>
+<td>1B+ plastic bottles diverted; ESG-driven</td>
+</tr>
+<tr class="odd">
+<td><strong>adidas (Boston jacket)</strong></td>
+<td>Celebration Jacket</td>
+<td>50%+ recycled ocean plastic</td>
+</tr>
+</tbody>
+</table>
+<p><strong>The start line is the last unbranded moment in the marathon
+experience.</strong> Heatsheets owns the finish line at ~95%
+penetration. No equivalent branded product exists at the start. A
+compostable poncho with sponsor co-branding at $2–5/unit for 30K–50K
+runners = $75K–$250K sponsorship package.</p>
+<p>7. Registration Add-On Model: RunSignUp &amp; ACTIVE.com</p>
+<p>RunSignUp: Add-Ons are race-director-controlled, purchasable during
+registration. Standard 6% + $1 fee. No third-party auto-listing
+mechanism — you must sell to race directors who configure the add-on.
+ACTIVE.com offers superior third-party vendor portal with automatic
+revenue share. Race Roster (4,000+ organizers) offers similar
+features.</p>
+<p>Estimated conversion rate for registration add-ons: 15–30%. At $5–7
+poncho add-on for a 10,000-runner race = 1,500–3,000 units per race
+through registration alone.</p>
+<p>8. B2B Sales Cycle: Industry Benchmarks</p>
+<p>New vendor relationships: 2–6 months from first contact to PO.
+Existing relationships reorder 3–6 months before event. Per-runner
+pricing model dominates. Free sample kits are standard practice.
+Industry events (TRE, Running USA) are essential for lead
+generation.</p>
+<p><strong>Heatsheets’ model is the template:</strong> branded warming
+blankets as advertising space. Their recycling program started as a
+pilot with 6 events in 2008, validated, then formalized the Trex
+partnership in 2011. Two-phase approach: prove at small scale, then
+validate at marquee event.</p>
+<p>9. Pilot Program Design</p>
+<p>9.1 Three-Tier Structure</p>
+<p>Tier 1 (Free Sample Kit): 50–100 ponchos for evaluation. Tier 2
+(Subsidized Pilot): 50% discount for 2–3 races with data collection
+commitment. Tier 3 (Full Partnership): At cost or free for marquee races
+in exchange for co-marketing + case study. Target: 3,000–10,000 total
+pilot ponchos.</p>
+<p>9.2 Data Collection Framework</p>
+<table>
+<colgroup>
+<col style="width: 21%" />
+<col style="width: 78%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Category</strong></td>
+<td><strong>Metrics to Collect</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Waste / Environmental</strong></td>
+<td>Total poncho waste weight, % diverted, composting timeline, lbs per
+runner vs mylar baseline</td>
+</tr>
+<tr class="odd">
+<td><strong>Runner Feedback</strong></td>
+<td>Warmth rating 1–10, comfort, ease of use, NPS, preference vs garbage
+bag/Goodwill</td>
+</tr>
+<tr class="even">
+<td><strong>Operational</strong></td>
+<td>Distribution time/runner, volunteer training, storage, tear/failure
+rate, collection efficiency</td>
+</tr>
+<tr class="odd">
+<td><strong>Financial</strong></td>
+<td>Cost/poncho vs mylar, sponsor revenue opportunity, total cost incl
+disposal logistics</td>
+</tr>
+<tr class="even">
+<td><strong>Visual / Marketing</strong></td>
+<td>Photos in corral, social mentions, brand visibility in race
+photography, UGC content</td>
+</tr>
+</tbody>
+</table>
+<p>Success criteria: runner satisfaction comparable to or better than
+mylar, measurable waste diversion improvement, race director willing to
+provide testimonial, total cost competitive when factoring
+sustainability marketing value.</p>
+<p>10. Trade Shows &amp; Networking Calendar</p>
+<table>
+<colgroup>
+<col style="width: 19%" />
+<col style="width: 12%" />
+<col style="width: 12%" />
+<col style="width: 19%" />
+<col style="width: 35%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Event</strong></td>
+<td><strong>Date</strong></td>
+<td><strong>Location</strong></td>
+<td><strong>Cost</strong></td>
+<td><strong>Why It Matters</strong></td>
+</tr>
+<tr class="even">
+<td><strong>RRCA Convention</strong></td>
+<td>Apr 9–12, 2026</td>
+<td>Arlington, VA</td>
+<td>$425–$450</td>
+<td>Hundreds of RDs; grassroots; affordable entry</td>
+</tr>
+<tr class="odd">
+<td><strong>The Running Event (TRE)</strong></td>
+<td>Dec 1–3, 2026</td>
+<td>San Antonio, TX</td>
+<td>$519 + booth $8–15K</td>
+<td>4,872 attendees; 357 exhibitors; RD Summit</td>
+</tr>
+<tr class="even">
+<td><strong>Running USA Conference</strong></td>
+<td>Jan 31–Feb 2, 2027</td>
+<td>Las Vegas, NV</td>
+<td>~$999–1,049 + booth</td>
+<td>Highest RD density; group runs = #1 networking</td>
+</tr>
+<tr class="odd">
+<td><strong>US Trail Running Conf.</strong></td>
+<td>Nov 5–7, 2026</td>
+<td>Nashville, TN</td>
+<td>TBD</td>
+<td>Trail races face cold; growing market</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Group runs at the Running USA Conference are the #1
+networking venue.</strong> RRCA Convention ($425–450) is the most
+affordable entry point. TRE now includes a Race Director Summit making
+it directly relevant.</p>
+<p>11. Conclusion: Five Strategic Insights</p>
+<p><strong>1. The start line is the last unbranded moment</strong> in
+the marathon experience — a category-defining opportunity.</p>
+<p><strong>2. Sustainability is sponsor-mandated, not optional</strong>
+— Bank of America requires compostable at Chicago; Schneider Electric is
+Boston’s sustainability partner.</p>
+<p><strong>3. The strongest pitch is operational simplification</strong>
+— eliminating 200+ volunteers and 320 bins is more compelling than
+environmental messaging alone.</p>
+<p><strong>4. REVEL series is the ideal beachhead</strong> — cold
+mountain starts, existing warmth products, one partnership = multiple
+events.</p>
+<p><strong>5. Immediate actions:</strong> Join Race Directors HQ
+Facebook (9K+ RDs); register for RRCA Convention Apr 2026; build 50-race
+database via FindMyMarathon temperature filter + RRCA directory; begin
+Mom Test interviews Q2 2026; secure 2–3 Fall 2026 pilots.</p>
+
+        </div>
+    </div></div>
+<footer style="text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px">
+Sustainable Race-Start Warmth Poncho — D2C Brand GTM Project · 60 Subprojects · 391 Tasks · ~15,500¶ · April 2026
+</footer></body></html>

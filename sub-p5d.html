@@ -1,0 +1,873 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>P5D: Race Expo Sales — Race Start Warmth GTM</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0e1a;--surface:#111827;--card:#1a2332;--border:#2a3a4e;--accent:#10b981;--accent2:#3b82f6;--text:#e2e8f0;--muted:#94a3b8;--white:#fff;--red:#ef4444;--amber:#f59e0b;--green:#10b981}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+/* Nav */
+nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
+nav .inner{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;max-width:1200px;margin:0 auto}
+nav .brand{font-weight:700;font-size:15px;color:var(--accent)}
+nav .links{display:flex;gap:8px;flex-wrap:wrap}
+nav .links a{color:var(--muted);font-size:13px;padding:4px 10px;border-radius:6px;transition:.2s}
+nav .links a:hover,nav .links a.active{color:var(--white);background:var(--card);text-decoration:none}
+/* Hero */
+.hero{padding:60px 0 40px;text-align:center}
+.hero h1{font-size:2.4em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:1.1em;max-width:700px;margin:0 auto}
+/* Stats bar */
+.stats{display:flex;justify-content:center;gap:32px;padding:24px 0;flex-wrap:wrap}
+.stat{text-align:center}.stat .num{font-size:1.8em;font-weight:800;color:var(--white)}.stat .label{font-size:.75em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+/* Cards */
+.grid{display:grid;gap:16px;margin:24px 0}
+.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}
+.grid-3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;transition:.2s}
+.card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.card h3{font-size:1.1em;margin-bottom:8px}.card p{color:var(--muted);font-size:.9em}
+.card .badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:8px}
+.card .meta{font-size:.8em;color:var(--muted);margin-top:12px}
+/* Section */
+.section{padding:40px 0}.section h2{font-size:1.6em;font-weight:700;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+/* Table */
+table{width:100%;border-collapse:collapse;font-size:.85em;margin:16px 0}
+th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:52px}
+td{padding:8px 12px;border-bottom:1px solid var(--border)}
+tr:hover td{background:rgba(16,185,129,.05)}
+.status-complete{color:var(--green);font-weight:600}.status-not{color:var(--muted)}
+/* Progress */
+.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:8px}
+.progress .bar{height:100%;background:var(--accent);border-radius:3px}
+/* Back link */
+.back{display:inline-block;color:var(--muted);font-size:.9em;margin-bottom:20px}
+.back:hover{color:var(--accent)}
+/* Download */
+.dl-card{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin:8px 0;transition:.2s}
+.dl-card:hover{border-color:var(--accent);text-decoration:none}
+.dl-card .icon{font-size:2em}.dl-card .info h4{color:var(--white);margin-bottom:4px}.dl-card .info p{color:var(--muted);font-size:.85em}
+/* Footer */
+footer{text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px}
+@media(max-width:768px){.stats{gap:16px}.stat .num{font-size:1.3em}nav .links{gap:4px}nav .links a{font-size:11px;padding:3px 6px}.hero h1{font-size:1.6em}}
+
+.doc-content{max-width:900px;margin:0 auto;padding:20px 0}
+.doc-content h1{font-size:1.8em;font-weight:800;color:var(--white);margin:32px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.doc-content h2{font-size:1.4em;font-weight:700;color:var(--accent);margin:28px 0 12px}
+.doc-content h3{font-size:1.15em;font-weight:600;color:var(--accent2);margin:20px 0 10px}
+.doc-content p{margin:8px 0;line-height:1.7}
+.doc-content table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85em}
+.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;border:1px solid var(--border)}
+.doc-content td{padding:8px 12px;border:1px solid var(--border);vertical-align:top}
+.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.doc-content ul,.doc-content ol{margin:8px 0 8px 24px}
+.doc-content li{margin:4px 0;line-height:1.6}
+.doc-content strong{color:var(--white)}
+.doc-content em{color:var(--muted)}
+.doc-content blockquote{border-left:3px solid var(--accent);padding:8px 16px;margin:12px 0;background:var(--card);border-radius:0 8px 8px 0}
+.nav-sub{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 24px;padding:12px 16px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
+.nav-sub a{font-size:.8em;color:var(--muted);padding:4px 10px;border-radius:4px;transition:.2s;white-space:nowrap}
+.nav-sub a:hover,.nav-sub a.active{color:var(--white);background:var(--surface);text-decoration:none}
+</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a></div></div></nav><div class="container">
+    <div style="padding-top:30px">
+        <a href="p5.html" class="back">← 🤝 P5: B2B Sales</a>
+        <div class="nav-sub"><a href="p5.html">🤝 P5 Overview</a><a href="sub-p5a.html">P5A</a><a href="sub-p5b.html">P5B</a><a href="sub-p5c.html">P5C</a><a href="sub-p5d.html" class="active">P5D</a><a href="sub-p5e.html">P5E</a><a href="sub-p5f.html">P5F</a></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px">
+            <div>
+                <span style="background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px">P5D</span>
+                <span style="color:var(--muted);font-size:.85em;margin-left:8px">P5: B2B Sales</span>
+            </div>
+            <a href="files/P5D_Race_Expo_Sales.docx" style="font-size:.85em;color:var(--accent);padding:6px 14px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
+        </div>
+        <div class="doc-content">
+            <p><strong>P5D: RACE EXPO</strong></p>
+<p><strong>SALES</strong></p>
+<p>Sub-Project P5D | B2B Sales Engine | Weeks 20–30</p>
+<p><em>Complete Expo Sales Playbook: 8-Expo Target List, Application
+Process, 7-Element Booth Design, Inventory Plan, Payment Processing,
+Expo-Specific Discounts, 4 Email Capture Methods, and Post-Expo
+Conversion Sequence</em></p>
+<p>March 2026 | Confidential</p>
+<p>Executive Summary</p>
+<p><strong>Race expos are the highest-conversion sales environment in
+the running industry.</strong> 10,000–70,000 runners pass through a
+major marathon expo in 2 days. They are actively thinking about race-day
+preparation, they are emotionally invested in the upcoming race, and
+they are in a buying mood (expos are shopping events as much as
+bib-pickup events). A well-executed expo booth generates: 50–200 DTC
+sales, 5–15 B2B contacts, 100–500 email sign-ups, 10–30 post-expo
+product reviews, and immeasurable brand awareness from 10,000+ runners
+seeing the product.</p>
+<p><strong>This document builds the complete expo sales system:</strong>
+an 8-expo target list prioritized for Fall 2026, a 4-step application
+process with deadlines, a 7-element booth design centered on the
+tear-away demo experience, an inventory plan covering 7 product
+categories, payment processing for card/cash/QR, 5 expo-specific
+discount structures including the Race Weekend Special 3-pack at $19.99,
+4 email capture methods (QR, tablet, raffle, social follow), and a
+5-stage post-expo email conversion sequence from raffle results through
+30-day re-engagement.</p>
+<p>1. Fall 2026 Expo Target List</p>
+<p><strong>Select 3–8 expos for Fall 2026 based on: marathon size (foot
+traffic), geographic alignment (cities where composting is READY per
+P4D), booth cost, and logistical feasibility (founder can attend in
+person).</strong> Start with 3 expos in Season 1 to learn the selling
+process, then scale to 5–8 in Season 2.</p>
+<table>
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 9%" />
+<col style="width: 16%" />
+<col style="width: 9%" />
+<col style="width: 8%" />
+<col style="width: 40%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Expo</strong></td>
+<td><strong>Timing</strong></td>
+<td><strong>Venue</strong></td>
+<td><strong>Est. Foot Traffic</strong></td>
+<td><strong>Booth Cost</strong></td>
+<td><strong>Assessment</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Chicago Marathon Expo</strong></td>
+<td>Oct 2026 (Fri–Sat before race)</td>
+<td>McCormick Place, Chicago</td>
+<td>40,000–50,000</td>
+<td>$800–$1,500</td>
+<td>PRIORITY 1. Largest fall marathon expo. 45K+ runners +
+family/friends. Cold-weather race = perfect demo environment. High B2B
+contact density (many race directors attend as runners or VIPs).</td>
+</tr>
+<tr class="odd">
+<td><strong>NYC Marathon Expo</strong></td>
+<td>Nov 2026 (Thu–Sat before race)</td>
+<td>Javits Center, NYC</td>
+<td>50,000–70,000</td>
+<td>$1,200–$2,500</td>
+<td>PRIORITY 1. Largest US marathon expo. Massive foot traffic. Premium
+positioning for a sustainability brand in NYC (strong eco-conscious
+consumer base). Expensive but highest volume potential.</td>
+</tr>
+<tr class="even">
+<td><strong>Marine Corps Marathon Expo</strong></td>
+<td>Oct 2026 (Fri–Sat before race)</td>
+<td>National Harbor, DC</td>
+<td>25,000–35,000</td>
+<td>$500–$1,000</td>
+<td>PRIORITY 2. Strong military/community feel. Race has sustainability
+initiatives. DC composting infrastructure is READY (P4D). Lower booth
+cost than NYC/Chicago.</td>
+</tr>
+<tr class="odd">
+<td><strong>Philadelphia Marathon Expo</strong></td>
+<td>Nov 2026 (Fri–Sat before race)</td>
+<td>Pennsylvania Convention Center</td>
+<td>20,000–25,000</td>
+<td>$500–$800</td>
+<td>PRIORITY 2. Mid-size expo with engaged runners. Philadelphia
+composting infrastructure in place. Lower cost market for testing expo
+sales strategy before scaling to NYC/Chicago.</td>
+</tr>
+<tr class="even">
+<td><strong>Twin Cities Marathon Expo</strong></td>
+<td>Oct 2026 (Fri–Sat before race)</td>
+<td>Minneapolis Convention Center</td>
+<td>10,000–15,000</td>
+<td>$400–$700</td>
+<td>PRIORITY 3. Smaller but highly engaged running community. Minnesota
+has strong sustainability culture. Good test market for Midwest
+expansion.</td>
+</tr>
+<tr class="odd">
+<td><strong>Detroit Marathon Expo</strong></td>
+<td>Oct 2026 (Fri–Sat before race)</td>
+<td>Cobo Center, Detroit</td>
+<td>8,000–12,000</td>
+<td>$300–$600</td>
+<td>PRIORITY 3. Smallest target expo but lowest cost. Good for: learning
+the expo selling process before committing to larger/more expensive
+expos. Cross-border race (US/Canada) adds novelty.</td>
+</tr>
+<tr class="even">
+<td><strong>Richmond Marathon Expo</strong></td>
+<td>Nov 2026 (Fri–Sat before race)</td>
+<td>Greater Richmond Convention Center</td>
+<td>10,000–15,000</td>
+<td>$400–$600</td>
+<td>PRIORITY 3. Growing race with engaged community. Southeast market
+testing. Lower cost entry point.</td>
+</tr>
+<tr class="odd">
+<td><strong>Fleet Feet Local Events</strong></td>
+<td>Ongoing</td>
+<td>Various Fleet Feet stores</td>
+<td>200–1,000 per event</td>
+<td>$0–$100 (trunk show format)</td>
+<td>BONUS. Fleet Feet stores host running events, group runs, and
+product demos. A “trunk show” at a local Fleet Feet during cold-weather
+training season (Oct–Feb) puts the poncho directly in front of dedicated
+runners. No booth fee for product demos at many Fleet Feet locations —
+just show up with samples and a Square reader.</td>
+</tr>
+</tbody>
+</table>
+<p>1.1 Expo Selection Recommendation</p>
+<p>SEASON 1 (3 expos, manageable for a solo founder): Pick 1 PRIORITY 1
+(Chicago OR NYC — Chicago recommended for first expo due to lower cost
+than NYC and still massive foot traffic) + 1 PRIORITY 2 (Marine Corps or
+Philadelphia) + 1 PRIORITY 3 or BONUS (Twin Cities or a Fleet Feet trunk
+show near home base). TOTAL COST: $1,200–$3,100 in booth fees. TOTAL
+TRAVEL: 2–3 trips ($500–$2,000). SEASON 2 (5–8 expos): add NYC,
+remaining Priority 2–3 expos, and 2–3 Fleet Feet trunk shows. Consider
+hiring a part-time expo staffer ($15–20/hour) to enable 2-person booth
+coverage at larger expos.</p>
+<p>2. Expo Application Process</p>
+<p><strong>Expo vendor spots are limited and applications have
+DEADLINES.</strong> Missing the deadline means waiting until next year.
+Set calendar reminders 6 months before each target race date.</p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 4%" />
+<col style="width: 47%" />
+<col style="width: 47%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Step</strong></td>
+<td><strong>Process</strong></td>
+<td><strong>Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>1. Research deadlines</strong></td>
+<td>6–8 months before each expo: check the race’s website for “Expo
+Vendors” or “Exhibitor Information.” Most major marathon expos open
+vendor applications 4–6 months before the race. Smaller expos: 2–3
+months. Subscribe to the race’s vendor mailing list to receive
+application announcements.</td>
+<td>Set calendar reminders: 6 months before each target expo date =
+“Check [Race Name] expo vendor application.” Miss the deadline = miss
+the expo for the year.</td>
+</tr>
+<tr class="odd">
+<td><strong>2. Submit application</strong></td>
+<td>Application typically requires: company name, product description
+(“compostable warmth poncho for race start lines”), product category
+(select “Running Accessories” or “Sustainability” if available), booth
+size requested (standard 10’×10’ or 6’×6’ tabletop), electrical
+requirements (typically none needed), product samples (some expos
+request 1–2 samples for review), and payment (credit card or check for
+booth fee).</td>
+<td>PRODUCT CATEGORY matters. If the expo has a “Sustainability Village”
+or “Green Zone”: apply for that section. Positioning among other
+sustainability brands reinforces the brand identity and attracts the
+right foot traffic (eco-conscious runners). If no sustainability
+section: “Running Accessories” or “New Products” are ideal.</td>
+</tr>
+<tr class="even">
+<td><strong>3. Booth selection</strong></td>
+<td>After acceptance: select booth location from available map.
+Prioritize: near entrance (highest foot traffic), near bib pickup (every
+runner must pass), near major brand booths (spillover traffic), or in
+the sustainability/green section (targeted audience). AVOID: back
+corners, dead-end aisles, and locations near loud/competing booths.</td>
+<td>Request the expo floor map before selecting. If the expo assigns
+booths (no selection): request a location near bib pickup or the
+entrance. Mention: “We’re a new sustainability brand and would benefit
+from visibility near high-traffic areas.”</td>
+</tr>
+<tr class="odd">
+<td><strong>4. Confirm logistics</strong></td>
+<td>After booth is confirmed: verify included amenities (table, chairs,
+electricity, Wi-Fi, booth draping). Order any extras from the expo’s
+decorator service (extra table $50–$100, extra chairs $25–50, electrical
+hookup $100–$200 if not included). Confirm setup time (typically the day
+before or early morning of expo Day 1) and teardown time.</td>
+<td>Most standard 10’×10’ booths include: 1 skirted table, 2 chairs,
+back draping, and a booth ID sign. Everything else (banner, display
+fixtures, lighting) is your responsibility.</td>
+</tr>
+</tbody>
+</table>
+<p>3. Booth Design: 7 Elements</p>
+<p><strong>The booth must accomplish 3 things in 5 seconds: ATTRACT
+(runner’s eye is caught from 20 feet away), ENGAGE (runner stops, picks
+up a poncho, tries the tear-away), and CONVERT (runner purchases or
+signs up for email).</strong> Every design element serves one of these
+three functions.</p>
+<table>
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 52%" />
+<col style="width: 30%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Element</strong></td>
+<td><strong>Specification</strong></td>
+<td><strong>Purpose</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Pop-up banner</strong></td>
+<td>33″×80″ retractable banner stand. Design: brand logo (top), product
+hero image (runner in poncho at dawn, center), tagline (“Race Warm.
+Leave No Trace.”), and “BPI Certified Compostable” badge (bottom).
+Print: $100–$200 for banner + stand. Reusable for all expos.</td>
+<td>The banner is visible from 20+ feet away and is the PRIMARY traffic
+attractor. Position behind the table, centered.</td>
+</tr>
+<tr class="odd">
+<td><strong>Poncho display rack</strong></td>
+<td>Simple garment rack ($25–40 from Amazon or IKEA) with 3–5 ponchos
+hung on clips. Show: front view (brand logo + composting icons), back
+view (co-brand sample with race logo). Ponchos catch light from the
+metallized lining — the shimmer draws attention.</td>
+<td>The rack communicates “this is a real product you can touch” vs. a
+flat product on a table. Height creates visual presence in a crowded
+expo hall.</td>
+</tr>
+<tr class="even">
+<td><strong>Tear-away demo station</strong></td>
+<td>Designate one area of the table as the “Tear-Away Demo.” Place 5–10
+ponchos (pre-opened) that runners can pick up and TEAR along the
+perforation. The tearing is the WOW MOMENT. Provide a small waste bin
+for torn pieces.</td>
+<td>Invite runners: “Want to try the tear-away? Grab one and rip it!”
+The tactile experience — the sound, the ease, the clean tear — sells
+more ponchos than any verbal pitch. Budget: 5–10 demo ponchos are
+non-recoverable (marketing expense).</td>
+</tr>
+<tr class="odd">
+<td><strong>Product display table</strong></td>
+<td>Table layout (6’ standard table): LEFT: stack of sealed single
+ponchos in inner bags (“pick up and feel”). CENTER: 3-pack and 6-pack
+displays with pricing signs. RIGHT: B2B materials (sample kits for race
+directors, data sheets, co-brand mockups). FRONT EDGE: business card
+holder + QR code tent card linking to Amazon listing.</td>
+<td>Keep the table UNCLUTTERED. Runners scan and move — they won’t study
+a crowded table. 3 visual zones: try it (demo), buy it (product stacks),
+learn more (B2B materials).</td>
+</tr>
+<tr class="even">
+<td><strong>FLIR thermal comparison</strong></td>
+<td>Print the FLIR thermal comparison image (per P1D Section 7) as a
+16″×20″ poster or display on a tablet. Shows: poncho vs. garbage bag vs.
+bare skin at 40°F. The visual proof of warmth performance is instantly
+compelling — eliminates the “does it actually work?” objection.</td>
+<td>If displaying on a tablet: loop a slideshow of FLIR images +
+race-day pilot photos + composting lifecycle animation. Screen attracts
+attention better than static posters.</td>
+</tr>
+<tr class="odd">
+<td><strong>Pricing signage</strong></td>
+<td>Clear, visible pricing on 5″×7″ tent cards (Canva design, printed on
+card stock, folded): SINGLE: $9.99. 3-PACK: $24.99 (Save $5!). 6-PACK:
+$49.99 (Save $10!). RACE WEEKEND SPECIAL: 3-Pack $19.99 (expo-only
+discount per Section 7). “Compostable • BPI Certified • Race-Ready”
+tagline under pricing.</td>
+<td>ALWAYS show the savings for multi-packs. The runner sees: “I can get
+3 for $19.99 instead of $29.97 — that’s basically buy-2-get-1-free.”
+Multi-pack pricing is the upsell engine.</td>
+</tr>
+<tr class="even">
+<td><strong>Impact counter (optional)</strong></td>
+<td>A running tally displayed on a small whiteboard or digital screen:
+“[X] ponchos composted so far • [Y] lbs diverted from landfill.” Update
+with each sale or with cumulative data from pilot races.</td>
+<td>Creates social proof and urgency: “Join [X] runners who have already
+switched to compostable.” If digital: a simple web page on a tablet that
+updates manually or pulls from a Google Sheet.</td>
+</tr>
+</tbody>
+</table>
+<p>3.1 Booth Layout Diagram</p>
+<p>10’ × 10’ booth layout (standard): BACK WALL: Pop-up banner
+(center-left), garment rack with hung ponchos (center-right). TABLE (6’,
+centered front-to-back): LEFT side = tear-away demo station. CENTER =
+product stacks (singles, 3-packs, 6-packs) with pricing signs. RIGHT
+side = B2B materials + tablet for email capture. FRONT-LEFT corner: QR
+code tent card (scan to buy online). FRONT-RIGHT corner: Square reader +
+cash box (payment station). UNDER TABLE: extra inventory boxes, cash box
+(secured), personal items. FLOORING: consider a branded floor mat
+($100–$200) or clean carpet squares for a polished look.</p>
+<p>3.2 Staffing</p>
+<p>MINIMUM: 1 person (founder) for small expos (&lt;15,000 attendees).
+RECOMMENDED: 2 people for large expos (&gt;15,000): 1 on the “pitch +
+demo” side (engages runners, demonstrates tear-away, answers questions)
+and 1 on the “payment + email” side (processes transactions, handles
+email sign-ups, manages inventory). Second person options: co-founder,
+friend, family member, part-time staffer ($15–20/hour × 8–10 hours/day =
+$120–$200/day). Brief the second person: 30-minute product training + 5
+key talking points + how to process Square payments.</p>
+<p>4. Expo Inventory Plan</p>
+<p><strong>Bring more than you think you’ll sell.</strong> Selling out
+on Day 1 of a 2-day expo means losing 50% of potential revenue. The
+marginal cost of extra inventory (at COGS: $1.15–$1.80/unit) is far less
+than the cost of a missed sale ($9.99+ in revenue). Unsold sealed units
+return to normal inventory — there is no waste from over-packing for an
+expo.</p>
+<table>
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 7%" />
+<col style="width: 11%" />
+<col style="width: 64%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Category</strong></td>
+<td><strong>Quantity</strong></td>
+<td><strong>Cost (at COGS)</strong></td>
+<td><strong>Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Single ponchos (sealed)</strong></td>
+<td>100–200</td>
+<td>$115–$360 (at $1.15–$1.80 COGS)</td>
+<td>Primary sales SKU. Display 20–30 in a basket on the table for “pick
+up and feel.” Store remainder in boxes under the table. Restock basket
+throughout the day. Expect to sell: 30–80 singles across a 2-day expo
+(varies by expo size and foot traffic).</td>
+</tr>
+<tr class="odd">
+<td><strong>3-Packs</strong></td>
+<td>50–100</td>
+<td>$172–$540</td>
+<td>Primary upsell SKU. Stack 10–20 on the table with pricing sign.
+Store remainder under table. Expect to sell: 20–50 3-packs across a
+2-day expo. At $19.99–$24.99 per 3-pack: $400–$1,250 in 3-pack
+revenue.</td>
+</tr>
+<tr class="even">
+<td><strong>6-Packs</strong></td>
+<td>20–40</td>
+<td>$138–$432</td>
+<td>Secondary SKU. Display 5–10 on table. For running clubs and
+families. Expect to sell: 5–15 6-packs. At $49.99–$54.99: $250–$825 in
+6-pack revenue.</td>
+</tr>
+<tr class="odd">
+<td><strong>Demo/display ponchos (non-sellable)</strong></td>
+<td>10–20</td>
+<td>$11.50–$36</td>
+<td>Open ponchos for display rack (3–5), tear-away demo station (5–10),
+and 1 worn by booth staffer. Budget as marketing expense. These units
+are NOT sold.</td>
+</tr>
+<tr class="even">
+<td><strong>B2B sample kits</strong></td>
+<td>10–20</td>
+<td>$150–$500 (per P3B Section 6)</td>
+<td>For race directors encountered at the expo. Hand-deliver with a
+personal conversation. These are the highest-ROI units at the expo.</td>
+</tr>
+<tr class="odd">
+<td><strong>Co-brand mockup cards</strong></td>
+<td>20–30</td>
+<td>$10–$30 (card stock print)</td>
+<td>Generic co-brand mockup showing a placeholder race logo. Hand to
+interested race directors alongside sample kit.</td>
+</tr>
+<tr class="even">
+<td><strong>Marketing collateral</strong></td>
+<td>100–200 pieces total</td>
+<td>$30–$60</td>
+<td>DTC product cards (50–100, with QR to Amazon listing), B2B data
+sheets (30–50), composting infographic handouts (20–50), business cards
+(100). Print at FedEx Office or VistaPrint. Budget
+$0.10–$0.30/piece.</td>
+</tr>
+</tbody>
+</table>
+<p>4.1 Inventory Transport</p>
+<p>DRIVING to the expo (within 3–4 hours): pack inventory in the car.
+200–400 ponchos + 50–100 multi-packs + display materials = 2–4 medium
+boxes. Fits in a sedan trunk or SUV cargo area. No shipping cost. FLYING
+to the expo: ship inventory ahead of time to the expo venue or a nearby
+hotel. Use UPS Ground (3–5 days, $20–$60 for 2–3 boxes) or FedEx. Ship
+7–10 days before the expo to ensure arrival. Address: “[Your Name], c/o
+[Hotel Name], [Hotel Address], HOLD FOR GUEST ARRIVING [Date].” Confirm
+with the hotel that they accept pre-arrival packages. Alternatively: if
+the expo has a vendor shipping address (many do), ship directly to the
+venue with your booth number on the label.</p>
+<p>5. Payment Processing Setup</p>
+<p><strong>Accept every payment method runners might use.</strong> A
+runner who wants to buy but can’t because you don’t take Apple Pay or
+don’t have change for a $50 bill is a lost sale. The cost of a card
+reader ($0–$59 one-time) pays for itself with the first transaction it
+enables.</p>
+<table>
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 42%" />
+<col style="width: 40%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Method</strong></td>
+<td><strong>Setup</strong></td>
+<td><strong>Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Square card reader</strong></td>
+<td>Square Reader for magstripe ($0, free from squareup.com) + Square
+Reader for contactless + chip ($59, recommended). Connect to smartphone
+via Bluetooth. Accept: credit/debit cards, Apple Pay, Google Pay.
+Processing fee: 2.6% + $0.10 per tap/insert.</td>
+<td>Order 2–4 weeks before first expo. Practice: process 2–3 test
+transactions before expo day. Ensure: phone is charged (bring portable
+battery), Square app is updated, Wi-Fi or cellular data is available at
+the venue.</td>
+</tr>
+<tr class="odd">
+<td><strong>Shopify POS (optional)</strong></td>
+<td>Shopify POS app (free with Shopify plan) + Shopify card reader
+($49). Integrates directly with Shopify inventory — every expo sale is
+tracked in the same system as online sales. Processing: 2.7% per
+in-person transaction (Shopify Basic plan).</td>
+<td>Recommended if using Shopify for DTC. Unified inventory tracking
+prevents over-selling. Automatically syncs: product catalog, pricing,
+inventory count, and sales data. If NOT using Shopify: Square standalone
+is simpler and sufficient.</td>
+</tr>
+<tr class="even">
+<td><strong>Cash handling</strong></td>
+<td>Bring a cash box with: $50 in small bills (5×$5, 10×$1, plus $10 in
+quarters for $0.01 change). Accept cash for all products. At end of each
+day: count cash, reconcile against sales log, secure in the cash
+box.</td>
+<td>Cash sales are 10–20% of expo transactions (most runners prefer
+card/tap). Keep cash box under the table and out of sight. Have a
+designated person handle cash (not the person giving the sales
+pitch).</td>
+</tr>
+<tr class="odd">
+<td><strong>QR code to Shopify/Amazon</strong></td>
+<td>Print a large QR code (8″×8″) on a tent card: “Scan to Order
+Online.” Link to: Shopify product page (preferred for margin) or Amazon
+listing (preferred for review velocity). Place prominently on the table
+for runners who want to buy later rather than carry a poncho through the
+expo.</td>
+<td>QR-to-online captures sales from runners who: don’t want to carry
+products through the expo, want to buy multi-packs for their running
+group later, or are browsing but not ready to purchase. Track: QR
+scan-to-purchase conversion with UTM parameters (Shopify analytics or
+Amazon Attribution).</td>
+</tr>
+<tr class="even">
+<td><strong>Sales tax compliance</strong></td>
+<td>Research sales tax requirements for the expo’s state and city. Most
+states require collecting sales tax on in-person transactions. Set up:
+correct tax rate in Square or Shopify POS before the expo. For
+out-of-state vendors: many states require a temporary vendor’s permit
+($0–$25). Check: the expo’s vendor information packet often includes
+sales tax guidance and permit requirements.</td>
+<td>Non-compliance risk: state auditors sometimes visit major expos to
+check vendor sales tax compliance. Having the correct tax rate
+programmed into the POS and a temporary vendor’s permit (if required)
+eliminates this risk.</td>
+</tr>
+</tbody>
+</table>
+<p>6. Expo-Specific Discounts</p>
+<p><strong>Expo-specific pricing creates urgency and drives impulse
+purchases.</strong> Runners at an expo are in a buying mood but need a
+reason to buy NOW rather than “I’ll think about it.” The Race Weekend
+Special (“only available this weekend”) provides that reason. All
+discounts are designed to maintain profitability while increasing volume
+and AOV.</p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 9%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 7%" />
+<col style="width: 57%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Offer</strong></td>
+<td><strong>Price</strong></td>
+<td><strong>Discount %</strong></td>
+<td><strong>Applies To</strong></td>
+<td><strong>Duration</strong></td>
+<td><strong>Strategy</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Race Weekend Special (3-Pack)</strong></td>
+<td>$19.99 (vs. $24.99 standard)</td>
+<td>20% off</td>
+<td>3-packs</td>
+<td>Expo days only</td>
+<td>The PRIMARY conversion offer. “Race Weekend Special: 3-Pack for
+$19.99 — that’s basically buy-2-get-1-free!” Creates urgency (expires
+when expo closes) and drives AOV from $9.99 to $19.99. Margin: $19.99 −
+$3.45 COGS (3 units) − $0.62 Square fee = $15.92 gross margin (79.6%).
+Still highly profitable.</td>
+</tr>
+<tr class="odd">
+<td><strong>Buy 2, Get 1 Free (singles)</strong></td>
+<td>$19.98 for 3 (vs. $29.97)</td>
+<td>33% off</td>
+<td>Singles</td>
+<td>Expo days only</td>
+<td>Alternative framing of the same deal if not using multi-pack
+packaging. Runner pays for 2 singles, gets a 3rd free. Same economics as
+the 3-pack deal. Use if 3-packs are out of stock.</td>
+</tr>
+<tr class="even">
+<td><strong>Running Club Bundle</strong></td>
+<td>6-Pack for $39.99 (vs. $49.99–$54.99)</td>
+<td>20–27% off</td>
+<td>6-packs</td>
+<td>Expo days only</td>
+<td>For groups: “Bring warmth for your whole crew. 6-Pack for $39.99 —
+only $6.67 each!” Targets: running club captains, relay teams, running
+couples with friends. Ask: “Are you running with a group? Get everyone a
+poncho.”</td>
+</tr>
+<tr class="odd">
+<td><strong>First-Responder / Military Discount</strong></td>
+<td>10% off any purchase</td>
+<td>10%</td>
+<td>All SKUs</td>
+<td>Expo days only (ID required)</td>
+<td>For military/police/fire/EMS runners: “Thank you for your service —
+10% off.” Especially relevant at: Marine Corps Marathon,
+military-community races. Builds goodwill and word-of-mouth within the
+service community.</td>
+</tr>
+<tr class="even">
+<td><strong>Email Sign-Up Discount</strong></td>
+<td>$2 off any purchase for signing up for the email list</td>
+<td>$2 fixed</td>
+<td>All SKUs</td>
+<td>Expo days only</td>
+<td>Dual purpose: (1) converts browsers to buyers with a small
+incentive, (2) captures email for post-expo marketing. “Sign up for our
+email list and get $2 off your poncho today.” Use: tablet with email
+capture form (Klaviyo or Typeform) at the table.</td>
+</tr>
+</tbody>
+</table>
+<p>6.1 Discount Communication</p>
+<p>Make discounts VISIBLE: (1) Pricing tent cards on the table (per
+booth design Section 3). (2) Verbal pitch: “We’ve got a Race Weekend
+Special — 3-pack for $19.99, only this weekend.” (3) Banner or poster
+with the offer (if space allows). (4) Email sign-up incentive: “Sign up
+and get an extra $2 off today.” Stack incentives: a runner who signs up
+for email ($2 off) AND buys the Race Weekend 3-pack ($19.99) gets the
+3-pack for $17.99. Margin on 3 ponchos at $17.99: $17.99 − $3.45 COGS −
+$0.57 Square fee = $13.97 (77.7%). Still highly profitable.</p>
+<p>7. Email Capture: 4 Methods</p>
+<p><strong>Every email captured at an expo is a future customer,
+reviewer, and potential B2B contact.</strong> The expo generates
+200–1,000+ in-person interactions per day. Even capturing 10–20% as
+email addresses yields 40–200 high-intent contacts who have SEEN and
+TOUCHED the product — these convert at 2–5× the rate of cold email
+subscribers.</p>
+<table>
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 47%" />
+<col style="width: 35%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Method</strong></td>
+<td><strong>Setup</strong></td>
+<td><strong>Conversion Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Method 1: QR code to landing page</strong></td>
+<td>8″×8″ QR code on a tent card: “Scan to Join Our Community — Get $2
+Off + Race-Day Tips + Composting Updates.” Link to: P1E pre-launch
+landing page or a dedicated expo landing page with email capture form
+(Klaviyo or Typeform).</td>
+<td>Passive: works while you’re talking to other runners. Place QR card
+where runners naturally wait (near the payment area, or at the edge of
+the table). LOW friction but LOW conversion (3–5% of foot traffic that
+stops).</td>
+</tr>
+<tr class="odd">
+<td><strong>Method 2: Tablet sign-up</strong></td>
+<td>iPad or Android tablet mounted on a stand at the front of the table.
+Screen shows: “Sign Up for $2 Off — Enter Email Below.” Simple form:
+first name + email + checkbox (“I’m a race director” to flag B2B
+prospects). Auto-add to Klaviyo list with “expo-signup” tag.</td>
+<td>Active: booth staffer gestures to the tablet after the pitch: “Pop
+your email in here and I’ll take $2 off.” MEDIUM friction, MEDIUM
+conversion (10–20% of people who stop at the booth).</td>
+</tr>
+<tr class="even">
+<td><strong>Method 3: Raffle entry</strong></td>
+<td>Fishbowl or box with entry slips: “Drop your business card (or fill
+out a slip) to win a FREE 6-Pack of Compostable Ponchos!” Entry slip
+fields: name, email, race you’re running this weekend. Draw winner at
+end of Day 2. Announce via email to all entrants.</td>
+<td>HIGHEST email capture volume (20–30% of booth visitors). Everyone
+loves a raffle. Adds excitement to the booth. The “winner announcement”
+email is the first touchpoint in the post-expo sequence. Non-winners
+receive: a consolation $3-off coupon code for online purchase.</td>
+</tr>
+<tr class="odd">
+<td><strong>Method 4: Social follow for discount</strong></td>
+<td>Sign at the booth: “Follow us on Instagram + show your phone = 10%
+off.” Runner follows @brandname on Instagram at the booth, shows the
+follow to the staffer, gets 10% off their purchase.</td>
+<td>Builds social following. 10% discount is a strong incentive. Runners
+who follow on Instagram become part of the long-term brand community.
+COMBINE with Method 2 (tablet email) for maximum capture: email + social
+follow in one interaction.</td>
+</tr>
+</tbody>
+</table>
+<p>7.1 Post-Expo Email Sequence</p>
+<p><strong>Every email captured at the expo enters a 5-stage post-expo
+sequence</strong> designed to: announce the raffle winner (engagement),
+capture race-day feedback (data), request product reviews (DTC growth),
+prompt referrals (word-of-mouth), and re-engage for the next race season
+(retention).</p>
+<table>
+<colgroup>
+<col style="width: 9%" />
+<col style="width: 11%" />
+<col style="width: 47%" />
+<col style="width: 30%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Timing</strong></td>
+<td><strong>Stage</strong></td>
+<td><strong>Content</strong></td>
+<td><strong>Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Day 0 (during expo)</strong></td>
+<td>Raffle winner email</td>
+<td>Email to winner: “Congratulations! You won a free 6-Pack of
+Compostable Ponchos! Reply with your mailing address and we’ll ship them
+this week.” Email to all entrants: “Thanks for entering! You didn’t win
+the 6-Pack, but here’s a $3-off coupon code for your first online order:
+EXPOSPECIAL.”</td>
+<td>High open rate (everyone checks raffle results). The $3-off coupon
+converts 5–10% of non-winners to online purchasers.</td>
+</tr>
+<tr class="odd">
+<td><strong>Day 1 post-race</strong></td>
+<td>Race-day follow-up</td>
+<td>Email to all expo sign-ups: “Hope you had an amazing race today! If
+you wore a compostable poncho at the start, we’d love to hear how it
+went. Quick 2-minute survey: [link]. And if you didn’t grab one yet, use
+code RACEDAY for free shipping on your first order.”</td>
+<td>Ties the product to the emotional high of finishing a race. Survey
+link collects DTC runner feedback (supplements B2B pilot surveys from
+P5B).</td>
+</tr>
+<tr class="even">
+<td><strong>Day 5 post-race</strong></td>
+<td>Product review request</td>
+<td>Email: “Thanks for trying our compostable poncho! Would you take 30
+seconds to leave a review? [Amazon review link] or [Shopify review
+link]. Your review helps other runners discover a better alternative to
+garbage bags.”</td>
+<td>Reviews are the lifeblood of DTC sales. Each expo generates 10–30
+potential reviewers. Target: 5–10 reviews per expo from email
+follow-up.</td>
+</tr>
+<tr class="odd">
+<td><strong>Day 14</strong></td>
+<td>Referral prompt</td>
+<td>Email: “Loved the poncho? Share the warmth! Give a friend $5 off,
+and get $5 off your next order: brand.com/refer. Or: forward this email
+to your running club captain — we offer group discounts!”</td>
+<td>Referral program per P1E Section 6. Running communities are
+tight-knit; referral from a fellow runner converts better than any
+ad.</td>
+</tr>
+<tr class="even">
+<td><strong>Day 30</strong></td>
+<td>Re-engagement / next race</td>
+<td>Email: “Next race coming up? Don’t forget your compostable poncho.
+Order now for your [next race season] races. Plus: check out our new
+[3-pack / 6-pack / limited color].</td>
+<td>Keeps the brand top-of-mind. Segment: if the sign-up checked “I’m a
+race director”, route to B2B nurture sequence instead of DTC.</td>
+</tr>
+</tbody>
+</table>
+<p>8. Expo Performance Metrics &amp; ROI</p>
+<p>8.1 Per-Expo KPIs</p>
+<p><strong>Track after EVERY expo: (1) Units sold: singles, 3-packs,
+6-packs. (2) Revenue: total cash + card + QR-to-online attributed. (3)
+Average Order Value (AOV): total revenue ÷ total transactions. Target:
+$15+ (driven by multi-pack upsell). (4) Emails captured: total, method
+breakdown (QR vs. tablet vs. raffle vs. social). (5) B2B contacts:
+sample kits distributed, race director meetings. (6) Booth cost: fee +
+travel + inventory + staffing. (7) ROI: (Revenue + estimated B2B
+pipeline value) ÷ total booth cost.</strong></p>
+<p>8.2 ROI Example</p>
+<p>CHICAGO MARATHON EXPO (2-day): Booth: $1,200. Travel: $600. Inventory
+COGS: $400. Staffing: $0 (founder). TOTAL COST: $2,200. Revenue: 60
+singles × $9.99 = $599. 40 3-packs × $19.99 = $800. 10 6-packs × $39.99
+= $400. TOTAL DTC REVENUE: $1,799. B2B: 10 sample kits distributed. If 3
+convert at $4,000 avg order: $12,000 pipeline value. Emails: 200
+captured. If 10% convert online at $15 AOV: $300. Post-expo reviews: 10
+Amazon reviews (priceless for ranking). TOTAL VALUE: $1,799 DTC +
+$12,000 B2B pipeline + $300 post-expo online + review value. ROI:
+($14,099 ÷ $2,200) = 6.4×. Expos are profitable at EVERY scale because
+of the B2B multiplier.</p>
+<p>9. Timeline &amp; Budget</p>
+<p><strong>WEEK 20: Finalize Fall 2026 expo target list (3 expos for
+Season 1). Submit applications to all target expos. Order: pop-up
+banner, garment rack, tent card pricing signs, tear-away demo station
+setup materials.</strong></p>
+<p><strong>WEEK 22–24: Receive booth confirmations. Select booth
+locations. Order Square reader. Set up Shopify POS (if applicable).
+Design expo-specific discount pricing cards. Prepare email capture forms
+(Klaviyo + Typeform). Print marketing collateral. Assemble B2B sample
+kits for expo distribution.</strong></p>
+<p><strong>WEEK 24–26: Prepare expo inventory (per Section 4). Practice:
+Square payment processing, elevator pitch, tear-away demo. Brief second
+staffer (if applicable). Ship inventory to expo venue or hotel (if
+flying). Create post-expo email sequence in Klaviyo (Section
+7.1).</strong></p>
+<p><strong>WEEK 26–30: Attend expos. Execute booth plan (Section 3).
+Capture emails. Process sales. Distribute B2B sample kits. Post-expo:
+process raffle winner, launch email sequence, reconcile sales +
+inventory, calculate ROI per Section 8. Feed B2B contacts into P5A
+pipeline.</strong></p>
+<p>BUDGET: Booth fees (3 expos): $1,200–$3,100. Pop-up banner:
+$100–$200. Garment rack: $25–$40. Pricing signs + tent cards: $15–$30.
+Square reader: $0–$59. Tablet stand (for email capture): $20–$40. Travel
+(3 trips): $1,000–$3,000. Expo inventory COGS: $400–$1,500. Staffing (if
+needed): $0–$400 per expo. TOTAL P5D Season 1: $2,760–$8,370. EXPECTED
+RETURN: $3,000–$6,000 DTC revenue + $15,000–$50,000+ B2B pipeline value.
+ROI: 3–8×.</p>
+<p>10. Conclusion: The Expo Is a Stage</p>
+<p><strong>An expo booth is not a retail store — it is a 2-day
+performance.</strong> The founder is the actor, the poncho is the prop,
+and the tear-away demo is the dramatic moment. Every runner who stops at
+the booth should experience: a warm greeting (“Have you ever stood in a
+corral freezing?”), a tactile moment (holding the poncho, feeling the
+weight, seeing the metallic lining), a wow moment (tearing along the
+perforation — the clean rip, the ease), and a close (“Race Weekend
+Special: 3-pack for $19.99, ready for your crew”).</p>
+<p><strong>The expo’s lasting value is NOT the $1,799 in DTC
+sales.</strong> It is the 200 emails, the 10 B2B sample kits, the 10
+Amazon reviews, and the 10,000 runners who walked past the booth and
+noticed the banner. Some of those runners will Google the brand at
+midnight before the race. Some will see a compostable poncho at the
+start line and remember. Some will become the race director who calls in
+February asking about co-branding for their spring race. The expo plants
+seeds that bloom across every channel for the next 12 months.</p>
+
+        </div>
+    </div></div>
+<footer style="text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px">
+Sustainable Race-Start Warmth Poncho — D2C Brand GTM Project · 60 Subprojects · 391 Tasks · ~15,500¶ · April 2026
+</footer></body></html>

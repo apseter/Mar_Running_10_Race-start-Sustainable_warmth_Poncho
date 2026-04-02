@@ -1,0 +1,622 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>P10D: Wholesale Retail Expansion — Race Start Warmth GTM</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0e1a;--surface:#111827;--card:#1a2332;--border:#2a3a4e;--accent:#10b981;--accent2:#3b82f6;--text:#e2e8f0;--muted:#94a3b8;--white:#fff;--red:#ef4444;--amber:#f59e0b;--green:#10b981}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+/* Nav */
+nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
+nav .inner{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;max-width:1200px;margin:0 auto}
+nav .brand{font-weight:700;font-size:15px;color:var(--accent)}
+nav .links{display:flex;gap:8px;flex-wrap:wrap}
+nav .links a{color:var(--muted);font-size:13px;padding:4px 10px;border-radius:6px;transition:.2s}
+nav .links a:hover,nav .links a.active{color:var(--white);background:var(--card);text-decoration:none}
+/* Hero */
+.hero{padding:60px 0 40px;text-align:center}
+.hero h1{font-size:2.4em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:1.1em;max-width:700px;margin:0 auto}
+/* Stats bar */
+.stats{display:flex;justify-content:center;gap:32px;padding:24px 0;flex-wrap:wrap}
+.stat{text-align:center}.stat .num{font-size:1.8em;font-weight:800;color:var(--white)}.stat .label{font-size:.75em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+/* Cards */
+.grid{display:grid;gap:16px;margin:24px 0}
+.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}
+.grid-3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;transition:.2s}
+.card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.card h3{font-size:1.1em;margin-bottom:8px}.card p{color:var(--muted);font-size:.9em}
+.card .badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:8px}
+.card .meta{font-size:.8em;color:var(--muted);margin-top:12px}
+/* Section */
+.section{padding:40px 0}.section h2{font-size:1.6em;font-weight:700;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+/* Table */
+table{width:100%;border-collapse:collapse;font-size:.85em;margin:16px 0}
+th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:52px}
+td{padding:8px 12px;border-bottom:1px solid var(--border)}
+tr:hover td{background:rgba(16,185,129,.05)}
+.status-complete{color:var(--green);font-weight:600}.status-not{color:var(--muted)}
+/* Progress */
+.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:8px}
+.progress .bar{height:100%;background:var(--accent);border-radius:3px}
+/* Back link */
+.back{display:inline-block;color:var(--muted);font-size:.9em;margin-bottom:20px}
+.back:hover{color:var(--accent)}
+/* Download */
+.dl-card{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin:8px 0;transition:.2s}
+.dl-card:hover{border-color:var(--accent);text-decoration:none}
+.dl-card .icon{font-size:2em}.dl-card .info h4{color:var(--white);margin-bottom:4px}.dl-card .info p{color:var(--muted);font-size:.85em}
+/* Footer */
+footer{text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px}
+@media(max-width:768px){.stats{gap:16px}.stat .num{font-size:1.3em}nav .links{gap:4px}nav .links a{font-size:11px;padding:3px 6px}.hero h1{font-size:1.6em}}
+
+.doc-content{max-width:900px;margin:0 auto;padding:20px 0}
+.doc-content h1{font-size:1.8em;font-weight:800;color:var(--white);margin:32px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.doc-content h2{font-size:1.4em;font-weight:700;color:var(--accent);margin:28px 0 12px}
+.doc-content h3{font-size:1.15em;font-weight:600;color:var(--accent2);margin:20px 0 10px}
+.doc-content p{margin:8px 0;line-height:1.7}
+.doc-content table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85em}
+.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;border:1px solid var(--border)}
+.doc-content td{padding:8px 12px;border:1px solid var(--border);vertical-align:top}
+.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.doc-content ul,.doc-content ol{margin:8px 0 8px 24px}
+.doc-content li{margin:4px 0;line-height:1.6}
+.doc-content strong{color:var(--white)}
+.doc-content em{color:var(--muted)}
+.doc-content blockquote{border-left:3px solid var(--accent);padding:8px 16px;margin:12px 0;background:var(--card);border-radius:0 8px 8px 0}
+.nav-sub{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 24px;padding:12px 16px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
+.nav-sub a{font-size:.8em;color:var(--muted);padding:4px 10px;border-radius:4px;transition:.2s;white-space:nowrap}
+.nav-sub a:hover,.nav-sub a.active{color:var(--white);background:var(--surface);text-decoration:none}
+</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a></div></div></nav><div class="container">
+    <div style="padding-top:30px">
+        <a href="p10.html" class="back">← 📈 P10: Scaling & Growth</a>
+        <div class="nav-sub"><a href="p10.html">📈 P10 Overview</a><a href="sub-p10a.html">P10A</a><a href="sub-p10b.html">P10B</a><a href="sub-p10c.html">P10C</a><a href="sub-p10d.html" class="active">P10D</a><a href="sub-p10e.html">P10E</a><a href="sub-p10f.html">P10F</a></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px">
+            <div>
+                <span style="background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px">P10D</span>
+                <span style="color:var(--muted);font-size:.85em;margin-left:8px">P10: Scaling & Growth</span>
+            </div>
+            <a href="files/P10D_Wholesale_Retail_Expansion.docx" style="font-size:.85em;color:var(--accent);padding:6px 14px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
+        </div>
+        <div class="doc-content">
+            <p><strong>P10D: WHOLESALE &amp;</strong></p>
+<p><strong>RETAIL EXPANSION</strong></p>
+<p>Sub-Project P10D | Scaling, Expansion &amp; Category Leadership |
+Months 10–18</p>
+<p><em>Complete Retail Strategy: Fleet Feet Wholesale Entry, Faire
+Marketplace, Retail Packaging &amp; POS Display, Local Running Store
+Pilot Program, Big-Box Retail Evaluation, and Registration Bag Inclusion
+Models</em></p>
+<p>March 2026 | Confidential</p>
+<p>Executive Summary</p>
+<p><strong>Retail is the THIRD sales channel: after DTC (Shopify +
+Amazon) and B2B (race directors).</strong> DTC captures: runners who
+search online. B2B captures: runners who receive ponchos from their
+race. Retail captures: runners who browse their local running store, see
+the poncho on the shelf, and buy it impulsively before their next race.
+These are THREE DIFFERENT purchase moments reaching THREE DIFFERENT
+customer behaviors. Together: DTC + B2B + retail create a comprehensive
+distribution strategy that puts the product wherever runners shop.</p>
+<p><strong>This document builds the retail channel:</strong> Fleet Feet
+(275+ specialty running stores, the #1 retail target), Faire marketplace
+(700,000+ independent retailers, the “Amazon for wholesale”),
+retail-ready packaging with point-of-sale displays, a 5-store local
+running store pilot program scaling to 50 stores, big-box evaluation
+(REI Year 3, Dick’s/Target Year 4+), and 3 registration-bag inclusion
+models (product sampling, discount code, and RunSignUp registration
+add-on) that put the poncho directly into runners’ hands at packet
+pickup.</p>
+<p>1. Fleet Feet: Specialty Running Retail</p>
+<p><strong>Fleet Feet is the DREAM retail partner:</strong> 275+
+locations staffed by runners who provide personalized gear
+recommendations to the exact customer the brand targets. A Fleet Feet
+placement is not just shelf space — it is: a RECOMMENDATION ENGINE where
+knowledgeable staff tell runners “you should try this compostable poncho
+for your next cold race.” No other retail channel offers this level of
+targeted, trusted, in-store recommendation.</p>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 81%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Element</strong></td>
+<td><strong>Specification</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Overview</strong></td>
+<td>Fleet Feet is the largest specialty running store chain in the US
+with 275+ locations (mix of corporate and franchise). Fleet Feet stores
+are: the #1 destination for serious runners buying shoes, apparel, and
+accessories, staffed by knowledgeable runners who provide personalized
+recommendations, and located in: running-dense cities that overlap with
+the brand’s target race markets. A Fleet Feet placement puts the poncho
+in front of: exactly the right customer (multi-race runners preparing
+for cold-weather events) at exactly the right moment (during their
+pre-race shopping trip).</td>
+</tr>
+<tr class="odd">
+<td><strong>Wholesale requirements</strong></td>
+<td>Fleet Feet vendor requirements typically include: wholesale pricing
+at 50% of retail (keystone markup, meaning Fleet Feet buys at $5.00 and
+sells at $9.99), UPC/barcode on product packaging (per P3D Section 6 —
+already included), minimum opening order (varies by store, typically
+$200–$500), and NET-30 or NET-60 payment terms (Fleet Feet pays 30–60
+days after receiving goods). MARGIN ANALYSIS: at $5.00 wholesale and
+$1.15 COGS: margin = $3.85/unit (77%). This is HIGHER margin than Amazon
+FBA ($2.38–$3.16 after fees) because: no FBA fees, no PPC costs, and
+Fleet Feet’s foot traffic is FREE (no customer acquisition cost).</td>
+</tr>
+<tr class="even">
+<td><strong>Approach strategy</strong></td>
+<td>DO NOT cold-email Fleet Feet corporate headquarters as a first step.
+Instead: (1) START LOCAL: visit the founder’s nearest Fleet Feet store.
+Meet the store manager. Show the product. Offer: 20–30 units on
+CONSIGNMENT (Fleet Feet pays only for units sold, returns unsold units).
+If the store sells through: expand to 2–3 more local stores. Build a
+TRACK RECORD of sell-through data before approaching corporate. (2)
+FLEET FEET FIT ID: Fleet Feet’s FIT ID program profiles runners and
+recommends products based on their needs. Being included in FIT ID
+recommendations for cold-weather running puts the poncho in front of
+every Fleet Feet customer asking about race-day warmth. Requires:
+product accepted at the corporate/franchise level. (3) VENDOR
+APPLICATION: once local store success is documented (sell-through rate,
+reorder requests, customer feedback): apply to the Fleet Feet vendor
+portal for national distribution. Include: local store performance data,
+Amazon reviews + BSR, BPI certification, and press coverage.</td>
+</tr>
+<tr class="odd">
+<td><strong>Timeline</strong></td>
+<td>Month 10–12: visit 1–2 local Fleet Feet stores with samples. Offer
+consignment. Month 12–14: if sell-through is &gt;50% in 4 weeks: expand
+to 3–5 stores. Collect: sell-through data, store manager feedback, and
+customer reactions. Month 14–16: with documented local success: approach
+Fleet Feet regional representative or corporate vendor portal. Present:
+sell-through data from local stores + Amazon reviews + B2B case studies.
+Month 16–18: if accepted: negotiate national terms, produce retail-ready
+packaging, and begin shipping to Fleet Feet distribution centers.</td>
+</tr>
+</tbody>
+</table>
+<p>2. Faire Wholesale Marketplace</p>
+<p><strong>Faire is the fastest way to reach HUNDREDS of independent
+retailers without: cold-calling, trade shows, or individual wholesale
+negotiations.</strong> The platform handles: retailer discovery, order
+processing, payment collection (brand paid in 1–3 days), and free
+returns on opening orders. The brand simply uploads: products, pricing,
+and images — and Faire’s algorithm surfaces the poncho to relevant
+retailers.</p>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 81%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Element</strong></td>
+<td><strong>Specification</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Overview</strong></td>
+<td>Faire (faire.com) is a wholesale marketplace connecting independent
+retailers with brands. 700,000+ retailers use Faire to discover and
+order products. Faire is: the “Amazon for wholesale” — retailers browse,
+order, and reorder through the platform. Faire offers: NET-60 payment
+terms to retailers (Faire pays the BRAND within 1–3 days of shipment,
+then collects from the retailer in 60 days — the brand gets paid FAST).
+Free returns on opening orders (Faire absorbs the risk, not the brand).
+Data-driven recommendations (Faire’s algorithm surfaces products to
+relevant retailers based on category, location, and sales data).</td>
+</tr>
+<tr class="odd">
+<td><strong>Setup</strong></td>
+<td>Create a Faire brand account (faire.com/brand-signup). Upload:
+product catalog (single, 3-pack, 6-pack), wholesale pricing (50% of
+retail = $5.00 single, $12.50 3-pack, $25.00 6-pack), product images
+from P1D photography, and brand story from P1C. Set: minimum order
+($100–$200 per store), shipping policy (brand ships directly to each
+retailer), and return policy (Faire’s standard free-returns on opening
+orders). Faire charges: 15% commission on orders from NEW retailers
+found through Faire’s marketplace + 0% on direct/reorder relationships.
+The 15% commission is: the cost of customer acquisition (Faire finds the
+retailer for the brand).</td>
+</tr>
+<tr class="even">
+<td><strong>Target retailers</strong></td>
+<td>Running specialty stores (independent, not Fleet Feet franchise —
+those are approached separately per Section 1). Outdoor recreation
+stores (gear shops carrying: running, hiking, camping products).
+Sustainability-focused boutiques (zero-waste shops, eco-goods stores).
+Yoga/fitness studios with retail sections. Gift shops in running-heavy
+neighborhoods. Faire’s search filters allow: targeting retailers by
+category, location, and size. Focus: retailers within 50 miles of major
+cold-weather race cities (they serve the highest concentration of
+multi-race runners).</td>
+</tr>
+<tr class="odd">
+<td><strong>Economics</strong></td>
+<td>Wholesale price to retailer: $5.00/unit (single) or $12.50 (3-pack).
+Faire commission (new retailers): 15% = $0.75/unit (single) or $1.88
+(3-pack). Shipping to retailer: $3–$5 per order (absorbed by brand or
+charged to retailer per Faire terms). NET REVENUE to brand: $4.25/unit
+(single, new) or $5.00/unit (single, reorder). MARGIN: at $1.15 COGS:
+$3.10–$3.85/unit margin = 73–77%. Faire wholesale is HIGHER MARGIN than
+Amazon FBA because: no FBA fees, no PPC costs, and Faire handles
+retailer acquisition.</td>
+</tr>
+</tbody>
+</table>
+<p>3. Retail Packaging &amp; Point-of-Sale Display</p>
+<p><strong>Online packaging and retail packaging serve different
+purposes.</strong> Online: the customer has already decided to buy — the
+packaging just needs to arrive intact and create a pleasant unboxing
+experience. Retail: the packaging must SELL the product from a pegboard
+hook or shelf — competing with 50 other products for the runner’s
+attention in a 3-second glance. Retail packaging must: communicate the
+value proposition visually, hang properly on retail fixtures, include a
+scannable UPC, and look PREMIUM alongside established running
+accessories.</p>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 81%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Element</strong></td>
+<td><strong>Specification</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Shelf-ready packaging</strong></td>
+<td>The current B2B/DTC packaging (inner bag + card/sleeve per P3D) is
+designed for: online sales and expo display. RETAIL requires: a HANG-TAG
+or PEG-HOOK compatible package that: hangs on a retail pegboard or slat
+wall, displays the product name, price, and key benefits at shelf level,
+includes a UPC barcode scannable at the register, and protects the
+product from in-store handling damage.</td>
+</tr>
+<tr class="odd">
+<td><strong>Retail package design</strong></td>
+<td>OPTION A (simplest): add a hang-tab (adhesive tab with pre-punched
+hole, $0.02–$0.05/unit) to the existing card/sleeve packaging. The hang
+tab allows: the current package to hang on pegboard hooks without
+redesign. OPTION B (recommended): redesign the card/sleeve as a
+BLISTER-STYLE card (6″×9″ card with the sealed poncho attached to the
+front, heat-sealed in a compostable overwrap). This provides: maximum
+shelf visibility (the product is visible on the card), retail-standard
+presentation (looks professional alongside Nike/Hoka accessories on the
+running store shelf), and space for: product name, key benefits, BPI
+logo, price point, and UPC. COST: card redesign + compostable overwrap
+adds $0.15–$0.30/unit. At retail volumes (500–2,000 units per store
+order): the per-unit cost is manageable.</td>
+</tr>
+<tr class="even">
+<td><strong>Point-of-sale display</strong></td>
+<td>A COUNTERTOP DISPLAY for placement at: the checkout counter, near
+the shoe wall, or in the accessories section. Design: corrugated
+cardboard display (12″W × 8″D × 18″H) branded with: [BRAND] logo, “Race
+Warm. Leave No Trace.” tagline, and “BPI Certified Compostable” badge.
+Holds: 20–30 individually packaged ponchos. COST: $3–$8/unit for
+corrugated displays at 50–100 quantity (CustomBoxes.com,
+PackagingPrinting.com). Display is provided FREE to the retailer as a
+merchandising support tool. The display replaces: the need for the store
+to create their own shelf space — it’s a SELF-MERCHANDISING unit that
+the store simply places on a counter or endcap.</td>
+</tr>
+<tr class="odd">
+<td><strong>Retail-specific SKU</strong></td>
+<td>Create a RETAIL-SPECIFIC SKU (RSW-RET-GRN-1PK) that is: the same
+product as the DTC single, with RETAIL PACKAGING (hang-tab or blister
+card + POS display), a DIFFERENT UPC (so retail sales are tracked
+separately from DTC/B2B in the accounting system per P8A Section 7), and
+a SUGGESTED RETAIL PRICE (SRP) printed on the card ($9.99). The retail
+SKU ensures: clean channel separation (retail sell-through is tracked
+independently), pricing consistency (all retailers sell at the same
+SRP), and inventory management (retail inventory is allocated separately
+from FBA/Shopify/B2B).</td>
+</tr>
+</tbody>
+</table>
+<p>4. Local Running Store Pilot: 5 Stores</p>
+<p><strong>Local running stores are the retail testing ground.</strong>
+Before approaching Fleet Feet corporate or applying to REI: prove the
+product sells at retail by: placing it in 5 local stores, measuring
+sell-through, collecting store manager feedback, and building a RETAIL
+SELL-THROUGH DATASET that larger retailers require before accepting a
+new vendor.</p>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 81%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Element</strong></td>
+<td><strong>Specification</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Target store selection</strong></td>
+<td>CRITERIA: (1) located within 25 miles of a major cold-weather race
+(the store’s customers are the race’s runners), (2) carries
+running-specific products (shoes, apparel, accessories — NOT a general
+sporting goods store), (3) has an engaged community (hosts group runs,
+race training programs, gear nights), (4) owner/manager is receptive to
+new products (visit, introduce yourself, gauge interest before making a
+formal pitch). IDENTIFY: 5–10 stores in the founder’s home metro area +
+2–3 stores in each pilot race city.</td>
+</tr>
+<tr class="odd">
+<td><strong>Consignment vs. wholesale</strong></td>
+<td>CONSIGNMENT (recommended for initial pilot): the brand places 20–50
+units in the store. The store pays only for units SOLD (typically 60–70%
+of retail = $6.00–$7.00/unit). Unsold units are returned after 60–90
+days. ADVANTAGE: zero risk for the store (they pay nothing upfront),
+zero risk for the brand (returned units can be sold through other
+channels). DISADVANTAGE: consignment requires: inventory tracking at
+each store location, periodic visits to check stock levels and collect
+payment, and slower cash flow (payment only on sell-through, not on
+delivery). WHOLESALE (transition to after proven sell-through): the
+store buys at wholesale ($5.00/unit) and owns the inventory. The brand
+ships and invoices per standard wholesale terms (NET-30). TRANSITION
+POINT: after 1–2 consignment cycles with &gt;50% sell-through, propose
+wholesale terms for the next order.</td>
+</tr>
+<tr class="even">
+<td><strong>In-store merchandising support</strong></td>
+<td>PROVIDE to each store: (1) countertop POS display (Section 3)
+pre-loaded with 20–30 units, (2) product info card (1-page: product
+benefits, composting story, pricing, BPI certification) for store staff
+education, (3) 10-minute staff briefing (in-person or video call):
+explain the product, how it works, who it’s for, and key talking points
+for customers (“It’s like a garbage bag for the start line but it
+composts — and it’s warmer”), and (4) co-branded social content: “Now
+available at [Store Name]!” post for the brand’s AND the store’s social
+channels.</td>
+</tr>
+<tr class="odd">
+<td><strong>Performance tracking</strong></td>
+<td>Track per store: units placed, units sold per month, sell-through
+rate (%), revenue collected, reorder frequency, and customer feedback
+reported by store staff. REVIEW: monthly. THRESHOLD: if sell-through is
+&lt;30% in 60 days: the product is not resonating at this location
+(investigate: wrong store, wrong season, insufficient staff education,
+or poor display placement). If &gt;50%: the product is working —
+increase inventory, offer wholesale terms, and use this store as a
+reference for approaching other stores in the area.</td>
+</tr>
+<tr class="even">
+<td><strong>Scaling from 5 to 50 stores</strong></td>
+<td>PHASE 1 (Month 14–16): 5 stores on consignment. Collect data. PHASE
+2 (Month 16–18): expand to 10–20 stores (adding stores in pilot race
+cities). Transition top performers to wholesale. Apply to Faire (Section
+2) for broader independent store reach. PHASE 3 (Year 2–3): 30–50 stores
+via: Faire marketplace (automated ordering), Fleet Feet (if accepted per
+Section 1), and direct wholesale relationships with high-volume stores.
+At 50 stores × 20 units/month average sell-through: 1,000 units/month =
+12,000 units/year through retail channel.</td>
+</tr>
+</tbody>
+</table>
+<p>5. Big-Box Retail Evaluation</p>
+<p><strong>Big-box retail (REI, Dick’s, Target) offers: massive scale
+(hundreds to thousands of stores) but requires: proven sell-through
+data, supply chain capacity, and brand recognition that a Year 1–2
+startup does not yet have.</strong> The evaluation below is STRATEGIC
+PLANNING for Year 3+, not Year 1–2 execution.</p>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 81%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Retailer</strong></td>
+<td><strong>Assessment</strong></td>
+</tr>
+<tr class="even">
+<td><strong>REI</strong></td>
+<td>REI (170+ stores) is the IDEAL large retailer for this product:
+sustainability-focused (REI has published environmental commitments,
+co-op model), running/outdoor customer base (every REI customer is a
+potential poncho buyer), and curated product selection (REI buyers
+select products that align with the store’s values — compostable + BPI
+certified is a strong fit). APPROACH: apply via REI’s Vendor Submission
+Portal (rei.com/vendor). Include: product samples, BPI certification,
+sell-through data from independent stores, Amazon reviews, and press
+coverage. REI requirements: wholesale at 50–55% of retail, UPC,
+liability insurance ($2M aggregate, may need to increase from $1M per
+P9A Section 2), EDI (Electronic Data Interchange) capability for order
+processing, and ability to ship to REI’s distribution centers. TIMELINE:
+REI vendor review takes 3–6 months. Earliest realistic placement: Year 3
+(after Year 2 proves: retail sell-through, brand recognition, and
+operational capacity to serve a 170-store chain).</td>
+</tr>
+<tr class="odd">
+<td><strong>Dick’s Sporting Goods</strong></td>
+<td>Dick’s (850+ stores) is the largest sporting goods retailer in the
+US. HOWEVER: Dick’s is MASS-MARKET, not specialty. The poncho’s niche
+positioning (compostable, marathon-specific) may not align with Dick’s
+broad assortment strategy. APPROACH: evaluate in Year 3+ only if: retail
+sell-through data from specialty stores demonstrates broad appeal, and
+the product line expands (poncho + wrap + bib sleeve bundle has more
+shelf presence than a single SKU). Dick’s requirements: higher volume
+minimums, EDI, and potentially: exclusive pricing or seasonal
+promotional commitments. RISK: mass-market retail can DILUTE the brand’s
+premium sustainability positioning.</td>
+</tr>
+<tr class="even">
+<td><strong>Target</strong></td>
+<td>Target’s seasonal endcap strategy (race-season placement in
+spring/fall) could work for: a 3-pack at $14.99–$19.99 in the sporting
+goods or seasonal section. Target’s sustainability initiatives (Target
+Forward) align with the brand’s compostable story. APPROACH: apply via
+Target’s vendor portal (target.com/partners). Target buyer meetings are:
+highly structured, data-driven, and require: demonstrated retail
+sell-through, strong brand recognition, and supply chain capable of
+serving 1,900+ stores. TIMELINE: Year 3–4 at the earliest.</td>
+</tr>
+<tr class="odd">
+<td><strong>Recommendation</strong></td>
+<td>DO NOT pursue big-box retail in Year 1–2. The brand is not ready:
+insufficient retail sell-through data, unproven supply chain capacity at
+1,000+ store scale, and brand recognition too low for mass-market
+placement. INSTEAD: build the independent store + Fleet Feet + Faire
+foundation first. Use: Years 1–2 data (sell-through, reviews, press) to
+approach REI in Year 3 and Dick’s/Target in Year 4+. Premature big-box
+placement risks: returns of unsold inventory (destroying margin),
+pricing pressure (big-box buyers negotiate aggressively), and brand
+dilution (the poncho next to cheap plastic rain ponchos on a Dick’s
+shelf).</td>
+</tr>
+</tbody>
+</table>
+<p>6. Registration Bag Inclusion</p>
+<p><strong>Registration bag inclusion puts the product DIRECTLY INTO THE
+RUNNER’S HANDS 1–2 days before they need it.</strong> No other
+distribution channel achieves this level of: timing precision (the
+runner receives the poncho at packet pickup, typically Thursday–Saturday
+before a Sunday race), context relevance (the runner is ACTIVELY
+preparing for race day while handling the packet), and scale (a single
+major marathon distributes 25,000–50,000 race packets). Three models
+offer different economics: product sampling (expensive, maximum trial),
+discount code (moderate cost, trackable ROI), and registration add-on
+(highest revenue, runner pays).</p>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 81%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Model</strong></td>
+<td><strong>Specification</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Concept</strong></td>
+<td>Partner with race registration platforms (RunSignUp, Active.com,
+Athlinks) and race directors to include: a poncho sample (single unit)
+or a poncho discount code in every race registration packet (the bag
+runners receive at packet pickup containing: their bib, timing chip,
+sponsor materials, and product samples). This puts the product DIRECTLY
+INTO THE HANDS of the target customer 1–2 days before they need it.</td>
+</tr>
+<tr class="odd">
+<td><strong>Model A: Product inclusion</strong></td>
+<td>The brand provides: 1 poncho per registration packet at cost or
+heavily discounted ($1.00–$2.00/unit to the race, vs. $3.50–$5.00
+standard B2B). The race director benefits: offers runners a useful
+product at no additional cost (funded by the brand or a sponsor). The
+brand benefits: 10,000–50,000 product TRIALS at a single race.
+ECONOMICS: at $1.50/unit to the brand (COGS + margin sacrifice) × 30,000
+runners = $45,000 investment per race. This is EXPENSIVE and only viable
+if: (A) a sponsor funds the inclusion (per P5E Section 3: registration
+add-on model), or (B) the race charges runners a small add-on fee ($2–3)
+for the poncho, or (C) the brand treats it as a MARKETING EXPENSE (cost
+of acquiring 30,000 product trials).</td>
+</tr>
+<tr class="even">
+<td><strong>Model B: Discount code inclusion</strong></td>
+<td>The brand provides: a branded card (2″×3.5″) included in every
+registration packet with: “25% off your compostable poncho at brand.com”
+and a unique QR code linking to the product page with auto-applied
+discount
+(utm_source=racebag&amp;utm_medium=insert&amp;utm_campaign=[racename]).
+COST: $0.05–$0.10/card × 30,000 = $1,500–$3,000 per race (printing +
+shipping to race). CONVERSION: 1–3% of runners scan the QR and purchase
+= 300–900 orders per race × $7.49 discounted price = $2,247–$6,741
+revenue. At $1,500–$3,000 cost: ROI is 0.75–2.25× on DIRECT revenue
+alone. Add: the LIFETIME VALUE of acquired customers (repeat purchases,
+referrals) and the ROI improves to 2–5×.</td>
+</tr>
+<tr class="odd">
+<td><strong>Model C: Registration add-on (RunSignUp)</strong></td>
+<td>Partner with RunSignUp (the largest US race registration platform)
+to offer: the poncho as a REGISTRATION ADD-ON. During online
+registration: runners see “Add a compostable warmth poncho to your
+registration: $5.99.” RunSignUp handles: payment collection, reporting,
+and participant communication. The brand provides: product to the race
+director for inclusion in the registration packet. Revenue split: brand
+receives $3.50–$4.50/unit (after RunSignUp platform fee + race director
+share). UPTAKE: 15–30% of registrants (per P5E Section 6 projected
+add-on conversion). At 30,000 registrants × 20% uptake = 6,000 units ×
+$4.00 net = $24,000 revenue per race. This is the HIGHEST-REVENUE
+race-bag model: the runner pays, the platform handles the transaction,
+and the brand ships product to the race.</td>
+</tr>
+<tr class="even">
+<td><strong>Partnership development</strong></td>
+<td>Month 12–14: contact RunSignUp business development team to discuss:
+registration add-on integration, revenue sharing terms, and pilot race
+selection. Simultaneously: propose Model B (discount code inclusion) to
+2–3 pilot race directors for their upcoming races. Month 14–16: execute
+1–2 discount code inclusions. Measure: QR scan rate, conversion rate,
+and revenue. If RunSignUp partnership is confirmed: pilot the
+registration add-on at 2–5 races in the fall season. Month 16–18:
+evaluate results. If registration add-on uptake is 15–30%: scale to all
+partner races in Year 3. If &lt;10%: adjust pricing or positioning and
+re-test before scaling.</td>
+</tr>
+</tbody>
+</table>
+<p>7. Timeline &amp; Budget</p>
+<p><strong>MONTH 10–12: Research Fleet Feet vendor requirements. Visit
+1–2 local Fleet Feet stores with samples. Create Faire brand account and
+upload product catalog. Research retail packaging options (hang-tab vs.
+blister card). Begin: local running store identification (5 target
+stores in founder’s metro area).</strong></p>
+<p><strong>MONTH 12–14: Design retail packaging (Option A hang-tab or
+Option B blister card, $0.15–$0.30/unit additional). Order POS
+countertop displays (50 units, $150–$400). Place consignment inventory
+in 5 local stores with POS displays. Conduct: 10-minute staff briefings
+at each store. Contact RunSignUp for registration add-on partnership
+discussion. Design discount code cards for race bag inclusion
+($0.05–$0.10/card).</strong></p>
+<p><strong>MONTH 14–16: Monitor local store sell-through (monthly). If
+&gt;50% sell-through: expand to 10–20 stores. Transition top performers
+to wholesale. Execute: 1–2 race bag discount code inclusions. If Fleet
+Feet local stores show traction: approach Fleet Feet regional/corporate
+with sell-through data. Pilot RunSignUp registration add-on at 2–5 races
+if partnership is confirmed.</strong></p>
+<p><strong>MONTH 16–18: Scale to 30–50 stores via Faire + direct
+wholesale + Fleet Feet (if accepted). Evaluate: race bag inclusion
+results (QR scan rate, conversion rate). Evaluate: RunSignUp add-on
+uptake (target 15–30%). If retail channel is generating 500+
+units/month: the channel is VALIDATED — plan Year 3 expansion to REI
+application. If &lt;200 units/month: investigate and adjust (pricing,
+packaging, store selection, or staff education).</strong></p>
+<p>BUDGET: Retail packaging redesign: $300–$800 (design + initial
+production of hang-tabs or blister cards). POS displays (50 units):
+$150–$400. Consignment inventory (5 stores × 30 units): 150 units at
+$1.15 COGS = $173 (recovered on sell-through). Faire setup: $0 (free to
+join, 15% commission on new retailer orders). Discount code cards (2
+races × 30,000 cards): $3,000–$6,000. Staff briefing materials: $25–$50.
+TOTAL P10D: $3,648–$7,423. The discount code card investment
+($3,000–$6,000) is the largest line item and is OPTIONAL — start with 1
+race to test ROI before committing to a second.</p>
+<p>8. Conclusion: Meet Runners Where They Shop</p>
+<p><strong>A runner preparing for the Chicago Marathon shops at: Amazon
+(late-night impulse buy), brand.com (discovered via Instagram or
+Google), Fleet Feet Chicago (Saturday morning shoe fitting), and the
+expo (packet pickup).</strong> If the poncho is available at ALL FOUR
+touchpoints: the runner encounters it 4 times and buys it at whichever
+moment feels right. If it’s only available online: 3 of those 4 moments
+are missed. Retail distribution ensures: the product is present at the
+PHYSICAL moments when runners think about their next race — trying on
+shoes, browsing the expo, opening their race packet.</p>
+<p><strong>Build retail SLOWLY and PROVE each step.</strong> 5 local
+stores on consignment (Month 12). 20 stores on wholesale (Month 16).
+Fleet Feet regional (Month 18). Faire for independent stores (Month
+14+). REI application (Year 3). Each step builds: sell-through data,
+retailer relationships, and operational capability. The founder who
+rushes to 100 stores without proven sell-through will have: 100 stores
+returning unsold inventory. The founder who proves sell-through at 5
+stores first will have: 100 stores requesting inventory.</p>
+
+        </div>
+    </div></div>
+<footer style="text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px">
+Sustainable Race-Start Warmth Poncho — D2C Brand GTM Project · 60 Subprojects · 391 Tasks · ~15,500¶ · April 2026
+</footer></body></html>

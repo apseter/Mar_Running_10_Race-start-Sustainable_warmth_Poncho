@@ -1,0 +1,694 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>P10F: Year2 Strategy Planning — Race Start Warmth GTM</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0e1a;--surface:#111827;--card:#1a2332;--border:#2a3a4e;--accent:#10b981;--accent2:#3b82f6;--text:#e2e8f0;--muted:#94a3b8;--white:#fff;--red:#ef4444;--amber:#f59e0b;--green:#10b981}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+/* Nav */
+nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
+nav .inner{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;max-width:1200px;margin:0 auto}
+nav .brand{font-weight:700;font-size:15px;color:var(--accent)}
+nav .links{display:flex;gap:8px;flex-wrap:wrap}
+nav .links a{color:var(--muted);font-size:13px;padding:4px 10px;border-radius:6px;transition:.2s}
+nav .links a:hover,nav .links a.active{color:var(--white);background:var(--card);text-decoration:none}
+/* Hero */
+.hero{padding:60px 0 40px;text-align:center}
+.hero h1{font-size:2.4em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:1.1em;max-width:700px;margin:0 auto}
+/* Stats bar */
+.stats{display:flex;justify-content:center;gap:32px;padding:24px 0;flex-wrap:wrap}
+.stat{text-align:center}.stat .num{font-size:1.8em;font-weight:800;color:var(--white)}.stat .label{font-size:.75em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+/* Cards */
+.grid{display:grid;gap:16px;margin:24px 0}
+.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}
+.grid-3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;transition:.2s}
+.card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.card h3{font-size:1.1em;margin-bottom:8px}.card p{color:var(--muted);font-size:.9em}
+.card .badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:8px}
+.card .meta{font-size:.8em;color:var(--muted);margin-top:12px}
+/* Section */
+.section{padding:40px 0}.section h2{font-size:1.6em;font-weight:700;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+/* Table */
+table{width:100%;border-collapse:collapse;font-size:.85em;margin:16px 0}
+th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:52px}
+td{padding:8px 12px;border-bottom:1px solid var(--border)}
+tr:hover td{background:rgba(16,185,129,.05)}
+.status-complete{color:var(--green);font-weight:600}.status-not{color:var(--muted)}
+/* Progress */
+.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:8px}
+.progress .bar{height:100%;background:var(--accent);border-radius:3px}
+/* Back link */
+.back{display:inline-block;color:var(--muted);font-size:.9em;margin-bottom:20px}
+.back:hover{color:var(--accent)}
+/* Download */
+.dl-card{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin:8px 0;transition:.2s}
+.dl-card:hover{border-color:var(--accent);text-decoration:none}
+.dl-card .icon{font-size:2em}.dl-card .info h4{color:var(--white);margin-bottom:4px}.dl-card .info p{color:var(--muted);font-size:.85em}
+/* Footer */
+footer{text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px}
+@media(max-width:768px){.stats{gap:16px}.stat .num{font-size:1.3em}nav .links{gap:4px}nav .links a{font-size:11px;padding:3px 6px}.hero h1{font-size:1.6em}}
+
+.doc-content{max-width:900px;margin:0 auto;padding:20px 0}
+.doc-content h1{font-size:1.8em;font-weight:800;color:var(--white);margin:32px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.doc-content h2{font-size:1.4em;font-weight:700;color:var(--accent);margin:28px 0 12px}
+.doc-content h3{font-size:1.15em;font-weight:600;color:var(--accent2);margin:20px 0 10px}
+.doc-content p{margin:8px 0;line-height:1.7}
+.doc-content table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85em}
+.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;border:1px solid var(--border)}
+.doc-content td{padding:8px 12px;border:1px solid var(--border);vertical-align:top}
+.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.doc-content ul,.doc-content ol{margin:8px 0 8px 24px}
+.doc-content li{margin:4px 0;line-height:1.6}
+.doc-content strong{color:var(--white)}
+.doc-content em{color:var(--muted)}
+.doc-content blockquote{border-left:3px solid var(--accent);padding:8px 16px;margin:12px 0;background:var(--card);border-radius:0 8px 8px 0}
+.nav-sub{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 24px;padding:12px 16px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
+.nav-sub a{font-size:.8em;color:var(--muted);padding:4px 10px;border-radius:4px;transition:.2s;white-space:nowrap}
+.nav-sub a:hover,.nav-sub a.active{color:var(--white);background:var(--surface);text-decoration:none}
+</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a></div></div></nav><div class="container">
+    <div style="padding-top:30px">
+        <a href="p10.html" class="back">← 📈 P10: Scaling & Growth</a>
+        <div class="nav-sub"><a href="p10.html">📈 P10 Overview</a><a href="sub-p10a.html">P10A</a><a href="sub-p10b.html">P10B</a><a href="sub-p10c.html">P10C</a><a href="sub-p10d.html">P10D</a><a href="sub-p10e.html">P10E</a><a href="sub-p10f.html" class="active">P10F</a></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px">
+            <div>
+                <span style="background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px">P10F</span>
+                <span style="color:var(--muted);font-size:.85em;margin-left:8px">P10: Scaling & Growth</span>
+            </div>
+            <a href="files/P10F_Year2_Strategy_Planning.docx" style="font-size:.85em;color:var(--accent);padding:6px 14px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
+        </div>
+        <div class="doc-content">
+            <p><strong>P10F: YEAR 2 STRATEGY</strong></p>
+<p><strong>&amp; PLANNING</strong></p>
+<p>Sub-Project P10F | Scaling, Expansion &amp; Category Leadership |
+Months 11–12</p>
+<p><em>Complete Year 2 Transition: Year 1 P&amp;L with Channel Analysis,
+Customer Satisfaction Surveys, 9-Metric Year 2 Target Framework,
+Fundraising Evaluation, Year 2 B2B Commitments, and Operational
+Handbook</em></p>
+<p>March 2026 | Confidential</p>
+<p>Executive Summary</p>
+<p><strong>Year 2 planning begins in Month 11 — not Month 13.</strong>
+The decisions made in November–December of Year 1 determine: which races
+are served in Year 2 (early-bird POs must be placed by December for
+spring races), how much inventory is produced (Run 1 PO must be placed
+in January per P10A Section 5), whether external capital is raised
+(investor conversations take 2–3 months to close), and who joins the
+team (the first hire needs 30–60 days of onboarding). Every delay in
+Year 2 planning is a delay in Year 2 execution. This document ensures:
+the Year 1→Year 2 transition is: data-driven (Year 1 P&amp;L),
+customer-validated (satisfaction surveys), target-specific (9-metric
+framework), financially planned (fundraising evaluation), commercially
+committed (B2B pipeline locked), and operationally documented (handbook
+for continuity).</p>
+<p><strong>Seven planning systems are defined:</strong> (1) Year 1
+P&amp;L completion with 6-section channel analysis, (2) customer
+satisfaction surveys for B2B and DTC with NPS calculation, (3) a
+9-metric Year 2 target framework covering B2B, DTC, margin,
+satisfaction, product launches, international expansion, and team
+growth, (4) a fundraising evaluation with self-fund vs. raise criteria,
+(5) Year 2 B2B commitment acceleration through early-bird offers,
+reorder conversations, refreshed outreach, and series deal advancement,
+(6) the complete operational handbook documenting every process for
+continuity and onboarding, and (7) the final synthesis that transforms
+60 subprojects and 391 tasks into an OPERATING BUSINESS ready for its
+second year.</p>
+<p>1. Year 1 Complete P&amp;L: 6 Sections</p>
+<p><strong>The Year 1 P&amp;L is the business’s financial report
+card.</strong> It answers: did we make money, where did it come from,
+where did it go, and what does this mean for Year 2? The P&amp;L
+template below is per P8D Section 5 — this section adds: the ANALYTICAL
+FRAMEWORK for interpreting the numbers and translating them into Year 2
+decisions.</p>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 81%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Section</strong></td>
+<td><strong>What to Analyze</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Revenue</strong></td>
+<td>Shopify DTC, Amazon DTC, B2B Standard, B2B Co-Brand, Expo Direct,
+Retail (if launched). Break down by: channel, month, and SKU. Compare:
+to P8A Section 5 scenario projections
+(conservative/moderate/aggressive). IDENTIFY: which channel exceeded
+expectations and which underperformed. The channel performance
+comparison informs: Year 2 budget allocation (invest more in
+outperformers, fix or reduce underperformers).</td>
+</tr>
+<tr class="odd">
+<td><strong>COGS</strong></td>
+<td>Actual per-unit COGS vs. P8A Section 3 estimates. Include: raw
+material costs, conversion fees, freight, import duties, packaging, FBA
+fees, and Shopify transaction fees. IDENTIFY: where actual COGS deviated
+from estimates and WHY (factory pricing different than quoted, freight
+surcharges, duty classification changes). UPDATE: the unit economics
+model with actual data for Year 2 planning.</td>
+</tr>
+<tr class="even">
+<td><strong>Marketing spend</strong></td>
+<td>Total by channel: Meta Ads, Google Ads, Amazon PPC, ambassador
+program, PR, expo costs, content tools, email platform, community
+(Strava, Reddit time value). Calculate: CAC by channel, ROAS by
+campaign, and blended marketing ROI (per P7F Section 7). IDENTIFY:
+highest-ROI channel (invest more in Year 2) and lowest-ROI channel
+(reduce or eliminate). Document: which creatives, audiences, and
+campaigns performed best for replication in Year 2.</td>
+</tr>
+<tr class="odd">
+<td><strong>Operating expenses</strong></td>
+<td>Total by category: software, insurance, professional services,
+travel, home office, shipping supplies, miscellaneous. Calculate:
+operating expenses as % of revenue. TARGET: &lt;20% of revenue is
+healthy. If &gt;30%: identify areas to reduce. COMPARE: to P8A
+projections. Most operating expenses should be PREDICTABLE after 12
+months of data.</td>
+</tr>
+<tr class="even">
+<td><strong>Net income</strong></td>
+<td>Revenue − COGS − Marketing − Operating = Net Income. Net Margin % =
+Net Income / Revenue. COMPARE: to P8A scenarios (Bootstrap: −$5,257 to
++$4,314; Full Launch: −$22,958 to +$25,888). The ACTUAL net income
+determines: the Year 2 funding path (self-fund if profitable, raise if
+not per P8D Section 3).</td>
+</tr>
+<tr class="odd">
+<td><strong>Cash position</strong></td>
+<td>Year-end bank balance. Accounts receivable outstanding. Inventory on
+hand (valued at COGS). Accounts payable outstanding. NET CASH POSITION:
+bank balance + AR − AP = available cash for Year 2 operations. RUNWAY:
+net cash position / average monthly burn rate = months of runway without
+additional revenue or funding.</td>
+</tr>
+</tbody>
+</table>
+<p>1.1 Year 1 P&amp;L Action Items</p>
+<p>After completing the Year 1 P&amp;L: (1) UPDATE the unit economics
+model (P8A Section 3) with actual data — this becomes the Year 2 pricing
+foundation. (2) UPDATE the cash flow forecast (P8A Sections 1–2) with
+actual revenue patterns — this becomes the Year 2 cash flow projection.
+(3) IDENTIFY the #1 financial priority for Year 2: is it: revenue growth
+(need more customers), margin improvement (need lower COGS or higher
+prices), cost reduction (spending too much on marketing or operations),
+or cash management (timing issues even though profitable)? The #1
+financial priority shapes: which Year 2 targets receive the most focus,
+which hires are made, and where incremental investment goes.</p>
+<p>2. Customer Satisfaction Survey: B2B + DTC</p>
+<p><strong>Customer satisfaction data is MORE IMPORTANT than financial
+data for predicting Year 2 success.</strong> A business with: $50K Year
+1 revenue and NPS 60 will grow faster in Year 2 than a business with:
+$150K Year 1 revenue and NPS 20. High satisfaction means: reorders,
+referrals, positive reviews, and organic growth. Low satisfaction means:
+churn, complaints, negative reviews, and dependence on paid
+acquisition.</p>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width:50%">
+<col style="width: 35%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Survey</strong></td>
+<td><strong>Specification</strong></td>
+<td><strong>Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>B2B survey (race directors)</strong></td>
+<td>Send to: ALL race directors who ordered in Year 1 (pilot and
+standard). Method: email with Google Form or Typeform link (5–10 minutes
+to complete). Questions: (1) Overall satisfaction with the product (1–10
+scale). (2) Overall satisfaction with the service/partnership (1–10
+scale). (3) Net Promoter Score: “How likely are you to recommend [BRAND]
+to a fellow race director?” (0–10). (4) Product quality: warmth,
+tear-away, sizing, packaging (1–5 each). (5) Logistics: delivery
+timeliness, composting coordination, communication responsiveness (1–5
+each). (6) Pricing: “How do you feel about the pricing relative to the
+value received?” (too expensive / fair / great value). (7) Reorder
+intent: “Do you plan to order again next season?” (definitely / probably
+/ unlikely / no). (8) Open text: “What could we do better?” and “What
+did we do best?”</td>
+<td>Send: within 30 days of the final Year 1 race (before the race
+director moves on to next-season planning). Expected response rate:
+60–80% (B2B customers have a direct relationship and are motivated to
+provide feedback that improves the product for their runners).</td>
+</tr>
+<tr class="odd">
+<td><strong>DTC survey (runners)</strong></td>
+<td>Send to: ALL Shopify + Amazon customers who purchased in Year 1
+(email addresses from Klaviyo + Amazon buyer–seller messaging). Method:
+email with Google Form link (3–5 minutes). Questions: (1) Overall
+satisfaction (1–10). (2) NPS (0–10). (3) Product quality: warmth,
+tear-away, sizing, packaging (1–5 each). (4) “Did you use the poncho at
+a race?” (yes / no / not yet). (5) If yes: “Which race?” (6) “Would you
+buy again for your next cold-weather race?” (yes / maybe / no). (7) “How
+did you hear about us?” (Instagram, TikTok, Amazon search, Google
+search, friend/word-of-mouth, expo, race director, other). (8) Open
+text: “Anything else you’d like to tell us?”</td>
+<td>Send: December (after fall race season) or January (Year-end
+cleanup). Expected response rate: 10–20% (DTC customers have a weaker
+relationship than B2B). Incentive: “Complete this 3-minute survey and
+get 15% off your next order.” The incentive doubles response rate to
+20–35%.</td>
+</tr>
+<tr class="even">
+<td><strong>Analysis framework</strong></td>
+<td>AGGREGATE: calculate average scores for each question across all
+respondents. NPS CALCULATION: % Promoters (9–10) minus % Detractors
+(0–6) = NPS score. Target: NPS &gt;40 (excellent for a product brand;
+B2B NPS &gt;50 is world-class). SEGMENT: compare B2B vs. DTC
+satisfaction. Compare: first-time vs. repeat customers. Compare: by race
+(did runners at Race A rate the poncho differently than Race B?).
+IDENTIFY: the top 3 strengths (what to AMPLIFY in Year 2 marketing) and
+top 3 weaknesses (what to FIX in V1.5 per P10B Section 6). VERBATIM
+QUOTES: extract the 10 best positive quotes for marketing (with
+permission) and the 10 most constructive criticism quotes for product
+development.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>2.1 Survey-to-Action Pipeline</p>
+<p>SATISFACTION SCORES → PRODUCT ACTIONS: if warmth scores &lt;4.0:
+prioritize thermal improvement in V1.5 (double-layer NatureFlex, per
+P10B Section 6). If tear-away scores &lt;4.0: prioritize perforation
+adjustment. If sizing scores &lt;4.0: introduce S/M + L/XL options.
+SATISFACTION SCORES → MARKETING ACTIONS: extract the 10 best verbatim
+quotes from the survey. Use as: website testimonials, Amazon A+ Content
+quotes, social media posts, and B2B pitch deck slides. High-NPS
+customers: approach as ambassador candidates (P7A). NPS SCORE →
+STRATEGIC ACTION: NPS &gt;50 = accelerate Year 2 growth confidently
+(product-market fit is proven). NPS 30–50 = grow cautiously, fix the
+identified issues first. NPS &lt;30 = Year 2 should focus on: product
+improvement and customer recovery before scaling.</p>
+<p>3. Year 2 Targets: 9 Metrics</p>
+<p><strong>Year 2 targets are built on ACTUAL Year 1 data, not
+projections.</strong> Each target has: a specific metric, a Year 1
+baseline (actual), a Year 2 target range, growth sources (where the
+improvement comes from), and strategic significance (why this metric
+matters). The 9 metrics together form: the Year 2 scorecard that the
+founder reviews monthly and reports to advisors/investors quarterly.</p>
+<table>
+<colgroup>
+<col style="width: 19%" />
+<col style="width:50%">
+<col style="width: 30%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Metric</strong></td>
+<td><strong>Growth Strategy</strong></td>
+<td><strong>Significance</strong></td>
+</tr>
+<tr class="even">
+<td><strong>B2B races served</strong></td>
+<td>Year 1 actual: [X] races. Year 2 target: 2–3× Year 1. Sources: Year
+1 reorders (target 80%+ reorder rate) + new races from referrals + new
+races from expo leads + 1–2 series deals. STRETCH: if a series deal
+(REVEL, Mainly Marathons) closes: Year 2 races could be 3–5× Year
+1.</td>
+<td>PRIORITY #1. B2B races are the revenue engine. Every other target
+flows from: how many races the brand serves.</td>
+</tr>
+<tr class="odd">
+<td><strong>Total B2B units</strong></td>
+<td>Year 1 actual: [X] units. Year 2 target: 2–3× Year 1. Growth from:
+larger orders from existing customers (pilot → full adoption), new
+customers at higher initial volumes (Year 1 case studies reduce the need
+for small pilot orders), and series deals at 5,000–50,000 units per
+deal.</td>
+<td>Drives: production planning (P10A Section 5), COGS negotiation (P10A
+Section 1), and cash flow (P8B Section 4).</td>
+</tr>
+<tr class="even">
+<td><strong>B2B revenue</strong></td>
+<td>Year 1 actual: $[X]. Year 2 target: 2–3× Year 1. Average B2B unit
+price may DECREASE slightly (volume discounts, early-bird pricing per
+P5F Section 4) but total revenue INCREASES due to: higher unit volume.
+Target B2B revenue: $50K–$200K depending on Year 1 base.</td>
+<td>B2B revenue should be: 60–70% of total Year 2 revenue (same ratio as
+Year 1 if B2B-led strategy continues).</td>
+</tr>
+<tr class="odd">
+<td><strong>DTC revenue</strong></td>
+<td>Year 1 actual: $[X]. Year 2 target: 1.5–2.5× Year 1. Growth from:
+improved Amazon organic ranking (Year 1 reviews + BSR momentum), Shopify
+organic traffic growth (SEO per P6D compounds over 12 months), new
+product SKUs (finish-line wrap, bib sleeve, gift set per P10B), and
+retail channel revenue (Fleet Feet, Faire, local stores per P10D).
+Target DTC revenue: $15K–$75K.</td>
+<td>DTC grows ORGANICALLY as: SEO authority builds, review count
+increases, brand awareness spreads, and the product line expands. Year 2
+DTC should require: LESS incremental marketing spend per dollar of
+revenue than Year 1 (the flywheel effect).</td>
+</tr>
+<tr class="even">
+<td><strong>Gross margin</strong></td>
+<td>Year 1 actual blended: [X]%. Year 2 target: +3–5 percentage points
+improvement. Driven by: volume pricing (P10A Section 1 reduces per-unit
+COGS by $0.15–$0.30), reduced PPC dependency (organic traffic grows,
+paid CAC decreases), and channel mix optimization (push 3-pack hero SKU,
+reduce low-margin singles).</td>
+<td>Gross margin improvement at constant volume = direct profit
+increase. A 5% margin improvement on $200K revenue = $10,000 additional
+profit.</td>
+</tr>
+<tr class="odd">
+<td><strong>Customer satisfaction</strong></td>
+<td>Year 1 actual NPS: [X]. Year 2 target: NPS &gt;50 (B2B) and NPS
+&gt;40 (DTC). Driven by: V1.5 product improvements (P10B Section 6),
+improved logistics (3PL upgrade per P10A Section 6 reduces shipping
+errors), and deeper account management (P5F annual cadence).</td>
+<td>NPS is the LEADING INDICATOR of: reorder rate, referral rate, and
+review quality. NPS &gt;50 means: the business has genuine
+product-market fit and can grow through word-of-mouth.</td>
+</tr>
+<tr class="even">
+<td><strong>New product launches</strong></td>
+<td>Year 2 launches: V1.5 improved poncho (Q1), finish-line wrap (Q2),
+bib sleeve (Q3), Race Day Kit gift bundle (Q4), 1–2 limited-edition
+colorways (spring + fall). Total new SKUs: 4–6.</td>
+<td>Each new SKU: adds revenue, deepens B2B relationships (cross-sell),
+expands Amazon presence (more listings = more search visibility), and
+strengthens the brand as a PLATFORM (not a single-product company).</td>
+</tr>
+<tr class="odd">
+<td><strong>International expansion</strong></td>
+<td>Year 2: 1–2 European pilot races (London + Amsterdam or Berlin per
+P10C) + 1–2 Canadian races (Ottawa or Toronto). Year 2 international
+revenue target: $10K–$30K (small but proves: the model works
+internationally). Year 3: scale to 4–6 European races + 3–5 Canadian
+races.</td>
+<td>International pilots in Year 2 VALIDATE: the logistics model, EN
+13432 compliance in practice, and European/Canadian race director
+receptivity. The revenue is secondary; the LEARNING is primary.</td>
+</tr>
+<tr class="even">
+<td><strong>Team growth</strong></td>
+<td>Year 2 team: founder + 1–2 part-time contributors. Options: (A)
+part-time virtual assistant ($15–$25/hour, 10–20 hours/week) for: order
+processing, email management, social media scheduling, and data entry.
+(B) Part-time marketing coordinator ($25–$40/hour, 10–15 hours/week)
+for: content creation, social media management, and ad campaign
+optimization. (C) B2B sales contractor ($2,000–$4,000/month,
+commission-based) for: race director outreach, expo attendance, and
+pipeline development. HIRE: the role that MOST constrains the founder’s
+time. If the founder spends &gt;10 hours/week on: operations/admin →
+hire a VA. Content/marketing → hire a marketing coordinator. B2B
+outreach → hire a sales contractor.</td>
+<td>The first hire is the most important operational decision of Year 2.
+It should: free the founder’s time for the HIGHEST-VALUE activity
+(typically: B2B relationship management and strategic planning). Do NOT
+hire a generalist who does everything poorly. Hire a SPECIALIST who
+excels at the founder’s biggest bottleneck.</td>
+</tr>
+</tbody>
+</table>
+<p>4. Fundraising Evaluation</p>
+<p><strong>The fundraising decision is made at Month 12 based on: Year 1
+actual data and the Year 2 plan’s capital requirements.</strong> There
+are NO wrong answers — only trade-offs. Self-funding preserves ownership
+but limits speed. Raising capital accelerates growth but dilutes equity
+and adds reporting obligations. The evaluation below provides: clear
+criteria for each path so the founder can decide rationally, not
+emotionally.</p>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width:50%">
+<col style="width: 35%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Path</strong></td>
+<td><strong>Criteria</strong></td>
+<td><strong>Trade-offs</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Self-fund criteria</strong></td>
+<td>Year 1 was profitable (net income &gt;$0) OR near-breakeven with
+clear path to Year 2 profitability. Cash reserves cover: 3+ months of
+Year 2 operating expenses. Year 2 plan is CONSERVATIVE (1.5–2× growth,
+no major new hires, no international expansion). The founder is
+comfortable: maintaining full ownership and growing at organic
+pace.</td>
+<td>Self-funding preserves: 100% ownership, full decision-making
+authority, and zero investor reporting obligations. Trade-off: slower
+growth, limited by cash flow, and the founder bears 100% of the
+financial risk.</td>
+</tr>
+<tr class="odd">
+<td><strong>Raise capital criteria</strong></td>
+<td>Year 1 demonstrated: strong product-market fit (NPS &gt;40, reorder
+rate &gt;70%) BUT revenue did not cover costs (operating at a loss). OR:
+the opportunity is LARGER than what self-funding can capture (a series
+deal requires $50K in upfront inventory that the brand cannot self-fund,
+or international expansion requires $30K+ in Year 2 investment). The
+founder is ready: to dilute ownership in exchange for faster growth,
+accept investor reporting obligations, and operate with a board or
+advisory input.</td>
+<td>Raising capital is justified when: the opportunity cost of NOT
+raising exceeds the cost of dilution. If a $100K investment enables
+$300K in Year 2 revenue that would be impossible otherwise: the dilution
+is worth it. If a $100K investment enables $50K in marginal revenue:
+it’s not worth the complexity.</td>
+</tr>
+<tr class="even">
+<td><strong>Fundraising options summary</strong></td>
+<td>SAFE NOTE ($25K–$100K): friends/family/angels. Simple, fast, minimal
+legal cost ($500–$2,000 via YC SAFE template). Valuation cap: $500K–$2M.
+ANGEL ROUND ($100K–$500K): angel networks, climate funds. SAFE or
+convertible note. Cap: $1M–$5M. GRANTS ($5K–$50K): USDA BioPreferred,
+EPA SBIR, state green business grants, accelerator programs.
+Non-dilutive. REVENUE-BASED FINANCING ($10K–$100K): Clearco, Pipe,
+Shopify Capital. Repaid as % of monthly revenue. No dilution. Requires:
+proven revenue history. For each option: prepare per P8D Section 4
+investor materials.</td>
+<td>The fundraising DECISION should be made at the Month 12 decision
+gate (P8D Section 2.1) based on: actual Year 1 data, not aspirational
+projections. The investor materials (pitch deck, financial model, data
+room) should be READY by Month 12 regardless of the decision — having
+materials ready creates optionality.</td>
+</tr>
+</tbody>
+</table>
+<p>4.1 Fundraising Decision Checklist</p>
+<p>Answer YES or NO to each: (1) Can Year 2 be executed with existing
+cash reserves + Year 2 operating cash flow? If YES → self-fund is
+viable. (2) Is there a specific OPPORTUNITY that requires capital beyond
+what’s available? (e.g., series deal requiring $50K+ inventory,
+international expansion requiring $30K+). If YES → raising is justified
+for a SPECIFIC use of funds. (3) Is the founder comfortable with:
+dilution, investor reporting, and shared decision-making? If NO → do not
+raise, even if it means slower growth. (4) Does Year 1 data demonstrate
+PRODUCT-MARKET FIT? (NPS &gt;40, reorder rate &gt;70%, 25+ positive
+reviews). If YES → the business is FUNDABLE. If NO → fix PMF before
+raising (investors will see through weak PMF). (5) Are investor
+materials READY? (pitch deck, financial model, data room per P8D Section
+4). If NO → prepare them before initiating conversations. The checklist
+should produce: a clear decision by December 31, communicated in the
+Month 12 investor update (P8B Section 6).</p>
+<p>5. Year 2 B2B Commitment Acceleration</p>
+<p><strong>The Year 2 B2B pipeline must be BUILT before Year 2
+begins.</strong> A founder who enters January with: 3 confirmed
+early-bird POs, 5 verbal reorder commitments, 10 warm prospect
+conversations, and 1 series deal in negotiation has: a CLEAR path to
+Year 2 revenue. A founder who enters January with: an empty pipeline and
+plans to “start outreach soon” has: 3–6 months of lag before the first
+Year 2 PO arrives.</p>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 81%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Activity</strong></td>
+<td><strong>Specification</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Early-bird offers</strong></td>
+<td>Per P5F Section 4: send early-bird pricing to ALL Year 1 B2B
+customers by Month 11. Early-bird terms: 10–15% off standard Year 2
+pricing for POs placed ≥6 months before race date. DEADLINE: create
+urgency with a specific early-bird deadline (“Early-bird pricing
+available until [date]”). TARGET: 40–60% of Year 1 customers commit via
+early-bird. At 5 Year 1 customers: 2–3 early-bird commitments by
+December = production planning certainty for spring + fall.</td>
+</tr>
+<tr class="odd">
+<td><strong>Reorder conversations</strong></td>
+<td>Per P5F Section 3 account cadence: the annual review touchpoint
+(December–January) is the reorder conversation. For EACH Year 1
+customer: schedule a 45-minute annual review call. Present: their
+pilot/Year 1 data (units distributed, collection rate, composting
+report), V1.5 product improvements, Year 2 pricing, and the
+Sustainability Partner badge (P10E Section 5 — if they qualify). Ask:
+“Are you ordering again for next season? What quantity? Do you want
+co-branding? Are you interested in the finish-line wrap?”</td>
+</tr>
+<tr class="even">
+<td><strong>New prospect outreach</strong></td>
+<td>With Year 1 case studies, press coverage, and potentially an award:
+the Year 2 B2B outreach is DRAMATICALLY more effective than Year 1’s
+cold outreach. REFRESH: the B2B pitch deck with: Year 1 data (races
+served, units composted, runner satisfaction), case study highlights,
+media logos (“As featured in...”), and Year 2 product offerings (poncho
++ wrap + bib sleeve). OUTREACH: to 20–50 new race director prospects
+(expo contacts, referrals, GSA/Running USA connections, and
+LinkedIn/email cold outreach with case study as the lead). TARGET: 5–15
+new B2B customers in Year 2.</td>
+</tr>
+<tr class="odd">
+<td><strong>Series deal advancement</strong></td>
+<td>Per P5C: if REVEL, Mainly Marathons, or another series showed
+interest in Year 1: Month 11–12 is the window to: present the Year 2
+proposal (multi-race deal with volume pricing), reference Year 1 case
+studies from individual races, and offer: exclusive series pricing,
+co-branded design for the entire series, and composting logistics at
+every event. A single series deal (8–15 races, 30K–75K units) transforms
+Year 2 from: incremental growth to step-change scaling.</td>
+</tr>
+<tr class="even">
+<td><strong>Pipeline target</strong></td>
+<td>By December 31: B2B pipeline value of $100K+ (weighted). Composed
+of: early-bird commitments (confirmed, 100% weight), reorder intents
+(verbal, 75% weight), new prospect conversations (50% weight for
+proposals sent, 25% for meetings scheduled), and series discussions
+(25–50% weight depending on stage). This pipeline is the FOUNDATION of
+the Year 2 financial plan (P8D Section 3) and production schedule (P10A
+Section 5).</td>
+</tr>
+</tbody>
+</table>
+<p>6. Operational Handbook</p>
+<p><strong>The operational handbook is the document that makes the
+business BIGGER THAN THE FOUNDER.</strong> Without it: every process
+lives in the founder’s head, every password is in the founder’s memory,
+and every relationship depends on the founder’s personal involvement.
+With it: a new hire can onboard in 1 week, an advisor can understand
+operations in 1 hour, and the founder can take a 2-week vacation without
+the business stopping.</p>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 81%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Element</strong></td>
+<td><strong>Specification</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Purpose</strong></td>
+<td>The operational handbook is the founder’s institutional memory
+captured on paper. If the founder is: hit by a bus (worst case), taking
+a vacation (needed), hiring someone who needs onboarding (Year 2), or
+seeking investment (due diligence), the handbook ensures: ANYONE can
+understand and operate the business by reading 1 document. It is also:
+the founder’s own reference guide when Month 14 arrives and they can’t
+remember the exact process for placing a co-brand production order or
+filing sales tax in Ohio.</td>
+</tr>
+<tr class="odd">
+<td><strong>Content structure</strong></td>
+<td>SECTION 1: Company overview (mission, entity structure, key
+contacts, bank accounts, insurance policies). SECTION 2: Product
+(specifications, materials, certifications, supplier details, golden
+sample reference). SECTION 3: Manufacturing (how to place a production
+order, factory contacts, quality inspection process, payment terms).
+SECTION 4: Supply chain (freight forwarder contacts, customs process,
+FBA inbound process, 3PL relationship). SECTION 5: B2B operations (CRM
+overview, order management process per P5F Section 1, invoicing,
+receivables, account management cadence). SECTION 6: DTC operations
+(Shopify admin guide, Amazon Seller Central key processes, Klaviyo email
+flows, review management). SECTION 7: Marketing (content calendar
+template, ad account access, ambassador management, PR contact list,
+social media scheduling). SECTION 8: Financial (accounting system
+login/process, monthly P&amp;L review template, cash flow projection,
+tax payment schedule). SECTION 9: Legal (where to find: LLC docs,
+operating agreement, insurance certificates, contracts, IP filings, NDA
+template). SECTION 10: Key passwords and access (stored in: 1Password or
+LastPass, NOT in the handbook itself — the handbook references the
+password manager).</td>
+</tr>
+<tr class="even">
+<td><strong>Documentation approach</strong></td>
+<td>DO NOT write the handbook from scratch in Month 12. Instead:
+throughout Year 1, after completing ANY process for the first time:
+write 3–5 bullet points describing the process and save in a Google Doc
+(“Operational Notes”). By Month 12: the Google Doc contains 50–100
+process notes accumulated over 12 months. The handbook is: ORGANIZED and
+FORMATTED from these notes into the 10-section structure above. This
+approach takes: 5 minutes per process during Year 1 (real-time
+documentation) + 4–6 hours in Month 12 to compile into the final
+handbook. The alternative: trying to remember 12 months of processes in
+December takes 20–40 hours and misses critical details.</td>
+</tr>
+<tr class="odd">
+<td><strong>Update cadence</strong></td>
+<td>The handbook is a LIVING DOCUMENT: update after every significant
+process change (new supplier, new 3PL, new software tool, new tax
+obligation). At minimum: review and update QUARTERLY during the pricing
+review cadence (P8B Section 5). VERSION CONTROL: date each update
+(“Updated March 2027: added ProAmpac as secondary supplier”). The
+handbook should always reflect: the CURRENT state of operations, not the
+historical state.</td>
+</tr>
+</tbody>
+</table>
+<p>7. Timeline</p>
+<p><strong>MONTH 11: Begin Year 2 B2B commitment acceleration (Section
+5): send early-bird offers to all Year 1 customers, schedule annual
+review calls. Begin: fundraising evaluation (Section 4): review Year 1
+financial trajectory, assess capital needs for Year 2 plan, prepare
+investor materials if raising. Compile: Year 1 operational notes into
+handbook draft (Section 6). Design: customer satisfaction surveys
+(Section 2).</strong></p>
+<p><strong>MONTH 12: Complete Year 1 P&amp;L (Section 1): final month’s
+data closes the Year 1 books. Send: customer satisfaction surveys to all
+B2B and DTC customers. Set: Year 2 targets (Section 3) based on Year 1
+actuals + pipeline data. Make: the fundraising decision (self-fund,
+raise, or defer). Finalize: the operational handbook (Section 6). Lock:
+Year 2 B2B pipeline ($100K+ weighted value target). Place: Year 2 Run 1
+production order (P10A Section 5 — PO in January requires: quantities
+confirmed by late December). Send: Month 12 investor update with “Year 1
+in Review” summary (P8B Section 6).</strong></p>
+<p><strong>JANUARY YEAR 2: Year 2 begins. The playbook is complete. The
+systems are built. The team is formed. The pipeline is loaded. The
+product is improved. The brand is established. Execution
+begins.</strong></p>
+<p>8. Conclusion: The Playbook Is Complete</p>
+<p><strong>From P0A (the first market research document) to P10F (this
+Year 2 planning document): 60 subprojects, 391 tasks, and ~15,000
+paragraphs of operational detail have been created.</strong> Together,
+they form: the most comprehensive GTM playbook ever assembled for a
+sustainable consumer product launch. Every question a founder could ask
+— from “what material should I use?” (P2A) to “how do I file taxes?”
+(P8C) to “what should I say on TikTok?” (P7B) — has an answer in this
+playbook.</p>
+<p><strong>But a playbook on paper is just paper.</strong> The playbook
+becomes a BUSINESS when the founder: forms the LLC (P9A), files the
+trademark (P9B), places the first production order (P3B), ships the
+first ambassador kit (P7A), closes the first B2B deal (P5B), makes the
+first sale on Amazon (P6C), composts the first batch of ponchos (P4D),
+and stands at a start line on a cold morning watching 10,000 runners
+wearing compostable ponchos instead of garbage bags. That moment — when
+the vision becomes reality — is what every page of this playbook exists
+to make possible.</p>
+<p><strong>Race warm. Leave no trace. Build the future of sustainable
+athletic events.</strong> The playbook is complete. The execution begins
+now.</p>
+
+        </div>
+    </div></div>
+<footer style="text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px">
+Sustainable Race-Start Warmth Poncho — D2C Brand GTM Project · 60 Subprojects · 391 Tasks · ~15,500¶ · April 2026
+</footer></body></html>

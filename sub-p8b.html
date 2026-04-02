@@ -1,0 +1,776 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>P8B: Cash Flow Management — Race Start Warmth GTM</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0e1a;--surface:#111827;--card:#1a2332;--border:#2a3a4e;--accent:#10b981;--accent2:#3b82f6;--text:#e2e8f0;--muted:#94a3b8;--white:#fff;--red:#ef4444;--amber:#f59e0b;--green:#10b981}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+/* Nav */
+nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
+nav .inner{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;max-width:1200px;margin:0 auto}
+nav .brand{font-weight:700;font-size:15px;color:var(--accent)}
+nav .links{display:flex;gap:8px;flex-wrap:wrap}
+nav .links a{color:var(--muted);font-size:13px;padding:4px 10px;border-radius:6px;transition:.2s}
+nav .links a:hover,nav .links a.active{color:var(--white);background:var(--card);text-decoration:none}
+/* Hero */
+.hero{padding:60px 0 40px;text-align:center}
+.hero h1{font-size:2.4em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:1.1em;max-width:700px;margin:0 auto}
+/* Stats bar */
+.stats{display:flex;justify-content:center;gap:32px;padding:24px 0;flex-wrap:wrap}
+.stat{text-align:center}.stat .num{font-size:1.8em;font-weight:800;color:var(--white)}.stat .label{font-size:.75em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+/* Cards */
+.grid{display:grid;gap:16px;margin:24px 0}
+.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}
+.grid-3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;transition:.2s}
+.card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.card h3{font-size:1.1em;margin-bottom:8px}.card p{color:var(--muted);font-size:.9em}
+.card .badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:8px}
+.card .meta{font-size:.8em;color:var(--muted);margin-top:12px}
+/* Section */
+.section{padding:40px 0}.section h2{font-size:1.6em;font-weight:700;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+/* Table */
+table{width:100%;border-collapse:collapse;font-size:.85em;margin:16px 0}
+th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:52px}
+td{padding:8px 12px;border-bottom:1px solid var(--border)}
+tr:hover td{background:rgba(16,185,129,.05)}
+.status-complete{color:var(--green);font-weight:600}.status-not{color:var(--muted)}
+/* Progress */
+.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:8px}
+.progress .bar{height:100%;background:var(--accent);border-radius:3px}
+/* Back link */
+.back{display:inline-block;color:var(--muted);font-size:.9em;margin-bottom:20px}
+.back:hover{color:var(--accent)}
+/* Download */
+.dl-card{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin:8px 0;transition:.2s}
+.dl-card:hover{border-color:var(--accent);text-decoration:none}
+.dl-card .icon{font-size:2em}.dl-card .info h4{color:var(--white);margin-bottom:4px}.dl-card .info p{color:var(--muted);font-size:.85em}
+/* Footer */
+footer{text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px}
+@media(max-width:768px){.stats{gap:16px}.stat .num{font-size:1.3em}nav .links{gap:4px}nav .links a{font-size:11px;padding:3px 6px}.hero h1{font-size:1.6em}}
+
+.doc-content{max-width:900px;margin:0 auto;padding:20px 0}
+.doc-content h1{font-size:1.8em;font-weight:800;color:var(--white);margin:32px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.doc-content h2{font-size:1.4em;font-weight:700;color:var(--accent);margin:28px 0 12px}
+.doc-content h3{font-size:1.15em;font-weight:600;color:var(--accent2);margin:20px 0 10px}
+.doc-content p{margin:8px 0;line-height:1.7}
+.doc-content table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85em}
+.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;border:1px solid var(--border)}
+.doc-content td{padding:8px 12px;border:1px solid var(--border);vertical-align:top}
+.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.doc-content ul,.doc-content ol{margin:8px 0 8px 24px}
+.doc-content li{margin:4px 0;line-height:1.6}
+.doc-content strong{color:var(--white)}
+.doc-content em{color:var(--muted)}
+.doc-content blockquote{border-left:3px solid var(--accent);padding:8px 16px;margin:12px 0;background:var(--card);border-radius:0 8px 8px 0}
+.nav-sub{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 24px;padding:12px 16px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
+.nav-sub a{font-size:.8em;color:var(--muted);padding:4px 10px;border-radius:4px;transition:.2s;white-space:nowrap}
+.nav-sub a:hover,.nav-sub a.active{color:var(--white);background:var(--surface);text-decoration:none}
+</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a></div></div></nav><div class="container">
+    <div style="padding-top:30px">
+        <a href="p8.html" class="back">← 💰 P8: Financial Ops</a>
+        <div class="nav-sub"><a href="p8.html">💰 P8 Overview</a><a href="sub-p8a.html">P8A</a><a href="sub-p8b.html" class="active">P8B</a><a href="sub-p8c.html">P8C</a><a href="sub-p8d.html">P8D</a></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px">
+            <div>
+                <span style="background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px">P8B</span>
+                <span style="color:var(--muted);font-size:.85em;margin-left:8px">P8: Financial Ops</span>
+            </div>
+            <a href="files/P8B_Cash_Flow_Management.docx" style="font-size:.85em;color:var(--accent);padding:6px 14px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
+        </div>
+        <div class="doc-content">
+            <p><strong>P8B: CASH FLOW</strong></p>
+<p><strong>MANAGEMENT</strong></p>
+<p>Sub-Project P8B | Financial Operations | Weeks 4–Ongoing</p>
+<p><em>Complete Cash Flow Operations: Business Banking Setup, Monthly
+P&amp;L Review System, B2B Receivables Management, Cash Flow Timing
+Model, Quarterly Pricing Review Cadence, and Investor Financial
+Reporting</em></p>
+<p>March 2026 | Confidential</p>
+<p>Executive Summary</p>
+<p><strong>Cash flow management is the difference between a business
+that grows and a business that dies.</strong> Profitable companies go
+bankrupt when they run out of cash. A business with $50,000 in B2B
+receivables and $0 in the bank account cannot pay its factory deposit,
+cannot ship ambassador kits, and cannot run ads — even though it is
+“profitable” on paper. Cash flow management ensures: cash is available
+WHEN it is needed, receivables are collected on time, and the timing gap
+between cash out (production, marketing) and cash in (sales, B2B
+payments) never exceeds the available runway.</p>
+<p><strong>This document builds 6 cash flow systems:</strong> (1)
+business banking setup with clean personal/business separation and
+multi-channel payment routing, (2) a monthly P&amp;L review covering 8
+line items across all revenue channels and expense categories, (3) a B2B
+receivables management system with 4-stage overdue escalation and bad
+debt provisions, (4) a cash flow timing model mapping the exact
+day-count from cash out to cash in for each channel, (5) a quarterly
+pricing review cadence covering COGS, channel margins, competitive
+pricing, B2B tiers, and DTC price testing, and (6) an investor financial
+reporting format with monthly update emails that build trust and
+position the business for future fundraising.</p>
+<p>1. Business Banking Setup</p>
+<p><strong>The business bank account is the financial
+foundation.</strong> Every dollar in and every dollar out flows through
+this single account. Clean separation between personal and business
+finances is not optional — it is: legally required for liability
+protection (LLC), practically required for tax compliance (IRS), and
+professionally required for investor confidence. Set up: a free business
+checking account, a cash-back business credit card, and routing from all
+payment processors to the one account.</p>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width:50%">
+<col style="width: 35%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Element</strong></td>
+<td><strong>Specification</strong></td>
+<td><strong>Rationale</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Business checking account</strong></td>
+<td>RECOMMENDED: Mercury (mercury.com, free, designed for startups,
+FDIC-insured, integrates with Wave/QuickBooks), Novo (novo.com, free,
+integrates with Shopify), or BlueVine (bluevine.com, free checking +
+2.0% APY on balances up to $250K). Traditional alternative: Chase
+Business Complete Checking ($15/month, waived with $2,000 minimum
+balance). Open with: EIN (Employer Identification Number from IRS, free
+at irs.gov/ein), business name, articles of organization (if LLC), and
+personal ID.</td>
+<td>Open the business bank account BEFORE any business spending begins.
+Every business transaction (inventory purchases, software subscriptions,
+marketing spend, sample shipments) should flow through the business
+account. This is essential for: accurate P&amp;L reporting, clean tax
+filing, and investor/auditor readiness.</td>
+</tr>
+<tr class="odd">
+<td><strong>Business credit card</strong></td>
+<td>RECOMMENDED: Chase Ink Business Cash (no annual fee, 5% back on
+office supplies + internet/phone, 2% on gas + dining), or Capital One
+Spark Cash Plus (2% unlimited cash back on all purchases). Alternative:
+a dedicated personal credit card used EXCLUSIVELY for business expenses
+(less ideal but acceptable for sole proprietors). Apply after: the
+business bank account is open and at least 1 month of deposits establish
+account history.</td>
+<td>A business credit card provides: expense tracking (monthly statement
+maps to accounting categories), cash back ($100–$300/year on $5K–$15K
+annual spend), and 30-day float (pay for inventory/marketing now, pay
+the bill 30 days later). RULE: pay the full balance every month. Credit
+card interest (15–25% APR) erases the margin on every unit sold.</td>
+</tr>
+<tr class="even">
+<td><strong>Payment processors</strong></td>
+<td>Shopify Payments: deposits to business bank account every 2 business
+days. Amazon Seller: deposits every 14 days (or request more frequent
+disbursements once established). PayPal: deposits to business bank
+account on demand or automatically. Expo (Square): deposits next
+business day. B2B invoice payments: received via check (deposit at bank)
+or ACH/wire (direct to business account). ALL revenue channels must
+deposit to the SAME business bank account for unified cash flow
+visibility.</td>
+<td>If revenue flows to multiple accounts (personal checking for PayPal,
+business checking for Shopify, Amazon holding balance): cash flow
+tracking becomes impossible. Route EVERYTHING to one account.</td>
+</tr>
+<tr class="odd">
+<td><strong>Separation discipline</strong></td>
+<td>RULE 1: never pay personal expenses from the business account. RULE
+2: never pay business expenses from a personal account (if it happens
+accidentally: reimburse yourself from the business account and log as
+“owner reimbursement”). RULE 3: if the business needs cash infusion:
+transfer a lump sum from personal to business as “owner investment” —
+not individual expense payments from personal accounts. RULE 4: if
+taking profit from the business: transfer a lump sum from business to
+personal as “owner draw” (sole prop/LLC) or “dividend” (S-corp).</td>
+<td>Clean separation protects: LLC liability shield (commingling funds
+can “pierce the corporate veil” making the founder personally liable for
+business debts), tax deductibility (IRS auditors look for personal
+expenses run through business accounts), and investor readiness (an
+investor who sees personal/business mixing in the bank statements will
+walk away).</td>
+</tr>
+</tbody>
+</table>
+<p>2. Monthly P&amp;L Review: 8 Line Items</p>
+<p><strong>The monthly P&amp;L is the business’s report card.</strong>
+It answers: did we make money or lose money this month? Which channels
+generated the most revenue? Where did we spend the most? Is the trend
+improving or worsening? The review happens on the FIRST MONDAY of each
+month (after the monthly accounting close per P8A Section 7.5) and takes
+1–2 hours. The output: an updated P&amp;L statement and 3–5 action items
+for the coming month.</p>
+<table>
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 40%" />
+<col style="width: 42%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Line Item</strong></td>
+<td><strong>Data Source</strong></td>
+<td><strong>What to Track</strong></td>
+</tr>
+<tr class="even">
+<td><strong>DTC revenue (Shopify)</strong></td>
+<td>Shopify Admin → Analytics → Total Sales (net of returns/refunds).
+Export: monthly CSV. Verify: matches Shopify Payments deposit total in
+the bank account.</td>
+<td>Track: units sold, revenue, AOV, return rate. Compare: to previous
+month and to forecast (P8A Section 1/2).</td>
+</tr>
+<tr class="odd">
+<td><strong>DTC revenue (Amazon)</strong></td>
+<td>Seller Central → Reports → Payments → Date Range Reports. Revenue =
+product sales + shipping credits − refunds. Export: monthly. Verify:
+matches Amazon disbursement total in the bank account.</td>
+<td>Track: units sold, revenue, FBA fees, PPC spend, net Amazon margin.
+Amazon’s fee structure makes gross revenue misleading — always track NET
+revenue after all fees.</td>
+</tr>
+<tr class="even">
+<td><strong>B2B revenue</strong></td>
+<td>QuickBooks/Wave: filter invoices by date. Revenue = total invoiced −
+credits/adjustments. Cross-reference: B2B order tracker (P5F Section 1)
+for units shipped vs. invoiced.</td>
+<td>Track: number of races served, units shipped, revenue, average unit
+price, co-brand vs. standard mix.</td>
+</tr>
+<tr class="odd">
+<td><strong>Expo revenue</strong></td>
+<td>Square reports: filter by event date. Revenue = total sales at expo
+− refunds.</td>
+<td>Track: revenue per expo, units per expo, AOV per expo. Compare: to
+P5D Section 8 ROI calculations.</td>
+</tr>
+<tr class="even">
+<td><strong>COGS</strong></td>
+<td>QuickBooks/Wave: total inventory purchases + freight + import duties
++ packaging for the month. For ongoing: use per-unit COGS from P8A
+Section 3 × units sold. Adjust: if a new production run changes per-unit
+COGS.</td>
+<td>COGS should be calculated on units SOLD, not units PURCHASED. Units
+sitting in FBA or the warehouse are INVENTORY (balance sheet asset), not
+COGS (P&amp;L expense). Accounting method: most small businesses use
+cash-basis (simpler), but accrual-basis is more accurate for inventory
+businesses. Consult CPA.</td>
+</tr>
+<tr class="odd">
+<td><strong>Marketing spend</strong></td>
+<td>Sum: Meta Ads (Ads Manager → Billing), Google Ads (Billing →
+Transactions), Amazon PPC (Seller Central → Advertising → Billing),
+Klaviyo, ambassador costs, PR costs, expo costs, content tools.
+Categorize in QuickBooks by: sub-channel (Meta, Google, Amazon PPC,
+email, ambassador, PR, expo, content).</td>
+<td>Monthly marketing spend divided by new customers acquired = CAC. CAC
+by channel is the #1 metric for marketing budget allocation (per P7D
+Section 7). If CAC exceeds $15 on any channel: investigate and optimize
+before increasing spend.</td>
+</tr>
+<tr class="even">
+<td><strong>Operating expenses</strong></td>
+<td>Sum: Shopify plan, Amazon Seller fee, software (Canva, Klaviyo,
+Helium 10), insurance, professional services (CPA, legal), shipping
+supplies, travel, home office, miscellaneous.</td>
+<td>Operating expenses should be relatively STABLE month-to-month
+(unlike revenue, which is seasonal). If operating expenses spike
+unexpectedly: investigate. Common causes: software trial converting to
+paid, insurance renewal, or one-time legal cost.</td>
+</tr>
+<tr class="odd">
+<td><strong>Net income</strong></td>
+<td>Revenue (all channels) − COGS − Marketing − Operating = Net Income.
+If negative: the business spent more than it earned that month. If
+positive: the business generated profit.</td>
+<td>Net income is the BOTTOM LINE but not the full story. A month with
+$10,000 revenue, $8,000 COGS, $1,500 marketing, and $1,000 operating =
+$500 net loss. But if the $8,000 COGS included a production deposit for
+next season’s inventory: the CASH loss is real but the economic loss is
+overstated (the inventory is an asset). This is why CASH FLOW (Section
+4) matters alongside P&amp;L.</td>
+</tr>
+</tbody>
+</table>
+<p>2.1 P&amp;L Review Template</p>
+<p>Google Sheet with tabs per month. Each tab: REVENUE SECTION (4 rows:
+Shopify, Amazon, B2B, Expo + Total Revenue). COGS SECTION (1 row: total
+COGS, calculated as units sold × per-unit COGS by channel). GROSS MARGIN
+(Revenue − COGS = Gross Profit, Gross Margin % = Gross Profit /
+Revenue). MARKETING (1 row per channel: Meta, Google, Amazon PPC,
+Klaviyo, ambassador, PR, expo, content + Total Marketing). OPERATING (1
+row: total operating expenses). NET INCOME (Gross Profit − Marketing −
+Operating). MONTH-OVER-MONTH COMPARISON: show current month vs. previous
+month vs. forecast. Highlight: any line item that deviates &gt;20% from
+forecast (investigate and explain). ROLLING 3-MONTH TREND: shows whether
+each metric is improving or worsening. An improving trend with negative
+net income is BETTER than a flat trend with positive net income — the
+first is a growing business investing in growth; the second is a
+stagnant business.</p>
+<p>3. B2B Receivables: Invoice to Cash</p>
+<p><strong>B2B receivables are the largest source of cash flow
+risk.</strong> DTC revenue is collected at purchase (zero risk). B2B
+revenue is promised at PO and collected 30–70 days later (moderate
+risk). A B2B customer who delays payment by 30 days creates a 30-day
+cash hole that the brand must fund from reserves. Managing receivables —
+invoicing promptly, tracking payments rigorously, and escalating overdue
+accounts quickly — is the difference between a cash-flow-positive
+business and a cash-flow crisis.</p>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width:50%">
+<col style="width: 35%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Element</strong></td>
+<td><strong>Specification</strong></td>
+<td><strong>Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Invoice creation</strong></td>
+<td>Generate invoice within 24 hours of PO acceptance (per P5F Section
+1). Include: PO number, line items, deposit amount (50% first order, 30%
+repeat per P4C Section 2), payment terms, bank details for ACH/wire, and
+check mailing address. Send via: QuickBooks/Wave email (auto-generates
+PDF with payment link).</td>
+<td>The 24-hour invoice window sets a professional tone. Race directors
+who receive an invoice the same day they sign the PO feel confident
+they’re working with an organized operation.</td>
+</tr>
+<tr class="odd">
+<td><strong>Payment tracking</strong></td>
+<td>Google Sheet or QuickBooks receivables report with columns: Invoice
+# | PO # | Race Name | Invoice Date | Amount | Deposit Due Date |
+Deposit Paid Date | Deposit Amount | Balance Due Date | Balance Paid
+Date | Balance Amount | Status (Pending/Partial/Paid/Overdue). Update:
+when each payment is received. Reconcile: against bank account deposits
+weekly.</td>
+<td>The receivables tracker is the CASH-IN-THE-DOOR dashboard. It
+answers: how much money is owed to us, when is it due, and who is late?
+Review: every Monday as part of the CRM/financial weekly review.</td>
+</tr>
+<tr class="even">
+<td><strong>Overdue management</strong></td>
+<td>Day +3 after due date: friendly email reminder (“Hi [Name], just a
+friendly reminder that invoice #[X] for $[amount] was due on [date].
+Please let me know if you have any questions or if payment is on the
+way!”). Day +10: firm email (“Following up on invoice #[X]. Payment is
+now 10 days overdue. Please process at your earliest convenience to
+avoid any disruption to your order timeline.”). Day +30: phone call from
+founder (“Hi [Name], I wanted to check in on invoice #[X] which is now
+30 days past due. Is there an issue we can resolve?”). Day +45: pause
+future orders and escalate (“We’ve paused further processing on your
+account until the outstanding balance is resolved. Please contact me to
+discuss a resolution.”).</td>
+<td>MOST B2B late payments are NOT bad faith — they’re administrative
+delays (the invoice is sitting in someone’s inbox, the finance team
+processes payments on a monthly cycle, the check is “in the mail”). The
+Day +3 reminder resolves 80% of overdue invoices. The Day +10 email
+resolves another 15%. Only 5% require a phone call or escalation.</td>
+</tr>
+<tr class="odd">
+<td><strong>Bad debt provision</strong></td>
+<td>Set aside 2–5% of total B2B revenue as a “bad debt provision” in the
+financial model. This is the estimated amount that will NEVER be
+collected (race director goes bankrupt, event cancelled, dispute). If
+actual bad debt is &lt;2%: the provision becomes a small buffer. If
+&gt;5%: the payment terms or customer qualification process needs
+tightening.</td>
+<td>Bad debt is a COST OF DOING BUSINESS in B2B. It is NOT a failure —
+it is a predictable expense that should be modeled. The 50% deposit
+requirement (P4C Section 2) limits maximum exposure to 50% of any single
+order value.</td>
+</tr>
+<tr class="even">
+<td><strong>Deposit acceleration</strong></td>
+<td>For first-time customers: require 50% deposit before production
+begins (non-negotiable). For repeat customers with clean payment
+history: reduce to 30% deposit. For series/enterprise customers with
+annual contracts: consider net-30 on the full amount (no deposit) ONLY
+if: the customer has 12+ months of payment history with the brand AND
+the order value is &lt;$10,000. Larger orders from even trusted
+customers should maintain the deposit structure.</td>
+<td>The deposit structure is the #1 cash flow protection mechanism. A
+$10,000 B2B order with 50% deposit = $5,000 in cash BEFORE production
+begins. Without the deposit: the brand finances $10,000 of production
+from its own cash and waits 30–60 days for payment. For a startup, this
+timing gap can be fatal.</td>
+</tr>
+</tbody>
+</table>
+<p>3.1 Receivables Dashboard</p>
+<p>WEEKLY VIEW (every Monday): TOTAL OUTSTANDING: sum of all unpaid
+invoices. CURRENT (not yet due): invoices within their payment terms.
+OVERDUE 1–10 days: needs reminder (Day +3 email). OVERDUE 11–30 days:
+needs follow-up (Day +10 email). OVERDUE 31+ days: needs escalation
+(phone call, potential order hold). AGING CHART: bar chart showing the
+distribution of receivables by age. A healthy receivables profile: 70%+
+current, 20% overdue 1–10 days, &lt;10% overdue 11+ days. If &gt;20% of
+receivables are overdue 11+ days: the payment terms, customer
+qualification, or collections process needs improvement.</p>
+<p>4. Cash Flow Timing Model</p>
+<p><strong>Cash flow timing is the invisible killer of small
+businesses.</strong> A founder who sees $20,000 in revenue on the
+P&amp;L may have only $8,000 in the bank because: $5,000 is held by
+Amazon (14-day disbursement), $4,000 is owed by B2B customers (net-30
+outstanding), and $3,000 was pre-paid as a production deposit that
+hasn’t converted to revenue yet. The cash flow timing model maps: when
+each dollar of expense LEAVES the bank and when each dollar of revenue
+ENTERS the bank.</p>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 9%" />
+<col style="width: 38%" />
+<col style="width: 38%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Channel/Expense</strong></td>
+<td><strong>Cash Cycle</strong></td>
+<td><strong>Timing Detail</strong></td>
+<td><strong>Implication</strong></td>
+</tr>
+<tr class="even">
+<td><strong>DTC (Shopify)</strong></td>
+<td>Immediate</td>
+<td>Customer pays at checkout. Shopify Payments deposits to bank in 2
+business days. Cash cycle: 2 days from sale to cash in bank.</td>
+<td>DTC is the fastest cash channel. Every Shopify sale is cash-in-hand
+within 48 hours. This makes DTC revenue the most valuable for cash flow
+(even if per-unit margin is lower than B2B).</td>
+</tr>
+<tr class="odd">
+<td><strong>DTC (Amazon FBA)</strong></td>
+<td>14 days</td>
+<td>Amazon holds funds for 14-day disbursement cycle. After 90+ days of
+account history with good health metrics: can request 7-day or daily
+disbursements.</td>
+<td>Amazon’s 14-day hold can create a timing gap during launch. If
+$5,000 in Amazon revenue is earned in Month 1: the first $2,500 isn’t
+deposited until Day 14. Plan: have 2–4 weeks of operating cash available
+beyond Amazon receivables.</td>
+</tr>
+<tr class="even">
+<td><strong>B2B (50/50 terms)</strong></td>
+<td>30–60 days</td>
+<td>50% deposit at PO (received Day 0–10). 50% balance on shipment
+(invoiced at ship, due net-30 = received Day 40–70 after PO). Total cash
+cycle from PO to full payment: 40–70 days.</td>
+<td>The 50/50 structure means: half the revenue arrives EARLY (before
+production is complete) and half arrives LATE (after delivery). The
+early half funds production; the late half funds the next order’s
+materials.</td>
+</tr>
+<tr class="odd">
+<td><strong>B2B (30/70 terms)</strong></td>
+<td>45–90 days</td>
+<td>30% deposit at PO (received Day 0–10). 70% balance on shipment
+(invoiced at ship, due net-30 = received Day 40–70 after PO). More cash
+is back-loaded: 70% of the order value isn’t received until 40–70 days
+after the PO.</td>
+<td>30/70 terms are offered to REPEAT customers as an incentive (per P5F
+Section 4 early-bird program). The lower deposit accelerates the race
+director’s commitment but increases the brand’s cash exposure. Only
+offer 30/70 when: existing cash reserves cover the production cost
+gap.</td>
+</tr>
+<tr class="even">
+<td><strong>Manufacturing deposit</strong></td>
+<td>60–90 days before revenue</td>
+<td>Factory requires 30–50% deposit at PO placement (per P3A Section 4).
+Balance due before or at shipment. For a fall race season: production
+deposits are paid in May–July, and revenue arrives in
+September–November. The 60–90 day gap between cash OUT (production
+deposit) and cash IN (first sales) is the CRITICAL TIMING RISK.</td>
+<td>This gap is the reason the Bootstrap scenario requires $15K–25K in
+startup capital and the Full Launch requires $50K–$100K (per P8A
+Sections 1–2). The gap can be reduced by: (A) negotiating longer payment
+terms with the factory (60-day terms = cash gap shrinks), (B)
+accelerating B2B deposits (secure POs and collect deposits BEFORE
+placing the production order), or (C) using a business credit card for
+the factory deposit (30-day float).</td>
+</tr>
+<tr class="odd">
+<td><strong>Expo costs</strong></td>
+<td>30–60 days before revenue</td>
+<td>Booth fees ($500–$2,000) due 1–3 months before the expo. Travel +
+lodging paid at time of expo. Revenue from expo sales: immediate (Square
+deposits next day). BUT: the B2B pipeline value from expo leads takes
+30–90 days to convert to revenue.</td>
+<td>Expos are cash-negative upfront and cash-positive over 60–90 days
+(when B2B leads from the expo convert to POs). The founder must PLAN the
+expo spend months in advance and not count on expo-generated B2B revenue
+to fund the expo itself.</td>
+</tr>
+</tbody>
+</table>
+<p>4.1 Cash Flow Timing Dashboard</p>
+<p>Google Sheet with: CASH BALANCE (today): current bank account
+balance. EXPECTED INFLOWS (next 30 days): Shopify deposits in transit +
+Amazon disbursement due + B2B invoices due + expo revenue expected.
+EXPECTED OUTFLOWS (next 30 days): production payments due + marketing
+spend committed + software renewals + shipping costs estimated + other
+committed expenses. NET PROJECTED CASH (30 days): balance + inflows −
+outflows = projected cash position in 30 days. If NET PROJECTED CASH is
+negative: the business will run out of money within 30 days. ACTION: (A)
+accelerate B2B collections (call overdue accounts), (B) delay
+discretionary expenses (postpone non-essential marketing, delay
+ambassador kit shipments), (C) inject personal funds (owner investment),
+or (D) use business credit card float (30-day interest-free if paid in
+full). The 30-day forward projection should be reviewed WEEKLY. If it is
+ever negative: take action immediately — do not wait.</p>
+<p>4.2 Cash Reserve Target</p>
+<p>Maintain a CASH RESERVE of 2–3 months of operating expenses in the
+business bank account at all times. Operating expenses (per P8A):
+Bootstrap $1,300–$2,200/month, Full Launch $3,000–$7,300/month. Cash
+reserve target: Bootstrap $2,600–$6,600, Full Launch $6,000–$21,900. The
+cash reserve absorbs: a B2B payment delay (30 days of unexpected
+receivables aging), a production cost overrun (10–20% factory
+surcharge), a marketing investment that doesn’t pay back for 60+ days,
+or a seasonal revenue dip (off-season months when DTC slows and B2B is
+between races). Build the reserve BEFORE investing in growth: do not
+spend the last dollar on ads when the bank account has zero runway.</p>
+<p>5. Pricing Review Cadence: Quarterly</p>
+<p><strong>Pricing is not set once and forgotten.</strong> Costs change
+(factory quotes, shipping rates, Amazon fees), competitive dynamics
+evolve (new entrants, competitor price drops), and customer willingness
+to pay shifts with brand awareness and review count. The quarterly
+pricing review ensures: margins are protected, prices are competitive,
+and pricing experiments are continuously run to find the
+profit-maximizing point.</p>
+<table>
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 54%" />
+<col style="width: 28%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Review Area</strong></td>
+<td><strong>What to Evaluate</strong></td>
+<td><strong>Frequency</strong></td>
+</tr>
+<tr class="even">
+<td><strong>COGS review</strong></td>
+<td>Has per-unit COGS changed? New production run pricing from the
+factory? Shipping cost changes (fuel surcharges, container rates)?
+Packaging material cost changes? If COGS increases &gt;5%: evaluate
+whether to absorb the increase (lower margin) or pass it through (higher
+selling price).</td>
+<td>Quarterly. Also trigger: after every new production order when
+factory quotes are received.</td>
+</tr>
+<tr class="odd">
+<td><strong>Channel margin review</strong></td>
+<td>Recalculate per-unit margin for all 7 channels (per P8A Section 3)
+using ACTUAL data (not estimates). Have Amazon fees changed? Has
+Shopify’s processing rate changed? Has the average PPC cost per
+acquisition changed? Are expos generating enough revenue per booth
+dollar? Identify: channels where margin is deteriorating (investigate
+and fix or deprioritize) and channels where margin is improving (invest
+more).</td>
+<td>Quarterly. The first review should use Month 3–4 actual data (enough
+transactions for meaningful analysis).</td>
+</tr>
+<tr class="even">
+<td><strong>Competitive pricing check</strong></td>
+<td>Survey competitor pricing: Heatsheets Mylar blankets (Amazon ASIN
+monitoring), generic emergency ponchos, and any new compostable
+alternatives that have entered the market. If a credible competitor
+launches a compostable poncho at a significantly lower price: evaluate
+whether to: maintain pricing (and compete on brand, quality, and
+composting logistics), reduce pricing (match or undercut), or add value
+(bundle composting service, add new features per P2F) to justify the
+premium.</td>
+<td>Quarterly. Set a Google Alert for: “compostable poncho,”
+“sustainable race gear,” and competitor brand names. Monitor Amazon
+search results for new entrants in the category.</td>
+</tr>
+<tr class="odd">
+<td><strong>B2B pricing tier review</strong></td>
+<td>Are the current B2B pricing tiers (per P5A Section 3) appropriate?
+If most customers are ordering at the lowest tier: consider lowering the
+tier thresholds to increase average order size. If most are ordering at
+the highest tier: the brand is leaving money on the table and should add
+a higher tier or increase the top-tier price. Review: average B2B unit
+price (is it trending up or down?), co-brand vs. standard mix (co-brand
+should be an increasing percentage), and early-bird vs. standard pricing
+adoption rate.</td>
+<td>Quarterly. Adjust tiers annually (not quarterly — frequent tier
+changes confuse customers).</td>
+</tr>
+<tr class="even">
+<td><strong>DTC pricing test</strong></td>
+<td>Run 1 price test per quarter on Shopify (per P6E Section 3: price
+display A/B test). Test: $9.99 vs. $8.99 single, $24.99 vs. $22.99 vs.
+$19.99 3-pack. Measure: units sold, revenue, and PROFIT (not just
+revenue — a lower price that sells 2× the units but generates lower
+total profit is a bad trade). Amazon: test pricing via 7-day coupons or
+Lightning Deals rather than permanent price changes (Amazon’s algorithm
+penalizes frequent price changes).</td>
+<td>Quarterly. DTC pricing is more flexible than B2B (no contractual
+obligations). Test aggressively in the first 6 months to find the
+profit-maximizing price point.</td>
+</tr>
+</tbody>
+</table>
+<p>5.1 Pricing Review Calendar</p>
+<p>Q1 REVIEW (January): post-holiday analysis. Did holiday pricing
+(3-pack gift) work? Reset prices if holiday promotions were temporary.
+Review: Amazon fee changes (Amazon updates fees annually, usually
+effective Q1/Q2). Update: unit economics model with Q1 actual data. Q2
+REVIEW (April): post-spring season. Review: spring B2B pricing (did
+customers push back? Did early-bird pricing drive volume as expected?).
+Run: DTC pricing test on Shopify for fall season preparation. Survey:
+5–10 race directors on pricing satisfaction. Q3 REVIEW (July): pre-fall
+season. Finalize fall pricing for all channels. Review: new factory
+quote for fall production run. Update: competitive pricing survey. Lock:
+B2B pricing for the fall season (communicate to all customers by
+August). Q4 REVIEW (October): mid-fall season. Review: are race-weekend
+flash sale prices (P7F Section 4) driving volume? Is the $25 free
+shipping threshold still optimal? Plan: holiday pricing strategy for
+November–December.</p>
+<p>6. Investor Financial Reporting</p>
+<p><strong>Even if the founder is not raising capital TODAY,
+investor-quality financial reporting should begin from Month 1.</strong>
+The discipline of producing a monthly update: forces the founder to
+review metrics regularly (accountability), creates a historical record
+of the business’s trajectory (data room), builds relationships with
+potential investors/advisors (networking), and demonstrates operational
+maturity (credibility). If the founder DOES decide to raise capital at
+Month 12: 12 months of consistent updates are the most powerful
+fundraising tool imaginable.</p>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 81%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Element</strong></td>
+<td><strong>Specification</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Monthly update email</strong></td>
+<td>FORMAT: 5–8 bullet points, sent on the 5th of each month (after
+monthly close). TONE: transparent, data-driven, concise. No fluff.
+Investors (and potential investors) value: honesty about challenges +
+clarity on what’s being done about them. RECIPIENT LIST: any angel
+investors, advisors who have provided capital or significant in-kind
+support, and potential investors who have expressed interest and opted
+into updates.</td>
+</tr>
+<tr class="odd">
+<td><strong>Content structure</strong></td>
+<td>HEADLINE: 1-sentence summary of the month (“Month [X]: Revenue hit
+$[X], closed [X] new B2B race partnerships, and launched on Amazon.”).
+KEY METRICS: revenue (total + by channel), units sold, cash balance, B2B
+pipeline value, DTC conversion rate, Amazon BSR + review count. WINS:
+2–3 highlights (new partnership signed, media coverage, product
+improvement, review milestone). CHALLENGES: 1–2 honest challenges
+(delayed shipment, lower-than-expected conversion, supply chain issue) +
+what’s being done. NEXT MONTH: 2–3 priorities for the coming month. ASK
+(if applicable): specific help needed (introductions to race directors,
+advice on pricing, feedback on pitch deck).</td>
+</tr>
+<tr class="even">
+<td><strong>Financial attachment</strong></td>
+<td>Attach: 1-page P&amp;L summary (revenue, COGS, gross margin,
+marketing, operating, net income) + cash balance. Do NOT attach the full
+accounting ledger or detailed expense breakdown — investors want the
+SUMMARY, not the detail. If an investor wants more detail: they will
+ask, and the accounting system (P8A Section 7) should be able to produce
+it.</td>
+</tr>
+<tr class="odd">
+<td><strong>Cadence</strong></td>
+<td>Start sending: Month 1 (even if revenue is $0 and the update is: “We
+filed the trademark, chose a manufacturer, and placed our first order.
+Revenue begins in Month 5.”). Investors who receive consistent monthly
+updates develop TRUST in the founder’s discipline and transparency. The
+founder who sends 12 consecutive monthly updates is dramatically more
+likely to raise a follow-on round than the founder who sends sporadic
+updates when good news happens and goes silent during bad months.</td>
+</tr>
+<tr class="even">
+<td><strong>Pre-raise positioning</strong></td>
+<td>If considering raising capital at Month 12 (per P8A Section 6
+decision gate): the 12 months of consistent investor updates become the
+DATA ROOM. Every update is evidence of: execution (things got done),
+growth (metrics improved), and transparency (challenges were disclosed
+and addressed). Send a special Month 12 update: “Year 1 in review” with:
+full-year P&amp;L, key metrics dashboard, customer testimonials,
+composting impact data, and a preview of the Year 2 plan. This update is
+the SOFT OPEN for a fundraising conversation: “If you’d like to discuss
+how you might be involved in Year 2, I’d love to set up a call.”</td>
+</tr>
+</tbody>
+</table>
+<p>6.1 Investor Update Example</p>
+<p>SUBJECT: [BRAND] Monthly Update — Month 7 (October 2026). Hi [Name],
+here’s our October update. HEADLINE: Revenue hit $12,400 (3× September),
+we served 4 races this month, and Amazon BSR broke into the top 5,000 in
+Running Accessories. KEY METRICS: Revenue: $12,400 (Shopify $2,100,
+Amazon $3,300, B2B $6,200, Expo $800). Units sold: 1,840 (590 DTC, 1,250
+B2B). Cash balance: $18,200. B2B pipeline: $42,000 (6 active
+conversations). Amazon: BSR #4,872, 34 reviews at 4.6 stars. WINS:
+closed our first 5,000-unit co-branded order with [Race Name], received
+a product mention in Outside Online (link), and our composting
+time-lapse TikTok hit 45,000 views. CHALLENGES: Amazon PPC ACoS is 35%
+(target &lt;25%). We’re testing new keyword-targeted manual campaigns.
+One B2B invoice ($2,400) is 20 days overdue — we’ve escalated. NEXT
+MONTH: NYC Marathon pilot execution, holiday gift campaign launch, and
+Year 1 financial review begins. ASK: if you know anyone at Rock ’n’ Roll
+Race Series, we’d love an introduction. Thank you for your support!
+[Founder Name]</p>
+<p>7. Timeline &amp; Budget</p>
+<p><strong>WEEK 4: Open business bank account (Mercury or Novo, free,
+1–2 days). Apply for business credit card. Route all payment processors
+to the business account: Shopify Payments, Amazon Seller, PayPal,
+Square. Set up the monthly P&amp;L template in Google
+Sheets.</strong></p>
+<p><strong>WEEK 6: Build the cash flow timing model (Section 4): map all
+channels’ cash cycles. Set the cash reserve target and verify current
+reserves meet the 2–3 month threshold. Create the B2B receivables
+tracker (Section 3) in Google Sheets. Generate the first investor update
+email (even if no investors yet — the discipline starts
+now).</strong></p>
+<p><strong>MONTHLY (ongoing): First Monday: complete monthly P&amp;L
+review (Section 2, 1–2 hours). By 5th: send investor update email.
+Weekly Monday: review receivables dashboard + 30-day cash projection.
+QUARTERLY: conduct pricing review (Section 5). Update unit economics
+model with actual data.</strong></p>
+<p>BUDGET: Business bank account: $0 (Mercury, Novo, BlueVine are free).
+Business credit card: $0 annual fee (Chase Ink Cash). Google Sheets
+(P&amp;L, receivables, cash flow templates): $0. QuickBooks (if not
+Wave): $25/month. TOTAL P8B: $0–$25/month. Cash flow management costs
+NOTHING except the founder’s TIME — and the cost of NOT managing cash
+flow is the entire business.</p>
+<p>8. Conclusion: Cash Is Oxygen</p>
+<p><strong>Revenue is vanity. Profit is sanity. Cash is
+reality.</strong> A business can have $100,000 in annual revenue,
+$20,000 in profit, and still fail because: the $20,000 profit is locked
+in B2B receivables that won’t be collected for 60 days, and the $15,000
+production deposit for next season is due in 30 days. The P&amp;L says
+the business is profitable. The bank account says the business is
+bankrupt. Cash flow management resolves this paradox.</p>
+<p><strong>The founder who checks the bank balance every morning,
+reviews receivables every Monday, and projects cash 30 days forward will
+NEVER be surprised by a cash crisis.</strong> The systems in this
+document take: 30 minutes per week (receivables + cash projection), 2
+hours per month (P&amp;L review + investor update), and 2 hours per
+quarter (pricing review). A total of ~6 hours per month — the single
+best investment of the founder’s time for the long-term survival and
+growth of the business.</p>
+
+        </div>
+    </div></div>
+<footer style="text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px">
+Sustainable Race-Start Warmth Poncho — D2C Brand GTM Project · 60 Subprojects · 391 Tasks · ~15,500¶ · April 2026
+</footer></body></html>

@@ -1,0 +1,811 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>P5F: B2B Operations Account Management — Race Start Warmth GTM</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0e1a;--surface:#111827;--card:#1a2332;--border:#2a3a4e;--accent:#10b981;--accent2:#3b82f6;--text:#e2e8f0;--muted:#94a3b8;--white:#fff;--red:#ef4444;--amber:#f59e0b;--green:#10b981}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+/* Nav */
+nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
+nav .inner{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;max-width:1200px;margin:0 auto}
+nav .brand{font-weight:700;font-size:15px;color:var(--accent)}
+nav .links{display:flex;gap:8px;flex-wrap:wrap}
+nav .links a{color:var(--muted);font-size:13px;padding:4px 10px;border-radius:6px;transition:.2s}
+nav .links a:hover,nav .links a.active{color:var(--white);background:var(--card);text-decoration:none}
+/* Hero */
+.hero{padding:60px 0 40px;text-align:center}
+.hero h1{font-size:2.4em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:1.1em;max-width:700px;margin:0 auto}
+/* Stats bar */
+.stats{display:flex;justify-content:center;gap:32px;padding:24px 0;flex-wrap:wrap}
+.stat{text-align:center}.stat .num{font-size:1.8em;font-weight:800;color:var(--white)}.stat .label{font-size:.75em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+/* Cards */
+.grid{display:grid;gap:16px;margin:24px 0}
+.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}
+.grid-3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;transition:.2s}
+.card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.card h3{font-size:1.1em;margin-bottom:8px}.card p{color:var(--muted);font-size:.9em}
+.card .badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:8px}
+.card .meta{font-size:.8em;color:var(--muted);margin-top:12px}
+/* Section */
+.section{padding:40px 0}.section h2{font-size:1.6em;font-weight:700;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+/* Table */
+table{width:100%;border-collapse:collapse;font-size:.85em;margin:16px 0}
+th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:52px}
+td{padding:8px 12px;border-bottom:1px solid var(--border)}
+tr:hover td{background:rgba(16,185,129,.05)}
+.status-complete{color:var(--green);font-weight:600}.status-not{color:var(--muted)}
+/* Progress */
+.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:8px}
+.progress .bar{height:100%;background:var(--accent);border-radius:3px}
+/* Back link */
+.back{display:inline-block;color:var(--muted);font-size:.9em;margin-bottom:20px}
+.back:hover{color:var(--accent)}
+/* Download */
+.dl-card{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin:8px 0;transition:.2s}
+.dl-card:hover{border-color:var(--accent);text-decoration:none}
+.dl-card .icon{font-size:2em}.dl-card .info h4{color:var(--white);margin-bottom:4px}.dl-card .info p{color:var(--muted);font-size:.85em}
+/* Footer */
+footer{text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px}
+@media(max-width:768px){.stats{gap:16px}.stat .num{font-size:1.3em}nav .links{gap:4px}nav .links a{font-size:11px;padding:3px 6px}.hero h1{font-size:1.6em}}
+
+.doc-content{max-width:900px;margin:0 auto;padding:20px 0}
+.doc-content h1{font-size:1.8em;font-weight:800;color:var(--white);margin:32px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.doc-content h2{font-size:1.4em;font-weight:700;color:var(--accent);margin:28px 0 12px}
+.doc-content h3{font-size:1.15em;font-weight:600;color:var(--accent2);margin:20px 0 10px}
+.doc-content p{margin:8px 0;line-height:1.7}
+.doc-content table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85em}
+.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;border:1px solid var(--border)}
+.doc-content td{padding:8px 12px;border:1px solid var(--border);vertical-align:top}
+.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.doc-content ul,.doc-content ol{margin:8px 0 8px 24px}
+.doc-content li{margin:4px 0;line-height:1.6}
+.doc-content strong{color:var(--white)}
+.doc-content em{color:var(--muted)}
+.doc-content blockquote{border-left:3px solid var(--accent);padding:8px 16px;margin:12px 0;background:var(--card);border-radius:0 8px 8px 0}
+.nav-sub{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 24px;padding:12px 16px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
+.nav-sub a{font-size:.8em;color:var(--muted);padding:4px 10px;border-radius:4px;transition:.2s;white-space:nowrap}
+.nav-sub a:hover,.nav-sub a.active{color:var(--white);background:var(--surface);text-decoration:none}
+</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a></div></div></nav><div class="container">
+    <div style="padding-top:30px">
+        <a href="p5.html" class="back">← 🤝 P5: B2B Sales</a>
+        <div class="nav-sub"><a href="p5.html">🤝 P5 Overview</a><a href="sub-p5a.html">P5A</a><a href="sub-p5b.html">P5B</a><a href="sub-p5c.html">P5C</a><a href="sub-p5d.html">P5D</a><a href="sub-p5e.html">P5E</a><a href="sub-p5f.html" class="active">P5F</a></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px">
+            <div>
+                <span style="background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px">P5F</span>
+                <span style="color:var(--muted);font-size:.85em;margin-left:8px">P5: B2B Sales</span>
+            </div>
+            <a href="files/P5F_B2B_Operations_Account_Management.docx" style="font-size:.85em;color:var(--accent);padding:6px 14px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
+        </div>
+        <div class="doc-content">
+            <p><strong>P5F: B2B OPERATIONS</strong></p>
+<p><strong>&amp; ACCOUNT MANAGEMENT</strong></p>
+<p>Sub-Project P5F | B2B Sales Engine | Weeks 20–30</p>
+<p><em>Complete Account Operations: 6-Stage Order Management System,
+7-Section Onboarding Guide, Annual Account Cadence, Early-Bird Program,
+Referral Program, B2B Newsletter Strategy, and Year 2 Growth
+Targets</em></p>
+<p>March 2026 | Confidential</p>
+<p>Executive Summary</p>
+<p><strong>Winning a race director’s first order is sales. Winning their
+second order is operations.</strong> The B2B sales engine (P5A–P5E)
+generates the first PO. B2B operations and account management generate
+every PO after that. This document builds the systems that transform
+one-time pilot customers into annual partners with growing order
+volumes, sponsor introductions, and peer referrals. The goal: an 80%+
+reorder rate, 1.5–2.5× annual volume growth, and a referral pipeline
+that reduces cold outreach to zero by Year 3.</p>
+<p><strong>Seven operational systems are defined:</strong> (1) a 6-stage
+order management system tracking every PO from intake to payment, (2) a
+7-section race director onboarding guide that sets expectations from Day
+1, (3) a 7-touchpoint annual account management cadence from post-race
+debrief through annual review, (4) an early-bird ordering program
+offering 10–15% off for commitments 6+ months before race date, (5) a
+two-sided referral program (refer and earn 10% off for both parties),
+(6) a quarterly B2B newsletter that keeps the brand top-of-mind during
+off-season months, and (7) Year 2 growth targets across 9 metrics with
+specific milestones.</p>
+<p>1. B2B Order Management System: 6 Stages</p>
+<p><strong>Every B2B order flows through 6 operational stages from PO
+intake to post-delivery close.</strong> The system runs on 3
+synchronized tools: CRM (HubSpot) for relationship tracking, Google
+Sheet order tracker for operational status, and QuickBooks for financial
+tracking. All three must agree on the status of every order at all
+times.</p>
+<table>
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 23%" />
+<col style="width: 64%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Stage</strong></td>
+<td><strong>Trigger</strong></td>
+<td><strong>Process</strong></td>
+</tr>
+<tr class="even">
+<td><strong>PO intake</strong></td>
+<td>PO received from race director via email, co-brand order form (P3C
+Section 5), or verbal agreement (followed by written confirmation within
+24 hours)</td>
+<td>Log in: (1) CRM — advance deal to PO RECEIVED stage, record PO
+number, quantity, value, delivery date. (2) Google Sheet order tracker —
+new row with: PO number, race name, order date, quantity, SKU, unit
+price, total value, co-brand Y/N, deposit status, production status,
+ship date, delivery date, payment status, notes. (3) QuickBooks — create
+invoice linked to PO number.</td>
+</tr>
+<tr class="odd">
+<td><strong>Deposit collection</strong></td>
+<td>Send invoice for deposit (50% first order, 30% repeat) within 24
+hours of PO acceptance</td>
+<td>Track: deposit invoice date, deposit due date (5 business days),
+deposit received date, deposit amount. If deposit not received by Day 5:
+send reminder. If Day 10: call. Do NOT begin production or pull
+inventory until deposit is received.</td>
+</tr>
+<tr class="even">
+<td><strong>Production tracking</strong></td>
+<td>For co-brand orders: track through P3C co-brand workflow stages
+(logo received → mockup → approval → factory → production → delivery).
+For standard orders from inventory: track pull date, pack date, ship
+date.</td>
+<td>Update order tracker column: STATUS = “Deposit Received” → “Logo
+Pending” → “Mockup Sent” → “Proof Approved” → “In Production” → “Ready
+to Ship” → “Shipped” → “Delivered” → “Invoiced” → “Paid.” Each status
+change triggers: internal action (next step) + external notification
+(race director email per P4C Section 6 tracking notifications).</td>
+</tr>
+<tr class="odd">
+<td><strong>Delivery coordination</strong></td>
+<td>Per P4C Section 3 race-venue delivery protocol: confirm address,
+schedule shipment, generate tracking, send notification</td>
+<td>Update tracker: ship date, carrier, tracking number, expected
+delivery date. Follow up 48 hours after expected delivery if no
+confirmation.</td>
+</tr>
+<tr class="even">
+<td><strong>Balance collection</strong></td>
+<td>Send balance invoice on shipment date (50% or 70% depending on
+terms). Due: on shipment (50/50 terms) or net-30 (30/70 terms).</td>
+<td>Track: balance invoice date, due date, payment received date.
+Overdue management per P4C Section 2 invoicing system (Day +3 reminder →
+Day +10 firm → Day +30 call → Day +45 pause).</td>
+</tr>
+<tr class="odd">
+<td><strong>Post-delivery close</strong></td>
+<td>Confirm delivery with race director. Close the order in the tracker:
+STATUS = “Delivered” then “Paid” when payment complete.</td>
+<td>Trigger: post-delivery debrief invitation (P5B Section 5). Trigger:
+reorder discussion initiation (P5B Section 7). Update CRM: deal stage to
+DELIVERED then RACE COMPLETE.</td>
+</tr>
+</tbody>
+</table>
+<p>1.1 Order Tracker Spreadsheet</p>
+<p>Google Sheet with the following columns: PO Number | Race Name |
+Order Date | Quantity | SKU (Standard/Co-Brand) | Unit Price | Total
+Value | Deposit Status (Invoiced/Paid/Overdue) | Production Status (10
+possible values per Section 1 above) | Ship Date | Carrier + Tracking |
+Delivery Date | Delivery Confirmed Y/N | Balance Status
+(Invoiced/Paid/Overdue) | Notes. COLOR CODING: green = on track, yellow
+= attention needed (overdue payment, late logo submission), red =
+critical (delivery at risk, quality issue). REVIEW: every Monday as part
+of the CRM weekly review (P5A Section 1). The order tracker is the
+operational dashboard that answers: “What needs to happen THIS WEEK for
+every active order?”</p>
+<p>1.2 Handoff Between P5 Subprojects</p>
+<p>The order management system is the NEXUS of all P5 subprojects: P5A
+(pipeline) generates the contact that becomes a PO. P5B (pilot)
+generates the first PO and case study. P5C (series) generates multi-race
+POs. P5D (expo) generates leads that flow into P5A’s pipeline. P5E
+(sponsors) generates sponsor-funded POs. P5F (this section) manages ALL
+POs through fulfillment and drives reorders. Every PO, regardless of
+origin, flows through the same 6-stage system.</p>
+<p>2. Race Director Onboarding Guide: 7 Sections</p>
+<p><strong>Every new race director partner receives the onboarding guide
+within 48 hours of PO acceptance.</strong> It is a branded PDF (8–12
+pages per P1B design system) that explains everything the race
+director’s team needs to know: ordering, co-branding, delivery,
+composting, and support. It is the “welcome kit” for the
+partnership.</p>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width:50%">
+<col style="width: 35%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Section</strong></td>
+<td><strong>Content</strong></td>
+<td><strong>Purpose</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Welcome + brand overview</strong></td>
+<td>1-page introduction: brand story (50-word version from P1C Section
+1.2), mission, product overview, BPI certification status, and founder’s
+personal note: “Thank you for partnering with us. Here’s everything you
+need to make compostable ponchos a success at your race.”</td>
+<td>Sets the tone: this is a PARTNERSHIP, not a transaction. The brand
+cares about the race director’s success, not just the PO.</td>
+</tr>
+<tr class="odd">
+<td><strong>Ordering process</strong></td>
+<td>Step-by-step: (1) Submit a PO via email or co-brand order form. (2)
+Pay deposit (50% first order, 30% repeat). (3) If co-brand: provide
+logos within 10 business days of PO, approve mockup within 3 days,
+approve proof within 2 days. (4) Standard lead time: 3–6 weeks from PO +
+deposit to delivery. Rush: 2–3 weeks at 15–25% surcharge. (5) Delivery:
+we ship directly to your venue ≥3 weeks before race date.</td>
+<td>Include: flowchart (visual representation of the 5 steps with
+estimated days at each stage). This visual is more useful than text for
+operations staff who are managing dozens of vendors.</td>
+</tr>
+<tr class="even">
+<td><strong>Co-brand timeline</strong></td>
+<td>Visual timeline (Gantt-style bar chart): PO (Day 0) → Logo
+submission (Day 1–10) → Mockup creation (Day 10–11) → Mockup approval
+(Day 11–14) → Artwork to factory (Day 14–15) → Proof sample (Day 15–22)
+→ Proof approval (Day 22–24) → Production (Day 24–31) → Shipping (Day
+31–35) → Delivery (Day 35–42). TOTAL: 6 weeks standard.</td>
+<td>Emphasize: the RACE DIRECTOR controls 2 of the 6 weeks (logo
+submission + mockup/proof approvals). Delayed logos = delayed delivery.
+The timeline is a partnership — both sides must meet their
+milestones.</td>
+</tr>
+<tr class="odd">
+<td><strong>Delivery logistics</strong></td>
+<td>What to expect: (A) You’ll receive a shipping notification with
+tracking when your order ships. (B) Delivery arrives in labeled master
+cartons on pallets (large orders) or in shipping boxes (small orders).
+(C) Carton labels show: product, quantity, batch number, and storage
+instructions. (D) Store below 77°F / 25°C, keep dry. FIFO. (E)
+Spot-check 3–5 units upon receipt: confirm packaging intact, print
+quality acceptable, correct co-brand design.</td>
+<td>Include: the “Receiving Instructions” card that ships on the outside
+of the lead carton — show it in the guide so the operations team knows
+what to look for.</td>
+</tr>
+<tr class="even">
+<td><strong>Race-day composting guide</strong></td>
+<td>Summary of P4D Section 3 race-day collection protocol: bin placement
+(1 per 500 runners, every 50–100m past start line, both sides), signage
+(provided by the brand, attach with zip ties), volunteers (1 per 3–5
+bins, 15-minute briefing), sorting rules (ponchos YES, everything else
+NO), and composting partner pickup (coordinated by the brand).</td>
+<td>This is a STANDALONE 1-page document included in the onboarding
+guide AND included in every B2B shipment. The race operations team
+should be able to execute composting collection with ONLY this 1-page
+guide, even if they’ve never done it before.</td>
+</tr>
+<tr class="odd">
+<td><strong>Support + contacts</strong></td>
+<td>Founder’s direct contact: email, phone, and response-time commitment
+(“I respond to all race director inquiries within 24 hours, and within 4
+hours during race week”). Emergency contact for race-day issues
+(founder’s mobile). Website: brand.com/b2b for: co-brand order form,
+pricing, FAQ, case studies, composting guide download.</td>
+<td>The race director should NEVER feel like they’re dealing with a
+faceless company. The founder’s personal accessibility is a competitive
+advantage against larger vendors (Heatsheets) where race directors deal
+with sales reps and customer service queues.</td>
+</tr>
+<tr class="even">
+<td><strong>FAQ</strong></td>
+<td>Top 10 B2B questions with concise answers: pricing tiers, MOQ (500),
+lead time (3–6 weeks), co-brand revision limit (3 free), return policy
+(defects only per P4B Section 6.2), composting logistics (we handle it),
+shelf life (10–12 months, FIFO), latex allergy (notice on packaging),
+size range (one-size XS–XXL per P2B), and sponsor-funded option (your
+sponsor pays, you pay $0).</td>
+<td>Include the FAQ in the onboarding guide AND on brand.com/b2b/faq.
+The FAQ should answer every question the race director’s operations team
+might have without requiring a phone call.</td>
+</tr>
+</tbody>
+</table>
+<p>2.1 Onboarding Delivery</p>
+<p>Send the onboarding guide as: (1) PDF attachment in the PO
+confirmation email (“Welcome to [BRAND]! Attached is your Race Director
+Guide with everything you need to know about ordering, co-branding,
+delivery, and composting logistics.”). (2) Printed copy included in the
+first B2B shipment (in the lead carton alongside the packing list and
+composting guide). (3) Posted on brand.com/b2b/guide for online access
+anytime. UPDATE the guide annually: new product features, updated
+pricing, new composting partners, new FAQ answers based on race director
+questions from the previous season.</p>
+<p>3. Account Management Cadence: 7 Annual Touchpoints</p>
+<p><strong>The account management cadence ensures every race director
+partner hears from the brand at least 7 times per year.</strong> The
+cadence is designed around the race planning calendar: race directors
+plan fall races in Q2–Q3 and spring races in Q4–Q1. Every touchpoint is
+timed to align with a planning milestone or decision point.</p>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 9%" />
+<col style="width: 9%" />
+<col style="width: 31%" />
+<col style="width: 34%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Touchpoint</strong></td>
+<td><strong>Timing</strong></td>
+<td><strong>Format</strong></td>
+<td><strong>Content</strong></td>
+<td><strong>When to Execute</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Post-race debrief</strong></td>
+<td>Within 7 days of race</td>
+<td>30-minute call (Zoom/phone)</td>
+<td>Per P5B Section 5: product feedback, operations feedback, composting
+results, reorder intent, referral request, testimonial request.</td>
+<td>Immediately after race. The most important touchpoint in the annual
+cycle.</td>
+</tr>
+<tr class="odd">
+<td><strong>Reorder discussion</strong></td>
+<td>Within 30–60 days of race</td>
+<td>Email + follow-up call</td>
+<td>Send formal quote for next season. Reference: pilot/current-season
+data, any product improvements, early-bird pricing (Section 4 of this
+document). Ask: quantity adjustment, co-brand evolution, sponsor
+involvement.</td>
+<td>Lock in reorders early. Race directors who commit 6+ months out get
+early-bird pricing.</td>
+</tr>
+<tr class="even">
+<td><strong>Quarterly check-in (Q1 Jan–Mar)</strong></td>
+<td>January or February</td>
+<td>15-minute email or call</td>
+<td>Share: brand updates (new product features, new pilot case studies,
+new composting partners). Ask: any changes to race date, expected runner
+count, co-brand plans, sponsor status. Confirm: PO timeline for upcoming
+season.</td>
+<td>Off-season touchpoint to maintain the relationship and update
+planning data.</td>
+</tr>
+<tr class="odd">
+<td><strong>Quarterly check-in (Q2 Apr–Jun)</strong></td>
+<td>April or May</td>
+<td>15-minute email or call</td>
+<td>Share: updated pricing sheet (if changed), new case studies from
+spring races, V1.5 product improvements. Confirm: PO for fall season (if
+not already placed). Discuss: any new races the director is involved
+with (additional B2B opportunities).</td>
+<td>If the race director runs multiple events: Q2 is when spring events
+finish and fall planning begins. Cross-sell opportunity.</td>
+</tr>
+<tr class="even">
+<td><strong>Pre-season planning (Q3 Jul–Aug)</strong></td>
+<td>July or August</td>
+<td>30-minute call</td>
+<td>Deep dive: finalize fall race order (quantities, co-brand designs,
+delivery logistics, composting plan). Confirm: PO is placed, deposit
+paid, logos submitted. Review: any changes from previous year (new
+venue, new sponsor, new operations team).</td>
+<td>The CRITICAL planning call. Everything for the fall race is
+confirmed here. If the PO is not placed by August: the delivery timeline
+for October races becomes tight.</td>
+</tr>
+<tr class="odd">
+<td><strong>Pre-race confirmation</strong></td>
+<td>2–3 weeks before race</td>
+<td>Quick email</td>
+<td>Confirm: shipment is on track (tracking number provided), delivery
+logistics are confirmed, composting partner is confirmed, any
+last-minute needs. Offer: “I’ll be at the race on [date] — anything
+you’d like me to help with on-site?”</td>
+<td>Final touchpoint before race day. Reassures the race director that
+everything is handled.</td>
+</tr>
+<tr class="even">
+<td><strong>Annual review</strong></td>
+<td>December or January (post-fall, pre-spring)</td>
+<td>45-minute call</td>
+<td>Comprehensive review: total units ordered, total cost, satisfaction
+score (race director rates the partnership 1–10), composting results
+aggregated, product feedback summary, Year 2 planning (volume growth,
+new races, pricing negotiation, V2 product interest). Set next year’s
+targets together.</td>
+<td>The annual review transforms a vendor relationship into a strategic
+partnership. Share the brand’s own growth plans: new products (P2F
+roadmap), new composting capabilities, and how the race director’s
+feedback has shaped the product.</td>
+</tr>
+</tbody>
+</table>
+<p>3.1 CRM Automation for Cadence</p>
+<p>Set up in HubSpot: (1) Task reminders: for each active customer,
+create recurring tasks: “Q1 check-in with [Race Director]” (January),
+“Q2 check-in” (April), “Pre-season planning call” (July/August),
+“Pre-race confirmation” (2–3 weeks before race), “Post-race debrief” (1
+week after race), “Reorder discussion” (30–60 days after race), “Annual
+review” (December/January). (2) Email sequences: for touchpoints that
+are email-only (Q1 and Q2 check-ins): create templates in HubSpot with
+merge fields for race name, director name, and relevant data. (3)
+Pipeline view: deals in RACE COMPLETE stage should automatically
+trigger: “Schedule debrief” task + “Send reorder quote” task 30 days
+later. At 5–10 active customers: this is manageable manually. At 20+:
+HubSpot automation becomes essential.</p>
+<p>4. Early-Bird Ordering Program</p>
+<p><strong>The early-bird program converts “I’ll order when I’m ready”
+into “I’ll order now to save 10–15%.”</strong> Early commitments benefit
+both parties: the race director saves money, and the brand gains
+production planning certainty 6+ months before the race season.</p>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 42%" />
+<col style="width: 42%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Element</strong></td>
+<td><strong>Specification</strong></td>
+<td><strong>Rationale</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Eligibility</strong></td>
+<td>Any race director who commits to a PO ≥6 months before their race
+date. Example: PO placed in April for an October race.</td>
+<td>6-month lead time provides: production planning certainty (order
+included in Run 1 batch per P3E Section 5), material sourcing lead time
+(NatureFlex NM ordered in bulk), and cash flow predictability.</td>
+</tr>
+<tr class="odd">
+<td><strong>Discount</strong></td>
+<td>10–15% off standard B2B unit pricing. Example: standard $4.50/unit →
+early-bird $3.83–$4.05/unit. Setup fees: waived for repeat co-brand
+designs (same design as previous year).</td>
+<td>The discount is funded by: production efficiency (larger planned
+batch sizes have lower per-unit COGS) and reduced uncertainty (confirmed
+orders reduce the need for speculative safety stock).</td>
+</tr>
+<tr class="even">
+<td><strong>Communication</strong></td>
+<td>Announce early-bird program via: Q1 quarterly check-in email, B2B
+newsletter (Section 6), and direct outreach to all existing customers.
+Subject: “Early-Bird Pricing for [Season] — Save 10–15% by Committing
+Before [Date].”</td>
+<td>Create urgency with a DEADLINE: “Early-bird pricing available until
+[date] for [season] races.” After the deadline: standard pricing
+applies. The deadline drives action from race directors who would
+otherwise delay their PO until August.</td>
+</tr>
+<tr class="odd">
+<td><strong>Terms</strong></td>
+<td>Early-bird POs are subject to: ±15% quantity adjustment within 60
+days of the race (standard flexibility clause per P3B Section 2).
+Deposit: 30% at PO (lower than standard 50% as an additional incentive).
+Co-brand design finalization: 3 months before race (flexibility to
+update logos/sponsors closer to the race).</td>
+<td>Lower deposit (30% vs. 50%) reduces the race director’s upfront cash
+commitment while still securing the order for production planning. The
+brand absorbs slightly higher risk in exchange for early revenue
+visibility.</td>
+</tr>
+<tr class="even">
+<td><strong>Tracking</strong></td>
+<td>Track in CRM: tag all early-bird deals with “early-bird” label.
+Measure: early-bird uptake rate (% of reorder customers who commit
+early), revenue impact (early-bird revenue vs. standard), and production
+planning improvement (% of seasonal demand confirmed ≥6 months out).
+Target: 40–60% of repeat customers commit via early-bird by Year 2.</td>
+<td>The early-bird program’s success is measured by how much of the
+seasonal demand is LOCKED IN before production planning begins (May for
+fall, November for spring per P3E Section 5).</td>
+</tr>
+</tbody>
+</table>
+<p>5. Race Director Referral Program</p>
+<p><strong>Referrals from satisfied race directors are the
+highest-converting lead source in B2B.</strong> A race director who
+tells a colleague “You should use [BRAND] for your start line” carries
+more credibility than any email, advertisement, or sample kit. The
+referral program incentivizes this natural behavior with a mutual
+reward.</p>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width:50%">
+<col style="width: 35%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Element</strong></td>
+<td><strong>Specification</strong></td>
+<td><strong>Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Offer</strong></td>
+<td>“Refer a fellow race director. When they place their first order,
+BOTH of you receive 10% off your next order.”</td>
+<td>Two-sided incentive: the referrer AND the referred race director
+both benefit. The referrer feels good about helping a colleague AND gets
+a tangible reward.</td>
+</tr>
+<tr class="odd">
+<td><strong>Referral methods</strong></td>
+<td>(A) Email introduction: race director emails a colleague and CCs the
+founder (“Hey [Name], you should check out [BRAND] for your start line —
+we used their compostable ponchos at [Race Name] and loved them. I’m
+CC’ing [Founder Name] so they can send you a sample kit.”). (B) Referral
+link: unique URL (brand.com/refer/[race-name]) that the race director
+can share. When a new director visits and submits their info, both
+parties are credited. (C) In-person introduction at industry events
+(TRE, Running USA, RRCA Convention per P5C Section 4).</td>
+<td>Warm introductions (Method A) are the highest-converting referral
+channel. A personal email from a trusted peer race director converts at
+50–70% to a meeting, vs. 10–20% for a referral link. Always encourage
+Method A.</td>
+</tr>
+<tr class="even">
+<td><strong>Tracking</strong></td>
+<td>CRM: when a new contact is added, record: referred by [race director
+name]. When the referred race director places their first PO: apply 10%
+discount code to BOTH the new customer’s first order AND the referrer’s
+next order. Notify the referrer: “Thanks to your referral, [New Race
+Director] just placed an order! Your 10% discount has been applied to
+your next order.”</td>
+<td>The notification to the referrer is ESSENTIAL: it closes the loop
+and reinforces the referral behavior. Without it, the referrer doesn’t
+know the referral succeeded and is less likely to refer again.</td>
+</tr>
+<tr class="odd">
+<td><strong>Expected volume</strong></td>
+<td>Target: each active race director partner refers 1–2 colleagues per
+year. With 5–10 active partners: 5–20 referral leads per year. At 30–50%
+conversion: 2–10 new customers from referrals annually. Cost of
+acquisition: 10% discount on 2 orders = $400–$1,000 in foregone revenue
+per conversion. Compare: P5A sample kit + outreach cost per acquisition
+= $184–$533. Referrals are modestly more expensive per conversion BUT
+require zero founder outreach time.</td>
+<td>Referrals become the PRIMARY new customer acquisition channel by
+Year 2–3 as the partner base grows. The founder spends less time on cold
+outreach and more time serving existing accounts.</td>
+</tr>
+<tr class="even">
+<td><strong>Program announcement</strong></td>
+<td>Launch via: email to all existing B2B customers (post-first-season),
+mention during post-race debriefs (“Do you know any other race directors
+who might benefit from compostable ponchos? If you refer them and they
+order, you both get 10% off”), and include in the race director
+onboarding guide (Section 2).</td>
+<td>Introduce the referral program after the FIRST successful race — not
+before. The race director needs to have experienced the product and been
+satisfied before they’ll put their reputation on the line with a
+referral.</td>
+</tr>
+</tbody>
+</table>
+<p>6. B2B Email Newsletter</p>
+<p><strong>The quarterly newsletter keeps the brand in race directors’
+inboxes between ordering seasons.</strong> During the 6–8 month gap
+between race day and the next season’s PO, the newsletter maintains the
+relationship, shares new capabilities, and positions the brand as an
+industry thought leader on sustainability in running.</p>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 81%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Element</strong></td>
+<td><strong>Specification</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Platform</strong></td>
+<td>Mailchimp free tier (up to 500 contacts) or Klaviyo (same system
+used for DTC email per P1E). Create a SEPARATE B2B list from the DTC
+list — different audience, different content, different cadence.</td>
+</tr>
+<tr class="odd">
+<td><strong>Frequency</strong></td>
+<td>Quarterly (4x/year). Timing: January (pre-spring planning), April
+(post-spring recap + fall early-bird announcement), July (pre-fall
+planning), October (mid-fall season update + spring early-bird
+announcement).</td>
+</tr>
+<tr class="even">
+<td><strong>Content structure</strong></td>
+<td>3–4 sections per newsletter: (1) PRODUCT UPDATE: new features, V1.5
+improvements, new colorways, new product launches (bib sleeve,
+finish-line wrap per P2F roadmap). (2) IMPACT STORY: latest pilot case
+study or composting data (“This season, we composted [X] lbs of poncho
+waste across [Y] races”). (3) INDUSTRY INSIGHT: sustainability trends in
+running (new regulations, competitor moves, athlete advocacy for
+sustainability). (4) CTA: early-bird pricing link, co-brand order form
+link, or “Schedule a call” button.</td>
+</tr>
+<tr class="odd">
+<td><strong>Design</strong></td>
+<td>Branded per P1B visual identity. Simple layout: header image
+(race-day photo), 3–4 short sections with bold headlines, 1 CTA button
+per section. Mobile-responsive (race directors read email on phones).
+Total length: 500–800 words. Read time: 3–4 minutes maximum.</td>
+</tr>
+<tr class="even">
+<td><strong>Segmentation</strong></td>
+<td>Segment the B2B list by: (A) Active customers (have ordered in the
+past 12 months) — receive: reorder prompts, early-bird offers, new
+product previews. (B) Prospects (in pipeline but haven’t ordered) —
+receive: case studies, sustainability insights, general brand updates.
+(C) Dormant (contacted but no activity in 6+ months) — receive:
+re-engagement content (“We’ve made improvements since we last spoke —
+here’s what’s new”).</td>
+</tr>
+<tr class="odd">
+<td><strong>Metrics</strong></td>
+<td>Track: open rate (target: 30–40% for B2B, higher than DTC industry
+average of 20–25%), click rate (target: 5–10%), replies (B2B newsletters
+should generate direct reply conversations), unsubscribe rate (target:
+&lt;1% per send; if higher, content isn’t relevant). Review metrics
+after each send and adjust content accordingly.</td>
+</tr>
+</tbody>
+</table>
+<p>7. Year 2 B2B Growth Targets</p>
+<p><strong>Year 1 builds the foundation: 3–8 pilot races, first case
+studies, first sponsor conversations.</strong> Year 2 scales the
+foundation: reorders from Year 1 customers, new customers from referrals
+and expo leads, first series deals, expanded sponsor-funded volume, and
+new product cross-selling. The targets below define what “success” looks
+like at the end of Year 2 across 9 key metrics.</p>
+<table>
+<colgroup>
+<col style="width: 21%" />
+<col style="width: 21%" />
+<col style="width: 57%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Metric</strong></td>
+<td><strong>Year 2 Target</strong></td>
+<td><strong>How to Achieve</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Total B2B races served</strong></td>
+<td>10–20 races (vs. 3–8 in Year 1)</td>
+<td>Growth from: reorders (80%+ of Year 1 races), referrals (5–10 new
+races), series deals (1–2 small series), and expo leads.</td>
+</tr>
+<tr class="odd">
+<td><strong>Total B2B units</strong></td>
+<td>15,000–40,000 units (vs. 3,000–15,000 in Year 1)</td>
+<td>Driven by: larger orders from repeat customers (pilot → full order),
+new customers at higher initial volumes (case study credibility reduces
+pilot need), and series deals.</td>
+</tr>
+<tr class="even">
+<td><strong>B2B revenue</strong></td>
+<td>$52,500–$160,000 (at $3.50–$4.00 average unit price)</td>
+<td>Year 1 target: $15K–$50K (Bootstrap) or $40K–$120K (Full Launch).
+Year 2 growth: 1.5–2.5× Year 1.</td>
+</tr>
+<tr class="odd">
+<td><strong>Reorder rate</strong></td>
+<td>80%+ of Year 1 customers reorder</td>
+<td>The #1 indicator of product-market fit. If &lt;60% reorder:
+investigate product or service quality issues. If &gt;90%: the product
+is a clear winner and growth is limited only by new customer
+acquisition.</td>
+</tr>
+<tr class="even">
+<td><strong>Sponsor-funded volume</strong></td>
+<td>20–40% of B2B units funded by sponsors</td>
+<td>Year 1: likely 0–10% sponsor-funded (first sponsor deals closing).
+Year 2: aggressive sponsor outreach converts 2–5 sponsored races.</td>
+</tr>
+<tr class="odd">
+<td><strong>Series partnerships</strong></td>
+<td>1–2 small series (REVEL, Mainly Marathons) confirmed. Rock ’n’ Roll
+in advanced discussions.</td>
+<td>Series deals are the Year 2 growth multiplier. Even 1 REVEL deal
+(8–10 races, 30K–50K units) doubles the B2B volume.</td>
+</tr>
+<tr class="even">
+<td><strong>Registration add-on</strong></td>
+<td>Pilot at 2–5 races on RunSignUp</td>
+<td>Year 2 tests the registration add-on model (P5E Section 6). If
+15–30% uptake confirms: scale to all partner races in Year 3.</td>
+</tr>
+<tr class="odd">
+<td><strong>New product cross-sell</strong></td>
+<td>Introduce 1–2 V2 products to existing B2B customers</td>
+<td>Per P2F roadmap: finish-line wrap (V2.0, $1.50–$2.50 B2B), bib
+sleeve (V2.5, $2.99 DTC). Cross-sell to existing race directors: “You
+already use our start-line poncho. Now add our compostable finish-line
+wrap for $1.50/unit.”</td>
+</tr>
+<tr class="even">
+<td><strong>Geographic expansion</strong></td>
+<td>Expand composting partner network to 15–20 cities (from 10 in Year
+1)</td>
+<td>As races expand beyond the initial 10 cities (P4D Section 1),
+composting partners must be pre-qualified in new markets. Prioritize
+cities where B2B pipeline shows demand.</td>
+</tr>
+</tbody>
+</table>
+<p>7.1 Year 2 Planning Timeline</p>
+<p>OCTOBER–NOVEMBER (post-fall season): Complete all post-race debriefs.
+Compile season data (total units, revenue, composting impact,
+satisfaction scores). Initiate reorder conversations for spring races.
+Present early-bird pricing for fall of next year. DECEMBER–JANUARY:
+Conduct annual reviews with all active customers. Confirm spring POs.
+Send B2B newsletter with season recap and Year 2 product roadmap.
+Finalize Year 2 targets. FEBRUARY–MARCH: Spring production orders
+placed. Continue new customer outreach (refreshed with Year 1 case
+studies). Attend Running USA Conference for series and sponsor
+networking. APRIL–MAY: Spring races execute. Post-race debriefs.
+Initiate fall early-bird outreach. Register for fall expo booths.
+MAY–JUNE: Fall production orders confirmed. Compose the annual
+sustainability report (all Year 1 data aggregated). Publish case
+studies. JULY–SEPTEMBER: Pre-season planning calls with all fall
+customers. Ship fall orders. Prepare for the most important season of
+the year.</p>
+<p>8. Timeline &amp; Budget</p>
+<p><strong>WEEK 20: Set up the B2B order management system (Section 1):
+Google Sheet order tracker, CRM pipeline finalization, QuickBooks
+integration. Build the order tracker with columns defined in Section
+1.1.</strong></p>
+<p><strong>WEEK 22: Create the race director onboarding guide (Section
+2): draft all 7 sections, design in Canva per P1B, export as PDF.
+Include: ordering flowchart, co-brand timeline visual, composting
+collection 1-pager, and top-10 FAQ.</strong></p>
+<p><strong>WEEK 24: Establish account management cadence (Section 3):
+set up CRM task templates and email sequences for 7 annual touchpoints.
+Define early-bird pricing (Section 4) and create the early-bird
+announcement email template. Design the referral program (Section 5):
+create brand.com/refer page, draft referral announcement
+email.</strong></p>
+<p><strong>WEEK 26: Set up B2B newsletter (Section 6): create B2B email
+list in Klaviyo/Mailchimp (separate from DTC), design newsletter
+template, draft first issue (Season 1 recap + early-bird announcement).
+Launch referral program to all Year 1 customers during post-race
+debriefs.</strong></p>
+<p><strong>WEEK 28–30: Send first B2B newsletter. Compile Year 2 growth
+targets (Section 7) based on Year 1 actual results. Present Year 2 plan
+to any advisors or investors. Begin Year 2 customer acquisition cycle
+(refreshed outreach with case studies + early-bird pricing). P5
+COMPLETE.</strong></p>
+<p>BUDGET: Google Sheet order tracker: $0. Onboarding guide design
+(Canva): $0–$13/month. Onboarding guide printing (10–20 copies at $3–5
+each): $30–$100. Referral program page (brand.com/refer): $0 (built on
+existing Shopify/WordPress site). Newsletter platform (Mailchimp free or
+Klaviyo): $0–$20/month. TOTAL P5F: $30–$100 + $0–33/month recurring.</p>
+<p>9. Conclusion: Operations Are the Moat</p>
+<p><strong>Any competitor can manufacture a compostable poncho.</strong>
+The manufacturing process is documentable, the materials are sourceable,
+and the certification is obtainable. What a competitor CANNOT easily
+replicate is: a CRM with 100+ race director contacts and detailed notes
+from 18 months of conversations, an 80% reorder rate built on flawless
+delivery and genuine relationship management, a referral network where
+race directors actively recommend the brand to colleagues, a quarterly
+newsletter that keeps the brand top-of-mind during the 8 months between
+orders, and an annual review cadence that makes race directors feel
+valued, heard, and invested in the partnership.</p>
+<p><strong>These systems take years to build and are invisible to
+outsiders.</strong> A competitor who launches a similar poncho in Year 2
+will face: a market where the best race directors are already locked
+into annual relationships with incumbent pricing, where referral
+networks funnel new customers to the established brand, and where case
+studies and composting data provide proof that no new entrant can match.
+The operations described in this document are not just efficiency tools
+— they are the competitive moat that protects the business for years to
+come.</p>
+
+        </div>
+    </div></div>
+<footer style="text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px">
+Sustainable Race-Start Warmth Poncho — D2C Brand GTM Project · 60 Subprojects · 391 Tasks · ~15,500¶ · April 2026
+</footer></body></html>

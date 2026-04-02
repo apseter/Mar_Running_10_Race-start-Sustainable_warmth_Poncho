@@ -1,0 +1,1045 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>P2B: Industrial Design Engineering — Race Start Warmth GTM</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0e1a;--surface:#111827;--card:#1a2332;--border:#2a3a4e;--accent:#10b981;--accent2:#3b82f6;--text:#e2e8f0;--muted:#94a3b8;--white:#fff;--red:#ef4444;--amber:#f59e0b;--green:#10b981}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+/* Nav */
+nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
+nav .inner{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;max-width:1200px;margin:0 auto}
+nav .brand{font-weight:700;font-size:15px;color:var(--accent)}
+nav .links{display:flex;gap:8px;flex-wrap:wrap}
+nav .links a{color:var(--muted);font-size:13px;padding:4px 10px;border-radius:6px;transition:.2s}
+nav .links a:hover,nav .links a.active{color:var(--white);background:var(--card);text-decoration:none}
+/* Hero */
+.hero{padding:60px 0 40px;text-align:center}
+.hero h1{font-size:2.4em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:1.1em;max-width:700px;margin:0 auto}
+/* Stats bar */
+.stats{display:flex;justify-content:center;gap:32px;padding:24px 0;flex-wrap:wrap}
+.stat{text-align:center}.stat .num{font-size:1.8em;font-weight:800;color:var(--white)}.stat .label{font-size:.75em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+/* Cards */
+.grid{display:grid;gap:16px;margin:24px 0}
+.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}
+.grid-3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;transition:.2s}
+.card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.card h3{font-size:1.1em;margin-bottom:8px}.card p{color:var(--muted);font-size:.9em}
+.card .badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:8px}
+.card .meta{font-size:.8em;color:var(--muted);margin-top:12px}
+/* Section */
+.section{padding:40px 0}.section h2{font-size:1.6em;font-weight:700;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+/* Table */
+table{width:100%;border-collapse:collapse;font-size:.85em;margin:16px 0}
+th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:52px}
+td{padding:8px 12px;border-bottom:1px solid var(--border)}
+tr:hover td{background:rgba(16,185,129,.05)}
+.status-complete{color:var(--green);font-weight:600}.status-not{color:var(--muted)}
+/* Progress */
+.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:8px}
+.progress .bar{height:100%;background:var(--accent);border-radius:3px}
+/* Back link */
+.back{display:inline-block;color:var(--muted);font-size:.9em;margin-bottom:20px}
+.back:hover{color:var(--accent)}
+/* Download */
+.dl-card{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin:8px 0;transition:.2s}
+.dl-card:hover{border-color:var(--accent);text-decoration:none}
+.dl-card .icon{font-size:2em}.dl-card .info h4{color:var(--white);margin-bottom:4px}.dl-card .info p{color:var(--muted);font-size:.85em}
+/* Footer */
+footer{text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px}
+@media(max-width:768px){.stats{gap:16px}.stat .num{font-size:1.3em}nav .links{gap:4px}nav .links a{font-size:11px;padding:3px 6px}.hero h1{font-size:1.6em}}
+
+.doc-content{max-width:900px;margin:0 auto;padding:20px 0}
+.doc-content h1{font-size:1.8em;font-weight:800;color:var(--white);margin:32px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.doc-content h2{font-size:1.4em;font-weight:700;color:var(--accent);margin:28px 0 12px}
+.doc-content h3{font-size:1.15em;font-weight:600;color:var(--accent2);margin:20px 0 10px}
+.doc-content p{margin:8px 0;line-height:1.7}
+.doc-content table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85em}
+.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;border:1px solid var(--border)}
+.doc-content td{padding:8px 12px;border:1px solid var(--border);vertical-align:top}
+.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.doc-content ul,.doc-content ol{margin:8px 0 8px 24px}
+.doc-content li{margin:4px 0;line-height:1.6}
+.doc-content strong{color:var(--white)}
+.doc-content em{color:var(--muted)}
+.doc-content blockquote{border-left:3px solid var(--accent);padding:8px 16px;margin:12px 0;background:var(--card);border-radius:0 8px 8px 0}
+.nav-sub{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 24px;padding:12px 16px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
+.nav-sub a{font-size:.8em;color:var(--muted);padding:4px 10px;border-radius:4px;transition:.2s;white-space:nowrap}
+.nav-sub a:hover,.nav-sub a.active{color:var(--white);background:var(--surface);text-decoration:none}
+</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a></div></div></nav><div class="container">
+    <div style="padding-top:30px">
+        <a href="p2.html" class="back">← ⚙️ P2: Product Design</a>
+        <div class="nav-sub"><a href="p2.html">⚙️ P2 Overview</a><a href="sub-p2a.html">P2A</a><a href="sub-p2b.html" class="active">P2B</a><a href="sub-p2c.html">P2C</a><a href="sub-p2d.html">P2D</a><a href="sub-p2e.html">P2E</a><a href="sub-p2f.html">P2F</a></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px">
+            <div>
+                <span style="background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px">P2B</span>
+                <span style="color:var(--muted);font-size:.85em;margin-left:8px">P2: Product Design</span>
+            </div>
+            <a href="files/P2B_Industrial_Design_Engineering.docx" style="font-size:.85em;color:var(--accent);padding:6px 14px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
+        </div>
+        <div class="doc-content">
+            <p><strong>P2B: INDUSTRIAL DESIGN</strong></p>
+<p><strong>&amp; ENGINEERING</strong></p>
+<p>Sub-Project P2B | Product Design &amp; Material Engineering | Weeks
+6–10</p>
+<p><em>Complete Engineering Specification: Silhouette, Hood, Closures,
+Tear-Away System, Branding Zones, Fold Pattern, Factory Tech Spec, and
+Prototype Iteration Plan</em></p>
+<p>March 2026 | Confidential</p>
+<p>Executive Summary</p>
+<p><strong>This document translates P2A’s material selection into a
+production-ready product design.</strong> It provides every dimension,
+engineering specification, and manufacturing instruction needed for a
+converter to produce the poncho. The design prioritizes four principles
+in order: (1) WARMTH — metallized side inward, full coverage, deep hood;
+(2) TEARABILITY — laser-perforated center-front line with 3–5 N
+initiation force, removable in ≤3 seconds with cold wet hands; (3)
+COMFORT — textile-feel nonwoven exterior, oversized armholes, elastic
+hood, 100–120g total weight; (4) PACKABILITY — folds to 6″×4.5″ flat
+pack in compostable bag.</p>
+<p><strong>Key design decisions:</strong> 55″×34″ body (wider than
+standard 50″ for hydration vest compatibility; shorter than standard 40″
+to avoid stride interference); raglan armholes (eliminates shoulder seam
+failure point); single center-front tear-away line (simplest, most
+intuitive removal); 5 PLA snap closures (evaluate elimination in field
+trial for V1 simplification); 4 branding zones (back 14×18″ co-brand,
+front 6×8″, hood 3×3″, pull tab 2×1.5″).</p>
+<p>1. Poncho Silhouette: Dimensions &amp; Rationale</p>
+<p><strong>Industry standard disposable poncho: 50″W × 80″L (total with
+hood).</strong> Our design departs from standard in two key ways: (1)
+WIDER (55″) to accommodate runners wearing hydration vests, race belts,
+or layered base gear; and (2) SHORTER body length (34″ vs. 40″) because
+knee-length ponchos interfere with running stride during the
+walk-to-corral phase and feel cumbersome. The design targets mid-thigh
+length on a 5’5″ runner and above-knee on a 6’0″ runner.</p>
+<table>
+<colgroup>
+<col style="width: 26%" />
+<col style="width: 19%" />
+<col style="width: 54%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Dimension</strong></td>
+<td><strong>Specification</strong></td>
+<td><strong>Rationale</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Overall body width (laid flat, armpit to
+armpit)</strong></td>
+<td>55″ (140 cm)</td>
+<td>Industry standard is 50″; 55″ provides generous fit for runners with
+backpacks/hydration vests and accommodates up to 54″ chest</td>
+</tr>
+<tr class="odd">
+<td><strong>Overall body length (shoulder to hem)</strong></td>
+<td>34″ (86 cm)</td>
+<td>Reaches mid-thigh on 5’2″ runner, above-knee on 6’2″ runner; shorter
+than standard 40″ poncho to avoid interference with running stride</td>
+</tr>
+<tr class="even">
+<td><strong>Total length (hood peak to hem)</strong></td>
+<td>42″ (107 cm)</td>
+<td>Hood adds 8″ above shoulder line</td>
+</tr>
+<tr class="odd">
+<td><strong>Armhole opening</strong></td>
+<td>14″ × 10″ (36 × 25 cm) oval</td>
+<td>Oversized for easy on/off with cold hands and over race gear; raglan
+cut eliminates shoulder seam stress point</td>
+</tr>
+<tr class="even">
+<td><strong>Neck opening diameter</strong></td>
+<td>12″ (30 cm)</td>
+<td>Must fit over a runner’s head wearing a hat or headband; NOT
+tight-fitting</td>
+</tr>
+<tr class="odd">
+<td><strong>Hood depth (nape to peak)</strong></td>
+<td>14″ (36 cm)</td>
+<td>Deep enough to cover a baseball cap or beanie; provides wind
+protection to ears</td>
+</tr>
+<tr class="even">
+<td><strong>Hood width (at face opening)</strong></td>
+<td>10″ (25 cm)</td>
+<td>Wide enough for peripheral vision; elastic draw at face edge holds
+shape in wind</td>
+</tr>
+<tr class="odd">
+<td><strong>Side slit length</strong></td>
+<td>12″ (30 cm) from hem upward</td>
+<td>Allows hip-level access to pockets, race bib, and hydration belt
+without lifting poncho</td>
+</tr>
+<tr class="even">
+<td><strong>Material area per poncho</strong></td>
+<td>~1.8 m² (19.4 ft²)</td>
+<td>Calculated from pattern layout including hood + body + waste
+allowance (5–8%)</td>
+</tr>
+<tr class="odd">
+<td><strong>Total weight (Config B)</strong></td>
+<td>100–120g (3.5–4.2 oz)</td>
+<td>NatureFlex NM 23µm (~42g/m² × 1.0 m²) + PLA spunbond 35gsm (~35g/m²
+× 1.0 m²) + seams/elastic</td>
+</tr>
+</tbody>
+</table>
+<p>1.1 Fit Range: “One Size Fits Most”</p>
+<p>The 55″ width accommodates chest circumferences from 32″ to 54″
+(XS–XXL). Runners larger than 54″ chest will experience a tighter fit
+but the poncho stretches slightly due to the nonwoven’s elasticity. The
+34″ body length works for heights 5’0″ to 6’4″ (mid-thigh to
+above-knee). Below 5’0″: poncho reaches knees, functional but long.
+Above 6’4″: poncho reaches upper thigh, less coverage but still
+functional.</p>
+<p>PRODUCT LISTING COPY: Say “one size fits most adults” (NOT “one size
+fits all” per P1B Section 11.5 inclusivity guidelines). Specify
+dimensions: “55″W × 34″L body (42″ total with hood). Fits chest up to
+54″, height 5’0″–6’4″.” Being explicit about fit range reduces returns
+and builds trust.</p>
+<p>1.2 Design for Runners, Not Tourists</p>
+<p>Standard disposable ponchos are designed for stadium spectators:
+full-length, minimal arm movement, sitting down. Marathon start-line
+ponchos are different: runners walk 0.5–1.5 miles to corrals, stand for
+30–90+ minutes, stretch, check phones, eat gels, adjust race bibs, and
+eventually RUN. The design must accommodate all these movements. Key
+differences vs. standard: shorter length (stride clearance), oversized
+armholes (arm freedom), side slits (pocket/bib access), elastic hood
+(stays on while walking), tear-away (instant removal at speed).</p>
+<p>2. Hood Engineering</p>
+<table>
+<colgroup>
+<col style="width: 21%" />
+<col style="width: 78%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Feature</strong></td>
+<td><strong>Specification</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Construction</strong></td>
+<td>Separate piece heat-sealed or ultrasonically bonded to body at
+neckline; NOT an integrated fold-back (fold-back creates bulk at collar
+and fails in wind)</td>
+</tr>
+<tr class="odd">
+<td><strong>Shape</strong></td>
+<td>Rounded peak (not pointed); follows head contour; slight forward
+extension (2″) to shield face from wind-driven drizzle</td>
+</tr>
+<tr class="even">
+<td><strong>Elastic edge</strong></td>
+<td>3mm compostable elastic cord (PLA-based or natural rubber latex)
+threaded through a 0.5″ folded hem channel around face opening; provides
+tension without tying</td>
+</tr>
+<tr class="odd">
+<td><strong>Elastic adjustment</strong></td>
+<td>Cordlock toggle at chin (compostable PLA or wood toggle); allows
+runner to tighten in wind or loosen for removal</td>
+</tr>
+<tr class="even">
+<td><strong>Wind retention</strong></td>
+<td>Hood must stay on head in 20 mph sustained wind without manual
+holding; elastic + deep cut + forward extension achieve this</td>
+</tr>
+<tr class="odd">
+<td><strong>Hat compatibility</strong></td>
+<td>Must fit over: baseball cap, beanie/toque, headband, visor. Test
+with all 4 headwear types during field trial</td>
+</tr>
+<tr class="even">
+<td><strong>Tear-away integration</strong></td>
+<td>Hood attaches to body via the main tear-away perforation line at
+neckline; when runner tears off poncho, hood separates with body as one
+piece</td>
+</tr>
+<tr class="odd">
+<td><strong>Material orientation</strong></td>
+<td>Metallized side INWARD (reflects head heat upward); nonwoven OUTWARD
+(sheds light rain)</td>
+</tr>
+</tbody>
+</table>
+<p>2.1 Elastic Sourcing: Compostable Options</p>
+<p>Standard elastic (polyester/rubber blend) is NOT compostable and
+would void product certification. Compostable alternatives: (1) Natural
+rubber latex cord (3mm diameter) — biodegrades in composting conditions;
+widely available; check for latex allergy labeling requirement. (2)
+PLA-based elastic filament — emerging material; check with Ahlstrom or
+NatureWorks for spunbond PLA elastic options. (3) Drawstring without
+elastic — PLA or organic cotton cord through channel; runner ties/unties
+manually. Simpler but less convenient. RECOMMENDATION: natural rubber
+latex (3mm) with allergy notice on packaging (“Contains natural rubber
+latex”). Budget: $0.03–$0.08/unit.</p>
+<p>2.2 Cordlock Toggle</p>
+<p>Material: PLA injection-molded (compostable) or FSC-certified wood
+bead with hole. PLA cordlocks are available from specialty suppliers
+(ecolean.com, compostable-components.com) at $0.02–$0.05/unit. Wood bead
+alternative: $0.01–$0.03/unit but less refined appearance. Function:
+single-pull tightening; push-button release. Must operate with cold, wet
+hands wearing thin gloves.</p>
+<p>3. Tear-Away System Engineering</p>
+<p><strong>The tear-away system is the single most critical engineering
+feature.</strong> It must tear easily, cleanly, and completely in ≤3
+seconds with cold wet hands — while remaining intact during 30–90+
+minutes of normal wear in wind and light rain. This is a genuine
+engineering challenge: the perforation must be strong enough to survive
+wind loading but weak enough to tear with minimal force.</p>
+<table>
+<colgroup>
+<col style="width: 19%" />
+<col style="width: 30%" />
+<col style="width:50%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Feature</strong></td>
+<td><strong>Specification</strong></td>
+<td><strong>Engineering Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Perforation type</strong></td>
+<td>Laser-cut micro-perforations along designated tear lines</td>
+<td>Laser provides consistent perforation spacing (2mm cut, 1mm bridge);
+cleaner than mechanical die-cutting; no loose fibers</td>
+</tr>
+<tr class="odd">
+<td><strong>Primary tear line</strong></td>
+<td>Vertical center-front from neckline to mid-chest (18″ / 46 cm)</td>
+<td>Runner grabs pull tab at neckline, pulls downward; poncho splits
+open at front; arms pull free; entire poncho comes off in one
+motion</td>
+</tr>
+<tr class="even">
+<td><strong>Pull tab design</strong></td>
+<td>Reinforced triangular tab (2″ × 1.5″) at top of center-front tear
+line; contrasting color (Dawn Gold) or embossed brand mark</td>
+<td>Must be findable BY FEEL with cold, gloved hands. Raised/textured
+surface critical. Tab resists accidental tearing during normal
+wear.</td>
+</tr>
+<tr class="odd">
+<td><strong>Tear force</strong></td>
+<td>Target: 3–5 N (0.7–1.1 lbf) to initiate; &lt;2 N to propagate</td>
+<td>Too low (&lt;2 N init) = tears accidentally in wind. Too high (&gt;8
+N) = runner can’t tear with cold wet hands. Test with spring gauge.</td>
+</tr>
+<tr class="even">
+<td><strong>Tear time</strong></td>
+<td>Target: ≤3 seconds from grab to full removal</td>
+<td>Measured during field trial (P2A Sec 5) across 3 conditions: warm
+dry hands, cold wet hands, while walking briskly</td>
+</tr>
+<tr class="odd">
+<td><strong>Tear path control</strong></td>
+<td>Perforation line must guide tear straight; no deviation into body
+panels</td>
+<td>Test: 10 consecutive tears with 100% clean path. If &gt;1 deviation
+per 10: increase perforation density (shorten bridge to 0.5mm)</td>
+</tr>
+<tr class="even">
+<td><strong>Secondary tear lines (optional V2)</strong></td>
+<td>Perforated shoulder seams for alternative removal: pull arms free
+first, then lift over head</td>
+<td>V1: single center-front tear. V2: add shoulder tears for users who
+prefer top-down removal. Evaluate in field trial feedback.</td>
+</tr>
+<tr class="odd">
+<td><strong>Cold-hands test</strong></td>
+<td>Tester wears nitrile gloves dampened with cold water; attempts tear
+10 times</td>
+<td>Simulates numb, wet race-morning hands. Must achieve 100% clean
+tear. If fails: enlarge pull tab to 3″ × 2″ or add silicone grip
+dots.</td>
+</tr>
+</tbody>
+</table>
+<p>3.1 Perforation Engineering: Laser Parameters</p>
+<p>Laser perforation is performed by the converter using a CO₂ laser
+(10.6µm wavelength) or UV laser (355nm). Parameters to specify: cut
+length (2.0mm), bridge length (1.0mm), line speed (matched to converting
+line speed, typically 50–200 m/min). For NatureFlex NM (cellulose): CO₂
+laser works well; cellulose ablates cleanly. For PLA-based films: UV
+laser preferred (less thermal damage to PLA). The perforation line must
+be on the ASSEMBLED product (both metallized film + nonwoven layers
+perforated together) to ensure both layers tear simultaneously.</p>
+<p>3.2 Failure Mode Analysis</p>
+<p>FAILURE 1: Tear deviates off perforation line into body panel. Cause:
+insufficient perforation density or uneven material stress. Fix: shorten
+bridge to 0.5mm; add a second parallel perforation line 3mm offset
+(fail-safe guidance track).</p>
+<p>FAILURE 2: Poncho tears accidentally in wind. Cause: perforation too
+aggressive; initiation force &lt;2 N. Fix: lengthen bridge to 1.5mm;
+test in 20 mph wind tunnel or equivalent fan test.</p>
+<p>FAILURE 3: Runner can’t find pull tab with cold hands. Cause: tab is
+flat, small, or same texture as body. Fix: enlarge tab to 3″×2″; add
+silicone grip dots (compostable silicone from Wacker); use contrasting
+color (Dawn Gold).</p>
+<p>FAILURE 4: Tear stops partway; runner struggles to complete removal.
+Cause: perforation line interrupted at seam crossing or elastic
+insertion point. Fix: ensure perforation runs CONTINUOUSLY through all
+material layers including bonded seams. Pre-test every prototype with 10
+consecutive full tears.</p>
+<p>4. Closure System</p>
+<table>
+<colgroup>
+<col style="width: 19%" />
+<col style="width: 38%" />
+<col style="width: 42%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Feature</strong></td>
+<td><strong>Specification</strong></td>
+<td><strong>Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Type</strong></td>
+<td>Compostable PLA snap buttons OR adhesive dot closures</td>
+<td>Snaps preferred for reusability during wear; dots acceptable for
+simpler manufacturing</td>
+</tr>
+<tr class="odd">
+<td><strong>Material</strong></td>
+<td>PLA injection-molded snaps (compostable); or BASF ecovio®
+compostable button system</td>
+<td>All closure components MUST be compostable or the entire product
+certification fails</td>
+</tr>
+<tr class="even">
+<td><strong>Position: Side closures</strong></td>
+<td>2 snaps per side at hip level (24″ from hem); 6″ apart</td>
+<td>Prevent wind billowing through armholes; runner snaps closed in
+corral, unsnaps for arm access</td>
+</tr>
+<tr class="odd">
+<td><strong>Position: Front neck</strong></td>
+<td>1 snap at center-front neckline above tear-line start</td>
+<td>Holds neckline closed for warmth; snap opens easily before
+initiating tear-away</td>
+</tr>
+<tr class="even">
+<td><strong>Snap force</strong></td>
+<td>Target: 2–4 N (0.45–0.9 lbf) to open</td>
+<td>Must open easily with cold hands; standard garment snap force is 3–5
+N</td>
+</tr>
+<tr class="odd">
+<td><strong>Snap count per poncho</strong></td>
+<td>5 total (2 left side + 2 right side + 1 neck)</td>
+<td>Minimum viable; each snap adds $0.02–$0.05 to COGS and requires
+composting verification</td>
+</tr>
+<tr class="even">
+<td><strong>Alternative: no closures (V1 simplification)</strong></td>
+<td>Rely on body fit + elastic hood + side slits for wind
+management</td>
+<td>Eliminates snap COGS ($0.10–$0.25/unit), simplifies manufacturing,
+removes a certification risk. EVALUATE in field trial: is the poncho
+functional without snaps?</td>
+</tr>
+</tbody>
+</table>
+<p><strong>V1 SIMPLIFICATION RECOMMENDATION: Launch without
+snaps.</strong> Evaluate in P2A field trial (Section 5) whether the
+poncho is functional without closures. If the elastic hood + body width
++ side slits provide adequate wind management for 75%+ of testers,
+ELIMINATE snaps entirely. This saves $0.10–$0.25/unit COGS, removes 5
+components requiring composability verification, simplifies
+manufacturing, and reduces failure points. Add snaps in V1.5 if field
+trial feedback demands them.</p>
+<p>5. Branding Zones: Dimensions &amp; Placement</p>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 11%" />
+<col style="width: 14%" />
+<col style="width: 26%" />
+<col style="width: 33%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Zone</strong></td>
+<td><strong>Size</strong></td>
+<td><strong>Position</strong></td>
+<td><strong>Content</strong></td>
+<td><strong>Strategic Purpose</strong></td>
+</tr>
+<tr class="even">
+<td><strong>BACK PANEL (primary co-brand zone)</strong></td>
+<td>14″ W × 18″ H (36 × 46 cm)</td>
+<td>Upper-center back, centered between shoulder line and mid-back</td>
+<td>Race logo (top, up to 10″×8″), Sponsor logo (middle, up to 8″×6″),
+Brand logo (bottom, fixed 4″×2″)</td>
+<td>The money zone for B2B sales; visible to other runners, spectators,
+and cameras while standing in corral</td>
+</tr>
+<tr class="odd">
+<td><strong>FRONT CHEST (secondary brand zone)</strong></td>
+<td>6″ W × 8″ H (15 × 20 cm)</td>
+<td>Left or right chest, above tear-line</td>
+<td>Brand logo only (4″×2″) + composting instruction icon strip
+(4″×1″)</td>
+<td>Runner-facing; visible in selfies and frontal photos; composting
+icons educate user</td>
+</tr>
+<tr class="even">
+<td><strong>HOOD (optional)</strong></td>
+<td>3″ W × 3″ H (8 × 8 cm)</td>
+<td>Center-back of hood</td>
+<td>Brand icon only (icon-only logo variant from P1B)</td>
+<td>Visible from behind when hood is up; subtle brand reinforcement</td>
+</tr>
+<tr class="odd">
+<td><strong>PULL TAB</strong></td>
+<td>2″ W × 1.5″ H (5 × 4 cm)</td>
+<td>Center-front neckline</td>
+<td>Embossed or printed brand name/icon + “PULL TO REMOVE”
+instruction</td>
+<td>Functional branding; last thing runner sees before tearing off</td>
+</tr>
+</tbody>
+</table>
+<p>5.1 Print Feasibility on Compostable Materials</p>
+<p>Printing on metallized NatureFlex NM: the metallized (shiny) surface
+accepts flexographic ink well due to high surface energy. Print on the
+NONWOVEN side (exterior) for better adhesion and readability — the matte
+textile surface provides better ink anchoring than the glossy metallized
+surface. If co-brand logos require printing on the metallized side
+(interior), use screen printing with certified compostable ink (Sun
+Chemical SunUno Solimax AP or hubergroup).</p>
+<p>COLOR LIMITATION: 1–2 spot colors for standard production (Earth
+Green + Warm Charcoal). Co-brand logos requiring 3–4 colors are possible
+but add $0.03–$0.10/unit per additional color (print plate/cylinder
+costs amortized over run). Recommend: race logos in single color (white
+on nonwoven) for maximum contrast and cost efficiency. Minimum print MOQ
+for co-branding: 3,000 units (matches Heatsheets’ custom print MOQ).</p>
+<p>5.2 Branding Zone Template for Converter</p>
+<p>Provide the converter with a full-scale (1:1) branding zone template
+as a separate EPS/AI file. The template shows: exact position of each
+zone relative to neckline, centerline, and hem; safe area (inside which
+artwork must remain); bleed area (3mm beyond safe area); registration
+marks; fold lines (so print aligns correctly when poncho is folded).
+Include mockup showing placeholder race logo + sponsor logo + brand logo
+in correct relative sizes.</p>
+<p>6. Packable Fold Pattern</p>
+<p><strong>The poncho must fold to approximately 6″ × 4.5″ ×
+0.75″</strong> (with packaging) to fit in a runner’s jacket pocket, race
+belt, or drop bag. This is comparable to a large energy gel packet or a
+folded pair of running gloves. The fold pattern must be achievable by
+machine (automated folding at converter) and by hand (runner refolding
+after inspection).</p>
+<table>
+<colgroup>
+<col style="width: 7%" />
+<col style="width: 60%" />
+<col style="width: 31%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Step</strong></td>
+<td><strong>Action</strong></td>
+<td><strong>Result</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Step 1</strong></td>
+<td>Lay poncho flat with hood centered at top, metallized side up</td>
+<td>Full 55″ × 42″ footprint</td>
+</tr>
+<tr class="odd">
+<td><strong>Step 2</strong></td>
+<td>Fold hood inward onto body (tuck into neck opening)</td>
+<td>Reduces height by ~8″; hood is now interior</td>
+</tr>
+<tr class="even">
+<td><strong>Step 3</strong></td>
+<td>Fold left third inward (18.3″ fold)</td>
+<td>Width: 55″ → 36.7″</td>
+</tr>
+<tr class="odd">
+<td><strong>Step 4</strong></td>
+<td>Fold right third inward over left fold</td>
+<td>Width: 36.7″ → 18.3″ (close to target 6″ after next folds)</td>
+</tr>
+<tr class="even">
+<td><strong>Step 5</strong></td>
+<td>Fold bottom up to center</td>
+<td>Height: 34″ → 17″</td>
+</tr>
+<tr class="odd">
+<td><strong>Step 6</strong></td>
+<td>Fold bottom up again to top edge</td>
+<td>Height: 17″ → 8.5″</td>
+</tr>
+<tr class="even">
+<td><strong>Step 7</strong></td>
+<td>Fold in half one more time</td>
+<td>Final: ~6″ W × 4.25″ H × 0.5″ D</td>
+</tr>
+<tr class="odd">
+<td><strong>Step 8</strong></td>
+<td>Insert into compostable inner bag; apply sticker seal</td>
+<td>Pack size: 6″ × 4.5″ × 0.75″ (with packaging)</td>
+</tr>
+</tbody>
+</table>
+<p>MACHINE FOLDING: Standard packaging line fold-and-bag equipment can
+achieve this 8-step pattern at 20–40 units/minute. Specify fold pattern
+in the factory tech spec with a physical folding jig sample. The
+converter should produce 10 sample-folded units for approval before bulk
+production.</p>
+<p>UNFOLD EXPERIENCE: When the runner opens the compostable inner bag
+and unfolds the poncho, the metallic lining should be the first thing
+visible (facing up after final fold). This creates a “wow” unboxing
+moment — the metallic shimmer communicates “technology” and “warmth”
+before the runner even puts it on. Confirm this orientation with the
+converter.</p>
+<p>7. Complete Factory Technical Specification Document</p>
+<p><strong>The factory tech spec is the single document that translates
+the product design into manufacturing instructions.</strong> It is sent
+to the converter as a PDF package alongside material TDS files, artwork
+files, and a golden sample. The converter should be able to produce the
+poncho from this document WITHOUT any additional verbal instruction.</p>
+<table>
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 83%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Section</strong></td>
+<td><strong>Content</strong></td>
+</tr>
+<tr class="even">
+<td><strong>1. Product Overview</strong></td>
+<td>Product name, SKU, description, intended use, regulatory
+classification (disposable apparel), product image (front + back)</td>
+</tr>
+<tr class="odd">
+<td><strong>2. Bill of Materials (BOM)</strong></td>
+<td>Each component: material name, supplier, grade/specification, weight
+per unit, cost per unit. Include: metallized film, PLA spunbond, elastic
+cord, cordlock toggle, snap buttons (if used), compostable ink,
+compostable adhesive (if used)</td>
+</tr>
+<tr class="even">
+<td><strong>3. Dimensional Drawings</strong></td>
+<td>Full-scale technical drawings with all dimensions from Section 1 of
+this document. Include: body front view, body back view, body side view,
+hood detail, tear-away line positions, snap positions, branding zone
+positions, fold pattern. Tolerances: ±0.5″ on body dimensions, ±0.25″ on
+tear-line positioning</td>
+</tr>
+<tr class="odd">
+<td><strong>4. Material Specifications</strong></td>
+<td>For each material: supplier, grade, thickness/weight, color,
+certification numbers, technical data sheet reference, storage
+requirements, shelf life. Include: metallized film TDS (OTR, WVTR,
+tensile, seal temp), PLA spunbond TDS (tensile, tear, weight
+uniformity), elastic spec (diameter, elongation, material)</td>
+</tr>
+<tr class="even">
+<td><strong>5. Assembly Process</strong></td>
+<td>Step-by-step manufacturing sequence: (1) Die-cut body from laminated
+film, (2) Die-cut hood, (3) Bond hood to body (ultrasonic or heat-seal),
+(4) Thread elastic through hood hem channel, (5) Attach cordlock toggle,
+(6) Apply snap buttons (if used), (7) Laser-perforate tear-away lines,
+(8) Print branding (flexo or screen), (9) Fold to pack pattern, (10)
+Insert into inner bag, (11) Apply sleeve/card + sticker, (12) Pack into
+master carton</td>
+</tr>
+<tr class="odd">
+<td><strong>6. Print Specifications</strong></td>
+<td>Print method: flexographic (preferred) or screen. Colors: 1–2 spot
+colors (Earth Green + Warm Charcoal from P1B). Print zones: back panel,
+front chest, hood, pull tab. Registration tolerance: ±1mm. Ink:
+certified compostable (Sun Chemical SunUno Solimax AP or hubergroup).
+Artwork files: vector EPS/AI at 1:1 scale with bleed marks</td>
+</tr>
+<tr class="even">
+<td><strong>7. Quality Acceptance Criteria</strong></td>
+<td>20-point QC checklist (from P2E): visual inspection (no
+metallization defects, no delamination, consistent color), dimensional
+check (±0.5″), tear-away test (3–5 N initiation, clean path 10/10), seam
+strength (&gt;5 N/cm), elastic tension (holds on head in wind), snap
+function (2–4 N), print alignment (±1mm), weight check (±10% of target),
+packability (fits in 6″×4.5″ bag)</td>
+</tr>
+<tr class="odd">
+<td><strong>8. Packaging Specifications</strong></td>
+<td>Inner bag: compostable PLA film, 30–40µm, semi-transparent,
+heat-sealed, 130×180mm. Card/sleeve: compostable card stock, 130×60mm,
+printed front/back per P1B Sec 6. Sticker: compostable cellulose, 40mm
+circle, brand logo + BPI mark. Master carton: 50 or 100 units,
+corrugated, 400×300×250mm (50-ct) or 400×300×500mm (100-ct), with
+barcode + handling labels</td>
+</tr>
+<tr class="even">
+<td><strong>9. Certifications &amp; Compliance</strong></td>
+<td>BPI certificate number, ASTM D6400 test report reference, EN 13432
+(if applicable), TÜV OK Compost HOME (if applicable), FTC Green Guides
+compliance statement, California SB 343 compliance (if selling in CA),
+product liability insurance certificate</td>
+</tr>
+<tr class="odd">
+<td><strong>10. Shipping &amp; Storage</strong></td>
+<td>Shipping: standard freight, no hazmat classification. Storage: below
+25°C / 77°F, below 50% RH, no direct UV. FIFO required. Shelf life: 12
+months from production date (climate-controlled). Palletization: 20
+master cartons per pallet, stretch-wrapped, labeled</td>
+</tr>
+</tbody>
+</table>
+<p>7.1 Tech Spec Document Production</p>
+<p>Format: PDF, 15–25 pages, with full-color dimensional drawings and
+photographs. Create in: Adobe Illustrator (dimensional drawings at 1:1
+scale), InDesign (document layout), or Canva (simplified version for
+non-designers). All dimensions in both inches AND centimeters. All
+weights in both grams AND ounces. All forces in both Newtons AND
+pounds-force. Include English AND Mandarin Chinese text if working with
+China-based converters (translation cost: $100–$300 for technical
+document).</p>
+<p>DELIVERY TO CONVERTER: Send as a single ZIP package containing: (1)
+Factory Tech Spec PDF, (2) Material TDS files (one per component), (3)
+Artwork files (EPS/AI vector, 1:1 scale), (4) Branding zone template
+(EPS/AI), (5) Fold pattern jig diagram, (6) Golden sample (3 physical
+units shipped separately). Request written acknowledgment + production
+timeline within 5 business days.</p>
+<p>8. Prototype Iteration Plan</p>
+<p><strong>The design goes through 4 prototype iterations before
+production commitment.</strong> Each iteration has a specific purpose
+and decision gate. DO NOT skip iterations — each one catches different
+classes of problems.</p>
+<table>
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 38%" />
+<col style="width: 9%" />
+<col style="width: 40%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Prototype</strong></td>
+<td><strong>Description</strong></td>
+<td><strong>Timeline</strong></td>
+<td><strong>Purpose</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Proto V0.1 (hand-fabricated)</strong></td>
+<td>Hand-cut from NatureFlex NM sample sheets using rotary cutter +
+ruler. Hood attached with compostable tape. No elastic, no snaps, no
+perforations.</td>
+<td>Week 5</td>
+<td>Validate basic dimensions, fit on 3–5 body types, warmth feel,
+material hand. Identify major design flaws before investing in
+tooling.</td>
+</tr>
+<tr class="odd">
+<td><strong>Proto V0.2 (improved hand)</strong></td>
+<td>Incorporate V0.1 feedback: adjust dimensions, add elastic (sew
+through channel), add pull tab (taped). Test tear-away by scoring film
+with box cutter along tear line.</td>
+<td>Week 6</td>
+<td>Validate improved fit, elastic hood retention, simulated tear-away.
+Use for field trial Session 1 (P2A).</td>
+</tr>
+<tr class="even">
+<td><strong>Proto V0.3 (converter sample)</strong></td>
+<td>Send tech spec to 2–3 converters (Parkside, ProAmpac, or China
+converter). Receive professionally cut/sealed samples with proper
+bonding and laser perforations.</td>
+<td>Week 8–10</td>
+<td>First factory-quality samples. Test tear-away force with spring
+gauge. Test seam strength. Validate print registration on actual
+material.</td>
+</tr>
+<tr class="odd">
+<td><strong>Proto V1.0 (production-ready)</strong></td>
+<td>Final golden sample approved by founder. All dimensions, materials,
+bonding, perforations, elastic, snaps (if used), and printing match the
+factory tech spec exactly.</td>
+<td>Week 12</td>
+<td>THIS is the sample that production is matched against. Sign off with
+dated approval. Retain 3 golden samples (1 for founder, 1 for factory, 1
+for QC reference).</td>
+</tr>
+</tbody>
+</table>
+<p>8.1 Prototype Cost Budget</p>
+<p>V0.1 (hand-fabricated): $50–$100 (materials only; founder labor).
+V0.2 (improved hand): $50–$100 (materials + elastic + tape). V0.3
+(converter samples): $500–2,000 (converter charges for small-run
+samples; 50–100 units). V1.0 (golden sample from production line): $0
+incremental if part of production run setup; $300–$500 if requested as a
+separate pre-production sample run. TOTAL PROTOTYPING BUDGET:
+$600–$2,700 across all iterations.</p>
+<p>9. Design for Composting: Engineering Constraints</p>
+<p><strong>Every design decision must pass the “will this compost?”
+test.</strong> Common industrial design elements that BREAK
+compostability: metal snaps (replace with PLA), polyester elastic
+(replace with natural rubber or PLA), UV-curable inks (replace with
+certified compostable flexo inks), nylon thread (replace with PLA thread
+or ultrasonic bonding), adhesive tapes (replace with heat-sealing or
+ultrasonic bonding).</p>
+<p>RULE: If a component cannot be verified as compostable, it must be
+either: (A) replaced with a certified compostable alternative, or (B)
+designed to be SEPARABLE so the runner can remove it before composting
+(e.g., a removable cordlock that can be pulled off the drawstring).
+Option A is strongly preferred — expecting runners to disassemble a
+poncho before composting is unrealistic.</p>
+<p>BONDING METHOD: Ultrasonic point-bonding is the PREFERRED method for
+joining metallized film to PLA spunbond. It uses no adhesive
+(eliminating a certification risk), works well with PLA thermoplastics
+at 20–35 kHz, preserves softness between bond points, and creates strong
+permanent bonds. Equipment: Herrmann Ultrasonics
+(herrmannultraschall.com) or Branson (Emerson). Alternative:
+heat-sealing at 120–150°C on the NatureFlex NM sealant surface
+(non-metallized side). Confirm seal temperature window with Futamura
+TDS.</p>
+<p>10. Design Risk Register</p>
+<p><strong>RISK 1: Tear-away too weak → accidental tearing in wind.
+Probability: MEDIUM. Impact: HIGH (product failure). Mitigation:
+conservative perforation (1.0mm bridge); wind-test at 20 mph before
+production.</strong></p>
+<p><strong>RISK 2: Tear-away too strong → runner can’t remove with cold
+hands. Probability: MEDIUM. Impact: HIGH (bad reviews). Mitigation:
+field trial with cold-wet-hand test (P2A Sec 5); enlarge pull tab if
+needed.</strong></p>
+<p><strong>RISK 3: Elastic fails composting test. Probability:
+LOW-MEDIUM. Impact: HIGH (certification failure). Mitigation: use
+natural rubber latex (proven compostable); test as part of full product
+certification.</strong></p>
+<p><strong>RISK 4: Print delaminates from nonwoven during wear.
+Probability: LOW. Impact: MEDIUM (aesthetic, not functional).
+Mitigation: specify primer coat on nonwoven before printing; test with
+body-heat + movement simulation.</strong></p>
+<p><strong>RISK 5: Fold pattern doesn’t fit in 6″×4.5″ bag. Probability:
+LOW. Impact: MEDIUM (packaging redesign). Mitigation: validate fold
+pattern with physical samples before ordering packaging.</strong></p>
+<p><strong>RISK 6: One-size-fits-most excludes significant population.
+Probability: LOW-MEDIUM. Impact: MEDIUM (negative reviews, returns).
+Mitigation: honest sizing in product listing; test on 8+ body types in
+field trial; consider XL variant for V1.5.</strong></p>
+<p>11. Intellectual Property &amp; Patent Strategy</p>
+<p><strong>[GAP P2-03 CLOSED]</strong> The tear-away perforation system
+on a compostable metallized laminate film is genuinely novel
+engineering. No existing product combines laser-perforated tear-away
+lines with a metallized compostable cellulose/PLA laminate designed for
+athletic use. This section establishes the IP protection strategy that
+must be executed BEFORE any public disclosure — including trade shows,
+social media posts, sample distribution to race directors, or Amazon
+listing publication.</p>
+<p>11.1 Patent Protection: Provisional Application</p>
+<p><strong>FILE A PROVISIONAL PATENT APPLICATION before ANY public
+disclosure of the product. Under US patent law (35 U.S.C. §102), a
+public disclosure (trade show demo, social media post, published Amazon
+listing, or sample sent to a race director without NDA) starts a
+12-month clock after which patent rights may be permanently lost. A
+provisional patent application establishes a priority date, provides 12
+months of “Patent Pending” status, and costs $1,500–3,000 with a patent
+attorney (or $320 USPTO filing fee if self-filed, though attorney
+drafting is strongly recommended).</strong></p>
+<p>CLAIMS TO PROTECT: The provisional should describe and claim: (1) A
+compostable warmth garment comprising a metallized compostable film
+layer bonded to a compostable nonwoven textile layer, with
+laser-perforated tear-away lines enabling rapid removal. (2) The
+specific perforation parameters (cut/bridge ratio, tear force range 3–5
+N initiation) calibrated for use with cold, wet, or gloved hands. (3)
+The orientation of metallized layer inward (body-facing) for infrared
+heat reflection with nonwoven layer outward for water shedding and
+textile hand. (4) The integrated compostable elastic hood with cordlock
+toggle designed for wind retention during athletic activity. (5) The
+co-brand printing zones on compostable nonwoven surface with certified
+compostable inks for race/sponsor customization.</p>
+<p>ATTORNEY SELECTION: Engage a patent attorney with experience in
+textile/apparel patents, materials science, or consumer products.
+Sources: USPTO Patent Practitioner Search (oedci.uspto.gov), LinkedIn
+search for “textile patent attorney,” or referral from a startup
+accelerator (Y Combinator, Techstars). Budget: $1,500–3,000 for
+provisional filing (includes attorney consultation + claims drafting +
+USPTO filing fee). Timeline: 2–4 weeks from engagement to filing.</p>
+<p>11.2 Design Patent</p>
+<p>In addition to (or instead of) a utility provisional, consider a
+DESIGN PATENT for the poncho’s ornamental appearance. A design patent
+protects the specific visual design: the silhouette shape, hood contour,
+tear-away pull tab placement, branding zone layout, and fold pattern. It
+does NOT protect function (that’s the utility patent’s job). Cost:
+$1,000–2,500 with patent attorney. Protection period: 15 years from
+grant. Advantage: easier to obtain than utility patents (no
+“obviousness” challenge) and provides a different layer of protection. A
+competitor could engineer around the utility claims but would need to
+change the visual appearance to avoid the design patent.</p>
+<p>11.3 Trade Secret Protection</p>
+<p>Until patents are filed, protect all product specifications as TRADE
+SECRETS. Requirements: (1) All converters, suppliers, and consultants
+sign NDAs BEFORE receiving the factory tech spec (P2B Section 7). Use a
+mutual NDA template ($0 — free templates at docracy.com or
+rocketlawyer.com, or $200–$500 for attorney-drafted). (2) Mark all
+technical documents “CONFIDENTIAL — Trade Secret” on every page. (3)
+Limit distribution of the factory tech spec to named individuals at the
+converter (not the entire organization). (4) Maintain a log of who
+received what document and when. (5) After patent is filed: trade secret
+protection continues for aspects NOT disclosed in the patent (e.g.,
+specific laser settings, bonding parameters, supplier-specific
+calibration data).</p>
+<p>11.4 Trade Dress</p>
+<p>TRADE DRESS protects the overall “look and feel” of the product as
+consumers experience it: the distinctive metallic silver + earth-green
+combination, the poncho-with-hood form factor for race use, the branded
+packaging with composting lifecycle icons, and the tear-away pull tab in
+contrasting Dawn Gold. Trade dress protection arises through USE in
+commerce (no registration required initially) but is strengthened by
+federal registration (USPTO, $250–$350 per class). Requirements for
+trade dress: (1) Distinctiveness — consumers associate the look with the
+brand (builds over time through consistent use). (2) Non-functionality —
+the visual elements are ornamental, not functional (the green color is
+ornamental; the metallized silver is functional and cannot be protected
+as trade dress). Strategy: use consistent visual identity from Day 1
+(per P1B design system) to build trade dress recognition, then register
+after 1–2 years of market presence.</p>
+<p>11.5 IP Timeline &amp; Checklist</p>
+<p><strong>☐ BEFORE Week 8 (before sending factory tech spec to
+converters): All converters sign NDA. Mark all documents
+CONFIDENTIAL.</strong></p>
+<p><strong>☐ BEFORE any public disclosure (trade show, social media,
+Amazon listing): File provisional patent application with USPTO. Engage
+patent attorney by Week 6 to meet this deadline. Cost:
+$1,500–3,000.</strong></p>
+<p><strong>☐ Within 12 months of provisional filing: Decide whether to
+convert provisional to full utility patent application ($8,000–15,000
+with attorney) or let it lapse. Decision depends on: competitive threat
+assessment, revenue traction, and investor interest (investors value
+patents).</strong></p>
+<p><strong>☐ Month 3–6: File design patent application ($1,000–2,500)
+for the poncho’s ornamental design.</strong></p>
+<p><strong>☐ Month 12+: Evaluate trade dress registration once the
+product has been sold commercially and the visual identity is
+established in the market.</strong></p>
+<p>TOTAL IP BUDGET: $2,500–5,500 for provisional utility + design
+patent. $8,000–15,000 additional if converting to full utility patent in
+Year 2. This is a fraction of the cost of losing market exclusivity to a
+well-funded competitor who copies the design.</p>
+<p>11.6 Marking &amp; Enforcement</p>
+<p>Once the provisional is filed: mark ALL product packaging, Amazon
+listings, website, and B2B materials with “Patent Pending.” This puts
+competitors on legal notice. After full patent issues: mark with the
+patent number (35 U.S.C. §287 requires marking to collect damages).
+Enforcement: if a competitor copies the design, send a cease-and-desist
+letter ($500–1,500 via patent attorney) BEFORE escalating to litigation.
+Most small competitors will stop upon receiving a C&amp;D backed by a
+granted patent. Budget for C&amp;D: $500–1,500 per incident.</p>
+<p>12. Adaptive Athlete Accessibility</p>
+<p><strong>[GAP P2-18 CLOSED]</strong> P1B Section 11.3 commits the
+brand to inclusive photography including adaptive athletes. But
+inclusivity in marketing without inclusivity in product design is
+performative. Major marathons have 1–3% adaptive athletes (wheelchair
+racers, visually impaired runners with guides, athletes with prosthetic
+limbs), and this segment receives disproportionate media coverage. If
+the poncho doesn’t physically work for these athletes, a high-visibility
+failure becomes a PR liability.</p>
+<p>12.1 Wheelchair Racer Fit Assessment</p>
+<p>The standard poncho design (overhead pull-on, 34″ body length, 55″
+width) behaves differently when worn by a seated athlete. Key issues:
+(1) HEMLINE: at 34″ body length, the hem pools in the lap and may catch
+in wheelchair spokes or push-rim during propulsion. This is a SAFETY
+CONCERN, not just a comfort issue. (2) ARMHOLES: oversized raglan
+armholes designed for standing runners may gap too widely at the sides
+when seated, reducing warmth retention. (3) DONNING: pulling an overhead
+poncho on while seated in a racing wheelchair is difficult — the chair
+back and push-rims obstruct the motion. (4) TEAR-AWAY: the center-front
+tear-away design should work for seated users (pull tab at neckline is
+accessible from a seated position).</p>
+<p>V1 MITIGATION: (1) Test the standard poncho on 1–2 wheelchair users
+during P2C corral simulation (recruit through Achilles International
+local chapter or the race’s adaptive athlete coordinator). (2) Document
+fit honestly: if the poncho works for wheelchair users with adjustments
+(e.g., tuck hemline under thighs), note this in the product listing
+(“Wheelchair users: tuck hem under thighs to prevent spoke contact”).
+(3) If the poncho is genuinely unsafe for wheelchair users (hem catches
+in wheels during propulsion), DO NOT market to this segment — instead,
+note the limitation honestly and commit to a V1.5 adaptive variant.</p>
+<p>12.2 Adaptive Variant Concept (V1.5 or V2)</p>
+<p>If V1 testing reveals poor fit for seated athletes, develop a
+SIDE-OPENING VARIANT: instead of an overhead pull-on poncho, the
+adaptive version wraps around the athlete from the front and fastens at
+the back (like a medical gown). This eliminates the overhead donning
+problem and allows the hemline to drape naturally over the lap without
+pooling. Design changes: replace center-front tear-away with a full
+wrap-around opening secured by 2–3 compostable snap closures at the
+upper back. Hood remains the same. Material and warmth performance are
+identical. Branding zones shift: back panel (now behind the athlete)
+remains the co-brand zone, but is only visible from behind. Front chest
+zone remains visible. The adaptive variant adds 1 SKU and requires a
+separate die-cut pattern at the converter. MOQ: as low as 500–1,000
+units per order if using the same materials. COGS: +$0.05–$0.15/unit for
+different die-cut and closure configuration.</p>
+<p>12.3 Visually Impaired Runner Considerations</p>
+<p>Visually impaired runners race with a guide connected by a tether.
+The poncho’s side slits and oversized armholes accommodate tether
+attachment without modification. The tear-away pull tab must be
+identifiable BY FEEL (already specified in P2B Section 3 —
+raised/textured tab, contrasting from body material). For visually
+impaired runners, ADD BRAILLE OR RAISED TEXT on the packaging card: a
+simple embossed “PULL HERE” near the pull tab location improves
+accessibility. Cost: $0.01–$0.03/unit for embossing on the card/sleeve.
+Include in the factory tech spec for V1.5.</p>
+<p>12.4 Product Listing Language</p>
+<p>Amazon and Shopify product listings should include, under a “Fit
+&amp; Accessibility” subsection: “One size fits most adults (chest up to
+54″, height 5’0″–6’4″). Designed for standing and walking runners at
+race start lines. Wheelchair users: tuck hem under thighs to prevent
+spoke contact; we recommend testing fit before race day. For
+accessibility questions, contact support@[brand].com.” This is honest,
+specific, and invites dialogue rather than claiming universal fit that
+may not be true. Update messaging as adaptive variant becomes available
+in V1.5/V2.</p>
+<p>13. Timeline: 5-Week Design Sprint</p>
+<p><strong>WEEK 6: Finalize dimensions based on P2A field trial
+feedback. Produce V0.1 hand prototypes. Test fit on 5+ body types. Draft
+initial dimensional drawings.</strong></p>
+<p><strong>WEEK 7: Iterate to V0.2. Add elastic hood, simulated
+tear-away. Use in P2A field trial Sessions 2–3. Begin drafting factory
+tech spec document.</strong></p>
+<p><strong>WEEK 8: Finalize all dimensions, tear-away specifications,
+branding zones. Send tech spec + artwork to 2–3 converters for V0.3
+quote and sample production.</strong></p>
+<p><strong>WEEK 9: Receive converter quotes. Evaluate V0.3 samples when
+received. Test tear-away force with spring gauge. Test seam strength.
+Test print quality.</strong></p>
+<p><strong>WEEK 10: Approve V0.3 or iterate to V0.3.1. Finalize factory
+tech spec document. Select converter. Negotiate production terms.
+Prepare for P2C (Prototype Production).</strong></p>
+<p>Budget for P2B sprint: $500–$1,500. Includes: hand prototype
+materials ($100–$200), dimensional drawing creation ($0 if DIY in
+Illustrator, or $200–$500 for freelance technical illustrator),
+converter sample deposit ($200–$500), and spring gauge for tear-away
+testing ($15–30 on Amazon).</p>
+<p>14. Conclusion: Simplicity Is the Engineering Challenge</p>
+<p><strong>The poncho looks simple. That’s the point.</strong> A runner
+standing in a 38°F corral at 6 AM should be able to unfold it, put it
+on, and forget about it until the gun fires. Then they should be able to
+tear it off in under 3 seconds without thinking. Every engineering
+decision in this document serves that experience: generous sizing (no
+fumbling), elastic hood (stays on automatically), intuitive tear-away
+(grab, pull, done), and compact fold (fits in a pocket).</p>
+<p><strong>The hardest engineering problem is the tear-away
+calibration:</strong> strong enough for 90 minutes of wind, weak enough
+for 3 seconds of cold-handed removal. This is solved through laser
+perforation tuning (2mm cut / 1mm bridge as starting point) validated by
+50+ test tears across multiple conditions. Do not commit to production
+until the tear-away passes 10/10 clean tears in cold-wet-hand testing.
+If this single feature works, the product works. If it doesn’t, nothing
+else matters.</p>
+
+        </div>
+    </div></div>
+<footer style="text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px">
+Sustainable Race-Start Warmth Poncho — D2C Brand GTM Project · 60 Subprojects · 391 Tasks · ~15,500¶ · April 2026
+</footer></body></html>

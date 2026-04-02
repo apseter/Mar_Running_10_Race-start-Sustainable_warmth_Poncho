@@ -1,0 +1,742 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>P5E: Sponsor Partnerships — Race Start Warmth GTM</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0e1a;--surface:#111827;--card:#1a2332;--border:#2a3a4e;--accent:#10b981;--accent2:#3b82f6;--text:#e2e8f0;--muted:#94a3b8;--white:#fff;--red:#ef4444;--amber:#f59e0b;--green:#10b981}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+/* Nav */
+nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
+nav .inner{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;max-width:1200px;margin:0 auto}
+nav .brand{font-weight:700;font-size:15px;color:var(--accent)}
+nav .links{display:flex;gap:8px;flex-wrap:wrap}
+nav .links a{color:var(--muted);font-size:13px;padding:4px 10px;border-radius:6px;transition:.2s}
+nav .links a:hover,nav .links a.active{color:var(--white);background:var(--card);text-decoration:none}
+/* Hero */
+.hero{padding:60px 0 40px;text-align:center}
+.hero h1{font-size:2.4em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:1.1em;max-width:700px;margin:0 auto}
+/* Stats bar */
+.stats{display:flex;justify-content:center;gap:32px;padding:24px 0;flex-wrap:wrap}
+.stat{text-align:center}.stat .num{font-size:1.8em;font-weight:800;color:var(--white)}.stat .label{font-size:.75em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+/* Cards */
+.grid{display:grid;gap:16px;margin:24px 0}
+.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}
+.grid-3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;transition:.2s}
+.card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.card h3{font-size:1.1em;margin-bottom:8px}.card p{color:var(--muted);font-size:.9em}
+.card .badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:8px}
+.card .meta{font-size:.8em;color:var(--muted);margin-top:12px}
+/* Section */
+.section{padding:40px 0}.section h2{font-size:1.6em;font-weight:700;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+/* Table */
+table{width:100%;border-collapse:collapse;font-size:.85em;margin:16px 0}
+th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:52px}
+td{padding:8px 12px;border-bottom:1px solid var(--border)}
+tr:hover td{background:rgba(16,185,129,.05)}
+.status-complete{color:var(--green);font-weight:600}.status-not{color:var(--muted)}
+/* Progress */
+.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:8px}
+.progress .bar{height:100%;background:var(--accent);border-radius:3px}
+/* Back link */
+.back{display:inline-block;color:var(--muted);font-size:.9em;margin-bottom:20px}
+.back:hover{color:var(--accent)}
+/* Download */
+.dl-card{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin:8px 0;transition:.2s}
+.dl-card:hover{border-color:var(--accent);text-decoration:none}
+.dl-card .icon{font-size:2em}.dl-card .info h4{color:var(--white);margin-bottom:4px}.dl-card .info p{color:var(--muted);font-size:.85em}
+/* Footer */
+footer{text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px}
+@media(max-width:768px){.stats{gap:16px}.stat .num{font-size:1.3em}nav .links{gap:4px}nav .links a{font-size:11px;padding:3px 6px}.hero h1{font-size:1.6em}}
+
+.doc-content{max-width:900px;margin:0 auto;padding:20px 0}
+.doc-content h1{font-size:1.8em;font-weight:800;color:var(--white);margin:32px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.doc-content h2{font-size:1.4em;font-weight:700;color:var(--accent);margin:28px 0 12px}
+.doc-content h3{font-size:1.15em;font-weight:600;color:var(--accent2);margin:20px 0 10px}
+.doc-content p{margin:8px 0;line-height:1.7}
+.doc-content table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85em}
+.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;border:1px solid var(--border)}
+.doc-content td{padding:8px 12px;border:1px solid var(--border);vertical-align:top}
+.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.doc-content ul,.doc-content ol{margin:8px 0 8px 24px}
+.doc-content li{margin:4px 0;line-height:1.6}
+.doc-content strong{color:var(--white)}
+.doc-content em{color:var(--muted)}
+.doc-content blockquote{border-left:3px solid var(--accent);padding:8px 16px;margin:12px 0;background:var(--card);border-radius:0 8px 8px 0}
+.nav-sub{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 24px;padding:12px 16px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
+.nav-sub a{font-size:.8em;color:var(--muted);padding:4px 10px;border-radius:4px;transition:.2s;white-space:nowrap}
+.nav-sub a:hover,.nav-sub a.active{color:var(--white);background:var(--surface);text-decoration:none}
+</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a></div></div></nav><div class="container">
+    <div style="padding-top:30px">
+        <a href="p5.html" class="back">← 🤝 P5: B2B Sales</a>
+        <div class="nav-sub"><a href="p5.html">🤝 P5 Overview</a><a href="sub-p5a.html">P5A</a><a href="sub-p5b.html">P5B</a><a href="sub-p5c.html">P5C</a><a href="sub-p5d.html">P5D</a><a href="sub-p5e.html" class="active">P5E</a><a href="sub-p5f.html">P5F</a></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px">
+            <div>
+                <span style="background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px">P5E</span>
+                <span style="color:var(--muted);font-size:.85em;margin-left:8px">P5: B2B Sales</span>
+            </div>
+            <a href="files/P5E_Sponsor_Partnerships.docx" style="font-size:.85em;color:var(--accent);padding:6px 14px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
+        </div>
+        <div class="doc-content">
+            <p><strong>P5E: SPONSOR</strong></p>
+<p><strong>PARTNERSHIPS</strong></p>
+<p>Sub-Project P5E | B2B Sales Engine | Weeks 16–28</p>
+<p><em>Complete Sponsor Strategy: 8 Corporate Sponsor Profiles, 5-Pillar
+Value Proposition, 4-Tier Pricing Structure, Sponsor Impact Report
+Template, Case Study Framework, and Registration Add-On Revenue
+Model</em></p>
+<p>March 2026 | Confidential</p>
+<p>Executive Summary</p>
+<p><strong>Sponsor partnerships are the ultimate business model
+unlock.</strong> When a sponsor funds the ponchos, the race director
+pays nothing, the runners get free warmth, the sponsor gets visible
+sustainability activation, and the brand earns full revenue. It is the
+only model in which EVERY stakeholder wins without compromise. A single
+Platinum sponsor at a major marathon — TCS at NYC, Bank of America at
+Chicago — generates $25,000–$350,000 in a single race, with the
+potential for multi-race, multi-year agreements worth $100K–$1M+.</p>
+<p><strong>This document builds the complete sponsor partnership
+system:</strong> 8 corporate sponsor profiles matched to the top 20
+target races, a 5-pillar value proposition that sells the poncho as a
+BRAND ASSET (not a product purchase), 4 pricing tiers from Silver
+($0.50/unit) to Full Funding ($5.00–$7.00/unit), a sponsor impact report
+template designed in the SPONSOR’s brand colors for their internal use,
+a case study framework for converting the first sponsor deal into the
+second, and a registration add-on model that creates passive revenue
+through race registration platforms.</p>
+<p>1. Corporate Sponsor Targets: 8 Profiles</p>
+<p><strong>The target sponsors share 3 characteristics:</strong> (1)
+they already sponsor major marathons (proven budget for running events),
+(2) they have published sustainability commitments (ESG reporting,
+carbon reduction targets, plastic reduction goals), and (3) their brand
+identity benefits from visible sustainability activations at public
+events. The poncho is not an advertising medium — it is a sustainability
+activation that happens to carry a logo.</p>
+<table>
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 19%" />
+<col style="width: 8%" />
+<col style="width: 21%" />
+<col style="width: 39%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Sponsor</strong></td>
+<td><strong>Current Race Sponsorships</strong></td>
+<td><strong>Est. Running Spend</strong></td>
+<td><strong>Sustainability Profile</strong></td>
+<td><strong>Assessment</strong></td>
+</tr>
+<tr class="even">
+<td><strong>TCS (Tata Consultancy Services)</strong></td>
+<td>Title sponsor: NYC Marathon, Chicago Marathon, London Marathon</td>
+<td>$40M+/year in running sponsorships (P0G Sec 4)</td>
+<td>TCS Sustainability Report pledges net-zero by 2030. Actively
+communicates ESG achievements at sponsored events. NYC Marathon alone =
+50K+ runners.</td>
+<td>VERY HIGH. TCS has the budget, the sustainability commitment, and
+the race-day visibility need. A TCS-branded compostable poncho at the
+NYC Marathon is the ultimate launch placement. 50,000 ponchos ×
+$5.00–$7.00/unit = $250K–$350K single-race deal.</td>
+</tr>
+<tr class="odd">
+<td><strong>Bank of America</strong></td>
+<td>Title sponsor: Chicago Marathon</td>
+<td>$10M+/year in running</td>
+<td>BofA has published environmental commitments including $1T
+sustainable finance goal by 2030. ESG reporting is core to their
+brand.</td>
+<td>HIGH. Corporate sustainability is a BofA priority. A co-branded
+poncho at Chicago would align with their ESG narrative. Approach via:
+BofA corporate sponsorship team or through the Chicago Marathon race
+director introduction.</td>
+</tr>
+<tr class="even">
+<td><strong>Abbott (AbbottWMM)</strong></td>
+<td>Abbott World Marathon Majors series sponsor</td>
+<td>Global health company, $5M+/year in running</td>
+<td>Abbott has environmental targets in their sustainability report.
+Their logo appears on all WMM races (NYC, Chicago, Boston, Tokyo,
+London, Berlin).</td>
+<td>HIGH but complex. Abbott sponsors the WMM series, not individual
+races. A series-level deal would cover 6 major marathons globally.
+However: requires navigating WMM governance. Start with a pilot at one
+WMM race and use results to approach Abbott for series expansion.</td>
+</tr>
+<tr class="odd">
+<td><strong>Schneider Electric</strong></td>
+<td>Title sponsor: Paris Marathon, sponsor of several US races</td>
+<td>Global energy management company, strong sustainability brand</td>
+<td>Schneider is consistently ranked among the world’s most sustainable
+companies (Corporate Knights, CDP A-list). Their brand IS
+sustainability. Running sponsorships align with their “impact company”
+positioning.</td>
+<td>VERY HIGH alignment. Schneider would be the ideal sponsor for the
+Sponsor-Funded tier (P3C Section 4): their brand on a compostable poncho
+is a perfect ESG activation. Approach: Schneider sustainability
+partnerships team or their event sponsorship division.</td>
+</tr>
+<tr class="even">
+<td><strong>Hoka / On Running / Brooks</strong></td>
+<td>Running shoe brands with sustainability commitments</td>
+<td>$5M–$20M/year in event sponsorships</td>
+<td>Hoka (Deckers): sustainability goals for materials and packaging. On
+Running: sustainability report with carbon reduction targets. Brooks:
+Run Happy Planet commitments, recycled materials in products.</td>
+<td>MODERATE. Running shoe brands are “adjacent” sponsors — they sponsor
+races for runner visibility but may see a poncho as outside their
+product category. However: co-branding a poncho with Hoka’s logo = brand
+impressions at the most emotionally intense moment of the race (the cold
+corral, anticipation building). Approach: brand partnerships or event
+marketing team.</td>
+</tr>
+<tr class="odd">
+<td><strong>Clif Bar / Nuun / Maurten</strong></td>
+<td>Running nutrition brands</td>
+<td>$2M–$10M/year in events</td>
+<td>Clif Bar: B-Corp certified, strong environmental values, longtime
+race sponsor. Nuun: sustainability commitments, plastic reduction.
+Maurten: premium positioning, growing US presence.</td>
+<td>MODERATE. Nutrition brands sponsor races for sampling opportunities.
+A poncho is a different product category but the CO-BRAND opportunity is
+unique: runner sees Clif Bar logo on their poncho for 30–60 minutes of
+corral waiting = extended brand impression (vs. 5-second gel sample).
+Approach via: brand’s event marketing team.</td>
+</tr>
+<tr class="even">
+<td><strong>Subaru</strong></td>
+<td>Car brand, sponsor of multiple marathons</td>
+<td>$5M–$15M/year in running/outdoor</td>
+<td>Subaru markets itself as the “outdoor lifestyle” car brand. Partners
+with National Park Foundation, Leave No Trace. Environmental credibility
+in the outdoor space.</td>
+<td>MODERATE. Subaru’s audience (outdoor enthusiasts, runners,
+eco-conscious consumers) overlaps perfectly with the poncho’s target
+market. A Subaru-branded poncho at a Subaru-sponsored race = perfect
+activation. Approach: Subaru event sponsorship or their agency
+(typically handled by an activation agency).</td>
+</tr>
+<tr class="odd">
+<td><strong>REI</strong></td>
+<td>Outdoor retailer, co-op model</td>
+<td>$3M–$8M/year in events + community sponsorships</td>
+<td>REI is a B-Corp with industry-leading sustainability commitments.
+Opt Outside campaign, circular economy programs. REI members are highly
+eco-conscious.</td>
+<td>HIGH alignment but different model. REI is a RETAILER, not a race
+sponsor in the traditional sense. Partnership options: (A) REI carries
+the poncho in stores (retail partnership, different from sponsorship).
+(B) REI sponsors ponchos at community trail races through their
+store-level event sponsorship budgets. (C) REI co-brands a
+limited-edition poncho for REI members (“REI × [BRAND] Compostable
+Poncho”). Approach: REI vendor partnerships team or local REI store
+managers for community-level pilots.</td>
+</tr>
+</tbody>
+</table>
+<p>1.1 Sponsor Approach Strategy</p>
+<p>DIRECT APPROACH (preferred for smaller sponsors: Clif Bar, Nuun,
+Hoka): find the brand’s Event Marketing Manager or Partnerships Director
+on LinkedIn. Send a personalized message with the co-brand mockup
+showing their logo on a poncho at a specific race they sponsor. Attach:
+1-page sponsor value proposition summary + pilot case study. RACE
+DIRECTOR INTRODUCTION (preferred for large sponsors: TCS, Bank of
+America, Abbott): ask the race director to introduce the brand to the
+sponsor’s event team: “We’re exploring compostable ponchos for the start
+line and [BRAND] has a product that aligns with your sustainability
+goals. Would you like to meet them?” The warm introduction from the race
+director carries 10× the weight of a cold email. AGENCY APPROACH (for
+sponsors managed by event agencies): identify the activation agency
+(search: “[Sponsor Name] event marketing agency” or ask the race
+director). Contact the agency’s account team with the sponsor value
+proposition. The agency presents to the sponsor client.</p>
+<p>2. Sponsor Value Proposition: 5 Pillars</p>
+<p><strong>Sponsors don’t buy ponchos. They buy VISIBILITY,
+STORYTELLING, GOODWILL, DIFFERENTIATION, and DATA.</strong> The poncho
+is the vehicle; the value is what it delivers to the sponsor’s brand,
+ESG report, and runner relationships. Every conversation with a sponsor
+must center on THEIR outcomes, not the product’s features.</p>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width:50%">
+<col style="width: 35%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Pillar</strong></td>
+<td><strong>Value to Sponsor</strong></td>
+<td><strong>Quantification</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Brand visibility</strong></td>
+<td>Sponsor’s logo on 5,000–50,000+ ponchos at a major marathon. Every
+runner sees the logo for 30–60 minutes of corral waiting (high-attention
+time — runners are standing still, cold, and looking at everything
+around them). Every spectator in the start area sees the logo. Post-race
+media coverage may include photos of runners in ponchos. The poncho is
+more visible than: a finish-line banner (seconds of exposure), a
+course-side sign (runners pass at 6–10 mph), or a goodie-bag insert
+(seen at home, if at all).</td>
+<td>Exposure duration: 30–60 minutes per runner (vs. seconds for most
+race-day activations). Emotional context: anticipation, excitement,
+gratitude for warmth = positive brand association. Impressions: total
+runners + spectators + media × visibility duration = highest
+impression-minutes of any race-day sponsorship asset.</td>
+</tr>
+<tr class="odd">
+<td><strong>Sustainability storytelling</strong></td>
+<td>The poncho creates a TANGIBLE sustainability story that the sponsor
+can: feature in their ESG report (“[Sponsor] funded compostable ponchos
+at [Race], diverting [X] lbs from landfill”), share on social media
+(photos of runners in branded ponchos + composting data), present at
+shareholder meetings as a concrete sustainability activation, and use
+internally for employee engagement (“Our company is making a real
+difference at events we sponsor”).</td>
+<td>ESG storytelling is the #1 value driver for sustainability-committed
+sponsors. A press release that says “[Sponsor] funded compostable
+ponchos for 50,000 runners, composting 3,000 lbs of waste” is worth more
+in earned media than a $100K banner package.</td>
+</tr>
+<tr class="even">
+<td><strong>Runner goodwill</strong></td>
+<td>Runners associate the sponsor with WARMTH and COMFORT at the
+coldest, most anxious moment of race day. This creates a positive brand
+impression that no other activation can match. Post-race surveys from
+pilot races will quantify: “How did you feel about [Sponsor Name]
+providing compostable ponchos?” (target: 80%+ positive sentiment).</td>
+<td>Brand warmth metrics (positive association, consideration, NPS) are
+what sponsors report to their CMOs. A poncho creates literal and
+figurative warmth — a uniquely powerful brand association.</td>
+</tr>
+<tr class="odd">
+<td><strong>Differentiation</strong></td>
+<td>No other race sponsor has ever funded compostable warmth ponchos.
+The sponsor becomes the FIRST brand in the running industry to fund a
+compostable start-line solution. “First-mover” storytelling for: press
+releases, industry awards (Green Sports Alliance awards, Webby Best
+Sustainability, etc.), and competitive differentiation vs. other race
+sponsors.</td>
+<td>In a sea of banner logos and goodie-bag coupons, the poncho is a
+PHYSICAL product the runner wears, values, and talks about. The
+sponsor’s name is on the thing that kept the runner warm. That’s
+memorable.</td>
+</tr>
+<tr class="even">
+<td><strong>Data + reporting</strong></td>
+<td>Post-race sponsor impact report (Section 5 of this document): units
+distributed, collection rate, waste diverted, CO₂e avoided, runner
+satisfaction scores, social media impressions, and photographs.
+Quantified ROI that the sponsor can present to their leadership
+team.</td>
+<td>Sponsors demand measurable ROI. The composting data and runner
+survey results provide QUANTIFIED impact metrics that justify the
+sponsorship spend — unlike many event sponsorships that rely on
+estimated “impression” counts.</td>
+</tr>
+</tbody>
+</table>
+<p>2.1 Sponsor Pitch Deck Outline</p>
+<p>Create a dedicated sponsor pitch deck (10–15 slides, Canva or Google
+Slides per P1B design system): Slide 1: Title (“Sustainability
+Activation: Compostable Ponchos for [Race Name]” + sponsor logo + brand
+logo). Slide 2: The problem (start-line waste, with race-specific data).
+Slide 3: The solution (product overview, 30 seconds). Slide 4: The
+sponsorship opportunity (5-pillar value proposition summary). Slide 5:
+Brand visibility (impression-minutes calculation for the specific race).
+Slide 6: Sustainability storytelling (ESG report integration, press
+release template). Slide 7: Runner sentiment (pilot survey data,
+projected sentiment for this race). Slide 8: Co-brand mockup (THEIR logo
+on a poncho at THEIR race). Slide 9: Pricing tiers (Silver / Gold /
+Platinum / Full Funding). Slide 10: Sponsor impact report preview (what
+they’ll receive after the race). Slide 11: Case study from pilot race
+(if available). Slide 12: Timeline and next steps. Slide 13: Contact
+information.</p>
+<p>3. Sponsor Co-Brand Pricing: 4 Tiers</p>
+<p><strong>Pricing is structured as a SPONSORSHIP INVESTMENT, not a
+product purchase.</strong> The sponsor is not buying ponchos at
+$5.00/unit — they are investing $25,000 in a sustainability activation
+that reaches 50,000 runners. Frame ALL pricing conversations in terms
+of: cost per impression, cost per sustainability story, and total
+activation value — not cost per unit.</p>
+<table>
+<colgroup>
+<col style="width: 9%" />
+<col style="width: 23%" />
+<col style="width: 9%" />
+<col style="width: 11%" />
+<col style="width: 45%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Tier</strong></td>
+<td><strong>Benefit</strong></td>
+<td><strong>Price/Unit</strong></td>
+<td><strong>Example (5,000 units)</strong></td>
+<td><strong>Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Silver</strong></td>
+<td>Sponsor logo on back panel (1-color, below race logo)</td>
+<td>$0.50–$0.75/unit</td>
+<td>$2,500–$3,750 (5,000 units)</td>
+<td>Secondary logo placement. Best for: sponsors who want visibility but
+don’t need headline positioning. Logo size: 6″×4″ per P2B Section 5
+branding zones.</td>
+</tr>
+<tr class="odd">
+<td><strong>Gold</strong></td>
+<td>Sponsor logo on back panel (2-color, prominent, beside or below race
+logo) + mention on composting bin signage</td>
+<td>$0.75–$1.00/unit</td>
+<td>$3,750–$5,000 (5,000 units)</td>
+<td>Primary logo placement. Logo size: 8″×6″. Sponsor also appears on
+all composting bin signage: “Composting powered by [Sponsor Name].” Best
+for: sponsors with sustainability commitments who want visible
+composting association.</td>
+</tr>
+<tr class="even">
+<td><strong>Platinum</strong></td>
+<td>Sponsor logo as PRIMARY brand on poncho (above race logo) +
+composting signage + mention in all press releases + dedicated section
+in post-race composting report + exclusive sponsorship (no competing
+sponsors on the poncho)</td>
+<td>$1.00–$1.50/unit</td>
+<td>$5,000–$7,500 (5,000 units)</td>
+<td>Title-level poncho sponsorship. The poncho is effectively “[Sponsor
+Name] Presents: Compostable Ponchos at [Race Name].” Sponsor gets:
+largest logo, exclusivity, press mention, and dedicated impact report
+section. Best for: title/presenting sponsors of the race (TCS, Bank of
+America, etc.).</td>
+</tr>
+<tr class="odd">
+<td><strong>Full Funding</strong></td>
+<td>Sponsor pays the ENTIRE cost of ponchos for the race. Race director
+pays $0. Sponsor receives Platinum-level benefits + the narrative:
+“[Sponsor Name] is providing free compostable ponchos to every runner at
+[Race Name].”</td>
+<td>$5.00–$7.00/unit (includes brand margin)</td>
+<td>$25,000–$35,000 (5,000 units)</td>
+<td>The ultimate deal: race director pays nothing, sponsor pays
+everything, brand earns full revenue. The narrative is powerful: “Every
+runner gets a free, compostable poncho thanks to [Sponsor Name].”
+Positions the sponsor as a sustainability hero. Brand earns full margin
+without needing the race director to allocate budget.</td>
+</tr>
+</tbody>
+</table>
+<p>3.1 Pricing Comparison to Traditional Sponsorships</p>
+<p>How the poncho compares to traditional race-day sponsorship assets:
+COURSE BANNER (mile marker): $2,000–$10,000 per banner. Exposure: 3–5
+seconds as runners pass. Total impression-seconds: (runners × 3–5 sec).
+FINISH LINE ARCH: $10,000–$50,000. Exposure: 5–10 seconds at finish.
+GOODIE BAG INSERT: $0.10–$0.50/insert. Exposure: 5–10 seconds at home
+(if noticed at all). COMPOSTABLE PONCHO (Full Funding):
+$5.00–$7.00/unit. Exposure: 30–60 MINUTES per runner at peak emotional
+moment. On a cost-per-impression-minute basis: the poncho is 10–100×
+more efficient than any other race-day sponsorship asset. This is the
+closing argument for sponsors evaluating ROI.</p>
+<p>4. Sponsor Impact Report Template</p>
+<p><strong>The sponsor impact report is the PRIMARY deliverable to the
+sponsor after each race.</strong> It is designed in the SPONSOR’S brand
+colors (not the poncho brand’s colors) because it is the sponsor’s
+document to share with their CMO, CSO, and board. Every metric, photo,
+and quote in the report exists to justify the sponsorship spend and
+secure the renewal.</p>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 47%" />
+<col style="width: 38%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Section</strong></td>
+<td><strong>Content</strong></td>
+<td><strong>Design Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Sponsor branding</strong></td>
+<td>Cover: sponsor logo (prominently), race logo, brand logo. Header on
+every page: “Sponsored by [Sponsor Name].” The report is the sponsor’s
+document to share with their leadership team.</td>
+<td>Design: use the SPONSOR’s brand colors as the primary accent color
+(not the poncho brand’s colors). This signals: “this report is about
+YOUR impact, not ours.”</td>
+</tr>
+<tr class="odd">
+<td><strong>Executive summary</strong></td>
+<td>1 paragraph: “[Sponsor Name] funded [X] compostable warmth ponchos
+at [Race Name] on [date]. [Y]% of ponchos were collected and
+commercially composted, diverting [Z] lbs of waste from landfill and
+avoiding [W] metric tons of CO₂e.”</td>
+<td>This paragraph is the sponsor’s copy-paste for: ESG report,
+shareholder letter, internal newsletter, LinkedIn post. Write it IN the
+sponsor’s voice, ready to use.</td>
+</tr>
+<tr class="even">
+<td><strong>Visibility metrics</strong></td>
+<td>Brand impressions: total runners who received a poncho × average
+wear time (30–60 min) = impression-minutes. Spectator impressions:
+estimated spectators in the start area × visibility window. Media
+impressions: press coverage mentions, social media posts with the poncho
+visible, photographer images (check race photography partner’s gallery
+for poncho shots).</td>
+<td>Impressions are the sponsor’s PRIMARY ROI metric for event
+sponsorships. Calculate aggressively but honestly. If 50,000 runners +
+20,000 spectators saw the poncho for 45 minutes average: 3,150,000
+impression-minutes.</td>
+</tr>
+<tr class="odd">
+<td><strong>Sustainability metrics</strong></td>
+<td>Ponchos distributed, collection rate (%), weight composted (lbs/kg),
+CO₂e avoided (metric tons), equivalent household waste days eliminated,
+equivalent trees saved (if applicable using EPA’s WARM model
+calculations).</td>
+<td>Sustainability metrics are the SECOND ROI metric — especially for
+sponsors with ESG reporting obligations. Provide in formats the
+sponsor’s sustainability team can directly import into their ESG report
+(GRI, SASB, or CDP frameworks if known).</td>
+</tr>
+<tr class="even">
+<td><strong>Runner sentiment</strong></td>
+<td>Runner satisfaction scores from post-race surveys (P5B Section 4):
+warmth rating, overall satisfaction, and a NEW question for sponsor
+reports: “How did you feel about [Sponsor Name] providing compostable
+ponchos?” (1–5 scale + open-ended comment). Aggregate: % of runners with
+positive sentiment toward the sponsor.</td>
+<td>Sponsor-specific sentiment data is GOLD. A finding like “87% of
+runners felt positively about [Sponsor Name] for providing compostable
+ponchos” is a headline metric for the sponsor’s marketing team.</td>
+</tr>
+<tr class="odd">
+<td><strong>Photography</strong></td>
+<td>Curated selection of 10–20 race-day photos showing: runners in
+sponsor-branded ponchos, close-up of sponsor logo on poncho, composting
+bins with sponsor signage, composting truck loading. Photos provided in
+high-resolution (300 DPI) for the sponsor’s marketing use.</td>
+<td>Grant the sponsor a LICENSE to use these photos in their marketing
+(social media, website, ESG report, internal communications). Include in
+the sponsorship agreement.</td>
+</tr>
+<tr class="even">
+<td><strong>Social media summary</strong></td>
+<td>Total social media posts mentioning or showing the poncho on race
+day. Brand’s own posts + tagged/mentioned posts + race’s posts.
+Impressions, engagements (likes, comments, shares), and reach. Include:
+top-performing posts as screenshots.</td>
+<td>If the brand tags the sponsor in race-day posts: the sponsor gets
+social exposure to the brand’s audience. If the race tags the sponsor:
+even larger reach. Track with a race-day hashtag (e.g.,
+#[SponsorName]WarmsSustainably).</td>
+</tr>
+<tr class="odd">
+<td><strong>Recommendations</strong></td>
+<td>1 paragraph: what to do differently next year. More bins? More
+volunteers? Different bin placement? Larger order? Expanded to
+additional races in the sponsor’s portfolio? This positions the brand as
+a STRATEGIC PARTNER, not just a vendor.</td>
+<td>End the report with a forward-looking recommendation that naturally
+leads to: the reorder conversation, the volume expansion, and the
+multi-race deal.</td>
+</tr>
+</tbody>
+</table>
+<p>4.1 Report Production Timeline</p>
+<p>WEEK 1 post-race: Compile visibility metrics (impression-minutes,
+spectator estimates, social media data). Process runner satisfaction
+surveys. Curate photography (10–20 high-res images). WEEK 2–3: Receive
+composting certificate from partner facility (may take up to 30 days).
+Calculate sustainability metrics. Draft executive summary. WEEK 3–4:
+Design report in sponsor’s brand colors (Canva). Send draft to sponsor
+for review. WEEK 4–6: Incorporate sponsor feedback. Deliver final
+report. Present findings in a 30-minute call with the sponsor’s
+marketing and sustainability teams. Use the call to discuss: renewal for
+next season, volume expansion, and additional race opportunities.</p>
+<p>5. Sponsor Case Study</p>
+<p><strong>The first sponsor deal creates the case study that sells
+every subsequent sponsor deal.</strong> The case study structure mirrors
+P5B Section 6 but is reframed from the SPONSOR’S perspective (not the
+race director’s).</p>
+<p>HEADLINE: “[Sponsor Name] Activates Sustainability at [Race Name] —
+[X] Runners, [Y] lbs Composted, [Z]% Positive Sentiment.” CHALLENGE: the
+sponsor needed a visible, measurable sustainability activation at their
+sponsored race that goes beyond banners and goodie-bag inserts.
+SOLUTION: funded BPI-certified compostable ponchos for [X] runners, with
+co-branded logos and end-to-end composting logistics. RESULTS: data
+table (impressions, sustainability metrics, runner sentiment, social
+media) pulled from the impact report. SPONSOR QUOTE: “The compostable
+poncho program gave us a sustainability story we could tell to our
+stakeholders with real data behind it. [X]% of runners felt positively
+about our brand for providing them.” — [Name], [Title], [Sponsor].
+DISTRIBUTION: send to all target sponsors in Section 1. Include in the
+sponsor pitch deck (Slide 11). Post on brand.com/sponsors. Share with
+race directors as evidence that the Sponsor-Funded model works.</p>
+<p>6. Registration Add-On Revenue Model</p>
+<p><strong>The registration add-on is a passive B2B revenue
+channel</strong> where ponchos are sold directly to runners during the
+race registration process. The race director earns a commission, the
+registration platform processes the transaction, and the brand fulfills
+the order. No sales meetings, no invoicing, no follow-up — the
+registration page does the selling.</p>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 47%" />
+<col style="width: 38%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Element</strong></td>
+<td><strong>Description</strong></td>
+<td><strong>Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Concept</strong></td>
+<td>During online race registration (RunSignUp, ACTIVE.com,
+Chronotrack), runners see an add-on option: “Add a Compostable Warmth
+Poncho to your race packet: $5.99.” Runner selects Y/N. If Y: $5.99 is
+added to their registration fee. Poncho is included in their race-packet
+pickup at the expo or mailed in advance.</td>
+<td>This model is already common for: race-day photos, charity
+donations, gear check, and premium swag upgrades. Adding a poncho is a
+natural extension.</td>
+</tr>
+<tr class="odd">
+<td><strong>Platform integration</strong></td>
+<td>RunSignUp (runsignup.com): supports add-on products during
+registration. Contact RunSignUp partner integration team to set up the
+poncho as an available add-on for partner races. ACTIVE.com: also
+supports registration add-ons but requires coordination with ACTIVE’s
+event services team. Chronotrack: less common, but custom integration
+may be possible.</td>
+<td>RunSignUp is the preferred platform: fastest integration, most
+race-director-friendly, and growing market share in the US running
+industry. RunSignUp takes a small platform fee on add-on purchases
+(typically 3–5%).</td>
+</tr>
+<tr class="even">
+<td><strong>Pricing</strong></td>
+<td>$5.99–$7.99 per poncho as a registration add-on. Revenue split:
+brand receives $4.00–$5.50 (covers COGS + margin), race receives
+$0.50–$1.00 (incentive for offering the add-on), platform receives
+$0.30–$0.50 (processing fee). At $5.99: brand gets ~$4.00, race gets
+~$0.75, platform gets ~$0.24 (after credit card processing).</td>
+<td>The race director earns revenue by offering the add-on — this aligns
+incentives. The race director is INCENTIVIZED to promote the poncho
+because they earn $0.50–$1.00 per poncho sold through their registration
+page.</td>
+</tr>
+<tr class="odd">
+<td><strong>Fulfillment</strong></td>
+<td>OPTION A: Include in race packet. Poncho is pre-packed with the
+runner’s bib at race-packet pickup (expo). Requires: coordination with
+the race’s packet assembly team. The poncho is added to the runner’s bag
+alongside bib, pins, and timing chip. OPTION B: Separate pickup at expo.
+Runner picks up the poncho at a dedicated brand booth or “poncho pickup”
+station at the expo, showing their registration confirmation. OPTION C:
+Pre-race mailing. Poncho is mailed to the runner’1–2 weeks before the
+race. Adds shipping cost ($3–$5/unit) but eliminates expo
+logistics.</td>
+<td>RECOMMENDED: Option A (race packet inclusion) for simplicity. The
+poncho is small (6″×4.5″) and lightweight — it fits easily in a standard
+race packet bag. Requires: producing the correct number of ponchos based
+on registration add-on uptake (known 2–4 weeks before the race when
+registration closes).</td>
+</tr>
+<tr class="even">
+<td><strong>Expected uptake</strong></td>
+<td>Cold-weather races (Oct–Nov): 15–30% of registrants add the poncho
+(runners know they’ll be cold). Mild-weather races (Mar–May): 5–15%
+(runners are less certain about conditions). Very cold races (sub-40°F
+forecast): up to 40–50% uptake. First-time offering: lower uptake
+(runners aren’t familiar with the product). Second year: higher
+(word-of-mouth from Year 1 runners).</td>
+<td>At a 10,000-runner race with 20% uptake: 2,000 ponchos sold via
+registration. At $4.00 net to brand: $8,000 revenue with ZERO sales
+effort (the registration page does the selling). This is the most
+passive B2B revenue channel.</td>
+</tr>
+<tr class="odd">
+<td><strong>Marketing the add-on</strong></td>
+<td>Race includes in: registration confirmation email (“Don’t forget
+your compostable poncho!”), race-week reminder email (“Race-morning
+forecast: 42°F. Last chance to add a compostable poncho to your packet:
+[link].”), and social media (“New this year: compostable warmth ponchos
+available as a registration add-on!”). Brand provides: product
+description, photos, and copy for the race’s marketing team.</td>
+<td>The race’s email list (10K–50K runners) becomes a free marketing
+channel for the poncho. The race director is MOTIVATED to promote the
+add-on because they earn revenue from each sale. Win-win.</td>
+</tr>
+</tbody>
+</table>
+<p>6.1 Registration Add-On vs. Sponsor-Funded: When to Use Each</p>
+<p>SPONSOR-FUNDED: use when a sponsor is willing to pay for ALL ponchos.
+Race director pays $0, runners pay $0. Best for: large races with title
+sponsors who have sustainability budgets. Revenue: highest per-unit
+($5.00–$7.00) because the sponsor pays a premium for the activation
+value. REGISTRATION ADD-ON: use when NO sponsor is available or when the
+race director wants runners to self-select. Race director pays $0,
+runners pay $5.99–$7.99 individually. Best for: mid-size races without
+sustainability sponsors, or as a COMPLEMENT to sponsor-funded (sponsor
+funds 70% of ponchos for all runners, remaining runners can add on).
+Revenue: moderate per-unit ($4.00–$5.50 net) but with zero sales effort.
+HYBRID MODEL: sponsor funds ponchos for early corrals (elite + Corral
+A), remaining corrals get the poncho as a registration add-on. This
+reduces the sponsor’s cost (funding 30–50% instead of 100%) while still
+covering the full runner population.</p>
+<p>7. Timeline &amp; Budget</p>
+<p><strong>WEEK 16–18: Research corporate sponsors of the top 20 target
+races (Section 1). Compile sustainability dossiers. Identify
+decision-makers and contact information. Begin outreach to 3+ sponsors
+via direct approach, race director introduction, or agency
+contact.</strong></p>
+<p><strong>WEEK 20: Draft the sponsor pitch deck (Section 2.1). Draft
+the sponsor value proposition 1-pager. Create the sponsor co-brand
+pricing document (Section 3). Define pricing tiers and prepare the Full
+Funding financial model for top-target races.</strong></p>
+<p><strong>WEEK 22–24: Conduct sponsor pitch meetings. Present the pitch
+deck with customized co-brand mockup and race-specific data. Send sample
+kits to sponsor contacts. Research registration add-on integration with
+RunSignUp (Section 6) — contact RunSignUp partner team.</strong></p>
+<p><strong>WEEK 24–26: Build the sponsor impact report template in Canva
+(Section 4). Use pilot race data to populate a sample report. Produce
+the first sponsor case study from the first sponsored race (if one has
+occurred). Distribute case study to all target sponsors.</strong></p>
+<p><strong>WEEK 26–28: Close 1+ sponsor agreements for upcoming race
+season. Coordinate co-brand production for sponsored ponchos. Set up
+registration add-on on RunSignUp for 1–2 partner races as a pilot. Plan
+Year 2 sponsor pipeline: expand to 3–5 sponsored races.</strong></p>
+<p>BUDGET: Sponsor pitch deck design (Canva): $0–$13/month. Sample kits
+for sponsors (5–10 kits): $125–$250. Sponsor impact report template
+(Canva): $0. RunSignUp integration (setup): $0 (platform fee is
+per-transaction, not upfront). Travel for sponsor meetings (2–3
+meetings): $500–$1,500. TOTAL P5E: $625–$1,763 (excludes poncho
+production cost, which is covered by the sponsor’s payment).</p>
+<p>8. Conclusion: Sponsors Turn Cost into Revenue</p>
+<p><strong>Without a sponsor, the poncho is a COST to the race director:
+$3.50–$5.00/unit from their already-tight budget.</strong> With a
+sponsor, the poncho is FREE to the race director, funded by a
+corporation that WANTS to pay for visible sustainability activations.
+The brand earns full revenue ($5.00–$7.00/unit) without needing to
+convince a budget-constrained race director to spend money.</p>
+<p><strong>The first sponsor deal is the hardest.</strong> It requires:
+a pilot case study with compelling data, a professional pitch deck, a
+co-brand mockup that makes the sponsor’s CMO say “I want our logo on
+that,” and a race director who is willing to make the introduction.
+After the first deal: the sponsor impact report and case study sell the
+second deal. And the third. The flywheel spins: more data → better
+reports → more sponsors → more races → more data. By Year 3, sponsors
+should fund 50–70% of all B2B poncho volume, making the race director
+sales process almost frictionless.</p>
+
+        </div>
+    </div></div>
+<footer style="text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px">
+Sustainable Race-Start Warmth Poncho — D2C Brand GTM Project · 60 Subprojects · 391 Tasks · ~15,500¶ · April 2026
+</footer></body></html>

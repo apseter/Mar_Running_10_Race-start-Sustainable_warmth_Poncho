@@ -1,0 +1,828 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>P3E: Demand Planning Reorder System — Race Start Warmth GTM</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0e1a;--surface:#111827;--card:#1a2332;--border:#2a3a4e;--accent:#10b981;--accent2:#3b82f6;--text:#e2e8f0;--muted:#94a3b8;--white:#fff;--red:#ef4444;--amber:#f59e0b;--green:#10b981}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+/* Nav */
+nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
+nav .inner{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;max-width:1200px;margin:0 auto}
+nav .brand{font-weight:700;font-size:15px;color:var(--accent)}
+nav .links{display:flex;gap:8px;flex-wrap:wrap}
+nav .links a{color:var(--muted);font-size:13px;padding:4px 10px;border-radius:6px;transition:.2s}
+nav .links a:hover,nav .links a.active{color:var(--white);background:var(--card);text-decoration:none}
+/* Hero */
+.hero{padding:60px 0 40px;text-align:center}
+.hero h1{font-size:2.4em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:1.1em;max-width:700px;margin:0 auto}
+/* Stats bar */
+.stats{display:flex;justify-content:center;gap:32px;padding:24px 0;flex-wrap:wrap}
+.stat{text-align:center}.stat .num{font-size:1.8em;font-weight:800;color:var(--white)}.stat .label{font-size:.75em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+/* Cards */
+.grid{display:grid;gap:16px;margin:24px 0}
+.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}
+.grid-3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;transition:.2s}
+.card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.card h3{font-size:1.1em;margin-bottom:8px}.card p{color:var(--muted);font-size:.9em}
+.card .badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:8px}
+.card .meta{font-size:.8em;color:var(--muted);margin-top:12px}
+/* Section */
+.section{padding:40px 0}.section h2{font-size:1.6em;font-weight:700;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+/* Table */
+table{width:100%;border-collapse:collapse;font-size:.85em;margin:16px 0}
+th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:52px}
+td{padding:8px 12px;border-bottom:1px solid var(--border)}
+tr:hover td{background:rgba(16,185,129,.05)}
+.status-complete{color:var(--green);font-weight:600}.status-not{color:var(--muted)}
+/* Progress */
+.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:8px}
+.progress .bar{height:100%;background:var(--accent);border-radius:3px}
+/* Back link */
+.back{display:inline-block;color:var(--muted);font-size:.9em;margin-bottom:20px}
+.back:hover{color:var(--accent)}
+/* Download */
+.dl-card{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin:8px 0;transition:.2s}
+.dl-card:hover{border-color:var(--accent);text-decoration:none}
+.dl-card .icon{font-size:2em}.dl-card .info h4{color:var(--white);margin-bottom:4px}.dl-card .info p{color:var(--muted);font-size:.85em}
+/* Footer */
+footer{text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px}
+@media(max-width:768px){.stats{gap:16px}.stat .num{font-size:1.3em}nav .links{gap:4px}nav .links a{font-size:11px;padding:3px 6px}.hero h1{font-size:1.6em}}
+
+.doc-content{max-width:900px;margin:0 auto;padding:20px 0}
+.doc-content h1{font-size:1.8em;font-weight:800;color:var(--white);margin:32px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.doc-content h2{font-size:1.4em;font-weight:700;color:var(--accent);margin:28px 0 12px}
+.doc-content h3{font-size:1.15em;font-weight:600;color:var(--accent2);margin:20px 0 10px}
+.doc-content p{margin:8px 0;line-height:1.7}
+.doc-content table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85em}
+.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;border:1px solid var(--border)}
+.doc-content td{padding:8px 12px;border:1px solid var(--border);vertical-align:top}
+.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.doc-content ul,.doc-content ol{margin:8px 0 8px 24px}
+.doc-content li{margin:4px 0;line-height:1.6}
+.doc-content strong{color:var(--white)}
+.doc-content em{color:var(--muted)}
+.doc-content blockquote{border-left:3px solid var(--accent);padding:8px 16px;margin:12px 0;background:var(--card);border-radius:0 8px 8px 0}
+.nav-sub{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 24px;padding:12px 16px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
+.nav-sub a{font-size:.8em;color:var(--muted);padding:4px 10px;border-radius:4px;transition:.2s;white-space:nowrap}
+.nav-sub a:hover,.nav-sub a.active{color:var(--white);background:var(--surface);text-decoration:none}
+</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a></div></div></nav><div class="container">
+    <div style="padding-top:30px">
+        <a href="p3.html" class="back">← 🏭 P3: Manufacturing</a>
+        <div class="nav-sub"><a href="p3.html">🏭 P3 Overview</a><a href="sub-p3a.html">P3A</a><a href="sub-p3b.html">P3B</a><a href="sub-p3c.html">P3C</a><a href="sub-p3d.html">P3D</a><a href="sub-p3e.html" class="active">P3E</a></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px">
+            <div>
+                <span style="background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px">P3E</span>
+                <span style="color:var(--muted);font-size:.85em;margin-left:8px">P3: Manufacturing</span>
+            </div>
+            <a href="files/P3E_Demand_Planning_Reorder_System.docx" style="font-size:.85em;color:var(--accent);padding:6px 14px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
+        </div>
+        <div class="doc-content">
+            <p><strong>P3E: DEMAND PLANNING</strong></p>
+<p><strong>&amp; REORDER SYSTEM</strong></p>
+<p>Sub-Project P3E | Manufacturing &amp; Sourcing | Weeks 16–20</p>
+<p><em>Complete Inventory Operations: Race-Calendar Demand Model,
+7-Input Forecasting Framework, 4-Tier Safety Stock Policy, 6 Reorder
+Triggers, Seasonal Production Run Alignment, Volume Pricing Negotiation,
+Air Freight Protocol, and Domestic Manufacturing Option</em></p>
+<p>March 2026 | Confidential</p>
+<p>Executive Summary</p>
+<p><strong>Demand planning for a compostable poncho is uniquely
+challenging:</strong> demand is seasonal (90%+ of sales in two 3-month
+windows), weather-correlated (cold race mornings spike demand 3–5×),
+perishable (PLA shelf life limits inventory to 10–12 months), and split
+across two channels with different lead times (B2B orders confirmed 3–6
+months ahead; DTC demand is real-time and unpredictable). Over-ordering
+wastes capital on inventory that may degrade before it sells.
+Under-ordering means missing race weekends that won’t repeat for 12
+months.</p>
+<p><strong>This document builds the complete inventory operations
+system:</strong> a race-calendar demand model mapping the top 20
+cold-weather US races to production windows, a 7-input forecasting
+framework balancing confirmed orders with probabilistic estimates, a
+4-tier safety stock policy protecting against stockouts at every level
+(raw material, finished goods, FBA, B2B), 6 quantitative reorder
+triggers with specific action protocols, 3 seasonal production runs
+aligned to the race calendar, volume pricing targets at 5 tiers from
+5K–100K units, an air freight protocol for emergencies, and a domestic
+manufacturing option for rush co-brand orders requiring &lt;2-week
+turnaround.</p>
+<p>1. Race-Calendar Demand Model</p>
+<p><strong>The US marathon calendar creates two distinct demand
+peaks.</strong> Understanding the TIMING of demand is as important as
+understanding the VOLUME. A poncho that arrives at the 3PL on October 15
+is useless for the Chicago Marathon on October 11 but perfectly timed
+for NYC on November 1. The race calendar IS the production calendar.</p>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 30%" />
+<col style="width: 16%" />
+<col style="width: 38%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Season</strong></td>
+<td><strong>Key Races (cold-weather, P0C Tier 1–2)</strong></td>
+<td><strong>Total Addressable Finishers</strong></td>
+<td><strong>Production Timing</strong></td>
+</tr>
+<tr class="even">
+<td><strong>FALL PEAK (Sep–Nov)</strong></td>
+<td>NYC Marathon (Nov, 50K), Chicago Marathon (Oct, 45K), Boston
+(typically Apr but included for planning), Marine Corps (Oct, 30K), Twin
+Cities (Oct, 12K), Detroit (Oct, 10K), Indianapolis (Nov, 8K),
+Philadelphia (Nov, 25K), Richmond (Nov, 14K), Sacramento (Dec, 8K)</td>
+<td>~230,000 total finishers across top 10 cold-weather fall races.
+Historical cold probability: 70–95% race-morning &lt;50°F for all listed
+races.</td>
+<td>HEAVIEST inventory period. 55–65% of annual demand occurs Sep–Nov.
+Order production by June (8–10 weeks lead + 3–4 weeks freight). Confirm
+total Fall demand by May 15.</td>
+</tr>
+<tr class="odd">
+<td><strong>SPRING PEAK (Mar–May)</strong></td>
+<td>Boston Marathon (Apr, 30K), London Marathon (Apr, 50K — if Year 2
+intl), Nashville (Apr, 20K), Pittsburgh (May, 10K), Grandma’s Marathon
+(Jun, 8K), Big Sur (Apr, 4.5K), Eugene (May, 5K)</td>
+<td>~130,000 total finishers across top spring races. Cold probability:
+50–80% race-morning &lt;50°F (spring weather is more variable than
+fall).</td>
+<td>25–35% of annual demand. Order production by December of prior year.
+Confirm total Spring demand by November 15. Spring inventory can also be
+first to ship to Amazon FBA for year-round DTC availability.</td>
+</tr>
+<tr class="even">
+<td><strong>SHOULDER (Jun–Aug, Dec–Feb)</strong></td>
+<td>Limited cold-weather racing. Mountain/altitude races (Leadville,
+Pikes Peak), early-morning trail ultras. DTC Amazon sales continue
+year-round (training runs in cold weather, ultramarathon start
+lines).</td>
+<td>~5–10% of annual demand. No major B2B orders expected. DTC-only
+period.</td>
+<td>Maintain minimum Amazon FBA inventory (4–6 week cover). No new
+production orders unless FBA sell-through exceeds forecast. Use this
+period for: production planning, supplier negotiations, V1.5
+improvements, and B2B outreach for next season.</td>
+</tr>
+</tbody>
+</table>
+<p>1.1 Weather-Adjusted Demand</p>
+<p>Not all race finishers need ponchos — only those racing in cold
+conditions. Weather adjustment: for each race, multiply total finishers
+by the HISTORICAL PROBABILITY of race-morning temperature &lt;50°F.
+Source: NOAA Climate Data Online (climate.gov), search by race city +
+race date (historical daily temps for the past 10–20 years). Example:
+NYC Marathon (early November): 85–90% of years are &lt;50°F at 10 AM
+start. Probability = 0.87. Chicago Marathon (mid-October): 65–75% of
+years are &lt;50°F. Probability = 0.70. LA Marathon (March): 5–15% of
+years are &lt;50°F. Probability = 0.10 (NOT a target market for
+cold-weather ponchos). Weather-adjusted finishers = Total finishers ×
+Cold probability. This gives a realistic CEILING for poncho demand at
+each race.</p>
+<p>1.2 Adoption Rate Estimation</p>
+<p>Of the weather-adjusted finishers, what percentage will actually USE
+a compostable poncho? This varies by channel: B2B (race-provided): if
+the race buys ponchos for runners, adoption is determined by the race’s
+distribution strategy. Most races distribute to early corrals only
+(30–50% of runners) or to all runners who request one (60–80%). The race
+director specifies the quantity in the PO — this is the adoption rate
+for that race. DTC (runner-purchased): adoption depends on: product
+awareness (grows over time with marketing + reviews + word-of-mouth),
+price sensitivity ($9.99 vs. free garbage bag), and perceived need
+(runners who have suffered in cold corrals before are the primary DTC
+customers). Pre-launch estimate: 2–5% of weather-adjusted finishers at
+races where we have DTC visibility (Amazon ads targeting race-city
+keywords). Year 2+: 5–15% as brand awareness grows.</p>
+<p>2. 7-Input Demand Forecasting Framework</p>
+<p><strong>Total demand = the sum of 7 discrete inputs, each with its
+own estimation method and reliability level.</strong> Inputs are summed
+per season (Fall or Spring) to generate a total production order
+quantity. Update the model weekly during active sales periods and
+monthly off-season.</p>
+<table>
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 26%" />
+<col style="width: 30%" />
+<col style="width: 26%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Input</strong></td>
+<td><strong>Description</strong></td>
+<td><strong>Estimation Method</strong></td>
+<td><strong>Reliability / Weight</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Confirmed B2B orders</strong></td>
+<td>Signed POs or LOIs with specified quantities from race
+directors</td>
+<td>Direct count: sum of all confirmed unit quantities from B2B
+pipeline. Example: Race A = 2,000 + Race B = 3,500 + Race C = 1,500 =
+7,000 confirmed B2B.</td>
+<td>MOST RELIABLE input. Update weekly during sales season. Weight: 100%
+(actual orders, no estimation needed).</td>
+</tr>
+<tr class="odd">
+<td><strong>Pipeline B2B (LOI but no PO)</strong></td>
+<td>Race directors who have expressed interest, received sample kits, or
+signed LOIs without final quantities</td>
+<td>Estimate: LOI quantity × conversion probability. Assign probability
+by pipeline stage: initial inquiry = 10%, sample kit sent = 25%, LOI
+signed = 50%, proof approved = 80%, PO pending = 90%.</td>
+<td>MODERATE RELIABILITY. Use probability-weighted estimate. Update as
+pipeline advances. Weight: variable by stage.</td>
+</tr>
+<tr class="even">
+<td><strong>DTC Amazon forecast</strong></td>
+<td>Amazon sell-through rate extrapolated from historical data (or
+estimated pre-launch)</td>
+<td>Pre-launch estimate: 50–100 units/month for first 3 months, ramping
+to 200–500/month by Month 6. Post-launch: use actual 30-day moving
+average × seasonal multiplier (Fall: 2.5×, Spring: 2.0×, Shoulder:
+0.5×).</td>
+<td>LOW RELIABILITY pre-launch (estimate only). HIGH RELIABILITY
+post-launch (based on actuals). Update monthly with real Amazon
+sell-through data.</td>
+</tr>
+<tr class="odd">
+<td><strong>DTC Shopify/direct forecast</strong></td>
+<td>Shopify store sell-through + brand.com direct orders</td>
+<td>Pre-launch estimate: 10–30% of Amazon volume. Post-launch: track
+actual weekly orders. Shopify demand is typically lower but
+higher-margin (no Amazon FBA fees).</td>
+<td>LOW RELIABILITY pre-launch. Track separately from Amazon.</td>
+</tr>
+<tr class="even">
+<td><strong>B2B sample kits</strong></td>
+<td>Units allocated to building and distributing B2B sample kits (P3B
+Section 6)</td>
+<td>Direct count: [number of kits] × 5 ponchos/kit. Example: 40 kits =
+200 units. Include in Season 1 production order.</td>
+<td>Fixed allocation. Order with production batch. Non-recoverable
+(sample units are not sold).</td>
+</tr>
+<tr class="odd">
+<td><strong>Race emergency kits</strong></td>
+<td>Units allocated to emergency buffer for race-day contingencies (P2E
+Section 11.5)</td>
+<td>10% of confirmed B2B orders held at 3PL or shipped with each race
+order as over-run. Example: 7,000 B2B confirmed × 10% = 700 emergency
+units.</td>
+<td>Fixed buffer. Replenish after each race season from remaining
+inventory or next production run.</td>
+</tr>
+<tr class="even">
+<td><strong>Expo/press/photo reserves</strong></td>
+<td>Units for expo booth demos, press samples, photography, influencer
+seeding, testing</td>
+<td>Fixed allocation: 50–200 units depending on season (more for Fall
+with major expos, fewer for Spring).</td>
+<td>Allocate upfront. Non-recoverable.</td>
+</tr>
+</tbody>
+</table>
+<p>2.1 Demand Model Formula</p>
+<p><strong>TOTAL SEASONAL ORDER = Confirmed B2B (100%) + Pipeline B2B
+(probability-weighted) + DTC Amazon Forecast (seasonal multiplier) + DTC
+Shopify Forecast + Sample Kit Allocation + Emergency Buffer (10% of B2B)
++ Expo/Press Reserves. ROUND UP to nearest 500 or 1,000 units (factory
+MOQ increment). ADD 20% finished goods safety stock (Section 3). RESULT
+= Production Order Quantity for the season.</strong></p>
+<p>EXAMPLE — Fall 2026 (first season): Confirmed B2B: 5,000 units (2
+pilot races). Pipeline B2B: 3,000 units × 40% probability = 1,200
+estimated. DTC Amazon: 100 units/month × 3 months × 2.5× seasonal
+multiplier = 750. DTC Shopify: 25% of Amazon = 188. Sample kits: 200.
+Emergency buffer: 10% of 5,000 = 500. Expo/press: 100. SUBTOTAL: 7,938.
+Round to 8,000. Add 20% safety stock: 1,600. TOTAL ORDER: 9,600. Round
+to MOQ: 10,000 units. Capital required: $13,000–$18,000 at
+$1.30–$1.80/unit.</p>
+<p>3. Safety Stock Policy: 4 Tiers</p>
+<p><strong>Safety stock is the insurance policy against
+stockouts.</strong> Each tier protects a different level of the supply
+chain: raw materials protect against supplier disruption, finished goods
+protect against demand spikes, FBA stock protects against Amazon
+algorithm penalties, and B2B buffer protects against race-day
+contingencies. The COST of safety stock is a fraction of the COST of a
+stockout.</p>
+<table>
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 19%" />
+<col style="width: 21%" />
+<col style="width: 11%" />
+<col style="width: 30%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Tier</strong></td>
+<td><strong>Level</strong></td>
+<td><strong>Quantity</strong></td>
+<td><strong>Cost (at COGS)</strong></td>
+<td><strong>Storage &amp; Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Raw material safety stock</strong></td>
+<td>4–6 weeks of metallized cellulose film (NatureFlex NM)</td>
+<td>~5,200 m² at 25K annual demand (per P2A Section 11.4)</td>
+<td>$1,300–$2,600</td>
+<td>Climate-controlled (≤25°C, ≤50% RH). FIFO rotation quarterly.
+Purpose: bridges a Futamura supply disruption while backup supplier
+(Celplast/TIPA) activates.</td>
+</tr>
+<tr class="odd">
+<td><strong>Finished goods safety stock</strong></td>
+<td>20% above total seasonal forecast</td>
+<td>Season forecast 12,500 units → safety stock 2,500 units = total
+order 15,000</td>
+<td>$2,875–$4,500 at $1.15–$1.80 COGS</td>
+<td>Stored at 3PL. Covers: demand exceeding forecast, last-minute B2B
+add-on orders, replacement for defective units. Shelf life: produce
+within same batch as main order to maximize usable life.</td>
+</tr>
+<tr class="even">
+<td><strong>Amazon FBA minimum</strong></td>
+<td>4–6 weeks of sell-through cover at FBA</td>
+<td>Selling 100 units/week → maintain 400–600 units at FBA at all
+times</td>
+<td>$460–$1,080 at COGS</td>
+<td>Below 4-week cover: Amazon’s algorithm deprioritizes listing in
+search results (reduces organic visibility). Below 2-week cover: “Low
+Stock” badge appears. Stockout: listing goes inactive, reviews stop
+accumulating, PPC campaigns pause. Recovery: 2–4 weeks to regain ranking
+after restock.</td>
+</tr>
+<tr class="odd">
+<td><strong>B2B emergency buffer</strong></td>
+<td>10% of confirmed B2B orders per race</td>
+<td>5,000-unit race order → 500 emergency units</td>
+<td>$575–$900 at COGS</td>
+<td>Shipped to 3PL or directly with the race order as over-run. Per P2E
+Section 11.5 Race Emergency Kit spec.</td>
+</tr>
+</tbody>
+</table>
+<p>3.1 Cost of a Stockout</p>
+<p>AMAZON: A stockout (0 units at FBA) causes: listing goes inactive
+(invisible in search results), organic ranking drops (takes 2–4 weeks to
+recover after restock), PPC campaigns auto-pause (no inventory to
+fulfill), “Currently unavailable” badge destroys conversion rate of
+anyone who finds the listing. Revenue lost: if selling 100 units/week at
+$9.99 = $999/week lost. A 3-week stockout = ~$3,000 in lost revenue +
+2–4 weeks of reduced post-restock sales as ranking recovers. Total
+impact: $4,000–$6,000 per stockout event. B2B: A stockout for a
+confirmed race order means: race director receives no ponchos, runners
+are disappointed, race director never orders again, race director tells
+other directors. Total impact: the B2B relationship is destroyed. At
+$3.50–$5.00/unit × 5,000 units = $17,500–$25,000 in lost revenue from a
+single lost customer, plus reputational damage across the race director
+network. SAFETY STOCK COST: $5,210–$9,080 (all 4 tiers). Stockout cost:
+$4,000–$31,000+ per event. The math is clear: safety stock pays for
+itself if it prevents even ONE stockout per year.</p>
+<p>4. Reorder Triggers: 6 Quantitative Decision Rules</p>
+<p><strong>Reorder decisions must be AUTOMATIC and QUANTITATIVE, not
+subjective.</strong> “I think we might need more” is not a reorder
+trigger. “FBA cover dropped below 6 weeks as of Tuesday” IS a trigger.
+The following 6 rules define exactly WHEN to reorder, HOW MUCH, and WHAT
+ACTION to take.</p>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 16%" />
+<col style="width: 26%" />
+<col style="width: 9%" />
+<col style="width: 33%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Trigger</strong></td>
+<td><strong>Condition</strong></td>
+<td><strong>Action</strong></td>
+<td><strong>Urgency</strong></td>
+<td><strong>Communication</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Amazon FBA cover drops below 6 weeks</strong></td>
+<td>FBA inventory ÷ weekly sell-through rate &lt; 6</td>
+<td>INITIATE reorder planning. Calculate: reorder quantity = (weekly
+sell-through × 12 weeks) − current FBA stock + safety stock. The 12-week
+horizon accounts for 4–6 week production + 3–4 week freight + 2 week FBA
+receiving. Contact factory to confirm production slot availability.</td>
+<td>YELLOW — Plan</td>
+<td>Email factory: “We anticipate placing a reorder of [X] units within
+2 weeks. Please confirm production availability and current lead
+time.”</td>
+</tr>
+<tr class="odd">
+<td><strong>Amazon FBA cover drops below 4 weeks</strong></td>
+<td>FBA inventory ÷ weekly sell-through rate &lt; 4</td>
+<td>PLACE REORDER immediately. Wire deposit to factory. If factory lead
+time exceeds remaining cover: activate air freight option (Section 6)
+for a portion of the order to bridge the gap.</td>
+<td>RED — Order Now</td>
+<td>Place PO within 48 hours. Do not wait for further sell-through data
+to “confirm” the trend — the 4-week trigger IS the confirmation.</td>
+</tr>
+<tr class="even">
+<td><strong>Amazon FBA cover drops below 2 weeks</strong></td>
+<td>FBA inventory ÷ weekly sell-through rate &lt; 2</td>
+<td>CRITICAL: activate air freight for emergency restock. If no
+inventory in production pipeline: transfer units from 3PL safety stock
+to FBA (same-day transfer request). If 3PL also low: contact backup
+supplier for rush production (2–3 weeks).</td>
+<td>RED — Emergency</td>
+<td>Immediate FBA restock from 3PL. Simultaneously: place rush order
+with primary or backup factory.</td>
+</tr>
+<tr class="odd">
+<td><strong>B2B order exceeds forecast by &gt;25%</strong></td>
+<td>Actual B2B orders for upcoming season exceed forecast by 25%+</td>
+<td>Re-run demand model with updated B2B actuals. Increase production
+order if production has not yet started. If production is underway:
+request factory to add units to current run (possible if materials are
+available + factory has capacity). If production is complete: place
+supplemental reorder.</td>
+<td>YELLOW — Adjust</td>
+<td>Update production plan spreadsheet. Contact factory within 48
+hours.</td>
+</tr>
+<tr class="even">
+<td><strong>New B2B customer with &gt;2,000 unit order</strong></td>
+<td>A single new race director places an order &gt;2,000 units not in
+the original forecast</td>
+<td>Check: can this be fulfilled from existing inventory or safety
+stock? If yes: fulfill from stock, then reorder to replenish. If no:
+treat as a supplemental production order. Lead time: 4–6 weeks +
+freight. Confirm with race director that delivery timeline is feasible
+before accepting the PO.</td>
+<td>GREEN — Opportunity</td>
+<td>Fulfill if possible from stock. Place supplemental order if not.
+NEVER accept a B2B order you cannot deliver on time.</td>
+</tr>
+<tr class="odd">
+<td><strong>Shelf life approaching 10 months on any batch</strong></td>
+<td>Inventory tracking shows units produced &gt;10 months ago still in
+stock</td>
+<td>ACTIVATE markdown protocol per P2F Section 8.3: discount 30% on
+Amazon, donate to charity races, B2B sample distribution. Do NOT ship
+units past 10 months to B2B customers (material degradation risk).
+Destroy or donate remaining units at Month 12.</td>
+<td>YELLOW — Markdown</td>
+<td>Immediately review inventory age report. Flag aged batches. Execute
+markdown within 2 weeks.</td>
+</tr>
+</tbody>
+</table>
+<p>4.1 Inventory Monitoring Cadence</p>
+<p>During race season (Sep–Nov, Mar–May): check FBA inventory levels
+EVERY MONDAY. Calculate: FBA units on hand ÷ trailing 4-week average
+weekly sell-through = weeks of cover. Compare against triggers. Log in
+the P2F Section 8.4 inventory tracker spreadsheet. Off-season (Jun–Aug,
+Dec–Feb): check MONTHLY. DTC sell-through is lower; triggers are less
+likely to fire. Focus on: shelf-life monitoring (flag any batch
+approaching 10-month age) and B2B pipeline tracking for upcoming
+season.</p>
+<p>5. Seasonal Production Run Alignment</p>
+<p><strong>Align production orders to the race calendar, NOT to
+arbitrary quarterly schedules.</strong> A production run timed for “Q3”
+is meaningless. A production run timed to deliver inventory 3 weeks
+before the NYC Marathon is everything. The 3-run annual plan below maps
+production to the two race peaks + an as-needed restock run.</p>
+<table>
+<colgroup>
+<col style="width: 8%" />
+<col style="width: 14%" />
+<col style="width: 8%" />
+<col style="width: 29%" />
+<col style="width: 38%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Run</strong></td>
+<td><strong>Timeline</strong></td>
+<td><strong>Volume</strong></td>
+<td><strong>Planning</strong></td>
+<td><strong>Critical Path</strong></td>
+</tr>
+<tr class="even">
+<td><strong>RUN 1: Fall Season</strong></td>
+<td>June PO → July–Aug production → Aug–Sep delivery</td>
+<td>55–65% of annual volume</td>
+<td>Confirm Fall demand by May 15. PO by June 1. Production: 4–6 weeks.
+Ocean freight: 3–4 weeks. Arrival at 3PL: late August / early September.
+Amazon FBA restock: early September (2–3 weeks before first major fall
+race).</td>
+<td>This is the MAKE-OR-BREAK production run. If it arrives late, the
+brand misses NYC Marathon, Chicago, Marine Corps — the 3 largest
+cold-weather fall races. Build in 2-week buffer: target arrival
+mid-August for races starting early October.</td>
+</tr>
+<tr class="odd">
+<td><strong>RUN 2: Spring Season</strong></td>
+<td>December PO → Jan–Feb production → Feb–Mar delivery</td>
+<td>25–35% of annual volume</td>
+<td>Confirm Spring demand by November 15. PO by December 1. Production:
+4–6 weeks. Freight: 3–4 weeks. Arrival at 3PL: late February / early
+March. Amazon FBA restock: early March (3–4 weeks before Boston Marathon
+in April).</td>
+<td>Spring run is smaller and lower-risk than Fall. If demand is
+uncertain: order conservatively and supplement with remaining Fall
+inventory (if shelf life allows — Fall production in Aug + 6 months =
+usable through Feb).</td>
+</tr>
+<tr class="even">
+<td><strong>RUN 3: Restock / Supplemental</strong></td>
+<td>As-needed based on reorder triggers</td>
+<td>10–20% of annual volume</td>
+<td>Triggered by: Amazon FBA cover dropping below 4 weeks, unexpected
+B2B orders, or specific co-brand requirements not covered by Run 1 or
+Run 2. Lead time: 4–6 weeks production + freight. For urgent restocks:
+air freight (Section 6) at 4–5× ocean cost but 5–7 day delivery.</td>
+<td>Keep Run 3 as SMALL and TARGETED as possible. Large supplemental
+orders indicate the demand model is inaccurate — revise the model for
+next season.</td>
+</tr>
+</tbody>
+</table>
+<p>5.1 Production Calendar: Year 1 Example</p>
+<p><strong>MAY 15: Confirm Fall 2026 demand (B2B + DTC forecast). JUN 1:
+Place Fall PO (Run 1, 10K–15K units). JUN–JUL: Production (4–6 weeks).
+AUG: Ocean freight (3–4 weeks). AUG 20: Arrival at 3PL. SEP 1: FBA
+restock complete (3–4 weeks before Chicago Marathon Oct 11). SEP–NOV:
+Race season. Ship B2B orders. Monitor DTC sell-through. NOV 15: Confirm
+Spring 2027 demand. DEC 1: Place Spring PO (Run 2, 5K–8K units).
+DEC–JAN: Production. FEB: Freight. MAR 1: Arrival at 3PL. MAR 15: FBA
+restock. APR–MAY: Spring race season.</strong></p>
+<p>6. Volume Pricing Negotiation Targets</p>
+<p><strong>As annual volume grows, renegotiate per-unit pricing with the
+factory.</strong> Volume pricing is the primary lever for improving
+gross margin over time. The targets below are based on P0F unit
+economics and P3A negotiation outcomes, adjusted for realistic supplier
+behavior at each volume tier.</p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 14%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 40%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Annual Volume</strong></td>
+<td><strong>Factory Unit Price</strong></td>
+<td><strong>Annual Spend</strong></td>
+<td><strong>Landed Cost (incl. freight, duty)</strong></td>
+<td><strong>Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>5,000</strong></td>
+<td>$1.50–$2.20</td>
+<td>$7,500–$11,000</td>
+<td>$1.60–$2.40</td>
+<td>Startup / Bootstrap tier. Highest per-unit cost. Acceptable for
+initial market validation.</td>
+</tr>
+<tr class="odd">
+<td><strong>10,000</strong></td>
+<td>$1.30–$1.80</td>
+<td>$13,000–$18,000</td>
+<td>$1.40–$2.00</td>
+<td>Moderate tier (recommended). 13–18% savings vs. 5K tier. Best
+risk/reward for first full-season order.</td>
+</tr>
+<tr class="even">
+<td><strong>25,000</strong></td>
+<td>$1.10–$1.50</td>
+<td>$27,500–$37,500</td>
+<td>$1.20–$1.60</td>
+<td>Scale tier. Unlocks 15–25% savings vs. 10K. Requires confident
+demand forecast + $30–40K capital commitment.</td>
+</tr>
+<tr class="odd">
+<td><strong>50,000</strong></td>
+<td>$0.95–$1.25</td>
+<td>$47,500–$62,500</td>
+<td>$1.05–$1.40</td>
+<td>Full-scale tier. Best per-unit economics. Appropriate only with: 5+
+confirmed B2B partners, proven DTC traction, 12+ months of sales data.
+Year 2+ tier.</td>
+</tr>
+<tr class="even">
+<td><strong>100,000</strong></td>
+<td>$0.85–$1.10</td>
+<td>$85,000–$110,000</td>
+<td>$0.95–$1.25</td>
+<td>Enterprise tier. Negotiate for Year 2–3 as product line expands
+(poncho + finish-line wrap + bib sleeve). Consider annual framework
+agreement with quarterly delivery schedule.</td>
+</tr>
+</tbody>
+</table>
+<p>6.1 Negotiation Timing</p>
+<p>WHEN to renegotiate: (1) After completing the first full-season
+production run (proven customer, predictable volume). (2) When
+committing to a 2-year framework agreement (guaranteed volume = lower
+risk for factory = lower price). (3) When increasing annual volume by
+≥50% (crossing a tier threshold). (4) When renewing the Production
+Agreement annually (P3A Section 8, Section 11). HOW: present the factory
+with a 12-month volume forecast and commit to a minimum annual quantity
+in exchange for a 10–20% price reduction. Offer: 70% of forecast as
+guaranteed minimum, with the option to order up to 130% at the same
+price.</p>
+<p>7. Air Freight Protocol: Emergency Restocks</p>
+<p><strong>Air freight is the emergency valve for inventory
+crises.</strong> It costs 4–5× more than ocean freight but delivers in
+5–7 days instead of 25–35 days. The math: a week of Amazon stockout at
+100 units/week costs ~$1,000 in lost revenue + $2,000–$4,000 in ranking
+recovery. Air freight for 500 units costs $250–$750. Air freight is
+ALWAYS cheaper than a stockout.</p>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 81%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Attribute</strong></td>
+<td><strong>Detail</strong></td>
+</tr>
+<tr class="even">
+<td><strong>When to use</strong></td>
+<td>Amazon FBA stock below 2-week cover (emergency), rush co-brand order
+with race date &lt;4 weeks away, first production run if ocean freight
+timeline doesn’t meet Fall season deadline, or high-value B2B order
+where the revenue justifies the shipping premium</td>
+</tr>
+<tr class="odd">
+<td><strong>Cost comparison</strong></td>
+<td>Ocean freight (LCL/FCL): $0.10–$0.30/unit for 5K–25K units (shared
+container or full container from China). Air freight (DHL/FedEx/UPS
+Express): $0.50–$1.50/unit for 5K–25K units (4–5× ocean cost). Air
+freight from UK (Parkside): $0.30–$0.80/unit (shorter distance = lower
+cost than China air freight). Example: 2,000-unit emergency restock from
+China via air = $1,000–$3,000 shipping vs. $200–$600 ocean. Decision:
+air freight adds $0.40–$1.20/unit to landed cost. At $9.99 DTC or $4.00
+B2B, margin is reduced but product is available (vs. stockout = $0
+revenue).</td>
+</tr>
+<tr class="even">
+<td><strong>Logistics</strong></td>
+<td>Carrier: DHL Express (most reliable for international), FedEx
+International Priority, or UPS Worldwide Express. Booking: contact
+carrier directly or use a freight forwarder (Flexport, Freightos).
+Door-to-door delivery: 5–7 business days from factory to 3PL/FBA prep
+center. Customs: express carriers handle customs clearance as part of
+the service (DDP — Delivered Duty Paid). No separate customs broker
+needed for express shipments &lt;$2,500 value (de minimis threshold in
+most cases; formal entry required above $2,500).</td>
+</tr>
+<tr class="odd">
+<td><strong>When NOT to use</strong></td>
+<td>Standard seasonal restocks (plan ahead with ocean freight), orders
+where margin cannot absorb the premium (low-margin B2B at $3.50/unit —
+air freight of $1.00/unit eats 28% of revenue), or when 3PL safety stock
+can bridge the gap (cheaper to ship from 3PL to FBA than to air freight
+from factory)</td>
+</tr>
+<tr class="even">
+<td><strong>Air freight budget reserve</strong></td>
+<td>Hold $1,500–$3,000 as an air freight contingency fund. Use only for
+genuine emergencies. Track: if air freight is used &gt;2× per year, the
+demand model or production planning is failing — investigate root cause
+and fix the forecast, not the symptom.</td>
+</tr>
+</tbody>
+</table>
+<p>DECISION TREE: Is FBA cover &lt;2 weeks? → Air freight from 3PL
+safety stock to FBA (fastest). Is 3PL also low? → Air freight from
+factory (if units in production pipeline) or rush order with backup
+factory. Is the shipment &gt;$2,500 value? → Formal customs entry
+required (carrier handles, but add 1–2 days). Is this the 3rd+ air
+freight this year? → The demand model is broken. Fix the forecast before
+the next season.</p>
+<p>8. Domestic Manufacturing Option: Rush Co-Brand &amp; Emergency</p>
+<p><strong>A US-based converter provides &lt;2-week turnaround for rush
+co-brand orders</strong> and emergency restocks that cannot wait for
+international production + freight. Domestic manufacturing is 30–80%
+more expensive per unit but eliminates 3–6 weeks of transit time,
+customs clearance, and international communication overhead.</p>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 81%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Attribute</strong></td>
+<td><strong>Detail</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Use case</strong></td>
+<td>Rush co-brand orders requiring &lt;2-week turnaround. Small-batch
+limited-edition colorways (P2F Section 5). Emergency restocks when both
+primary and backup international factories cannot deliver in time. V1.5
+prototype iterations requiring rapid feedback cycles.</td>
+</tr>
+<tr class="odd">
+<td><strong>Candidate converters</strong></td>
+<td>ProAmpac (Cincinnati, OH) — already on P3A shortlist, ProActive
+Compostable line, 2–4 week lead. Else: search for US-based flexible
+packaging converters with compostable film experience via: Flexible
+Packaging Association (FPA) member directory (flexpack.org), ThomasNet
+(thomasnet.com, search “compostable packaging converter”), Pack Expo
+exhibitor list.</td>
+</tr>
+<tr class="even">
+<td><strong>Cost comparison</strong></td>
+<td>Domestic unit cost: $1.60–$2.50/unit (30–80% premium over China).
+Domestic shipping: $0.05–$0.15/unit (vs. $0.10–$0.30 ocean from China +
+3–4 weeks transit). Net: domestic is $0.30–$1.50/unit more expensive BUT
+arrives 4–6 weeks faster. At $4.00 B2B or $9.99 DTC, the margin
+reduction is 7–15% — significant but acceptable for rush orders.</td>
+</tr>
+<tr class="odd">
+<td><strong>Qualification process</strong></td>
+<td>Domestic converter must pass the same P3A qualification framework:
+NDA, tech spec review, golden sample production (10 units), full P2E QC
+inspection. Qualification timeline: 2–4 weeks (faster than international
+due to proximity and communication speed). Cost: $300–$800 for golden
+samples + QC.</td>
+</tr>
+<tr class="even">
+<td><strong>Volume threshold</strong></td>
+<td>Domestic manufacturing is cost-effective for orders up to 5,000
+units. Above 5K: the per-unit savings from international production
+(25–50% lower COGS) outweigh the transit time disadvantage.
+RECOMMENDATION: qualify a domestic converter during P3A as the “rush
+order” supplier, not as the primary. Use for: &lt;5K unit rush orders,
+limited editions, and emergency restocks only.</td>
+</tr>
+<tr class="odd">
+<td><strong>Hybrid model (Year 2+)</strong></td>
+<td>As volume grows, consider a hybrid sourcing model: international
+factory for standard bulk production (70–80% of volume at lowest COGS),
+domestic converter for co-brand rush orders + limited editions +
+emergency restocks (20–30% of volume at higher COGS but faster
+turnaround). This model maximizes both cost efficiency and
+responsiveness.</td>
+</tr>
+</tbody>
+</table>
+<p>9. Timeline &amp; Budget</p>
+<p><strong>WEEK 16: Build the demand model spreadsheet (P2F Section 8.4
+template) with actual Fall 2026 race data from P0C database. Populate:
+race names, dates, expected attendance, cold-weather probability, B2B
+pipeline status. Calculate initial Fall demand forecast.</strong></p>
+<p><strong>WEEK 17: Set safety stock levels for each tier (Section 3).
+Define reorder triggers (Section 4) and enter into a monitoring
+dashboard (Google Sheet with conditional formatting: green/yellow/red).
+Negotiate volume pricing for 10K+ tier with primary
+factory.</strong></p>
+<p><strong>WEEK 18: Align production runs to race calendar (Section 5).
+Confirm Run 1 timing with factory. Establish air freight account with
+DHL/FedEx (Section 7). Research domestic converter options (Section 8)
+and request capabilities overview from ProAmpac or
+equivalent.</strong></p>
+<p><strong>WEEK 19: Get quotes for air freight (per-kg and per-shipment)
+from 2 carriers. Complete domestic converter qualification if pursuing
+(NDA, tech spec review, golden sample request). Finalize the demand
+planning spreadsheet with all inputs.</strong></p>
+<p><strong>WEEK 20: System is live. Inventory monitoring begins per
+Section 4.1 cadence (weekly during race season, monthly off-season). All
+reorder triggers are active. First production run (P3B) should be
+underway or complete by this point. HANDOFF to ongoing operations — the
+demand planning system runs continuously from this point
+forward.</strong></p>
+<p>BUDGET: Demand model spreadsheet ($0 — Google Sheets). Air freight
+account setup ($0 — free to open). Domestic converter qualification
+($300–$800 for golden samples + QC). Air freight contingency reserve
+($1,500–$3,000, held not spent). TOTAL P3E: $1,800–$3,800 (mostly
+contingency reserves).</p>
+<p>10. Conclusion: The Inventory System Runs the Business</p>
+<p><strong>Once the product is live, the demand planning system becomes
+the operational heartbeat of the company.</strong> Every Monday morning
+during race season, the founder checks: FBA cover (green/yellow/red),
+B2B orders pipeline (confirmed vs. forecast), shelf-life tracker (any
+batches approaching 10 months), and 3PL safety stock level. These 4
+numbers determine whether the week’s action is “keep selling” or “place
+a reorder.”</p>
+<p><strong>The system is designed to be SIMPLE enough for a solo founder
+to operate in 30 minutes per week,</strong> yet RIGOROUS enough to
+prevent the two most expensive inventory mistakes: stockouts (which cost
+$4K–$31K+ per event) and overstock (which costs $5K–$50K in dead
+inventory). The 7-input demand model provides the forecast. The 4-tier
+safety stock provides the buffer. The 6 reorder triggers provide the
+decision rules. The 3 production runs provide the rhythm. Together, they
+transform inventory management from a source of anxiety into a
+mechanical process that runs on data, not intuition.</p>
+
+        </div>
+    </div></div>
+<footer style="text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px">
+Sustainable Race-Start Warmth Poncho — D2C Brand GTM Project · 60 Subprojects · 391 Tasks · ~15,500¶ · April 2026
+</footer></body></html>

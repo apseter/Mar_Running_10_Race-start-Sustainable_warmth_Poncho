@@ -1,0 +1,848 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>P3B: Bulk Production Run — Race Start Warmth GTM</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0e1a;--surface:#111827;--card:#1a2332;--border:#2a3a4e;--accent:#10b981;--accent2:#3b82f6;--text:#e2e8f0;--muted:#94a3b8;--white:#fff;--red:#ef4444;--amber:#f59e0b;--green:#10b981}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+/* Nav */
+nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
+nav .inner{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;max-width:1200px;margin:0 auto}
+nav .brand{font-weight:700;font-size:15px;color:var(--accent)}
+nav .links{display:flex;gap:8px;flex-wrap:wrap}
+nav .links a{color:var(--muted);font-size:13px;padding:4px 10px;border-radius:6px;transition:.2s}
+nav .links a:hover,nav .links a.active{color:var(--white);background:var(--card);text-decoration:none}
+/* Hero */
+.hero{padding:60px 0 40px;text-align:center}
+.hero h1{font-size:2.4em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:1.1em;max-width:700px;margin:0 auto}
+/* Stats bar */
+.stats{display:flex;justify-content:center;gap:32px;padding:24px 0;flex-wrap:wrap}
+.stat{text-align:center}.stat .num{font-size:1.8em;font-weight:800;color:var(--white)}.stat .label{font-size:.75em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+/* Cards */
+.grid{display:grid;gap:16px;margin:24px 0}
+.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}
+.grid-3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;transition:.2s}
+.card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.card h3{font-size:1.1em;margin-bottom:8px}.card p{color:var(--muted);font-size:.9em}
+.card .badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:8px}
+.card .meta{font-size:.8em;color:var(--muted);margin-top:12px}
+/* Section */
+.section{padding:40px 0}.section h2{font-size:1.6em;font-weight:700;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+/* Table */
+table{width:100%;border-collapse:collapse;font-size:.85em;margin:16px 0}
+th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:52px}
+td{padding:8px 12px;border-bottom:1px solid var(--border)}
+tr:hover td{background:rgba(16,185,129,.05)}
+.status-complete{color:var(--green);font-weight:600}.status-not{color:var(--muted)}
+/* Progress */
+.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:8px}
+.progress .bar{height:100%;background:var(--accent);border-radius:3px}
+/* Back link */
+.back{display:inline-block;color:var(--muted);font-size:.9em;margin-bottom:20px}
+.back:hover{color:var(--accent)}
+/* Download */
+.dl-card{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin:8px 0;transition:.2s}
+.dl-card:hover{border-color:var(--accent);text-decoration:none}
+.dl-card .icon{font-size:2em}.dl-card .info h4{color:var(--white);margin-bottom:4px}.dl-card .info p{color:var(--muted);font-size:.85em}
+/* Footer */
+footer{text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px}
+@media(max-width:768px){.stats{gap:16px}.stat .num{font-size:1.3em}nav .links{gap:4px}nav .links a{font-size:11px;padding:3px 6px}.hero h1{font-size:1.6em}}
+
+.doc-content{max-width:900px;margin:0 auto;padding:20px 0}
+.doc-content h1{font-size:1.8em;font-weight:800;color:var(--white);margin:32px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.doc-content h2{font-size:1.4em;font-weight:700;color:var(--accent);margin:28px 0 12px}
+.doc-content h3{font-size:1.15em;font-weight:600;color:var(--accent2);margin:20px 0 10px}
+.doc-content p{margin:8px 0;line-height:1.7}
+.doc-content table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85em}
+.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;border:1px solid var(--border)}
+.doc-content td{padding:8px 12px;border:1px solid var(--border);vertical-align:top}
+.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.doc-content ul,.doc-content ol{margin:8px 0 8px 24px}
+.doc-content li{margin:4px 0;line-height:1.6}
+.doc-content strong{color:var(--white)}
+.doc-content em{color:var(--muted)}
+.doc-content blockquote{border-left:3px solid var(--accent);padding:8px 16px;margin:12px 0;background:var(--card);border-radius:0 8px 8px 0}
+.nav-sub{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 24px;padding:12px 16px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
+.nav-sub a{font-size:.8em;color:var(--muted);padding:4px 10px;border-radius:4px;transition:.2s;white-space:nowrap}
+.nav-sub a:hover,.nav-sub a.active{color:var(--white);background:var(--surface);text-decoration:none}
+</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a></div></div></nav><div class="container">
+    <div style="padding-top:30px">
+        <a href="p3.html" class="back">← 🏭 P3: Manufacturing</a>
+        <div class="nav-sub"><a href="p3.html">🏭 P3 Overview</a><a href="sub-p3a.html">P3A</a><a href="sub-p3b.html" class="active">P3B</a><a href="sub-p3c.html">P3C</a><a href="sub-p3d.html">P3D</a><a href="sub-p3e.html">P3E</a></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px">
+            <div>
+                <span style="background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px">P3B</span>
+                <span style="color:var(--muted);font-size:.85em;margin-left:8px">P3: Manufacturing</span>
+            </div>
+            <a href="files/P3B_Bulk_Production_Run.docx" style="font-size:.85em;color:var(--accent);padding:6px 14px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
+        </div>
+        <div class="doc-content">
+            <p><strong>P3B: BULK PRODUCTION</strong></p>
+<p><strong>RUN</strong></p>
+<p>Sub-Project P3B | Manufacturing &amp; Sourcing | Weeks 14–18</p>
+<p><em>Complete Production Playbook: 3 Order Scenarios, PO Template,
+Co-Brand Production Process, Weekly Monitoring Checklist, Payment
+Authorization, B2B Sample Kit Specification, and Process Documentation
+Archive</em></p>
+<p>March 2026 | Confidential</p>
+<p>Executive Summary</p>
+<p><strong>P3B converts the factory relationship established in P3A into
+physical inventory.</strong> This is where capital meets manufacturing:
+a purchase order is placed, a deposit is wired, raw materials are
+sourced, and 3,000–25,000 ponchos come off the production line over 3–4
+weeks. The decisions in this section determine how much capital is
+committed, how production quality is monitored in real-time, how
+co-branded units are managed alongside standard units, and how the
+resulting inventory flows to the B2B and DTC sales channels.</p>
+<p><strong>Three order scenarios are defined</strong> to match different
+capital availability and demand confidence levels: Bootstrap (3K–5K
+units, $4.5–10K), Moderate (10K–15K, $15–30K, RECOMMENDED), and Full
+Launch (20K–25K, $25–50K). Each scenario includes a complete PO
+template, weekly monitoring protocol covering 8 production phases, a
+4-stage payment authorization framework, and a 7-step co-brand
+production process that delivers custom-printed ponchos within 3–5 weeks
+of receiving race director logos.</p>
+<p>1. Production Order: 3 Scenarios</p>
+<p><strong>Choose the scenario that matches available capital, demand
+confidence, and risk tolerance.</strong> The Moderate scenario is
+recommended for most founders: it balances volume pricing (20–30% better
+than Bootstrap) with manageable capital exposure and provides enough
+inventory for a full race season plus Amazon launch.</p>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 16%" />
+<col style="width: 11%" />
+<col style="width: 28%" />
+<col style="width: 28%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Scenario</strong></td>
+<td><strong>Quantity</strong></td>
+<td><strong>Capital Required</strong></td>
+<td><strong>Rationale</strong></td>
+<td><strong>When to Choose</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Bootstrap (risk-minimizing)</strong></td>
+<td>3,000–5,000 standard + 500–1,000 co-brand</td>
+<td>$4,500–$10,000</td>
+<td>Tests market with minimal capital exposure. Enough for: 1–2 pilot
+races (B2B) + Amazon launch (DTC). Risk: may sell out quickly if demand
+exceeds expectations; reorder takes 6–8 weeks.</td>
+<td>Recommended if: &lt;$25K total capital available, no confirmed B2B
+LOIs &gt;2,000 units, or first-time founder wanting to validate before
+scaling.</td>
+</tr>
+<tr class="odd">
+<td><strong>Moderate (recommended)</strong></td>
+<td>10,000–15,000 standard + 2,000–5,000 co-brand</td>
+<td>$15,000–$30,000</td>
+<td>Optimal balance: serves 3–5 pilot races + full Fall 2026 Amazon
+launch + B2B sample distribution. Unlocks better per-unit pricing
+($1.20–$1.60 vs. $1.50–$2.20 at Bootstrap volumes). Enough inventory for
+a full race season.</td>
+<td>Recommended if: $35–50K capital, 3+ race director LOIs confirmed,
+confident in product-market fit from P2C testing.</td>
+</tr>
+<tr class="even">
+<td><strong>Full Launch (aggressive)</strong></td>
+<td>20,000–25,000 standard + 5,000–10,000 co-brand</td>
+<td>$25,000–$50,000</td>
+<td>Maximum scale: serves 5–10 races + aggressive Amazon PPC campaign +
+retail exploration. Best per-unit economics ($1.00–$1.40). Enables:
+large B2B sample kits, expo booth inventory, charity donations for PR.
+Risk: $50K tied up in inventory with 12-month shelf life.</td>
+<td>Recommended if: $75–100K capital, 5+ confirmed B2B orders, strong
+pre-launch email list (1,000+), or external funding
+(angel/pre-seed).</td>
+</tr>
+</tbody>
+</table>
+<p>1.1 Order Quantity Calculator</p>
+<p>To determine the right quantity: (1) Sum all CONFIRMED B2B orders
+(race directors who have signed POs or LOIs with specified quantities).
+(2) Add DTC Amazon estimate from P2F Section 8.1 demand model
+(conservative: 50–100 units/month for first 3 months = 150–300 units).
+(3) Add B2B sample kits (Section 6): 150–250 units packed in 30–50 kits.
+(4) Add 10% emergency buffer (P2E Section 11.5 Race Emergency Kit + P2A
+Section 11.4 finished goods safety stock). (5) Add 5–10% for expo
+samples, press samples, photography, and quality testing reserves. TOTAL
+= Confirmed B2B + DTC estimate + sample kits + emergency buffer +
+reserves. Round up to nearest MOQ increment (typically 500 or 1,000
+units).</p>
+<p>1.2 Split-Shipment Strategy</p>
+<p>For orders &gt;10,000 units: consider splitting into 2 shipments.
+Shipment 1 (60% of order): ships as soon as production completes Week
+3–4. Goes to 3PL for Amazon FBA prep + early B2B fulfillment. Shipment 2
+(40% of order): ships Week 5 (factory holds for additional QC + co-brand
+production completion). Goes to 3PL for later-season B2B fulfillment.
+Benefit: gets DTC inventory into FBA faster while co-brand production
+finishes. Also reduces risk of entire inventory sitting in transit
+simultaneously.</p>
+<p>2. Purchase Order Template</p>
+<p><strong>The PO is the legally binding order document that triggers
+production.</strong> It references the Production Agreement (P3A Section
+8) for general terms and specifies the order-specific details: quantity,
+pricing, delivery, and special instructions. Use this 10-section
+template for every order.</p>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 81%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Section</strong></td>
+<td><strong>Content</strong></td>
+</tr>
+<tr class="even">
+<td><strong>PO Header</strong></td>
+<td>PO number (sequential: PO-2026-001), date, buyer legal name +
+address, seller (factory) legal name + address, ship-to address (3PL
+warehouse or Amazon FBA prep center)</td>
+</tr>
+<tr class="odd">
+<td><strong>Product Description</strong></td>
+<td>Product name, SKU, material specification reference (P2B Tech Spec
+Rev [X], dated [date]). State: “Production must conform to the approved
+golden sample dated [date] and the attached Technical
+Specification.”</td>
+</tr>
+<tr class="even">
+<td><strong>Quantities</strong></td>
+<td>Standard poncho: [X] units. Co-brand poncho (Race Name): [Y] units
+per design. Total units: [Z]. Buyer reserves the right to adjust
+quantities by ±15% at PO issuance without price change.</td>
+</tr>
+<tr class="odd">
+<td><strong>Pricing</strong></td>
+<td>Per-unit price: $[X.XX] (standard), $[X.XX] (co-brand per color
+tier). Setup fees: $[X] per co-brand design. Total order value:
+$[Z,ZZZ.ZZ]. Currency: USD.</td>
+</tr>
+<tr class="even">
+<td><strong>Payment Terms</strong></td>
+<td>30% deposit ($[X,XXX]) due within 5 business days of PO acceptance.
+70% balance ($[X,XXX]) due upon shipment against presentation of: Bill
+of Lading (ocean) or tracking number (air/courier) + commercial invoice
++ packing list + factory QC report.</td>
+</tr>
+<tr class="odd">
+<td><strong>Delivery</strong></td>
+<td>Production lead time: [X] business days from PO acceptance + deposit
+receipt. Shipping method: [ocean/air/courier]. Incoterm: [FOB/CIF/DDP].
+Delivery destination: [3PL address]. Required arrival date: [date] (must
+arrive ≥2 weeks before first race).</td>
+</tr>
+<tr class="even">
+<td><strong>Quality Standards</strong></td>
+<td>Production must meet P2E QC checklist (Exhibit B to Production
+Agreement). AQL: Critical 0%, Major 2.5%, Minor 4.0%. Buyer reserves
+right to arrange third-party pre-shipment inspection per P3A Section 7
+communication protocol.</td>
+</tr>
+<tr class="odd">
+<td><strong>Packaging</strong></td>
+<td>Individual: compostable PLA inner bag + card/sleeve + sticker seal.
+Master carton: [50/100] units per carton, corrugated, labeled with SKU,
+quantity, batch number, production date, “Store below 25°C.”
+Palletization: [X] cartons per pallet, stretch-wrapped, pallet label
+with PO number + total units.</td>
+</tr>
+<tr class="even">
+<td><strong>Special Instructions</strong></td>
+<td>(1) Include temperature indicator strip in 10% of master cartons (1
+per 10 cartons). (2) FNSKU labels applied per Amazon FBA requirements on
+all DTC units (provide FNSKU label file with PO). (3) Co-brand units
+packed separately from standard units with clear carton labeling. (4)
+Retain 3 golden samples from this production run per P2E Section 6.</td>
+</tr>
+<tr class="odd">
+<td><strong>Signatures</strong></td>
+<td>Buyer signature + date. Seller signature + company chop (for China
+suppliers) + date. Both parties retain signed originals.</td>
+</tr>
+</tbody>
+</table>
+<p>PO WORKFLOW: (1) Founder prepares PO from template. (2) Email PO to
+factory for acceptance. (3) Factory confirms acceptance in writing
+(email reply “PO accepted, production will begin upon deposit receipt”).
+(4) Founder wires 30% deposit within 5 business days. (5) Factory
+confirms deposit receipt and provides production start date. (6) PO is
+now ACTIVE — monitoring begins (Section 4). Keep all POs in a dedicated
+folder: /Orders/PO-2026-001/ with PO PDF, factory acceptance email,
+deposit wire receipt, and subsequent shipping documents.</p>
+<p>3. Co-Brand Production: 7-Step Process</p>
+<p><strong>Co-branded ponchos are the B2B revenue engine.</strong> Each
+co-brand order requires a custom print setup with the race director’s
+logo(s). The 7-step process below ensures that co-brand production is
+fast (3–5 weeks from logos to delivery), accurate (proof-approved before
+production), and traceable (every approval documented in writing).</p>
+<table>
+<colgroup>
+<col style="width: 7%" />
+<col style="width: 45%" />
+<col style="width: 47%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Step</strong></td>
+<td><strong>Process</strong></td>
+<td><strong>Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>1. Race director provides logos</strong></td>
+<td>Race director emails: race logo (vector EPS/AI preferred; high-res
+PNG 300 DPI minimum), sponsor logo(s) (same format), desired layout
+preferences (if any). Deadline: logos due ≥10 business days before
+co-brand production starts.</td>
+<td>If logos arrive in low resolution (JPEG &lt;150 DPI, small pixel
+dimensions): request vector originals. If unavailable: vectorize in
+Adobe Illustrator ($0–$50 via Fiverr) before sending to factory.
+Low-resolution printing = blurry logos = race director rejection.</td>
+</tr>
+<tr class="odd">
+<td><strong>2. Create co-brand mockup</strong></td>
+<td>Using the Canva/Figma co-brand template (P1B Section 7 + P2B Section
+5.2): plug in race logo (top of back panel, up to 10″×8″), sponsor logo
+(middle, up to 8″×6″), brand logo (bottom, fixed 4″×2″). Generate a
+photo-realistic mockup showing the poncho with all logos in position.
+Export as PDF. Turnaround: within 24 hours of receiving logos (this
+speed is a competitive advantage cited in P0G).</td>
+<td>The mockup is the SALES CLOSER. Race directors who see their logo on
+a professional poncho mockup convert at 3–5× the rate of those who
+receive a generic product sheet (P1B Section 7).</td>
+</tr>
+<tr class="even">
+<td><strong>3. Race director approves proof</strong></td>
+<td>Email mockup PDF to race director for approval. Include: front view,
+back view, and a detail crop of the logo area at actual print size. Ask:
+“Please review and confirm: (A) logos are correct and positioned as
+desired, (B) colors are acceptable, (C) approved to proceed to
+production. Please reply APPROVED or provide revision notes.”</td>
+<td>Set a 3-business-day approval deadline. If no response in 3 days:
+follow up. If no response in 5 days: escalate (“To meet your race-date
+delivery, we need approval by [date]”). Document all approvals in
+writing (email confirmation is sufficient).</td>
+</tr>
+<tr class="odd">
+<td><strong>4. Send artwork to factory</strong></td>
+<td>Convert approved mockup into production-ready artwork files: (A)
+EPS/AI vector file at 1:1 scale with branding zone template from P2B
+Section 5.2. (B) Print specification sheet: colors (Pantone references),
+print method (flexo or screen per P2C Section 4.1), registration marks.
+(C) Reference golden sample photograph showing print position.</td>
+<td>NEVER send a Canva/Figma mockup directly to the factory as the print
+file. Mockups are presentation tools, not production files. Convert to
+vector EPS/AI at actual dimensions with correct color separations.</td>
+</tr>
+<tr class="even">
+<td><strong>5. Factory produces proof sample</strong></td>
+<td>Factory prints 1–3 proof samples on actual poncho material using
+production equipment. Ships to founder via express ($30–50). Founder
+inspects: color accuracy (ΔE &lt;5 vs. approved mockup), logo position
+(±1mm), print adhesion (tape test), legibility at 10 ft. If acceptable:
+approve for production run. If not: provide specific correction notes
+with photographs.</td>
+<td>Proof sample adds 5–7 days to co-brand timeline. For repeat orders
+with same design: skip proof sample if first run was approved (factory
+retains print plates/screens). For NEW designs: proof sample is
+mandatory.</td>
+</tr>
+<tr class="odd">
+<td><strong>6. Factory produces co-brand run</strong></td>
+<td>Production of co-brand units within the bulk production run.
+Co-brand units are typically produced AFTER standard units (factory sets
+up print plates/screens for standard first, then changeover for each
+co-brand design). Monitor: print registration consistency across the run
+(check first unit, middle unit, and last unit).</td>
+<td>Co-brand units are packed separately from standard units with clear
+carton labeling: “[Race Name] Co-Brand — [Quantity] units — PO
+[number].” This prevents mixing at the 3PL.</td>
+</tr>
+<tr class="even">
+<td><strong>7. Ship co-brand to race venue</strong></td>
+<td>Co-brand units may ship directly to race venue/expo OR to 3PL for
+consolidated shipment with standard units. Race director specifies
+delivery address and required arrival date. Ship with: packing list,
+commercial invoice, and the approved proof sample (physical copy) as a
+reference for race operations staff to verify on receipt.</td>
+<td>Ship co-brand orders ≥3 weeks before race date. Include 5–10% extra
+units (“over-run allowance” negotiated in PO at no additional charge —
+standard practice in printing industry) to cover any damaged units
+discovered on-site.</td>
+</tr>
+</tbody>
+</table>
+<p>3.1 Co-Brand Timeline</p>
+<p>STANDARD CO-BRAND: Logos received → mockup (1 day) → race director
+approval (3 days) → artwork to factory (1 day) → proof sample (5–7 days)
+→ founder approval (2 days) → production (5–7 days) = TOTAL 17–21
+business days (3–4 weeks). RUSH CO-BRAND: Skip proof sample for repeat
+orders. Logos received → mockup (1 day) → approval (2 days) → artwork to
+factory (1 day) → production (5–7 days) = TOTAL 9–11 business days (2
+weeks). Rush surcharge: 15–25% per P3A Section 3 negotiated terms.</p>
+<p>3.2 Co-Brand Inventory Management</p>
+<p>Each co-brand design is a SEPARATE SKU for inventory tracking.
+Labeling: master cartons labeled with race name + quantity + PO number.
+Storage: at 3PL, co-brand pallets are stored separately from standard
+inventory. Tracking: in the P2F Section 8.4 inventory tracker
+spreadsheet, each co-brand design gets its own row with: race name,
+quantity produced, quantity shipped, quantity remaining, ship-by date.
+FIFO applies to co-brand units too — but co-brand inventory has a
+natural deadline (the race date) that standard inventory does not.</p>
+<p>4. Weekly Production Monitoring</p>
+<p><strong>Production monitoring is the founder’s most important job
+during Weeks 14–18.</strong> A 4-week production run has ~20 business
+days. Problems discovered on Day 15 can still be fixed. Problems
+discovered at pre-shipment inspection (Day 20) may be too late. This
+8-phase monitoring checklist ensures visibility into every production
+stage.</p>
+<table>
+<colgroup>
+<col style="width: 9%" />
+<col style="width: 14%" />
+<col style="width: 35%" />
+<col style="width: 40%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Timing</strong></td>
+<td><strong>Phase</strong></td>
+<td><strong>Factory Activity</strong></td>
+<td><strong>Evidence Required</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Week 1 of production</strong></td>
+<td>Raw material receipt confirmation</td>
+<td>Factory confirms receipt of: NatureFlex NM rolls (or ENVIROMET), PLA
+spunbond rolls, elastic cord, cordlock toggles, compostable ink, inner
+bags. All materials match specifications. Any substitutions flagged
+immediately.</td>
+<td>Email with photos of incoming materials on factory floor, material
+batch numbers recorded</td>
+</tr>
+<tr class="odd">
+<td><strong>Week 1–2</strong></td>
+<td>Lamination / bonding</td>
+<td>Metallized film bonded to PLA spunbond via ultrasonic welding (or
+heat-seal). Factory QC checks: bond adhesion on first 100 units, no
+delamination, uniform coverage.</td>
+<td>Factory sends 3 photos: bonding machine setup, close-up of bond
+quality on sample unit, wide shot of laminated roll</td>
+</tr>
+<tr class="even">
+<td><strong>Week 2</strong></td>
+<td>Die-cutting + perforation</td>
+<td>Body panels die-cut to P2B dimensions. Hood pieces cut. Laser
+perforation of tear-away lines (2mm cut / 1mm bridge). Factory QC:
+dimensional check on 5 units, tear-away force check on 5 units (spring
+gauge, 3–5 N target).</td>
+<td>Factory sends: photos of die-cut panels, close-up of perforation
+line under magnification, tear-away force readings (photo of spring
+gauge at initiation)</td>
+</tr>
+<tr class="odd">
+<td><strong>Week 2–3</strong></td>
+<td>Printing</td>
+<td>Brand logo + composting icons printed on nonwoven exterior via
+flexographic press. Co-brand designs printed on separate run. Factory
+QC: ink adhesion tape test on 3 units, color match against reference
+swatch, print alignment check.</td>
+<td>Factory sends: photos of printed units (front + back), close-up of
+logo detail, tape test results photo, color comparison against Pantone
+reference</td>
+</tr>
+<tr class="even">
+<td><strong>Week 3</strong></td>
+<td>Assembly</td>
+<td>Hood bonded to body. Elastic threaded through hood channel. Cordlock
+attached. Pull tab reinforced. (Snaps applied if used.) Factory QC: full
+P2E 20-point checklist on 10-unit sample from production run.</td>
+<td>Factory sends: completed assembly photos (4 angles), P2E checklist
+results scan/photo, any QC failures documented with corrective action
+taken</td>
+</tr>
+<tr class="odd">
+<td><strong>Week 3–4</strong></td>
+<td>Folding + packaging</td>
+<td>Ponchos folded to 6″×4.5″ flat pack per P2B fold pattern. Inserted
+into compostable inner bags. Card/sleeve applied. Sticker seal applied.
+FNSKU labels applied to DTC units.</td>
+<td>Factory sends: packaged unit photo (front + back), measurement
+confirmation of pack size, photo of FNSKU label correctly placed</td>
+</tr>
+<tr class="even">
+<td><strong>Week 4</strong></td>
+<td>Packing + palletization</td>
+<td>Units packed into master cartons (50 or 100/carton). Cartons
+labeled. Temperature indicator strips inserted (1 per 10 cartons).
+Palletized and stretch-wrapped. Pallet labels applied with PO
+number.</td>
+<td>Factory sends: photos of carton packing, pallet configuration,
+carton label detail, temperature strip placement confirmation</td>
+</tr>
+<tr class="odd">
+<td><strong>Week 4 (pre-shipment)</strong></td>
+<td>Pre-shipment inspection</td>
+<td>Third-party inspector (QIMA/SGS) or founder video-call walk-through.
+AQL sampling per P2E Section 1.2. Full 20-point QC + tear-away Tests 1–3
++ print spot-check. APPROVE or REJECT.</td>
+<td>Inspector report uploaded within 24 hours. If APPROVE: authorize
+shipment + 70% payment release. If REJECT: hold shipment, factory
+corrects, re-inspect.</td>
+</tr>
+</tbody>
+</table>
+<p>4.1 Red Flags During Monitoring</p>
+<p>ESCALATE IMMEDIATELY if any of the following occur: (1) Factory goes
+silent for &gt;3 consecutive business days (missed weekly update). (2)
+Factory requests to substitute a different material (“We couldn’t source
+NatureFlex NM, can we use [alternative]?”) — any material substitution
+requires founder written approval and may require re-testing. (3)
+Factory reports equipment breakdown affecting perforations or bonding.
+(4) Photos show visible defects (delamination, wrong color, misaligned
+print) on more than 1 of the photographed samples. (5) Factory requests
+a timeline extension &gt;5 business days. Response: activate
+communication protocol Channel 5 (emergency escalation to factory owner
+per P3A Section 7). Document all communications in writing.</p>
+<p>5. Payment Authorization: 4-Stage Framework</p>
+<p><strong>Money leaves the founder’s account at 4 defined stages, each
+gated by a specific milestone.</strong> NEVER release payment ahead of
+its trigger event. The payment schedule is the founder’s primary
+leverage over production quality and timeline.</p>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 35%" />
+<col style="width: 35%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Payment</strong></td>
+<td><strong>Trigger</strong></td>
+<td><strong>Process</strong></td>
+<td><strong>Risk Mitigation</strong></td>
+</tr>
+<tr class="even">
+<td><strong>30% deposit</strong></td>
+<td>PO acceptance by factory</td>
+<td>Wire transfer (T/T) within 5 business days of PO. Send to factory’s
+verified bank account (confirm account details via phone, not just email
+— wire fraud prevention). Keep wire transfer receipt as payment
+proof.</td>
+<td>BEFORE sending deposit: verify factory bank details by calling the
+factory directly using a phone number from their verified website (not
+from the email requesting payment). Wire fraud via business email
+compromise (BEC) is the #1 international payment scam.</td>
+</tr>
+<tr class="odd">
+<td><strong>70% balance</strong></td>
+<td>Pre-shipment inspection APPROVED</td>
+<td>Wire transfer within 3 business days of inspection approval. Payment
+is contingent on: (A) pre-shipment inspection passing AQL standards, (B)
+factory providing shipping documents (B/L or tracking + commercial
+invoice + packing list + QC report). DO NOT release payment before
+inspection approval.</td>
+<td>If inspection REJECTS the batch: DO NOT release 70% payment. Factory
+must correct and pass re-inspection. The 30% deposit is at risk only if
+the Production Agreement allows forfeiture for buyer cancellation —
+negotiate to protect deposit if rejection is due to factory quality
+failure.</td>
+</tr>
+<tr class="even">
+<td><strong>Co-brand setup fees</strong></td>
+<td>With PO or per co-brand order</td>
+<td>Wire transfer or invoice from factory. Setup fees ($300–$800 per
+design) are non-refundable once print plates/screens are produced. If
+co-brand order is cancelled after plates are made: setup fee is
+lost.</td>
+<td>Minimize setup fee risk: confirm co-brand order with race director
+(proof-approved, PO signed) BEFORE authorizing factory to produce print
+plates.</td>
+</tr>
+<tr class="odd">
+<td><strong>Disputes</strong></td>
+<td>Quality failure after payment</td>
+<td>If quality issues are discovered AFTER 70% payment and shipment:
+document defects with photographs, reference Production Agreement
+Section 8 (Defect Resolution). Factory must replace defective units at
+factory’s cost (per negotiated quality guarantee). If factory disputes:
+escalate per Production Agreement Section 12 (Dispute Resolution). For
+amounts &lt;$5,000: small claims or negotiated settlement is more
+practical than arbitration.</td>
+<td>Prevention is cheaper than dispute resolution. The pre-shipment
+inspection (Section 4) is the critical gate that catches quality issues
+BEFORE payment is released.</td>
+</tr>
+</tbody>
+</table>
+<p>5.1 Wire Fraud Prevention</p>
+<p>International wire transfers are the #1 target for business email
+compromise (BEC) scams. A fraudster impersonates the factory (or
+compromises the factory’s email) and sends revised bank account details.
+The founder wires $15,000+ to the fraudster’s account and the money is
+gone. PREVENTION: (1) Verify factory bank details by PHONE (call the
+factory on their verified phone number, not from the email) before EVERY
+wire transfer. (2) If bank details change between orders: treat as
+high-risk. Re-verify via phone + request a copy of the factory’s bank
+account certificate. (3) Use a payment intermediary (Alibaba Trade
+Assurance, PayPal Business, or Wise Business) for the first order to add
+a layer of protection. (4) NEVER wire to a personal bank account — only
+to the factory’s corporate account matching the legal entity in the
+Production Agreement.</p>
+<p>6. B2B Sample Kit Specification</p>
+<p><strong>The B2B sample kit is the physical sales tool that converts
+race director interest into purchase orders.</strong> 150–250 units of
+production inventory are allocated to building 30–50 professional kits.
+Each kit costs $15–25 in product + materials and generates potential
+orders of $5,000–50,000+. The ROI on sample kits is the highest of any
+marketing spend.</p>
+<table>
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 42%" />
+<col style="width: 40%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Item</strong></td>
+<td><strong>Specification</strong></td>
+<td><strong>Purpose</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Ponchos</strong></td>
+<td>5 standard ponchos (in compostable inner bags with full
+packaging)</td>
+<td>Race director opens one to feel the material, test the tear-away,
+and see the packaging quality firsthand. Remaining 4 for operations team
+and key stakeholders.</td>
+</tr>
+<tr class="odd">
+<td><strong>Co-brand mockup</strong></td>
+<td>1 printed co-brand mockup (Canva-generated, color, on card
+stock)</td>
+<td>Shows the race director what THEIR poncho would look like with THEIR
+logo. The #1 conversion tool (P1B Section 7).</td>
+</tr>
+<tr class="even">
+<td><strong>B2B data sheet</strong></td>
+<td>2 copies (double-sided, printed on recycled card stock per P1C
+Section 8.1 print specs)</td>
+<td>Technical and sustainability information for the race director’s
+procurement team.</td>
+</tr>
+<tr class="odd">
+<td><strong>Pricing sheet</strong></td>
+<td>1 copy (branded, includes volume tiers, co-brand pricing, setup
+fees, lead times)</td>
+<td>Enables the race director to budget and compare against Heatsheets
+without follow-up emails.</td>
+</tr>
+<tr class="even">
+<td><strong>BPI certification (or status letter)</strong></td>
+<td>1 copy (PDF printout of BPI cert or “certification in progress”
+letter with expected completion date)</td>
+<td>Addresses the #1 sustainability committee question: “Is it really
+compostable?”</td>
+</tr>
+<tr class="odd">
+<td><strong>Composting logistics guide</strong></td>
+<td>1 copy (1–2 page summary of P2D Section 8: bin placement, collection
+protocol, facility finder)</td>
+<td>Addresses the #1 operations objection: “How do we actually compost
+these?”</td>
+</tr>
+<tr class="even">
+<td><strong>FLIR thermal comparison image</strong></td>
+<td>1 printed card showing poncho vs. garbage bag vs. bare skin thermal
+image</td>
+<td>Visual proof of warmth performance. Instantly communicates “this
+actually works” (P1D Section 7).</td>
+</tr>
+<tr class="odd">
+<td><strong>QR code card</strong></td>
+<td>1 card linking to: brand.com/b2b (dedicated B2B landing page with
+order form, video demo, case studies)</td>
+<td>Digital extension of the physical kit. Enables immediate online
+ordering after the meeting.</td>
+</tr>
+<tr class="even">
+<td><strong>Branded packaging</strong></td>
+<td>All items packed in a branded kraft box (8″×6″×4″) with tissue paper
+and a handwritten thank-you note from the founder</td>
+<td>First impressions matter. A professional, cohesive kit signals:
+“this is a real brand, not a hobby project.” Handwritten note signals:
+“the founder cares about this relationship.”</td>
+</tr>
+</tbody>
+</table>
+<p>6.1 Kit Production &amp; Distribution</p>
+<p>PRODUCTION: Assemble kits during Week 17–18 (while bulk production
+completes). Use the founder’s home office or local co-working space —
+kit assembly is a manual process that takes ~10 minutes per kit. Total:
+30–50 kits × 10 min = 5–8 hours of assembly. Materials cost per kit:
+kraft box ($1.50–2.50), tissue paper ($0.20), printed inserts ($2–3 for
+data sheet + pricing sheet + composting guide + FLIR card + QR card),
+poncho product ($5.75–9.00 at COGS × 5 units). Total per kit: $15–25.
+TOTAL for 40 kits: $600–$1,000.</p>
+<p>DISTRIBUTION: Prioritize the 53 races in the P0C database by tier
+(Tier 1 flagship first, then Tier 2 priority, then Tier 3 prospects).
+Mail kits 6–8 weeks before race registration opens for the target
+season. Include a personalized cover letter referencing the specific
+race (“Dear [Race Director Name], I noticed [Race Name] generated [X]
+lbs of start-line waste last year. Here’s a solution that keeps runners
+warm AND composts.”). Follow up by email 5 business days after delivery.
+Track: kit shipped date, follow-up date, response, meeting scheduled
+Y/N, sample order placed Y/N, full order placed Y/N. This becomes the
+B2B sales pipeline.</p>
+<p>7. Process Documentation: 8-Document Archive</p>
+<p><strong>Every order should be repeatable without the founder having
+to remember anything.</strong> Process documentation ensures that: (A) a
+second production run is as smooth as the first, (B) a team member or
+virtual assistant can manage reorders, (C) if the founder is
+unavailable, production continues, and (D) an investor or acquirer can
+evaluate the operational maturity of the business.</p>
+<table>
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 83%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Document</strong></td>
+<td><strong>Content</strong></td>
+</tr>
+<tr class="even">
+<td><strong>1. Supplier Contact Sheet</strong></td>
+<td>Factory name, address, primary contact (name, title, email, phone,
+WeChat), backup contact, factory owner/GM emergency number, bank details
+for wire transfer, business license number. Same for backup
+supplier.</td>
+</tr>
+<tr class="odd">
+<td><strong>2. PO Template</strong></td>
+<td>Editable Word/Google Doc template with all fields from Section 2 of
+this document. Fill in quantities, pricing, dates for each order. Save
+as: PO-2026-[number]-[factory name]-[date].pdf</td>
+</tr>
+<tr class="even">
+<td><strong>3. QC Checklist (printable)</strong></td>
+<td>P2E 20-point checklist + defect classification (C/M/m) formatted as
+a single-page laminated card. Print 5 copies: 1 for factory, 1 for
+founder, 1 for 3PL, 1 for third-party inspector, 1 spare.</td>
+</tr>
+<tr class="odd">
+<td><strong>4. Shipping &amp; Customs Guide</strong></td>
+<td>Preferred shipping method per origin: UK (Parkside): courier or
+consolidator (ParcelForce, DHL, 3–5 days). China (ShinHigh/Alibaba):
+ocean freight (FCL or LCL, 25–35 days) or air freight (DHL/FedEx, 5–7
+days, 4–5× cost). US (ProAmpac): ground freight (UPS/FedEx Ground, 3–7
+days). Customs: HTS classification (verify per P2A Section 11.5), duty
+rate, customs broker contact info. Required documents: commercial
+invoice, packing list, B/L (ocean) or AWB (air), certificate of
+origin.</td>
+</tr>
+<tr class="even">
+<td><strong>5. Production Timeline Template</strong></td>
+<td>Gantt chart or spreadsheet showing: PO date → deposit payment →
+material sourcing → lamination → cutting → printing → assembly →
+packaging → pre-shipment inspection → payment release → shipment →
+transit → delivery to 3PL. Annotate with: responsible party
+(factory/founder/inspector), expected duration per phase, actual
+completion date (filled in per order).</td>
+</tr>
+<tr class="odd">
+<td><strong>6. Cost Tracking Spreadsheet</strong></td>
+<td>Per-order tracker: PO number, quantity, unit price, total order
+value, deposit paid (date, amount), balance paid (date, amount),
+shipping cost, customs/duty cost, inspection cost, total landed cost,
+landed cost per unit. Summary: year-to-date spend, average landed cost
+per unit (track trend over time), cost variance vs. P0F targets.</td>
+</tr>
+<tr class="even">
+<td><strong>7. Artwork Archive</strong></td>
+<td>Google Drive or Dropbox folder containing: brand logo files (EPS,
+AI, PNG, SVG), co-brand template (Canva/Figma source file), all approved
+co-brand designs (organized by race name and year), branding zone
+template (EPS), composting icon strip artwork, approved Pantone color
+references. Naming convention: [Race Name]_[Year]_[Version]_[Status].ai
+(e.g., NYC_Marathon_2026_v2_APPROVED.ai)</td>
+</tr>
+<tr class="odd">
+<td><strong>8. Lessons Learned Log</strong></td>
+<td>After each production run: document what went well, what went wrong,
+and what to change next time. Include: timeline adherence
+(early/on-time/late), quality results (pass rate by checkpoint),
+communication issues, pricing accuracy, packaging issues, shipping
+delays. This log becomes the foundation for negotiating improved terms
+on subsequent orders and for training any team members who join
+later.</td>
+</tr>
+</tbody>
+</table>
+<p>STORAGE: All documents stored in a structured Google Drive or Dropbox
+folder: /Manufacturing/[Factory Name]/POs/ (PO documents),
+/Manufacturing/[Factory Name]/QC/ (inspection reports, QC checklists),
+/Manufacturing/[Factory Name]/Shipping/ (B/L, tracking, customs),
+/Manufacturing/[Factory Name]/Artwork/ (brand + co-brand files),
+/Manufacturing/[Factory Name]/Costs/ (cost tracker, invoices, wire
+receipts). Backup: enable automatic cloud backup or maintain a second
+copy on an external drive. These documents are the operational backbone
+of the business.</p>
+<p>8. Timeline: 5-Week Production Sprint</p>
+<p><strong>WEEK 14: Place bulk PO with primary factory. Wire 30%
+deposit. Send co-brand artwork for confirmed race orders. Order FNSKU
+labels. Alert 3PL for incoming inventory (expected arrival date,
+quantity, carton dimensions).</strong></p>
+<p><strong>WEEK 15: Confirm material receipt at factory (monitoring
+Phase 1). Begin lamination and die-cutting (Phases 2–3). Assemble B2B
+sample kit materials (order kraft boxes, print inserts). Begin Amazon
+Seller Central listing setup (P2E Section 10).</strong></p>
+<p><strong>WEEK 16: Printing phase (Phase 4). Assembly begins (Phase 5).
+Receive weekly update + photos from factory. Evaluate quality from
+photos. Send co-brand proof samples for race director approval. Begin
+assembling B2B sample kits.</strong></p>
+<p><strong>WEEK 17: Folding + packaging (Phase 6). Packing +
+palletization (Phase 7). Schedule pre-shipment inspection (Phase 8). If
+inspection passes: authorize 70% balance payment. Ship B2B sample kits
+to Tier 1 race directors. Finalize Amazon listing for
+launch.</strong></p>
+<p><strong>WEEK 18: Shipment dispatched. Track in transit (ocean: 25–35
+days, air: 5–7 days, UK courier: 3–5 days). While in transit: finalize
+3PL receiving plan, complete Amazon FBA prep, and continue B2B outreach
+with sample kits. Document production process (Section 7: lessons
+learned log). HANDOFF to P3C (Custom Branding System) and P3D (Packaging
+&amp; Labeling) for ongoing operational refinement.</strong></p>
+<p>BUDGET: Production order ($4,500–$50,000 depending on scenario).
+Pre-shipment inspection ($300–$700). Shipping ($500–$5,000 depending on
+volume and method). B2B sample kits ($600–$1,000 for 40 kits). TOTAL
+P3B: $5,900–$56,700.</p>
+<p>9. Conclusion: Production Is Where the Plan Becomes Real</p>
+<p><strong>18 months of research, design, and planning converge on a
+single moment: the factory starts the machines.</strong> The first
+poncho off the production line is the physical manifestation of P0’s
+market research, P1’s brand vision, P2’s engineering, and P3A’s supplier
+relationship. It either confirms or contradicts every assumption. The
+weekly monitoring protocol ensures there are no surprises at the end —
+quality is built into the process, not inspected at the finish line.</p>
+<p><strong>The B2B sample kit is the bridge from production to
+revenue.</strong> A poncho sitting in a warehouse generates zero
+revenue. A poncho in a race director’s hands — torn open, felt against
+the skin, the metallic lining catching the light — generates a purchase
+order. Prioritize getting samples into hands over perfecting the Amazon
+listing. The physical product sells itself in ways no screenshot or
+specification sheet can match.</p>
+
+        </div>
+    </div></div>
+<footer style="text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px">
+Sustainable Race-Start Warmth Poncho — D2C Brand GTM Project · 60 Subprojects · 391 Tasks · ~15,500¶ · April 2026
+</footer></body></html>

@@ -1,0 +1,1007 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>P2F: Product V2 Roadmap — Race Start Warmth GTM</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0e1a;--surface:#111827;--card:#1a2332;--border:#2a3a4e;--accent:#10b981;--accent2:#3b82f6;--text:#e2e8f0;--muted:#94a3b8;--white:#fff;--red:#ef4444;--amber:#f59e0b;--green:#10b981}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+/* Nav */
+nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
+nav .inner{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;max-width:1200px;margin:0 auto}
+nav .brand{font-weight:700;font-size:15px;color:var(--accent)}
+nav .links{display:flex;gap:8px;flex-wrap:wrap}
+nav .links a{color:var(--muted);font-size:13px;padding:4px 10px;border-radius:6px;transition:.2s}
+nav .links a:hover,nav .links a.active{color:var(--white);background:var(--card);text-decoration:none}
+/* Hero */
+.hero{padding:60px 0 40px;text-align:center}
+.hero h1{font-size:2.4em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:1.1em;max-width:700px;margin:0 auto}
+/* Stats bar */
+.stats{display:flex;justify-content:center;gap:32px;padding:24px 0;flex-wrap:wrap}
+.stat{text-align:center}.stat .num{font-size:1.8em;font-weight:800;color:var(--white)}.stat .label{font-size:.75em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+/* Cards */
+.grid{display:grid;gap:16px;margin:24px 0}
+.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}
+.grid-3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;transition:.2s}
+.card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.card h3{font-size:1.1em;margin-bottom:8px}.card p{color:var(--muted);font-size:.9em}
+.card .badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:8px}
+.card .meta{font-size:.8em;color:var(--muted);margin-top:12px}
+/* Section */
+.section{padding:40px 0}.section h2{font-size:1.6em;font-weight:700;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+/* Table */
+table{width:100%;border-collapse:collapse;font-size:.85em;margin:16px 0}
+th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:52px}
+td{padding:8px 12px;border-bottom:1px solid var(--border)}
+tr:hover td{background:rgba(16,185,129,.05)}
+.status-complete{color:var(--green);font-weight:600}.status-not{color:var(--muted)}
+/* Progress */
+.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:8px}
+.progress .bar{height:100%;background:var(--accent);border-radius:3px}
+/* Back link */
+.back{display:inline-block;color:var(--muted);font-size:.9em;margin-bottom:20px}
+.back:hover{color:var(--accent)}
+/* Download */
+.dl-card{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin:8px 0;transition:.2s}
+.dl-card:hover{border-color:var(--accent);text-decoration:none}
+.dl-card .icon{font-size:2em}.dl-card .info h4{color:var(--white);margin-bottom:4px}.dl-card .info p{color:var(--muted);font-size:.85em}
+/* Footer */
+footer{text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px}
+@media(max-width:768px){.stats{gap:16px}.stat .num{font-size:1.3em}nav .links{gap:4px}nav .links a{font-size:11px;padding:3px 6px}.hero h1{font-size:1.6em}}
+
+.doc-content{max-width:900px;margin:0 auto;padding:20px 0}
+.doc-content h1{font-size:1.8em;font-weight:800;color:var(--white);margin:32px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.doc-content h2{font-size:1.4em;font-weight:700;color:var(--accent);margin:28px 0 12px}
+.doc-content h3{font-size:1.15em;font-weight:600;color:var(--accent2);margin:20px 0 10px}
+.doc-content p{margin:8px 0;line-height:1.7}
+.doc-content table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85em}
+.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;border:1px solid var(--border)}
+.doc-content td{padding:8px 12px;border:1px solid var(--border);vertical-align:top}
+.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.doc-content ul,.doc-content ol{margin:8px 0 8px 24px}
+.doc-content li{margin:4px 0;line-height:1.6}
+.doc-content strong{color:var(--white)}
+.doc-content em{color:var(--muted)}
+.doc-content blockquote{border-left:3px solid var(--accent);padding:8px 16px;margin:12px 0;background:var(--card);border-radius:0 8px 8px 0}
+.nav-sub{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 24px;padding:12px 16px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
+.nav-sub a{font-size:.8em;color:var(--muted);padding:4px 10px;border-radius:4px;transition:.2s;white-space:nowrap}
+.nav-sub a:hover,.nav-sub a.active{color:var(--white);background:var(--surface);text-decoration:none}
+</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a></div></div></nav><div class="container">
+    <div style="padding-top:30px">
+        <a href="p2.html" class="back">← ⚙️ P2: Product Design</a>
+        <div class="nav-sub"><a href="p2.html">⚙️ P2 Overview</a><a href="sub-p2a.html">P2A</a><a href="sub-p2b.html">P2B</a><a href="sub-p2c.html">P2C</a><a href="sub-p2d.html">P2D</a><a href="sub-p2e.html">P2E</a><a href="sub-p2f.html" class="active">P2F</a></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px">
+            <div>
+                <span style="background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px">P2F</span>
+                <span style="color:var(--muted);font-size:.85em;margin-left:8px">P2: Product Design</span>
+            </div>
+            <a href="files/P2F_Product_V2_Roadmap.docx" style="font-size:.85em;color:var(--accent);padding:6px 14px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
+        </div>
+        <div class="doc-content">
+            <p><strong>P2F: PRODUCT V2</strong></p>
+<p><strong>ROADMAP</strong></p>
+<p>Sub-Project P2F | Product Design &amp; Material Engineering | Weeks
+12–14</p>
+<p><em>Complete Product Evolution Plan: Feedback Synthesis Framework,
+Premium Reusable V2, Compostable Bib Sleeve, Finish-Line Wrap,
+Color/Pattern Variations, International Standards, and 36-Month Product
+Roadmap</em></p>
+<p>March 2026 | Confidential</p>
+<p>Executive Summary</p>
+<p><strong>V1 is a beachhead, not a destination.</strong> The
+compostable warmth poncho proves the concept, builds the brand, and
+establishes the B2B channel. But the long-term value of this brand lies
+in owning the “compostable warmth” category across multiple products,
+price points, and markets. This document maps the product evolution from
+V1.0 (single-SKU launch) through V3.0 (category-defining platform),
+driven by real customer feedback at every stage.</p>
+<p><strong>The product roadmap delivers 5 new products over 36
+months:</strong> (1) V1.5 improvements (Month 6–12): field-trial-driven
+refinements + limited-edition colorways. (2) Compostable finish-line
+wrap (Month 12–18): direct Heatsheets competitor at 35–45% lower cost.
+(3) Compostable bib sleeve (Month 12–18): low-cost add-on driving AOV.
+(4) Premium reusable poncho (Month 12–18): “buy once, race forever” at
+$18.99–24.99. (5) Team/charity customization platform (Month 18–24):
+digital print on-demand for running clubs and corporate events. Each
+product extends the brand’s TAM while reinforcing the core positioning:
+warmth + sustainability + runner authenticity.</p>
+<p>1. Feedback Synthesis: V1 to V1.5</p>
+<p><strong>Every piece of feedback from P2A field trials, P2C corral
+simulations, early customer reviews, and race director debriefs is fuel
+for V1.5.</strong> This section provides the systematic framework for
+collecting, categorizing, prioritizing, and acting on feedback. The
+framework organizes feedback into 8 categories, each with specific
+trigger questions, response protocols, and V1.5 action paths.</p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 28%" />
+<col style="width: 28%" />
+<col style="width: 28%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Category</strong></td>
+<td><strong>Key Questions to Answer</strong></td>
+<td><strong>If Feedback Is Negative</strong></td>
+<td><strong>V1.5 Action Path</strong></td>
+</tr>
+<tr class="even">
+<td><strong>WARMTH</strong></td>
+<td>Did testers feel warm throughout 30 min? Any cold spots (arms, legs,
+neck)? Did warmth diminish after 15–20 min? Was metallized side
+perceived as the warmth source?</td>
+<td>If cold spots reported: consider extending body length, adding wrist
+elastic, or widening hood. If warmth diminishes: check metallization
+adhesion under body-heat flex.</td>
+<td>V1.5 dimensional adjustment OR material upgrade</td>
+</tr>
+<tr class="odd">
+<td><strong>TEAR-AWAY</strong></td>
+<td>Was pull tab easy to find? Did tear path stay straight? Any
+incomplete tears? Did cold/wet hands cause problems? Was 3 sec
+achievable?</td>
+<td>If pull tab hard to find: enlarge to 3″×2″, add silicone grip dots,
+increase color contrast. If path deviates: tighten perforation spec
+(0.5mm bridge). If cold hands fail: consider alternative removal method
+(velcro strip).</td>
+<td>V1.5 perforation refinement</td>
+</tr>
+<tr class="even">
+<td><strong>FIT / SIZING</strong></td>
+<td>Which body types felt oversized vs. snug? Did hemline interfere with
+walking? Did armholes catch wind? Was 55″ width sufficient for hydration
+vests?</td>
+<td>If &gt;20% report poor fit: evaluate XL variant for V1.5. If hemline
+complaints: test 32″ vs 34″ vs 36″ options. If armhole wind: add snap
+closures.</td>
+<td>V1.5 dimension revision OR V2 size range</td>
+</tr>
+<tr class="odd">
+<td><strong>HOOD</strong></td>
+<td>Did elastic keep hood on in wind? Did cordlock work with cold hands?
+Compatible with all headwear types? Peripheral vision adequate?</td>
+<td>If hood blows off: increase elastic tension or deepen cut. If
+cordlock fails: switch to simpler knot-tie or eliminate cordlock. If
+vision blocked: widen face opening.</td>
+<td>V1.5 hood refinement</td>
+</tr>
+<tr class="even">
+<td><strong>COMFORT</strong></td>
+<td>Did nonwoven feel soft? Any noise complaints (crinkling)?
+Condensation/clamminess? Skin irritation?</td>
+<td>If crinkling: evaluate thicker nonwoven (40 gsm) or PLA meltblown
+interlayer for sound dampening. If clammy: confirm met-side-inward
+orientation. If irritation: check for latex sensitivity.</td>
+<td>V1.5 material adjustment</td>
+</tr>
+<tr class="odd">
+<td><strong>DURABILITY</strong></td>
+<td>Any accidental tears (not at perforations)? Seam failures?
+Metallization peeling? Material fatigue after 30 min?</td>
+<td>If accidental tears: increase nonwoven gsm or add reinforcement
+patches at stress points. If met peeling: investigate bonding method or
+material batch. If seam failure: increase ultrasonic bond density.</td>
+<td>V1.5 construction improvement</td>
+</tr>
+<tr class="even">
+<td><strong>CONVENIENCE</strong></td>
+<td>Easy to unfold? Easy to put on? Pockets/bib accessible through side
+slits? Pack size comfortable in jacket?</td>
+<td>If unfolding confusing: add printed fold diagram on inner bag. If
+side slits too short: extend from 12″ to 15″. If pack too bulky: reduce
+inner bag dimensions.</td>
+<td>V1.5 user experience refinement</td>
+</tr>
+<tr class="odd">
+<td><strong>VALUE</strong></td>
+<td>Would testers pay $9.99? What price feels right? How does it compare
+to garbage bag (free) and Heatsheets ($4.30)?</td>
+<td>If &lt;75% say yes to $9.99: investigate lower price points ($7.99,
+$6.99). Assess which features justify premium. Consider a “basic” vs.
+“premium” tier.</td>
+<td>V1 pricing adjustment OR V2 product tiering</td>
+</tr>
+</tbody>
+</table>
+<p>1.1 Feedback Collection Channels</p>
+<p>(1) P2C Corral Simulation Debrief: structured interviews with 10
+testers (richest data source). (2) QR Code Scan Page: brand.com/scan
+feedback form (“How did your poncho perform?” 3-question survey per P1B
+Sec 6.2). Target: 5–10% of purchasers within 7 days. (3) Amazon Reviews:
+monitor daily for first 90 days post-launch. Respond to every review.
+Tag each review by category (warmth, tear-away, fit, etc.) in a tracking
+spreadsheet. (4) Race Director Post-Event Debrief: structured 15-minute
+call within 7 days of pilot race. Cover: runner feedback, operations
+feedback, composting experience, reorder intent. (5) Social Media
+Mentions: monitor Instagram, TikTok, Reddit r/running, Strava Club. Tag
+and categorize all product mentions.</p>
+<p>1.2 Prioritization Framework: Must-Fix vs. Nice-to-Have</p>
+<p>MUST-FIX (V1.5, Month 6–8): Any issue reported by ≥30% of users OR
+any issue causing safety concern OR any issue generating 1–2 star
+reviews. Examples: tear-away doesn’t work in cold hands, poncho tears in
+normal wind, ink transfers to race shirt. NICE-TO-HAVE (V2, Month 12+):
+Issues reported by &lt;30% of users that don’t affect core function.
+Examples: “wish it came in blue,” “could be 2 inches longer,” “would be
+nice to have pockets.” FUTURE CONSIDERATION (V3+): Feature requests that
+require significant R&amp;D or new product categories. Examples: “make a
+reusable version,” “make matching arm warmers,” “use it for
+cycling.”</p>
+<p>2. Premium Reusable Poncho: V2 Flagship</p>
+<p><strong>The V2 reusable poncho answers the runner who says:</strong>
+“I love the concept but I run 12 races a year — I want one I can keep.”
+This is NOT a replacement for V1. V1 (disposable, compostable) remains
+the B2B product for races providing ponchos to all runners. V2
+(reusable, premium) is a DTC product for committed runners who want a
+permanent start-line layer. The two products coexist and cross-sell.</p>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 19%" />
+<col style="width: 23%" />
+<col style="width: 11%" />
+<col style="width: 30%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Component</strong></td>
+<td><strong>Material</strong></td>
+<td><strong>Specification</strong></td>
+<td><strong>Est. COGS</strong></td>
+<td><strong>Rationale</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Outer shell</strong></td>
+<td>Recycled polyester ripstop (rPET) with DWR finish</td>
+<td>70D ripstop, GRS-certified recycled, PFC-free DWR (fluorine-free
+water repellent)</td>
+<td>$3.50–$5.00/unit at 5K+</td>
+<td>Proven outdoor fabric. Patagonia, Janji, Cotopaxi all use rPET. DWR
+provides rain protection without PFC chemicals.</td>
+</tr>
+<tr class="odd">
+<td><strong>Insulation</strong></td>
+<td>PrimaLoft Bio or Thermore Ecodown</td>
+<td>40–60 gsm synthetic insulation; PrimaLoft Bio is biodegradable;
+Thermore uses recycled fibers</td>
+<td>$2.00–$4.00/unit</td>
+<td>PrimaLoft Bio degrades 93.8% in 646 days in landfill (independent
+testing). NOT compostable but significantly better end-of-life than
+standard polyester fill.</td>
+</tr>
+<tr class="even">
+<td><strong>Lining</strong></td>
+<td>Brushed recycled polyester fleece (microfleece)</td>
+<td>100–150 gsm, GRS-certified, anti-pill finish</td>
+<td>$2.00–$3.50/unit</td>
+<td>Soft next-to-skin feel. Wicking. The “premium” differentiator vs. V1
+disposable.</td>
+</tr>
+<tr class="odd">
+<td><strong>Closure</strong></td>
+<td>YKK recycled nylon quarter-zip + side snaps</td>
+<td>Quarter-zip for easy on/off; side snaps for wind management</td>
+<td>$0.50–$1.00/unit</td>
+<td>Quarter-zip is faster than full-zip for race-start context. YKK
+recycled line (NATULON) aligns with sustainability.</td>
+</tr>
+<tr class="even">
+<td><strong>Hood</strong></td>
+<td>Integrated, adjustable drawcord with recycled cord + cordlock</td>
+<td>Deeper cut than V1; helmet-compatible for cycling crossover</td>
+<td>$0.30–$0.60/unit</td>
+<td>Fixed hood (not detachable) for simplicity and durability.</td>
+</tr>
+<tr class="odd">
+<td><strong>Packability</strong></td>
+<td>Integrated stuff sack (packs into own pocket)</td>
+<td>Target: 5″ × 7″ packed, ~6–8 oz total weight</td>
+<td>$0.20–$0.40/unit</td>
+<td>Runner clips to race belt or hydration vest. Heavier than V1 but
+reusable across 50+ races.</td>
+</tr>
+<tr class="even">
+<td><strong>TOTAL COGS</strong></td>
+<td>N/A</td>
+<td>N/A</td>
+<td>$8.50–$14.50/unit at 5K+</td>
+<td>DTC price: $18.99–$24.99. Gross margin: 40–55%. Positioned as “buy
+once, race forever” complement to V1 disposable.</td>
+</tr>
+</tbody>
+</table>
+<p>2.1 Reusable vs. Disposable: Positioning</p>
+<p>V1 DISPOSABLE ($9.99): “For the runner who wants race-start warmth
+without the waste. Use it once, compost it, done.” Best for: first-time
+users, B2B bulk orders, travelers (don’t want to carry gear home),
+eco-conscious one-time use.</p>
+<p>V2 REUSABLE ($18.99–24.99): “For the runner who wants race-start
+warmth for every race, forever. Warmer, softer, more durable — and still
+sustainably made.” Best for: frequent racers (4+ races/year), runners
+who prefer reusable over disposable, gift purchases, brand
+loyalists.</p>
+<p>CROSS-SELL: Amazon listing for V1 includes “Frequently Bought
+Together” with V2 reusable. Email flow: after V1 purchase, Day 14 email
+introduces V2 (“Loved the compostable poncho? Meet the reusable version
+for every race.”). DTC bundle: V1 2-pack + V2 1-pack for $34.99 (“The
+Complete Race-Start Kit”).</p>
+<p>2.2 Sustainability Credentials</p>
+<p>V2 is NOT compostable (rPET + synthetic insulation are recyclable,
+not compostable). But it IS sustainably made: GRS-certified recycled
+polyester (reduces virgin plastic demand), PFC-free DWR (no fluorinated
+chemicals), PrimaLoft Bio insulation (accelerated biodegradation in
+landfill), and YKK recycled nylon zipper. The sustainability story
+shifts from “disappears after use” (V1) to “lasts forever and was made
+responsibly” (V2). Both stories are authentic. Different runners value
+different approaches.</p>
+<p>3. Compostable Bib Sleeve: High-Margin Add-On</p>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 81%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Attribute</strong></td>
+<td><strong>Detail</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Concept</strong></td>
+<td>A transparent compostable sleeve that slips over the runner’s race
+bib number, protecting it from rain, sweat, and abrasion during the
+corral wait and early race miles. Runners currently use Ziploc bags or
+packing tape — neither is elegant or sustainable.</td>
+</tr>
+<tr class="odd">
+<td><strong>Material</strong></td>
+<td>Clear BOPLA film (25–30µm) — same compostable PLA technology as
+poncho but without metallization. Needs transparency for bib number
+visibility. Celplast clear BOPLA or NatureWorks Ingeo BOPLA.</td>
+</tr>
+<tr class="even">
+<td><strong>Dimensions</strong></td>
+<td>8″ W × 10″ H (20 × 25 cm). Fits standard race bibs (7.5″ × 9.5″
+typical). Open top for bib insertion. Bottom sealed.</td>
+</tr>
+<tr class="odd">
+<td><strong>Attachment</strong></td>
+<td>4 pre-punched holes at corners matching standard bib pin positions.
+Runner pins bib THROUGH sleeve to shirt. Sleeve stays in place
+throughout race.</td>
+</tr>
+<tr class="even">
+<td><strong>Water resistance</strong></td>
+<td>BOPLA film is inherently water-resistant (no nonwoven layer).
+Protects bib from rain and perspiration for 2–4 hours.</td>
+</tr>
+<tr class="odd">
+<td><strong>Compostability</strong></td>
+<td>Same ASTM D6400 / EN 13432 certification path as poncho. Simpler
+product = potentially faster/cheaper certification since single-material
+(no laminate).</td>
+</tr>
+<tr class="even">
+<td><strong>Pricing</strong></td>
+<td>COGS: $0.15–$0.30/unit at 25K+. DTC: $2.99–3.99 (2-pack). B2B:
+$0.75–1.25/unit in race goodie bag. Margin: 60–80%.</td>
+</tr>
+<tr class="odd">
+<td><strong>Market sizing</strong></td>
+<td>~800K US marathon finishers + ~2.1M half-marathon finishers = ~2.9M
+potential units/year (US). Rain frequency at major races: ~30% of events
+experience some precipitation.</td>
+</tr>
+<tr class="even">
+<td><strong>Strategic value</strong></td>
+<td>(1) Low-cost add-on that increases average order value (+$2.99 on
+Amazon). (2) Introduces the brand to runners who aren’t ready to buy the
+poncho. (3) B2B goodie-bag item that gets the brand into runners’ hands
+at low cost to race directors. (4) Cross-sell vehicle: QR code on sleeve
+links to poncho product page.</td>
+</tr>
+<tr class="odd">
+<td><strong>Timeline</strong></td>
+<td>V2 product: develop alongside poncho V1.5. Prototype in Month 6–8.
+Launch in Month 10–12. Complexity: LOW (single-layer film, no tear-away,
+no elastic, simple die-cut + seal).</td>
+</tr>
+</tbody>
+</table>
+<p><strong>The bib sleeve is the highest-margin, lowest-risk product in
+the roadmap.</strong> Simple single-material construction, no tear-away
+engineering, no elastic, no insulation. Die-cut + heat-seal from clear
+BOPLA film. It’s essentially a compostable Ziploc bag shaped for a race
+bib. Manufacturing complexity: 1/10 compared to the poncho.
+Certification complexity: simpler (single material). The primary value
+is strategic: it introduces the brand to millions of runners at a low
+price point and drives cross-sells to the poncho.</p>
+<p>4. Compostable Finish-Line Wrap: The Heatsheets Killer</p>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 81%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Attribute</strong></td>
+<td><strong>Detail</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Concept</strong></td>
+<td>A lighter-weight compostable warmth wrap designed for the finish
+line, where runners are overheated, sweating, and suddenly stopping in
+cold air. Different design requirements from start-line poncho: shorter
+wear time (15–30 min vs. 30–90 min), lighter weight (runner is
+exhausted), easier to wrap around shoulders (not overhead poncho
+style).</td>
+</tr>
+<tr class="odd">
+<td><strong>Form factor</strong></td>
+<td>Rectangular wrap/cape (60″ × 50″ / 150 × 127 cm) — NOT a poncho.
+Runner drapes over shoulders like a shawl/blanket. No hood, no armholes.
+Simpler construction = lower COGS.</td>
+</tr>
+<tr class="even">
+<td><strong>Material</strong></td>
+<td>Config A (single-layer metallized cellulose, NatureFlex NM 23µm) —
+the same config that was rejected for START-LINE use (insufficient
+durability for 30–90 min) but perfectly adequate for 15–30 min post-race
+use. Weight: ~45–55g. CLO: 2.4–2.9.</td>
+</tr>
+<tr class="odd">
+<td><strong>Why not the same as Heatsheets?</strong></td>
+<td>Heatsheets finish-line blankets are LDPE (not compostable). They are
+the #1 waste item at finish lines. THIS product directly replaces them
+with a compostable alternative. The competitive positioning is even
+clearer than at the start line.</td>
+</tr>
+<tr class="even">
+<td><strong>B2B opportunity</strong></td>
+<td>Finish-line blankets are provided by the RACE, not the runner. Races
+order 10,000–50,000+ per event. This is pure B2B: race director buys in
+bulk, distributes at finish line. No DTC sales needed (though DTC is a
+bonus).</td>
+</tr>
+<tr class="odd">
+<td><strong>Pricing</strong></td>
+<td>COGS: $0.40–$0.65/unit at 50K+ (single-layer, no nonwoven, simpler
+construction). B2B: $1.50–2.50/unit (vs. Heatsheets finish blanket at
+~$1.43 for recycled, $4.55 for biodegradable). DTC: $5.99–7.99 (optional
+Amazon listing).</td>
+</tr>
+<tr class="even">
+<td><strong>Competitive advantage</strong></td>
+<td>Heatsheets’ “biodegradable” finish blanket costs $4.55/unit. Our
+compostable wrap at $1.50–2.50/unit is 35–45% cheaper while offering
+BETTER environmental credentials (BPI certified compostable vs.
+Heatsheets’ “biodegradable” claim which has no BPI certification).</td>
+</tr>
+<tr class="odd">
+<td><strong>Certification</strong></td>
+<td>Same BPI/EN 13432 path as poncho. Simpler product (single-layer
+NatureFlex NM) may qualify for streamlined certification leveraging
+existing NatureFlex NM BPI cert (#C119399).</td>
+</tr>
+<tr class="even">
+<td><strong>Timeline</strong></td>
+<td>V2 product: develop in parallel with V1 poncho launch. Prototype in
+Month 4–6 (simple die-cut from already-sourced NatureFlex NM). Pilot
+with 2–3 races in Fall 2026. Full launch Spring 2027.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>The finish-line wrap is the product with the LARGEST
+addressable market.</strong> Start-line ponchos are worn by a fraction
+of runners (those who arrive early, those in cold weather). Finish-line
+wraps are distributed to EVERY finisher at EVERY marathon and most
+half-marathons. NYC Marathon alone distributes 50,000+ finish blankets.
+If the compostable wrap can match Heatsheets on warmth at a lower price
+point with better sustainability credentials, it captures a massive B2B
+volume.</p>
+<p><strong>The business case is compelling:</strong> Heatsheets recycled
+finish blanket = $1.43/unit. Heatsheets “biodegradable” blanket =
+$4.55/unit. Our compostable wrap = $1.50–2.50/unit. We are priced
+BETWEEN the two Heatsheets options, with BETTER environmental
+credentials than either (BPI certified compostable vs. recyclable or
+unverified “biodegradable”). The sales pitch writes itself: “Same
+warmth, truly compostable, lower cost than Heatsheets biodegradable, and
+we handle the composting logistics.”</p>
+<p>5. Color &amp; Pattern Variations: DTC Differentiation</p>
+<table>
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 26%" />
+<col style="width: 28%" />
+<col style="width: 28%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Variant</strong></td>
+<td><strong>Description</strong></td>
+<td><strong>Strategic Purpose</strong></td>
+<td><strong>Timeline</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Standard (V1 launch)</strong></td>
+<td>Earth Green nonwoven exterior / metallized silver interior</td>
+<td>The brand’s signature colorway. Communicates sustainability (green)
++ technology (silver). Used for all DTC + standard B2B orders.</td>
+<td>N/A — base product</td>
+</tr>
+<tr class="odd">
+<td><strong>Race-specific co-brand</strong></td>
+<td>White nonwoven exterior / metallized silver interior</td>
+<td>White is the most versatile printing substrate — race logos and
+sponsor logos render with highest color accuracy on white. Preferred by
+race directors for maximum co-brand visibility.</td>
+<td>Available from V1 launch for B2B co-brand orders</td>
+</tr>
+<tr class="even">
+<td><strong>Limited Edition: Dawn Gold</strong></td>
+<td>Dawn Gold (#D4A843) nonwoven exterior / metallized silver
+interior</td>
+<td>Brand accent color. Released as limited-edition DTC SKU for major
+marathon seasons (NYC, Chicago, Boston). Creates urgency +
+collectibility. Price premium: +$1–2 over standard.</td>
+<td>V1.5 (Month 8–10). Requires separate nonwoven dye lot from
+supplier.</td>
+</tr>
+<tr class="odd">
+<td><strong>Limited Edition: Trail Sage</strong></td>
+<td>Trail Sage (#A8C5A0) nonwoven exterior / metallized silver
+interior</td>
+<td>Lighter, softer colorway targeting trail runners and outdoor
+enthusiasts. Cross-sells into trail running/ultramarathon market.</td>
+<td>V1.5 (Month 8–10). Pair with trail-focused marketing content.</td>
+</tr>
+<tr class="even">
+<td><strong>Limited Edition: Race-City Editions</strong></td>
+<td>City-specific colorway (e.g., NYC Yellow, Chicago Blue, Boston
+Green)</td>
+<td>Colorways matching host-city race branding. Ultra-limited: 500–1,000
+units per city edition. Creates social media buzz and collector
+demand.</td>
+<td>V2 (Year 2). Requires small-batch dye capability from supplier.
+Higher per-unit cost ($0.10–$0.25 premium).</td>
+</tr>
+<tr class="odd">
+<td><strong>Reflective / High-Vis</strong></td>
+<td>Mist White nonwoven + reflective compostable ink strips</td>
+<td>Safety-focused variant for pre-dawn start lines (many marathons
+start at 6–7 AM in darkness). Reflective strips on back + arms provide
+visibility to vehicles/cyclists during walk-to-corral.</td>
+<td>V2 (Year 2). Requires compostable reflective ink R&amp;D. Evaluate:
+retro-reflective compostable tape (if available) or reflective flexo
+ink.</td>
+</tr>
+<tr class="even">
+<td><strong>Team / Charity Customization</strong></td>
+<td>Runner’s chosen charity or running club color + logo</td>
+<td>DTC customization platform (Shopify app like Printful or Custom Ink
+integration). Runner uploads team/charity logo; printed on standard
+poncho. MOQ: 25–50 units.</td>
+<td>V2 (Year 2). Requires digital print capability (not flexo).
+Evaluate: direct-to-garment on nonwoven or digital inkjet transfer on
+film.</td>
+</tr>
+</tbody>
+</table>
+<p>5.1 Limited-Edition Strategy</p>
+<p>Limited editions create urgency, social media buzz, and premium
+pricing. Strategy: (1) Release 2–3 limited colorways per year, timed to
+major marathon seasons (Spring: March–May; Fall: September–November).
+(2) Produce only 500–2,000 units per limited edition (“Only 1,000
+made”). (3) Price at $11.99–12.99 (+$2–3 premium over standard $9.99).
+(4) Announce via email to pre-launch list (P1E) and social media 2 weeks
+before availability. (5) When sold out: “Join the waitlist for the next
+drop” (captures email leads for future launches).</p>
+<p>5.2 Dye Sourcing for PLA Nonwoven</p>
+<p>Standard PLA spunbond is available in white from most suppliers.
+Colored PLA spunbond requires custom dye lots. Approach: (1) Contact
+Ahlstrom or China supplier for colored PLA spunbond availability. MOQ
+for custom color: typically 1,000–5,000 kg (enough for 15,000–80,000+
+ponchos). (2) Alternative: use white PLA spunbond and achieve color via
+full-coverage flexographic print (Earth Green print on white substrate).
+Cost premium: $0.02–$0.05/unit for print coverage. This avoids custom
+dye MOQs while still achieving the desired colorway. (3) For limited
+editions: print-based color is more practical than dye-based color due
+to lower MOQ requirements.</p>
+<p>6. International Composting Standards</p>
+<p><strong>P0G identified London, Berlin, and Toronto as Year 2
+international targets.</strong> P1C Section 16 addressed messaging
+adaptation. This section maps the CERTIFICATION requirements for each
+market, because certification is the legal prerequisite for selling a
+“compostable” product internationally. A product sold as compostable
+without the locally recognized certification exposes the brand to
+regulatory action and greenwashing liability.</p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 16%" />
+<col style="width: 14%" />
+<col style="width: 40%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Market</strong></td>
+<td><strong>Standard</strong></td>
+<td><strong>Certifying Body</strong></td>
+<td><strong>Mark/Logo</strong></td>
+<td><strong>Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>United States</strong></td>
+<td>ASTM D6400</td>
+<td>BPI (Biodegradable Products Institute)</td>
+<td>BPI Certification Mark</td>
+<td>PRIMARY market. All V1 marketing, packaging, and certification
+focused on BPI/ASTM D6400.</td>
+</tr>
+<tr class="odd">
+<td><strong>European Union</strong></td>
+<td>EN 13432</td>
+<td>TÜV Austria OK Compost INDUSTRIAL</td>
+<td>Seedling logo (European Bioplastics)</td>
+<td>Year 2 market. London, Berlin, Paris marathons. EU Green Claims
+Directive (Sept 2026) requires third-party verified claims. Must obtain
+TÜV cert BEFORE marketing in EU.</td>
+</tr>
+<tr class="even">
+<td><strong>EU (home composting)</strong></td>
+<td>NF T 51-800</td>
+<td>TÜV Austria OK Compost HOME</td>
+<td>OK Compost HOME logo</td>
+<td>Premium differentiator. NOT required but valuable for marketing. PLA
+spunbond layer is rate-limiting (see P2D Sec 4.2).</td>
+</tr>
+<tr class="odd">
+<td><strong>United Kingdom</strong></td>
+<td>EN 13432 (adopted post-Brexit)</td>
+<td>OPRL (On-Pack Recycling Label) + Industrial Composting label</td>
+<td>Industrially compostable bin label</td>
+<td>London Marathon is the #1 Year 2 target. UK accepts EN 13432
+certification. Additional labeling per UK-specific requirements.</td>
+</tr>
+<tr class="even">
+<td><strong>Canada</strong></td>
+<td>ASTM D6400 (recognized)</td>
+<td>BPI cert accepted</td>
+<td>BPI Certification Mark</td>
+<td>Toronto Waterfront Marathon is a Year 2 target. ASTM D6400/BPI
+directly applicable. No additional certification needed.</td>
+</tr>
+<tr class="odd">
+<td><strong>Australia</strong></td>
+<td>AS 4736 (industrial) / AS 5810 (home)</td>
+<td>Australasian Bioplastics Association (ABA)</td>
+<td>Seedling logo (ABA-licensed)</td>
+<td>Year 3 market. Melbourne Marathon. Requires ABA certification
+(separate from BPI/TÜV). Test at ABA-approved lab.</td>
+</tr>
+<tr class="even">
+<td><strong>Japan</strong></td>
+<td>GreenPla (JBPA standard)</td>
+<td>Japan BioPlastics Association</td>
+<td>GreenPla mark</td>
+<td>Year 3+ market. Tokyo Marathon (38K+ finishers). Requires separate
+Japanese certification. NatureWorks has JBPA relationships.</td>
+</tr>
+<tr class="odd">
+<td><strong>France</strong></td>
+<td>EN 13432 + NF T 51-800 + Triman logo</td>
+<td>TÜV + CITEO (EPR registration)</td>
+<td>Seedling + Triman logo required</td>
+<td>Paris Marathon. France requires Triman logo on ALL
+recyclable/compostable products sold in France. Must register with CITEO
+for EPR compliance. Annual fee based on units sold.</td>
+</tr>
+</tbody>
+</table>
+<p>6.1 Certification Sequencing</p>
+<p>Year 1 (US launch): BPI Commercial (ASTM D6400) only. Budget:
+$7,500–$15,000. This covers the entire US + Canada market. Year 2 (EU +
+UK): TÜV OK Compost INDUSTRIAL (EN 13432). Budget: $10,000–$20,000.
+Since ASTM D6400 and EN 13432 are substantive equivalents, the BPI lab
+data can often be leveraged to accelerate TÜV certification (but TÜV
+requires its own review and may request supplementary testing). Year 2
+(premium): BPI HOME or TÜV OK Compost HOME (NF T 51-800). Budget:
+$10,000–$18,000. Requires additional ambient-temperature testing. Year 3
+(Asia-Pacific): AS 4736 (Australia) + GreenPla (Japan). Budget:
+$10,000–$20,000 per market. Requires in-country lab testing.</p>
+<p>7. 36-Month Product Roadmap</p>
+<p><strong>This is the master product timeline from V1.0 launch through
+V3.0 category expansion.</strong> Each phase has specific product
+deliverables, revenue targets, and success metrics. The roadmap is
+designed to be updated quarterly as real-world data replaces
+assumptions.</p>
+<table>
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 9%" />
+<col style="width: 33%" />
+<col style="width: 14%" />
+<col style="width: 30%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Phase</strong></td>
+<td><strong>Timeline</strong></td>
+<td><strong>Products &amp; Activities</strong></td>
+<td><strong>Pricing</strong></td>
+<td><strong>Revenue &amp; Goals</strong></td>
+</tr>
+<tr class="even">
+<td><strong>V1.0 LAUNCH</strong></td>
+<td>Month 0–6</td>
+<td>Compostable start-line poncho: Config B (NatureFlex NM + PLA
+spunbond 35 gsm). Single colorway (Earth Green). BPI certification in
+progress. DTC (Amazon + Shopify) + B2B (3–5 pilot races). 5K–25K
+units.</td>
+<td>$9.99 DTC / $3.50–5.00 B2B</td>
+<td>Revenue: $40K–$150K. Goal: 4.5+ star avg, 50+ reviews, 3+ race
+director reorders.</td>
+</tr>
+<tr class="odd">
+<td><strong>V1.5 IMPROVEMENTS</strong></td>
+<td>Month 6–12</td>
+<td>Incorporate ALL P2C field trial feedback. Fix any quality issues.
+Add limited-edition colorways (Dawn Gold, Trail Sage). Perforation
+refinements if needed. Snap closures if field trial demanded them. BPI
+certification obtained.</td>
+<td>Same pricing</td>
+<td>Revenue: $100K–$300K. Goal: 10+ race partnerships, 200+ reviews,
+Amazon Best Seller badge in subcategory.</td>
+</tr>
+<tr class="even">
+<td><strong>V2.0 PRODUCT EXPANSION</strong></td>
+<td>Month 12–18</td>
+<td>Launch 3 new products: (A) Compostable finish-line wrap ($5.99 DTC /
+$1.50–2.50 B2B), (B) Compostable bib sleeve ($2.99 DTC / $0.75–1.25
+B2B), (C) Premium reusable poncho ($18.99–24.99 DTC). Add Race-City
+limited editions. Add reflective variant. International expansion:
+London + Berlin + Toronto.</td>
+<td>Multi-SKU pricing</td>
+<td>Revenue: $300K–$750K. Goal: 25+ races, international presence, brand
+recognition in running community.</td>
+</tr>
+<tr class="odd">
+<td><strong>V2.5 PLATFORM</strong></td>
+<td>Month 18–24</td>
+<td>Team/charity customization platform. Digital print capability for
+small-batch personalized orders. Corporate wellness market (companies
+ordering for employee 5K/10K events). Subscription model for running
+clubs (quarterly poncho shipments for club races).</td>
+<td>Customization premium pricing</td>
+<td>Revenue: $500K–$1.2M. Goal: repeatable B2B revenue, corporate
+accounts, subscription recurring revenue.</td>
+</tr>
+<tr class="even">
+<td><strong>V3.0 CATEGORY EXPANSION</strong></td>
+<td>Month 24–36</td>
+<td>Extend compostable warmth technology beyond running: outdoor
+festivals, football/soccer matches, ski area base lodges, emergency
+preparedness, military field use. License technology to partner brands.
+Evaluate: compostable sleeping bag liner, compostable emergency
+shelter.</td>
+<td>Category-dependent</td>
+<td>Revenue: $1M+. Goal: category-defining brand in compostable warmth
+products. Potential acquisition target for outdoor conglomerate
+(Patagonia, VF Corp, Amer Sports).</td>
+</tr>
+</tbody>
+</table>
+<p>7.1 Investment Requirements by Phase</p>
+<p>V1.0 ($20–50K): Product development (P2A–P2E complete), first
+production order (5K–25K units at $1.15–1.80/unit = $5,750–$45,000),
+certification ($7,500–$15,000), launch marketing ($5K–15K). This is the
+Bootstrap to Moderate scenario from P0F.</p>
+<p>V1.5 ($10–25K): Material refinements ($2K–5K), limited-edition
+colorway production ($3K–8K), V1.5 inventory ($5K–12K).</p>
+<p>V2.0 ($50–100K): New product development (finish wrap $5K–10K, bib
+sleeve $2K–5K, reusable poncho $15K–30K), international certification
+($10K–20K), expanded inventory across 4 SKUs ($20K–40K).</p>
+<p>V2.5 ($25–60K): Digital print capability or partnership ($10K–25K),
+customization platform development ($5K–15K), corporate sales team or
+agency ($10K–20K).</p>
+<p>V3.0 ($100K+): Category R&amp;D (compostable sleeping bag liner,
+emergency shelter), licensing partnerships, potential Series A fundraise
+for scaling. This phase transitions from bootstrapped D2C to
+venture-backed category creation.</p>
+<p>7.2 Roadmap Decision Gates</p>
+<p>Each phase proceeds ONLY if the prior phase meets its success
+criteria. V1.5 proceeds if V1.0 achieves: ≥75% of reorder-eligible race
+directors reorder, ≥4.2 star Amazon average, ≥$40K revenue in 6 months.
+V2.0 proceeds if V1.5 achieves: ≥200 Amazon reviews, ≥$100K cumulative
+revenue, ≥3 inbound international inquiries. V2.5 proceeds if V2.0
+achieves: ≥4 SKUs selling, ≥$300K annual revenue run rate, ≥1 corporate
+client. V3.0 proceeds if V2.5 achieves: ≥$500K annual revenue, category
+recognition in running media, strategic partnership or acquisition
+interest.</p>
+<p>8. Demand Forecasting &amp; Inventory Planning Model</p>
+<p><strong>[GAP P2-11 CLOSED]</strong> Poncho demand is HIGHLY seasonal
+(90%+ of sales occur September–November and February–May) AND
+weather-correlated (demand spikes 3–5× when race-morning temperature is
+forecast below 50°F). Over-ordering creates shelf-life risk (PLA
+degrades in storage per P2D Section 5). Under-ordering means stockouts
+during peak marathon weekends. A $50K inventory bet without a demand
+model is gambling. This section provides the quantitative framework.</p>
+<p>8.1 Demand Model: Inputs &amp; Formula</p>
+<p>The model uses 5 inputs per race to estimate poncho demand: (1) RACE
+ATTENDANCE: expected finishers from P0C 53-race database + race website
+registration data. (2) COLD-WEATHER PROBABILITY: historical probability
+of race-morning temperature &lt;50°F, sourced from NOAA’s Climate Data
+Online (climate.gov) for the race venue’s date. (3) ADOPTION RATE:
+percentage of cold-weather runners who would purchase or receive a
+poncho. Estimate: 5–10% for DTC (first-year awareness); 30–60% for B2B
+(race distributes to all early-corral runners). (4) B2B ORDER
+CONFIRMATION: actual PO quantity from race director (overrides estimate
+for confirmed orders). (5) DTC BASELINE: Amazon sell-through rate
+extrapolated from first 30 days of sales data.</p>
+<p>FORMULA PER RACE: Estimated Demand = Race Attendance × Cold-Weather
+Probability × Adoption Rate. Example: NYC Marathon: 50,000 finishers ×
+85% cold-weather probability (early November in NYC) × 40% adoption rate
+(B2B distribution to Wave 1 corrals) = 17,000 units. Chicago Marathon:
+45,000 × 70% × 35% = 11,025 units. Boston Marathon: 30,000 × 90% × 45% =
+12,150 units. TOTAL for 3 flagship races: ~40,000 units. For the full
+53-race target list: apply the formula to each race, sum totals, add 20%
+DTC buffer = total annual demand estimate.</p>
+<p>DTC DEMAND: Amazon + Shopify DTC demand is harder to forecast
+pre-launch. Conservative model: 50–100 units/month for first 3 months
+(awareness-building phase), ramping to 200–500 units/month by Month 6
+(reviews + PPC + word-of-mouth). Seasonal multiplier: October–November
+and March–April DTC demand is 2–3× baseline (marathon season alignment).
+TOTAL DTC Year 1 estimate: 2,000–5,000 units.</p>
+<p>8.2 Inventory Planning: Production Triggers</p>
+<p><strong>SPRING RACE SEASON (March–May): Order production by December
+of prior year (8–10 week lead time + 2–4 week ocean freight). Trigger:
+confirm total Spring demand by November 15. Minimum order: max(confirmed
+B2B POs + DTC forecast, 5,000 units MOQ).</strong></p>
+<p><strong>FALL RACE SEASON (September–November): Order production by
+June. Trigger: confirm total Fall demand by May 15. Fall is typically
+40–60% larger than Spring for cold-weather ponchos (more major marathons
+in October–November).</strong></p>
+<p>REORDER TRIGGER: If Amazon FBA inventory drops below 4 weeks of
+sell-through (e.g., selling 100/week, reorder when FBA stock hits 400
+units), initiate a reorder immediately. 3PL safety stock (P2A Section
+11.4) bridges the 6–8 week replenishment gap.</p>
+<p>SAFETY STOCK CALCULATION: Hold 20% buffer above total forecast. At
+25,000 units annual demand: safety stock = 5,000 units. Cost:
+$5,750–9,000 at $1.15–1.80 COGS. Storage: climate-controlled 3PL at
+$0.50–1.00/pallet/month. This is the insurance premium against
+stockouts.</p>
+<p>8.3 Markdown &amp; Excess Inventory Strategy</p>
+<p>If demand falls below forecast and inventory exceeds 6-month
+shelf-life window: (1) DISCOUNT 30% on Amazon (“End-of-Season Sale”).
+Run 2–4 weeks in April–May (post-Spring) or November–December
+(post-Fall). Maintains margin above COGS even at $6.99. (2) DONATE to
+charity races (Achilles International, Back on My Feet, parkrun).
+Tax-deductible at COGS value. Generates goodwill, PR, and product
+exposure to new runners. (3) B2B SAMPLE DISTRIBUTION to race directors
+on the P0C target list: “Free sample packs for your operations team” —
+converts unsold inventory into B2B lead generation. (4) NEVER let
+inventory sit past 10 months from production date. If unsold at Month
+10: donate or destroy. Shipping a degraded product is worse than writing
+off inventory.</p>
+<p>8.4 Demand Model Spreadsheet Template</p>
+<p>Build in Google Sheets with 4 tabs: (1) RACE DATABASE: 53 races from
+P0C with columns: race name, city, date, expected attendance, historical
+cold-weather probability, B2B status (LOI/confirmed PO/prospect),
+estimated units. Auto-sum total B2B demand. (2) DTC FORECAST: Monthly
+DTC sales estimate with seasonal multipliers. Start conservative, update
+monthly with actual Amazon sell-through data. (3) PRODUCTION PLAN: Merge
+B2B + DTC demand per season. Add 20% safety stock. Calculate total
+production order. Compare to MOQ. Calculate COGS. (4) INVENTORY TRACKER:
+Running balance of units produced, units shipped to FBA, units shipped
+to B2B, units in 3PL, units remaining. Flag when any SKU drops below
+4-week cover. Update weekly during race season, monthly off-season.</p>
+<p>9. Competitive Response Scenario Planning</p>
+<p><strong>[GAP P2-17 CLOSED]</strong> Heatsheets (Advanced Flexible
+Composites) is a 45-year incumbent with an estimated $10M+ annual
+revenue, exclusive contracts with 600+ races, and a parent company with
+manufacturing scale. Entering their market without anticipating their
+response is strategic negligence. This section maps the 4 most likely
+competitive responses and pre-builds the counter-strategy for each.</p>
+<p>9.1 Scenario A: Heatsheets Launches a Compostable Product</p>
+<p>PROBABILITY: MEDIUM-HIGH (18–24 months). Heatsheets has the
+manufacturing relationships and materials expertise to develop a
+compostable blanket. They already offer a “biodegradable” option
+($4.55/unit), suggesting awareness of market demand. THEIR ADVANTAGE:
+600+ existing race relationships, proven logistics at 50,000-unit scale,
+brand recognition. OUR ADVANTAGE: 12–18 month head start, BPI
+certification (their “biodegradable” product has no BPI cert),
+race-director relationships built during their development lag, and the
+tear-away start-line design (they are finish-line focused).
+COUNTER-STRATEGY: (1) Accelerate race director LOIs and multi-year
+contracts in Year 1 to create switching costs before Heatsheets enters.
+(2) File provisional patent (P2B Section 11) to protect the tear-away
+mechanism — forces Heatsheets to engineer a different removal system.
+(3) Position as the “authentic original” with “first certified
+compostable start-line poncho” messaging. (4) Welcome their entry
+publicly: “We’re glad Heatsheets sees the value of compostable race gear
+— it validates the category we created.” This is strategically generous
+and positions us as the category leader, not a reactive competitor.</p>
+<p>9.2 Scenario B: Heatsheets Drops Prices Aggressively</p>
+<p>PROBABILITY: MEDIUM. Heatsheets could reduce their recycled blanket
+from $1.43 to $0.80–$1.00/unit to undercut the compostable poncho’s B2B
+pricing ($3.50–5.00/unit). THEIR ADVANTAGE: lower COGS on LDPE
+(commodity material), manufacturing scale, and margin cushion from a
+larger product portfolio. OUR DISADVANTAGE: cannot compete on price with
+LDPE — compostable materials are inherently more expensive.
+COUNTER-STRATEGY: (1) NEVER compete on price. The value proposition is
+sustainability + warmth + start-line design, not cost. (2) Emphasize the
+hidden costs of Heatsheets to race directors: post-race waste cleanup
+labor ($2,000–5,000 per race per P0A), negative press from waste photos,
+and municipality composting mandates that are making non-compostable
+products a liability. (3) Reframe the comparison: “Our poncho at
+$3.50/unit + composting logistics at $0.10/unit = $3.60 total.
+Heatsheets at $0.80/unit + waste cleanup at $0.50–1.00/unit + negative
+sustainability PR: what’s the real cost?” (4) Target races with public
+sustainability commitments (NYC, London, Berlin, Tokyo) where price is
+secondary to environmental credentials.</p>
+<p>9.3 Scenario C: Heatsheets Locks Races Into Exclusive Contracts</p>
+<p>PROBABILITY: LOW-MEDIUM. Heatsheets could offer multi-year exclusive
+supply agreements to key races, preventing them from switching to
+compostable alternatives. THEIR ADVANTAGE: established relationships and
+the ability to bundle start-line + finish-line products.
+COUNTER-STRATEGY: (1) Target the 53 races on the P0C database that are
+NOT currently Heatsheets partners — many mid-tier and regional races
+have no finish-line blanket contract at all. (2) Offer a “try before you
+commit” pilot program: 500–1,000 free ponchos for one race, no contract
+required. Conversion rate from pilot to paid reorder is the most
+powerful B2B sales metric. (3) For races that ARE Heatsheets partners:
+approach about the START LINE specifically. Many Heatsheets contracts
+cover finish-line blankets only — the start line is unserved territory
+where we face no exclusivity barrier. (4) Long-term: as the product line
+expands to finish-line wraps (P2F Section 4), offer a complete
+“start-to-finish” compostable package that replaces Heatsheets
+entirely.</p>
+<p>9.4 Scenario D: New Entrant Copies the Design</p>
+<p>PROBABILITY: LOW (Year 1), MEDIUM (Year 2–3 as category awareness
+grows). A new startup or existing outdoor brand could replicate the
+compostable poncho concept. THEIR ADVANTAGE: potentially lower cost (if
+manufacturing in lower-cost regions) or stronger brand (if a known
+outdoor brand like Patagonia, Janji, or Cotopaxi enters).
+COUNTER-STRATEGY: (1) Provisional patent on tear-away system (P2B
+Section 11) — creates legal barrier and “Patent Pending” deterrent. (2)
+BPI certification and race-director relationship network create a 12–18
+month head start that is expensive to replicate. (3) Build brand loyalty
+through the pre-launch community (P1E), race-day experience, and DTC
+customer relationship — brand switching costs increase with emotional
+connection. (4) If a well-funded competitor enters: consider partnership
+or licensing rather than head-to-head competition. A Patagonia-branded
+compostable poncho using our materials and manufacturing partner would
+be a win for the category, and a licensing fee structure could be more
+valuable than fighting for market share.</p>
+<p>10. Conclusion: From Product to Platform</p>
+<p><strong>The compostable warmth poncho is a product. Compostable
+race-day gear is a platform.</strong> V1 proves that runners will pay
+for sustainable warmth at the start line. V2 proves that race directors
+will switch from Heatsheets at the finish line. V2.5 proves that running
+clubs and corporations will customize for their teams. V3 proves that
+the technology extends beyond running into outdoor recreation, emergency
+preparedness, and beyond.</p>
+<p><strong>Each product in the roadmap follows the same
+formula:</strong> Identify an existing waste-generating product (garbage
+bags, Heatsheets blankets, Ziploc bags for bibs, disposable ponchos at
+festivals). Replace it with a compostable alternative that performs
+equally or better. Certify it. Make the composting logistics easy. Sell
+the solution, not just the product. This formula is repeatable across
+any category where single-use products generate unnecessary waste.</p>
+<p><strong>The 36-month vision is ambitious but achievable.</strong> It
+requires disciplined execution, honest feedback loops, and the
+willingness to kill products that don’t meet the “would buy” threshold.
+Not every V2 product will succeed. The bib sleeve might be a flop. The
+reusable poncho might cannibalize V1 DTC sales. The finish-line wrap
+might face Heatsheets’ pricing retaliation. Plan for these scenarios.
+Test early, fail cheap, scale winners. The brand’s long-term value is
+the CATEGORY, not any single SKU.</p>
+
+        </div>
+    </div></div>
+<footer style="text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px">
+Sustainable Race-Start Warmth Poncho — D2C Brand GTM Project · 60 Subprojects · 391 Tasks · ~15,500¶ · April 2026
+</footer></body></html>

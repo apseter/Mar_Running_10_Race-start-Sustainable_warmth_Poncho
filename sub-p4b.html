@@ -1,0 +1,800 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>P4B: Warehousing 3PL Setup — Race Start Warmth GTM</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0e1a;--surface:#111827;--card:#1a2332;--border:#2a3a4e;--accent:#10b981;--accent2:#3b82f6;--text:#e2e8f0;--muted:#94a3b8;--white:#fff;--red:#ef4444;--amber:#f59e0b;--green:#10b981}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+/* Nav */
+nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
+nav .inner{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;max-width:1200px;margin:0 auto}
+nav .brand{font-weight:700;font-size:15px;color:var(--accent)}
+nav .links{display:flex;gap:8px;flex-wrap:wrap}
+nav .links a{color:var(--muted);font-size:13px;padding:4px 10px;border-radius:6px;transition:.2s}
+nav .links a:hover,nav .links a.active{color:var(--white);background:var(--card);text-decoration:none}
+/* Hero */
+.hero{padding:60px 0 40px;text-align:center}
+.hero h1{font-size:2.4em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:1.1em;max-width:700px;margin:0 auto}
+/* Stats bar */
+.stats{display:flex;justify-content:center;gap:32px;padding:24px 0;flex-wrap:wrap}
+.stat{text-align:center}.stat .num{font-size:1.8em;font-weight:800;color:var(--white)}.stat .label{font-size:.75em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+/* Cards */
+.grid{display:grid;gap:16px;margin:24px 0}
+.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}
+.grid-3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;transition:.2s}
+.card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.card h3{font-size:1.1em;margin-bottom:8px}.card p{color:var(--muted);font-size:.9em}
+.card .badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:8px}
+.card .meta{font-size:.8em;color:var(--muted);margin-top:12px}
+/* Section */
+.section{padding:40px 0}.section h2{font-size:1.6em;font-weight:700;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+/* Table */
+table{width:100%;border-collapse:collapse;font-size:.85em;margin:16px 0}
+th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:52px}
+td{padding:8px 12px;border-bottom:1px solid var(--border)}
+tr:hover td{background:rgba(16,185,129,.05)}
+.status-complete{color:var(--green);font-weight:600}.status-not{color:var(--muted)}
+/* Progress */
+.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:8px}
+.progress .bar{height:100%;background:var(--accent);border-radius:3px}
+/* Back link */
+.back{display:inline-block;color:var(--muted);font-size:.9em;margin-bottom:20px}
+.back:hover{color:var(--accent)}
+/* Download */
+.dl-card{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin:8px 0;transition:.2s}
+.dl-card:hover{border-color:var(--accent);text-decoration:none}
+.dl-card .icon{font-size:2em}.dl-card .info h4{color:var(--white);margin-bottom:4px}.dl-card .info p{color:var(--muted);font-size:.85em}
+/* Footer */
+footer{text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px}
+@media(max-width:768px){.stats{gap:16px}.stat .num{font-size:1.3em}nav .links{gap:4px}nav .links a{font-size:11px;padding:3px 6px}.hero h1{font-size:1.6em}}
+
+.doc-content{max-width:900px;margin:0 auto;padding:20px 0}
+.doc-content h1{font-size:1.8em;font-weight:800;color:var(--white);margin:32px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.doc-content h2{font-size:1.4em;font-weight:700;color:var(--accent);margin:28px 0 12px}
+.doc-content h3{font-size:1.15em;font-weight:600;color:var(--accent2);margin:20px 0 10px}
+.doc-content p{margin:8px 0;line-height:1.7}
+.doc-content table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85em}
+.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;border:1px solid var(--border)}
+.doc-content td{padding:8px 12px;border:1px solid var(--border);vertical-align:top}
+.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.doc-content ul,.doc-content ol{margin:8px 0 8px 24px}
+.doc-content li{margin:4px 0;line-height:1.6}
+.doc-content strong{color:var(--white)}
+.doc-content em{color:var(--muted)}
+.doc-content blockquote{border-left:3px solid var(--accent);padding:8px 16px;margin:12px 0;background:var(--card);border-radius:0 8px 8px 0}
+.nav-sub{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 24px;padding:12px 16px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
+.nav-sub a{font-size:.8em;color:var(--muted);padding:4px 10px;border-radius:4px;transition:.2s;white-space:nowrap}
+.nav-sub a:hover,.nav-sub a.active{color:var(--white);background:var(--surface);text-decoration:none}
+</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a></div></div></nav><div class="container">
+    <div style="padding-top:30px">
+        <a href="p4.html" class="back">← 📦 P4: Supply Chain</a>
+        <div class="nav-sub"><a href="p4.html">📦 P4 Overview</a><a href="sub-p4a.html">P4A</a><a href="sub-p4b.html" class="active">P4B</a><a href="sub-p4c.html">P4C</a><a href="sub-p4d.html">P4D</a></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px">
+            <div>
+                <span style="background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px">P4B</span>
+                <span style="color:var(--muted);font-size:.85em;margin-left:8px">P4: Supply Chain</span>
+            </div>
+            <a href="files/P4B_Warehousing_3PL_Setup.docx" style="font-size:.85em;color:var(--accent);padding:6px 14px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
+        </div>
+        <div class="doc-content">
+            <p><strong>P4B: WAREHOUSING</strong></p>
+<p><strong>&amp; 3PL SETUP</strong></p>
+<p>Sub-Project P4B | Supply Chain &amp; Fulfillment | Weeks 17–20</p>
+<p><em>Complete Fulfillment Architecture: 3 Fulfillment Model Options,
+7-Step Amazon FBA Setup, 6-Step B2B Fulfillment Workflow, Shopify
+Integration, Multi-Location Inventory Tracking, and DTC + B2B Returns
+Policies</em></p>
+<p>March 2026 | Confidential</p>
+<p>Executive Summary</p>
+<p><strong>Warehousing and fulfillment convert inventory into delivered
+orders.</strong> A poncho sitting in a warehouse is a cost; a poncho in
+a runner’s hands is revenue. This document designs the complete
+fulfillment architecture for two fundamentally different channels: DTC
+(individual units shipped to consumers via Amazon FBA and Shopify) and
+B2B (pallets and cases shipped to race venues via freight). Each channel
+has different speed requirements, packaging standards, and cost
+structures.</p>
+<p><strong>Three fulfillment models are evaluated for Season 1:</strong>
+(A) FBA for DTC + founder’s home for B2B (lowest cost, recommended for
+Season 1 Bootstrap/Moderate), (B) FBA for DTC + 3PL for B2B (scalable,
+recommended for Season 2+), and (C) single 3PL for everything (simplest
+but most expensive, recommended only at high volume). The document also
+covers the complete 7-step Amazon FBA onboarding, a 6-step B2B
+fulfillment workflow, Shopify integration with 3 fulfillment options, a
+multi-location inventory tracking system, and separate returns policies
+for DTC and B2B.</p>
+<p>1. Fulfillment Model Evaluation: 3 Options</p>
+<p><strong>The right fulfillment model depends on volume, capital, and
+the founder’s time availability.</strong> In Season 1, the founder IS
+the operations team. Every hour spent packing B2B orders is an hour not
+spent on sales, marketing, or product improvement. The model should
+minimize cost at low volume while allowing a clear upgrade path as the
+business scales.</p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 22%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Model</strong></td>
+<td><strong>Description</strong></td>
+<td><strong>Cost Structure</strong></td>
+<td><strong>Advantages</strong></td>
+<td><strong>Disadvantages</strong></td>
+<td><strong>When to Use</strong></td>
+</tr>
+<tr class="even">
+<td><strong>FBA-only (DTC) + Garage/Home (B2B)</strong></td>
+<td>Amazon FBA handles ALL DTC orders (Amazon + Shopify via MCF).
+Founder personally packs and ships B2B orders from home/storage
+unit.</td>
+<td>DTC: $3.22–$3.68/unit FBA fulfillment + $0.78–$1.20/cu ft/month
+storage. B2B: $0 warehousing (home) + shipping cost only.</td>
+<td>Lowest fixed cost. No 3PL monthly minimum. Full control over B2B
+packing (personal touch with handwritten notes per P3B Section 6).
+Founder learns the business firsthand.</td>
+<td>Not scalable past ~20 B2B orders/season (founder becomes the
+bottleneck). No climate control at home (PLA heat sensitivity per P2D
+Section 5). Must manage FBA inventory replenishment manually.</td>
+<td>RECOMMENDED for Season 1 (Bootstrap or Moderate order scenario).
+Switch to Option B or C when B2B exceeds 20 orders/season or total
+inventory exceeds what home storage can handle.</td>
+</tr>
+<tr class="odd">
+<td><strong>FBA (DTC) + 3PL (B2B)</strong></td>
+<td>Amazon FBA handles DTC. A separate 3PL warehouse handles B2B order
+storage, pick/pack, and pallet shipping to race venues.</td>
+<td>DTC: same FBA costs. B2B: $150–$500/month 3PL storage + $2–$8/order
+pick/pack + $0.50–$1.50/unit handling.</td>
+<td>Scalable B2B fulfillment. Climate-controlled storage (critical for
+PLA shelf life). Professional packing reduces errors. Founder focuses on
+sales, not packing.</td>
+<td>Higher fixed cost ($150–$500/month even with low volume). 3PL
+learning curve (onboarding takes 2–4 weeks). Less personal touch on B2B
+orders.</td>
+<td>RECOMMENDED for Season 2+ or if B2B volume exceeds 20 orders in
+Season 1. Best 3PL candidates: ShipBob, ShipMonk, Red Stag Fulfillment
+(specializes in oversized/specialized products), or a regional 3PL near
+a major race hub.</td>
+</tr>
+<tr class="even">
+<td><strong>Single 3PL (DTC + B2B unified)</strong></td>
+<td>One 3PL handles EVERYTHING: receives inventory from factory, preps
+and ships to FBA, fulfills Shopify direct orders, and fulfills B2B
+pallet/case orders to race venues.</td>
+<td>$300–$800/month base + $2.50–$5.00/DTC order + $5–$15/B2B order +
+storage.</td>
+<td>Single inventory pool (no split between FBA and 3PL). Unified
+tracking. Simplest operations. 3PL handles FBA replenishment as a
+service.</td>
+<td>Most expensive for low volume. Requires a 3PL that can handle both
+DTC (small parcel) and B2B (pallet/case). Monthly minimums may exceed
+$300–$500.</td>
+<td>RECOMMENDED only at 500+ DTC orders/month + 50+ B2B orders/season.
+Year 2–3 optimization. For Season 1: too expensive for the volume.</td>
+</tr>
+</tbody>
+</table>
+<p>1.1 3PL Selection Criteria (for Option B/C)</p>
+<p>When the time comes to select a 3PL (Season 2 or earlier if volume
+warrants), evaluate on: (1) Location: near a major race hub city (NYC
+metro, Chicago, or a central US location like Cincinnati/Indianapolis
+for balanced ground shipping times). Climate-controlled storage is
+MANDATORY for PLA products. (2) DTC capability: integration with Shopify
++ Amazon MCF (if not using FBA directly). Small-parcel pick/pack
+experience. (3) B2B capability: pallet and case shipping to commercial
+addresses (race venues, convention centers). LTL and FTL freight
+experience. (4) Pricing: no hidden fees. Get quotes for: receiving
+($20–$50/pallet or $0.10–$0.25/unit), storage ($15–25/pallet/month),
+pick/pack ($2–05/order + $0.50–1.50/unit), shipping (pass-through
+carrier rates or markup). (5) Onboarding: 2–4 week onboarding process.
+Provide: product samples, QC checklist, packaging instructions, shipping
+preferences. TOP CANDIDATES: ShipBob (tech-forward, Shopify integration,
+multi-node network), Red Stag Fulfillment (accuracy guarantee,
+specializes in unique products, climate-controlled), ShipMonk
+(competitive pricing, good for &lt;1,000 orders/month).</p>
+<p>1.2 Home Fulfillment Setup (Season 1 B2B)</p>
+<p>For Season 1 B2B orders fulfilled from home: (1) Storage: dedicate a
+climate-controlled space (spare room, insulated garage, or small storage
+unit). Temperature: keep below 77°F/25°C year-round. Humidity: &lt;60%.
+NEVER store in an un-air-conditioned garage during summer (PLA film +
+metallization degrades above 40°C per P2D Section 5). (2) Packing
+station: folding table + packing tape dispenser + scale (for shipping
+weight) + label printer (Rollo or DYMO, $150–$250 for thermal label
+printer — pays for itself after 200 shipments vs. inkjet labels). (3)
+Supplies: corrugated shipping boxes (uline.com, $0.50–$2.00/box),
+packing tape, kraft void fill (recycled paper, not plastic peanuts —
+brand consistency), printed packing lists, composting logistics guides.
+(4) Capacity: a founder can realistically pack and ship 5–10 B2B orders
+per week (each order = 15–60 minutes including pick, pack, label, and
+carrier drop-off). At 20+ orders/season, this is manageable. At 50+:
+transition to 3PL.</p>
+<p>2. Amazon FBA Setup: 7-Step Onboarding</p>
+<p><strong>Amazon FBA (Fulfillment by Amazon) handles storage, picking,
+packing, shipping, and customer service for DTC orders.</strong> The
+seller ships inventory to Amazon’s fulfillment centers; Amazon handles
+everything from there. FBA products qualify for Prime (1–2 day free
+shipping for Prime members), which dramatically increases conversion
+rate (Prime products convert 3–5× higher than non-Prime).</p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 4%" />
+<col style="width: 47%" />
+<col style="width: 47%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Step</strong></td>
+<td><strong>Process</strong></td>
+<td><strong>Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>1. Create Amazon Seller Account</strong></td>
+<td>Register at sellercentral.amazon.com. Choose “Professional” plan
+($39.99/month). Provide: legal business name, tax ID (EIN or SSN), bank
+account for deposits, credit card for charges, phone number for
+verification.</td>
+<td>If not already done during P2E Section 10 Amazon compliance work:
+complete now. Account approval: 1–3 business days. May require
+additional identity verification (driver’s license, utility bill).</td>
+</tr>
+<tr class="odd">
+<td><strong>2. Create Product Listing</strong></td>
+<td>In Seller Central: Inventory → Add a Product → “I’m adding a product
+not sold on Amazon.” Enter: product name, brand name (must match Brand
+Registry if enrolled), UPC barcode (from GS1 per P3D Section 5), product
+category (“Sports &amp; Outdoors &gt; Running &gt; Accessories” or
+“Sports &amp; Outdoors &gt; Outdoor Recreation &gt; Camping”), product
+description, bullet points, images (per P1D Amazon photography plan),
+price ($9.99), keywords.</td>
+<td>Create listings for: (1) Single-unit poncho, (2) 3-pack, (3) 6-pack.
+Link as variations on the same parent ASIN (size variations: “1-Pack,”
+“3-Pack,” “6-Pack”). This consolidates reviews on one product page.</td>
+</tr>
+<tr class="even">
+<td><strong>3. Generate FNSKU</strong></td>
+<td>After listing is created: go to Inventory → Manage FBA Inventory →
+select product → Print Item Labels. Download FNSKU label PDF. Print on
+Avery 30-up labels (Avery 5160 or equivalent, $15–$25 for 750 labels).
+OR provide FNSKU to factory/3PL for pre-application.</td>
+<td>FNSKU is Amazon’s internal barcode that links units to YOUR seller
+account. Must be on EVERY unit sent to FBA. Covers the UPC barcode (only
+FNSKU should be scannable).</td>
+</tr>
+<tr class="odd">
+<td><strong>4. Create FBA Shipment Plan</strong></td>
+<td>In Seller Central: Inventory → Send to Amazon. Select products and
+quantities. Amazon assigns a destination fulfillment center (you don’t
+choose). Enter box content information (units per box, box weight, box
+dimensions). Select shipping method: (A) Amazon Partnered Carrier
+(discounted UPS/FedEx rates, 20–40% below retail) or (B) your own
+carrier.</td>
+<td>IMPORTANT: Amazon may split your shipment across 2–3 fulfillment
+centers. This increases shipping cost. To minimize: enable “Inventory
+Placement Service” ($0.30/unit) which sends everything to one center.
+For first shipment of 500–1,000 units: Inventory Placement is worth the
+$150–$300 to simplify logistics.</td>
+</tr>
+<tr class="even">
+<td><strong>5. Prep and Label Units</strong></td>
+<td>Apply FNSKU labels to every unit. Apply suffocation warning if not
+already printed on inner bag (per P3D Section 8). For multi-packs: apply
+“Sold as set. Do not separate.” sticker. Pack units into standard
+shipping boxes (not the master cartons from the factory — repack into
+Amazon-approved box sizes if needed).</td>
+<td>FBA prep can be done by: (A) Founder at home ($0 labor, 2–4 hours
+for 500 units). (B) 3PL as FBA prep service ($0.15–$0.50/unit). (C)
+Amazon FBA Prep Service ($0.50–1.00/unit, available for some
+categories). For first shipment: DIY to learn the process and ensure
+quality.</td>
+</tr>
+<tr class="odd">
+<td><strong>6. Ship to FBA</strong></td>
+<td>Print shipping labels from Seller Central. Schedule carrier pickup
+or drop off at UPS/FedEx. Track shipment. Amazon receives and checks in
+inventory (2–14 business days after delivery). Units become
+“Fulfillable” in inventory and appear as “In Stock” on the listing.</td>
+<td>FBA check-in time varies: 2–5 days during normal periods, 7–14 days
+during peak (Q4 holiday season, Prime Day). Ship inventory 3–4 weeks
+before you need it live on the listing. For Fall 2026 launch: ship to
+FBA by early September.</td>
+</tr>
+<tr class="even">
+<td><strong>7. Verify Listing is Live</strong></td>
+<td>After FBA check-in: verify the product listing shows “In Stock” and
+“Fulfilled by Amazon.” Place a test order (buy 1 unit yourself). Verify:
+correct product received, FNSKU matches, packaging intact, insert card
+present, delivery speed matches Prime promise (1–2 day). Check: listing
+images display correctly, bullet points are accurate, A+ Content renders
+properly (if Brand Registered).</td>
+<td>The test order is the FINAL validation before marketing spend
+begins. If anything is wrong (wrong image, missing insert, damaged
+packaging): fix BEFORE launching PPC campaigns. Every early review
+matters; a 1-star review from a packaging issue at launch is
+devastating.</td>
+</tr>
+</tbody>
+</table>
+<p>2.1 FBA Cost Calculator</p>
+<p>Per-unit FBA economics for a single poncho ($9.99 retail, Small
+Standard-Size): FBA fulfillment fee: $3.22–$3.68. FBA monthly storage:
+~$0.05/unit/month (small, lightweight = minimal storage cost; higher in
+Q4 Oct–Dec at $0.15/unit/month). Referral fee: 15% of sale price =
+$1.50. TOTAL Amazon fees: $4.77–$5.23/unit. NET to seller: $9.99 − $4.77
+= $5.22 (before COGS). NET margin: $5.22 − $1.43 landed COGS =
+$3.79/unit = 37.9% net margin on Amazon. This is healthy for a consumer
+product on Amazon. Most CPG brands target 25–40% net margin after Amazon
+fees.</p>
+<p>2.2 FBA Inventory Management</p>
+<p>Amazon’s IPI (Inventory Performance Index) score affects your storage
+capacity. Score range: 0–1,000; target ≥400 to avoid storage limits.
+Score is based on: excess inventory (% of inventory that hasn’t sold in
+90+ days), sell-through rate, in-stock rate, and stranded inventory
+(listed but not fulfillable). For a seasonal product: sell-through will
+be LOW during shoulder months (Jun–Aug, Dec–Feb). Mitigation: reduce FBA
+inventory to minimum (4–6 week cover) during shoulder months and hold
+safety stock at 3PL or home instead. Replenish FBA 6–8 weeks before race
+season peaks. Long-term storage fees: Amazon charges $6.90/cu ft for
+inventory stored &gt;181 days and $0.15/unit/month for aged inventory
+271–365 days. For a seasonal product: rotate inventory aggressively per
+FIFO. Never let poncho inventory sit at FBA for &gt;180 days — pull to
+3PL/home before the fee triggers.</p>
+<p>3. B2B Fulfillment Workflow: 6 Steps</p>
+<p><strong>B2B fulfillment is fundamentally different from DTC:</strong>
+orders are larger (500–10,000 units), destinations are commercial
+addresses (race venues, convention centers), timelines are tied to
+specific race dates (not “2-day delivery”), and packaging is master
+cartons on pallets (not individual units in poly mailers). The workflow
+below ensures zero errors on the critical first 10 B2B shipments.</p>
+<table>
+<colgroup>
+<col style="width: 4%" />
+<col style="width: 23%" />
+<col style="width: 71%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Step</strong></td>
+<td><strong>Trigger</strong></td>
+<td><strong>Process</strong></td>
+</tr>
+<tr class="even">
+<td><strong>1. Order received</strong></td>
+<td>Race director submits PO via co-brand order form (P3C Section 5),
+email, or phone</td>
+<td>Log in B2B pipeline tracker: race name, PO number, quantity,
+co-brand Y/N, required delivery date, shipping address. Send PO
+acknowledgment email within 24 hours: “Your order for [X] units has been
+received. Expected ship date: [date]. You’ll receive a shipping
+notification with tracking when your order ships.”</td>
+</tr>
+<tr class="odd">
+<td><strong>2. Order verified</strong></td>
+<td>Confirm: quantity in stock (check inventory tracker), co-brand units
+available (if applicable), delivery date is feasible, payment terms
+confirmed</td>
+<td>If out of stock: notify race director immediately with: estimated
+restock date, option to adjust quantity, or option to ship partial now +
+remainder when available. NEVER confirm an order you cannot fulfill on
+time.</td>
+</tr>
+<tr class="even">
+<td><strong>3. Pick and pack</strong></td>
+<td>Pull units from 3PL (or home inventory). For standard orders: master
+cartons of 50/100 units on pallets. For co-brand: specific co-brand
+cartons (per P3D Section 4 labeling). For small orders (&lt;50 units):
+repack from master carton into a smaller shipping box.</td>
+<td>Pack with: packing list (inside lead carton), commercial invoice
+(for international B2B), composting logistics guide (per P2D Section 8 —
+1 copy per carton or per order), and “Receiving Instructions” card on
+outside of lead carton (“Store below 77°F, keep dry”).</td>
+</tr>
+<tr class="odd">
+<td><strong>4. Ship</strong></td>
+<td>Method depends on order size and destination. &lt;50 units:
+UPS/FedEx Ground ($15–$50). 50–500 units: LTL freight (XPO, Old
+Dominion, Estes) ($100–$400). 500+ units: full pallet or FTL (full
+truckload) ($300–$1,500 depending on distance). Direct to race venue:
+coordinate with race operations for receiving window.</td>
+<td>Generate tracking number. Email to race director: “Your [X] ponchos
+are on the way! Carrier: [name], Tracking: [number], Expected delivery:
+[date]. Please inspect upon receipt and confirm with us.”</td>
+</tr>
+<tr class="even">
+<td><strong>5. Delivery confirmed</strong></td>
+<td>Race director (or venue operations) confirms receipt. Founder
+follows up within 48 hours of expected delivery if no confirmation
+received.</td>
+<td>Log: delivery date, any reported issues (damage, shortage, wrong
+co-brand), satisfaction level (1–5 scale). If issues: activate P2E
+Section 9 complaint handling.</td>
+</tr>
+<tr class="odd">
+<td><strong>6. Post-delivery invoice</strong></td>
+<td>Send invoice via QuickBooks or Wave (P4C Section 2). Payment terms
+per P3A Section 3 negotiation: first order 50/50 (deposit already
+collected), repeat customers net-30 from delivery.</td>
+<td>Track: invoice date, due date, payment received date, amount. Set
+overdue alert at net-30 + 7 days. Follow up on overdue invoices within
+48 hours of alert.</td>
+</tr>
+</tbody>
+</table>
+<p>3.1 B2B Shipping Cost Estimation</p>
+<p>B2B shipping costs vary significantly by order size and distance.
+Small orders (&lt;50 units, ~10 lbs): UPS Ground / FedEx Ground: $15–$50
+depending on zone. Use Pirate Ship for discounted rates ($10–$35).
+Deliver in 3–7 business days. Medium orders (50–500 units, 10–100 lbs):
+LTL (Less Than Truckload) freight: $100–$400. Carriers: XPO, Old
+Dominion, Estes, SAIA. Use Freightquote (freightquote.com) or uShip for
+competitive bids. Deliver in 5–10 business days. Large orders (500–5,000
+units, 100–500 lbs): LTL pallet shipment: $200–$800. Full-pallet rates
+are better per-lb than individual packages. Very large orders (5,000+
+units): FTL (Full Truckload) if filling a 53’ trailer: $1,000–2,500 for
+cross-country. Otherwise palletized LTL: $500–$1,500. WHO PAYS: B2B
+pricing in the P3C Section 4 pricing tiers includes product cost but NOT
+shipping. Shipping is quoted separately per order (or factored into an
+all-in delivered price for large orders). For first-season relationship
+building: consider including shipping for orders &gt;3,000 units as a
+volume incentive.</p>
+<p>4. Shopify Fulfillment Integration</p>
+<p><strong>Shopify is the DTC channel for customers who prefer to buy
+direct rather than through Amazon.</strong> Direct sales have higher
+margin (no Amazon referral fee or FBA fee) but lower volume (no Amazon
+search traffic). Shopify customers tend to be more brand-loyal and
+review-active — they chose to seek out the brand directly.</p>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 81%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Component</strong></td>
+<td><strong>Specification</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Platform</strong></td>
+<td>Shopify Basic ($39/month) or Shopify ($105/month if needing advanced
+reports). Domain: brand.com (from P1A domain acquisition). Theme: clean,
+mobile-first (Dawn theme is free and excellent, or premium themes like
+Prestige or Impact for $300–$400 one-time).</td>
+</tr>
+<tr class="odd">
+<td><strong>Product listings</strong></td>
+<td>Mirror Amazon listings: same images, descriptions, bullet points.
+Add: brand story section (P1C content), composting video embed (P1D
+Section 3), and “As Seen At [Race Name]” social proof section. Price:
+match Amazon ($9.99 single, $24.99 3-pack, $54.99 6-pack) or 5–10% lower
+to incentivize direct purchase.</td>
+</tr>
+<tr class="even">
+<td><strong>Fulfillment method</strong></td>
+<td>OPTION A: Shopify + Amazon MCF (Multi-Channel Fulfillment). Amazon
+fulfills Shopify orders from FBA inventory. Cost: $5.95–$8.45/unit
+(higher than FBA because MCF has no Prime subsidy). Advantage: single
+inventory pool at FBA. Disadvantage: Amazon-branded shipping boxes (not
+ideal for brand experience). OPTION B: Shopify + 3PL (ShipBob,
+ShipStation integration). 3PL fulfills Shopify orders in branded
+packaging. Cost: $2.50–$5.00/order + shipping. Advantage:
+brand-controlled unboxing experience. Disadvantage: second inventory
+pool to manage. OPTION C: Founder fulfills manually. Cost: shipping only
+($3–$8/order via Pirate Ship discounted rates). Advantage: zero
+overhead, personal touch. Disadvantage: time-consuming past 20
+orders/week.</td>
+</tr>
+<tr class="odd">
+<td><strong>Shipping integration</strong></td>
+<td>Pirate Ship (pirateship.com): free platform, discounted USPS + UPS
+rates (40–70% off retail). Connects directly to Shopify. Print labels
+from home. OR ShipStation ($25–$160/month): multi-carrier rate shopping,
+automation rules, branded tracking pages. Overkill for &lt;50
+orders/month but valuable at scale.</td>
+</tr>
+<tr class="even">
+<td><strong>Packaging for Shopify orders</strong></td>
+<td>Ship in compostable kraft mailer (EcoEnclose, $0.30–$0.60 per
+mailer) with: poncho in inner bag + card/sleeve, insert card, and a
+handwritten thank-you note (or printed note with hand-signed name). The
+unboxing experience for Shopify customers should feel MORE personal than
+Amazon — this is why they chose to buy direct.</td>
+</tr>
+<tr class="odd">
+<td><strong>Email integration</strong></td>
+<td>Klaviyo (free up to 250 contacts, then $20–$45/month per P1E Section
+4). Automated flows: order confirmation, shipping notification, delivery
+follow-up (Day +3: “How was your poncho? Leave a review!”), post-race
+check-in (Day +14 if near a major race weekend), referral prompt (Day
++7: “Give $5, get $5” per P1E Section 6).</td>
+</tr>
+</tbody>
+</table>
+<p>4.1 Shopify vs. Amazon DTC Economics</p>
+<p>Amazon: $9.99 sale − $1.50 referral fee − $3.45 FBA fulfillment −
+$1.43 COGS = $3.61 net margin (36.1%). Shopify (founder-fulfilled via
+Pirate Ship): $9.99 sale − $0.30 + 2.9% Shopify Payments ($0.59) − $4.50
+shipping (USPS First Class via Pirate Ship) − $1.43 COGS = $3.47 net
+margin (34.7%). Shopify (3PL-fulfilled): $9.99 sale − $0.59 payment
+processing − $3.50 3PL pick/pack/ship − $1.43 COGS = $4.47 net margin
+(44.7%) — WAIT, 3PL shipping is often included in the $3.50. If shipping
+is separate: $9.99 − $0.59 − $2.50 3PL − $4.50 shipping − $1.43 = $0.97
+(9.7%) — not viable unless you charge shipping. INSIGHT: Shopify is most
+profitable when the founder fulfills personally (saves FBA fees) or when
+charging the customer for shipping. Consider: free shipping on orders
+&gt;$25 (incentivizes 3-pack purchase).</p>
+<p>5. Inventory Tracking: Multi-Location System</p>
+<p><strong>Inventory exists in up to 4 locations
+simultaneously:</strong> Amazon FBA warehouses, 3PL (or home), raw
+material storage, and in-transit. Losing track of inventory across
+locations leads to: FBA stockouts (algorithm penalty per P3E Section
+3.1), overselling B2B orders (promising units that don’t exist), and
+wasted capital on over-ordering (buying more when you have enough but
+can’t see it).</p>
+<p>5.1 Inventory Tracker Spreadsheet</p>
+<p>Build a Google Sheet with the following structure (example data shown
+below):</p>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 12%" />
+<col style="width: 10%" />
+<col style="width: 13%" />
+<col style="width: 10%" />
+<col style="width: 21%" />
+<col style="width: 13%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>SKU</strong></td>
+<td><strong>Location</strong></td>
+<td><strong>On-Hand</strong></td>
+<td><strong>Allocated</strong></td>
+<td><strong>Available</strong></td>
+<td><strong>Reorder Trigger</strong></td>
+<td><strong>Last Updated</strong></td>
+</tr>
+<tr class="even">
+<td><strong>SKU</strong></td>
+<td>Location</td>
+<td>Quantity On-Hand</td>
+<td>Quantity Allocated</td>
+<td>Quantity Available</td>
+<td>Reorder Trigger</td>
+<td>Last Updated</td>
+</tr>
+<tr class="odd">
+<td><strong>RSW-STD-GRN-1PK</strong></td>
+<td>FBA</td>
+<td>450</td>
+<td>0 (sold = deducted automatically)</td>
+<td>450</td>
+<td>&lt;400 (6-week cover at 65 units/week)</td>
+<td>Auto-sync via Seller Central</td>
+</tr>
+<tr class="even">
+<td><strong>RSW-STD-GRN-1PK</strong></td>
+<td>3PL / Home</td>
+<td>1,200</td>
+<td>200 (allocated to Race A co-brand assembly)</td>
+<td>1,000</td>
+<td>&lt;500 (replenish FBA + emergency buffer)</td>
+<td>Manual weekly update</td>
+</tr>
+<tr class="odd">
+<td><strong>RSW-STD-GRN-3PK</strong></td>
+<td>FBA</td>
+<td>80</td>
+<td>0</td>
+<td>80</td>
+<td>&lt;60 (6-week cover at 10 packs/week)</td>
+<td>Auto-sync</td>
+</tr>
+<tr class="even">
+<td><strong>RSW-CB-RACENAMEA-1PK</strong></td>
+<td>3PL</td>
+<td>2,000</td>
+<td>2,000 (allocated to Race A PO)</td>
+<td>0</td>
+<td>N/A (made to order, no reorder)</td>
+<td>Updated on PO fulfillment</td>
+</tr>
+<tr class="odd">
+<td><strong>RSW-STD-GRN-1PK</strong></td>
+<td>Raw material (NatureFlex NM)</td>
+<td>5,200 m²</td>
+<td>0</td>
+<td>5,200 m²</td>
+<td>&lt;2,600 m² (4-week safety stock per P3E Section 3)</td>
+<td>Quarterly review</td>
+</tr>
+</tbody>
+</table>
+<p>5.2 Sync Cadence</p>
+<p>AMAZON FBA: auto-syncs via Seller Central reports. Download
+“Inventory Health” report weekly (or use Amazon API / tools like Jungle
+Scout, Helium 10, or SoStocked for automatic dashboards). 3PL: request
+weekly inventory report (most 3PLs provide via their WMS portal).
+Manually update Google Sheet every Monday. HOME INVENTORY: count
+physically every Monday morning before B2B shipments go out. Update
+Google Sheet. RAW MATERIALS: verify with factory or material supplier
+quarterly. RECONCILIATION: every Monday, total across all locations must
+equal: total produced − total sold − total allocated − total
+returned/damaged. If discrepancy &gt;1%: investigate (data entry error,
+unreported damage, FBA miscount).</p>
+<p>5.3 Tools for Scaling</p>
+<p>Season 1 (manual): Google Sheets is sufficient for &lt;5 SKUs across
+2–3 locations. Cost: $0. Season 2+ (semi-automated): SoStocked
+($49–$149/month, Amazon inventory planning + reorder alerts), Inventory
+Planner ($99/month, multi-channel), or Cin7 ($349/month, full inventory
+management + 3PL integration). Season 3+ (integrated): Shopify Plus
+($2,300/month) or dedicated ERP (NetSuite, etc.) for multi-channel,
+multi-warehouse. Only justified at $500K+ annual revenue.</p>
+<p>6. Returns Policy: DTC and B2B</p>
+<p><strong>Returns are an unavoidable cost of commerce — especially on
+Amazon.</strong> A clear, fair returns policy protects both the brand
+and the customer while minimizing abuse. DTC and B2B returns are handled
+separately because the use cases, volumes, and cost structures are
+fundamentally different.</p>
+<p>6.1 DTC Returns Policy</p>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 81%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Element</strong></td>
+<td><strong>Policy</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Eligibility</strong></td>
+<td>Unused, unopened units returned within 30 days of delivery. Poncho
+must be in original sealed inner bag with sticker seal intact.
+OPENED/USED ponchos are NOT eligible for return (single-use product —
+once opened, the poncho cannot be resold).</td>
+</tr>
+<tr class="odd">
+<td><strong>Process</strong></td>
+<td>Customer contacts support (email or Amazon return flow). If
+unused/unopened: approve return. Customer ships back (prepaid label via
+Amazon or Pirate Ship, $3–$5). Upon receipt: inspect seal — if intact,
+restock. If opened: dispose (compost) and do NOT restock.</td>
+</tr>
+<tr class="even">
+<td><strong>Amazon FBA returns</strong></td>
+<td>Amazon handles automatically per their return policy. FBA return
+rate for non-apparel items: typically 2–5%. Amazon may issue refund
+before return is received. Returned units are inspected by Amazon:
+“Fulfillable” (restocked) or “Unfulfillable” (damaged/opened — request
+removal to inspect or destroy). Cost: Amazon charges $0.50–$1.00 per
+return processing.</td>
+</tr>
+<tr class="odd">
+<td><strong>Refund amount</strong></td>
+<td>Full refund of purchase price (excluding original shipping if
+applicable). Amazon handles DTC refunds automatically. Shopify: process
+via Shopify admin within 5 business days of receiving return.</td>
+</tr>
+<tr class="even">
+<td><strong>Expected return rate</strong></td>
+<td>3–5% for DTC (industry average for non-apparel consumables). At 100
+units/month: 3–5 returns/month. Cost: $9–$15/return (refund) + $3–$5
+return shipping + $0.50–$1.00 processing = $12.50–$21.00/return. Monthly
+return cost: $37–$105. Budget as a line item in P0F unit economics.</td>
+</tr>
+</tbody>
+</table>
+<p>6.2 B2B Returns Policy</p>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 81%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Element</strong></td>
+<td><strong>Policy</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Eligibility</strong></td>
+<td>Defective units ONLY. B2B returns are NOT accepted for: overstocking
+(race ordered too many), weather cancellation (race cancelled due to
+weather — ponchos already delivered), or buyer’s remorse. Co-brand units
+are NEVER returnable (custom-printed, cannot be resold).</td>
+</tr>
+<tr class="odd">
+<td><strong>Defect threshold</strong></td>
+<td>Per P3A Production Agreement Section 8: defect rate guarantee ≤3%.
+If a B2B shipment has &gt;3% defective units: founder replaces defective
+units at brand’s cost (charged back to factory per quality guarantee).
+Race director documents defects with photos and ships affected units
+back.</td>
+</tr>
+<tr class="even">
+<td><strong>Process</strong></td>
+<td>Race director reports defect within 14 days of delivery. Founder
+requests: photos of defective units, description of defect, quantity
+affected. If confirmed defect: ship replacement units from safety stock
+within 5 business days. Collect defective units for factory claim (or
+instruct race director to compost defective units and accept photo
+documentation for the factory claim).</td>
+</tr>
+<tr class="odd">
+<td><strong>Credit/replacement</strong></td>
+<td>Replacement units shipped at no charge. If replacement is not
+possible (out of stock): issue credit memo for defective unit value
+($3.50–$5.00/unit). Credit applied to next order or refunded.</td>
+</tr>
+</tbody>
+</table>
+<p>6.3 Returns as Feedback</p>
+<p>Every return is data. Track: return reason (defective, wrong item,
+not as described, no longer needed, other), product condition
+(sealed/opened/damaged), and customer comment (if provided). Monthly
+review: if any single return reason exceeds 20% of total returns,
+investigate. “Defective” returns &gt;20%: quality issue → escalate to
+factory. “Not as described” &gt;20%: listing/photography issue → revise
+Amazon listing. “No longer needed” &gt;20%: likely impulse purchases →
+consider adjusting pricing or messaging. Feed return data into P2F
+Section 1 feedback framework for V1.5 product improvement.</p>
+<p>7. Timeline &amp; Budget</p>
+<p><strong>WEEK 17: Evaluate fulfillment options (Section 1). Decision:
+Option A (FBA + home) for Season 1. Begin Amazon FBA setup: create
+Seller Central account, create product listings, generate FNSKU labels.
+Order packing supplies for home B2B fulfillment (label printer, boxes,
+tape).</strong></p>
+<p><strong>WEEK 18: Complete Amazon product listings (images,
+descriptions, A+ Content). Prepare FBA shipment plan. Apply FNSKU labels
+to DTC inventory. Create FBA shipment and schedule carrier pickup. Set
+up Shopify store (theme, product listings, payment processing, Pirate
+Ship integration).</strong></p>
+<p><strong>WEEK 19: Ship first FBA inventory. Set up Shopify email flows
+with Klaviyo (order confirmation, shipping, review request, referral).
+Build inventory tracking Google Sheet with all SKUs and locations. Set
+up B2B fulfillment workspace at home (packing station, supplies, label
+printer).</strong></p>
+<p><strong>WEEK 20: FBA inventory checked in (verify “In Stock” status).
+Place test order on Amazon + Shopify. Verify: product received
+correctly, packaging intact, insert card present. Define and publish DTC
+returns policy on Amazon listing + Shopify policy page. Define B2B
+returns terms (include in Production Agreement terms shared with race
+directors). Build B2B packing checklist. HANDOFF to P4C (B2B
+Distribution Logistics) for operational execution.</strong></p>
+<p>BUDGET: Amazon Professional Seller account: $39.99/month. Shopify
+Basic: $39/month. Klaviyo: $0–$20/month (free up to 250 contacts).
+Thermal label printer: $150–$250 (one-time). Packing supplies (first
+batch): $100–$200 (boxes, tape, void fill). FNSKU labels: $15–25. FBA
+Inventory Placement Service: $0.30/unit × 500 units = $150 (first
+shipment). TOTAL P4B setup: $495–$685 + $79/month recurring.</p>
+<p>8. Conclusion: Fulfillment Is the Invisible Infrastructure</p>
+<p><strong>A runner clicks “Buy Now” on Amazon at 11 PM.</strong> By the
+time they wake up, the order is picked, packed, and on a truck. By
+tomorrow, it’s on their doorstep in a Prime box with a 1–2 day delivery
+promise fulfilled. They never think about fulfillment — and that’s the
+point. FBA makes this invisible for DTC. For B2B, the founder makes it
+invisible: the race director places an order, receives a professional
+shipping confirmation, and 5,000 ponchos arrive at the venue three weeks
+before race day, labeled, palletized, with a composting logistics guide
+on top.</p>
+<p><strong>Start simple, scale when volume demands it.</strong> Season
+1: FBA for DTC, home for B2B, Google Sheets for inventory. This costs
+under $80/month and requires zero infrastructure beyond a spare room and
+a label printer. When B2B hits 50 orders/season or DTC exceeds 500
+orders/month, upgrade to a 3PL. When revenue crosses $500K: invest in
+real inventory management software. The fulfillment model should grow
+WITH the business, not ahead of it.</p>
+
+        </div>
+    </div></div>
+<footer style="text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px">
+Sustainable Race-Start Warmth Poncho — D2C Brand GTM Project · 60 Subprojects · 391 Tasks · ~15,500¶ · April 2026
+</footer></body></html>

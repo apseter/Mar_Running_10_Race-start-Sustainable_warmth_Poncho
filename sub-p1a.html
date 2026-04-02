@@ -1,0 +1,850 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>P1A: Brand Naming Trademark — Race Start Warmth GTM</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0e1a;--surface:#111827;--card:#1a2332;--border:#2a3a4e;--accent:#10b981;--accent2:#3b82f6;--text:#e2e8f0;--muted:#94a3b8;--white:#fff;--red:#ef4444;--amber:#f59e0b;--green:#10b981}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+/* Nav */
+nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
+nav .inner{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;max-width:1200px;margin:0 auto}
+nav .brand{font-weight:700;font-size:15px;color:var(--accent)}
+nav .links{display:flex;gap:8px;flex-wrap:wrap}
+nav .links a{color:var(--muted);font-size:13px;padding:4px 10px;border-radius:6px;transition:.2s}
+nav .links a:hover,nav .links a.active{color:var(--white);background:var(--card);text-decoration:none}
+/* Hero */
+.hero{padding:60px 0 40px;text-align:center}
+.hero h1{font-size:2.4em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:1.1em;max-width:700px;margin:0 auto}
+/* Stats bar */
+.stats{display:flex;justify-content:center;gap:32px;padding:24px 0;flex-wrap:wrap}
+.stat{text-align:center}.stat .num{font-size:1.8em;font-weight:800;color:var(--white)}.stat .label{font-size:.75em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+/* Cards */
+.grid{display:grid;gap:16px;margin:24px 0}
+.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}
+.grid-3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;transition:.2s}
+.card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.card h3{font-size:1.1em;margin-bottom:8px}.card p{color:var(--muted);font-size:.9em}
+.card .badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:8px}
+.card .meta{font-size:.8em;color:var(--muted);margin-top:12px}
+/* Section */
+.section{padding:40px 0}.section h2{font-size:1.6em;font-weight:700;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+/* Table */
+table{width:100%;border-collapse:collapse;font-size:.85em;margin:16px 0}
+th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:52px}
+td{padding:8px 12px;border-bottom:1px solid var(--border)}
+tr:hover td{background:rgba(16,185,129,.05)}
+.status-complete{color:var(--green);font-weight:600}.status-not{color:var(--muted)}
+/* Progress */
+.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:8px}
+.progress .bar{height:100%;background:var(--accent);border-radius:3px}
+/* Back link */
+.back{display:inline-block;color:var(--muted);font-size:.9em;margin-bottom:20px}
+.back:hover{color:var(--accent)}
+/* Download */
+.dl-card{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin:8px 0;transition:.2s}
+.dl-card:hover{border-color:var(--accent);text-decoration:none}
+.dl-card .icon{font-size:2em}.dl-card .info h4{color:var(--white);margin-bottom:4px}.dl-card .info p{color:var(--muted);font-size:.85em}
+/* Footer */
+footer{text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px}
+@media(max-width:768px){.stats{gap:16px}.stat .num{font-size:1.3em}nav .links{gap:4px}nav .links a{font-size:11px;padding:3px 6px}.hero h1{font-size:1.6em}}
+
+.doc-content{max-width:900px;margin:0 auto;padding:20px 0}
+.doc-content h1{font-size:1.8em;font-weight:800;color:var(--white);margin:32px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.doc-content h2{font-size:1.4em;font-weight:700;color:var(--accent);margin:28px 0 12px}
+.doc-content h3{font-size:1.15em;font-weight:600;color:var(--accent2);margin:20px 0 10px}
+.doc-content p{margin:8px 0;line-height:1.7}
+.doc-content table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85em}
+.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;border:1px solid var(--border)}
+.doc-content td{padding:8px 12px;border:1px solid var(--border);vertical-align:top}
+.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.doc-content ul,.doc-content ol{margin:8px 0 8px 24px}
+.doc-content li{margin:4px 0;line-height:1.6}
+.doc-content strong{color:var(--white)}
+.doc-content em{color:var(--muted)}
+.doc-content blockquote{border-left:3px solid var(--accent);padding:8px 16px;margin:12px 0;background:var(--card);border-radius:0 8px 8px 0}
+.nav-sub{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 24px;padding:12px 16px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
+.nav-sub a{font-size:.8em;color:var(--muted);padding:4px 10px;border-radius:4px;transition:.2s;white-space:nowrap}
+.nav-sub a:hover,.nav-sub a.active{color:var(--white);background:var(--surface);text-decoration:none}
+</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a></div></div></nav><div class="container">
+    <div style="padding-top:30px">
+        <a href="p1.html" class="back">← 🎨 P1: Brand Development</a>
+        <div class="nav-sub"><a href="p1.html">🎨 P1 Overview</a><a href="sub-p1a.html" class="active">P1A</a><a href="sub-p1b.html">P1B</a><a href="sub-p1c.html">P1C</a><a href="sub-p1d.html">P1D</a><a href="sub-p1e.html">P1E</a><a href="sub-p1.html">P1</a></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px">
+            <div>
+                <span style="background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px">P1A</span>
+                <span style="color:var(--muted);font-size:.85em;margin-left:8px">P1: Brand Development</span>
+            </div>
+            <a href="files/P1A_Brand_Naming_Trademark.docx" style="font-size:.85em;color:var(--accent);padding:6px 14px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
+        </div>
+        <div class="doc-content">
+            <p><strong>P1A: BRAND NAMING</strong></p>
+<p><strong>&amp; TRADEMARK</strong></p>
+<p>Sub-Project P1A | Brand Development &amp; Identity | Weeks 4–6</p>
+<p><em>30+ Brand Name Candidates, Trademark Strategy, Domain Guide &amp;
+Runner Testing Framework</em></p>
+<p>March 2026 | Confidential</p>
+<p>Executive Summary</p>
+<p><strong>This document presents 30+ brand name candidates organized
+across six naming strategies,</strong> a recommended Top 10 shortlist,
+trademark filing guidance (USPTO Classes 25 + 24, $250–$350 TEAS Plus),
+domain and social handle verification methodology, and a structured
+runner testing framework targeting 200+ votes via Reddit, Instagram
+Stories, and PickFu. The goal: select and secure the brand name within 2
+weeks, enabling visual identity (P1B) and messaging (P1C) to begin on
+schedule.</p>
+<p>1. Naming Strategy Framework</p>
+<p>Six distinct naming strategies were evaluated, each with different
+tradeoffs between immediate clarity, trademarkability, emotional
+resonance, and long-term expandability:</p>
+<p>Category-defining names (StartWarm, RaceWrap) communicate product
+function instantly but are harder to trademark and limit brand
+expansion. Mission-driven names (Shed Lighter, Leave Warm) embed
+sustainability values and create narrative depth. Abstract/evocative
+names (Brevera, Solta) are most trademarkable and internationally
+scalable but require more marketing investment to build meaning.
+Outdoor/adventure names (Trailshed, Summit Start) tap into the broader
+outdoor culture. Running culture names (Mile Zero, Pre-Gun) create
+instant insider recognition. Wordplay names (Decompose, Good Garbage)
+are highly memorable but carry brand-perception risk.</p>
+<p><strong>Recommendation: prioritize names from the Mission-driven,
+Abstract/evocative, and Running culture categories.</strong> These
+balance trademarkability, emotional resonance, runner relevance, and
+expandability. Avoid purely descriptive category-defining names (weak
+trademark protection) and provocative wordplay (brand risk).</p>
+<p>2. Complete Name Candidate Library: 30+ Options</p>
+<p>2.1 Category-Defining Names</p>
+<table>
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 15%" />
+<col style="width: 28%" />
+<col style="width: 28%" />
+<col style="width: 10%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Name</strong></td>
+<td><strong>Strategy</strong></td>
+<td><strong>Strengths</strong></td>
+<td><strong>Weaknesses</strong></td>
+<td><strong>Potential</strong></td>
+</tr>
+<tr class="even">
+<td><strong>StartWarm</strong></td>
+<td>Category-defining</td>
+<td>Immediately communicates start-line + warmth</td>
+<td>Very descriptive; limited expandability</td>
+<td>HIGH</td>
+</tr>
+<tr class="odd">
+<td><strong>RaceWrap</strong></td>
+<td>Category-defining</td>
+<td>Action-oriented; clear product association</td>
+<td>Sounds like plastic wrap; limited premium feel</td>
+<td>MEDIUM</td>
+</tr>
+<tr class="even">
+<td><strong>CorralWarm</strong></td>
+<td>Category-defining</td>
+<td>Niche-specific (corral = start-line area)</td>
+<td>Too niche; non-runners won’t understand</td>
+<td>LOW</td>
+</tr>
+<tr class="odd">
+<td><strong>StartShell</strong></td>
+<td>Category-defining</td>
+<td>Shell = protective layer; start = race moment</td>
+<td>Could confuse with hardshell jackets</td>
+<td>MEDIUM</td>
+</tr>
+<tr class="even">
+<td><strong>WarmStart</strong></td>
+<td>Category-defining</td>
+<td>Warmth-first positioning; start-line context</td>
+<td>Generic feel; hard to trademark descriptive terms</td>
+<td>MEDIUM</td>
+</tr>
+</tbody>
+</table>
+<p>2.2 Mission-Driven / Sustainability Names</p>
+<table>
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 15%" />
+<col style="width: 28%" />
+<col style="width: 28%" />
+<col style="width: 10%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Name</strong></td>
+<td><strong>Strategy</strong></td>
+<td><strong>Strengths</strong></td>
+<td><strong>Weaknesses</strong></td>
+<td><strong>Potential</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Shed Lighter</strong></td>
+<td>Mission / sustainability</td>
+<td>Shed your layer + lighter footprint</td>
+<td>Clever wordplay; memorable; expandable to line</td>
+<td>VERY HIGH</td>
+</tr>
+<tr class="odd">
+<td><strong>Leave Warm</strong></td>
+<td>Mission / sustainability</td>
+<td>Warmth + “Leave No Trace” reference</td>
+<td>Ethical outdoors resonance; slightly ambiguous</td>
+<td>HIGH</td>
+</tr>
+<tr class="even">
+<td><strong>Trace Warmth</strong></td>
+<td>Mission / sustainability</td>
+<td>“Leave No Trace” + warmth promise</td>
+<td>Poetic; could work for broader eco-gear line</td>
+<td>HIGH</td>
+</tr>
+<tr class="odd">
+<td><strong>Last Layer</strong></td>
+<td>Mission / sustainability</td>
+<td>The last layer you’ll ever throw away</td>
+<td>Strong narrative; product-agnostic expansion potential</td>
+<td>HIGH</td>
+</tr>
+<tr class="even">
+<td><strong>LightShed</strong></td>
+<td>Mission / sustainability</td>
+<td>Light as in weight + enlightened + shed at start</td>
+<td>Multi-layered meaning; modern sound</td>
+<td>HIGH</td>
+</tr>
+<tr class="odd">
+<td><strong>No Trace Gear</strong></td>
+<td>Mission / sustainability</td>
+<td>Direct “Leave No Trace” positioning</td>
+<td>Too descriptive; “No Trace” may be trademarked</td>
+<td>LOW</td>
+</tr>
+</tbody>
+</table>
+<p>2.3 Abstract / Evocative Names</p>
+<table>
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 15%" />
+<col style="width: 28%" />
+<col style="width: 28%" />
+<col style="width: 10%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Name</strong></td>
+<td><strong>Strategy</strong></td>
+<td><strong>Strengths</strong></td>
+<td><strong>Weaknesses</strong></td>
+<td><strong>Potential</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Brevera</strong></td>
+<td>Abstract / evocative</td>
+<td>Brief + era = a brief era of warmth</td>
+<td>Sounds premium; international; trademarkable</td>
+<td>VERY HIGH</td>
+</tr>
+<tr class="odd">
+<td><strong>Solta</strong></td>
+<td>Abstract / evocative</td>
+<td>Sol (sun/warmth) + ta (suffix = of the)</td>
+<td>Short; memorable; global; clean .com potential</td>
+<td>VERY HIGH</td>
+</tr>
+<tr class="even">
+<td><strong>Kindra</strong></td>
+<td>Abstract / evocative</td>
+<td>Kindle + terra (earth)</td>
+<td>Warm sound; feels like a name; expandable</td>
+<td>HIGH</td>
+</tr>
+<tr class="odd">
+<td><strong>Tersa</strong></td>
+<td>Abstract / evocative</td>
+<td>Terra (earth) + brief warmth</td>
+<td>Clean; 5 letters; sounds premium</td>
+<td>HIGH</td>
+</tr>
+<tr class="even">
+<td><strong>Volvere</strong></td>
+<td>Abstract / evocative</td>
+<td>Latin: to return (to earth)</td>
+<td>Sophisticated; sustainability undertone; harder to pronounce</td>
+<td>MEDIUM</td>
+</tr>
+<tr class="odd">
+<td><strong>Calyx</strong></td>
+<td>Abstract / evocative</td>
+<td>Botanical term: outermost covering of a flower</td>
+<td>Protective + natural + scientific; real word with metaphor</td>
+<td>HIGH</td>
+</tr>
+</tbody>
+</table>
+<p>2.4 Outdoor / Adventure Names</p>
+<table>
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 15%" />
+<col style="width: 28%" />
+<col style="width: 28%" />
+<col style="width: 10%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Name</strong></td>
+<td><strong>Strategy</strong></td>
+<td><strong>Strengths</strong></td>
+<td><strong>Weaknesses</strong></td>
+<td><strong>Potential</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Trailshed</strong></td>
+<td>Outdoor / adventure</td>
+<td>Trail running + shed at start line</td>
+<td>Natural; adventurous; could expand to trail gear</td>
+<td>HIGH</td>
+</tr>
+<tr class="odd">
+<td><strong>Summit Start</strong></td>
+<td>Outdoor / adventure</td>
+<td>Summit achievement + race start moment</td>
+<td>Aspirational; but “Summit” is overused in outdoor</td>
+<td>MEDIUM</td>
+</tr>
+<tr class="even">
+<td><strong>Ridgeline Warmth</strong></td>
+<td>Outdoor / adventure</td>
+<td>Mountain imagery + warmth</td>
+<td>Premium outdoor feel; long for a brand name</td>
+<td>LOW</td>
+</tr>
+<tr class="odd">
+<td><strong>Waypoint</strong></td>
+<td>Outdoor / adventure</td>
+<td>Navigation term; a key point on the journey</td>
+<td>Clean; already used by Garmin product line</td>
+<td>LOW</td>
+</tr>
+</tbody>
+</table>
+<p>2.5 Running Culture Names</p>
+<table>
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 15%" />
+<col style="width: 28%" />
+<col style="width: 28%" />
+<col style="width: 10%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Name</strong></td>
+<td><strong>Strategy</strong></td>
+<td><strong>Strengths</strong></td>
+<td><strong>Weaknesses</strong></td>
+<td><strong>Potential</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Mile Zero</strong></td>
+<td>Running culture</td>
+<td>Mile 0 = pre-race moment before mile 1</td>
+<td>Perfectly captures the start-line moment; memorable</td>
+<td>VERY HIGH</td>
+</tr>
+<tr class="odd">
+<td><strong>Pre-Gun</strong></td>
+<td>Running culture</td>
+<td>The moment before the starting gun fires</td>
+<td>Unique; highly specific to racing; edgy</td>
+<td>HIGH</td>
+</tr>
+<tr class="even">
+<td><strong>Corral Co.</strong></td>
+<td>Running culture</td>
+<td>Corral = the start-line holding area</td>
+<td>Insider running term; authentic; limits non-runner appeal</td>
+<td>MEDIUM</td>
+</tr>
+<tr class="odd">
+<td><strong>Negative Split</strong></td>
+<td>Running culture</td>
+<td>Running term for faster second half</td>
+<td>Well-known by runners; “negative” has brand risk</td>
+<td>MEDIUM</td>
+</tr>
+<tr class="even">
+<td><strong>Pace Layer</strong></td>
+<td>Running culture</td>
+<td>Pace (running) + layer (clothing)</td>
+<td>Dual meaning; clean; expandable</td>
+<td>HIGH</td>
+</tr>
+</tbody>
+</table>
+<p>2.6 Wordplay / Double-Meaning Names</p>
+<table>
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 15%" />
+<col style="width: 28%" />
+<col style="width: 28%" />
+<col style="width: 10%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Name</strong></td>
+<td><strong>Strategy</strong></td>
+<td><strong>Strengths</strong></td>
+<td><strong>Weaknesses</strong></td>
+<td><strong>Potential</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Decompose</strong></td>
+<td>Wordplay / double meaning</td>
+<td>Decomposes in compost + decompose anxiety at start</td>
+<td>Bold; potentially polarizing; very memorable</td>
+<td>HIGH</td>
+</tr>
+<tr class="odd">
+<td><strong>Shed &amp; Return</strong></td>
+<td>Wordplay</td>
+<td>Shed the poncho + materials return to earth</td>
+<td>Poetic; longer; works as tagline better than name</td>
+<td>MEDIUM</td>
+</tr>
+<tr class="even">
+<td><strong>Warm Exit</strong></td>
+<td>Wordplay</td>
+<td>Stay warm + poncho exits to compost</td>
+<td>Counterintuitive; intriguing</td>
+<td>MEDIUM</td>
+</tr>
+<tr class="odd">
+<td><strong>Good Garbage</strong></td>
+<td>Wordplay / irony</td>
+<td>Replaces garbage bags + becomes good garbage (compost)</td>
+<td>Provocative; highly memorable; risks cheapening brand</td>
+<td>MEDIUM</td>
+</tr>
+</tbody>
+</table>
+<p>3. Top 10 Shortlist for Testing</p>
+<table>
+<colgroup>
+<col style="width: 21%" />
+<col style="width: 78%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Rank &amp; Name</strong></td>
+<td><strong>Rationale</strong></td>
+</tr>
+<tr class="even">
+<td><strong>1. Shed Lighter</strong></td>
+<td>Memorable wordplay; sustainability + function; expandable product
+line; high trademarkability</td>
+</tr>
+<tr class="odd">
+<td><strong>2. Mile Zero</strong></td>
+<td>Perfectly names the moment; instant runner recognition; clean;
+strong .com potential</td>
+</tr>
+<tr class="even">
+<td><strong>3. Brevera</strong></td>
+<td>Premium abstract; international appeal; highly trademarkable;
+expandable beyond ponchos</td>
+</tr>
+<tr class="odd">
+<td><strong>4. Solta</strong></td>
+<td>Short, modern, global; easy to say in any language; clean .com
+likelihood</td>
+</tr>
+<tr class="even">
+<td><strong>5. Last Layer</strong></td>
+<td>Narrative-driven; “the last layer you’ll ever throw away”; works as
+name + tagline</td>
+</tr>
+<tr class="odd">
+<td><strong>6. Calyx</strong></td>
+<td>Real botanical word with metaphor (protective covering); scientific
++ natural</td>
+</tr>
+<tr class="even">
+<td><strong>7. Trace Warmth</strong></td>
+<td>“Leave No Trace” values + warmth promise; poetic; expandable</td>
+</tr>
+<tr class="odd">
+<td><strong>8. Pre-Gun</strong></td>
+<td>Edgy; perfectly specific to racing; unique in market; memorable</td>
+</tr>
+<tr class="even">
+<td><strong>9. Pace Layer</strong></td>
+<td>Dual meaning (running + clothing); clean; professional;
+expandable</td>
+</tr>
+<tr class="odd">
+<td><strong>10. Trailshed</strong></td>
+<td>Adventure + shed at start; natural; could extend to trail running
+gear</td>
+</tr>
+</tbody>
+</table>
+<p><strong>The Top 3 (“Shed Lighter,” “Mile Zero,” “Brevera”) represent
+the strongest balance</strong> of memorability, trademarkability, runner
+relevance, and brand expandability. “Shed Lighter” leads because it
+simultaneously communicates the product action (shed your layer), the
+sustainability benefit (lighter footprint), and the emotional benefit
+(lighter feeling) in two words.</p>
+<p>4. Trademark Strategy &amp; Filing Guide</p>
+<p>4.1 USPTO Classification</p>
+<table>
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 43%" />
+<col style="width: 45%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Class</strong></td>
+<td><strong>Description</strong></td>
+<td><strong>Relevance</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Class 25</strong></td>
+<td>Clothing, footwear, headgear</td>
+<td>PRIMARY — covers the poncho as wearable clothing/outerwear</td>
+</tr>
+<tr class="odd">
+<td><strong>Class 24</strong></td>
+<td>Textiles; textile goods not included in other classes; blankets</td>
+<td>SECONDARY — covers the product as a textile/blanket if classified
+differently</td>
+</tr>
+<tr class="even">
+<td><strong>Class 22</strong></td>
+<td>Tents; tarpaulins; sails; bags for transport</td>
+<td>OPTIONAL — if expanding to shelters or gear bags</td>
+</tr>
+<tr class="odd">
+<td><strong>Class 35</strong></td>
+<td>Advertising; business management; retail/wholesale services</td>
+<td>OPTIONAL — if operating a retail store or marketplace</td>
+</tr>
+</tbody>
+</table>
+<p>File in Class 25 (primary) and Class 24 (secondary) for comprehensive
+protection. Each class adds $250–$350 to the TEAS Plus filing. Total for
+two classes: $500–$700. Consider Madrid Protocol filing ($100–$200 per
+class per country) if planning EU/UK expansion within 6 months.</p>
+<p>4.2 USPTO Search Process</p>
+<p>Step 1: Free TESS search at tmsearch.uspto.gov. Search each name
+candidate in Class 25 and Class 24. Check for exact matches, phonetic
+equivalents (sound-alikes), and similar meanings. Step 2: Search the
+Trademark Electronic Search System (TESS) using both “Basic Word Mark
+Search” and “Word and/or Design Mark Search (Structured)”. Step 3: For
+top 3 finalists, commission a professional knockout search ($300–$500
+via an attorney or service like Corsearch, TrademarkNow, or
+LegalZoom).</p>
+<p>4.3 Trademarkability Assessment by Name Type</p>
+<p>STRONGEST (most protectable): Coined/abstract words — Brevera, Solta,
+Kindra, Tersa. These have no existing meaning and are inherently
+distinctive. STRONG: Suggestive words — Shed Lighter, Mile Zero, Last
+Layer, Calyx. These suggest product qualities without directly
+describing them. WEAK: Descriptive words — StartWarm, RaceWrap,
+WarmStart. These directly describe what the product does and are
+difficult to register without proving “acquired distinctiveness.” AVOID:
+Generic terms — “Compostable Poncho,” “Marathon Warmth.” These cannot be
+trademarked.</p>
+<p>4.4 Filing Options</p>
+<p>TEAS Plus ($250/class): lowest cost; must use pre-approved
+description of goods from the USPTO ID Manual. TEAS Standard
+($350/class): allows custom description; more flexibility.
+Attorney-filed ($1,000–$2,500 total): recommended if filing in multiple
+classes or internationally. Timeline: 3–4 months to examining attorney
+review; 8–12 months to registration if no opposition. If an Office
+Action is issued, response deadline is 3 months (extendable to 6).</p>
+<p>5. Domain &amp; Social Handle Verification</p>
+<p>5.1 Domain Search Process</p>
+<p>Use InstantDomainSearch.com, Namecheap.com, or GoDaddy.com to check
+.com availability for all Top 10 names. Priority: exact-match .com
+(e.g., shedlighter.com). Acceptable alternatives: get[name].com,
+[name]gear.com, run[name].com, or .co TLD. Budget: $10–15/year for
+standard .com; $500–$5,000 for premium domains (negotiate via Sedo.com
+or Dan.com). Register immediately upon name selection — domain squatting
+is a real risk once names are tested publicly.</p>
+<p>5.2 Social Handle Checklist</p>
+<p>Check availability on ALL platforms simultaneously before selecting
+final name: Instagram (@shedlighter), TikTok (@shedlighter), Facebook
+(facebook.com/shedlighter), X/Twitter (@shedlighter), Strava Club
+(strava.com/clubs/shedlighter), YouTube (/c/shedlighter). Use
+Namechk.com or KnowEm.com for multi-platform availability checking. If
+exact handle unavailable, acceptable variants: add “run” prefix (e.g.,
+@runshedlighter), add “co” suffix (e.g., @shedlighterco), or add “gear”
+(e.g., @shedlightergear).</p>
+<p>5.3 Google Workspace Setup</p>
+<p>Once domain is secured, set up Google Workspace at $6–12/user/month
+for professional email (hello@brand.com, team@brand.com). This enables:
+branded email, Google Drive for shared documents, Google Calendar for
+team coordination. Alternative: Zoho Workplace at $1–3/user/month for
+leaner operations.</p>
+<p>6. Runner Testing Framework: Validating the Name</p>
+<p>6.1 Testing Channels</p>
+<table>
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 32%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Channel</strong></td>
+<td><strong>How to Test</strong></td>
+<td><strong>Expected Response</strong></td>
+<td><strong>Cost</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Reddit r/running</strong></td>
+<td>Post: “Helping name a compostable warmth poncho for race start lines
+— which name resonates?”</td>
+<td>Upvote-based ranking; 100–300 responses expected</td>
+<td>FREE; contact mods first; post Tue–Thu 9–11AM EST</td>
+</tr>
+<tr class="odd">
+<td><strong>Instagram Stories</strong></td>
+<td>Poll sticker: “Which name would you grab at an expo?” (2 options per
+slide, 3 slides)</td>
+<td>70%+ of followers see Stories; 50–150 votes per slide</td>
+<td>FREE; run across 3 days</td>
+</tr>
+<tr class="even">
+<td><strong>PickFu</strong></td>
+<td>Head-to-head polls: show name + brief description; 50–200
+respondents each</td>
+<td>Statistical significance; written qualitative feedback</td>
+<td>$1–5/response; $100–$300 for 3–5 matchups</td>
+</tr>
+<tr class="odd">
+<td><strong>r/SampleSize</strong></td>
+<td>Survey link with all 5 names + 7-point Likert scales</td>
+<td>Structured quantitative data; exportable</td>
+<td>FREE; no promotion allowed</td>
+</tr>
+<tr class="even">
+<td><strong>Running Facebook Groups</strong></td>
+<td>Poll post in Marathon Training, Women Who Run groups</td>
+<td>Casual engagement; qualitative comments valuable</td>
+<td>FREE; check group rules on polls</td>
+</tr>
+</tbody>
+</table>
+<p>6.2 Evaluation Criteria</p>
+<table>
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 26%" />
+<col style="width: 23%" />
+<col style="width: 33%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Criterion</strong></td>
+<td><strong>What to Measure</strong></td>
+<td><strong>How to Measure</strong></td>
+<td><strong>Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Memorability</strong></td>
+<td>Can someone recall the name 24 hours after hearing it once?</td>
+<td>5-point scale in survey</td>
+<td>Weightiest criterion; most predictive of word-of-mouth</td>
+</tr>
+<tr class="odd">
+<td><strong>Pronunciation</strong></td>
+<td>Can it be said correctly on first read? International speakers?</td>
+<td>Read-aloud test with 5+ people</td>
+<td>Critical for podcast mentions and expo conversations</td>
+</tr>
+<tr class="even">
+<td><strong>Sustainability association</strong></td>
+<td>Does the name evoke eco/green/earth without being preachy?</td>
+<td>7-point semantic differential</td>
+<td>Should signal sustainability without limiting to it</td>
+</tr>
+<tr class="odd">
+<td><strong>Warmth / comfort association</strong></td>
+<td>Does the name evoke physical warmth or comfort?</td>
+<td>7-point semantic differential</td>
+<td>Must balance warmth with sustainability signals</td>
+</tr>
+<tr class="even">
+<td><strong>Running / racing connection</strong></td>
+<td>Does the name feel relevant to the running community?</td>
+<td>Forced-choice: running vs. general outdoor vs. generic</td>
+<td>Strongest names resonate with runners specifically</td>
+</tr>
+<tr class="odd">
+<td><strong>Trademarkability</strong></td>
+<td>Is it distinctive enough to register? Avoids descriptive terms?</td>
+<td>Attorney review of top 3</td>
+<td>Abstract/coined words strongest; descriptive weakest</td>
+</tr>
+<tr class="even">
+<td><strong>Expandability</strong></td>
+<td>Could the name cover a product line beyond ponchos?</td>
+<td>Founder judgment</td>
+<td>Avoid names that lock into “poncho” or “warmth” only</td>
+</tr>
+<tr class="odd">
+<td><strong>.com availability</strong></td>
+<td>Is the exact-match .com available or affordable (&lt;$5K)?</td>
+<td>InstantDomainSearch.com check</td>
+<td>Exact .com strongly preferred; alternatives (.co, prefix)
+acceptable</td>
+</tr>
+</tbody>
+</table>
+<p>6.3 Testing Protocol</p>
+<p>Phase 1 (Day 1–3): Quick-screen the Top 10 via a single Instagram
+Stories poll series (2 names per slide, 5 slides). Eliminate bottom 5
+based on vote counts. Phase 2 (Day 4–7): Test remaining Top 5 via Reddit
+post (r/running or r/firstmarathon) with an open discussion format.
+Note: do NOT run a formal “which name do you prefer” poll on Reddit —
+instead frame as “we’re building a compostable race-day warmth poncho
+and narrowing brand names — thoughts on these 5?” to invite organic
+qualitative feedback. Phase 3 (Day 7–10): Run 3 PickFu head-to-head
+polls with Top 3 finalists ($100–$300 total) for quantitative validation
+with written qualitative feedback from 50–200 respondents each.</p>
+<p>6.4 What a Winning Name Looks Like</p>
+<p>The winner should: (1) be recalled unprompted by 60%+ of respondents
+24 hours later, (2) score highest on memorability AND sustainability
+association, (3) have clear .com availability, (4) pass USPTO TESS
+search with no close matches in Classes 25 or 24, (5) generate
+spontaneously positive qualitative comments from runners (“that’s
+clever” / “I’d remember that” / “that feels like a running brand”).</p>
+<p>7. Tagline Candidates (to Pair with Final Name)</p>
+<p><strong>[GAP #6 CLOSED]</strong> The CANONICAL tagline list with
+unified priority rankings, testing methodology, and full rationale lives
+in P1C Section 5 (8 candidates with testing priority scores). The
+following 6 taglines are a quick-reference subset for use during the
+naming process. For the complete list, always refer to P1C Section
+5.</p>
+<p>Each name benefits from a tagline that completes the brand story.
+Test the top 3 taglines alongside the winning name:</p>
+<p><strong>1. “Race Warm. Leave No Trace.” — TESTING PRIORITY: VERY
+HIGH. Direct; sustainability + warmth in 6 words.</strong></p>
+<p><strong>2. “Warmth That Disappears.” — TESTING PRIORITY: HIGH.
+Intriguing duality: cold disappears + product composts.</strong></p>
+<p><strong>3. “Start Warm. Finish Clean.” — TESTING PRIORITY: HIGH. Race
+start/finish cadence; works B2B and DTC.</strong></p>
+<p><strong>4. “Run Light. Tread Lighter.” — TESTING PRIORITY: HIGH.
+Pairs especially well with “Shed Lighter” brand name.</strong></p>
+<p><strong>5. “The Last Layer You’ll Ever Throw Away.” — TESTING
+PRIORITY: HIGH. Bold promise; long for tagline but powerful as hero
+copy.</strong></p>
+<p><strong>6. “Shed It. Compost It. Run.” — TESTING PRIORITY:
+MEDIUM-HIGH. Action sequence; three-word rhythm.</strong></p>
+<p>Additional candidates in P1C Section 5: “Built for the Corral. Gone
+by Spring.” (MEDIUM) and “Race-Day Ready. Earth-Day Approved.” (MEDIUM).
+Test taglines AFTER name is selected — the name and tagline must work as
+a unit. Test via Instagram Stories / PickFu methodology (P1A Section
+6).</p>
+<p>8. Timeline &amp; Action Items</p>
+<table>
+<colgroup>
+<col style="width: 13%" />
+<col style="width: 65%" />
+<col style="width: 20%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>When</strong></td>
+<td><strong>Action</strong></td>
+<td><strong>Who</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Week 4</strong></td>
+<td>Brainstorm 30+ candidates (COMPLETE — this document)</td>
+<td>Founder</td>
+</tr>
+<tr class="odd">
+<td><strong>Week 4–5</strong></td>
+<td>USPTO TESS search for top 10 names</td>
+<td>Founder (free) or TM attorney ($300–$500)</td>
+</tr>
+<tr class="even">
+<td><strong>Week 5</strong></td>
+<td>Check .com domain + social handle availability for top 10</td>
+<td>Founder (Namecheap, InstantDomainSearch)</td>
+</tr>
+<tr class="odd">
+<td><strong>Week 5–6</strong></td>
+<td>Test 3–5 finalists via runner polls (Reddit r/running, Instagram
+Stories, PickFu)</td>
+<td>Founder; target 200+ votes</td>
+</tr>
+<tr class="even">
+<td><strong>Week 6</strong></td>
+<td>File USPTO trademark application</td>
+<td>$250–$350 TEAS Plus filing; or $1,000–$2,000 via attorney</td>
+</tr>
+<tr class="odd">
+<td><strong>Week 6</strong></td>
+<td>Register .com domain, Instagram, TikTok, Facebook, X handles</td>
+<td>$10–15/yr domain; free social handles</td>
+</tr>
+<tr class="even">
+<td><strong>Week 6</strong></td>
+<td>Set up Google Workspace email (hello@brand.com)</td>
+<td>$6–12/user/month</td>
+</tr>
+<tr class="odd">
+<td><strong>Month 8–12</strong></td>
+<td>Respond to any USPTO Office Actions</td>
+<td>Attorney recommended ($200–$500/response)</td>
+</tr>
+<tr class="even">
+<td><strong>Month 12–18</strong></td>
+<td>Trademark registration issued (if no opposition)</td>
+<td>$0 additional if TEAS Plus; maintenance at years 5–6</td>
+</tr>
+</tbody>
+</table>
+<p>9. Budget Summary</p>
+<p>USPTO TEAS Plus filing (2 classes): $500–$700. Professional knockout
+search (top 3): $300–$500. Domain registration: $10–$5,000 (depending on
+premium availability). PickFu testing (3 matchups): $100–$300. Total
+brand naming budget: $910–$6,500. If using trademark attorney for full
+service: add $1,000–$2,000. Madrid Protocol international filing (if
+needed): add $100–$200/class/country.</p>
+<p>10. Conclusion: Move Fast, Test Smart, Secure Everything</p>
+<p><strong>The #1 risk in brand naming is not picking the wrong name —
+it’s taking too long to decide.</strong> A good name secured and
+trademarked today beats a perfect name debated for months. The Top 3
+candidates (Shed Lighter, Mile Zero, Brevera) all satisfy the core
+criteria: memorable, trademarkable, runner-relevant,
+sustainability-signaling, and expandable beyond ponchos.</p>
+<p><strong>Execute the testing protocol in 10 days. File the trademark
+application in Week 6. Register all digital assets within 24 hours of
+final selection.</strong> Every day of delay increases the risk of
+domain squatting and social handle unavailability. The brand name is the
+foundation upon which P1B (Visual Identity), P1C (Messaging), P1D
+(Content), and P1E (Pre-Launch List Building) all depend.</p>
+
+        </div>
+    </div></div>
+<footer style="text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px">
+Sustainable Race-Start Warmth Poncho — D2C Brand GTM Project · 60 Subprojects · 391 Tasks · ~15,500¶ · April 2026
+</footer></body></html>

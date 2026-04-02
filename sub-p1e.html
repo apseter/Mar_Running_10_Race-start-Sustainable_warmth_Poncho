@@ -1,0 +1,1319 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>P1E: PreLaunch List Building — Race Start Warmth GTM</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0e1a;--surface:#111827;--card:#1a2332;--border:#2a3a4e;--accent:#10b981;--accent2:#3b82f6;--text:#e2e8f0;--muted:#94a3b8;--white:#fff;--red:#ef4444;--amber:#f59e0b;--green:#10b981}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+/* Nav */
+nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
+nav .inner{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;max-width:1200px;margin:0 auto}
+nav .brand{font-weight:700;font-size:15px;color:var(--accent)}
+nav .links{display:flex;gap:8px;flex-wrap:wrap}
+nav .links a{color:var(--muted);font-size:13px;padding:4px 10px;border-radius:6px;transition:.2s}
+nav .links a:hover,nav .links a.active{color:var(--white);background:var(--card);text-decoration:none}
+/* Hero */
+.hero{padding:60px 0 40px;text-align:center}
+.hero h1{font-size:2.4em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:1.1em;max-width:700px;margin:0 auto}
+/* Stats bar */
+.stats{display:flex;justify-content:center;gap:32px;padding:24px 0;flex-wrap:wrap}
+.stat{text-align:center}.stat .num{font-size:1.8em;font-weight:800;color:var(--white)}.stat .label{font-size:.75em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+/* Cards */
+.grid{display:grid;gap:16px;margin:24px 0}
+.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}
+.grid-3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;transition:.2s}
+.card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.card h3{font-size:1.1em;margin-bottom:8px}.card p{color:var(--muted);font-size:.9em}
+.card .badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:8px}
+.card .meta{font-size:.8em;color:var(--muted);margin-top:12px}
+/* Section */
+.section{padding:40px 0}.section h2{font-size:1.6em;font-weight:700;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+/* Table */
+table{width:100%;border-collapse:collapse;font-size:.85em;margin:16px 0}
+th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:52px}
+td{padding:8px 12px;border-bottom:1px solid var(--border)}
+tr:hover td{background:rgba(16,185,129,.05)}
+.status-complete{color:var(--green);font-weight:600}.status-not{color:var(--muted)}
+/* Progress */
+.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:8px}
+.progress .bar{height:100%;background:var(--accent);border-radius:3px}
+/* Back link */
+.back{display:inline-block;color:var(--muted);font-size:.9em;margin-bottom:20px}
+.back:hover{color:var(--accent)}
+/* Download */
+.dl-card{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin:8px 0;transition:.2s}
+.dl-card:hover{border-color:var(--accent);text-decoration:none}
+.dl-card .icon{font-size:2em}.dl-card .info h4{color:var(--white);margin-bottom:4px}.dl-card .info p{color:var(--muted);font-size:.85em}
+/* Footer */
+footer{text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px}
+@media(max-width:768px){.stats{gap:16px}.stat .num{font-size:1.3em}nav .links{gap:4px}nav .links a{font-size:11px;padding:3px 6px}.hero h1{font-size:1.6em}}
+
+.doc-content{max-width:900px;margin:0 auto;padding:20px 0}
+.doc-content h1{font-size:1.8em;font-weight:800;color:var(--white);margin:32px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.doc-content h2{font-size:1.4em;font-weight:700;color:var(--accent);margin:28px 0 12px}
+.doc-content h3{font-size:1.15em;font-weight:600;color:var(--accent2);margin:20px 0 10px}
+.doc-content p{margin:8px 0;line-height:1.7}
+.doc-content table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85em}
+.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;border:1px solid var(--border)}
+.doc-content td{padding:8px 12px;border:1px solid var(--border);vertical-align:top}
+.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.doc-content ul,.doc-content ol{margin:8px 0 8px 24px}
+.doc-content li{margin:4px 0;line-height:1.6}
+.doc-content strong{color:var(--white)}
+.doc-content em{color:var(--muted)}
+.doc-content blockquote{border-left:3px solid var(--accent);padding:8px 16px;margin:12px 0;background:var(--card);border-radius:0 8px 8px 0}
+.nav-sub{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 24px;padding:12px 16px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
+.nav-sub a{font-size:.8em;color:var(--muted);padding:4px 10px;border-radius:4px;transition:.2s;white-space:nowrap}
+.nav-sub a:hover,.nav-sub a.active{color:var(--white);background:var(--surface);text-decoration:none}
+</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a></div></div></nav><div class="container">
+    <div style="padding-top:30px">
+        <a href="p1.html" class="back">← 🎨 P1: Brand Development</a>
+        <div class="nav-sub"><a href="p1.html">🎨 P1 Overview</a><a href="sub-p1a.html">P1A</a><a href="sub-p1b.html">P1B</a><a href="sub-p1c.html">P1C</a><a href="sub-p1d.html">P1D</a><a href="sub-p1e.html" class="active">P1E</a><a href="sub-p1.html">P1</a></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px">
+            <div>
+                <span style="background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px">P1E</span>
+                <span style="color:var(--muted);font-size:.85em;margin-left:8px">P1: Brand Development</span>
+            </div>
+            <a href="files/P1E_PreLaunch_List_Building.docx" style="font-size:.85em;color:var(--accent);padding:6px 14px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
+        </div>
+        <div class="doc-content">
+            <p><strong>P1E: PRE-LAUNCH</strong></p>
+<p><strong>LIST BUILDING</strong></p>
+<p>Sub-Project P1E | Brand Development &amp; Identity | Weeks 6–10</p>
+<p><em>Complete Pre-Launch Playbook: Landing Page, Email Capture,
+Community Seeding, B2B Prospecting, Referral Program, and Influencer
+Partnerships</em></p>
+<p>March 2026 | Confidential</p>
+<p>Executive Summary</p>
+<p><strong>The pre-launch phase has one goal: build a list of 500+ email
+subscribers and 50+ B2B prospects before the product goes live.</strong>
+Email is the highest-ROI retention channel for DTC brands. Meta Ads
+remain the highest-volume acquisition channel, but at $0–$300 pre-launch
+ad spend, organic community seeding drives the majority of early
+signups. Founder-led landing pages convert 15–28% higher than anonymous
+brand pages. A well-executed pre-launch builds the foundation for Day 1
+revenue: the email list converts at 4–8% on launch day (vs. 2–3% for
+cold traffic).</p>
+<p><strong>This document provides:</strong> a section-by-section landing
+page blueprint, email platform comparison (Klaviyo recommended, free to
+250 contacts), the complete 5-email welcome sequence from P1C, 8
+community seeding channels with expected signup volumes, a 7-source B2B
+prospect list methodology targeting 75–100 race directors (merged with
+P0C’s 53-race database), a 3-tier referral program (runner-to-runner,
+runner-to-RD, RD-to-RD), influencer partnership strategy across 5 tiers,
+4 post-launch automated email flows (cart abandonment, post-purchase,
+re-engagement, B2B nurture), a complete SEO and blog content strategy
+with 15 target keywords and 6 article plans, week-by-week execution
+timeline, tech stack ($414–$1,391 total pre-launch budget), and 15 KPIs
+to track.</p>
+<p>1. Landing Page Blueprint: Section-by-Section</p>
+<p><strong>The landing page is the conversion engine for every
+pre-launch channel.</strong> Every Reddit post, Instagram bio link,
+podcast mention, and influencer tag drives traffic here. It must load in
+under 2 seconds, be mobile-first (60%+ of DTC traffic is mobile), and
+have a single goal: email capture. Landing pages converting at 10–20% on
+targeted traffic are benchmarks for DTC pre-launch.</p>
+<table>
+<colgroup>
+<col style="width: 16%" />
+<col style="width:50%">
+<col style="width: 33%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Section</strong></td>
+<td><strong>Content &amp; Copy</strong></td>
+<td><strong>Technical Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Hero section (above fold)</strong></td>
+<td>Headline: “The compostable warmth poncho for the moment before the
+race begins.” Subhead: “Reflects 95% of body heat. Composts in 90 days.
+Designed by runners, for runners.” Background: golden-hour runner in
+poncho. CTA: “Be the first to race warm — join the waitlist.” Email
+input field.</td>
+<td>Mobile-first; loads in &lt;2 seconds; CTA button in Earth Green
+(#2D6A4F); hero image compressed to &lt;200KB</td>
+</tr>
+<tr class="odd">
+<td><strong>Problem section</strong></td>
+<td>Split visual: LEFT = runner shivering in garbage bag. RIGHT = stat
+overlay: “230,000+ lbs of clothing waste at America’s top 3 marathons.”
+3 data callouts: NYC 120K lbs, Chicago 54.5K, Boston 42K.</td>
+<td>Emotional trigger; scroll-triggered animation (numbers count
+up)</td>
+</tr>
+<tr class="even">
+<td><strong>Solution section</strong></td>
+<td>Product reveal: 3 images (packed, unfolded, being worn). 3 benefit
+icons: (1) Reflects 95% body heat, (2) Certified compostable, (3)
+Tear-away design. Brief text: “Same radiant barrier physics as NASA.
+Built from plants. Gone in 90 days.”</td>
+<td>Product first appears here; keep copy tight; icons from P1B design
+system</td>
+</tr>
+<tr class="odd">
+<td><strong>How it works</strong></td>
+<td>4-step lifecycle icons: Pack → Wear → Shed → Compost. Each step:
+icon + 10-word description.</td>
+<td>Horizontal scroll on mobile; simple animation</td>
+</tr>
+<tr class="even">
+<td><strong>Social proof</strong></td>
+<td>Quote from a runner (once available); or placeholder: “Designed by
+marathon runners who were tired of garbage bags.” Logos of target races
+(once partnerships confirmed).</td>
+<td>Build this section over time; empty is worse than absent — omit
+until content exists</td>
+</tr>
+<tr class="odd">
+<td><strong>Founder story</strong></td>
+<td>Photo of founder + 50-word origin story from P1C. “Why I built
+this.”</td>
+<td>Founder presence increases conversion 15–28% per MHI Growth Engine
+data</td>
+</tr>
+<tr class="even">
+<td><strong>CTA repeat</strong></td>
+<td>Second email capture: “Join 500+ runners on the waitlist.” (update
+number as list grows). Checkbox: “I’m a race director interested in a
+free sample kit.”</td>
+<td>Dual-capture: DTC emails + B2B leads in a single form</td>
+</tr>
+<tr class="odd">
+<td><strong>Footer</strong></td>
+<td>Instagram + TikTok + Strava links. “© [BRAND] 2026. All rights
+reserved.” Privacy policy link (required for email compliance).</td>
+<td>Minimal; clean; brand colors</td>
+</tr>
+</tbody>
+</table>
+<p>1.1 Landing Page A/B Test Plan</p>
+<p>Test 1 (Week 6–7): Headline A (“The compostable warmth poncho”) vs.
+Headline B (“Stop shivering in garbage bags”). Split traffic 50/50.
+Measure email conversion rate. Test 2 (Week 7–8): Hero image A (runner
+in poncho at golden hour) vs. Hero image B (garbage bag vs. poncho split
+comparison). Test 3 (Week 8–9): CTA A (“Join the waitlist”) vs. CTA B
+(“Be first to race warm”). Use Google Optimize (free) or Shopify’s
+built-in A/B testing. Minimum 100 visitors per variant for statistical
+significance.</p>
+<p>1.2 Meta Ads for Traffic Testing ($100–$300)</p>
+<p>Run $5–10/day in Meta Ads for 2–4 weeks to test landing page
+conversion. Target: runners aged 25–55, interested in “marathon
+training,” “running,” “Strava,” and “sustainability.” Creative: 3 ad
+variants (garbage bag comparison, product hero, stat-based). Measure:
+cost per email signup. Benchmark: $1–$3 per email at pre-launch. If
+above $5, landing page needs optimization before scaling.</p>
+<p>2. Email Platform Selection &amp; Setup</p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 19%" />
+<col style="width: 35%" />
+<col style="width: 28%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Platform</strong></td>
+<td><strong>Cost</strong></td>
+<td><strong>Strengths</strong></td>
+<td><strong>Assessment</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Klaviyo</strong></td>
+<td>$0 (free up to 250 contacts / 500 emails/mo)</td>
+<td>Best-in-class DTC email; Shopify native integration; advanced
+segmentation; flows + campaigns</td>
+<td>RECOMMENDED for DTC. Free tier covers pre-launch phase entirely.
+Upgrade to $20/mo at 251–500 contacts.</td>
+</tr>
+<tr class="odd">
+<td><strong>Mailchimp</strong></td>
+<td>$0 (free up to 500 contacts / 1,000 emails/mo)</td>
+<td>Widely known; decent templates; weaker DTC features than
+Klaviyo</td>
+<td>Acceptable alternative; less sophisticated segmentation</td>
+</tr>
+<tr class="even">
+<td><strong>ConvertKit</strong></td>
+<td>$0 (free up to 10,000 subscribers)</td>
+<td>Creator-focused; great landing page builder; visual automations</td>
+<td>Good for content-first brands; generous free tier</td>
+</tr>
+<tr class="odd">
+<td><strong>Beehiiv</strong></td>
+<td>$0 (free up to 2,500 subscribers)</td>
+<td>Newsletter-focused; built-in referral system; growing platform</td>
+<td>Consider if planning a running newsletter as content marketing</td>
+</tr>
+</tbody>
+</table>
+<p><strong>RECOMMENDATION: Klaviyo.</strong> Free tier covers the entire
+pre-launch phase (up to 250 contacts, 500 emails/month). Native Shopify
+integration means every subscriber automatically syncs. Advanced
+segmentation enables separate DTC vs. B2B flows. When the list exceeds
+250, upgrade to $20/month. At 501+, $45/month. Klaviyo’s DTC-specific
+features (predicted LTV, purchase likelihood scoring, browse
+abandonment) justify the premium over Mailchimp once the store
+launches.</p>
+<p>2.1 Klaviyo Setup Checklist</p>
+<p>(1) Create Klaviyo account (free). (2) Install Klaviyo Shopify
+plugin. (3) Create email signup form (embedded on landing page). (4)
+Design welcome flow (5 emails per P1C Section 13). (5) Set up B2B
+segment (flagged via landing page checkbox). (6) Create “Launch Day”
+campaign template. (7) Enable double opt-in for GDPR/CAN-SPAM
+compliance. (8) Add suppression for bounces and unsubscribes. (9) Set
+sender name to founder’s first name + brand (e.g., “Alex from [BRAND]”).
+(10) Add physical mailing address to footer (CAN-SPAM requirement).</p>
+<p>3. Welcome Email Sequence (5 Emails)</p>
+<p><strong>Full email copy for all 5 emails is provided in P1C Section
+13.</strong> This section provides the performance framework, timing,
+and optimization strategy for the sequence.</p>
+<table>
+<colgroup>
+<col style="width: 7%" />
+<col style="width: 14%" />
+<col style="width: 23%" />
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 30%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Email</strong></td>
+<td><strong>Name</strong></td>
+<td><strong>Purpose</strong></td>
+<td><strong>Expected Open Rate</strong></td>
+<td><strong>Expected Click Rate</strong></td>
+<td><strong>Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Email 1 (Day 0)</strong></td>
+<td>The Origin Story</td>
+<td>Brand story (250-word version from P1C). Why we exist. Personal
+founder voice.</td>
+<td>40–50%</td>
+<td>2–4%</td>
+<td>Set expectation: what the subscriber will receive and when</td>
+</tr>
+<tr class="odd">
+<td><strong>Email 2 (Day 2)</strong></td>
+<td>The Science</td>
+<td>How metallized compostable film works. NASA comparison. “Does it
+actually keep you warm? Yes.”</td>
+<td>35–45%</td>
+<td>2–3%</td>
+<td>Addresses #1 skepticism: will a compostable poncho work?</td>
+</tr>
+<tr class="even">
+<td><strong>Email 3 (Day 5)</strong></td>
+<td>The Problem</td>
+<td>230,000 lbs stat. Race-by-race waste data. “This doesn’t have to be
+the story.”</td>
+<td>30–40%</td>
+<td>1–2%</td>
+<td>Builds urgency and mission alignment</td>
+</tr>
+<tr class="odd">
+<td><strong>Email 4 (Day 8)</strong></td>
+<td>Early Access Offer</td>
+<td>20% off first order (code: FIRSTCORRAL). Free shipping on $15+. 3
+pricing tiers shown.</td>
+<td>35–50%</td>
+<td>4–8%</td>
+<td>Conversion email; strongest CTA; 7-day expiration creates
+urgency</td>
+</tr>
+<tr class="even">
+<td><strong>Email 5 (Day 12)</strong></td>
+<td>The Movement</td>
+<td>Impact metrics. Strava club invitation. Referral program launch.
+“You’re not just buying a poncho.”</td>
+<td>25–35%</td>
+<td>1–2%</td>
+<td>Community building; referral activation; long-term relationship</td>
+</tr>
+</tbody>
+</table>
+<p>3.1 Sequence Optimization</p>
+<p>Monitor open rates after 500+ subscribers. If Email 1 open rate drops
+below 30%, test: new subject line, different sender name, or shorter
+preview text. If Email 4 click rate is below 3%, test: stronger discount
+(25% vs. 20%), urgency language (“48 hours only”), or product image in
+email body. Re-send Email 4 to non-openers 48 hours later with a
+different subject line (“Did you miss this?”).</p>
+<p>4. Community Seeding: 8 Channels to 500+ Signups</p>
+<p><strong>Organic community seeding is the primary pre-launch growth
+engine.</strong> Paid ads are for testing, not scaling, at this stage.
+The running community is tight-knit, passionate, and responsive to
+authentic engagement. A single well-received Reddit post can drive
+50–200 email signups for $0.</p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 11%" />
+<col style="width: 33%" />
+<col style="width: 14%" />
+<col style="width: 26%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Channel</strong></td>
+<td><strong>Audience Size</strong></td>
+<td><strong>How to Execute</strong></td>
+<td><strong>Expected Signups</strong></td>
+<td><strong>Cost &amp; Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Reddit r/running</strong></td>
+<td>3.5M+ members</td>
+<td>Post: “Working on a compostable alternative to garbage bags at race
+start lines — looking for feedback.” Be transparent (founder). Engage in
+comments for 2+ hours.</td>
+<td>50–200 email signups per well-received post</td>
+<td>FREE but requires authentic engagement; contact mods first</td>
+</tr>
+<tr class="odd">
+<td><strong>Reddit r/firstmarathon</strong></td>
+<td>120K+ members</td>
+<td>Comment on cold-weather prep threads: “I’ve been developing a
+compostable warmth poncho…” Link to landing page when asked.</td>
+<td>10–50 signups from targeted threads</td>
+<td>FREE; more niche = higher conversion rate</td>
+</tr>
+<tr class="even">
+<td><strong>Running Facebook Groups</strong></td>
+<td>50K–500K per group</td>
+<td>Post in: Marathon Training, Women Who Run, Running Over 50, Ultra
+Running Community. Share concept + ask for feedback.</td>
+<td>20–100 signups per group post</td>
+<td>FREE; check group rules; some prohibit commercial posts</td>
+</tr>
+<tr class="odd">
+<td><strong>Instagram (organic)</strong></td>
+<td>N/A (building from 0)</td>
+<td>3 posts/week (problem awareness → solution tease → product reveal
+per P1C calendar). Bio link to landing page. Stories with swipe-up to
+waitlist.</td>
+<td>5–20 signups/day once content cadence established</td>
+<td>FREE; slow build; focus on hashtags: #MarathonTraining #RaceDay
+#SustainableRunning</td>
+</tr>
+<tr class="even">
+<td><strong>TikTok (organic)</strong></td>
+<td>N/A (building from 0)</td>
+<td>3–5 posts/week: garbage bag fails, race-morning routines, product
+unboxing ASMR, thermal camera demos.</td>
+<td>10–50 signups/day if a video goes viral</td>
+<td>FREE; highest potential reach; authenticity &gt; production
+value</td>
+</tr>
+<tr class="odd">
+<td><strong>Strava Club</strong></td>
+<td>180M+ platform users</td>
+<td>Create official brand Strava Club. Post weekly challenges during
+race season. Share in running communities.</td>
+<td>50–200 club members in first month</td>
+<td>FREE; highly targeted runners; link to landing page in club
+description</td>
+</tr>
+<tr class="even">
+<td><strong>Running podcasts</strong></td>
+<td>Varies by show</td>
+<td>Pitch as guest: “The Start-Line Waste Problem Nobody Talks About.”
+Target: Ali on the Run, The Morning Shakeout, Running Rogue, Clean Sport
+Collective.</td>
+<td>100–500 signups per podcast appearance</td>
+<td>FREE (earned media); 2–4 week lead time; prepare media kit</td>
+</tr>
+<tr class="odd">
+<td><strong>Parkrun communities</strong></td>
+<td>250K+ weekly US parkrunners</td>
+<td>Attend local parkrun wearing poncho (if weather appropriate).
+Network with run directors. Share on parkrun Facebook groups.</td>
+<td>5–20 signups per event; relationship building</td>
+<td>FREE; grassroots; authentic community integration</td>
+</tr>
+</tbody>
+</table>
+<p>4.1 Reddit Execution Guide (Highest ROI Free Channel)</p>
+<p>Reddit runners are passionate, skeptical, and incredibly valuable. A
+founder posting transparently about building a compostable poncho will
+get engagement — but ONLY if it’s authentic. Rules: (1) Disclose that
+you’re the founder. Always. (2) Frame as seeking feedback, not selling.
+(3) Engage deeply in comments for 2+ hours after posting. (4) Never link
+directly to a product page — link to the landing page. (5) Post
+Tuesday–Thursday, 9–11 AM EST for peak visibility. (6) Contact r/running
+mods before posting to ensure compliance with subreddit rules.</p>
+<p>Sample post title: “I’ve been working on a compostable alternative to
+garbage bags for marathon start lines — would love your honest
+feedback.” Body: brief problem description (1–2 paragraphs), what you’re
+building (1 paragraph), specific questions for the community (2–3
+questions), landing page link at the bottom. Expect 50–300 comments and
+50–200 email signups from a well-received post.</p>
+<p>5. B2B Prospect List: 50+ Race Directors</p>
+<table>
+<colgroup>
+<col style="width: 20%" />
+<col style="width: 32%" />
+<col style="width: 30%" />
+<col style="width: 17%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Source</strong></td>
+<td><strong>How to Use</strong></td>
+<td><strong>URL</strong></td>
+<td><strong>Expected Contacts</strong></td>
+</tr>
+<tr class="even">
+<td><strong>RunSignUp race search</strong></td>
+<td>Filter by: fall season, 5K+ participants, northern US states</td>
+<td>runsignup.com/Races</td>
+<td>30–40 qualified races</td>
+</tr>
+<tr class="odd">
+<td><strong>FindMyMarathon.com</strong></td>
+<td>Filter by: avg temp &lt;50°F at start, 1,000+ finishers</td>
+<td>findmymarathon.com</td>
+<td>20–30 cold-weather marathons</td>
+</tr>
+<tr class="even">
+<td><strong>RRCA member directory</strong></td>
+<td>All RRCA member race organizations</td>
+<td>rrca.org/membership</td>
+<td>200+ race organizations; filter for cold-weather states</td>
+</tr>
+<tr class="odd">
+<td><strong>Running USA member list</strong></td>
+<td>Industry professional network</td>
+<td>runningusa.org/membership</td>
+<td>Race directors, timing companies, industry contacts</td>
+</tr>
+<tr class="even">
+<td><strong>MarathonGuide.com</strong></td>
+<td>US marathon database with results history</td>
+<td>marathonguide.com</td>
+<td>500+ marathons; cross-reference with P0C tier list</td>
+</tr>
+<tr class="odd">
+<td><strong>CRS certified events</strong></td>
+<td>Council for Responsible Sport certified races</td>
+<td>councilforresponsiblesport.org</td>
+<td>150+ certified events; highest B2B conversion potential</td>
+</tr>
+<tr class="even">
+<td><strong>LinkedIn Sales Navigator</strong></td>
+<td>Search: “Race Director” OR “Event Director” + “Marathon”</td>
+<td>linkedin.com/sales</td>
+<td>50–100 individual decision-makers with direct messaging</td>
+</tr>
+</tbody>
+</table>
+<p>5.1 B2B Prospect Spreadsheet Structure</p>
+<p>Create a Google Sheet or HubSpot CRM (free) with columns: Race Name,
+City/State, Date, Est. Participants, Avg Start Temp (°F), Race Director
+Name, RD Email, RD Phone, CRS Certification Status, Sustainability
+Program (Y/N), Outreach Status (Not Contacted / Emailed / Replied / Call
+Scheduled / LOI / Partner), Last Contact Date, Notes. Populate from
+P0C’s 53 prioritized cold-weather races (Tier 1–3) plus additional races
+from the sources above.</p>
+<p>5.2 B2B Outreach Sequence</p>
+<p>Email 1 (Week 9): First outreach using P1C Section 3.1 template.
+Personalize with race-specific waste data if available. Email 2 (Week 9
++ 5 days): Follow-up if no reply. Subject: “Following up — free sample
+kit for [RACE NAME].” Shorter, more direct. Email 3 (Week 9 + 12 days):
+Final follow-up with different angle: CRS certification credit or
+sponsor co-branding opportunity. LinkedIn connection request (parallel):
+Connect with RD on LinkedIn; send a brief personal message referencing
+their race’s sustainability efforts.</p>
+<p>Expected response rate: 10–20% reply rate on cold B2B email in the
+running industry (personal, niche, relevant). From 50 emails, expect
+5–10 conversations and 2–5 pilot commitments.</p>
+<p>5.3 Merging P0C and P1E Prospect Lists Into a Single Master
+Database</p>
+<p><strong>[GAP #9 CLOSED]</strong> P0C created a prioritized database
+of 53 cold-weather races across 3 tiers. P1E Section 5 identifies 7
+additional data sources. These MUST be merged into a single master
+prospect database to avoid duplicated outreach and ensure comprehensive
+coverage.</p>
+<p>STEP 1: EXPORT P0C DATABASE. The 53-race P0C database includes: Race
+Name, City/State, Month, Avg Start Temp, Finisher Count, CRS
+Certification Status, Sustainability Program, and Tier (1/2/3). Export
+this to the P1E spreadsheet format (Section 5.1 columns).</p>
+<p>STEP 2: ADD P1E-SOURCED RACES. Search the 7 P1E sources (RunSignUp,
+FindMyMarathon, RRCA, Running USA, MarathonGuide, CRS directory,
+LinkedIn) for races NOT already in the P0C list. Likely additions:
+smaller cold-weather races (1,000–3,000 runners) that fell below P0C’s
+participant threshold, and charity races with sustainability mandates
+that P0C’s competitive focus may have missed.</p>
+<p>STEP 3: DEDUPLICATE. Match on Race Name + City. Remove exact
+duplicates. For near-matches (e.g., “TCS NYC Marathon” vs. “NYC
+Marathon”), keep the entry with the most complete data.</p>
+<p>STEP 4: ENRICH WITH CONTACT INFO. For every race in the merged list,
+add Race Director name, email, phone, and LinkedIn URL. Sources: race
+website “Contact” page (most RDs list email), RunSignUp race page (often
+shows organizer name), LinkedIn search (“Race Director” + “[Race
+Name]”), and RRCA member directory (for RRCA-affiliated races).</p>
+<p>STEP 5: SCORE AND PRIORITIZE. Add a “Priority Score” column (1–5)
+based on: (5) World Major or CRS Evergreen certified, (4) CRS Gold +
+&gt;10K runners, (3) CRS Silver/Bronze or sustainability program +
+&gt;5K runners, (2) Cold-weather &gt;3K runners but no sustainability
+program, (1) Cold-weather &lt;3K runners. Target outreach in priority
+order: 5s first, then 4s, then 3s. Never cold-email a 1 or 2 before
+exhausting 3–5s.</p>
+<p>TARGET: 75–100 unique qualified prospects in the master database
+(P0C’s 53 + 22–47 from P1E sources). This single spreadsheet becomes the
+foundation of all B2B outreach, CRM tracking, and pipeline management
+through Year 1.</p>
+<p>TOOLS: Google Sheets (free, collaborative, easy to share with future
+BD hire) or HubSpot CRM free tier (more structured but learning curve).
+Google Sheets recommended for a solo founder; migrate to HubSpot when
+team grows to 2+.</p>
+<p>6. Referral Program: Runners Recruiting Runners (and Race
+Directors)</p>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 28%" />
+<col style="width: 16%" />
+<col style="width: 26%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Program</strong></td>
+<td><strong>Incentive</strong></td>
+<td><strong>Mechanics</strong></td>
+<td><strong>Expected Conversion</strong></td>
+<td><strong>Strategic Value</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Runner-to-Runner</strong></td>
+<td>Give $5, Get $5</td>
+<td>Runner shares unique link. Friend gets $5 off first order. Runner
+gets $5 credit when friend purchases.</td>
+<td>3–5% referral conversion rate (industry median per
+ReferralCandy)</td>
+<td>Lowest friction; standard DTC model</td>
+</tr>
+<tr class="odd">
+<td><strong>Runner-to-Race Director</strong></td>
+<td>Give a free sample kit, Get $10 credit</td>
+<td>Runner refers a race director by name + email. Brand sends RD a free
+50-unit sample kit. Runner gets $10 credit if RD becomes a partner.</td>
+<td>Highest strategic value; each RD referral can unlock 1,000–50,000
+unit orders</td>
+<td>THE GOLD CHANNEL — incentivize runners to connect the brand with
+their race directors</td>
+</tr>
+<tr class="even">
+<td><strong>Race Director-to-Race Director</strong></td>
+<td>Peer referral + co-marketing</td>
+<td>RD refers another RD. Both get priority pricing (tier upgrade) on
+first order.</td>
+<td>Race directors trust peer recommendations above all else</td>
+<td>Activate after first 3–5 RD partnerships are established</td>
+</tr>
+</tbody>
+</table>
+<p><strong>The Runner-to-Race Director referral is the single most
+valuable growth mechanic.</strong> A $10 credit costs the brand $10 but
+can unlock a 5,000–50,000 unit B2B order. This inverts the traditional
+referral model: instead of acquiring one customer, you’re acquiring an
+entire race’s worth of customers. Prominently feature this on the
+landing page, in every email, and at every expo booth: “Know a race
+director? Introduce us and get $10 credit.”</p>
+<p>6.1 Referral Tool Setup</p>
+<p>Option A: ReferralCandy ($49/mo). Deploys in under 1 hour. Automatic
+unique referral links. Dashboard tracking. Works with Shopify natively.
+Option B: Klaviyo native referral (if using Klaviyo’s referral feature).
+Option C: Manual system — unique discount codes per referrer tracked in
+Google Sheets. Acceptable for pre-launch; switch to automated tool at
+launch.</p>
+<p>7. Influencer &amp; Content Partner Strategy</p>
+<table>
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 23%" />
+<col style="width: 14%" />
+<col style="width: 23%" />
+<col style="width: 26%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Tier</strong></td>
+<td><strong>Target Accounts</strong></td>
+<td><strong>Cost per Post</strong></td>
+<td><strong>Why This Tier</strong></td>
+<td><strong>Approach Strategy</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Micro (5K–25K followers)</strong></td>
+<td>@name TBD — eco-conscious running accounts</td>
+<td>$0–$200 per post (product gifting often sufficient)</td>
+<td>Highest engagement rate (3–7%); most authentic; best for niche
+products</td>
+<td>Approach 10–15; expect 3–5 to accept gifted product</td>
+</tr>
+<tr class="odd">
+<td><strong>Mid-tier (25K–100K)</strong></td>
+<td>Running-focused content creators on Instagram/TikTok</td>
+<td>$200–$800 per post</td>
+<td>Broader reach with still-relevant audience; professional content
+quality</td>
+<td>Approach 5–10; budget $1,000–$3,000 for 3–5 partnerships</td>
+</tr>
+<tr class="even">
+<td><strong>Running podcasters</strong></td>
+<td>Ali on the Run (20M+ downloads), Morning Shakeout, Running
+Rogue</td>
+<td>$500–2,000 per episode (or guest appearance = free)</td>
+<td>Deep engagement; 30–60 min exposure; listeners are committed
+runners</td>
+<td>Pitch as expert guest on start-line sustainability topic</td>
+</tr>
+<tr class="odd">
+<td><strong>Strava athletes</strong></td>
+<td>Local elites with 1K–10K followers on Strava</td>
+<td>Product gifting only ($0)</td>
+<td>Highly targeted; runners who influence their local running
+communities</td>
+<td>Gift ponchos + ask for Strava activity photo/tag</td>
+</tr>
+<tr class="even">
+<td><strong>Running club leaders</strong></td>
+<td>Fleet Feet run club captains, November Project leaders, local club
+presidents</td>
+<td>Product gifting + club bulk discount offer</td>
+<td>Grassroots influence; one leader = 20–100 engaged runners</td>
+<td>Attend club runs; introduce product in person</td>
+</tr>
+</tbody>
+</table>
+<p>7.1 Influencer Outreach Template</p>
+<blockquote>
+<p><em>Subject: Collab? We’re building the first compostable warmth
+poncho for runners Hey [NAME], I’ve been following your content for a
+while — your [SPECIFIC POST/VIDEO] about [TOPIC] really resonated. I’m
+the founder of [BRAND], and we’re launching the first compostable warmth
+poncho designed for marathon start lines. Same heat-reflection as a
+space blanket, but made from plants and composts in 90 days. I’d love to
+send you one to try at your next race — no strings attached. If you love
+it, a post or story would mean the world. If you have feedback, we want
+to hear that too. Interested? — [FOUNDER NAME] [BRAND] |
+[WEBSITE]</em></p>
+</blockquote>
+<p>7.2 Influencer Content Guidelines (Not a Script)</p>
+<p>DO NOT provide a script. Runners and their audiences can spot
+sponsored scripts instantly. Instead, send a “Content Brief” with: (1)
+Key talking points (warmth, compostable, designed for start lines), (2)
+Hashtags (#[BrandName] #RaceWarm #CompostableGear), (3) Link to share
+(landing page URL with UTM tracking), (4) FTC disclosure reminder (“#ad”
+or “#gifted” required). Let the creator tell the story in their own
+voice. Authenticity converts; scripts don’t.</p>
+<p>8. Week-by-Week Execution Timeline</p>
+<table>
+<colgroup>
+<col style="width: 10%" />
+<col style="width:50%">
+<col style="width: 10%" />
+<col style="width: 30%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Week</strong></td>
+<td><strong>Actions</strong></td>
+<td><strong>Owner</strong></td>
+<td><strong>Milestone</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Week 6</strong></td>
+<td>Build landing page on Shopify ($39/mo) or Carrd ($19/yr for MVP).
+Set up Klaviyo (free tier). Connect email capture form. Create welcome
+sequence (5 emails from P1C). Go live.</td>
+<td>Founder</td>
+<td>Landing page live + email capture functional</td>
+</tr>
+<tr class="odd">
+<td><strong>Week 7</strong></td>
+<td>Seed Reddit: post on r/running + r/firstmarathon. Post concept in
+3–5 running Facebook Groups. Create Instagram account; post first 3
+images (problem awareness). Create Strava Club.</td>
+<td>Founder</td>
+<td>50–100 email signups; 25–50 Instagram followers; Strava Club
+created</td>
+</tr>
+<tr class="even">
+<td><strong>Week 7–8</strong></td>
+<td>Build B2B prospect list: 50+ race directors with emails from
+RunSignUp, RRCA, CRS, LinkedIn. Prepare outreach email template from P1C
+Section 3.1.</td>
+<td>Founder</td>
+<td>B2B prospect spreadsheet with 50+ qualified contacts</td>
+</tr>
+<tr class="odd">
+<td><strong>Week 8</strong></td>
+<td>Continue Instagram cadence (3 posts/week). First TikTok posts (3–5
+concepts). Set up referral program in ReferralCandy ($49/mo) or Klaviyo
+native referral. Publish Blog Article 1 (“What to Wear at Marathon Start
+Line”). Set up Google Search Console.</td>
+<td>Founder</td>
+<td>150–250 email signups; referral program live; first blog
+published</td>
+</tr>
+<tr class="even">
+<td><strong>Week 8–9</strong></td>
+<td>Pitch 10–15 micro-influencers via Instagram DM. Offer gifted product
++ exclusive pre-launch content. Pitch 2–3 running podcasts as guest
+(start-line sustainability topic). Publish Blog Article 2 (“Start-Line
+Waste Crisis”).</td>
+<td>Founder</td>
+<td>3–5 influencer acceptances; 1–2 podcast bookings; 2 blogs
+published</td>
+</tr>
+<tr class="odd">
+<td><strong>Week 9</strong></td>
+<td>Send first B2B outreach emails to 15–20 race directors (warm leads
+from RRCA Convention or personal network first). Follow up within 5
+days.</td>
+<td>Founder</td>
+<td>5–10 B2B conversations initiated</td>
+</tr>
+<tr class="even">
+<td><strong>Week 9–10</strong></td>
+<td>Instagram/TikTok product tease phase (behind-the-scenes, prototype,
+FLIR thermal test). Email blast to waitlist: “Launch date announced —
+[DATE].” Early access code to waitlist. Publish Blog Article 3
+(greenwashing guide). Build 4 Klaviyo post-launch flows (cart
+abandonment, post-purchase, re-engagement, B2B nurture).</td>
+<td>Founder</td>
+<td>300–500 email signups; launch date locked; post-launch email flows
+ready</td>
+</tr>
+<tr class="odd">
+<td><strong>Week 10</strong></td>
+<td>LAUNCH WEEK: Amazon listing live. Shopify product page live. Email
+blast: early access 20% off. Instagram/TikTok launch posts. Influencer
+posts go live. Reddit AMA. Publish Blog Article 4 (Heatsheets
+comparison). Activate cart abandonment + post-purchase flows in
+Klaviyo.</td>
+<td>Founder</td>
+<td>500+ email list; first sales; 3–5 influencer posts live; all email
+flows active</td>
+</tr>
+</tbody>
+</table>
+<p>9. Tech Stack &amp; Budget</p>
+<p>9.1 Tech Stack</p>
+<table>
+<colgroup>
+<col style="width: 21%" />
+<col style="width: 28%" />
+<col style="width:50%">
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Function</strong></td>
+<td><strong>Tool</strong></td>
+<td><strong>Cost / Alternative</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Landing page / Store</strong></td>
+<td>Shopify Basic ($39/mo)</td>
+<td>Carrd ($19/yr for MVP landing page only); upgrade to Shopify at
+launch</td>
+</tr>
+<tr class="odd">
+<td><strong>Email marketing</strong></td>
+<td>Klaviyo (free to 250 contacts)</td>
+<td>Upgrade to $20/mo at 251+ contacts; $45/mo at 501+</td>
+</tr>
+<tr class="even">
+<td><strong>Referral program</strong></td>
+<td>ReferralCandy ($49/mo) or Klaviyo native</td>
+<td>ReferralCandy median: 3–5% referral conversion; deploys in &lt;1
+hour</td>
+</tr>
+<tr class="odd">
+<td><strong>Social scheduling</strong></td>
+<td>Later or Buffer (free tier)</td>
+<td>Schedule Instagram + TikTok + Facebook; analytics included</td>
+</tr>
+<tr class="even">
+<td><strong>Link in bio</strong></td>
+<td>Linktree (free) or Stan Store ($29/mo)</td>
+<td>Linktree for simple link aggregation; Stan Store if selling direct
+via social</td>
+</tr>
+<tr class="odd">
+<td><strong>B2B CRM</strong></td>
+<td>Google Sheets (free) or HubSpot CRM (free)</td>
+<td>Track race director outreach, status, follow-ups, notes</td>
+</tr>
+<tr class="even">
+<td><strong>Analytics</strong></td>
+<td>Google Analytics 4 (free) + Shopify analytics</td>
+<td>Track landing page conversion rate, traffic sources, email
+signups</td>
+</tr>
+<tr class="odd">
+<td><strong>Domain + DNS</strong></td>
+<td>Namecheap ($10–15/yr) or Cloudflare ($0)</td>
+<td>Cloudflare for free DNS + CDN; Namecheap for domain
+registration</td>
+</tr>
+<tr class="even">
+<td><strong>Design</strong></td>
+<td>Canva Pro ($13/mo)</td>
+<td>All social templates, landing page graphics, B2B materials</td>
+</tr>
+<tr class="odd">
+<td><strong>SEO keyword tracking</strong></td>
+<td>Google Search Console (free) + Ubersuggest (free tier)</td>
+<td>Track keyword rankings, impressions, clicks; identify content
+opportunities</td>
+</tr>
+<tr class="even">
+<td><strong>Blog SEO optimization</strong></td>
+<td>Shopify blog (built-in, free) + Yoast/Surfer SEO ($0–$49/mo)</td>
+<td>Shopify blog is free; Surfer SEO optional for advanced
+optimization</td>
+</tr>
+</tbody>
+</table>
+<p>9.2 Total Pre-Launch Budget</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 9%" />
+<col style="width: 57%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Item</strong></td>
+<td><strong>Cost</strong></td>
+<td><strong>Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Shopify Basic (3 months pre-launch + launch)</strong></td>
+<td>$117</td>
+<td>Landing page + store; or Carrd at $19/yr for pre-launch only</td>
+</tr>
+<tr class="odd">
+<td><strong>Klaviyo email (free tier, 3 months)</strong></td>
+<td>$0</td>
+<td>Free to 250 contacts; budget $60 for months 2–3 if list exceeds
+250</td>
+</tr>
+<tr class="even">
+<td><strong>ReferralCandy (2 months)</strong></td>
+<td>$98</td>
+<td>Launch month + first full month</td>
+</tr>
+<tr class="odd">
+<td><strong>Canva Pro (3 months)</strong></td>
+<td>$39</td>
+<td>All design needs</td>
+</tr>
+<tr class="even">
+<td><strong>Domain registration</strong></td>
+<td>$10–15</td>
+<td>Annual; register immediately per P1A</td>
+</tr>
+<tr class="odd">
+<td><strong>Meta ads (landing page traffic test)</strong></td>
+<td>$100–$300</td>
+<td>$5–10/day for 2–4 weeks; test landing page conversion rate</td>
+</tr>
+<tr class="even">
+<td><strong>Influencer product gifting (5 units)</strong></td>
+<td>$50–75</td>
+<td>5 ponchos at COGS; shipping included</td>
+</tr>
+<tr class="odd">
+<td><strong>Running podcast guest prep</strong></td>
+<td>$0</td>
+<td>Time investment; no cost</td>
+</tr>
+<tr class="even">
+<td><strong>Blog content writing (6 articles)</strong></td>
+<td>$0–$600</td>
+<td>$0 if founder writes; $100/article if using AI-assisted drafting or
+freelancer for 6 articles</td>
+</tr>
+<tr class="odd">
+<td><strong>Surfer SEO (optional, 3 months)</strong></td>
+<td>$0–$147</td>
+<td>Free if using Yoast only; $49/mo for advanced keyword
+optimization</td>
+</tr>
+<tr class="even">
+<td><strong>TOTAL PRE-LAUNCH BUDGET</strong></td>
+<td>$414–$1,391</td>
+<td>Lower end = DIY everything; upper end = freelance content + SEO tool
++ full Meta ads</td>
+</tr>
+</tbody>
+</table>
+<p>10. Post-Launch Email Flows: 4 Automated Revenue Drivers</p>
+<p><strong>[GAP #12 CLOSED]</strong> The welcome sequence (P1C Section
+13, P1E Section 3) handles pre-launch and first-purchase subscribers.
+These 4 post-launch automated flows handle the REST of the customer
+lifecycle and collectively drive 30–40% of DTC email revenue. All flows
+are built in Klaviyo as triggered automations — once set up, they run
+perpetually without manual intervention.</p>
+<p>10.1 Flow 1: Cart Abandonment (3 emails over 72 hours)</p>
+<p>Trigger: Shopify “Started Checkout” event fires but no “Placed Order”
+within 1 hour. This flow recovers 5–15% of abandoned carts (Klaviyo
+benchmark). At $9.99 AOV, even 50 recovered carts/month = $500 in
+otherwise-lost revenue.</p>
+<p><strong>Email 1 (1 hour after abandonment):</strong></p>
+<p>Subject: Still thinking it over? Your poncho is waiting.</p>
+<p>Body: “Hey [FIRST NAME], you left a [PRODUCT] in your cart. We get it
+— race-day decisions take some thought. Your cart is saved for 48 hours.
+[CART LINK BUTTON: Complete Your Order]. Quick reminder: reflects 95% of
+body heat, composts in 90 days, and you’ll never shiver in a garbage bag
+again.”</p>
+<p><strong>Email 2 (24 hours after abandonment):</strong></p>
+<p>Subject: Your start line is waiting</p>
+<p>Body: “Still on the fence? Here’s what runners are saying: [INSERT
+REVIEW QUOTE when available, or: “Designed by marathon runners who were
+tired of garbage bags.”] Free shipping on orders over $15. [CART LINK
+BUTTON]. P.S. We plant the materials, you wear the warmth, the earth
+gets it back. That’s the deal.”</p>
+<p><strong>Email 3 (72 hours after abandonment):</strong></p>
+<p>Subject: Last chance — 10% off to seal the deal</p>
+<p>Body: “[FIRST NAME], your cart expires tonight. Use code RACEWARM10
+for 10% off. That’s [PRODUCT] for $8.99. One click. Done. [CART LINK
+BUTTON]. After tonight, we’ll stop emailing about this. But the garbage
+bags at your next start line won’t.”</p>
+<p>Discount strategy: Only offer discount in Email 3 (not Email 1).
+Train customers to complete purchase at full price first. 10% discount
+($1.00 off $9.99) is enough to convert price-sensitive holdouts without
+eroding brand value.</p>
+<p>10.2 Flow 2: Post-Purchase (3 emails over 14 days)</p>
+<p>Trigger: Shopify “Placed Order” event. Goal: turn a buyer into a
+reviewer, referrer, and repeat customer. These 3 emails are the
+highest-LTV emails in the system.</p>
+<p><strong>Email 1 — Day 3: How to Get the Most from Your
+Poncho</strong></p>
+<p>Subject: Your [BRAND] poncho is on its way — here’s how to use it</p>
+<p>Body: “Thanks for your order! Here’s how to get the most warmth on
+race morning: (1) Keep it in the sealed pouch until race morning — the
+moisture barrier protects the metallized film. (2) Slip it on OVER your
+race outfit in the corral. Hood up if it’s windy. (3) When the gun
+fires, grab the tear-away seam at the front and pull — it comes off in 2
+seconds. (4) Drop it in the nearest collection bin. If there isn’t one,
+hold it until you see one in the first mile. Done. Race warm. Leave no
+trace. [LINK: Watch 30-second demo video]”</p>
+<p><strong>Email 2 — Day 7: How was it? (Review Request)</strong></p>
+<p>Subject: How’d it go, [FIRST NAME]?</p>
+<p>Body: “You’ve had your [BRAND] poncho for a week now. If you’ve used
+it at a race, we’d love to hear about it. If you haven’t yet, your next
+cold race morning is going to feel very different. [BUTTON: Leave a
+Review on Amazon] or [BUTTON: Leave a Review on Shopify]. Honest reviews
+— good or constructive — help other runners decide. And they help us
+make the product better. Thank you for being one of our first
+customers.”</p>
+<p><strong>Email 3 — Day 14: Share the Warmth (Referral
+Invite)</strong></p>
+<p>Subject: Give $5, get $5 — share the warmth with a running friend</p>
+<p>Body: “Know someone who’s still shivering in garbage bags? Share your
+unique referral link and they’ll get $5 off their first order. When they
+purchase, you’ll get $5 credit toward your next [BRAND] order or season
+pack. [REFERRAL LINK BUTTON]. Even better: know a race director? Forward
+this email and introduce us. If they become a race partner, you’ll get a
+free 3-pack on us. [LINK: Refer a Race Director]”</p>
+<p>10.3 Flow 3: Re-Engagement / Win-Back (2 emails at Day 60 + 75)</p>
+<p>Trigger: subscriber has not opened an email in 60 days AND has not
+purchased in 60 days. Goal: reactivate or suppress (inactive subscribers
+hurt deliverability).</p>
+<p><strong>Email 1 — Day 60:</strong></p>
+<p>Subject: We miss you (and so does your start-line warmth)</p>
+<p>Body: “Hey [FIRST NAME], it’s been a while. Race season is
+[approaching/in full swing] and we’ve been busy: [1–2 sentences of
+recent news: new race partnerships, product updates, impact milestones].
+If your next race is on the horizon, we’d love to keep you warm. Here’s
+15% off your next order: code COMEBACK15. [SHOP BUTTON]. Not running
+right now? No worries. Hit reply and let us know — we’ll check back when
+your next race is closer.”</p>
+<p><strong>Email 2 — Day 75 (if no engagement after Email
+1):</strong></p>
+<p>Subject: Should we stop emailing you?</p>
+<p>Body: “[FIRST NAME], we only want to email people who want to hear
+from us. If you’re no longer interested, no hard feelings — we’ll remove
+you from the list automatically if we don’t hear back. If you DO want to
+stay, just click below: [BUTTON: Keep Me Subscribed]. Either way, thank
+you for being part of the journey. Race warm.”</p>
+<p>Automation rule: if no open or click on either email, auto-suppress
+the subscriber after Day 90. This protects sender reputation and
+improves deliverability for active subscribers. Re-engagement flows
+typically recover 5–10% of lapsed subscribers.</p>
+<p>10.4 Flow 4: B2B Nurture (Monthly to Race Directors)</p>
+<p>Trigger: manual segment of all B2B contacts (flagged via landing page
+checkbox or added from prospect list). Frequency: monthly. Goal: stay
+top-of-mind with race directors through value-driven content until
+they’re ready to pilot.</p>
+<p>Month 1: “The Start-Line Waste Report” — share P0A waste data
+relevant to their region. “Did you know races in [STATE] generate an
+estimated [X] lbs of start-line clothing waste annually?”</p>
+<p>Month 2: “Case Study: [RACE NAME] Pilot Results” — once first pilot
+completes, share runner feedback, waste reduction data, and operational
+learnings. This is the #1 B2B conversion driver.</p>
+<p>Month 3: “New: Sponsor Co-Branding Program” — announce co-brand
+capability with mockup template. “Turn your start line into a
+sustainability activation for your title sponsor.”</p>
+<p>Month 4+: Rotate between: new race partnership announcements (social
+proof), product improvements, CRS/sustainability industry news, and
+seasonal planning reminders (“Fall race season is 4 months away — let’s
+plan your poncho order now”).</p>
+<p>Send from founder’s personal email (not brand@). Subject lines should
+feel personal, not promotional: “Quick update from [BRAND]” or “Thought
+you’d find this interesting.” B2B email open rates: 20–30% benchmark;
+aim for 35%+ in a niche industry with personal sending.</p>
+<p>11. SEO Foundation &amp; Blog Content Strategy</p>
+<p><strong>[GAP #14 CLOSED]</strong> SEO is the only $0 CAC acquisition
+channel that compounds over time. A blog post published today drives
+traffic for years. The running niche has low keyword competition for
+start-line and compostable terms — a small, consistent blog effort can
+capture significant organic traffic within 3–6 months.</p>
+<p>11.1 Target Keywords (15 Keywords)</p>
+<p>The following keywords were identified based on P0D runner search
+behavior, Amazon keyword data from P1C, and competitive gaps where no
+existing brand has strong organic rankings:</p>
+<p>PRIMARY (highest intent, directly product-related): “compostable
+poncho” (low competition, rising), “marathon start line poncho” (very
+low competition), “race day warmth poncho” (very low competition),
+“compostable race gear” (low competition), “marathon warmth layer” (low
+competition).</p>
+<p>SECONDARY (informational, drives awareness): “what to wear at
+marathon start line” (medium competition, high volume), “how to stay
+warm before a race” (medium competition, high volume), “marathon start
+line tips” (medium competition), “cold weather race gear” (medium
+competition), “marathon waste problem” (very low competition,
+niche).</p>
+<p>LONG-TAIL (low volume but very high conversion): “compostable
+alternative to mylar blanket”, “eco-friendly marathon poncho”,
+“sustainable race day products”, “BPI certified compostable poncho”,
+“race start garbage bag alternative”.</p>
+<p>11.2 Blog Content Plan: 6 Articles for Weeks 8–14</p>
+<p><strong>Article 1 (Week 8): “What to Wear at a Marathon Start Line:
+The Complete Cold-Weather Guide”</strong></p>
+<p>Target keywords: what to wear at marathon start line, cold weather
+race gear, marathon start line tips. Content: 1,500–2,000 words. Cover
+every option (garbage bag, thrift-store layers, emergency blankets, hand
+warmers, compostable poncho) with pros/cons. Naturally introduce the
+brand as one option among many. Internal link to product page. This
+article targets the highest-volume informational keyword and positions
+the brand as an authoritative running resource.</p>
+<p><strong>Article 2 (Week 9): “The Start-Line Waste Crisis: 230,000+
+Pounds Nobody Talks About”</strong></p>
+<p>Target keywords: marathon waste problem, race day waste, start line
+clothing waste. Content: 1,200–1,500 words. Use P0A research data
+extensively: NYC 120K lbs, Chicago 54.5K, Boston 42K. Include photos
+from race-day documentation (P1D Section 6). Link to the solution
+(product page) at the end. Shareable on social media and pitchable to
+running publications for backlinks.</p>
+<p><strong>Article 3 (Week 10): “Are Compostable Products Really Better?
+A Runner’s Guide to Greenwashing vs. Real Sustainability”</strong></p>
+<p>Target keywords: compostable vs biodegradable, greenwashing,
+sustainable race products. Content: 1,500–2,000 words. Educational:
+explain the difference between compostable (certified, timed, in
+specific conditions) vs. biodegradable (vague, may take centuries) vs.
+recyclable (requires infrastructure). Reference FTC Green Guides (P1C
+Section 11). Positions the brand as honest and transparent about its
+claims — the opposite of greenwashing.</p>
+<p><strong>Article 4 (Week 11): “Heatsheets vs. Compostable Warmth
+Poncho: What’s the Difference?”</strong></p>
+<p>Target keywords: heatsheets alternative, compostable alternative to
+mylar blanket. Content: 1,200–1,500 words. Fair, factual comparison:
+both use metallized aluminum for warmth. Heatsheets = recyclable LDPE
+(#4), finish-line focused, 45-year incumbent. Compostable poncho = BPI
+certified, start-line focused, fully composts. Include comparison table.
+DO NOT trash the competitor — position as different solutions for
+different moments.</p>
+<p><strong>Article 5 (Week 12): “How We Built a Compostable Warmth
+Poncho from Scratch: The Founder’s Journey”</strong></p>
+<p>Target keywords: compostable poncho, BPI certified poncho, marathon
+poncho startup. Content: 1,500–2,000 words. Founder story in long form:
+the inspiration (shivering in a garbage bag), the R&amp;D process
+(Futamura, TIPA, thermal testing), the sustainability certification
+journey (BPI, ASTM D6400), the first pilot races. This is the brand
+story in SEO-optimized long form — also serves as a press resource that
+journalists can reference.</p>
+<p><strong>Article 6 (Week 14): “10 Ways Race Directors Are Reducing
+Waste in 2026”</strong></p>
+<p>Target keywords: sustainable race management, race director
+sustainability, CRS certification tips. Content: 1,500–2,000 words.
+Listicle covering: compostable cups, digital bibs, reusable timing
+chips, compostable warmth ponchos (#5 in the list — natural product
+placement), virtual swag bags, carbon offset programs, composting
+stations, clothing collection partnerships, renewable energy for events,
+zero-waste finish festivals. This article targets B2B SEO — race
+directors searching for sustainability ideas will find the brand through
+this content.</p>
+<p>11.3 On-Page SEO Checklist for Product Page</p>
+<p>Title tag: “Compostable Warmth Poncho for Marathon Runners | [BRAND
+NAME]” (under 60 characters). Meta description: “Reflects 95% of body
+heat. Composts in 90 days. BPI certified compostable poncho for
+cold-weather race start lines. Designed by runners.” (under 160
+characters). H1: product name. Image alt text: descriptive (“Runner
+wearing [BRAND] compostable warmth poncho at marathon start line”, not
+“poncho.jpg”). URL: brand.com/products/compostable-warmth-poncho (no IDs
+or query strings). Schema markup: Product schema with price,
+availability, review rating (once reviews accumulate). Internal links:
+from every blog post to product page.</p>
+<p>11.4 Blog Publishing Cadence and Tools</p>
+<p>Target: 1 blog post per week starting Week 8. Minimum 1,200 words per
+article (Google rewards depth). Publish on Shopify’s built-in blog
+(free, automatically indexed by Google). Share every article on:
+Instagram (excerpt + link), email newsletter (weekly digest), Reddit (if
+authentically relevant to a thread), and LinkedIn (for B2B articles).
+Use Yoast SEO plugin (if Shopify) or Surfer SEO ($49/mo for 5 articles)
+to optimize on-page factors. Track rankings weekly using Google Search
+Console (free) and Ubersuggest (free tier). Expected timeline: first
+Google rankings within 4–8 weeks for low-competition long-tail keywords;
+page 1 rankings for primary keywords within 3–6 months.</p>
+<p>12. KPIs: What Success Looks Like</p>
+<table>
+<colgroup>
+<col style="width: 23%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 42%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Metric</strong></td>
+<td><strong>Good</strong></td>
+<td><strong>Great</strong></td>
+<td><strong>Why It Matters</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Pre-launch email list size</strong></td>
+<td>500+ by launch</td>
+<td>1,000+ by launch</td>
+<td>Primary success metric; validates market interest</td>
+</tr>
+<tr class="odd">
+<td><strong>Landing page conversion rate</strong></td>
+<td>10–15%</td>
+<td>15–25%</td>
+<td>Visitor-to-email signup; test with $50–$100 in Meta ads</td>
+</tr>
+<tr class="even">
+<td><strong>Welcome sequence open rate</strong></td>
+<td>30–40% (Email 1)</td>
+<td>40–50% (Email 1)</td>
+<td>Above 30% = good; above 40% = excellent</td>
+</tr>
+<tr class="odd">
+<td><strong>Welcome sequence click rate</strong></td>
+<td>2–4%</td>
+<td>4–8%</td>
+<td>Email 4 (early access) should have highest click rate</td>
+</tr>
+<tr class="even">
+<td><strong>B2B master prospect database size</strong></td>
+<td>75+ qualified contacts</td>
+<td>100+ qualified contacts</td>
+<td>Merged P0C + P1E sources; deduplicated with RD contact info</td>
+</tr>
+<tr class="odd">
+<td><strong>Race director warm conversations</strong></td>
+<td>5–10</td>
+<td>10–20</td>
+<td>Face-to-face or call conversations (not cold email sends)</td>
+</tr>
+<tr class="even">
+<td><strong>Instagram followers</strong></td>
+<td>200–500</td>
+<td>500–1,000</td>
+<td>Vanity metric but signals brand awareness</td>
+</tr>
+<tr class="odd">
+<td><strong>Strava Club members</strong></td>
+<td>50–100</td>
+<td>100–300</td>
+<td>Highly engaged runner community metric</td>
+</tr>
+<tr class="even">
+<td><strong>Referral program signups</strong></td>
+<td>50–100</td>
+<td>100–250</td>
+<td>Measures virality potential</td>
+</tr>
+<tr class="odd">
+<td><strong>Influencer partnerships confirmed</strong></td>
+<td>2–3</td>
+<td>5–10</td>
+<td>Micro-influencers with 10K+ followers</td>
+</tr>
+<tr class="even">
+<td><strong>Cart abandonment recovery rate</strong></td>
+<td>5–10%</td>
+<td>10–15%</td>
+<td>Post-launch; recovered revenue from abandoned carts</td>
+</tr>
+<tr class="odd">
+<td><strong>Post-purchase review rate</strong></td>
+<td>5–10% of buyers</td>
+<td>10–20% of buyers</td>
+<td>Driven by post-purchase email flow; reviews drive Amazon
+ranking</td>
+</tr>
+<tr class="even">
+<td><strong>Blog articles published by launch</strong></td>
+<td>2–3 articles</td>
+<td>4–6 articles</td>
+<td>SEO content foundation; targets low-competition keywords</td>
+</tr>
+<tr class="odd">
+<td><strong>Organic search traffic (Month 3)</strong></td>
+<td>50–100 monthly visits</td>
+<td>100–300 monthly visits</td>
+<td>Leading indicator of SEO investment paying off; $0 CAC channel</td>
+</tr>
+<tr class="even">
+<td><strong>B2B nurture email open rate</strong></td>
+<td>20–30%</td>
+<td>30–40%</td>
+<td>Monthly race director emails; personal sender name drives higher
+rates</td>
+</tr>
+</tbody>
+</table>
+<p>13. Conclusion: The List Is the Launchpad</p>
+<p><strong>Every DTC brand that scaled successfully had one thing in
+common: a pre-launch email list that converted on Day 1.</strong>
+Allbirds launched to a waitlist. Glossier built community before
+product. Tracksmith invested in story before sales. The compostable
+warmth poncho launch follows the same playbook: build the audience
+first, then give them something worth buying.</p>
+<p><strong>The 500-email target is a floor, not a ceiling.</strong> A
+single viral Reddit post can exceed it in 48 hours. A single podcast
+appearance can double it. The pre-launch phase is about building enough
+signal to ensure Day 1 of sales is not Day 1 of marketing — the
+marketing has already been running for 4+ weeks.</p>
+<p><strong>The B2B prospect list is equally important.</strong>
+Registration add-ons are the highest-margin channel (60% net per P0F).
+Every race director relationship built during pre-launch converts to
+recurring annual revenue. The 50-contact target should yield 2–5 pilot
+partnerships for Fall 2026 — enough to generate the first case studies
+that unlock 20–30 partnerships for 2027.</p>
+<p><strong>Start Week 6. The landing page takes 1 day. The first Reddit
+post takes 1 hour. The email sequence is already written (P1C).
+Everything in this document is executable by a single founder with
+$414–$644 and 10–15 hours per week.</strong> The only risk is not
+starting.</p>
+
+        </div>
+    </div></div>
+<footer style="text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px">
+Sustainable Race-Start Warmth Poncho — D2C Brand GTM Project · 60 Subprojects · 391 Tasks · ~15,500¶ · April 2026
+</footer></body></html>

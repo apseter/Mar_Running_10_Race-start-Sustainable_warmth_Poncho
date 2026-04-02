@@ -1,0 +1,595 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>P9A: Business Formation — Race Start Warmth GTM</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0e1a;--surface:#111827;--card:#1a2332;--border:#2a3a4e;--accent:#10b981;--accent2:#3b82f6;--text:#e2e8f0;--muted:#94a3b8;--white:#fff;--red:#ef4444;--amber:#f59e0b;--green:#10b981}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+/* Nav */
+nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
+nav .inner{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;max-width:1200px;margin:0 auto}
+nav .brand{font-weight:700;font-size:15px;color:var(--accent)}
+nav .links{display:flex;gap:8px;flex-wrap:wrap}
+nav .links a{color:var(--muted);font-size:13px;padding:4px 10px;border-radius:6px;transition:.2s}
+nav .links a:hover,nav .links a.active{color:var(--white);background:var(--card);text-decoration:none}
+/* Hero */
+.hero{padding:60px 0 40px;text-align:center}
+.hero h1{font-size:2.4em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:1.1em;max-width:700px;margin:0 auto}
+/* Stats bar */
+.stats{display:flex;justify-content:center;gap:32px;padding:24px 0;flex-wrap:wrap}
+.stat{text-align:center}.stat .num{font-size:1.8em;font-weight:800;color:var(--white)}.stat .label{font-size:.75em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+/* Cards */
+.grid{display:grid;gap:16px;margin:24px 0}
+.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}
+.grid-3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;transition:.2s}
+.card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.card h3{font-size:1.1em;margin-bottom:8px}.card p{color:var(--muted);font-size:.9em}
+.card .badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:8px}
+.card .meta{font-size:.8em;color:var(--muted);margin-top:12px}
+/* Section */
+.section{padding:40px 0}.section h2{font-size:1.6em;font-weight:700;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+/* Table */
+table{width:100%;border-collapse:collapse;font-size:.85em;margin:16px 0}
+th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:52px}
+td{padding:8px 12px;border-bottom:1px solid var(--border)}
+tr:hover td{background:rgba(16,185,129,.05)}
+.status-complete{color:var(--green);font-weight:600}.status-not{color:var(--muted)}
+/* Progress */
+.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:8px}
+.progress .bar{height:100%;background:var(--accent);border-radius:3px}
+/* Back link */
+.back{display:inline-block;color:var(--muted);font-size:.9em;margin-bottom:20px}
+.back:hover{color:var(--accent)}
+/* Download */
+.dl-card{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin:8px 0;transition:.2s}
+.dl-card:hover{border-color:var(--accent);text-decoration:none}
+.dl-card .icon{font-size:2em}.dl-card .info h4{color:var(--white);margin-bottom:4px}.dl-card .info p{color:var(--muted);font-size:.85em}
+/* Footer */
+footer{text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px}
+@media(max-width:768px){.stats{gap:16px}.stat .num{font-size:1.3em}nav .links{gap:4px}nav .links a{font-size:11px;padding:3px 6px}.hero h1{font-size:1.6em}}
+
+.doc-content{max-width:900px;margin:0 auto;padding:20px 0}
+.doc-content h1{font-size:1.8em;font-weight:800;color:var(--white);margin:32px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.doc-content h2{font-size:1.4em;font-weight:700;color:var(--accent);margin:28px 0 12px}
+.doc-content h3{font-size:1.15em;font-weight:600;color:var(--accent2);margin:20px 0 10px}
+.doc-content p{margin:8px 0;line-height:1.7}
+.doc-content table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85em}
+.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;border:1px solid var(--border)}
+.doc-content td{padding:8px 12px;border:1px solid var(--border);vertical-align:top}
+.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.doc-content ul,.doc-content ol{margin:8px 0 8px 24px}
+.doc-content li{margin:4px 0;line-height:1.6}
+.doc-content strong{color:var(--white)}
+.doc-content em{color:var(--muted)}
+.doc-content blockquote{border-left:3px solid var(--accent);padding:8px 16px;margin:12px 0;background:var(--card);border-radius:0 8px 8px 0}
+.nav-sub{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 24px;padding:12px 16px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
+.nav-sub a{font-size:.8em;color:var(--muted);padding:4px 10px;border-radius:4px;transition:.2s;white-space:nowrap}
+.nav-sub a:hover,.nav-sub a.active{color:var(--white);background:var(--surface);text-decoration:none}
+</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a></div></div></nav><div class="container">
+    <div style="padding-top:30px">
+        <a href="p9.html" class="back">← ⚖️ P9: Legal & Compliance</a>
+        <div class="nav-sub"><a href="p9.html">⚖️ P9 Overview</a><a href="sub-p9a.html" class="active">P9A</a><a href="sub-p9b.html">P9B</a><a href="sub-p9c.html">P9C</a><a href="sub-p9d.html">P9D</a><a href="sub-p9e.html">P9E</a></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px">
+            <div>
+                <span style="background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px">P9A</span>
+                <span style="color:var(--muted);font-size:.85em;margin-left:8px">P9: Legal & Compliance</span>
+            </div>
+            <a href="files/P9A_Business_Formation.docx" style="font-size:.85em;color:var(--accent);padding:6px 14px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
+        </div>
+        <div class="doc-content">
+            <p><strong>P9A: BUSINESS</strong></p>
+<p><strong>FORMATION</strong></p>
+<p>Sub-Project P9A | Legal, Compliance &amp; Sustainability Certs |
+Weeks 1–4</p>
+<p><em>Complete Business Formation Guide: LLC Formation &amp; EIN,
+Business Insurance (General Liability + Product Liability + BOP),
+Operating Agreement, State &amp; Local Business Licenses, and Accounting
+Method Selection</em></p>
+<p>March 2026 | Confidential | NOT LEGAL ADVICE — Consult an
+Attorney</p>
+<p>Executive Summary</p>
+<p><strong>Business formation is the legal foundation that everything
+else sits on.</strong> Without an LLC: the founder’s personal savings,
+home, and car are exposed to business liabilities (a product injury
+lawsuit, a contract dispute, or an unpaid vendor claim). Without
+insurance: a single expo accident or product complaint can bankrupt the
+business. Without an operating agreement: banks may refuse to open
+business accounts, and future investors have no framework for entry.
+Without proper licenses: the business operates illegally and risks fines
+or forced closure. These are Week 1–4 tasks because they MUST be
+complete before: opening a bank account, placing a production order,
+signing a B2B contract, or registering an expo booth.</p>
+<p><strong>IMPORTANT DISCLAIMER:</strong> <em>This document provides
+general educational information about business formation. It is NOT
+legal advice and should not be relied upon as such. Business formation
+laws vary by state and jurisdiction. The founder should consult a
+qualified business attorney for entity selection, formation, and
+compliance decisions specific to their circumstances.</em></p>
+<p>1. LLC Formation &amp; EIN</p>
+<p><strong>The LLC is the legal entity that owns and operates the
+business.</strong> It is separate from the founder personally: the LLC
+has its own name, its own bank account, its own tax identification
+number (EIN), and its own legal obligations. This separation is the
+LIABILITY SHIELD: if the business is sued or incurs debts, the founder’s
+personal assets are generally protected (provided the LLC is properly
+maintained and personal/business finances are kept separate per P8B
+Section 1).</p>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 81%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Element</strong></td>
+<td><strong>Specification</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Entity type: LLC</strong></td>
+<td>A single-member LLC (Limited Liability Company) is the RECOMMENDED
+entity for a solo-founder physical product business. It provides:
+personal liability protection (the founder’s personal assets are
+shielded from business debts and lawsuits), tax flexibility (choose to
+be taxed as a sole proprietor, S-Corp, or C-Corp), operational
+simplicity (minimal ongoing compliance compared to a corporation), and
+investor compatibility (LLCs can issue membership interests to
+investors). Alternative: sole proprietorship (no liability protection —
+NOT recommended for a physical product with potential product-liability
+claims). Corporation (more complex, double taxation unless S-Corp
+elected — consider only if raising significant venture capital where
+investors prefer C-Corp structure).</td>
+</tr>
+<tr class="odd">
+<td><strong>State of formation</strong></td>
+<td>OPTION A: HOME STATE (recommended for most solo founders).
+Advantages: no foreign qualification needed, simpler ongoing compliance,
+lower total cost. File with: the Secretary of State or equivalent
+agency. Cost: $50–$500 depending on state (Wyoming: $100, Delaware: $90,
+California: $70 + $800 annual franchise tax, New York: $200 +
+publication requirement $300–$1,500). OPTION B: DELAWARE or WYOMING.
+Advantages: business-friendly laws, no state income tax on out-of-state
+revenue (Delaware), strong legal precedents, privacy protections
+(Wyoming). Disadvantage: if the founder operates from a DIFFERENT state,
+the LLC must also “foreign qualify” in the home state ($100–$300
+additional), creating double filing and double fees. RECOMMENDATION:
+form in HOME STATE unless: (A) the founder plans to raise venture
+capital (VCs prefer Delaware), or (B) the home state has exceptionally
+high fees (California’s $800 annual franchise tax makes Delaware
+attractive for low-revenue businesses).</td>
+</tr>
+<tr class="even">
+<td><strong>Filing process</strong></td>
+<td>(1) Choose and verify the LLC name: search the state’s business
+entity database to confirm the name is available. The name should match
+the brand name (per P1A) if possible. (2) File Articles of Organization
+(or Certificate of Formation in Delaware) with the state. Include: LLC
+name, registered agent (can be the founder at their home address, or a
+registered agent service like Northwest Registered Agent $125/year for
+privacy), organizer name, and principal office address. (3) Pay the
+filing fee. (4) Receive: Certificate of Organization (or filed Articles
+stamped by the state). Timeline: 1–5 business days for online filing in
+most states. Expedited: same-day or next-day for an additional
+$50–$100.</td>
+</tr>
+<tr class="odd">
+<td><strong>EIN (Employer Identification Number)</strong></td>
+<td>Apply online at irs.gov/ein (free, immediate). The EIN is the
+business’s “social security number” — used for: opening a business bank
+account, filing tax returns, hiring contractors (1099 reporting), and
+Amazon Seller Central registration. Apply AFTER the LLC is formed (the
+IRS application requires the LLC’s legal name and formation state). The
+EIN is issued IMMEDIATELY upon completing the online application. Print
+the confirmation letter and save digitally.</td>
+</tr>
+<tr class="even">
+<td><strong>Registered agent</strong></td>
+<td>Every LLC must have a registered agent in the state of formation: a
+person or entity authorized to receive legal documents (lawsuits, state
+notices) on behalf of the LLC. Options: (A) founder as registered agent
+(free, but: the founder’s home address becomes public record, and the
+founder must be available during business hours at that address). (B)
+Registered agent service ($50–$175/year): Northwest Registered Agent,
+Incfile, or ZenBusiness. Provides: a professional address on public
+filings, privacy for the founder’s home address, and reliable document
+forwarding. RECOMMENDATION: use a registered agent service for privacy,
+especially if the founder’s home address would be publicly associated
+with the business.</td>
+</tr>
+<tr class="odd">
+<td><strong>Annual requirements</strong></td>
+<td>Most states require: an annual report (or biennial report) filed
+with the Secretary of State, confirming: the LLC’s name, address,
+registered agent, and members are current. Cost: $0–$300/year depending
+on state. Deadline: varies by state (typically the anniversary of
+formation or a fixed date like April 1). ALSO: some states require:
+annual franchise tax (Delaware: $300, California: $800), annual fee
+(additional to the report), or published notice (New York requires LLC
+formation to be published in 2 local newspapers, $300–$1,500). SET A
+CALENDAR REMINDER for the annual report deadline. Missing the deadline
+can result in: late fees, administrative dissolution of the LLC (losing
+liability protection), or inability to transact business in the
+state.</td>
+</tr>
+</tbody>
+</table>
+<p>1.1 Formation Cost Summary</p>
+<p>HOME STATE LLC FILING: $50–$500 (one-time). EIN: $0 (free from IRS).
+Registered agent service: $50–$175/year. Annual report: $0–$300/year.
+TOTAL YEAR 1: $100–$975 depending on state. HIGH-COST STATES: California
+($70 filing + $800 annual franchise tax = $870 Year 1), New York ($200 +
+$300–$1,500 publication = $500–$1,700 Year 1). LOW-COST STATES: Wyoming
+($100 filing + $60 annual report = $160 Year 1), New Mexico ($50 filing
++ $0 annual report = $50 Year 1). DO NOT use an LLC formation service
+(LegalZoom $79–$299, Incfile $0–$199, ZenBusiness $0–$299) unless the
+state’s filing process is confusing. Most states offer straightforward
+ONLINE filing that the founder can complete in 15–30 minutes. Formation
+services charge $79–$299 for what is essentially filling out a form that
+costs $50–$200 directly.</p>
+<p>2. Business Insurance</p>
+<p><strong>Insurance protects the business from catastrophic financial
+loss.</strong> A single product liability claim can cost
+$50,000–$500,000+ in legal defense and settlement. Insurance costs
+$500–$1,200/year. The math is clear: insurance is the lowest-cost,
+highest-value risk mitigation available. Additionally: expo organizers
+REQUIRE proof of general liability insurance, and B2B partners may
+require proof of product liability coverage before signing a
+contract.</p>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 81%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Coverage</strong></td>
+<td><strong>Specification</strong></td>
+</tr>
+<tr class="even">
+<td><strong>General liability insurance</strong></td>
+<td>Covers: bodily injury, property damage, and personal/advertising
+injury claims arising from business operations. ESSENTIAL for: expo
+booth attendance (most expo organizers require proof of general
+liability insurance with $1M per occurrence / $2M aggregate limits), B2B
+partnerships (race directors may require evidence of insurance in the
+B2B agreement per P9D), and general operational risk (a customer slips
+on a poncho at the start line and claims injury). Cost: $300–$600/year
+for a small product business (obtained through: Hiscox, Next Insurance,
+or The Hartford — all offer online quotes in minutes). Coverage: $1M per
+occurrence, $2M aggregate — standard for small businesses.</td>
+</tr>
+<tr class="odd">
+<td><strong>Product liability insurance</strong></td>
+<td>Covers: claims that the product caused injury or damage. Scenarios:
+a runner claims the poncho caused an allergic reaction (latex
+sensitivity per P2B allergen notice), a runner claims the poncho’s
+tear-away mechanism injured them during removal, or a race director
+claims the poncho failed to provide adequate warmth and a runner
+suffered hypothermia. Cost: $400–$1,000/year for a small consumer
+products company (often bundled with general liability as a “Business
+Owner’s Policy” or BOP). Coverage: $1M per occurrence is standard;
+increase if B2B contracts require higher limits.</td>
+</tr>
+<tr class="even">
+<td><strong>Business Owner’s Policy (BOP)</strong></td>
+<td>A BOP bundles: general liability + product liability + commercial
+property (covers business equipment, inventory in storage) + business
+interruption (covers lost income if operations are disrupted). Cost:
+$500–$1,200/year for a small product business. A BOP is MORE
+COST-EFFECTIVE than purchasing general liability and product liability
+separately. RECOMMENDED: obtain a BOP from: Hiscox (hiscox.com, online
+quote in 5 minutes), Next Insurance (nextinsurance.com), or The Hartford
+(thehartford.com). Compare: 3 quotes before purchasing.</td>
+</tr>
+<tr class="odd">
+<td><strong>Additional insured endorsements</strong></td>
+<td>Expo organizers and race directors may require: being named as an
+“additional insured” on the brand’s general liability policy. This
+means: if a claim arises at THEIR event related to the brand’s product,
+the brand’s insurance covers them too. Process: contact the insurance
+provider, request an additional insured endorsement for the specific
+event/partner. Cost: $0–$50 per endorsement (many policies include a few
+per year at no additional charge). Timeline: 1–3 business days. Request:
+2–4 weeks before the event to allow processing time.</td>
+</tr>
+<tr class="even">
+<td><strong>Certificate of Insurance (COI)</strong></td>
+<td>A COI is a 1-page document proving: the brand has active insurance
+with specific coverage limits. Expo organizers and B2B partners request
+COIs during: booth application, B2B contract negotiation, and pilot race
+agreement. Process: request from the insurance provider (online portal
+or phone). Cost: $0 (included with the policy). Turnaround: same day to
+2 business days. KEEP: a digital copy of the current COI accessible at
+all times (Google Drive) to provide within 24 hours of any request.</td>
+</tr>
+</tbody>
+</table>
+<p>2.1 Insurance Action Plan</p>
+<p>WEEK 3: Get 3 online quotes from: Hiscox, Next Insurance, and The
+Hartford. Compare: coverage limits, premium, deductible, and whether
+product liability is included. Choose: the BOP (Business Owner’s Policy)
+that bundles general liability + product liability + commercial
+property. Purchase: before any expo registration (most expos require
+insurance at booth application) and before shipping product to B2B
+customers (the B2B agreement per P9D may require proof of insurance).
+ANNUALLY: review coverage at renewal. Increase limits if: B2B contract
+volume grows (higher exposure), inventory value increases (higher
+property coverage needed), or expo attendance expands (more events =
+more exposure events per year).</p>
+<p>3. Operating Agreement</p>
+<p><strong>The operating agreement is the LLC’s internal
+rulebook.</strong> For a single-member LLC: it is a simple 3–5 page
+document that: confirms the founder’s 100% ownership, grants the founder
+management authority, and establishes rules for future changes (adding
+members, dissolving the LLC). For a multi-member LLC or one preparing
+for investment: the operating agreement becomes significantly more
+complex and should be attorney-reviewed.</p>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 81%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Element</strong></td>
+<td><strong>Specification</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Purpose</strong></td>
+<td>The operating agreement is the LLC’s internal governance document.
+Even for a SINGLE-MEMBER LLC (where the founder is the only member): an
+operating agreement is STRONGLY RECOMMENDED because: (A) it establishes
+the LLC as a separate entity from the founder (strengthening the
+liability shield), (B) banks often require it to open a business bank
+account, (C) it defines rules for: adding future members, distributing
+profits, and dissolving the LLC, and (D) some states legally require one
+(New York, California, Delaware, Maine, Missouri).</td>
+</tr>
+<tr class="odd">
+<td><strong>Key provisions</strong></td>
+<td>OWNERSHIP: “[Founder Name] holds 100% membership interest in [LLC
+Name].” MANAGEMENT: “The LLC is member-managed by [Founder Name] who has
+sole authority to: enter into contracts, open bank accounts, hire
+contractors, and make all operational decisions.” CAPITAL CONTRIBUTIONS:
+“Initial contribution: $[amount] from [Founder Name].” DISTRIBUTIONS:
+“The member may take distributions at any time provided: the LLC has
+sufficient cash to meet its obligations.” TRANSFER OF INTEREST:
+“Membership interest may not be transferred without written consent of
+all members.” (Relevant for future investors.) DISSOLUTION: “The LLC may
+be dissolved by: written consent of the member, judicial decree, or
+failure to file required reports for [X] years.”</td>
+</tr>
+<tr class="even">
+<td><strong>Future investors</strong></td>
+<td>If the LLC takes investment in the future: the operating agreement
+will need to be AMENDED to: add new members (investors), define their
+membership interest percentage, specify: voting rights, distribution
+priority (preferred return for investors), anti-dilution protections,
+information rights, and exit/liquidity provisions. For a SAFE note
+(standard pre-seed instrument per P8D Section 4.1): the SAFE converts to
+membership interest at a future priced round, and the operating
+agreement is amended at that time. The initial operating agreement
+should include: a provision allowing amendment by majority/supermajority
+vote (typically 67%+ of membership interest), and a provision
+acknowledging that future members may be admitted.</td>
+</tr>
+<tr class="odd">
+<td><strong>Template sources</strong></td>
+<td>FREE: Rocket Lawyer (rocketlawyer.com, free trial + $39.99/month),
+LegalZoom ($79 one-time for operating agreement), or Northwest
+Registered Agent (free operating agreement with agent service). DIY:
+many state Secretary of State websites provide sample operating
+agreements. ATTORNEY: $300–$1,000 for a custom operating agreement
+reviewed by a business attorney. RECOMMENDATION: use a template (Rocket
+Lawyer or Northwest) for the initial single-member agreement. Engage an
+attorney ONLY when: investors are being added or complex provisions are
+needed.</td>
+</tr>
+</tbody>
+</table>
+<p>4. State &amp; Local Business Licenses</p>
+<p><strong>Business license requirements vary dramatically by
+location.</strong> Some founders need: zero licenses beyond the LLC
+formation. Others need: a state registration, a city business license, a
+home occupation permit, and a sales tax permit. The ONLY way to know is
+to check the specific requirements for the founder’s state, county, and
+city. This section provides the framework for what to check — the
+founder must verify the specifics for their jurisdiction.</p>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 81%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>License Type</strong></td>
+<td><strong>Details</strong></td>
+</tr>
+<tr class="even">
+<td><strong>State business registration</strong></td>
+<td>Some states require: a separate business registration or “doing
+business as” (DBA) filing in addition to the LLC formation. Check: the
+state’s Department of Revenue or Secretary of State website. Example:
+California requires a Statement of Information within 90 days of
+formation ($20). Many states: the LLC filing IS the business
+registration, and no separate filing is needed.</td>
+</tr>
+<tr class="odd">
+<td><strong>Local business license</strong></td>
+<td>Many cities and counties require: a local business license or
+business tax certificate for businesses operating within their
+jurisdiction. Check: the city/county website for the founder’s location.
+Cost: $25–$200/year typically. The license is usually: a simple
+application + fee, renewed annually. Example: if the founder operates
+from a home office in Chicago, a City of Chicago Business License may be
+required.</td>
+</tr>
+<tr class="even">
+<td><strong>Home occupation permit</strong></td>
+<td>If operating from a HOME address: some cities require a home
+occupation permit confirming that the business activity is permitted in
+a residential zone. Typical restrictions: no signage, no customer
+visits, no employees at the home, no hazardous materials, and no
+excessive deliveries. The poncho business (home office + fulfillment via
+FBA/3PL) generally complies with home occupation rules. Check: the local
+zoning office or city planning department.</td>
+</tr>
+<tr class="odd">
+<td><strong>Sales tax permit</strong></td>
+<td>Per P8C Section 1: register for a sales tax permit in the home state
+and FBA warehouse states. Some states call this: a “seller’s permit,”
+“resale certificate,” or “sales tax license.” This is a STATE
+requirement, separate from local business licenses. Apply: on the
+state’s Department of Revenue website. Cost: free in most states.</td>
+</tr>
+<tr class="even">
+<td><strong>Federal licenses</strong></td>
+<td>NO federal business license is required for this product type.
+HOWEVER: if the product makes health claims (it does NOT — warmth claims
+are performance claims, not health claims): FDA registration would be
+required. If the product is classified as a “pesticide” (it is NOT): EPA
+registration would be required. The compostable poncho does not require
+any federal licenses or registrations beyond the EIN.</td>
+</tr>
+<tr class="odd">
+<td><strong>Amazon + Shopify compliance</strong></td>
+<td>Amazon Seller Central: requires EIN, business address, and bank
+account during registration. No separate business license submission
+required (Amazon may request documentation during identity
+verification). Shopify: no business license required to open a store.
+HOWEVER: both platforms require: compliance with their Terms of Service
+(reviewed in P9D Section 5), which includes: not selling prohibited
+products, maintaining accurate product descriptions, and handling
+customer disputes per platform policies.</td>
+</tr>
+</tbody>
+</table>
+<p>4.1 License Compliance Calendar</p>
+<p>SET CALENDAR REMINDERS for: LLC annual report deadline (varies by
+state, typically the formation anniversary or a fixed date), local
+business license renewal (typically annually, due date varies), sales
+tax return filing deadlines (monthly or quarterly per state), and
+insurance policy renewal (annually). Missing ANY of these deadlines
+results in: late fees, potential LLC dissolution (annual report), or
+lapsed coverage (insurance). A simple Google Calendar with recurring
+reminders prevents all of these issues. TOTAL ANNUAL LICENSE COSTS:
+$25–$500 for state/local licenses + sales tax permits. This is a trivial
+cost relative to the protection and legitimacy they provide.</p>
+<p>5. Accounting Method &amp; Fiscal Year</p>
+<p><strong>The accounting method and fiscal year are chosen ONCE at
+business formation and are difficult to change later.</strong> The
+choice affects: how revenue and expenses are reported on tax returns,
+when tax payments are due, and how the P&amp;L statement reflects
+business activity. For a small product business in Year 1: cash basis
+with a calendar fiscal year is almost always the right choice.</p>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 81%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Method</strong></td>
+<td><strong>Specification</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Cash basis (recommended)</strong></td>
+<td>Revenue is recognized when CASH IS RECEIVED (not when invoiced or
+earned). Expenses are recognized when CASH IS PAID (not when incurred or
+billed). Example: a B2B invoice sent in October and paid in November =
+November revenue under cash basis. A production deposit paid in June for
+inventory delivered in August = June expense. Advantages: simpler to
+implement and understand, matches bank account activity (cash in =
+revenue, cash out = expense), and is the default method for small
+businesses with &lt;$25M in average annual gross receipts.</td>
+</tr>
+<tr class="odd">
+<td><strong>Accrual basis (alternative)</strong></td>
+<td>Revenue is recognized when EARNED (when the product is delivered),
+regardless of when payment is received. Expenses are recognized when
+INCURRED (when the obligation arises), regardless of when payment is
+made. Example: a B2B invoice sent in October = October revenue, even if
+paid in November. A production deposit in June for August inventory =
+expense recognized in August when inventory is received. Advantages:
+more accurate reflection of the business’s economic activity, required
+for businesses with inventory under certain IRS rules (Section 471), and
+preferred by investors/auditors. Disadvantage: more complex, may require
+accrual adjustments that a CPA must handle.</td>
+</tr>
+<tr class="even">
+<td><strong>Inventory accounting consideration</strong></td>
+<td>The IRS generally requires businesses that produce, purchase, or
+sell merchandise to use accrual method for INVENTORY specifically (even
+if using cash basis for everything else). HOWEVER: businesses with
+&lt;$25M average annual gross receipts can elect to: (A) use cash method
+for everything (the “small business exception” under the Tax Cuts and
+Jobs Act), OR (B) use a hybrid method (cash basis for income/expenses,
+accrual for inventory only). RECOMMENDATION: discuss with CPA during
+Week 4 setup. For Year 1 with &lt;$25M revenue (obviously): the cash
+basis small-business exception applies. Use cash basis for simplicity.
+If the CPA recommends accrual for inventory: implement the hybrid
+method.</td>
+</tr>
+<tr class="odd">
+<td><strong>Fiscal year</strong></td>
+<td>RECOMMENDED: calendar year (January 1 – December 31). This aligns
+with: personal tax filing (April 15 deadline), Amazon and Shopify annual
+reports, and most B2B partners’ fiscal years. Alternative: a
+non-calendar fiscal year (e.g., July 1 – June 30) is permitted for LLCs
+but adds complexity (different year-end for personal and business
+taxes). RECOMMENDATION: calendar year unless the CPA advises otherwise
+for a specific tax-optimization reason.</td>
+</tr>
+</tbody>
+</table>
+<p>6. Timeline &amp; Budget</p>
+<p><strong>WEEK 1: Form the LLC: (1) verify name availability on state’s
+business entity database, (2) file Articles of Organization online, (3)
+pay filing fee, (4) receive Certificate of Organization. Apply for EIN
+at irs.gov/ein (free, immediate). Choose and engage a registered agent
+service if desired ($50–$175/year).</strong></p>
+<p><strong>WEEK 2–3: Open business bank account using: LLC Certificate
+of Organization, EIN confirmation letter, founder’s personal ID, and
+operating agreement (per P8B Section 1 bank setup). Draft or obtain the
+operating agreement: use a template from Northwest Registered Agent or
+Rocket Lawyer for a single-member LLC. Customize: ownership, management
+authority, capital contribution, and distribution
+provisions.</strong></p>
+<p><strong>WEEK 3–4: Get insurance quotes from 3 providers. Purchase a
+BOP (general liability + product liability + property). Obtain the first
+Certificate of Insurance. Research and obtain: state business
+registration (if required beyond LLC filing), local business license
+(city/county website), home occupation permit (if operating from home in
+a jurisdiction that requires one), and sales tax permit in home state
+(per P8C Section 1). Set the accounting method (cash basis) and fiscal
+year (calendar year) in discussion with CPA.</strong></p>
+<p>BUDGET: LLC filing: $50–$500. EIN: $0. Registered agent:
+$50–$175/year. Operating agreement (template): $0–$79. Business
+insurance (BOP): $500–$1,200/year. State/local business licenses:
+$25–$500. Attorney consultation (optional, for operating agreement
+review): $200–$500. TOTAL P9A Year 1: $825–$2,954. Of this, insurance
+($500–$1,200) is the largest and most important line item.</p>
+<p>7. Conclusion: The Legal Foundation Enables Everything</p>
+<p><strong>A business without an LLC is a person with a side
+project.</strong> A business with an LLC, an EIN, a bank account,
+insurance, an operating agreement, and proper licenses is a LEGAL ENTITY
+that can: sign contracts with race directors, open a merchant account
+for credit card processing, register for Amazon Seller Central, apply
+for a trademark, defend against product liability claims, and accept
+investment. Every subsequent action in this playbook — from ordering
+inventory to signing a pilot agreement to running a Facebook ad —
+assumes that the legal entity EXISTS and is properly formed.</p>
+<p><strong>Formation takes 1–2 weeks and costs under $1,000 in most
+states.</strong> It is the fastest, cheapest, and most impactful thing
+the founder does in the entire launch process. Do it FIRST. Do it RIGHT.
+And then never think about it again (except for the annual report
+reminder on the calendar).</p>
+
+        </div>
+    </div></div>
+<footer style="text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px">
+Sustainable Race-Start Warmth Poncho — D2C Brand GTM Project · 60 Subprojects · 391 Tasks · ~15,500¶ · April 2026
+</footer></body></html>

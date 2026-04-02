@@ -1,0 +1,800 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>P9C: Environmental Claims Compliance — Race Start Warmth GTM</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0e1a;--surface:#111827;--card:#1a2332;--border:#2a3a4e;--accent:#10b981;--accent2:#3b82f6;--text:#e2e8f0;--muted:#94a3b8;--white:#fff;--red:#ef4444;--amber:#f59e0b;--green:#10b981}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+/* Nav */
+nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
+nav .inner{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;max-width:1200px;margin:0 auto}
+nav .brand{font-weight:700;font-size:15px;color:var(--accent)}
+nav .links{display:flex;gap:8px;flex-wrap:wrap}
+nav .links a{color:var(--muted);font-size:13px;padding:4px 10px;border-radius:6px;transition:.2s}
+nav .links a:hover,nav .links a.active{color:var(--white);background:var(--card);text-decoration:none}
+/* Hero */
+.hero{padding:60px 0 40px;text-align:center}
+.hero h1{font-size:2.4em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:1.1em;max-width:700px;margin:0 auto}
+/* Stats bar */
+.stats{display:flex;justify-content:center;gap:32px;padding:24px 0;flex-wrap:wrap}
+.stat{text-align:center}.stat .num{font-size:1.8em;font-weight:800;color:var(--white)}.stat .label{font-size:.75em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+/* Cards */
+.grid{display:grid;gap:16px;margin:24px 0}
+.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}
+.grid-3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;transition:.2s}
+.card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.card h3{font-size:1.1em;margin-bottom:8px}.card p{color:var(--muted);font-size:.9em}
+.card .badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:8px}
+.card .meta{font-size:.8em;color:var(--muted);margin-top:12px}
+/* Section */
+.section{padding:40px 0}.section h2{font-size:1.6em;font-weight:700;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+/* Table */
+table{width:100%;border-collapse:collapse;font-size:.85em;margin:16px 0}
+th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:52px}
+td{padding:8px 12px;border-bottom:1px solid var(--border)}
+tr:hover td{background:rgba(16,185,129,.05)}
+.status-complete{color:var(--green);font-weight:600}.status-not{color:var(--muted)}
+/* Progress */
+.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:8px}
+.progress .bar{height:100%;background:var(--accent);border-radius:3px}
+/* Back link */
+.back{display:inline-block;color:var(--muted);font-size:.9em;margin-bottom:20px}
+.back:hover{color:var(--accent)}
+/* Download */
+.dl-card{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin:8px 0;transition:.2s}
+.dl-card:hover{border-color:var(--accent);text-decoration:none}
+.dl-card .icon{font-size:2em}.dl-card .info h4{color:var(--white);margin-bottom:4px}.dl-card .info p{color:var(--muted);font-size:.85em}
+/* Footer */
+footer{text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px}
+@media(max-width:768px){.stats{gap:16px}.stat .num{font-size:1.3em}nav .links{gap:4px}nav .links a{font-size:11px;padding:3px 6px}.hero h1{font-size:1.6em}}
+
+.doc-content{max-width:900px;margin:0 auto;padding:20px 0}
+.doc-content h1{font-size:1.8em;font-weight:800;color:var(--white);margin:32px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.doc-content h2{font-size:1.4em;font-weight:700;color:var(--accent);margin:28px 0 12px}
+.doc-content h3{font-size:1.15em;font-weight:600;color:var(--accent2);margin:20px 0 10px}
+.doc-content p{margin:8px 0;line-height:1.7}
+.doc-content table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85em}
+.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;border:1px solid var(--border)}
+.doc-content td{padding:8px 12px;border:1px solid var(--border);vertical-align:top}
+.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.doc-content ul,.doc-content ol{margin:8px 0 8px 24px}
+.doc-content li{margin:4px 0;line-height:1.6}
+.doc-content strong{color:var(--white)}
+.doc-content em{color:var(--muted)}
+.doc-content blockquote{border-left:3px solid var(--accent);padding:8px 16px;margin:12px 0;background:var(--card);border-radius:0 8px 8px 0}
+.nav-sub{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 24px;padding:12px 16px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
+.nav-sub a{font-size:.8em;color:var(--muted);padding:4px 10px;border-radius:4px;transition:.2s;white-space:nowrap}
+.nav-sub a:hover,.nav-sub a.active{color:var(--white);background:var(--surface);text-decoration:none}
+</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a></div></div></nav><div class="container">
+    <div style="padding-top:30px">
+        <a href="p9.html" class="back">← ⚖️ P9: Legal & Compliance</a>
+        <div class="nav-sub"><a href="p9.html">⚖️ P9 Overview</a><a href="sub-p9a.html">P9A</a><a href="sub-p9b.html">P9B</a><a href="sub-p9c.html" class="active">P9C</a><a href="sub-p9d.html">P9D</a><a href="sub-p9e.html">P9E</a></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px">
+            <div>
+                <span style="background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px">P9C</span>
+                <span style="color:var(--muted);font-size:.85em;margin-left:8px">P9: Legal & Compliance</span>
+            </div>
+            <a href="files/P9C_Environmental_Claims_Compliance.docx" style="font-size:.85em;color:var(--accent);padding:6px 14px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
+        </div>
+        <div class="doc-content">
+            <p><strong>P9C: ENVIRONMENTAL</strong></p>
+<p><strong>CLAIMS COMPLIANCE</strong></p>
+<p>Sub-Project P9C | Legal, Compliance &amp; Sustainability Certs |
+Weeks 4–14</p>
+<p><em>Complete Environmental Claims Framework: FTC Green Guides Review,
+Compliant Claim Language for 7 Marketing Surfaces, BPI/ASTM D6400/EN
+13432 Certification Pathway, 9-Surface Claims Compliance Matrix,
+Greenwashing Defense Package, and Regulatory Monitoring
+Protocol</em></p>
+<p>March 2026 | Confidential | NOT LEGAL ADVICE — Consult an
+Attorney</p>
+<p>Executive Summary</p>
+<p><strong>Environmental claims are the brand’s most powerful marketing
+tool AND its greatest legal risk.</strong> A properly qualified
+“compostable” claim (backed by BPI certification) differentiates the
+product from every competitor and resonates with eco-conscious
+consumers. An improperly used “biodegradable” or unqualified
+“compostable” claim invites: FTC enforcement action ($10K–$1M+
+penalties), competitor challenges (NAD investigations), media criticism
+(“greenwashing” exposés), and consumer trust destruction. The line
+between powerful marketing and legal liability is: ONE WORD of
+qualification.</p>
+<p><strong>This document establishes the complete environmental claims
+compliance framework:</strong> (1) FTC Green Guides review covering 5
+claim types (compostable, biodegradable, eco-friendly, recyclable,
+carbon-neutral), (2) approved claim language for 7 marketing contexts,
+(3) BPI certification and ASTM D6400/EN 13432 testing pathway with the
+critical raw-material vs. finished-product distinction, (4) a 9-surface
+claims compliance matrix ensuring every marketing touchpoint uses
+approved language, (5) a greenwashing defense package with
+substantiation file, proactive transparency, and response protocol, and
+(6) regulatory monitoring across FTC, state laws, EU directives, and
+industry self-regulation.</p>
+<p><strong>DISCLAIMER:</strong> <em>This document provides general
+educational information about environmental marketing claims compliance.
+It is NOT legal advice. Environmental claims law is complex and
+evolving. The founder should consult a qualified attorney specializing
+in FTC advertising compliance for all claims review and
+approval.</em></p>
+<p>1. FTC Green Guides: 5 Claim Types</p>
+<p><strong>The FTC’s Guides for the Use of Environmental Marketing
+Claims (the “Green Guides”) are the PRIMARY regulatory framework for
+environmental claims in the US.</strong> While the Green Guides are
+“guidance” (not legally binding regulations), the FTC uses them as the
+standard for enforcement actions under Section 5 of the FTC Act
+(prohibiting “unfair or deceptive acts or practices”). A claim that
+violates the Green Guides is likely to be found deceptive by the
+FTC.</p>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width:50%">
+<col style="width: 35%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Claim Type</strong></td>
+<td><strong>FTC Guidance</strong></td>
+<td><strong>Application to This Product</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Compostable</strong></td>
+<td>FTC definition: a product claiming “compostable” must: (A) break
+down into usable compost in a “safe and timely manner” in an appropriate
+composting facility, and (B) the ENTIRE product (not just one component)
+must compost. If the product composts only in a COMMERCIAL facility (not
+home/backyard): the claim must be QUALIFIED: “Compostable in commercial
+composting facilities” or “Commercially compostable.” An UNQUALIFIED
+“compostable” claim implies: the product composts in ANY composting
+environment including home backyard composting.</td>
+<td>CRITICAL: the poncho composts in COMMERCIAL facilities (ASTM D6400 /
+EN13432 standards require industrial conditions: 58°C / 136°F sustained
+temperature). It may NOT compost in home backyard composting. Therefore:
+EVERY use of “compostable” must be qualified with “in commercial
+composting facilities” or “at industrial composting facilities.”
+Unqualified “compostable” on packaging, website, or advertising is an
+FTC violation risk.</td>
+</tr>
+<tr class="odd">
+<td><strong>Biodegradable</strong></td>
+<td>FTC guidance: “biodegradable” claims should not be made unless: the
+ENTIRE product will decompose within a “reasonably short period” after
+customary disposal. The FTC considers “reasonably short” to be 1 year or
+less in the environment where it is customarily disposed (landfill for
+most consumer products). Since PLA can take 100+ years to degrade in a
+landfill: “biodegradable” is NOT an accurate claim for this product when
+disposed in a landfill. RECOMMENDATION: do NOT use “biodegradable” in
+any marketing. Use “compostable” (with commercial facility
+qualification) exclusively.</td>
+<td>The word “biodegradable” is the #1 greenwashing trigger for FTC
+enforcement actions. Multiple companies have been fined $100K–$1M+ for
+unsubstantiated “biodegradable” claims. The poncho IS compostable (in
+the right conditions). It is NOT meaningfully biodegradable (in a
+landfill). Using the correct term protects the brand; using the wrong
+term invites regulatory action.</td>
+</tr>
+<tr class="even">
+<td><strong>Eco-friendly / Green / Sustainable</strong></td>
+<td>FTC guidance: broad, unqualified claims like “eco-friendly,”
+“green,” or “sustainable” are: essentially unsubstantiable (what does
+“eco-friendly” MEAN?), vague enough to be misleading, and a common
+target for FTC enforcement. RECOMMENDATION: avoid unqualified
+“eco-friendly” and “green.” Instead use: SPECIFIC, QUALIFIED claims.
+“Compostable in commercial facilities (BPI certified, ASTM D6400)” is
+specific and substantiated. “Made from renewable plant-based materials”
+is specific and verifiable. “Replaces single-use plastic garbage bags at
+race start lines” is specific and factual.</td>
+<td>The shift from VAGUE (“eco-friendly”) to SPECIFIC (“BPI-certified
+compostable at commercial facilities”) is: legally safer (specific
+claims are easier to substantiate), more credible to consumers (specific
+claims signal real commitment vs. marketing fluff), and more defensible
+in a challenge (the BPI certificate IS the substantiation).</td>
+</tr>
+<tr class="odd">
+<td><strong>Recyclable</strong></td>
+<td>FTC guidance: “recyclable” claims require that: recycling facilities
+for the product are available to at least 60% of consumers. The poncho
+is NOT recyclable (it is compostable, a different end-of-life pathway).
+RECOMMENDATION: do not use “recyclable.” If asked: “The poncho is
+designed for composting, not recycling. Composting returns the materials
+to soil; recycling would require a different infrastructure that does
+not currently exist for this material type.”</td>
+<td>Clear differentiation between composting and recycling is essential
+for: consumer education (many people confuse composting and recycling),
+regulatory compliance (claiming “recyclable” when the product is not
+recyclable is a violation), and brand credibility (accurately explaining
+the product’s end-of-life builds trust with eco-literate
+customers).</td>
+</tr>
+<tr class="even">
+<td><strong>Carbon-neutral / Climate claims</strong></td>
+<td>FTC guidance (updated in ongoing rulemaking): carbon-neutral and
+net-zero claims must be: substantiated with specific data, based on
+reliable lifecycle analysis, and transparent about the methodology. If
+the brand makes ANY carbon-related claims: they must be backed by a
+formal lifecycle assessment (LCA) or carbon offset certification.
+RECOMMENDATION: do NOT make carbon-neutral claims in Year 1. Focus on:
+compostable claims (backed by BPI/ASTM certification) and
+waste-reduction claims (backed by P0A data and pilot composting
+reports). Carbon claims can be added in Year 2+ after a formal LCA is
+commissioned ($5,000–$15,000).</td>
+<td>Carbon claims are the NEWEST area of FTC scrutiny. The FTC’s updated
+Green Guides (expected 2025–2026) are likely to significantly tighten
+requirements for carbon-neutral and climate-related marketing claims.
+Avoid this regulatory minefield in Year 1 by sticking to: compostable,
+plant-based, waste-reducing — claims that are backed by existing
+certifications.</td>
+</tr>
+</tbody>
+</table>
+<p>2. Approved Claim Language: 7 Contexts</p>
+<p><strong>Every environmental claim on every marketing surface must use
+APPROVED language.</strong> The approved language below is: specific
+(references BPI certification and ASTM D6400), qualified (“at commercial
+composting facilities”), and defensible (backed by the substantiation
+file in Section 5). ANY deviation from this language — by the founder,
+an ambassador, a social media manager, or a contractor — creates
+compliance risk.</p>
+<table>
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 38%" />
+<col style="width: 38%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Context</strong></td>
+<td><strong>Where Used</strong></td>
+<td><strong>Approved Language</strong></td>
+<td><strong>Prohibited Language / Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Product page headline</strong></td>
+<td>“BPI-Certified Compostable Warmth Poncho”</td>
+<td>Includes: certification name (BPI), qualified claim (compostable),
+and product type. Does NOT include: “eco-friendly,” “green,” or
+“biodegradable.”</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><strong>Product description (short)</strong></td>
+<td>“Compostable in commercial composting facilities. Meets ASTM D6400
+standards. BPI certified.”</td>
+<td>Three specific, verifiable facts. Any consumer or regulator can
+verify: the BPI certification (bpiworld.org), the ASTM standard
+(astm.org), and the commercial composting requirement.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><strong>Packaging claim</strong></td>
+<td>“Commercially Compostable — BPI Certified — ASTM D6400” with the BPI
+certification logo.</td>
+<td>Per P3D Section 3: the packaging includes the BPI logo and ASTM
+D6400 reference. The word “commercially” qualifies the composting claim.
+The packaging should also include: “Compost at a commercial facility.
+Not suitable for home composting.”</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><strong>Social media / advertising</strong></td>
+<td>“Race warm. Compost after. Our poncho is BPI-certified to compost in
+commercial facilities in 12–24 weeks.”</td>
+<td>Social media claims must be: clear in the PRIMARY message (not
+buried in fine print or hashtags), qualified (“commercial facilities”),
+and substantiated (BPI certification + timeframe). A disclosure buried
+in hashtags (#commercialcompostingonly) does NOT satisfy FTC
+requirements — the qualification must be CLEAR and PROMINENT.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><strong>B2B sales materials</strong></td>
+<td>“BPI-certified compostable poncho meeting ASTM D6400 standards.
+Composts in 12–24 weeks at commercial composting facilities. Composting
+logistics included: collection bins, facility coordination, and
+post-race verification reports.”</td>
+<td>B2B materials can be more technical and specific. Race directors
+need: the certification details (for their sustainability reports), the
+composting timeframe (for facility coordination), and the logistics
+offering (the brand’s composting service).</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><strong>Press release / PR</strong></td>
+<td>“The first BPI-certified compostable warmth poncho designed for
+marathon start lines. The poncho composts completely in 12–24 weeks at
+commercial composting facilities, meeting ASTM D6400 standards for
+compostable plastics.”</td>
+<td>Press releases are WIDELY distributed and may be quoted by
+journalists. The claim language must be: perfectly accurate, fully
+qualified, and defensible. A journalist who writes “the poncho is
+biodegradable” based on a misleading press release creates: a public
+record of an inaccurate claim that the FTC can use as evidence.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><strong>Website environmental claims page</strong></td>
+<td>Create brand.com/sustainability with: (1) what “compostable” means
+(ASTM D6400 definition), (2) how the poncho composts (composting
+facility conditions, timeline, output), (3) the difference between
+compostable, biodegradable, and recyclable (educational content), (4)
+BPI certification details (certificate number, link to BPI directory),
+(5) composting data from pilot races (weight diverted, facility name,
+verification), and (6) what the poncho is NOT (“Our poncho does not
+biodegrade in landfill conditions. It requires commercial composting
+infrastructure.”).</td>
+<td>The sustainability page serves 3 purposes: (A) consumer education
+(explains the claim in detail), (B) regulatory defense (demonstrates
+good-faith effort to provide clear, qualified information), and (C) SEO
+(ranks for “BPI certified compostable products,” “compostable vs
+biodegradable” per P6D Section 1 keyword strategy).</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>3. Certification Pathway: BPI, ASTM D6400, EN 13432</p>
+<p><strong>Certifications are the FOUNDATION of defensible environmental
+claims.</strong> Without BPI certification: the “compostable” claim is
+self-declared and vulnerable to challenge. With BPI certification: the
+claim is third-party verified, FTC-defensible, and recognized by
+composting facilities, B2B partners, and informed consumers. The
+certification pathway must cover the FINISHED ASSEMBLED PRODUCT, not
+just the raw materials.</p>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width:50%">
+<col style="width: 35%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Certification</strong></td>
+<td><strong>Details</strong></td>
+<td><strong>Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>BPI Certification (PRIMARY — US market)</strong></td>
+<td>Biodegradable Products Institute (bpiworld.org). BPI certifies
+products as meeting ASTM D6400 (plastics) or ASTM D6868 (packaging). The
+poncho: ASTM D6400 applies (it is a plastic/bioplastic product).
+PROCESS: (1) submit product samples + technical data sheet to a
+BPI-recognized testing lab (e.g., OWS, RISE, TUV Austria). (2) Lab
+conducts: biodegradation test (60%+ CO₂ evolution in 180 days),
+disintegration test (90%+ disintegration in 84 days at 58°C),
+ecotoxicity test (compost supports plant growth), and heavy metals
+analysis (below thresholds). (3) Lab issues test report. (4) Submit test
+report + application to BPI ($500–$2,500 for small companies per P2D
+Section 3). (5) BPI reviews and issues certificate + listing in BPI
+directory + right to use BPI logo on packaging.</td>
+<td>BPI certification is the GOLD STANDARD for compostability claims in
+the US market. It provides: regulatory defense (FTC recognizes BPI as a
+credible substantiation for “compostable” claims), consumer trust (the
+BPI logo is recognized by eco-conscious shoppers), B2B credibility (race
+directors’ sustainability teams recognize BPI), and composting facility
+acceptance (many facilities ONLY accept BPI-certified products).</td>
+</tr>
+<tr class="odd">
+<td><strong>ASTM D6400 testing</strong></td>
+<td>ASTM D6400: “Standard Specification for Labeling of Plastics
+Designed to be Aerobically Composted in Municipal or Industrial
+Facilities.” REQUIREMENTS: the product must pass 3 tests: (1)
+BIODEGRADATION: ≥60% conversion to CO₂ within 180 days (test: ISO 14855
+or ASTM D5338). (2) DISINTEGRATION: ≥90% of the product passes through a
+2mm sieve after 84 days of composting at 58°C (test: ISO 16929 or ASTM
+D6400 Annex A1). (3) ECOTOXICITY: compost from the product must support
+plant growth at ≥90% of control compost (test: OECD 208 or equivalent).
+Testing lab cost: $5,000–$15,000 per product (per P2D Section 3).
+Timeline: 6–9 months for complete testing.</td>
+<td>The ASSEMBLED poncho (NatureFlex NM film + PLA spunbond + adhesive +
+any inks/dyes) must pass as a WHOLE PRODUCT, not just the individual raw
+materials. The raw material suppliers (Futamura for NatureFlex, PLA
+spunbond manufacturer) may have MATERIAL-LEVEL certifications, but the
+FINISHED PRODUCT must be independently tested. This is the most commonly
+overlooked step in compostable product certification.</td>
+</tr>
+<tr class="even">
+<td><strong>EN 13432 (EU market / optional)</strong></td>
+<td>EN 13432: European standard for compostable packaging. Requirements
+are similar to ASTM D6400 but with some differences: 90% biodegradation
+in 6 months (vs. 60% in 6 months for ASTM D6400), and additional
+requirements for heavy metals and volatile solids. If the brand plans
+INTERNATIONAL EXPANSION to the EU (per P2F Section 6): EN 13432
+certification is required for “compostable” claims in EU markets. If
+US-only for Year 1: EN 13432 is optional but: adds credibility (“meets
+both US and EU compostability standards”) and reduces Year 2 effort if
+international expansion is pursued.</td>
+<td>Many testing labs can conduct BOTH ASTM D6400 and EN 13432 testing
+simultaneously (same test methods, slightly different thresholds).
+Running both in parallel adds: $2,000–$5,000 to the testing cost but
+saves: 6–9 months if EN 13432 is needed later. RECOMMENDATION: if budget
+allows, test for both standards simultaneously.</td>
+</tr>
+<tr class="odd">
+<td><strong>Raw material vs. finished product
+certification</strong></td>
+<td>CRITICAL DISTINCTION: Futamura’s NatureFlex NM has its own
+compostability certifications (OK Compost Industrial by TUV Austria, EN
+13432). The PLA spunbond may also have material-level certifications.
+HOWEVER: the ASSEMBLED PONCHO (all materials laminated/bonded together,
+with any adhesives, inks, and packaging) must be tested as a finished
+product. The adhesive used to bond the NatureFlex to the PLA, the ink
+used for printing, and any other additives may affect compostability. If
+the assembly introduces a non-compostable component (even in small
+quantities): the WHOLE PRODUCT fails.</td>
+<td>Verify with the converter (Parkside per P3A): does the lamination
+process introduce any non-compostable adhesives? Does the printing ink
+meet compostability standards? Is the entire finished product (not just
+the raw materials) covered by a compostability certificate? If
+Parkside’s assembly IS covered by their existing certifications: the
+brand may be able to use Parkside’s certificate (with written
+permission) instead of conducting independent testing. VERIFY: by
+requesting the certificate and confirming it covers the specific SKU
+being produced.</td>
+</tr>
+</tbody>
+</table>
+<p>3.1 Certification Timeline</p>
+<p>WEEK 4–6: Verify with Parkside (or selected converter) whether their
+existing certifications cover the assembled poncho as produced for this
+brand. Request: the specific certificate, the scope of coverage, and
+written confirmation that the brand’s SKU is included. WEEK 6–8: If
+Parkside’s certificate covers the finished product: obtain written
+permission to reference the certificate in marketing and submit to BPI
+for listing under the brand’s name. If NOT covered: engage a testing lab
+(OWS, RISE, or TUV Austria) for independent ASTM D6400 testing. Provide:
+10–20 production samples + technical data sheets. WEEK 8–14: Testing in
+progress (6–9 months for full testing cycle). During this period: use
+Parkside’s material-level certifications with appropriate qualification
+(“made from certified compostable materials — finished-product
+certification in progress”). WEEK 14+ (or when testing completes):
+Submit test results to BPI for product-level certification. Receive: BPI
+certificate, directory listing, and logo usage rights. Update: ALL
+marketing materials with BPI logo and product-level certification
+reference.</p>
+<p>4. Claims Compliance Matrix: 9 Marketing Surfaces</p>
+<p><strong>The compliance matrix maps EVERY marketing surface to its
+approved claim language, prohibited language, and specific compliance
+notes.</strong> This matrix should be: printed and posted at the
+founder’s desk, shared with any contractor or agency creating marketing
+materials, referenced before EVERY new piece of content is published,
+and updated whenever: claim language is revised, new certifications are
+obtained, or regulatory guidance changes.</p>
+<table>
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 11%" />
+<col style="width: 38%" />
+<col style="width: 38%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Surface</strong></td>
+<td><strong>Where</strong></td>
+<td><strong>Approved Claims</strong></td>
+<td><strong>Prohibited / Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Shopify product page</strong></td>
+<td>Title, bullets, description, images</td>
+<td>Compostable in commercial facilities. BPI certified. ASTM
+D6400.</td>
+<td>No “biodegradable,” no unqualified “eco-friendly,” no “recyclable.”
+Images must not imply home composting (no backyard compost bin
+imagery).</td>
+</tr>
+<tr class="odd">
+<td><strong>Amazon listing</strong></td>
+<td>Title, bullets, A+ Content, images</td>
+<td>Same qualified language. Include: “Commercially compostable” in
+bullet point #3. A+ Content sustainability module references ASTM D6400
+and BPI.</td>
+<td>Amazon’s “Climate Pledge Friendly” badge (if obtained) must be
+backed by the same qualified claims. Do not let the badge imply broader
+environmental claims than substantiated.</td>
+</tr>
+<tr class="even">
+<td><strong>Product packaging</strong></td>
+<td>Inner bag label, card/sleeve, outer box</td>
+<td>BPI logo + “Commercially Compostable — ASTM D6400” + “Compost at a
+commercial facility. Not suitable for home composting.”</td>
+<td>Packaging is the MOST scrutinized surface for environmental claims
+because it is seen at the point of purchase and disposal. Every word on
+the package must be defensible.</td>
+</tr>
+<tr class="odd">
+<td><strong>Instagram / TikTok posts</strong></td>
+<td>Captions, text overlays, Stories</td>
+<td>Primary message: “compostable at commercial facilities.” Do NOT use
+“compostable” in a hashtag without qualification (#compostable alone is
+ambiguous). Use: #CommerciallyCompostable or pair #compostable with
+clarifying text in the caption.</td>
+<td>Social media claims are increasingly scrutinized by both the FTC and
+consumer watchdog groups. A viral post claiming “this poncho is
+compostable!” without qualification could trigger: consumer complaints,
+media criticism, or FTC inquiry.</td>
+</tr>
+<tr class="even">
+<td><strong>Meta / Google ads</strong></td>
+<td>Ad copy, headlines, landing pages</td>
+<td>Ads must not make claims broader than the landing page supports. If
+the ad says “compostable”: the landing page must explain “at commercial
+facilities.” FTC treats ads + landing pages as a SINGLE communication —
+the landing page cannot contradict or fail to qualify the ad’s
+claims.</td>
+<td>Before launching ANY ad with an environmental claim: verify that the
+landing page (product page or blog post) includes the full qualified
+claim language from this Section 2 table.</td>
+</tr>
+<tr class="odd">
+<td><strong>B2B data sheet / pitch deck</strong></td>
+<td>Product specifications, sustainability claims, certification
+details</td>
+<td>Full technical claims: BPI certificate number, ASTM D6400
+compliance, composting timeline (12–24 weeks at 58°C), composting
+facility requirements, and composting verification process.</td>
+<td>B2B materials are shared with: race directors, sustainability teams,
+and sponsors — audiences that may have sustainability expertise.
+Technical accuracy is essential. Vague claims that satisfy a casual
+consumer will NOT satisfy a sustainability professional.</td>
+</tr>
+<tr class="even">
+<td><strong>Press release / PR</strong></td>
+<td>Headline, body, quotes</td>
+<td>Per Section 2 row 6: fully qualified claims. Include: “at commercial
+composting facilities” in every instance of “compostable.” Provide: a
+link to brand.com/sustainability for journalists seeking additional
+detail.</td>
+<td>Journalists may simplify claims in their reporting (“compostable”
+without “at commercial facilities”). Mitigation: include the
+qualification in the QUOTE attributed to the founder (journalists
+typically preserve direct quotes).</td>
+</tr>
+<tr class="odd">
+<td><strong>Email marketing</strong></td>
+<td>Subject lines, body copy, CTAs</td>
+<td>Subject lines: “compostable” is acceptable in subject lines if the
+email body includes the full qualified claim. Body: reference
+“BPI-certified, compostable at commercial facilities” at least once per
+email that makes an environmental claim.</td>
+<td>Emails are less scrutinized than packaging or advertising BUT: email
+content can be forwarded, screenshotted, and shared — treat every email
+as a potentially public document.</td>
+</tr>
+<tr class="even">
+<td><strong>Ambassador content brief</strong></td>
+<td>Content guidelines for ambassadors</td>
+<td>Provide ambassadors with APPROVED language: “compostable at
+commercial facilities,” “BPI certified,” “meets ASTM D6400.” Instruct:
+do NOT say “biodegradable” or “this breaks down in your backyard.”
+Include approved/prohibited language in the content brief (per P7A
+Section 3).</td>
+<td>Ambassador claims are ATTRIBUTED TO THE BRAND even though the
+ambassador posts them. The FTC holds brands responsible for:
+influencer/ambassador claims about their products. If an ambassador
+posts “this poncho biodegrades in your garden!” the brand is
+liable.</td>
+</tr>
+</tbody>
+</table>
+<p>5. Greenwashing Defense Package</p>
+<p><strong>The best defense against greenwashing accusations is: never
+greenwash.</strong> Use specific, qualified, substantiated claims on
+every surface. But even with perfect compliance: the brand may face
+challenges from: competitors seeking to undermine a disruptive newcomer,
+consumer activists who misunderstand the difference between compostable
+and biodegradable, journalists seeking a greenwashing story (common
+Earth Day content), or the FTC conducting routine industry sweeps. The
+defense package ensures: the brand can respond quickly, credibly, and
+calmly to any challenge.</p>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width:50%">
+<col style="width: 35%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Element</strong></td>
+<td><strong>Specification</strong></td>
+<td><strong>Purpose</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Claims substantiation file</strong></td>
+<td>Compile: BPI certification certificate (PDF), ASTM D6400 test report
+(from testing lab), EN 13432 certificate (if obtained), raw material
+certifications (Futamura NatureFlex compostability certificate, PLA
+spunbond certificate), composting pilot data (weight diverted, facility
+name, timeline, verification), and the FTC Green Guides sections
+relevant to each claim made.</td>
+<td>This file is the EVIDENCE PACKAGE that proves every environmental
+claim is substantiated. It should be: (A) complete (every claim has a
+corresponding document), (B) current (updated when new data is
+available), and (C) accessible (stored in Google Drive, ready to share
+within 24 hours of any challenge).</td>
+</tr>
+<tr class="odd">
+<td><strong>Proactive transparency</strong></td>
+<td>Publish: the brand.com/sustainability page (Section 2 row 7) with:
+certification details, composting process explanation, what the poncho
+IS and IS NOT (not biodegradable in landfill, not home-compostable, not
+recyclable), and pilot composting data with facility names and
+weight-diverted verification. Proactive transparency signals: “we have
+nothing to hide” and creates a DEFENSE RECORD showing good-faith effort
+to inform consumers accurately.</td>
+<td>Companies that are transparent about limitations (“our poncho
+requires commercial composting — it will not break down in a landfill”)
+are: (A) LESS likely to face greenwashing challenges (the transparency
+disarms critics), (B) MORE credible with eco-literate consumers (who
+recognize and reward honesty), and (C) MORE defensible if challenged
+(the transparency demonstrates good faith).</td>
+</tr>
+<tr class="even">
+<td><strong>Response protocol</strong></td>
+<td>If the brand receives: a consumer complaint about environmental
+claims, a media inquiry questioning sustainability claims, or (worst
+case) an FTC inquiry: STEP 1: do NOT respond publicly or defensively.
+STEP 2: consult with an attorney experienced in FTC advertising
+compliance ($200–$500/hour). STEP 3: prepare a response that: references
+the specific substantiation (BPI certificate, ASTM test report),
+acknowledges the consumer’s/media’s concern, and commits to ongoing
+transparency. STEP 4: review ALL marketing materials for any claims that
+may have drifted from the approved language (Section 2) and correct
+immediately.</td>
+<td>An FTC inquiry is NOT a lawsuit — it is an investigation. Most FTC
+consumer protection inquiries are resolved through: voluntary compliance
+(the company agrees to modify claims), consent order (the company agrees
+to specific claim language), or no further action (the FTC determines
+claims are substantiated). Penalties ($10K–$1M+) are reserved for:
+willful, repeated, or egregious violations. A brand with: BPI
+certification, qualified claims, proactive transparency, and a
+substantiation file is extremely unlikely to face significant FTC
+penalties.</td>
+</tr>
+</tbody>
+</table>
+<p>6. Regulatory Monitoring: 4 Areas</p>
+<p><strong>Environmental claims regulation is ACTIVELY
+EVOLVING.</strong> The FTC is updating the Green Guides for the first
+time since 2012. California and Washington have passed aggressive
+composting labeling laws. The EU is developing the Green Claims
+Directive. And industry self-regulation (NAD) is increasingly active in
+the sustainable products space. A claim that is compliant TODAY may need
+modification in 6–12 months. Monitoring ensures: the brand stays ahead
+of regulatory changes rather than being caught off-guard.</p>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width:50%">
+<col style="width: 35%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Area</strong></td>
+<td><strong>Details</strong></td>
+<td><strong>Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>FTC Green Guides updates</strong></td>
+<td>The FTC is currently updating the Green Guides (last updated 2012).
+Expected updates (2025–2026+) may: tighten requirements for
+carbon-neutral claims, add specific guidance for “sustainable” claims,
+update compostable claim standards, and address digital/social media
+environmental claims. Monitor: ftc.gov/news-events for Federal Register
+notices and public comments.</td>
+<td>When the updated Green Guides are published: review ALL marketing
+materials against the new standards. Engage the attorney for a
+compliance review. Update: packaging claims, website language, social
+media guidelines, and ambassador content briefs.</td>
+</tr>
+<tr class="odd">
+<td><strong>State composting labeling laws</strong></td>
+<td>California (SB 343, effective 2024): restricts the use of the
+chasing-arrows recycling symbol and “recyclable” claims. Also: SB 54
+(Plastic Pollution Prevention and Packaging Producer Responsibility Act)
+may affect compostable packaging. Washington (SB 5022): requires
+compostable products to meet ASTM D6400 AND display the BPI logo or
+equivalent third-party certification. Colorado: similar legislation
+pending. Oregon: compostable labeling must include “commercially
+compostable” qualification.</td>
+<td>State laws are STRICTER than the FTC Green Guides in many cases.
+California and Washington have the most aggressive compostable labeling
+requirements. If selling to customers in these states (via Shopify or
+Amazon): packaging must comply with state-specific requirements. BPI
+certification + “commercially compostable” qualification satisfies ALL
+current state laws.</td>
+</tr>
+<tr class="even">
+<td><strong>EU Green Claims Directive</strong></td>
+<td>The EU is developing the Green Claims Directive (expected
+implementation 2026–2027): will require: substantiation of ALL
+environmental claims with scientific evidence, pre-approval of certain
+green claims before use in advertising, and penalties for
+unsubstantiated greenwashing. If the brand expands to EU markets (per
+P2F Section 6): EN 13432 certification + compliance with the Green
+Claims Directive will be required.</td>
+<td>Monitor for US businesses selling to EU consumers: the Green Claims
+Directive may apply to: products sold on EU Amazon marketplaces,
+products shipped to EU race events, and digital advertising visible to
+EU consumers. This is a Year 2+ concern but should be tracked from Year
+1.</td>
+</tr>
+<tr class="odd">
+<td><strong>Industry self-regulation</strong></td>
+<td>The National Advertising Division (NAD) of the BBB National
+Programs: investigates advertising claims (including environmental
+claims) based on competitor challenges or consumer complaints. NAD
+decisions are not legally binding but: carry significant industry
+credibility, often result in claim modifications, and can trigger FTC
+referral if the advertiser refuses to comply. Monitor: nadreview.org for
+relevant decisions in the sustainable products space.</td>
+<td>NAD challenges are more common than FTC actions and are typically
+initiated by: COMPETITORS. A larger competitor (Heatsheets, a major
+running brand) could challenge the brand’s compostable claims through
+NAD. Defense: the same substantiation file (Section 5.1) that defends
+against FTC action also defends against NAD challenges.</td>
+</tr>
+</tbody>
+</table>
+<p>7. Timeline &amp; Budget</p>
+<p><strong>WEEK 4–6: Review FTC Green Guides (Section 1). Identify:
+which claims apply to the product. Draft initial claim language (Section
+2). Verify: Parkside’s certification coverage for the assembled product.
+Contact BPI to understand the product-level certification process and
+timeline.</strong></p>
+<p><strong>WEEK 8–10: Finalize approved claim language with attorney
+review ($300–$1,000). Build the claims compliance matrix (Section 4).
+Distribute: approved language to all team members, contractors, and
+ambassador content briefs. If independent testing needed: engage testing
+lab ($5,000–$15,000) and submit samples.</strong></p>
+<p><strong>WEEK 10–12: Build the greenwashing defense substantiation
+file (Section 5). Create the brand.com/sustainability page (Section 2
+row 7). Set up regulatory monitoring: Google Alerts for “FTC Green
+Guides,” “compostable labeling law,” state-specific alerts. Review: all
+packaging proofs, website content, and Amazon listings against the
+compliance matrix before launch.</strong></p>
+<p><strong>WEEK 12–14: Final compliance audit: review every marketing
+surface against the compliance matrix. Correct: any language that
+deviates from approved claims. Obtain: BPI certification (if testing is
+complete) or document interim certification status. ONGOING: quarterly
+regulatory monitoring (30 minutes). Annual: compliance matrix refresh.
+After EVERY new certification: update all marketing surfaces within 2
+weeks.</strong></p>
+<p>BUDGET: Attorney review of claim language: $300–$1,000. ASTM D6400
+testing (if needed independently): $5,000–$15,000. BPI certification
+application: $500–$2,500. EN 13432 testing (optional, if pursuing EU
+readiness): $2,000–$5,000 additional. Regulatory monitoring (Google
+Alerts): $0. TOTAL P9C: $800–$3,500 (if Parkside’s cert covers the
+product) or $5,800–$18,500 (if independent testing required). The
+certification cost is the MOST IMPORTANT investment in the entire legal
+section — it is the foundation of every environmental claim the brand
+makes.</p>
+<p>8. Conclusion: Honest Claims Build Unbreakable Brands</p>
+<p><strong>The brands that survive greenwashing scrutiny are the brands
+that never greenwash.</strong> They use: specific claims (“BPI-certified
+compostable at commercial facilities” not “eco-friendly”), qualified
+claims (“at commercial facilities” not just “compostable”), and
+transparent claims (“our poncho requires commercial composting — it will
+not break down in a landfill”). These brands don’t fear FTC inquiries
+because: every claim is substantiated. They don’t fear competitor
+challenges because: every claim is documented. And they don’t fear
+consumer skepticism because: every claim is honest.</p>
+<p><strong>The compostable poncho is a genuinely sustainable
+product.</strong> It replaces a truly wasteful alternative (garbage bags
+at start lines). It composts under the right conditions (commercial
+facilities). It is certified by a credible third party (BPI). The claims
+compliance framework in this document ensures: the marketing accurately
+represents this genuine sustainability — no more, no less. Honesty is
+not a constraint on marketing — it IS the marketing. Consumers, race
+directors, journalists, and regulators can all tell the difference
+between a brand that makes honest, qualified claims and a brand that
+hides behind vague green language. Be the honest brand.</p>
+
+        </div>
+    </div></div>
+<footer style="text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px">
+Sustainable Race-Start Warmth Poncho — D2C Brand GTM Project · 60 Subprojects · 391 Tasks · ~15,500¶ · April 2026
+</footer></body></html>

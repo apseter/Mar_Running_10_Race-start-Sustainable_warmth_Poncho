@@ -1,0 +1,556 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>P0H: Research Synthesis Go No Go — Race Start Warmth GTM</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0e1a;--surface:#111827;--card:#1a2332;--border:#2a3a4e;--accent:#10b981;--accent2:#3b82f6;--text:#e2e8f0;--muted:#94a3b8;--white:#fff;--red:#ef4444;--amber:#f59e0b;--green:#10b981}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+/* Nav */
+nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
+nav .inner{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;max-width:1200px;margin:0 auto}
+nav .brand{font-weight:700;font-size:15px;color:var(--accent)}
+nav .links{display:flex;gap:8px;flex-wrap:wrap}
+nav .links a{color:var(--muted);font-size:13px;padding:4px 10px;border-radius:6px;transition:.2s}
+nav .links a:hover,nav .links a.active{color:var(--white);background:var(--card);text-decoration:none}
+/* Hero */
+.hero{padding:60px 0 40px;text-align:center}
+.hero h1{font-size:2.4em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:1.1em;max-width:700px;margin:0 auto}
+/* Stats bar */
+.stats{display:flex;justify-content:center;gap:32px;padding:24px 0;flex-wrap:wrap}
+.stat{text-align:center}.stat .num{font-size:1.8em;font-weight:800;color:var(--white)}.stat .label{font-size:.75em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+/* Cards */
+.grid{display:grid;gap:16px;margin:24px 0}
+.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}
+.grid-3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;transition:.2s}
+.card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.card h3{font-size:1.1em;margin-bottom:8px}.card p{color:var(--muted);font-size:.9em}
+.card .badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:8px}
+.card .meta{font-size:.8em;color:var(--muted);margin-top:12px}
+/* Section */
+.section{padding:40px 0}.section h2{font-size:1.6em;font-weight:700;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+/* Table */
+table{width:100%;border-collapse:collapse;font-size:.85em;margin:16px 0}
+th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:52px}
+td{padding:8px 12px;border-bottom:1px solid var(--border)}
+tr:hover td{background:rgba(16,185,129,.05)}
+.status-complete{color:var(--green);font-weight:600}.status-not{color:var(--muted)}
+/* Progress */
+.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:8px}
+.progress .bar{height:100%;background:var(--accent);border-radius:3px}
+/* Back link */
+.back{display:inline-block;color:var(--muted);font-size:.9em;margin-bottom:20px}
+.back:hover{color:var(--accent)}
+/* Download */
+.dl-card{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin:8px 0;transition:.2s}
+.dl-card:hover{border-color:var(--accent);text-decoration:none}
+.dl-card .icon{font-size:2em}.dl-card .info h4{color:var(--white);margin-bottom:4px}.dl-card .info p{color:var(--muted);font-size:.85em}
+/* Footer */
+footer{text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px}
+@media(max-width:768px){.stats{gap:16px}.stat .num{font-size:1.3em}nav .links{gap:4px}nav .links a{font-size:11px;padding:3px 6px}.hero h1{font-size:1.6em}}
+
+.doc-content{max-width:900px;margin:0 auto;padding:20px 0}
+.doc-content h1{font-size:1.8em;font-weight:800;color:var(--white);margin:32px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.doc-content h2{font-size:1.4em;font-weight:700;color:var(--accent);margin:28px 0 12px}
+.doc-content h3{font-size:1.15em;font-weight:600;color:var(--accent2);margin:20px 0 10px}
+.doc-content p{margin:8px 0;line-height:1.7}
+.doc-content table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85em}
+.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;border:1px solid var(--border)}
+.doc-content td{padding:8px 12px;border:1px solid var(--border);vertical-align:top}
+.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.doc-content ul,.doc-content ol{margin:8px 0 8px 24px}
+.doc-content li{margin:4px 0;line-height:1.6}
+.doc-content strong{color:var(--white)}
+.doc-content em{color:var(--muted)}
+.doc-content blockquote{border-left:3px solid var(--accent);padding:8px 16px;margin:12px 0;background:var(--card);border-radius:0 8px 8px 0}
+.nav-sub{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 24px;padding:12px 16px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
+.nav-sub a{font-size:.8em;color:var(--muted);padding:4px 10px;border-radius:4px;transition:.2s;white-space:nowrap}
+.nav-sub a:hover,.nav-sub a.active{color:var(--white);background:var(--surface);text-decoration:none}
+</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a></div></div></nav><div class="container">
+    <div style="padding-top:30px">
+        <a href="p0.html" class="back">← 🔍 P0: Market Research</a>
+        <div class="nav-sub"><a href="p0.html">🔍 P0 Overview</a><a href="sub-p0a.html">P0A</a><a href="sub-p0b.html">P0B</a><a href="sub-p0c.html">P0C</a><a href="sub-p0d.html">P0D</a><a href="sub-p0e.html">P0E</a><a href="sub-p0f.html">P0F</a><a href="sub-p0g.html">P0G</a><a href="sub-p0h.html" class="active">P0H</a><a href="sub-p0.html">P0</a></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px">
+            <div>
+                <span style="background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px">P0H</span>
+                <span style="color:var(--muted);font-size:.85em;margin-left:8px">P0: Market Research</span>
+            </div>
+            <a href="files/P0H_Research_Synthesis_Go_No_Go.docx" style="font-size:.85em;color:var(--accent);padding:6px 14px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
+        </div>
+        <div class="doc-content">
+            <p><strong>P0H: RESEARCH SYNTHESIS</strong></p>
+<p><strong>&amp; GO/NO-GO DECISION</strong></p>
+<p>Sub-Project P0H | Market Research &amp; Concept Validation | Final
+Synthesis</p>
+<p><em>Executive Decision Framework Synthesizing All P0A–P0G Research
+Findings</em></p>
+<p>March 2026 | Confidential</p>
+<p>RECOMMENDATION: GO</p>
+<p><strong>✅ PROCEED TO LAUNCH ✅</strong></p>
+<p><strong>After synthesizing 7 research subprojects covering waste
+landscape, competitive analysis, B2B customer discovery, DTC customer
+discovery, material science, unit economics, and B2B channel
+intelligence, the recommendation is a clear GO</strong> with three
+conditional items requiring parallel management (certification timeline,
+shelf life operations, and end-of-life composting infrastructure).</p>
+<p><strong>The opportunity:</strong> a compostable metallized warmth
+poncho targeting 2.5M+ annual US marathon/half-marathon finishers in a
+$0 competitive whitespace (no existing product combines compostability +
+warmth + marathon specificity). Achievable at $1.34–$1.94 COGS, $9.99
+retail, 55–75% gross margin, with Year 1 profitability at moderate
+($35–50K) investment.</p>
+<p>1. Go/No-Go Scorecard: 10 Decision Criteria</p>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 13%" />
+<col style="width: 61%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Criterion</strong></td>
+<td><strong>Verdict</strong></td>
+<td><strong>Evidence Summary</strong></td>
+</tr>
+<tr class="even">
+<td><strong>✅ PROBLEM VALIDATION</strong></td>
+<td>STRONG GO</td>
+<td>100% of cold-weather marathon runners face 30–180 min start-line
+warmth gap. 230,000+ lbs waste at top 3 US marathons alone. 2,527
+hypothermia cases at 2018 Boston.</td>
+</tr>
+<tr class="odd">
+<td><strong>✅ MARKET SIZE</strong></td>
+<td>STRONG GO</td>
+<td>432K marathon + 2.1M half-marathon finishers. SAM: 800K–1.4M
+cold-weather participants. Year 1 obtainable: 15K–50K units.</td>
+</tr>
+<tr class="even">
+<td><strong>✅ COMPETITIVE WHITESPACE</strong></td>
+<td>STRONG GO</td>
+<td>ZERO compostable + warm + marathon-specific competitors. Heatsheets
+owns finish (not start). GreenGear not compostable. JOSANTO no
+warmth.</td>
+</tr>
+<tr class="odd">
+<td><strong>✅ CUSTOMER WILLINGNESS</strong></td>
+<td>GO</td>
+<td>73% earn $75K+ HHI. $1,748/yr running spend. $9.99 = &lt;0.6% of
+annual spend. Heatsheets poncho sold out at Boston expo.</td>
+</tr>
+<tr class="even">
+<td><strong>✅ TECHNICAL FEASIBILITY</strong></td>
+<td>GO</td>
+<td>Futamura NatureFlex NM, Celplast ENVIROMET, TIPA 312MET all proven.
+95–97% IR reflection = Heatsheets equivalent. Prototype achievable in
+2–3 weeks.</td>
+</tr>
+<tr class="odd">
+<td><strong>✅ UNIT ECONOMICS</strong></td>
+<td>GO</td>
+<td>COGS $1.34–$1.94 at 25–100K. $9.99 retail = 55–75% gross margin.
+Registration add-ons: 60% net margin.</td>
+</tr>
+<tr class="even">
+<td><strong>⚠️ CERTIFICATION TIMELINE</strong></td>
+<td>CONDITIONAL GO</td>
+<td>BPI cert: 12–18 months, $15–45K. Can leverage NatureFlex NM existing
+certs. Soft launch possible pre-cert with supplier certifications.</td>
+</tr>
+<tr class="odd">
+<td><strong>⚠️ SHELF LIFE</strong></td>
+<td>CONDITIONAL GO</td>
+<td>PLA/cellulose films: 6–18 months with climate-controlled storage.
+Requires FIFO + moisture barrier packaging. Not a dealbreaker but adds
+operational complexity.</td>
+</tr>
+<tr class="even">
+<td><strong>⚠️ SUSTAINABILITY CLAIMS</strong></td>
+<td>CONDITIONAL GO</td>
+<td>Must be specific + qualified. “Certified compostable” = defensible.
+“Eco-friendly” = risky. End-of-life requires race composting
+infrastructure.</td>
+</tr>
+<tr class="odd">
+<td><strong>❌ MASS MARKET AWARENESS</strong></td>
+<td>NOT YET</td>
+<td>Runners don’t know this product exists. Requires education + trial.
+Budget $18–55K marketing Year 1. Mitigated by expo sampling + community
+seeding.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Score: 6 STRONG GO / GO + 3 CONDITIONAL GO + 1 NOT YET =
+OVERALL GO.</strong> No criteria scored NO-GO. The three conditionals
+are manageable operational challenges, not fundamental market or product
+flaws. The single “Not Yet” (market awareness) is inherent to any new
+product launch and is mitigated by the targeted, community-driven
+marketing strategy.</p>
+<p>2. Key Findings Synthesis: P0A Through P0G</p>
+<table>
+<colgroup>
+<col style="width: 21%" />
+<col style="width: 78%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Subproject</strong></td>
+<td><strong>Core Findings</strong></td>
+</tr>
+<tr class="even">
+<td><strong>P0A: Waste Landscape</strong></td>
+<td>230,000+ lbs clothing waste at NYC+Chicago+Boston. 30+ race orgs
+with sustainability programs. CRS certified 150+ events. Municipal
+composting mandates in 10+ cities.</td>
+</tr>
+<tr class="odd">
+<td><strong>P0B: Competitive Landscape</strong></td>
+<td>Heatsheets: 45-yr incumbent, $1.43–$4.30/unit, recyclable NOT
+compostable. 9 compostable poncho manufacturers globally (none with
+warmth). Metallized compostable film PROVEN (Futamura, Celplast, TIPA,
+Parkside).</td>
+</tr>
+<tr class="even">
+<td><strong>P0C: Race Directors B2B</strong></td>
+<td>53 prioritized cold-weather races in 3 tiers. 7 database platforms
+for prospecting. Procurement: 2–4 months for consumables. Sponsor
+pressure (TCS $40M/yr, BofA mandates compostable). Trade shows: RRCA Apr
+2026, TRE Dec 2026, Running USA Jan 2027.</td>
+</tr>
+<tr class="odd">
+<td><strong>P0D: Individual Runners DTC</strong></td>
+<td>432K marathon finishers; 73% earn $75K+; 76%+ college degree.
+Start-line: 30–180 min waits; garbage bags ~30–40%; thrift store
+~50–60%. Sustainability ranks LAST in gear criteria but 63% say it
+“plays a part.” Price sweet spot: $7.99–$9.99.</td>
+</tr>
+<tr class="even">
+<td><strong>P0E: Material Science</strong></td>
+<td>NatureFlex NM: 23µm metallized cellulose, BPI + TUV + OK Home
+certified. Config B (met film + PLA nonwoven): 2.5–3.0 CLO, $1.15/unit
+at 100K. Dual cert: $35–$75K, 12–18 months. Prototype: $375, 2–3
+weeks.</td>
+</tr>
+<tr class="odd">
+<td><strong>P0F: Pricing &amp; Economics</strong></td>
+<td>COGS: $1.34–$2.48 (100K–5K). $9.99 Amazon = Low-Price FBA optimal.
+Reg add-ons: 60% net margin ($6.07/unit). Breakeven: ~10,600–21,300
+units. Year 1 Moderate scenario: $155–175K revenue, $5–25K profit at
+$35–50K investment.</td>
+</tr>
+<tr class="even">
+<td><strong>P0G: B2B Channels</strong></td>
+<td>8 channels mapped. Priority: (1) reg add-ons, (2) direct B2B, (3)
+Fleet Feet (280+ stores, vendor partner program), (4) expos. CRS
+certification credit is the #1 B2B selling tool. RFS Industry Partner
+($1K/yr) for grassroots reach.</td>
+</tr>
+</tbody>
+</table>
+<p>3. The Five Pillars of Competitive Advantage</p>
+<p>3.1 Pillar 1: Category Creation</p>
+<p><strong>No product exists at the intersection of compostable + warm +
+marathon-specific.</strong> Heatsheets owns the finish line with 45
+years of relationships but is NOT compostable and does NOT serve the
+start line. GreenGear’s EcoRain ($6.50) is the closest eco-competitor
+but is NOT compostable (recyclable #4 plastic) and provides NO warmth
+(rain protection only). JOSANTO offers genuine compostable ponchos but
+targets festivals with NO metallization and NO US marathon presence.
+This is a category-creation opportunity, not a competitive displacement
+play.</p>
+<p>3.2 Pillar 2: Structural Tailwinds</p>
+<p>Three macro trends converge: (1) Race sustainability is accelerating
+— CRS certifications growing, Bank of America mandates compostable, NYRR
+targets net-zero by 2040. (2) Marathon participation at record levels —
+432K finishers in 2024, 5% YoY growth, 25–29 age cohort now largest. (3)
+Compostable materials are maturing — NatureWorks Ingeo Extend (8× faster
+composting, Mar 2025), TIPA 312MET (home-compostable metallized, Feb
+2025).</p>
+<p>3.3 Pillar 3: Affluent, Reachable Customer Base</p>
+<p>Marathon runners: 73% earn $75K+, 76%+ college degree, $1,748/yr
+running spend, 194% more likely to be in top socioeconomic segment
+(Strava data). Reachable via Strava (180M users), Instagram, r/running
+(3.5M+), running podcasts (Ali on the Run 20M+ downloads), and Fleet
+Feet (280+ stores with weekly group runs).</p>
+<p>3.4 Pillar 4: Multi-Channel Revenue Model</p>
+<p>Eight validated B2B channels with registration add-ons as the
+highest-margin (60% net) anchor. Amazon provides volume and
+discoverability. Expos build brand. Fleet Feet provides credibility.
+Direct B2B locks race partnerships. Sponsor co-branding offsets costs.
+No single-channel dependency.</p>
+<p>3.5 Pillar 5: Defensible Through Speed</p>
+<p>No patents exist in this space, but first-mover advantage compounds:
+race-director relationships (annual reorder cycle), BPI certification
+(12–18 months to replicate), brand recognition among runners, CRS
+toolkit inclusion, and Fleet Feet shelf space. A 12–18 month head start
+before any competitor can certify and launch creates a meaningful
+moat.</p>
+<p>4. Risk Matrix and Mitigation Strategies</p>
+<table>
+<colgroup>
+<col style="width: 22%" />
+<col style="width: 11%" />
+<col style="width: 29%" />
+<col style="width: 36%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Risk</strong></td>
+<td><strong>Severity</strong></td>
+<td><strong>Scenario</strong></td>
+<td><strong>Mitigation</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Heatsheets competitive response</strong></td>
+<td>MEDIUM</td>
+<td>Heatsheets could launch compostable variant in 1–3 years</td>
+<td>Move fast; lock race partnerships; build brand before they respond.
+Their 45-yr LDPE supply chain is hard to pivot.</td>
+</tr>
+<tr class="odd">
+<td><strong>Compostability greenwashing backlash</strong></td>
+<td>MEDIUM</td>
+<td>Product ends up in landfill (no composting infra at race)</td>
+<td>Partner with races on composting logistics. Provide collection bins.
+Be transparent about end-of-life requirements.</td>
+</tr>
+<tr class="even">
+<td><strong>Shelf life failures</strong></td>
+<td>MEDIUM</td>
+<td>Product degrades before use; metallization delaminates</td>
+<td>Climate-controlled storage; moisture barrier packaging; FIFO; batch
+testing; shelf-life buffer in production scheduling.</td>
+</tr>
+<tr class="odd">
+<td><strong>Runner apathy toward sustainability</strong></td>
+<td>LOW-MEDIUM</td>
+<td>Sustainability doesn’t drive purchase; product must win on
+function</td>
+<td>Lead with warmth performance. Position compostability as bonus, not
+primary value prop. Validate with thermal test data.</td>
+</tr>
+<tr class="even">
+<td><strong>Material cost increases</strong></td>
+<td>LOW</td>
+<td>PLA/compostable film prices rise; margin compression</td>
+<td>Lock long-term supply agreements at scale. Diversify suppliers
+(Futamura + Celplast + TIPA). Ingeo Extend may reduce costs.</td>
+</tr>
+<tr class="odd">
+<td><strong>Regulatory changes on “compostable” claims</strong></td>
+<td>LOW-MEDIUM</td>
+<td>FTC/EU tighten rules on compostable labeling</td>
+<td>Pursue most stringent certifications (BPI + TUV HOME). Avoid
+unqualified claims. Budget for compliance updates.</td>
+</tr>
+<tr class="even">
+<td><strong>Certification delays</strong></td>
+<td>MEDIUM</td>
+<td>BPI takes 18+ months; misses Fall 2026 launch</td>
+<td>Begin immediately. Use supplier certs (NatureFlex NM already BPI
+certified) for soft launch. Own cert for full launch.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>The highest-impact risk is Heatsheets competitive
+response.</strong> However, pivoting a 45-year LDPE supply chain to
+compostable materials requires 2–4 years of R&amp;D, certification, and
+manufacturing retooling. The first-mover window is real but finite —
+speed to market is the #1 strategic priority.</p>
+<p>5. Financial Summary: Three Investment Scenarios</p>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 27%" />
+<col style="width: 20%" />
+<col style="width: 34%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Scenario</strong></td>
+<td><strong>Scale</strong></td>
+<td><strong>Year 1 Projected P&amp;L</strong></td>
+<td><strong>Assessment</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Bootstrap ($20–25K)</strong></td>
+<td>5K units; 2–3 expos; 5–8 race add-ons; Shopify</td>
+<td>Near breakeven (–$5K to +$5K)</td>
+<td>Proves concept; gathers data; builds relationships. Limited by small
+inventory and manual operations.</td>
+</tr>
+<tr class="odd">
+<td><strong>Moderate ($35–50K) RECOMMENDED</strong></td>
+<td>25K units; Amazon + Shopify + 10–15 add-ons + 3–5 expos</td>
+<td>$5K–$25K profit</td>
+<td>Achieves profitability; builds brand presence; funds Year 2 growth.
+Optimal risk/reward balance.</td>
+</tr>
+<tr class="even">
+<td><strong>Full Launch ($75–100K)</strong></td>
+<td>50K units; all channels active; 30+ race partners</td>
+<td>$35K–$65K profit</td>
+<td>Establishes market leader position; locks out potential competitors;
+funds international expansion.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>RECOMMENDED: Moderate scenario ($35–50K).</strong> This
+achieves profitability in Year 1 while building the brand presence and
+race-director relationships needed for Year 2 scaling. The $25K unit
+production volume unlocks meaningful COGS reductions ($1.94 vs. $2.48 at
+5K) and meets MOQ thresholds for premium film suppliers.</p>
+<p>5.1 Fixed Cost Budget</p>
+<p>BPI certification (initial testing): $15,000–$25,000. Brand identity
++ design: $3,000–$10,000. Website (Shopify + Amazon setup):
+$2,000–$5,000. Trademark registration: $950–$2,500. Product liability
+insurance: $400–$1,200. Business formation + legal: $500–$2,000.
+Photography + content: $1,000–$5,000. Racing for Sustainability
+membership: $1,000. Total fixed: $24,000–$52,000.</p>
+<p>5.2 Path to Year 2</p>
+<p>Year 1 revenue of $155–175K at Moderate scenario funds Year 2
+expansion: 50–100K unit production run, comprehensive BPI + TUV dual
+certification, 3–5 major marathon expo booths, Fleet Feet national
+rollout, EN 13432 for international markets, and 30+ race partnerships.
+Year 2 target: $300–500K revenue, $50–100K profit.</p>
+<p>6. Twelve-Month Launch Roadmap</p>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 81%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Month</strong></td>
+<td><strong>Key Actions</strong></td>
+</tr>
+<tr class="even">
+<td><strong>MONTH 1 (Apr 2026)</strong></td>
+<td>Order NatureFlex NM samples; hand-fabricate 5–10 prototypes; attend
+RRCA Convention ($425); begin BPI certification process; join Racing for
+Sustainability ($1K/yr)</td>
+</tr>
+<tr class="odd">
+<td><strong>MONTH 2 (May 2026)</strong></td>
+<td>DIY warmth testing (FLIR camera + outdoor trials); send sample kits
+to 10–15 race directors; apply to Fleet Feet vendor partner program; set
+up Shopify store skeleton</td>
+</tr>
+<tr class="even">
+<td><strong>MONTH 3 (Jun 2026)</strong></td>
+<td>Submit materials to testing lab (NC State TPACC or KSU IER); receive
+formal sample from Parkside/TIPA; collect 3–5 race director LOIs for
+Fall 2026 pilots</td>
+</tr>
+<tr class="odd">
+<td><strong>MONTH 4 (Jul 2026)</strong></td>
+<td>Lock production order (5–25K units); configure RunSignUp add-ons
+with partner races; finalize Amazon listing; begin branding +
+photography</td>
+</tr>
+<tr class="even">
+<td><strong>MONTH 5 (Aug 2026)</strong></td>
+<td>Receive production inventory; ship to Amazon FBA; ship pilot
+quantities to race partners; launch pre-race Instagram/Strava marketing
+campaign</td>
+</tr>
+<tr class="odd">
+<td><strong>MONTH 6 (Sep 2026)</strong></td>
+<td>SOFT LAUNCH: 2–3 Fall race pilots (registration add-ons + packet
+pickup). First expo booth at a mid-size race. Begin Amazon PPC. Collect
+runner feedback.</td>
+</tr>
+<tr class="even">
+<td><strong>MONTHS 7–9 (Oct–Dec 2026)</strong></td>
+<td>Full Fall season: 5–10 race partnerships live. NYC/Chicago/Philly
+marathon expo booths. Attend TRE (Dec 2026) for Year 2 B2B pipeline.
+Collect data from all pilots.</td>
+</tr>
+<tr class="odd">
+<td><strong>MONTHS 10–12 (Jan–Mar 2027)</strong></td>
+<td>Attend Running USA Conference (Jan 2027). Compile pilot case
+studies. Sign 20–30 race contracts for Spring/Fall 2027. BPI
+certification expected. Plan 50–100K unit production run.</td>
+</tr>
+</tbody>
+</table>
+<p>7. Three Conditions for GO</p>
+<p><strong>Condition 1: Begin BPI certification process within 30
+days.</strong> This is the longest lead item (12–18 months). Contact
+Normec OWS (maggie.mcdonald@normecgroup.com) or Aropha for testing
+quotes. Leverage NatureFlex NM’s existing BPI certification (#C119399)
+to reduce scope. Budget: $15–25K for initial testing.</p>
+<p><strong>Condition 2: Secure 3+ race director LOIs by July
+2026.</strong> Letters of Intent from race directors for Fall 2026
+pilots validate B2B demand beyond theoretical research. Use the P0C
+prioritized database (53 cold-weather races in 3 tiers) and attend RRCA
+Convention (April 2026) for in-person networking.</p>
+<p><strong>Condition 3: Complete warmth testing by June 2026.</strong>
+Either DIY (FLIR camera, $200–$300) or formal lab testing (NC State
+TPACC, $2–3K for hot plate). The claim “95% body heat reflected back”
+must be supported by data. This is the single most important selling
+point for both B2B and DTC.</p>
+<p>8. What Success Looks Like: Key Performance Indicators</p>
+<p>8.1 Year 1 KPIs (Fall 2026 – Spring 2027)</p>
+<p>Units sold: 18,000–25,000. Revenue: $155,000–$175,000. Gross margin:
+55–65%. Race partnerships: 10–15 active. Amazon reviews: 50+ at 4.5★+.
+Email list: 5,000+ runners. NPS from pilot races: 50+. Race director
+reorder rate: 80%+. Fleet Feet stores carrying product: 10–30
+(pilot).</p>
+<p>8.2 Year 2 KPIs (2027–2028)</p>
+<p>Units sold: 50,000–80,000. Revenue: $300,000–$500,000. Race
+partnerships: 30–50 active. International markets entered: 1–2 (Toronto
++ London). BPI + TUV certifications achieved. Sponsor co-branding deals:
+2–3 active. Fleet Feet national rollout. Repeat customer rate: 30%+.</p>
+<p>9. What Would Change This to NO-GO</p>
+<p>The GO recommendation would reverse if any of the following emerged
+during the next 90 days:</p>
+<p>1. Thermal testing shows the compostable poncho provides &lt;50% of
+Heatsheets’ warmth performance (unlikely given identical aluminum
+physics, but must be verified).</p>
+<p>2. BPI testing reveals metallization or specific film chemistry fails
+compostability criteria (low probability — multiple metallized films
+already certified, but must confirm for final product
+configuration).</p>
+<p>3. Fewer than 3 race directors express genuine interest (not just
+politeness) after receiving sample kits, indicating B2B demand is weaker
+than research suggests.</p>
+<p>4. Customer discovery interviews (20–30 runners) reveal a fundamental
+unwillingness to pay &gt;$5 for a disposable warmth product, suggesting
+the $9.99 price point is untenable.</p>
+<p>5. A major competitor (Heatsheets, TIPA, or a new entrant) announces
+a compostable warmth poncho before our soft launch, eliminating
+first-mover advantage.</p>
+<p><strong>None of these is probable based on current evidence, but each
+should be actively monitored</strong> during Months 1–3 of the launch
+roadmap.</p>
+<p>10. Conclusion: The Window Is Open</p>
+<p><strong>This is a rare convergence:</strong> a universal problem
+(every cold-weather runner needs warmth), a clear whitespace (zero
+compostable warmth ponchos exist), a proven technology (metallized
+compostable films are commercially available and certified), an affluent
+and reachable customer base (73% earn $75K+, concentrated on
+Strava/Instagram/Fleet Feet), favorable economics ($9.99 retail at
+55–75% gross margin), and accelerating structural tailwinds
+(sustainability mandates, record participation, maturing materials).</p>
+<p><strong>The window is finite.</strong> Heatsheets has the resources
+and relationships to enter this space within 2–4 years if they recognize
+the opportunity. TIPA’s 312MET launch (Feb 2025) signals that metallized
+compostable films are entering mainstream commercial availability. The
+first brand to certify, build race-director relationships, and establish
+runner awareness will create a defensible position that compounds
+annually through reorder cycles, CRS toolkit inclusion, and community
+word-of-mouth.</p>
+<p><strong>The cost of being wrong is $20–50K and 6–12 months. The cost
+of being right and moving too slowly is ceding a category-defining
+opportunity to a faster competitor.</strong> The recommendation is
+unequivocal: GO. Begin immediately.</p>
+
+        </div>
+    </div></div>
+<footer style="text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px">
+Sustainable Race-Start Warmth Poncho — D2C Brand GTM Project · 60 Subprojects · 391 Tasks · ~15,500¶ · April 2026
+</footer></body></html>

@@ -1,0 +1,579 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>P0F: Pricing Unit Economics Validation — Race Start Warmth GTM</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0e1a;--surface:#111827;--card:#1a2332;--border:#2a3a4e;--accent:#10b981;--accent2:#3b82f6;--text:#e2e8f0;--muted:#94a3b8;--white:#fff;--red:#ef4444;--amber:#f59e0b;--green:#10b981}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+/* Nav */
+nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
+nav .inner{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;max-width:1200px;margin:0 auto}
+nav .brand{font-weight:700;font-size:15px;color:var(--accent)}
+nav .links{display:flex;gap:8px;flex-wrap:wrap}
+nav .links a{color:var(--muted);font-size:13px;padding:4px 10px;border-radius:6px;transition:.2s}
+nav .links a:hover,nav .links a.active{color:var(--white);background:var(--card);text-decoration:none}
+/* Hero */
+.hero{padding:60px 0 40px;text-align:center}
+.hero h1{font-size:2.4em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:1.1em;max-width:700px;margin:0 auto}
+/* Stats bar */
+.stats{display:flex;justify-content:center;gap:32px;padding:24px 0;flex-wrap:wrap}
+.stat{text-align:center}.stat .num{font-size:1.8em;font-weight:800;color:var(--white)}.stat .label{font-size:.75em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+/* Cards */
+.grid{display:grid;gap:16px;margin:24px 0}
+.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}
+.grid-3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;transition:.2s}
+.card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.card h3{font-size:1.1em;margin-bottom:8px}.card p{color:var(--muted);font-size:.9em}
+.card .badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:8px}
+.card .meta{font-size:.8em;color:var(--muted);margin-top:12px}
+/* Section */
+.section{padding:40px 0}.section h2{font-size:1.6em;font-weight:700;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+/* Table */
+table{width:100%;border-collapse:collapse;font-size:.85em;margin:16px 0}
+th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:52px}
+td{padding:8px 12px;border-bottom:1px solid var(--border)}
+tr:hover td{background:rgba(16,185,129,.05)}
+.status-complete{color:var(--green);font-weight:600}.status-not{color:var(--muted)}
+/* Progress */
+.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:8px}
+.progress .bar{height:100%;background:var(--accent);border-radius:3px}
+/* Back link */
+.back{display:inline-block;color:var(--muted);font-size:.9em;margin-bottom:20px}
+.back:hover{color:var(--accent)}
+/* Download */
+.dl-card{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin:8px 0;transition:.2s}
+.dl-card:hover{border-color:var(--accent);text-decoration:none}
+.dl-card .icon{font-size:2em}.dl-card .info h4{color:var(--white);margin-bottom:4px}.dl-card .info p{color:var(--muted);font-size:.85em}
+/* Footer */
+footer{text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px}
+@media(max-width:768px){.stats{gap:16px}.stat .num{font-size:1.3em}nav .links{gap:4px}nav .links a{font-size:11px;padding:3px 6px}.hero h1{font-size:1.6em}}
+
+.doc-content{max-width:900px;margin:0 auto;padding:20px 0}
+.doc-content h1{font-size:1.8em;font-weight:800;color:var(--white);margin:32px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.doc-content h2{font-size:1.4em;font-weight:700;color:var(--accent);margin:28px 0 12px}
+.doc-content h3{font-size:1.15em;font-weight:600;color:var(--accent2);margin:20px 0 10px}
+.doc-content p{margin:8px 0;line-height:1.7}
+.doc-content table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85em}
+.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;border:1px solid var(--border)}
+.doc-content td{padding:8px 12px;border:1px solid var(--border);vertical-align:top}
+.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.doc-content ul,.doc-content ol{margin:8px 0 8px 24px}
+.doc-content li{margin:4px 0;line-height:1.6}
+.doc-content strong{color:var(--white)}
+.doc-content em{color:var(--muted)}
+.doc-content blockquote{border-left:3px solid var(--accent);padding:8px 16px;margin:12px 0;background:var(--card);border-radius:0 8px 8px 0}
+.nav-sub{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 24px;padding:12px 16px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
+.nav-sub a{font-size:.8em;color:var(--muted);padding:4px 10px;border-radius:4px;transition:.2s;white-space:nowrap}
+.nav-sub a:hover,.nav-sub a.active{color:var(--white);background:var(--surface);text-decoration:none}
+</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a></div></div></nav><div class="container">
+    <div style="padding-top:30px">
+        <a href="p0.html" class="back">← 🔍 P0: Market Research</a>
+        <div class="nav-sub"><a href="p0.html">🔍 P0 Overview</a><a href="sub-p0a.html">P0A</a><a href="sub-p0b.html">P0B</a><a href="sub-p0c.html">P0C</a><a href="sub-p0d.html">P0D</a><a href="sub-p0e.html">P0E</a><a href="sub-p0f.html" class="active">P0F</a><a href="sub-p0g.html">P0G</a><a href="sub-p0h.html">P0H</a><a href="sub-p0.html">P0</a></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px">
+            <div>
+                <span style="background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px">P0F</span>
+                <span style="color:var(--muted);font-size:.85em;margin-left:8px">P0: Market Research</span>
+            </div>
+            <a href="files/P0F_Pricing_Unit_Economics_Validation.docx" style="font-size:.85em;color:var(--accent);padding:6px 14px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
+        </div>
+        <div class="doc-content">
+            <p><strong>P0F: PRICING &amp;</strong></p>
+<p><strong>UNIT ECONOMICS VALIDATION</strong></p>
+<p>Sub-Project P0F | Market Research &amp; Concept Validation | Weeks
+5–10</p>
+<p><em>Complete Financial Model: COGS, Channel Economics, Margin
+Waterfalls, and Year 1 Scenarios</em></p>
+<p>March 2026 | Confidential</p>
+<p>Executive Summary</p>
+<p><strong>Landed COGS of $1.34–$2.48/unit (100K–5K volumes)</strong>
+enables $9.99 DTC retail and $1.75–$2.50 B2B wholesale with 55–75% gross
+margins. The $9.99 Amazon price is structurally optimal: Low-Price FBA
+saves $0.86/unit and Clothing referral drops to 8% (vs. 15% above $10).
+Registration add-ons deliver the highest-margin channel at 56–60% net
+($6.07/unit). Year 1 profitability requires ~25K units at $35–50K
+investment.</p>
+<p><strong>REVISION NOTE (April 2026):</strong> <em>This P0F document
+was completed during the market research phase before final product
+specification and pricing decisions were made in P2–P8. B2B pricing in
+this document ($1.75–$2.50/unit) was revised upward to $3.50–$5.00/unit
+during P5A pipeline development based on: BPI certification value,
+composting logistics inclusion, and competitive positioning. COGS ranges
+($1.34–$2.48) reflect multiple material configurations narrowed to
+Config B (NatureFlex NM 23µm + PLA spunbond 35gsm) in P2A at $1.10–$1.45
+landed. DTC pricing ($9.99 single, $24.99 3-pack) in this document IS
+consistent with final pricing. For current unit economics, refer to P8A
+Financial Planning &amp; Modeling. For current B2B pricing tiers, refer
+to P5A B2B Pipeline Development.</em></p>
+<p>1. Complete COGS Breakdown</p>
+<p>Primary cost driver: compostable metallized film laminate (55–75% of
+total COGS), requiring ~1.8 m²/poncho. PLA resin: $2.43–$3.13/kg.
+PLA/PBAT blown film: $4.50–$7.00/kg. Metallization premium on
+compostable substrates: ~30% above standard PET.</p>
+<table>
+<colgroup>
+<col style="width: 32%" />
+<col style="width: 40%" />
+<col style="width: 27%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Volume</strong></td>
+<td><strong>Range</strong></td>
+<td><strong>Midpoint</strong></td>
+</tr>
+<tr class="even">
+<td><strong>5,000 units</strong></td>
+<td>$2.25–$2.71</td>
+<td>$2.48</td>
+</tr>
+<tr class="odd">
+<td><strong>25,000 units</strong></td>
+<td>$1.74–$2.14</td>
+<td>$1.94</td>
+</tr>
+<tr class="even">
+<td><strong>50,000 units</strong></td>
+<td>$1.43–$1.75</td>
+<td>$1.59</td>
+</tr>
+<tr class="odd">
+<td><strong>100,000 units</strong></td>
+<td>$1.19–$1.48</td>
+<td>$1.34</td>
+</tr>
+</tbody>
+</table>
+<p>Key components at 25K: raw materials $1.12–$1.47, converting
+$0.15–$0.25, packaging $0.13, customs (HS 3926.20.60 + Section 301 7.5%)
+$0.10–$0.16, ocean freight $0.02–$0.04, warehousing $0.08, scrap (5%)
+$0.06–$0.07. Marginal cost drops 46% from 5K to 100K units.</p>
+<p>2. B2B Pricing Strategy</p>
+<p>2.1 Heatsheets Current Pricing</p>
+<table>
+<colgroup>
+<col style="width: 40%" />
+<col style="width: 21%" />
+<col style="width: 21%" />
+<col style="width: 15%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Product</strong></td>
+<td><strong>Pack Size</strong></td>
+<td><strong>Price</strong></td>
+<td><strong>Per Unit</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Classic Blankets (roll)</strong></td>
+<td>200-count</td>
+<td>$285.00</td>
+<td>$1.43</td>
+</tr>
+<tr class="odd">
+<td><strong>Classic Blankets (dispenser)</strong></td>
+<td>100-count</td>
+<td>$150.00</td>
+<td>$1.50</td>
+</tr>
+<tr class="even">
+<td><strong>Individually Packed Blankets</strong></td>
+<td>100/carton</td>
+<td>$230.00</td>
+<td>$2.30</td>
+</tr>
+<tr class="odd">
+<td><strong>Individually Packed Ponchos</strong></td>
+<td>100/carton</td>
+<td>$430.00</td>
+<td>$4.30</td>
+</tr>
+<tr class="even">
+<td><strong>Emergency Blankets (hi-vis)</strong></td>
+<td>100/carton</td>
+<td>$455.00</td>
+<td>$4.55</td>
+</tr>
+</tbody>
+</table>
+<p>At volume (15+ cartons), Heatsheets discounts 10–20%: Classic to
+$1.15–$1.28/unit. Generic mylar: $0.60–$0.70. PE ponchos from China:
+$0.30–$0.80. Race warmth budget: $0.66–$1.50/runner.</p>
+<p>2.2 Recommended B2B Tiers</p>
+<table>
+<colgroup>
+<col style="width: 32%" />
+<col style="width: 32%" />
+<col style="width: 35%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Volume</strong></td>
+<td><strong>Price</strong></td>
+<td><strong>Gross Margin</strong></td>
+</tr>
+<tr class="even">
+<td><strong>1,000–4,999</strong></td>
+<td>$2.50–$3.00</td>
+<td>22–35%</td>
+</tr>
+<tr class="odd">
+<td><strong>5,000–9,999</strong></td>
+<td>$2.00–$2.50</td>
+<td>29–47%</td>
+</tr>
+<tr class="even">
+<td><strong>10,000–24,999</strong></td>
+<td>$1.75–$2.00</td>
+<td>42–55%</td>
+</tr>
+<tr class="odd">
+<td><strong>25,000+</strong></td>
+<td>$1.50–$1.75</td>
+<td>47–55%</td>
+</tr>
+</tbody>
+</table>
+<p>Payment: Net 30 standard; 2/10 Net 30 for early payment. Race
+consumables budget: $18–$48/runner (timing $5–15, medals $1.45–$8,
+shirts $5–10, bibs $1.50–3, warmth $0.66–1.50). Entry fees:
+$75–$335.</p>
+<p>3. DTC Pricing: $9.99 Amazon Optimization</p>
+<table>
+<colgroup>
+<col style="width: 40%" />
+<col style="width: 29%" />
+<col style="width: 29%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Fee Component</strong></td>
+<td><strong>Sports &amp; Outdoors</strong></td>
+<td><strong>Clothing (≤$10)</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Referral fee</strong></td>
+<td>$1.50 (15%)</td>
+<td>$0.80 (8%)</td>
+</tr>
+<tr class="odd">
+<td><strong>FBA fulfillment (Low-Price)</strong></td>
+<td>~$2.91</td>
+<td>~$2.91</td>
+</tr>
+<tr class="even">
+<td><strong>Monthly storage</strong></td>
+<td>~$0.01</td>
+<td>~$0.01</td>
+</tr>
+<tr class="odd">
+<td><strong>Total Amazon fees</strong></td>
+<td>$4.42 (44.2%)</td>
+<td>$3.72 (37.2%)</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Crossing $10 costs $1.56+/unit extra.</strong> $9.99 is
+mathematically optimal. Products ≤$10 qualify for Low-Price FBA ($0.86
+savings) and 8% Clothing referral (vs. 15%). Amazon PPC: $0.30–$1.00
+CPC; launch ACoS 30–50%; budget $500–$1K/month for 3 months.</p>
+<p>Shopify DTC: single-unit margin-negative after $4.00–$4.50 shipping.
+Bundles required: 3-pack at $24.99 ($8.33/unit) with free shipping.
+Subscribe &amp; Save at 15% discount.</p>
+<p>4. Expo Sales Economics</p>
+<p>Major expo booths: $5K–$8K rental; all-in $9.3K–$19.1K (NYC/CHI/BOS).
+Mid-size: $2.1K–$6.5K all-in. NYC expo: 100K+ visitors, 79% purchase
+rate, $86 median spend.</p>
+<p><strong>Selling 750 units at major expo with $12K costs = ~$4,500
+loss.</strong> Mid-size expo selling 200 units at $2.5K costs = ~$134
+profit. Expos are marketing investments: brand awareness, runner
+feedback, email capture, and race-director networking offset
+thin/negative direct margins.</p>
+<p>5. Registration Add-Ons: Highest-Margin Channel</p>
+<p><strong>RunSignUp: 6% + $1/cart.</strong> Effective fee:
+~$0.60–$0.72/unit. No subscription or setup fees. 94% of races pass fees
+to participants. ACTIVE.com: ~$0.99 + 5.9%.</p>
+<p><strong>Model: 10% of 50K registrants add $9.99 poncho = 5,000
+units.</strong> $49,950 revenue − $3,600 fees − $10,000 COGS − $6,000
+fulfillment = $30,350 net profit (60.8% margin). Per-unit: $6.07 net.
+Packet-pickup fulfillment: $1.00–$1.20/unit. Scales across unlimited
+races with near-zero fixed costs.</p>
+<p>6. Multi-Pack &amp; Subscription Economics</p>
+<p>432K US marathon finishers (5% YoY growth); 2.1M half-marathon
+finishers. Average runner: $1,748/year spend; only 17% repeat same
+event. Recommended: 3-pack $24.99 (17% discount), 6-pack $44.99 (25%
+discount), Subscribe &amp; Save 15% + free shipping.</p>
+<p>CAC: $50–$90 paid social; lower with micro-influencers
+($200–$800/post). 78.8% of DTC customers make only one purchase;
+subscriber LTV is 2.7× non-subscriber. LTV:CAC target 3:1 requires
+$150–$270 LTV — achievable through bundles and subscriptions only.</p>
+<p>7. Channel Margin Waterfall</p>
+<table>
+<colgroup>
+<col style="width: 29%" />
+<col style="width: 18%" />
+<col style="width: 18%" />
+<col style="width: 18%" />
+<col style="width: 13%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Cost Layer</strong></td>
+<td><strong>Amazon FBA</strong></td>
+<td><strong>Shopify 3-pack</strong></td>
+<td><strong>Reg Add-On</strong></td>
+<td><strong>Expo</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Selling price</strong></td>
+<td>$9.99</td>
+<td>$8.33/unit</td>
+<td>$9.99</td>
+<td>$9.99</td>
+</tr>
+<tr class="odd">
+<td><strong>Platform fees</strong></td>
+<td>–$4.42</td>
+<td>–$0.37</td>
+<td>–$0.72</td>
+<td>–$0.32</td>
+</tr>
+<tr class="even">
+<td><strong>Fulfillment</strong></td>
+<td>(in FBA)</td>
+<td>–$1.67</td>
+<td>–$1.20</td>
+<td>$0.00</td>
+</tr>
+<tr class="odd">
+<td><strong>COGS (25K)</strong></td>
+<td>–$1.94</td>
+<td>–$1.94</td>
+<td>–$1.94</td>
+<td>–$1.94</td>
+</tr>
+<tr class="even">
+<td><strong>Marketing (15%)</strong></td>
+<td>–$1.50</td>
+<td>–$1.25</td>
+<td>$0.00</td>
+<td>(booth)</td>
+</tr>
+<tr class="odd">
+<td><strong>Returns (5%)</strong></td>
+<td>–$0.50</td>
+<td>–$0.42</td>
+<td>–$0.06</td>
+<td>$0.00</td>
+</tr>
+<tr class="even">
+<td><strong>Overhead</strong></td>
+<td>–$0.50</td>
+<td>–$0.50</td>
+<td>$0.00</td>
+<td>$0.00</td>
+</tr>
+<tr class="odd">
+<td><strong>NET PROFIT</strong></td>
+<td>$1.13</td>
+<td>$2.18</td>
+<td>$6.07</td>
+<td>$7.73*</td>
+</tr>
+</tbody>
+</table>
+<p><em>*Expo per-unit profit excludes booth/travel/staffing fixed cost
+amortization.</em></p>
+<p>7.1 Breakeven by Price Point</p>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Price</strong></td>
+<td><strong>Margin/Unit</strong></td>
+<td><strong>Units for $50K</strong></td>
+<td><strong>Units for $75K</strong></td>
+</tr>
+<tr class="even">
+<td><strong>$5.99</strong></td>
+<td>~$1.01</td>
+<td>49,505</td>
+<td>74,257</td>
+</tr>
+<tr class="odd">
+<td><strong>$7.99</strong></td>
+<td>~$2.95</td>
+<td>16,949</td>
+<td>25,424</td>
+</tr>
+<tr class="even">
+<td><strong>$9.99</strong></td>
+<td>~$4.69</td>
+<td>10,661</td>
+<td>15,992</td>
+</tr>
+<tr class="odd">
+<td><strong>$12.99</strong></td>
+<td>~$7.40</td>
+<td>6,757</td>
+<td>10,135</td>
+</tr>
+</tbody>
+</table>
+<p>Fixed startup: certification $20–$50K, website $4–$12K, trademark
+$950–$2.5K, insurance $400–$1.2K, brand design $3–$10K, photography
+$1–$5K. Total: $30K–$83K. At $9.99, breakeven = 10,661–15,992 units.</p>
+<p>8. Competitive Pricing Intelligence</p>
+<table>
+<colgroup>
+<col style="width: 22%" />
+<col style="width: 18%" />
+<col style="width: 11%" />
+<col style="width: 47%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Competitor</strong></td>
+<td><strong>Price</strong></td>
+<td><strong>Est. Margin</strong></td>
+<td><strong>Differentiation</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Heatsheets Classic Blanket</strong></td>
+<td>$1.43/unit</td>
+<td>~83%</td>
+<td>Recyclable LDPE; NOT compostable</td>
+</tr>
+<tr class="odd">
+<td><strong>Heatsheets Poncho</strong></td>
+<td>$4.30/unit</td>
+<td>~88%</td>
+<td>Recyclable; individually packed</td>
+</tr>
+<tr class="even">
+<td><strong>GreenGear EcoRain</strong></td>
+<td>$6.50/unit</td>
+<td>~58–65%</td>
+<td>Sugarcane bio-PE; NOT compostable; rain only</td>
+</tr>
+<tr class="odd">
+<td><strong>Sheddable Shells</strong></td>
+<td>$10.35</td>
+<td>~70–75%</td>
+<td>Poly-spun windproof; no eco claims</td>
+</tr>
+<tr class="even">
+<td><strong>RetiSports Kit</strong></td>
+<td>$14.99–$19.99</td>
+<td>~65–75%</td>
+<td>Mylar poncho+sleeves+gloves bundle</td>
+</tr>
+<tr class="odd">
+<td><strong>JOSANTO compostable</strong></td>
+<td>$1.50–$3.50 B2B</td>
+<td>~50–55%</td>
+<td>PLA compostable; festivals; no warmth</td>
+</tr>
+<tr class="even">
+<td><strong>YOUR PONCHO</strong></td>
+<td>$9.99 DTC / $2.00 B2B</td>
+<td>55–75%</td>
+<td>ONLY compostable + warmth + marathon</td>
+</tr>
+</tbody>
+</table>
+<p><strong>No competitor occupies compostable + warmth +
+marathon.</strong> Heatsheets (45+ years, 50–75% margins) dominates
+finish-line but is not compostable. GreenGear ($6.50) is closest eco but
+NOT compostable and NO warmth. JOSANTO ($1.50–$3.50 B2B) is compostable
+but festivals-only, no metallization.</p>
+<p>9. Price Sensitivity Summary</p>
+<p>Van Westendorp estimates: too cheap &lt;$3.99, bargain $5.99–$7.99,
+optimal $8.99–$9.99, expensive $12.99–$14.99, too expensive &gt;$17.99.
+Eco premium: consumers state 9.7–12% willingness (PwC/Bain); actual 1–5%
+for 30% of buyers. Marathon demographics (HHI &gt;$100K) skew
+higher.</p>
+<p>By channel: Amazon $9.99 (Low-Price FBA + impulse), expo $9.99–$12.99
+(median $86 spend), registration add-on $7.99–$9.99 (marginal vs.
+$100–$300 entry), B2B $1.50–$2.50 (within warmth budget).</p>
+<p>10. Year 1 Scenario: Moderate Launch (Recommended)</p>
+<table>
+<colgroup>
+<col style="width: 28%" />
+<col style="width: 71%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Metric</strong></td>
+<td><strong>Value</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Investment</strong></td>
+<td>$35,000–$50,000</td>
+</tr>
+<tr class="odd">
+<td><strong>Units produced</strong></td>
+<td>25,000</td>
+</tr>
+<tr class="even">
+<td><strong>COGS/unit</strong></td>
+<td>$1.94</td>
+</tr>
+<tr class="odd">
+<td><strong>Channels</strong></td>
+<td>Amazon FBA, Shopify, 10–15 race add-ons, 3–5 expos</td>
+</tr>
+<tr class="even">
+<td><strong>Units sold</strong></td>
+<td>18,000–25,000</td>
+</tr>
+<tr class="odd">
+<td><strong>Revenue</strong></td>
+<td>$155,000–$175,000</td>
+</tr>
+<tr class="even">
+<td><strong>Marketing</strong></td>
+<td>$18,000–$25,000</td>
+</tr>
+<tr class="odd">
+<td><strong>Fixed costs</strong></td>
+<td>$35,000 (incl. BPI certification)</td>
+</tr>
+<tr class="even">
+<td><strong>Projected net</strong></td>
+<td>$5,000–$25,000 PROFIT</td>
+</tr>
+</tbody>
+</table>
+<p>Bootstrap ($20–$25K): 5K units, near breakeven, proves concept. Full
+Launch ($75–$100K): 50K units, $300–$350K revenue, $35–$65K profit.
+Minimum viable: ~15–20K units at $35–45K investment.</p>
+<p>11. Strategic Pricing Recommendations</p>
+<p><strong>1. Anchor at $9.99 DTC.</strong> Structural optimization:
+Low-Price FBA, 8% referral, impulse range, marginal alongside race
+registration.</p>
+<p><strong>2. B2B at $1.75–$2.50 with volume tiers.</strong> Fits warmth
+budget; justified by sustainability for CRS/Evergreen-seeking races.</p>
+<p><strong>3. Prioritize registration add-ons.</strong> $6.07/unit net
+vs. $1.13 Amazon. Near-zero fixed costs. Target 10–15 race partnerships
+Year 1.</p>
+<p><strong>4. Bundle for DTC.</strong> 3-pack $24.99 free shipping.
+Subscribe &amp; Save 15% discount. Single-unit DTC is
+margin-negative.</p>
+<p><strong>5. Begin certification immediately.</strong> BPI (12–18
+months, $15–$45K) is longest lead. Leverage NatureFlex NM existing
+certs. Target soft launch Fall 2026.</p>
+
+        </div>
+    </div></div>
+<footer style="text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px">
+Sustainable Race-Start Warmth Poncho — D2C Brand GTM Project · 60 Subprojects · 391 Tasks · ~15,500¶ · April 2026
+</footer></body></html>

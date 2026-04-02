@@ -1,0 +1,1038 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>P1B: Visual Identity Design System — Race Start Warmth GTM</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0e1a;--surface:#111827;--card:#1a2332;--border:#2a3a4e;--accent:#10b981;--accent2:#3b82f6;--text:#e2e8f0;--muted:#94a3b8;--white:#fff;--red:#ef4444;--amber:#f59e0b;--green:#10b981}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+/* Nav */
+nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
+nav .inner{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;max-width:1200px;margin:0 auto}
+nav .brand{font-weight:700;font-size:15px;color:var(--accent)}
+nav .links{display:flex;gap:8px;flex-wrap:wrap}
+nav .links a{color:var(--muted);font-size:13px;padding:4px 10px;border-radius:6px;transition:.2s}
+nav .links a:hover,nav .links a.active{color:var(--white);background:var(--card);text-decoration:none}
+/* Hero */
+.hero{padding:60px 0 40px;text-align:center}
+.hero h1{font-size:2.4em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:1.1em;max-width:700px;margin:0 auto}
+/* Stats bar */
+.stats{display:flex;justify-content:center;gap:32px;padding:24px 0;flex-wrap:wrap}
+.stat{text-align:center}.stat .num{font-size:1.8em;font-weight:800;color:var(--white)}.stat .label{font-size:.75em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+/* Cards */
+.grid{display:grid;gap:16px;margin:24px 0}
+.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}
+.grid-3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;transition:.2s}
+.card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.card h3{font-size:1.1em;margin-bottom:8px}.card p{color:var(--muted);font-size:.9em}
+.card .badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:8px}
+.card .meta{font-size:.8em;color:var(--muted);margin-top:12px}
+/* Section */
+.section{padding:40px 0}.section h2{font-size:1.6em;font-weight:700;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+/* Table */
+table{width:100%;border-collapse:collapse;font-size:.85em;margin:16px 0}
+th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:52px}
+td{padding:8px 12px;border-bottom:1px solid var(--border)}
+tr:hover td{background:rgba(16,185,129,.05)}
+.status-complete{color:var(--green);font-weight:600}.status-not{color:var(--muted)}
+/* Progress */
+.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:8px}
+.progress .bar{height:100%;background:var(--accent);border-radius:3px}
+/* Back link */
+.back{display:inline-block;color:var(--muted);font-size:.9em;margin-bottom:20px}
+.back:hover{color:var(--accent)}
+/* Download */
+.dl-card{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin:8px 0;transition:.2s}
+.dl-card:hover{border-color:var(--accent);text-decoration:none}
+.dl-card .icon{font-size:2em}.dl-card .info h4{color:var(--white);margin-bottom:4px}.dl-card .info p{color:var(--muted);font-size:.85em}
+/* Footer */
+footer{text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px}
+@media(max-width:768px){.stats{gap:16px}.stat .num{font-size:1.3em}nav .links{gap:4px}nav .links a{font-size:11px;padding:3px 6px}.hero h1{font-size:1.6em}}
+
+.doc-content{max-width:900px;margin:0 auto;padding:20px 0}
+.doc-content h1{font-size:1.8em;font-weight:800;color:var(--white);margin:32px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.doc-content h2{font-size:1.4em;font-weight:700;color:var(--accent);margin:28px 0 12px}
+.doc-content h3{font-size:1.15em;font-weight:600;color:var(--accent2);margin:20px 0 10px}
+.doc-content p{margin:8px 0;line-height:1.7}
+.doc-content table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85em}
+.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;border:1px solid var(--border)}
+.doc-content td{padding:8px 12px;border:1px solid var(--border);vertical-align:top}
+.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.doc-content ul,.doc-content ol{margin:8px 0 8px 24px}
+.doc-content li{margin:4px 0;line-height:1.6}
+.doc-content strong{color:var(--white)}
+.doc-content em{color:var(--muted)}
+.doc-content blockquote{border-left:3px solid var(--accent);padding:8px 16px;margin:12px 0;background:var(--card);border-radius:0 8px 8px 0}
+.nav-sub{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 24px;padding:12px 16px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
+.nav-sub a{font-size:.8em;color:var(--muted);padding:4px 10px;border-radius:4px;transition:.2s;white-space:nowrap}
+.nav-sub a:hover,.nav-sub a.active{color:var(--white);background:var(--surface);text-decoration:none}
+</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a></div></div></nav><div class="container">
+    <div style="padding-top:30px">
+        <a href="p1.html" class="back">← 🎨 P1: Brand Development</a>
+        <div class="nav-sub"><a href="p1.html">🎨 P1 Overview</a><a href="sub-p1a.html">P1A</a><a href="sub-p1b.html" class="active">P1B</a><a href="sub-p1c.html">P1C</a><a href="sub-p1d.html">P1D</a><a href="sub-p1e.html">P1E</a><a href="sub-p1.html">P1</a></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px">
+            <div>
+                <span style="background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px">P1B</span>
+                <span style="color:var(--muted);font-size:.85em;margin-left:8px">P1: Brand Development</span>
+            </div>
+            <a href="files/P1B_Visual_Identity_Design_System.docx" style="font-size:.85em;color:var(--accent);padding:6px 14px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
+        </div>
+        <div class="doc-content">
+            <p><strong>P1B: VISUAL IDENTITY</strong></p>
+<p><strong>&amp; DESIGN SYSTEM</strong></p>
+<p>Sub-Project P1B | Brand Development &amp; Identity | Weeks 5–8</p>
+<p><em>Complete Design Brief: Moodboard, Color System, Typography, Logo
+Specs, Packaging, and Content Requirements</em></p>
+<p>March 2026 | Confidential</p>
+<p>Executive Summary</p>
+<p><strong>This design system brief provides everything a designer needs
+to create the complete visual identity</strong> for the compostable
+warmth poncho brand. It includes a competitor visual audit, an 8-color
+palette anchored by Earth Green (#2D6A4F) and Dawn Gold (#D4A843), a
+6-level typography system using DM Sans / Inter, logo specifications
+with co-brand template requirements, product packaging specs with
+compostable material constraints, content needs across 6 channels, a
+moodboard defining the brand’s visual territory, and a week-by-week
+design process with $2,000–7,200 budget range.</p>
+<p>1. Brand Positioning: The Design Must Express This</p>
+<p><strong>Positioning statement:</strong> “The first running brand
+built around the start line — where performance meets sustainability in
+the moment before the race begins.”</p>
+<p>The visual identity must simultaneously communicate five qualities:
+(1) WARMTH — physical warmth and emotional comfort; (2) SUSTAINABILITY —
+earth-friendly without being preachy or granola; (3) PERFORMANCE —
+serious running brand, not a novelty product; (4) PREMIUM — worth $9.99
+vs. a free garbage bag; (5) COMMUNITY — the shared experience of the
+start-line moment.</p>
+<p><strong>The brand occupies a specific visual territory:</strong> more
+natural than Tracksmith (heritage), more focused than Cotopaxi (colorful
+chaos), more authentic than Allbirds (corporate minimal), and the
+complete OPPOSITE of Heatsheets (industrial/medical). Think: Patagonia’s
+activist authenticity meets Janji’s optimistic purpose, applied to a
+single powerful product moment.</p>
+<p>1.1 Brand Positioning Canvas</p>
+<p><strong>[GAP #1 CLOSED]</strong> The formal positioning framework
+that underpins all external communications, designer briefs, and partner
+presentations.</p>
+<p><strong>FOR marathon and half-marathon runners who face 30–180 minute
+start-line waits in cold weather (35–55°F).</strong></p>
+<p><strong>WHO currently rely on garbage bags, thrift-store sweatshirts,
+or shivering — solutions that are uncomfortable, undignified, and
+generate 230,000+ lbs of waste at America’s top 3 races
+alone.</strong></p>
+<p><strong>[BRAND NAME] IS the first compostable warmth poncho designed
+specifically for the race start line.</strong></p>
+<p><strong>THAT reflects 95% of body heat using the same metallized
+radiant barrier technology as NASA and Heatsheets, while being made from
+plant-based materials that compost completely within 90
+days.</strong></p>
+<p><strong>UNLIKE Heatsheets (recyclable but not compostable;
+finish-line focused), GreenGear EcoRain (eco-positioned but no warmth;
+rain-only), and JOSANTO (compostable but no metallization;
+festival-focused), our product is the ONLY solution that combines
+certified compostability + proven warmth + marathon-specific
+design.</strong></p>
+<p>1.2 Competitive Positioning Map (2×2 Matrix)</p>
+<p>Plot all competitors on two axes: X-axis = Warmth Performance (low to
+high), Y-axis = Sustainability Commitment (low to high).</p>
+<p>QUADRANT 1 (High Warmth + High Sustainability) — OUR POSITION: [BRAND
+NAME]. The only occupant of this quadrant. This is the whitespace.</p>
+<p>QUADRANT 2 (High Warmth + Low Sustainability): Heatsheets. Excellent
+warmth via metallized LDPE. Recyclable through Trex partnership but NOT
+compostable. 45-year incumbent.</p>
+<p>QUADRANT 3 (Low Warmth + High Sustainability): GreenGear EcoRain.
+Sugarcane bio-PE (recyclable #4, NOT compostable). Rain protection only,
+no metallization for warmth. JOSANTO: PLA compostable, no warmth
+metallization. RAINRAVER: EN 13432 compostable, no warmth
+metallization.</p>
+<p>QUADRANT 4 (Low Warmth + Low Sustainability): Garbage bags ($0, LDPE,
+landfill). Generic PE ponchos ($0.30–$0.80). Thrift-store sweatshirts
+($3, creates textile waste stream).</p>
+<p>This map should be produced as a visual graphic by the designer and
+included in: the brand guidelines (P1B), the B2B pitch deck (P1D Slide
+4), the website About page, and investor materials. It instantly
+communicates the competitive whitespace to any audience.</p>
+<p>2. Competitive Visual Audit</p>
+<table>
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 19%" />
+<col style="width: 16%" />
+<col style="width: 21%" />
+<col style="width: 26%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Brand</strong></td>
+<td><strong>Colors</strong></td>
+<td><strong>Typography</strong></td>
+<td><strong>Visual Mood</strong></td>
+<td><strong>Positioning</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Tracksmith</strong></td>
+<td>Deep navy + crimson + cream</td>
+<td>Serif (Plantin-style)</td>
+<td>Heritage/academic running aesthetic</td>
+<td>Premium performance running; $100–$200 apparel</td>
+</tr>
+<tr class="odd">
+<td><strong>Janji</strong></td>
+<td>Bright teal + coral + warm white</td>
+<td>Clean geometric sans-serif</td>
+<td>Global adventure; optimistic &amp; colorful</td>
+<td>Sustainability-forward running; 2% to clean water</td>
+</tr>
+<tr class="even">
+<td><strong>Allbirds</strong></td>
+<td>Forest green + cream + light gray</td>
+<td>Rounded sans-serif (Circular)</td>
+<td>Natural, approachable, minimal</td>
+<td>Sustainability leader; carbon-neutral shoes</td>
+</tr>
+<tr class="odd">
+<td><strong>Cotopaxi</strong></td>
+<td>Multi-color brights (Del Día)</td>
+<td>Bold sans-serif (custom)</td>
+<td>Adventurous, inclusive, joyful</td>
+<td>Outdoor gear; 1% to fight poverty</td>
+</tr>
+<tr class="even">
+<td><strong>Patagonia</strong></td>
+<td>Earth tones + mountain blue</td>
+<td>Clean sans-serif</td>
+<td>Environmental activism; rugged authenticity</td>
+<td>Category-defining outdoor sustainability</td>
+</tr>
+<tr class="odd">
+<td><strong>Heatsheets</strong></td>
+<td>Silver metallic + corporate blue</td>
+<td>Generic sans-serif</td>
+<td>Industrial/medical; NOT aspirational</td>
+<td>Incumbent competitor; 45-year legacy</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Design opportunity:</strong> No running brand owns the
+earth-tone + warmth + sustainability visual space. Tracksmith owns
+heritage. Janji owns adventure color. Allbirds owns minimal green.
+Heatsheets has no real visual brand. The compostable poncho brand can
+own the “dawn warmth” territory — the golden, misty, anticipatory
+feeling of a cold race morning.</p>
+<p>3. Color Palette: 8-Color System</p>
+<table>
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 9%" />
+<col style="width: 19%" />
+<col style="width: 28%" />
+<col style="width: 26%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Role &amp; Name</strong></td>
+<td><strong>Hex</strong></td>
+<td><strong>Description</strong></td>
+<td><strong>Rationale</strong></td>
+<td><strong>Usage</strong></td>
+</tr>
+<tr class="even">
+<td><strong>PRIMARY: Earth Green</strong></td>
+<td>#2D6A4F</td>
+<td>Deep forest green</td>
+<td>Sustainability, nature, growth; visible on silver metallized
+product</td>
+<td>Logo, headers, CTA buttons, primary packaging</td>
+</tr>
+<tr class="odd">
+<td><strong>PRIMARY: Warm Charcoal</strong></td>
+<td>#2B2D2F</td>
+<td>Near-black with warmth</td>
+<td>Premium grounding; readability; contrast</td>
+<td>Body text, secondary elements, product text</td>
+</tr>
+<tr class="even">
+<td><strong>SECONDARY: Dawn Gold</strong></td>
+<td>#D4A843</td>
+<td>Warm amber/gold</td>
+<td>Warmth, sunrise (race morning), energy, optimism</td>
+<td>Accents, icons, highlight text, call-to-action</td>
+</tr>
+<tr class="odd">
+<td><strong>SECONDARY: Mist White</strong></td>
+<td>#F5F2EB</td>
+<td>Warm off-white</td>
+<td>Clean, natural, breathable; NOT clinical white</td>
+<td>Backgrounds, packaging, negative space</td>
+</tr>
+<tr class="even">
+<td><strong>ACCENT: Corral Orange</strong></td>
+<td>#E07A47</td>
+<td>Warm burnt orange</td>
+<td>Energy, race-day excitement, visibility in crowd</td>
+<td>Buttons, badges, expo banners, limited use</td>
+</tr>
+<tr class="odd">
+<td><strong>ACCENT: Trail Sage</strong></td>
+<td>#8FBF9F</td>
+<td>Soft sage green</td>
+<td>Calming, eco-friendly, approachable</td>
+<td>Secondary backgrounds, illustrations, patterns</td>
+</tr>
+<tr class="even">
+<td><strong>UTILITY: Asphalt</strong></td>
+<td>#4A4A4A</td>
+<td>Medium gray</td>
+<td>Supporting text, borders, subtle UI elements</td>
+<td>Form fields, dividers, captions</td>
+</tr>
+<tr class="odd">
+<td><strong>METALLIC: Poncho Silver</strong></td>
+<td>#C0C0C0</td>
+<td>Metallized silver</td>
+<td>References the actual product’s metallized finish</td>
+<td>Product renders, premium packaging, special editions</td>
+</tr>
+</tbody>
+</table>
+<p>3.1 Color Usage Rules</p>
+<p>Primary colors (Earth Green + Warm Charcoal) should compose 60–70% of
+any design surface. Secondary colors (Dawn Gold + Mist White) compose
+20–30%. Accent colors (Corral Orange + Trail Sage) compose 5–10% — used
+for emphasis only. The metallic silver appears only in product renders
+and premium applications.</p>
+<p>ACCESSIBILITY: All text must meet WCAG 2.1 AA contrast ratios (4.5:1
+for body text, 3:1 for large text). Warm Charcoal on Mist White = 12.5:1
+(exceeds AAA). Earth Green on Mist White = 5.2:1 (passes AA). Dawn Gold
+should NOT be used for body text on light backgrounds (insufficient
+contrast). Test all combinations at
+webaim.org/resources/contrastchecker.</p>
+<p>4. Typography System</p>
+<table>
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 19%" />
+<col style="width: 11%" />
+<col style="width: 26%" />
+<col style="width: 26%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Level</strong></td>
+<td><strong>Font</strong></td>
+<td><strong>Size Range</strong></td>
+<td><strong>Usage</strong></td>
+<td><strong>Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Display / Hero</strong></td>
+<td>DM Sans Bold or Instrument Sans Bold</td>
+<td>32–72pt</td>
+<td>Headlines, hero banners, expo signage</td>
+<td>Free on Google Fonts; geometric, modern, highly legible</td>
+</tr>
+<tr class="odd">
+<td><strong>Heading H1</strong></td>
+<td>DM Sans Semi-Bold</td>
+<td>24–32pt</td>
+<td>Section headers, page titles</td>
+<td>Clean but warm; NOT cold/corporate</td>
+</tr>
+<tr class="even">
+<td><strong>Heading H2</strong></td>
+<td>DM Sans Medium</td>
+<td>18–24pt</td>
+<td>Subheadings, card titles</td>
+<td>Consistent hierarchy; easy to scan</td>
+</tr>
+<tr class="odd">
+<td><strong>Body</strong></td>
+<td>Inter Regular or DM Sans Regular</td>
+<td>14–18pt</td>
+<td>Long-form copy, product descriptions, emails</td>
+<td>Maximum readability; 1.5–1.7 line height</td>
+</tr>
+<tr class="even">
+<td><strong>Caption / Small</strong></td>
+<td>Inter Light or DM Sans Light</td>
+<td>11–13pt</td>
+<td>Legal text, image captions, metadata</td>
+<td>Subtle; doesn’t compete with body</td>
+</tr>
+<tr class="odd">
+<td><strong>Monospace (data)</strong></td>
+<td>JetBrains Mono or IBM Plex Mono</td>
+<td>14pt</td>
+<td>Impact numbers, stats, data callouts</td>
+<td>Used sparingly for data-driven credibility</td>
+</tr>
+</tbody>
+</table>
+<p>4.1 Typography Rules</p>
+<p>All fonts must be Google Fonts (free licensing for web + print). DM
+Sans is the primary brand font — geometric sans-serif with warmth
+(rounded terminals). Inter is the secondary/body font for maximum
+readability at small sizes. Never use more than 2 font families in a
+single design. Line height: 1.5–1.7 for body; 1.1–1.3 for headings.
+Letter spacing: 0 for body; +0.02–0.05em for all-caps labels.</p>
+<p>PRODUCT PRINTING CONSTRAINT: On-poncho printing will use 1–2 color
+flexographic or screen printing. The logo typeface must remain legible
+at 18pt+ when printed on metallized compostable film with potential
+surface irregularity. Test: print sample at actual size on crinkled
+aluminum foil to simulate.</p>
+<p>5. Logo Specifications</p>
+<table>
+<colgroup>
+<col style="width: 21%" />
+<col style="width: 78%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Attribute</strong></td>
+<td><strong>Specification</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Format</strong></td>
+<td>Primary: horizontal lockup (icon + wordmark). Secondary: stacked.
+Tertiary: icon-only (app, social avatar)</td>
+</tr>
+<tr class="odd">
+<td><strong>Colors</strong></td>
+<td>2-color max for product printing (Earth Green + Warm Charcoal).
+Reverse: white on dark backgrounds</td>
+</tr>
+<tr class="even">
+<td><strong>Minimum size</strong></td>
+<td>Icon-only: 16px (digital) / 10mm (print). Full lockup: 80px
+(digital) / 25mm (print)</td>
+</tr>
+<tr class="odd">
+<td><strong>Clear space</strong></td>
+<td>Minimum clear space = height of the icon letter on all sides</td>
+</tr>
+<tr class="even">
+<td><strong>Product application</strong></td>
+<td>1–2 color screen print or flexo on metallized compostable film; must
+read at arm’s length in corral</td>
+</tr>
+<tr class="odd">
+<td><strong>Co-brand template</strong></td>
+<td>Back panel (14–18in): race logo top, sponsor logo middle, brand logo
+bottom. Front: brand logo only</td>
+</tr>
+<tr class="even">
+<td><strong>File formats</strong></td>
+<td>SVG (scalable), PNG (transparent bg), EPS (print), PDF (packaging),
+ICO (favicon), WEBP (web)</td>
+</tr>
+<tr class="odd">
+<td><strong>Do’s</strong></td>
+<td>✅ Use on clean backgrounds. ✅ Maintain proportions. ✅ Use
+approved color variants only</td>
+</tr>
+<tr class="even">
+<td><strong>Don’ts</strong></td>
+<td>❌ Don’t rotate, stretch, or recolor. ❌ Don’t place on busy photos
+without overlay. ❌ Don’t add effects</td>
+</tr>
+</tbody>
+</table>
+<p>5.1 Logo Design Brief for Designer</p>
+<p>The logo must work across 4 scales: (1) 60+ feet (expo banner — bold,
+visible, recognizable at distance), (2) arm’s length (product packaging
+— clear brand identity), (3) thumbnail (social media avatar, app icon —
+recognizable at 32px), (4) 1–2 color on metallized film (poncho printing
+— single or two-color flexo/screen). The icon element should evoke BOTH
+warmth (wrap, cocoon, embrace) and sustainability (leaf, cycle, earth)
+without being a cliché leaf-in-a-circle.</p>
+<p><strong>Design direction:</strong> Consider an abstract mark that
+suggests a figure wrapped in warmth — curved lines forming a cocoon or
+embrace shape that also reads as a leaf or natural form. The wordmark
+should use a custom-modified DM Sans or similar geometric sans with
+subtle warmth (slightly rounded terminals, generous spacing). The
+overall feel should be “premium outdoor” — closer to Satisfy Running
+than to a generic eco-badge.</p>
+<p>5.2 Competitive Logo Visual Analysis</p>
+<p><strong>[GAP #2 CLOSED]</strong> A designer receiving this brief must
+know exactly what competitive logos look like to ensure differentiation.
+The following describes each competitor’s logo type so the designer can
+deliberately diverge.</p>
+<p>HEATSHEETS: Italicized sans-serif wordmark (“Heatsheets®”) in
+corporate blue/silver. No icon. Feels industrial/medical, like a
+first-aid product. Takeaway: our logo must feel WARM and ALIVE, not
+clinical. Avoid silver/blue dominant schemes in the logo itself (reserve
+silver for the actual product render only).</p>
+<p>TRACKSMITH: Illustrated running hare icon + serif wordmark.
+Heritage/academic aesthetic reminiscent of prep-school athletic crests.
+Premium and distinctive. Takeaway: our icon should feel natural/organic
+rather than illustrative/heraldic. We share Tracksmith’s premium
+aspiration but our visual language is earthy, not ivy-league.</p>
+<p>ALLBIRDS: Abstract bird icon (minimal line drawing) + rounded
+sans-serif wordmark (“allbirds” lowercase). Minimal, approachable,
+friendly. Takeaway: closest aesthetic reference for our wordmark style —
+geometric sans with rounded terminals. But our icon needs more WARMTH
+(Allbirds’ bird is cool/neutral).</p>
+<p>JANJI: Custom geometric sans-serif wordmark (“JANJI” all-caps) with
+no icon. Bold, clean, colorful. The brand’s visual identity comes from
+their vibrant prints, not the logo. Takeaway: if our brand uses a
+wordmark-only approach (no icon), it must be bolder and more distinctive
+than Janji’s to stand alone.</p>
+<p>COTOPAXI: Bold custom sans-serif wordmark + llama icon (used
+sparingly). The “Del Día” multicolor patchwork IS the brand’s visual
+identity more than the logo. Takeaway: our logo does not need to do
+everything — the brand color palette and photography style carry meaning
+beyond the mark.</p>
+<p>PATAGONIA: Mountain silhouette icon + serif wordmark. Iconic,
+timeless, instantly recognizable. Takeaway: a landscape/nature icon CAN
+work at scale (Patagonia proves it), but it must be highly original. A
+generic mountain, tree, or wave will feel derivative.</p>
+<p><strong>OUR LOGO MUST NOT BE: ❌ A leaf. ❌ A globe. ❌ A recycling
+symbol. ❌ A running figure (too generic). ❌ A raindrop. ❌ Any “eco
+badge” that looks like a certification mark. These are the most overused
+sustainability logo tropes and will immediately commoditize the brand.
+Instead, seek an abstract mark that evokes WARMTH + PROTECTION + BREVITY
+(the poncho wraps you, then disappears). Think: curved embrace, cocoon
+dissolving, sunrise arc, or breath in cold air.</strong></p>
+<p>6. Product Packaging Design</p>
+<table>
+<colgroup>
+<col style="width: 19%" />
+<col style="width: 19%" />
+<col style="width: 39%" />
+<col style="width: 21%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Component</strong></td>
+<td><strong>Material</strong></td>
+<td><strong>Design Brief</strong></td>
+<td><strong>Dimensions</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Individual wrapper</strong></td>
+<td>Compostable PLA film (30–40µm)</td>
+<td>Flat-pack format; runner can see silver metallized poncho through
+semi-clear film</td>
+<td>130mm × 180mm (approx. 5″×7″)</td>
+</tr>
+<tr class="odd">
+<td><strong>Printed card/sleeve</strong></td>
+<td>Compostable card stock or kraft paper</td>
+<td>Brand story front, composting instructions back, BPI cert mark,
+barcode</td>
+<td>130mm × 60mm sleeve around wrapper</td>
+</tr>
+<tr class="even">
+<td><strong>Sticker / seal</strong></td>
+<td>Compostable cellulose sticker</td>
+<td>Brand logo + “Certified Compostable” + BPI mark</td>
+<td>40mm diameter circle</td>
+</tr>
+<tr class="odd">
+<td><strong>Master carton</strong></td>
+<td>Standard corrugated (recyclable)</td>
+<td>50 or 100 units per carton; barcode + handling instructions</td>
+<td>Sized to poncho count; stackable</td>
+</tr>
+<tr class="even">
+<td><strong>Expo display box</strong></td>
+<td>Corrugated with printed brand graphics</td>
+<td>Countertop display for 20–50 units; price card holder</td>
+<td>~30cm W × 25cm D × 20cm H</td>
+</tr>
+</tbody>
+</table>
+<p>6.1 Packaging Design Requirements</p>
+<p>ALL packaging materials must be compostable or recyclable — this is
+non-negotiable for brand integrity. The wrapper must show the metallic
+silver poncho surface through the film (semi-transparent PLA) to
+communicate “warmth technology” at shelf. The printed card/sleeve
+carries the brand story and must include: brand logo, product name,
+tagline, BPI certification mark, composting instructions (icon-based for
+international use), barcode (UPC-A for retail, FNSKU for Amazon), and
+brand URL.</p>
+<p><strong>Composting instruction icons are CRITICAL:</strong> Design
+3–4 simple icons showing (1) USE at start line → (2) SHED at race start
+→ (3) COLLECT in compost bin → (4) RETURNS to earth in 90 days. These
+icons will be used on the poncho itself, the packaging, the website, and
+all marketing materials. Design for international legibility (minimal
+text, universal symbols).</p>
+<p>6.2 QR Code Strategy for Packaging</p>
+<p><strong>[GAP #3 CLOSED]</strong> Every individual poncho wrapper
+includes a QR code that bridges the physical product to the digital
+brand experience. This is not a nice-to-have — it is the primary
+post-purchase engagement mechanism and a KPI-tracked metric.</p>
+<p>DESTINATION URL: brand.com/scan — a dedicated mobile-optimized
+landing page (NOT the homepage). Page content: (1) 30-second composting
+instruction video (auto-play, muted), (2) “How did your poncho perform?”
+quick 3-question feedback form (warmth rating 1–5, would you buy again
+Y/N, one improvement suggestion), (3) email capture (“Get 15% off your
+next order”), (4) referral link generator (“Share with a running friend
+— they get $5 off”), (5) link to Strava Club.</p>
+<p>QR TECHNOLOGY: Use a DYNAMIC QR code service (QR.io at $7/mo, or
+Bitly QR at $10/mo, or Beaconstac at $5/mo). Dynamic QR means the
+destination URL can be changed without reprinting the physical packaging
+— critical for: A/B testing landing page variants, seasonal redirects
+(e.g., redirect to race-specific page during marathon season), and
+updating the feedback form as product iterates. Static QR codes are
+printed once and cannot be changed.</p>
+<p>QR DESIGN: The QR code should incorporate the brand logo in the
+center (most dynamic QR generators support this). Use Earth Green
+(#2D6A4F) for QR modules on Mist White (#F5F2EB) background. Minimum
+size: 20mm × 20mm (0.8″ × 0.8″) to ensure reliable scanning. Test
+scanning from 6–12 inches with 3+ phone models before production.</p>
+<p>PLACEMENT: On the printed card/sleeve (130mm × 60mm), position the QR
+code in the bottom-right corner with the text “Scan for composting
+instructions + exclusive offers” in 8pt above or beside the code. Do NOT
+place the QR on the poncho film itself — crumpling and metallization
+reflectivity interfere with scanning reliability.</p>
+<p>KPI TARGET: 5–10% of poncho purchasers scan the QR code within 7 days
+of purchase. At 25,000 units in Year 1, this means 1,250–2,500 scans
+generating: email signups, product feedback, referral links, and Strava
+Club joins. Track via the dynamic QR service dashboard + Google
+Analytics on the /scan landing page.</p>
+<p>7. Co-Brand Template: The #1 B2B Sales Tool</p>
+<p><strong>The co-brand mockup template is the single most important
+design asset for B2B sales.</strong> When a race director expresses
+interest, you must be able to generate a custom poncho mockup — showing
+their race logo, their sponsor logo, and the compostable brand mark —
+within 24 hours.</p>
+<p>7.1 Template Specifications</p>
+<p>Platform: Canva (accessible to non-designers) or Figma (for
+precision). Front panel: brand logo + tagline + composting icon strip.
+Back panel (14–18″ print area): race logo (top, largest), sponsor logo
+(middle), brand logo (bottom, smallest). The template should have
+clearly labeled drop zones: “Drag race logo here” and “Drag sponsor logo
+here.” Include placeholder logos of real marathons (NYC, Chicago,
+Boston) in the sample mockup to demonstrate the concept visually.</p>
+<p>7.2 Co-Brand Design Rules</p>
+<p>Race logo: up to 4 colors, maximum 40% of back panel area. Sponsor
+logo: up to 4 colors, maximum 30% of back panel. Brand logo: 1–2 colors,
+fixed position bottom-center, minimum 15% of back panel. Heatsheets
+custom printing has a 3,000-unit MOQ — match or beat this threshold.
+Provide race directors with a PDF proof approval process (email mockup →
+approve → production).</p>
+<p>8. Content Needs by Channel</p>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 10%" />
+<col style="width: 38%" />
+<col style="width: 36%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Channel</strong></td>
+<td><strong>Quantity</strong></td>
+<td><strong>Content Description</strong></td>
+<td><strong>Specifications</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Amazon listing</strong></td>
+<td>7+ images</td>
+<td>Main: poncho in packaging. 2: unfolded showing size. 3: being worn
+at start line. 4: comparison vs garbage bag. 5: composting demo. 6:
+infographic (warmth + eco stats). 7: lifestyle group shot at race.</td>
+<td>Amazon requirement: 1000×1000px min; pure white bg for main;
+infographics allowed for others</td>
+</tr>
+<tr class="odd">
+<td><strong>Shopify store</strong></td>
+<td>10–15 images + video</td>
+<td>All Amazon images + additional lifestyle, brand story images, team
+photos, race-day footage</td>
+<td>Consistent filter/editing; earthy warm tone; avoid overly polished
+stock-photo feel</td>
+</tr>
+<tr class="even">
+<td><strong>B2B data sheet</strong></td>
+<td>1-page PDF, print-ready</td>
+<td>Front: problem (waste photo) + solution (poncho photo) + 3 key
+stats. Back: specs, pricing tiers, testimonials, contact.</td>
+<td>8.5×11″; heavy on data; designed for race directors to
+print/share</td>
+</tr>
+<tr class="odd">
+<td><strong>Expo booth</strong></td>
+<td>Banner + tablecloth + display</td>
+<td>6ft retractable banner: hero image + brand name + tagline. Branded
+tablecloth. Countertop display box.</td>
+<td>Bold; readable from 15 feet; Earth Green + Dawn Gold dominant</td>
+</tr>
+<tr class="even">
+<td><strong>Social media kit</strong></td>
+<td>20+ templates</td>
+<td>Instagram: square + Stories + Reels covers. Facebook: cover + post.
+TikTok: profile. Strava: club banner.</td>
+<td>Canva templates for easy ongoing content creation</td>
+</tr>
+<tr class="odd">
+<td><strong>Co-brand mockup</strong></td>
+<td>Editable template</td>
+<td>Canva or Figma template: race director drops in race logo + sponsor
+logo; auto-generates preview</td>
+<td>CRITICAL B2B sales tool; send to race director within 24 hours of
+interest</td>
+</tr>
+</tbody>
+</table>
+<p>8.1 Photography Style Guide</p>
+<p>Tone: documentary/editorial. Real runners, real races, real cold
+mornings. Natural light preferred (golden hour, overcast). Warm color
+grading: slightly desaturated with warm shadows (Kodak Portra film
+emulation). Avoid: stock-photo perfection, overly staged poses, studio
+white-background isolation (except for Amazon main image
+requirement).</p>
+<p>Subject hierarchy: (1) Runners wearing the poncho at actual start
+lines (highest value), (2) Close-ups of hands holding the folded poncho,
+(3) The poncho being shed at race start (action shot), (4) Composting
+visual (poncho in compost bin or breaking down), (5) Race-day waste
+piles (the problem), (6) Product flat-lays with running accessories.</p>
+<p>9. Moodboard: The Brand’s Visual Territory</p>
+<table>
+<colgroup>
+<col style="width: 21%" />
+<col style="width: 78%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Dimension</strong></td>
+<td><strong>Direction</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Visual theme</strong></td>
+<td>Dawn at a race start line: golden hour light, breath visible in cold
+air, runners huddled, the moment before everything begins</td>
+</tr>
+<tr class="odd">
+<td><strong>Color feel</strong></td>
+<td>Earth tones with warmth — NOT clinical white/green. Think: morning
+fog over a forest, golden sunrise, wet asphalt reflecting light</td>
+</tr>
+<tr class="even">
+<td><strong>Texture references</strong></td>
+<td>Metallized silver (poncho surface), kraft paper (packaging), wood
+grain (sustainability), concrete (urban marathons)</td>
+</tr>
+<tr class="odd">
+<td><strong>Photography style</strong></td>
+<td>Documentary/editorial: real runners, real races, real emotions. NOT
+stock photos. Grainy/warm film look preferred over hyper-polished</td>
+</tr>
+<tr class="even">
+<td><strong>Competitor differentiation</strong></td>
+<td>OPPOSITE of Heatsheets (industrial/medical blue/silver). MORE
+natural than Tracksmith (heritage). MORE focused than Cotopaxi (colorful
+chaos)</td>
+</tr>
+<tr class="odd">
+<td><strong>Inspiration brands</strong></td>
+<td>Allbirds (minimal sustainability), Janji (adventure + purpose),
+Satisfy Running (artistic + premium), Patagonia (activist
+authenticity)</td>
+</tr>
+<tr class="even">
+<td><strong>Emotional territory</strong></td>
+<td>Anticipation, warmth, belonging, responsibility, lightness, morning
+ritual, community</td>
+</tr>
+<tr class="odd">
+<td><strong>What it is NOT</strong></td>
+<td>Corporate, clinical, preachy, generic “eco,” cheap, festival/party,
+medical/emergency</td>
+</tr>
+</tbody>
+</table>
+<p><strong>The single image that defines this brand:</strong> a runner
+at dawn, breath visible in cold air, wrapped in a warm earth-toned
+metallized poncho, standing among thousands in a start corral — calm,
+prepared, part of something bigger than themselves. The light is golden.
+The feeling is anticipation. The product is both invisible (it just
+works) and visible (it’s not a garbage bag).</p>
+<p>10. Design Process &amp; Budget</p>
+<p>10.1 Week-by-Week Timeline</p>
+<table>
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 38%" />
+<col style="width: 11%" />
+<col style="width: 38%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>When</strong></td>
+<td><strong>Deliverable</strong></td>
+<td><strong>Owner</strong></td>
+<td><strong>Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Week 5</strong></td>
+<td>Define brand positioning statement (task 1.07)</td>
+<td>Founder</td>
+<td>Use P0H synthesis; “The first running brand built around the start
+line”</td>
+</tr>
+<tr class="odd">
+<td><strong>Week 5–7</strong></td>
+<td>Commission logo design: 3+ concepts → 1 selected (task 1.08)</td>
+<td>Designer</td>
+<td>Brief: 1–2 color; works on silver metallic; reads at distance; feels
+premium-natural</td>
+</tr>
+<tr class="even">
+<td><strong>Week 6–7</strong></td>
+<td>Develop color palette (task 1.09) — use Section 3 of this doc</td>
+<td>Designer</td>
+<td>Test palette on mockups: poncho, packaging, web, expo banner</td>
+</tr>
+<tr class="odd">
+<td><strong>Week 6–8</strong></td>
+<td>Design product packaging: wrapper + card + sticker (task 1.10)</td>
+<td>Designer</td>
+<td>Must include: logo, composting instructions, BPI mark, barcode,
+brand URL</td>
+</tr>
+<tr class="even">
+<td><strong>Week 7–8</strong></td>
+<td>Create co-brand template (task 1.11)</td>
+<td>Designer</td>
+<td>Canva or Figma; race logo + sponsor logo placeholders; instant
+mockup capability</td>
+</tr>
+<tr class="odd">
+<td><strong>Week 7–8</strong></td>
+<td>Design B2B sustainability data sheet (task 1.12)</td>
+<td>Designer</td>
+<td>One side: problem + solution. Other side: specs + pricing + contact.
+Print-ready PDF</td>
+</tr>
+<tr class="even">
+<td><strong>Week 8</strong></td>
+<td>Build comprehensive brand guidelines document (task 1.13)</td>
+<td>Designer</td>
+<td>Logo usage, colors, typography, voice, photography style,
+do’s/don’ts</td>
+</tr>
+</tbody>
+</table>
+<p>10.2 Budget by Deliverable</p>
+<table>
+<colgroup>
+<col style="width: 28%" />
+<col style="width: 33%" />
+<col style="width: 38%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Deliverable</strong></td>
+<td><strong>Cost Range</strong></td>
+<td><strong>Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Logo design (3 concepts + revisions)</strong></td>
+<td>$300–$500 (99designs contest) or $800–$2,500 (freelance
+designer)</td>
+<td>99designs for speed; freelance for quality and brand depth</td>
+</tr>
+<tr class="odd">
+<td><strong>Color palette + typography system</strong></td>
+<td>Included with logo OR $200–$500 separately</td>
+<td>Use this document as the brief; designer refines and finalizes</td>
+</tr>
+<tr class="even">
+<td><strong>Product packaging design</strong></td>
+<td>$500–$1,500</td>
+<td>Wrapper, card/sleeve, sticker, master carton label</td>
+</tr>
+<tr class="odd">
+<td><strong>Co-brand template (Canva/Figma)</strong></td>
+<td>$200–$500</td>
+<td>CRITICAL B2B ASSET — prioritize this</td>
+</tr>
+<tr class="even">
+<td><strong>B2B data sheet / one-pager</strong></td>
+<td>$200–$400</td>
+<td>Print-ready PDF; one side problem/solution, other side specs</td>
+</tr>
+<tr class="odd">
+<td><strong>Expo booth graphics</strong></td>
+<td>$300–$800</td>
+<td>Retractable banner ($100–$200 for print), tablecloth ($50–$100),
+display box</td>
+</tr>
+<tr class="even">
+<td><strong>Social media template kit</strong></td>
+<td>$200–$400</td>
+<td>20+ Canva templates for ongoing content creation</td>
+</tr>
+<tr class="odd">
+<td><strong>Brand guidelines document</strong></td>
+<td>$300–$600 or included with full identity package</td>
+<td>PDF document: 15–20 pages covering all brand elements</td>
+</tr>
+<tr class="even">
+<td><strong>TOTAL</strong></td>
+<td>$2,000–$7,200</td>
+<td>Bootstrap: $2K (99designs + DIY). Professional: $5–7K (freelance
+designer + photographer)</td>
+</tr>
+</tbody>
+</table>
+<p>10.3 Designer Sourcing</p>
+<p>Option A (Bootstrap, $2–3K): 99designs logo contest ($299–$499) +
+Fiverr packaging designer ($200–$500) + DIY Canva templates. Fast but
+lower brand depth. Option B (Professional, $5–7K): freelance brand
+designer via Dribbble, Behance, or Creative Market. Look for designers
+with outdoor/sustainability brand experience. Single designer creates
+cohesive system. Option C (Agency, $10–20K+): brand agency like Motto,
+Red Antler, or Pentagram. Only if raising pre-seed capital. Overkill for
+initial launch.</p>
+<p><strong>Recommended: Option B.</strong> A single freelance designer
+creating the complete identity system ($5–7K) produces the most cohesive
+result. Source via Dribbble (“sustainable brand identity” search) or
+direct outreach to designers of Janji, Tracksmith, or Satisfy Running’s
+visual systems. Brief them with this document.</p>
+<p>11. Accessibility &amp; Inclusivity Guidelines</p>
+<p><strong>[GAP #11 CLOSED]</strong> A brand built on responsibility
+must practice it in every design decision. These guidelines ensure the
+brand is welcoming, usable, and representative of the full running
+community.</p>
+<p>11.1 Digital Accessibility (WCAG 2.1 AA)</p>
+<p>All web pages (landing page, Shopify store, brand.com/scan) must meet
+WCAG 2.1 Level AA compliance. Key requirements: all text meets minimum
+contrast ratios (4.5:1 body, 3:1 large text — already specified in
+Section 3.1). All interactive elements are keyboard-navigable (tab
+order, focus indicators). All forms have visible labels (not just
+placeholder text). All images have descriptive alt text. All videos have
+captions or transcripts. Test with: WAVE Web Accessibility Tool (free),
+axe DevTools browser extension (free), and manual keyboard-only
+navigation test.</p>
+<p>11.2 Image Alt Text Standards</p>
+<p>Every product image, lifestyle photo, and infographic MUST have
+descriptive alt text for screen readers and SEO. Standards: Describe the
+content, not the file (“Runner wearing [BRAND] compostable warmth poncho
+at marathon start line, golden hour lighting” NOT
+“poncho-lifestyle-1.jpg”). Include key product details (“metallized
+silver lining visible”). Keep under 125 characters for most screen
+readers. For infographics, describe the data (“Infographic showing
+4-step lifecycle: pack, wear, shed, compost”). For decorative images
+only, use empty alt (“”).</p>
+<p>11.3 Inclusive Photography</p>
+<p>All lifestyle and marketing photography must represent the full
+diversity of the running community. Requirements: Race/ethnicity: every
+set of 3+ lifestyle images must include runners of at least 2
+racial/ethnic backgrounds. Body type: include runners across body types
+— running is not a size. Age: include runners across age groups (the
+25–29 cohort is the largest marathon demographic, but 50+ runners are a
+significant and growing segment). Ability: where possible, include
+adaptive athletes (racing wheelchairs, guides for visually impaired
+runners). Avoid: exclusively fit/thin/young models, tokenistic
+single-minority representation, and stock-photo-perfect poses that feel
+inauthentic.</p>
+<p>11.4 Inclusive Language</p>
+<p>Default to gender-neutral language in all copy: use “runners” not
+“men and women,” “they/their” as singular pronoun where needed. Avoid:
+gendered assumptions about runners (“he” as default), ableist language
+(“crazy fast,” “lame excuse”), and exclusionary language (“for serious
+runners” — implies casual runners are unwelcome). The brand voice (P1C
+Section 2, Principle 5) defines “Inclusive, not exclusive”: every runner
+at every pace deserves warmth.</p>
+<p>11.5 Product Sizing Honesty</p>
+<p>The poncho is marketed as “one size fits all.” Be honest about what
+this means: specify the actual dimensional range in centimeters/inches
+(e.g., fits chest circumference up to 54″, length 32″ from shoulder). If
+the poncho does NOT comfortably fit all body types, say “one size fits
+most” and document the range. Include a size reference image showing the
+poncho on runners of different body types. Overpromising on sizing leads
+to returns, negative reviews, and loss of trust.</p>
+<p>12. Brand Guidelines Document: Complete Outline</p>
+<p><strong>[GAP #5 CLOSED]</strong> This is the page-by-page table of
+contents for the comprehensive brand guidelines PDF. A designer
+producing this document should create 18–22 pages following this
+structure exactly. The guidelines are a living document —
+version-controlled with a date on every page footer.</p>
+<p><strong>Page 1: COVER. Brand logo (primary lockup, centered).
+Document title: “Brand Guidelines.” Version number + date (e.g., v1.0 —
+March 2026). “Confidential — For Internal and Partner Use
+Only.”</strong></p>
+<p><strong>Pages 2–3: BRAND STORY &amp; POSITIONING. Brand origin story
+(50-word version from P1C Section 1.2). Full Brand Positioning Canvas
+(Section 1.1 of this document). 2×2 competitive positioning map (Section
+1.2). Mission statement: one sentence. Brand values: 3–5 values, each
+with a one-sentence explanation.</strong></p>
+<p><strong>Pages 4–6: LOGO. Primary logo (horizontal lockup). Secondary
+logo (stacked). Tertiary logo (icon-only / social avatar). Clear space
+rules (minimum = height of icon letter on all sides). Minimum size
+specifications (icon: 16px digital / 10mm print; lockup: 80px / 25mm).
+Color variants: full color on light, full color on dark, monochrome
+white, monochrome black. DO’s (6 examples of correct usage). DON’Ts (6
+examples of incorrect usage: stretched, rotated, recolored, on busy
+backgrounds, with effects, with altered proportions). File format
+reference (SVG, PNG, EPS, PDF, ICO, WEBP).</strong></p>
+<p><strong>Pages 7–8: COLOR PALETTE. Full 8-color system from Section 3
+of this document. Each color shown as: large swatch, color name, HEX
+value, RGB values, CMYK values (for print), and nearest Pantone
+reference. Usage ratios: 60–70% primary, 20–30% secondary, 5–10% accent.
+Accessibility contrast pairs table. Examples of correct and incorrect
+color usage.</strong></p>
+<p><strong>Pages 9–10: TYPOGRAPHY. Full 6-level hierarchy from Section
+4. Font families with download links (Google Fonts URLs). Sizing and
+spacing specifications for web, print, and product. Examples of correct
+heading + body combinations. Fonts NOT to use (list 3–4 common
+alternatives that are off-brand).</strong></p>
+<p><strong>Pages 11–12: PHOTOGRAPHY STYLE. Tone description from Section
+8.1 of this document + Section 9 moodboard. 4–6 example images showing
+the desired aesthetic (golden hour, documentary, warm film look). 2–3
+anti-examples (stock-photo perfect, clinical white, overly staged).
+Subject hierarchy: runners at start lines &gt; product close-ups &gt;
+composting visuals &gt; data visualizations. Inclusivity requirements
+from Section 11.3.</strong></p>
+<p><strong>Pages 13–14: VOICE &amp; TONE. Summary of P1C Section 2 (5
+principles: warm not preachy, runner-first, specific, confident,
+inclusive). Channel-by-channel voice application (Instagram, email,
+Amazon, B2B, expo). 3 “Sounds Like This” / “NOT Like This” examples per
+principle.</strong></p>
+<p><strong>Pages 15–16: PACKAGING &amp; PRODUCT APPLICATION. Packaging
+component specs from Section 6. QR code specifications from Section 6.2.
+Product printing constraints (1–2 color, flexo/screen). Composting
+instruction icon strip specifications. Co-branding rules from Section
+7.</strong></p>
+<p><strong>Pages 17–18: DIGITAL TEMPLATES. Social media templates
+overview (Instagram grid, Stories, Reels covers, Facebook, TikTok).
+Email header/footer design. Website page layout principles. All
+templates reference Canva template library.</strong></p>
+<p><strong>Pages 19–20: ACCESSIBILITY &amp; INCLUSIVITY. Alt text
+standards from Section 11.2. Inclusive photography requirements from
+Section 11.3. Language guidelines from Section 11.4. WCAG compliance
+summary from Section 11.1.</strong></p>
+<p><strong>Pages 21–22: APPENDIX. Contact information for brand
+questions. Version history log. Quick-reference card: logo + colors +
+fonts on a single page (for partners and vendors who need a cheat
+sheet).</strong></p>
+<p>13. Conclusion: Design as Competitive Moat</p>
+<p><strong>In a market of garbage bags and industrial silver blankets,
+design IS the product differentiation.</strong> A runner choosing
+between a $0.00 garbage bag and a $9.99 branded compostable poncho is
+making a values-based purchase. The visual identity must justify that
+premium by communicating quality, authenticity, and purpose in every
+touchpoint — from the Amazon listing to the poncho wrapper to the expo
+booth.</p>
+<p><strong>The co-brand template is the highest-ROI design
+investment.</strong> A race director who sees their logo on a
+professional mockup within 24 hours of expressing interest converts at
+3–5× the rate of one who receives a generic product sheet. Design the
+template first, refine the rest as you go.</p>
+<p><strong>Use this document as the complete design brief.</strong> Hand
+it to a designer alongside the P0H Go/No-Go synthesis and P1A Brand
+Naming document. Together, these three documents provide everything
+needed to create a world-class visual identity for a category-creating
+product.</p>
+
+        </div>
+    </div></div>
+<footer style="text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px">
+Sustainable Race-Start Warmth Poncho — D2C Brand GTM Project · 60 Subprojects · 391 Tasks · ~15,500¶ · April 2026
+</footer></body></html>

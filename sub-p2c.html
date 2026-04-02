@@ -1,0 +1,931 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>P2C: Prototype Production — Race Start Warmth GTM</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0e1a;--surface:#111827;--card:#1a2332;--border:#2a3a4e;--accent:#10b981;--accent2:#3b82f6;--text:#e2e8f0;--muted:#94a3b8;--white:#fff;--red:#ef4444;--amber:#f59e0b;--green:#10b981}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+/* Nav */
+nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
+nav .inner{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;max-width:1200px;margin:0 auto}
+nav .brand{font-weight:700;font-size:15px;color:var(--accent)}
+nav .links{display:flex;gap:8px;flex-wrap:wrap}
+nav .links a{color:var(--muted);font-size:13px;padding:4px 10px;border-radius:6px;transition:.2s}
+nav .links a:hover,nav .links a.active{color:var(--white);background:var(--card);text-decoration:none}
+/* Hero */
+.hero{padding:60px 0 40px;text-align:center}
+.hero h1{font-size:2.4em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:1.1em;max-width:700px;margin:0 auto}
+/* Stats bar */
+.stats{display:flex;justify-content:center;gap:32px;padding:24px 0;flex-wrap:wrap}
+.stat{text-align:center}.stat .num{font-size:1.8em;font-weight:800;color:var(--white)}.stat .label{font-size:.75em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+/* Cards */
+.grid{display:grid;gap:16px;margin:24px 0}
+.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}
+.grid-3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;transition:.2s}
+.card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.card h3{font-size:1.1em;margin-bottom:8px}.card p{color:var(--muted);font-size:.9em}
+.card .badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:8px}
+.card .meta{font-size:.8em;color:var(--muted);margin-top:12px}
+/* Section */
+.section{padding:40px 0}.section h2{font-size:1.6em;font-weight:700;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+/* Table */
+table{width:100%;border-collapse:collapse;font-size:.85em;margin:16px 0}
+th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:52px}
+td{padding:8px 12px;border-bottom:1px solid var(--border)}
+tr:hover td{background:rgba(16,185,129,.05)}
+.status-complete{color:var(--green);font-weight:600}.status-not{color:var(--muted)}
+/* Progress */
+.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:8px}
+.progress .bar{height:100%;background:var(--accent);border-radius:3px}
+/* Back link */
+.back{display:inline-block;color:var(--muted);font-size:.9em;margin-bottom:20px}
+.back:hover{color:var(--accent)}
+/* Download */
+.dl-card{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin:8px 0;transition:.2s}
+.dl-card:hover{border-color:var(--accent);text-decoration:none}
+.dl-card .icon{font-size:2em}.dl-card .info h4{color:var(--white);margin-bottom:4px}.dl-card .info p{color:var(--muted);font-size:.85em}
+/* Footer */
+footer{text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px}
+@media(max-width:768px){.stats{gap:16px}.stat .num{font-size:1.3em}nav .links{gap:4px}nav .links a{font-size:11px;padding:3px 6px}.hero h1{font-size:1.6em}}
+
+.doc-content{max-width:900px;margin:0 auto;padding:20px 0}
+.doc-content h1{font-size:1.8em;font-weight:800;color:var(--white);margin:32px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.doc-content h2{font-size:1.4em;font-weight:700;color:var(--accent);margin:28px 0 12px}
+.doc-content h3{font-size:1.15em;font-weight:600;color:var(--accent2);margin:20px 0 10px}
+.doc-content p{margin:8px 0;line-height:1.7}
+.doc-content table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85em}
+.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;border:1px solid var(--border)}
+.doc-content td{padding:8px 12px;border:1px solid var(--border);vertical-align:top}
+.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.doc-content ul,.doc-content ol{margin:8px 0 8px 24px}
+.doc-content li{margin:4px 0;line-height:1.6}
+.doc-content strong{color:var(--white)}
+.doc-content em{color:var(--muted)}
+.doc-content blockquote{border-left:3px solid var(--accent);padding:8px 16px;margin:12px 0;background:var(--card);border-radius:0 8px 8px 0}
+.nav-sub{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 24px;padding:12px 16px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
+.nav-sub a{font-size:.8em;color:var(--muted);padding:4px 10px;border-radius:4px;transition:.2s;white-space:nowrap}
+.nav-sub a:hover,.nav-sub a.active{color:var(--white);background:var(--surface);text-decoration:none}
+</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a></div></div></nav><div class="container">
+    <div style="padding-top:30px">
+        <a href="p2.html" class="back">← ⚙️ P2: Product Design</a>
+        <div class="nav-sub"><a href="p2.html">⚙️ P2 Overview</a><a href="sub-p2a.html">P2A</a><a href="sub-p2b.html">P2B</a><a href="sub-p2c.html" class="active">P2C</a><a href="sub-p2d.html">P2D</a><a href="sub-p2e.html">P2E</a><a href="sub-p2f.html">P2F</a></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px">
+            <div>
+                <span style="background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px">P2C</span>
+                <span style="color:var(--muted);font-size:.85em;margin-left:8px">P2: Product Design</span>
+            </div>
+            <a href="files/P2C_Prototype_Production.docx" style="font-size:.85em;color:var(--accent);padding:6px 14px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
+        </div>
+        <div class="doc-content">
+            <p><strong>P2C: PROTOTYPE</strong></p>
+<p><strong>PRODUCTION</strong></p>
+<p>Sub-Project P2C | Product Design &amp; Material Engineering | Weeks
+8–12</p>
+<p><em>Complete Prototype Playbook: Supplier Ordering, 10-Person Corral
+Simulation, Tear-Away Validation, Co-Brand Print Testing, Fit Matrix,
+Supplier Selection Scorecard, and Production Terms</em></p>
+<p>March 2026 | Confidential</p>
+<p>Executive Summary</p>
+<p><strong>P2C is where the product becomes REAL.</strong> P2A selected
+the materials (Config B: NatureFlex NM + PLA spunbond 35gsm). P2B
+designed the product (55″×34″, elastic hood, center-front tear-away, 4
+branding zones). P2C orders 50–100 prototype units from 2–3 converters,
+subjects them to a rigorous 10-person corral simulation test, validates
+the tear-away system in 7 conditions, tests co-brand printing quality,
+evaluates fit across XS–XXL body types, selects the winning supplier,
+and negotiates final production terms.</p>
+<p><strong>The critical decision at the end of P2C:</strong> commit to a
+production order of 5,000–25,000 units (Moderate scenario from P0F) or
+iterate on the prototype. This decision is gated by the corral
+simulation results: ≥8/10 testers must rate warmth ≥6/10, achieve clean
+tear-away in ≤3 seconds with cold wet hands, and say “yes” to paying
+$9.99. If these thresholds are not met, do NOT proceed to production —
+iterate until they are.</p>
+<p>1. Prototype Ordering: 50–100 Units from Top 2–3 Converters</p>
+<p><strong>Order prototypes from multiple converters
+simultaneously</strong> to: (A) compare quality and construction
+approaches, (B) benchmark pricing, (C) establish backup supplier
+relationships, and (D) test different material configurations (Config B
+from one converter, Config C from another). Never rely on a single
+supplier this early in the process.</p>
+<table>
+<colgroup>
+<col style="width: 15%" />
+<col style="width: 17%" />
+<col style="width: 27%" />
+<col style="width: 12%" />
+<col style="width: 10%" />
+<col style="width: 17%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Converter</strong></td>
+<td><strong>Order</strong></td>
+<td><strong>Rationale</strong></td>
+<td><strong>Est. Cost</strong></td>
+<td><strong>Lead Time</strong></td>
+<td><strong>Contact</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Converter A (Parkside, UK)</strong></td>
+<td>50 units Config B (NatureFlex NM + PLA spunbond 35gsm)</td>
+<td>Parkside is both a film supplier AND converter — single-source
+simplifies coordination. Send P2B factory tech spec. Request: ultrasonic
+bonding, laser perforation, elastic hood, 1-color print (brand logo
+only), folded into inner bags.</td>
+<td>$800–$1,500 (sample run pricing)</td>
+<td>3–4 weeks from tech spec approval</td>
+<td>info@parksideflex.com</td>
+</tr>
+<tr class="odd">
+<td><strong>Converter B (ProAmpac, US)</strong></td>
+<td>50 units Config B (same spec)</td>
+<td>ProAmpac has short-run capability and ProActive Compostable product
+line. Will make a single pouch or small run if required. US-based =
+faster shipping, easier communication.</td>
+<td>$600–$1,200</td>
+<td>2–3 weeks</td>
+<td>800-543-7030; proampac.com</td>
+</tr>
+<tr class="even">
+<td><strong>Converter C (China via Alibaba)</strong></td>
+<td>50 units Config C (ENVIROMET or generic met BOPLA + PLA
+spunbond)</td>
+<td>Source via Alibaba Gold Suppliers with compostable packaging
+experience. Lower cost but longer lead time + language barrier. Useful
+for cost benchmarking.</td>
+<td>$300–$600</td>
+<td>4–6 weeks (+ 2–3 weeks shipping)</td>
+<td>Alibaba.com search: “compostable poncho manufacturer”</td>
+</tr>
+<tr class="odd">
+<td><strong>Optional: TIPA direct</strong></td>
+<td>25 units Config C variant (TIPA 312MET + PLA spunbond)</td>
+<td>TIPA’s garment bag manufacturing experience is directly relevant.
+Contact for prototype collaboration. May produce at no cost if
+positioned as a case study for their 312MET film.</td>
+<td>$0–$500 (potential free collaboration)</td>
+<td>3–5 weeks</td>
+<td>tipa-corp.com</td>
+</tr>
+</tbody>
+</table>
+<p>1.1 Prototype Order Package</p>
+<p>Send each converter a complete order package: (1) Factory tech spec
+PDF from P2B Section 7 (15–25 pages, all dimensions + materials +
+assembly process). (2) Material technical data sheets (NatureFlex NM
+TDS, PLA spunbond TDS). (3) Artwork files (brand logo EPS/AI, 1:1 scale,
+with branding zone template). (4) Fold pattern diagram. (5) Cover email
+specifying: quantity, material configuration, timeline, and budget
+expectation. (6) NDA for signature before sharing proprietary design
+details.</p>
+<p>1.2 Prototype Receiving Inspection</p>
+<p>When prototypes arrive, conduct IMMEDIATE inspection before
+scheduling corral simulation. Checklist: (1) Count units (full quantity
+received?). (2) Measure 5 random units against P2B dimensional specs
+(±0.5″ tolerance). (3) Visual inspection: metallization quality, bonding
+integrity, perforation visibility, print quality. (4) Quick tear test: 3
+units torn at room temperature — clean path? Reasonable force? (5)
+Weight check: 3 units on kitchen scale (±10% of 100–120g target). (6)
+Fold/pack test: can 3 units be refolded into 6″×4.5″ inner bag? Document
+ALL findings with photographs. If any converter’s prototypes fail basic
+inspection, do NOT include them in the corral simulation — request
+revised samples.</p>
+<p>2. 10-Person Corral Simulation Test</p>
+<p><strong>This is the most important test in the entire product
+development process.</strong> It answers the ONE question that matters:
+will a real runner, standing in a cold corral at 6 AM, choose this
+product over a garbage bag and tell their friends about it? P2A’s
+8-tester field trial validated MATERIALS. P2C’s 10-person simulation
+validates the COMPLETE PRODUCT from a converter.</p>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 81%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Element</strong></td>
+<td><strong>Protocol</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Testers</strong></td>
+<td>10 runners minimum (8 from P2A field trial + 2 fresh testers for
+unbiased perspective). Mix: 3 female, 3 male, 2 non-binary or
+additional; sizes XS, S, M, L, XL, XXL represented. At least 2
+first-time marathon runners.</td>
+</tr>
+<tr class="odd">
+<td><strong>Location</strong></td>
+<td>Outdoor venue accessible at 5:30–7:30 AM: park, parking lot, school
+track, or local 5K race start area. Must be open to wind. Ideal: attend
+an actual local race and conduct test with consenting participants.</td>
+</tr>
+<tr class="even">
+<td><strong>Conditions target</strong></td>
+<td>35–45°F (2–7°C), wind 5–20 mph, overcast or light drizzle. If
+unavailable: earliest cold morning available + industrial fan for wind
+simulation. Log: ambient temp (digital thermometer), wind speed
+(handheld anemometer $15–20), humidity (hygrometer), precipitation.</td>
+</tr>
+<tr class="odd">
+<td><strong>Pre-test setup</strong></td>
+<td>Each tester receives: converter-produced prototype (V0.3), adhesive
+thermocouple sensors (4 sites: chest, upper back, forearm, thigh), FLIR
+thermal baseline capture. Tester wears their normal race-day base layer
+under the poncho.</td>
+</tr>
+<tr class="even">
+<td><strong>Phase 1: Standing (0–30 min)</strong></td>
+<td>Testers stand in a simulated corral. Permitted: stretching, checking
+phone, holding coffee cup, chatting — all normal corral activities. NOT
+permitted: vigorous movement, jogging. Record: skin temperature every 5
+min, thermal comfort (1–7 Likert) every 10 min.</td>
+</tr>
+<tr class="odd">
+<td><strong>Phase 2: Walking (30–35 min)</strong></td>
+<td>Testers walk 400m at a brisk pace (simulating walk to start corral).
+Assess: does poncho shift? Does hood stay on? Do side slits allow arm
+swing? Does hemline interfere with stride?</td>
+</tr>
+<tr class="even">
+<td><strong>Phase 3: Tear-away (35–40 min)</strong></td>
+<td>Simulated gun: testers tear off poncho using pull tab. 3 attempts
+each: (1) warm dry hands, (2) cold wet hands (spray with water + wait 2
+min in cold), (3) while walking briskly. Time each tear. Photograph tear
+path. Record: clean tear Y/N, seconds, ease rating (1–5).</td>
+</tr>
+<tr class="odd">
+<td><strong>Phase 4: Debrief (40–60 min)</strong></td>
+<td>Individual 10-minute interviews: warmth rating (1–10), overall
+comfort (1–10), “Would you pay $9.99 for this?” (yes/no/maybe +
+reasoning), “What would you improve?” (open-ended), “Would you recommend
+to a running friend?” (NPS-style 0–10).</td>
+</tr>
+<tr class="even">
+<td><strong>Documentation</strong></td>
+<td>Video all phases (consent forms signed). FLIR captures at 0, 15, 30
+min. Photograph: each tester front + back at 0 and 30 min. Photograph:
+every tear path. All data into a master spreadsheet within 24
+hours.</td>
+</tr>
+<tr class="odd">
+<td><strong>Success criteria</strong></td>
+<td>≥8/10 testers rate warmth ≥6/10. ≥8/10 rate comfort ≥6/10. ≥8/10
+achieve clean tear in ≤3 sec in ALL 3 hand conditions. ≥8/10 say “yes”
+to $9.99. Mean NPS ≥50. ZERO safety concerns (e.g., choking hazard from
+elastic, sharp edges from perforation).</td>
+</tr>
+</tbody>
+</table>
+<p>2.1 Tester Recruitment</p>
+<p>Source testers from: local running clubs (Fleet Feet group runs,
+November Project), r/running local city threads, Strava Club members,
+personal running network. Compensation: free poncho (keep the prototype)
++ $25 Amazon gift card per session. Require: signed consent form (for
+video/photo use in marketing — dual-purpose: product testing + content
+creation per P1D Section 6), commitment to full session (60 minutes
+including debrief).</p>
+<p>DIVERSITY REQUIREMENT per P1B Section 11.3: minimum 3 different body
+sizes, 2+ racial/ethnic backgrounds, 2+ genders. At least 1 tester over
+age 50 and at least 1 first-time marathon runner. This is not just
+ethical — it produces better product data and ensures the poncho works
+for the FULL running community.</p>
+<p>2.2 Consent Form &amp; Liability Waiver</p>
+<p><strong>[GAP P2-14 CLOSED]</strong> Every tester must sign a consent
+form BEFORE participating in any testing session. This form serves 3
+purposes: (A) legal liability protection for product testing with a
+prototype, (B) photo/video release for marketing use per P1D content
+strategy, and (C) data privacy notice for feedback data. Collect signed
+originals and store for 3+ years.</p>
+<p>The consent form must include the following sections: (1) PARTICIPANT
+INFORMATION: full name, email, phone, emergency contact. (2) PRODUCT
+TESTING ACKNOWLEDGMENT: “I understand that the product being tested is a
+prototype and may not perform as intended. I voluntarily assume all
+risks associated with wearing and testing this product, including but
+not limited to: skin irritation, allergic reaction (product contains
+natural rubber latex in hood elastic), and accidental tearing of the
+product.” (3) PHOTO/VIDEO RELEASE: “I grant [BRAND NAME / Legal Entity]
+and its assigns the irrevocable right to use photographs, video
+recordings, and audio recordings captured during testing sessions for
+any purpose including advertising, marketing, social media, website, and
+press materials, without additional compensation.” (4) DATA PRIVACY:
+“Feedback data collected during testing will be stored securely and used
+for product development purposes. Personally identifiable information
+will not be shared with third parties without my consent.” (5)
+COMPENSATION: “I will receive one free prototype poncho and a $25 Amazon
+gift card per testing session attended.” (6) SIGNATURE BLOCK:
+participant signature, printed name, date. Witness signature (founder or
+team member).</p>
+<p>ATTORNEY REVIEW: Have a business attorney review the consent form
+template before first use. Cost: $200–$500 for a standard waiver/release
+review. Alternatively: use a free template from LawDepot, Rocket Lawyer,
+or Docracy as a starting point and customize with the product-specific
+language above. Key legal requirement: the waiver must be signed
+VOLUNTARILY (no coercion) and the participant must have an opportunity
+to read it fully before signing. Provide a copy to each participant for
+their records.</p>
+<p>2.3 Comparative Testing</p>
+<p>For maximum data value, include COMPARISON products in the
+simulation. Each tester also wears (in randomized order across separate
+sessions or sequential 15-min blocks): (A) a standard PE garbage bag,
+(B) a Heatsheets Classic blanket (if available; order $150 100-count
+from shop.heatsheets.com), (C) a thrift-store sweatshirt. At end, each
+tester ranks all 4 options on: warmth, comfort, convenience, willingness
+to pay. This comparative data is GOLD for marketing (“9 out of 10
+runners preferred [BRAND] over a garbage bag”) and for the B2B pitch
+deck (P1D Slide 8).</p>
+<p>3. Tear-Away Validation: 7-Condition Testing Matrix</p>
+<p><strong>The tear-away system was designed in P2B with target
+parameters (3–5 N initiation, 2mm/1mm perforation).</strong> P2C
+validates those parameters on CONVERTER-PRODUCED prototypes, which may
+behave differently from hand-fabricated samples due to: machine
+perforation consistency, bonding method variations, material batch
+differences, and aging during shipping.</p>
+<table>
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 21%" />
+<col style="width: 16%" />
+<col style="width: 18%" />
+<col style="width: 27%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Condition</strong></td>
+<td><strong>Setup</strong></td>
+<td><strong>Protocol</strong></td>
+<td><strong>Pass Criteria</strong></td>
+<td><strong>Purpose</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Warm dry hands (baseline)</strong></td>
+<td>Room temp; hands dry</td>
+<td>10 tears per tester; record time + clean Y/N</td>
+<td>Expected: 100% clean, &lt;2 sec avg</td>
+<td>Validates basic perforation spec</td>
+</tr>
+<tr class="odd">
+<td><strong>Cold dry hands</strong></td>
+<td>Hands exposed to 35°F for 5 min; NOT wet</td>
+<td>10 tears per tester</td>
+<td>Expected: 100% clean, &lt;3 sec avg</td>
+<td>Fine motor control reduced but grip intact</td>
+</tr>
+<tr class="even">
+<td><strong>Cold wet hands (critical)</strong></td>
+<td>Hands sprayed with water then exposed to 35°F for 3 min</td>
+<td>10 tears per tester</td>
+<td>MUST achieve: ≥90% clean, ≤3 sec avg</td>
+<td>THE definitive test. If this fails, redesign pull tab.</td>
+</tr>
+<tr class="odd">
+<td><strong>Gloved hands</strong></td>
+<td>Tester wears thin running gloves (liner weight)</td>
+<td>10 tears per tester</td>
+<td>Expected: ≥80% clean, &lt;4 sec avg</td>
+<td>Many runners wear gloves at start; pull tab must be findable through
+gloves</td>
+</tr>
+<tr class="even">
+<td><strong>While walking briskly</strong></td>
+<td>Tester walks at 4 mph and tears without stopping</td>
+<td>5 tears per tester</td>
+<td>Expected: ≥80% clean, &lt;4 sec avg</td>
+<td>Simulates runners who tear off while already moving after gun</td>
+</tr>
+<tr class="odd">
+<td><strong>One-handed (emergency)</strong></td>
+<td>Tester tears with dominant hand only; other hand holds
+phone/coffee</td>
+<td>5 tears per tester</td>
+<td>Expected: ≥70% clean, &lt;5 sec avg</td>
+<td>Edge case but realistic: runners often hold items at start</td>
+</tr>
+<tr class="even">
+<td><strong>Wind loading pre-test</strong></td>
+<td>Poncho worn in 15–20 mph wind for 10 min; then tear</td>
+<td>3 tears per tester</td>
+<td>Poncho must NOT have torn at perforations during 10-min wind
+exposure</td>
+<td>Confirms perforation survives sustained wind before intentional
+tear</td>
+</tr>
+</tbody>
+</table>
+<p>3.1 Data Collection &amp; Analysis</p>
+<p>Record for EVERY tear attempt: tester ID, condition, converter
+(A/B/C), time to complete removal (stopwatch, 0.1-sec precision), clean
+tear path (Y/N, photograph), subjective ease rating (1–5), and any
+failure mode observed. Minimum: 10 testers × 7 conditions × varying reps
+= 350–500 individual tear data points. Analyze: mean tear time per
+condition, clean-tear rate per condition, and pass/fail against P2B
+criteria. If ANY condition falls below its pass threshold: document the
+failure mode, propose a specific engineering fix (enlarge pull tab,
+change perforation spacing, add grip texture), and request revised
+prototypes from the converter before production commitment.</p>
+<p>3.2 Statistical Analysis Methodology</p>
+<p><strong>[GAP P2-15 CLOSED]</strong> With 10 testers, statistical
+power is limited but sufficient for large effect sizes. Pre-registering
+the analysis plan before data collection prevents post-hoc
+rationalization and strengthens credibility with investors and B2B
+customers who may challenge rigor. The following methods apply to ALL
+quantitative data collected in P2C.</p>
+<p>CONTINUOUS MEASURES (skin temperature, tear time, thermal comfort
+rating, overall comfort rating): Use PAIRED t-test when comparing two
+configurations on the same tester (e.g., Config B warmth vs. Config C
+warmth for each tester). Use repeated-measures ANOVA when comparing 3+
+configurations simultaneously. Report: mean ± standard deviation per
+configuration, p-value (significance threshold α = 0.05), and 95%
+confidence interval for the difference. If data is non-normally
+distributed (check with Shapiro-Wilk test): use Wilcoxon signed-rank
+test (paired) or Friedman test (3+ conditions) instead of parametric
+tests. Tool: Google Sheets (T.TEST function) or free online calculator
+(socscistatistics.com).</p>
+<p>CATEGORICAL OUTCOMES (clean tear Y/N, would-buy Y/N): Use McNemar’s
+test for paired binary comparisons (same tester, two conditions) or
+Cochran’s Q test for 3+ conditions. For simple proportion comparison
+(e.g., “90% achieved clean tear in cold-wet condition”): report
+proportion + exact binomial 95% confidence interval. With N=10: a 9/10
+success rate has a 95% CI of [55.5%, 99.7%] — wide but directionally
+useful. A 10/10 success rate has a 95% CI of [69.2%, 100%]. Tool:
+VassarStats.net (free online binomial CI calculator).</p>
+<p>ORDINAL RATINGS (Likert 1–7 thermal comfort, 1–10 overall comfort,
+0–10 NPS): Use Wilcoxon signed-rank test for paired comparisons. Report:
+median and interquartile range (IQR) per configuration (NOT mean —
+Likert data is ordinal, not interval). For NPS: calculate Promoters
+(9–10), Passives (7–8), Detractors (0–6). NPS = % Promoters − %
+Detractors. With N=10: NPS has wide confidence intervals but provides a
+directional benchmark.</p>
+<p>SAMPLE SIZE JUSTIFICATION: 10 testers × 3 configurations = 30 paired
+observations. Statistical power for a paired t-test with N=10 at α=0.05:
+detects large effects (Cohen’s d ≥ 0.8) with ~80% power, detects medium
+effects (d ≈ 0.5) with ~40% power, cannot reliably detect small effects
+(d &lt; 0.3). PRACTICAL IMPLICATION: this sample size is sufficient to
+detect meaningful differences between configurations (e.g., Config B is
+noticeably warmer than Config C) but cannot detect subtle differences
+(e.g., 0.5°C mean temperature difference). This limitation should be
+acknowledged in the prototype evaluation report. If resources allow:
+increase to 15–20 testers for the final P2C simulation (10 from P2A +
+5–10 new recruits) to improve power.</p>
+<p>PRE-REGISTRATION: Document the analysis plan (which tests, which
+comparisons, what significance threshold) BEFORE collecting data. Store
+the plan as a dated, signed document (PDF or Google Doc with version
+history). This prevents the temptation to run multiple analyses after
+the fact and report only favorable results. Pre-registration is standard
+practice in clinical trials and increasingly expected in consumer
+product research.</p>
+<p>3.3 Converter Comparison</p>
+<p>Run identical tear-away tests on prototypes from each converter.
+Compare: (A) mean tear force (measured with spring gauge — $15–30 on
+Amazon), (B) clean-tear percentage, (C) perforation consistency (examine
+10 units under 10× loupe: is cut/bridge ratio consistent within
+±0.2mm?). The converter with the most consistent, clean perforations
+within the 3–5 N target range scores highest on this criterion.</p>
+<p>4. Co-Brand Printing Quality Validation</p>
+<p><strong>Co-branded ponchos are the primary B2B revenue
+driver.</strong> If the print quality is poor (faded, misaligned, or
+rubs off during wear), race directors will not reorder and the sponsor
+co-branding model collapses. P2C tests printing on actual
+converter-produced prototypes — not just material swatches — because
+printing on a pre-assembled, bonded, perforated poncho introduces
+variables that swatch testing misses.</p>
+<table>
+<colgroup>
+<col style="width: 21%" />
+<col style="width: 28%" />
+<col style="width: 28%" />
+<col style="width: 21%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Test</strong></td>
+<td><strong>Method</strong></td>
+<td><strong>Acceptance Criteria</strong></td>
+<td><strong>Standard Reference</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Print adhesion — tape test</strong></td>
+<td>Apply 3M Scotch tape firmly to printed area; peel at 180° angle.
+Examine: ink transfer to tape (should be &lt;5% area).</td>
+<td>Test on 5 units from each converter. If &gt;5% ink lifts: primer
+coat required on nonwoven surface before printing.</td>
+<td>ASTM D3359 cross-hatch adhesion test (simplified field version)</td>
+</tr>
+<tr class="odd">
+<td><strong>Print durability — body heat</strong></td>
+<td>Wear printed poncho for 30 min at body temperature; examine print
+area for: smearing, fading, ink transfer to base layer underneath.</td>
+<td>Test on all 10 corral simulation testers’ ponchos post-test.
+Photograph print zones before and after wear.</td>
+<td>Simulate: body heat (98.6°F) + moisture (condensation) + movement
+(flexing at printed zones)</td>
+</tr>
+<tr class="even">
+<td><strong>Print durability — rain</strong></td>
+<td>Spray printed area with water bottle for 60 sec; wipe with paper
+towel. Examine: ink bleeding, smearing, or removal.</td>
+<td>Test 3 units per converter. If ink bleeds: switch to UV-resistant
+compostable ink (hubergroup outdoor series).</td>
+<td>Drizzle resistance of print, not full waterproofing</td>
+</tr>
+<tr class="odd">
+<td><strong>Print legibility — distance</strong></td>
+<td>View printed back panel from 10 ft, 25 ft, and 50 ft. Can race logo
++ sponsor logo be identified at each distance?</td>
+<td>Test with 5 people with normal vision. At 25 ft, logo must be
+identifiable. At 50 ft, brand/color must be recognizable.</td>
+<td>Critical for co-brand value: sponsors pay for visibility</td>
+</tr>
+<tr class="even">
+<td><strong>Co-brand mockup accuracy</strong></td>
+<td>Compare actual printed prototype against the Canva/Figma co-brand
+template mockup from P1B Section 7.</td>
+<td>Overlay photographs digitally. Color match: ΔE &lt;5 (acceptable for
+flexo on nonwoven). Size: ±0.5″ of template spec.</td>
+<td>Race directors will compare the mockup they approved against the
+actual product. Must match closely.</td>
+</tr>
+<tr class="odd">
+<td><strong>Multi-color registration</strong></td>
+<td>For co-brand prints requiring 2+ colors: check registration
+alignment between colors. Acceptable: ±1mm misalignment.</td>
+<td>Examine 10 printed units with 10× loupe. If &gt;2 units exceed ±1mm:
+adjust print cylinder alignment at converter.</td>
+<td>Single-color (white on nonwoven) avoids registration issues
+entirely; multi-color for premium co-brands only</td>
+</tr>
+</tbody>
+</table>
+<p>4.1 Print Method Comparison</p>
+<p>Request from each converter: 10 units with single-color flexographic
+print (brand logo on back panel, white ink on nonwoven surface). AND 5
+units with 2-color screen print (simulated co-brand: brand logo +
+placeholder race logo in contrasting colors). Compare: ink coverage
+consistency, edge sharpness (halftone dots visible at 12″?),
+registration accuracy between colors, and cost per unit difference
+between methods.</p>
+<p>EXPECTED OUTCOME: Flexo printing on PLA spunbond nonwoven produces
+acceptable results for 1–2 color applications. Screen printing offers
+slightly better ink opacity and color accuracy but at higher per-unit
+cost (+$0.02–$0.05/unit). For standard (non-co-branded) ponchos, flexo
+is sufficient. For premium co-branded ponchos, screen printing may be
+worth the premium — test and decide based on converter samples.</p>
+<p>5. Fit Testing Across Body Types: XS to XXL+</p>
+<p><strong>The corral simulation (Section 2) tests the poncho on 10
+runners across multiple body types.</strong> This section provides the
+specific fit evaluation framework to ensure the poncho serves the widest
+possible range of runners while being honest about its limitations.</p>
+<table>
+<colgroup>
+<col style="width: 19%" />
+<col style="width: 38%" />
+<col style="width: 42%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Size Range</strong></td>
+<td><strong>Expected Fit</strong></td>
+<td><strong>Notes / Action Items</strong></td>
+</tr>
+<tr class="even">
+<td><strong>XS/S (chest 32–38″, height 5’0″–5’5″)</strong></td>
+<td>Poncho fits loosely with generous drape. Hem reaches knee or below
+knee. Hood is proportionally large but functional with elastic
+adjustment.</td>
+<td>May feel oversized. Document: “Generously cut for layering.” Hem
+length at knee level is acceptable for standing; would be long for
+running but the poncho is removed before running.</td>
+</tr>
+<tr class="odd">
+<td><strong>M (chest 38–42″, height 5’5″–5’10″)</strong></td>
+<td>Optimal fit. Hem at mid-thigh. Hood frames face with elastic
+adjusted. Arms move freely through oversized armholes.</td>
+<td>This is the “design center” body type. Product photos should feature
+this size range.</td>
+</tr>
+<tr class="even">
+<td><strong>L (chest 42–46″, height 5’10″–6’1″)</strong></td>
+<td>Good fit. Hem at upper thigh. Width comfortable with hydration vest
+underneath. Hood fits over baseball cap.</td>
+<td>Second priority for product photography. Validate that branding
+zones remain centered on back panel.</td>
+</tr>
+<tr class="odd">
+<td><strong>XL (chest 46–50″, height 6’0″–6’3″)</strong></td>
+<td>Functional but snug through torso. Hem at high thigh. Armholes
+adequate but less excess fabric.</td>
+<td>Test: does snug fit cause discomfort during 30-min standing? Does
+metallized film crinkle/noise increase at tighter fit?</td>
+</tr>
+<tr class="even">
+<td><strong>XXL+ (chest 50–54″+, height varies)</strong></td>
+<td>At the limit of “one size fits most.” Width is tight; may pull
+across chest. Length is short on taller individuals.</td>
+<td>DOCUMENT HONESTLY: at 54″+ chest, fit is tight but poncho is
+wearable. At 56″+ chest, consider: the poncho may not close fully at
+sides. Note in product listing. Evaluate XL variant for V1.5.</td>
+</tr>
+<tr class="odd">
+<td><strong>Arms/mobility test (all sizes)</strong></td>
+<td>Can tester: raise arms overhead? Reach into side slits for race bib?
+Hold coffee cup? Check phone? Stretch quads?</td>
+<td>All sizes must pass the “5 movement test.” If ANY size fails ANY
+movement: adjust armhole dimensions or side slit length.</td>
+</tr>
+</tbody>
+</table>
+<p>5.1 Fit Data Documentation</p>
+<p>For each tester, record: height, weight, chest circumference (over
+race-day base layer), and self-reported T-shirt size. Photograph front +
+back + side at 0 and 30 minutes. Document: hemline position
+(knee/mid-thigh/upper-thigh/hip), armhole gap (tight/comfortable/loose),
+hood coverage (full/partial/falls back), and side slit accessibility.
+Rate overall fit: 1 (too small) — 3 (perfect) — 5 (too large).</p>
+<p>5.2 Sizing Decision for V1</p>
+<p>V1 launches as “one size fits most” with honest sizing documentation
+per P1B Section 11.5. If fit testing reveals that ≥20% of the running
+population (e.g., chest &gt;50″ or height &lt;5’0″) experiences poor
+fit, evaluate: (A) adjusting base dimensions for V1 (wider or longer),
+OR (B) planning a second size (S/M and L/XL) for V1.5. Two sizes doubles
+inventory complexity and COGS per SKU — avoid if possible for V1.</p>
+<p>6. Supplier Selection: Weighted Scorecard</p>
+<p><strong>After prototyping from 2–3 converters, select the primary
+production supplier</strong> using a weighted scorecard across 6
+criteria. This structured evaluation prevents selection bias (choosing
+the cheapest or most responsive supplier without considering the full
+picture).</p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+<col style="width: 16%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Criterion (Weight)</strong></td>
+<td><strong>Sub-Factor 1</strong></td>
+<td><strong>Sub-Factor 2</strong></td>
+<td><strong>Sub-Factor 3</strong></td>
+<td><strong>Sub-Factor 4</strong></td>
+<td><strong>Sub-Factor 5</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Prototype quality (25%)</strong></td>
+<td>Dimensional accuracy (±0.5″)</td>
+<td>Tear-away performance (3–5 N, clean path)</td>
+<td>Seam strength (&gt;5 N/cm)</td>
+<td>Print quality + adhesion</td>
+<td>Overall construction finish</td>
+</tr>
+<tr class="odd">
+<td><strong>Pricing (25%)</strong></td>
+<td>Unit cost at 5K volume</td>
+<td>Unit cost at 25K volume</td>
+<td>Unit cost at 100K volume</td>
+<td>Co-brand print surcharge per color</td>
+<td>Setup/tooling fees</td>
+</tr>
+<tr class="even">
+<td><strong>Certification support (15%)</strong></td>
+<td>Existing compostable film certs held</td>
+<td>Willingness to share TDS + test reports</td>
+<td>Experience with BPI/TÜV certification process</td>
+<td>Lab testing coordination capability</td>
+<td>Timeline to full-product certification</td>
+</tr>
+<tr class="odd">
+<td><strong>MOQ &amp; flexibility (15%)</strong></td>
+<td>Minimum order quantity (standard)</td>
+<td>Minimum for co-brand custom print</td>
+<td>Lead time (standard order)</td>
+<td>Lead time (rush order)</td>
+<td>Willingness to hold safety stock</td>
+</tr>
+<tr class="even">
+<td><strong>Communication &amp; reliability (10%)</strong></td>
+<td>Response time to emails/calls</td>
+<td>Technical competence in discussions</td>
+<td>Proactive problem identification</td>
+<td>English fluency (if non-US supplier)</td>
+<td>References from existing customers</td>
+</tr>
+<tr class="odd">
+<td><strong>Location &amp; logistics (10%)</strong></td>
+<td>Distance to US port / domestic warehouse</td>
+<td>Freight cost per unit</td>
+<td>Customs complexity (tariff classification experience)</td>
+<td>Packaging + palletization standards</td>
+<td>Returns/defect handling process</td>
+</tr>
+</tbody>
+</table>
+<p>6.1 Scoring Process</p>
+<p>Score each sub-factor 1–5 (1 = poor, 5 = excellent). Multiply
+sub-factor average by category weight. Sum weighted scores for each
+converter. Maximum possible: 500 (all 5s × 100% weight). MINIMUM viable
+score for production supplier: 350/500. If no converter reaches 350:
+request revised samples, renegotiate terms, or source additional
+converters before committing.</p>
+<p>DECISION: Select the highest-scoring converter as PRIMARY supplier.
+Second-highest becomes BACKUP supplier (maintain relationship with small
+reorder every 6–12 months). Document the scoring rationale in writing —
+this becomes the basis for future supplier audits and any switching
+decisions.</p>
+<p>6.2 Supplier Site Visit (If Budget Allows)</p>
+<p>If the primary supplier is domestic (US/UK): schedule a 1-day factory
+visit ($200–$500 travel cost). Observe: production line cleanliness,
+material handling, QC processes, equipment condition, and workforce
+experience with compostable materials. If the primary supplier is in
+China: consider a third-party inspection service (QIMA $300–$500 per
+inspection, AsiaInspection $250–$450) for a pre-production audit. This
+is NOT mandatory for a prototype run but HIGHLY recommended before
+committing to a 25K+ unit production order.</p>
+<p>7. Production Terms Negotiation</p>
+<p><strong>Negotiate production terms BEFORE placing the first bulk
+PO.</strong> Everything is negotiable at this stage — the converter
+wants your business and will make concessions to secure a multi-year
+customer. The following terms should be formalized in a written
+Manufacturing Agreement or Purchase Order Terms document.</p>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 81%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Term</strong></td>
+<td><strong>Negotiation Target</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Pricing tiers</strong></td>
+<td>Negotiate 3–4 volume tiers. Target: 5K = $1.80–$2.20, 25K =
+$1.40–$1.60, 50K = $1.20–$1.40, 100K = $1.00–$1.20. Include: all
+materials, converting, folding, inner bag, and QC inspection. EXCLUDE:
+master carton, ocean freight, customs (negotiate separately).</td>
+</tr>
+<tr class="odd">
+<td><strong>Co-brand pricing</strong></td>
+<td>Standard poncho (brand logo only): base price. Co-branded (1 add’l
+color): +$0.03–$0.05/unit. Co-branded (2 add’l colors):
++$0.06–$0.10/unit. Co-brand setup fee: $300–$800 per new design (print
+cylinder/screen). MOQ for co-brand: 3,000 units (match Heatsheets).</td>
+</tr>
+<tr class="even">
+<td><strong>MOQ</strong></td>
+<td>Standard: 5,000 units (first order). Reorders: 2,500 units minimum.
+Co-brand: 3,000 units per design. Negotiate: 2,500-unit first order if
+committing to 10K+ within 6 months.</td>
+</tr>
+<tr class="odd">
+<td><strong>Lead time</strong></td>
+<td>Standard: 4–6 weeks from PO (production) + 2–4 weeks ocean freight.
+Co-brand: +1–2 weeks for print setup. Rush: 2–3 weeks production at
+15–25% premium. Plan: order 8–10 weeks before needed.</td>
+</tr>
+<tr class="even">
+<td><strong>Payment terms</strong></td>
+<td>Target: 30% deposit on PO, 70% upon shipment (T/T wire transfer).
+Ideal: 30/70 with net-30 on the 70% (effectively net-60 from PO).
+Fallback: 50/50 (deposit/shipment). NEVER 100% upfront on first
+order.</td>
+</tr>
+<tr class="odd">
+<td><strong>Quality guarantee</strong></td>
+<td>Defect rate: max 3% of shipped units. If exceeded: converter
+replaces defective units at no cost. Define “defect” explicitly:
+dimensional variance &gt;1″, tear-away force outside 2–8 N range, print
+misalignment &gt;2mm, metallization delamination &gt;5% of area, weight
+variance &gt;15%.</td>
+</tr>
+<tr class="even">
+<td><strong>Exclusivity &amp; IP</strong></td>
+<td>DO NOT grant converter exclusive manufacturing rights. Retain all
+design IP. Require NDA (non-disclosure) before sharing factory tech
+spec. Factory must not produce identical product for competitors.
+Standard in industry but must be in writing.</td>
+</tr>
+<tr class="odd">
+<td><strong>Returns &amp; reorders</strong></td>
+<td>Defective batch: full replacement within 2 weeks of notification.
+Reorder: confirm lead time guarantee (same as initial order). Price
+lock: negotiate fixed pricing for 12 months from first PO.</td>
+</tr>
+<tr class="even">
+<td><strong>Sample approval process</strong></td>
+<td>Before every production run: converter ships 3 golden samples for
+founder approval. Founder has 5 business days to approve/reject.
+Production begins ONLY after written approval. Rejected samples:
+converter revises and resubmits at no additional cost.</td>
+</tr>
+</tbody>
+</table>
+<p>7.1 Manufacturing Agreement Template</p>
+<p>Have a business attorney ($500–$1,500) draft a Manufacturing
+Agreement covering: (1) Pricing and payment terms, (2) MOQ and lead time
+commitments, (3) Quality standards and defect definitions, (4) IP
+ownership and NDA, (5) Exclusivity limitations, (6) Force majeure
+clause, (7) Dispute resolution (specify jurisdiction), (8) Term and
+termination conditions. For a first order of 5K–25K units, a detailed
+Purchase Order with attached Terms &amp; Conditions is sufficient; a
+full Manufacturing Agreement becomes necessary at 50K+ annual volume or
+when adding co-brand production.</p>
+<p>7.2 First Production Order Decision Gate</p>
+<p>DO NOT place the first production order until ALL of the following
+are confirmed: (1) Corral simulation ≥8/10 pass rate on warmth + comfort
++ tear-away + buy intent. (2) Tear-away validation passes in ALL 7
+conditions (Section 3). (3) Print quality meets acceptance criteria
+(Section 4). (4) Fit testing confirms “one size fits most” works for
+≥80% of body types. (5) Pricing terms are within P0F target ranges. (6)
+BPI certification is initiated or supplier certifications are
+leverageable for soft launch. (7) At least 3 race director LOIs
+confirmed for Fall 2026 pilots (from P1E B2B outreach). If ANY gate
+fails: document the issue, propose a fix, and re-test before committing
+inventory dollars.</p>
+<p>8. Timeline: 5-Week Prototype Sprint</p>
+<p><strong>WEEK 8: Send factory tech spec to 2–3 converters. Pay sample
+deposits. Receive and inspect any fast-turnaround prototypes (ProAmpac
+may deliver in 2 weeks). Begin preparing corral simulation logistics
+(venue, testers, equipment).</strong></p>
+<p><strong>WEEK 9: Receive remaining converter prototypes. Conduct
+receiving inspection (Section 1.2). Schedule corral simulation for Week
+10. Order comparison products (Heatsheets blankets, garbage bags).
+Prepare data collection templates.</strong></p>
+<p><strong>WEEK 10: CORRAL SIMULATION WEEK. Conduct full 10-person test
+per Section 2 protocol. Document all data. Conduct tear-away validation
+(Section 3) on all converter prototypes. Begin print quality testing
+(Section 4).</strong></p>
+<p><strong>WEEK 11: Compile all data into prototype evaluation report.
+Score converters on weighted scorecard (Section 6). Identify any
+must-fix issues. If prototypes pass: begin production terms negotiation
+(Section 7). If prototypes fail: request revisions from converters;
+schedule re-test for Week 12.</strong></p>
+<p><strong>WEEK 12: DECISION WEEK. Finalize supplier selection. Sign
+Manufacturing Agreement or PO with Terms. Place first production order
+(5K–25K units per Moderate scenario). Confirm lead time for delivery
+before Fall 2026 race season. Handoff to P2D (Sustainability
+Verification) for full-product certification initiation.</strong></p>
+<p>Budget for P2C sprint: $2,000–$5,500. Includes: prototype orders from
+2–3 converters ($1,200–$3,200), tester compensation ($250–$300 for 10
+testers), comparison products ($150–$200 for Heatsheets + thrift store
+items), equipment (spring gauge $20, thermocouple loggers from P2A $0 if
+reused, anemometer $15–20), venue ($0 if outdoor public space), and data
+analysis tools ($0, Google Sheets).</p>
+<p>9. Prototype-to-Production Readiness Checklist</p>
+<p><strong>✅ Corral simulation: ≥8/10 testers pass warmth (≥6/10) +
+comfort (≥6/10) + buy intent ($9.99 yes) + NPS (≥50)</strong></p>
+<p><strong>✅ Tear-away: passes ALL 7 conditions with ≥80% clean-tear
+rate and ≤3 sec average in cold-wet-hand test</strong></p>
+<p><strong>✅ Print quality: tape adhesion &lt;5% lift, body-heat
+durability confirmed, legibility at 25 ft, co-brand mockup accuracy ΔE
+&lt;5</strong></p>
+<p><strong>✅ Fit: works for ≥80% of body types tested (XS–XXL); honest
+sizing documented for product listing</strong></p>
+<p><strong>✅ Supplier selected: weighted scorecard ≥350/500; backup
+supplier identified</strong></p>
+<p><strong>✅ Production terms: pricing within P0F targets, MOQ ≤25K,
+lead time ≤6 weeks, 30/70 payment terms, quality guarantee ≤3% defect
+rate, NDA + IP protection signed</strong></p>
+<p><strong>✅ B2B demand confirmed: ≥3 race director LOIs for Fall 2026
+pilots</strong></p>
+<p><strong>✅ Certification path: BPI testing initiated OR supplier
+certs leverageable for soft launch</strong></p>
+<p>If ALL 8 boxes are checked: proceed to production order. If ANY box
+is unchecked: resolve before committing capital to inventory. The cost
+of delaying production by 2–4 weeks is far less than the cost of
+launching with a flawed product or insufficient demand validation.</p>
+<p>10. Conclusion: The Prototype Is the Product’s Audition</p>
+<p><strong>The prototype phase is the product’s audition in front of its
+future customers.</strong> 10 runners standing in the cold for 30
+minutes will tell you more about the product’s viability than any
+spreadsheet, material data sheet, or competitor analysis. Their skin
+temperature data quantifies warmth. Their tear-away times quantify
+convenience. Their “would you pay $9.99?” answers quantify market
+demand. Their open-ended improvement suggestions write the V1.5
+roadmap.</p>
+<p><strong>The comparison test is the hidden weapon.</strong> When 9 out
+of 10 testers prefer the compostable poncho over a garbage bag, that
+data point becomes the lead of every sales email, the hero stat of the
+pitch deck, and the first line of every Amazon review response. “In
+independent testing, 90% of runners preferred [BRAND] over their current
+start-line solution.” That sentence is worth the entire P2C budget.</p>
+<p><strong>Do not skip. Do not rush. Do not cut corners.</strong> A
+single weekend of rigorous prototype testing prevents months of customer
+complaints, negative reviews, and race-director disappointment. The
+product’s reputation is set by its first 100 users. Make those 100 users
+the 10 testers who helped design it and the 90 runners at your first 3
+pilot races. They become your advocates, your reviewers, and your
+referral network. Give them a product worth advocating for.</p>
+
+        </div>
+    </div></div>
+<footer style="text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px">
+Sustainable Race-Start Warmth Poncho — D2C Brand GTM Project · 60 Subprojects · 391 Tasks · ~15,500¶ · April 2026
+</footer></body></html>

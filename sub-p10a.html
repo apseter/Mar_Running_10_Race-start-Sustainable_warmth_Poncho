@@ -1,0 +1,622 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>P10A: Volume Scaling — Race Start Warmth GTM</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0e1a;--surface:#111827;--card:#1a2332;--border:#2a3a4e;--accent:#10b981;--accent2:#3b82f6;--text:#e2e8f0;--muted:#94a3b8;--white:#fff;--red:#ef4444;--amber:#f59e0b;--green:#10b981}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+/* Nav */
+nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
+nav .inner{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;max-width:1200px;margin:0 auto}
+nav .brand{font-weight:700;font-size:15px;color:var(--accent)}
+nav .links{display:flex;gap:8px;flex-wrap:wrap}
+nav .links a{color:var(--muted);font-size:13px;padding:4px 10px;border-radius:6px;transition:.2s}
+nav .links a:hover,nav .links a.active{color:var(--white);background:var(--card);text-decoration:none}
+/* Hero */
+.hero{padding:60px 0 40px;text-align:center}
+.hero h1{font-size:2.4em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:1.1em;max-width:700px;margin:0 auto}
+/* Stats bar */
+.stats{display:flex;justify-content:center;gap:32px;padding:24px 0;flex-wrap:wrap}
+.stat{text-align:center}.stat .num{font-size:1.8em;font-weight:800;color:var(--white)}.stat .label{font-size:.75em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+/* Cards */
+.grid{display:grid;gap:16px;margin:24px 0}
+.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}
+.grid-3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;transition:.2s}
+.card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.card h3{font-size:1.1em;margin-bottom:8px}.card p{color:var(--muted);font-size:.9em}
+.card .badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:8px}
+.card .meta{font-size:.8em;color:var(--muted);margin-top:12px}
+/* Section */
+.section{padding:40px 0}.section h2{font-size:1.6em;font-weight:700;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+/* Table */
+table{width:100%;border-collapse:collapse;font-size:.85em;margin:16px 0}
+th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:52px}
+td{padding:8px 12px;border-bottom:1px solid var(--border)}
+tr:hover td{background:rgba(16,185,129,.05)}
+.status-complete{color:var(--green);font-weight:600}.status-not{color:var(--muted)}
+/* Progress */
+.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:8px}
+.progress .bar{height:100%;background:var(--accent);border-radius:3px}
+/* Back link */
+.back{display:inline-block;color:var(--muted);font-size:.9em;margin-bottom:20px}
+.back:hover{color:var(--accent)}
+/* Download */
+.dl-card{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin:8px 0;transition:.2s}
+.dl-card:hover{border-color:var(--accent);text-decoration:none}
+.dl-card .icon{font-size:2em}.dl-card .info h4{color:var(--white);margin-bottom:4px}.dl-card .info p{color:var(--muted);font-size:.85em}
+/* Footer */
+footer{text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px}
+@media(max-width:768px){.stats{gap:16px}.stat .num{font-size:1.3em}nav .links{gap:4px}nav .links a{font-size:11px;padding:3px 6px}.hero h1{font-size:1.6em}}
+
+.doc-content{max-width:900px;margin:0 auto;padding:20px 0}
+.doc-content h1{font-size:1.8em;font-weight:800;color:var(--white);margin:32px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.doc-content h2{font-size:1.4em;font-weight:700;color:var(--accent);margin:28px 0 12px}
+.doc-content h3{font-size:1.15em;font-weight:600;color:var(--accent2);margin:20px 0 10px}
+.doc-content p{margin:8px 0;line-height:1.7}
+.doc-content table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85em}
+.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;border:1px solid var(--border)}
+.doc-content td{padding:8px 12px;border:1px solid var(--border);vertical-align:top}
+.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.doc-content ul,.doc-content ol{margin:8px 0 8px 24px}
+.doc-content li{margin:4px 0;line-height:1.6}
+.doc-content strong{color:var(--white)}
+.doc-content em{color:var(--muted)}
+.doc-content blockquote{border-left:3px solid var(--accent);padding:8px 16px;margin:12px 0;background:var(--card);border-radius:0 8px 8px 0}
+.nav-sub{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 24px;padding:12px 16px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
+.nav-sub a{font-size:.8em;color:var(--muted);padding:4px 10px;border-radius:4px;transition:.2s;white-space:nowrap}
+.nav-sub a:hover,.nav-sub a.active{color:var(--white);background:var(--surface);text-decoration:none}
+</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a></div></div></nav><div class="container">
+    <div style="padding-top:30px">
+        <a href="p10.html" class="back">← 📈 P10: Scaling & Growth</a>
+        <div class="nav-sub"><a href="p10.html">📈 P10 Overview</a><a href="sub-p10a.html" class="active">P10A</a><a href="sub-p10b.html">P10B</a><a href="sub-p10c.html">P10C</a><a href="sub-p10d.html">P10D</a><a href="sub-p10e.html">P10E</a><a href="sub-p10f.html">P10F</a></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px">
+            <div>
+                <span style="background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px">P10A</span>
+                <span style="color:var(--muted);font-size:.85em;margin-left:8px">P10: Scaling & Growth</span>
+            </div>
+            <a href="files/P10A_Volume_Scaling.docx" style="font-size:.85em;color:var(--accent);padding:6px 14px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
+        </div>
+        <div class="doc-content">
+            <p><strong>P10A: VOLUME</strong></p>
+<p><strong>SCALING</strong></p>
+<p>Sub-Project P10A | Scaling, Expansion &amp; Category Leadership |
+Months 8–12</p>
+<p><em>Complete Volume Scaling Strategy: Volume Pricing Negotiation,
+Second Supplier Qualification, Domestic US Manufacturing for Rush &amp;
+Premium, 5-Input Demand Forecasting, Year 2 Production Schedule, and 3PL
+Fulfillment Upgrade Evaluation</em></p>
+<p>March 2026 | Confidential</p>
+<p>Executive Summary</p>
+<p><strong>Volume scaling is the transition from “startup that makes
+ponchos” to “operating company that fulfills demand.”</strong> Year 1
+proves the product works and customers want it. Year 2 must: reduce
+per-unit costs (volume pricing), eliminate supply risk (second
+supplier), serve urgent orders (domestic manufacturing), predict demand
+accurately (forecasting), plan production efficiently (3-run schedule),
+and fulfill orders without consuming the founder’s time (3PL upgrade).
+Each system in this document removes a CONSTRAINT on growth: cost, risk,
+speed, accuracy, efficiency, or time.</p>
+<p><strong>Six scaling systems are defined:</strong> (1) volume pricing
+negotiation targeting $0.85–$0.95/unit ex-works at 50K units (vs. $1.15
+at 5K in Year 1), (2) second supplier qualification creating dual-source
+production resilience and competitive pricing tension, (3) domestic US
+manufacturing via ProAmpac for rush orders and “Made in USA” premium
+positioning, (4) a demand forecasting model using 7 inputs to generate
+monthly Year 2 predictions with base/downside/upside scenarios, (5) a
+3-run Year 2 production schedule (spring prep / fall prep /
+replenishment) with domestic rush capability, and (6) a 3PL fulfillment
+upgrade evaluation with trigger criteria, cost-benefit analysis, and
+transition plan.</p>
+<p>1. Volume Pricing Negotiation</p>
+<p><strong>Lower per-unit COGS is the single biggest lever for improving
+margins AND enabling competitive B2B pricing.</strong> At $1.15/unit
+COGS and $3.50 B2B price: gross margin is $2.35 (67%). At $0.90/unit
+COGS and $3.50 B2B price: gross margin is $2.60 (74%). The $0.25/unit
+reduction at 100,000 Year 2 units = $25,000 in additional gross profit.
+This is PURE profit improvement with zero additional sales effort.</p>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 81%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Element</strong></td>
+<td><strong>Specification</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Current pricing (Year 1)</strong></td>
+<td>5,000 units: $1.15/unit COGS (Config B per P2A). 10,000 units:
+$1.05–$1.10/unit. 25,000 units: $0.95–$1.05/unit. These are MATERIAL +
+CONVERSION costs ex-works (before freight, duty, packaging). Landed cost
+adds: $0.15–$0.40/unit for freight + duty (per P4A). Total landed COGS
+at 25K: $1.10–$1.45/unit.</td>
+</tr>
+<tr class="odd">
+<td><strong>Year 2 negotiation targets</strong></td>
+<td>50,000 units: target $0.85–$0.95/unit ex-works. 100,000 units:
+target $0.75–$0.85/unit ex-works. 250,000+ units: target
+$0.65–$0.75/unit ex-works. LANDED TARGETS: 50K: $1.00–$1.35/unit. 100K:
+$0.90–$1.25/unit. 250K+: $0.80–$1.15/unit. These targets reflect:
+material cost reduction at higher volumes (NatureFlex NM bulk pricing
+from Futamura), conversion efficiency (longer production runs = less
+changeover time per unit), and negotiating leverage (the brand is now a
+PROVEN customer with volume history, not a speculative startup).</td>
+</tr>
+<tr class="even">
+<td><strong>Negotiation strategy</strong></td>
+<td>APPROACH 1 (competitive pressure): obtain quotes from 2–3 suppliers
+(Parkside, ProAmpac, and a new supplier qualified per Section 2) and
+present the lowest quote to the preferred supplier: “We have a quote at
+$0.82/unit from [Supplier B]. Can you match or beat this for a 100K
+annual commitment?” APPROACH 2 (volume commitment): offer a 12-month
+volume commitment in exchange for reduced pricing: “We’ll commit to
+100,000 units over 12 months at $0.85/unit, payable per production run.”
+The commitment gives the supplier: production planning certainty and
+guaranteed revenue. APPROACH 3 (payment terms trade): offer faster
+payment (50% deposit + 50% at shipment instead of net-30 balance) in
+exchange for a 3–5% price reduction. Faster payment reduces the
+supplier’s cash flow risk.</td>
+</tr>
+<tr class="odd">
+<td><strong>Annual pricing agreement</strong></td>
+<td>Formalize Year 2 pricing in a WRITTEN annual pricing agreement
+(addendum to the supplier agreement per P9D Section 3). Include: unit
+pricing at each volume tier, price validity period (12 months), volume
+commitment (minimum annual quantity), pricing review trigger (raw
+material cost changes &gt;10% trigger a mid-year review), and payment
+terms. The annual agreement protects against: mid-year price increases
+and provides: budgeting certainty for the Year 2 financial plan (P8D
+Section 3).</td>
+</tr>
+</tbody>
+</table>
+<p>1.1 Pricing Negotiation Timeline</p>
+<p>MONTH 8: compile Year 1 production data (total units ordered, payment
+history, quality record). Request Year 2 pricing from primary supplier
+(Parkside) at: 50K, 100K, and 250K volume tiers. Simultaneously: request
+quotes from 2 alternative suppliers for the same volumes. MONTH 9:
+receive all quotes. Compare: pricing, lead time, quality guarantees, and
+payment terms. Present: the competitive landscape to the primary
+supplier (“We have a quote at $X from [Supplier B] — can you match?”).
+MONTH 10: finalize Year 2 annual pricing agreement. Lock: pricing for 12
+months with mid-year review trigger at ±10% raw material cost change.
+The annual agreement becomes: an addendum to the supplier agreement (P9D
+Section 3).</p>
+<p>2. Second Supplier Qualification</p>
+<p><strong>A business with one supplier is a business with one point of
+failure.</strong> Year 1’s single-supplier model is acceptable (low
+volume, limited resources). Year 2’s growing volume REQUIRES: production
+resilience (a factory fire doesn’t halt the business), competitive
+tension (the primary knows the brand has alternatives), and capacity
+flexibility (the second supplier absorbs overflow during peak
+demand).</p>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 81%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Element</strong></td>
+<td><strong>Specification</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Why a second supplier</strong></td>
+<td>RISK: a single-supplier dependency means: any disruption at the
+primary factory (fire, equipment failure, labor dispute, regulatory
+shutdown, pandemic-related closure) halts ALL production with zero
+backup. PRICING: a second qualified supplier creates: competitive
+tension (the primary knows they can be replaced) and benchmark pricing
+(the brand always knows what the market price is). CAPACITY: if Year 2
+demand exceeds the primary supplier’s capacity (particularly during peak
+fall production months): the second supplier provides overflow
+capacity.</td>
+</tr>
+<tr class="odd">
+<td><strong>Qualification criteria</strong></td>
+<td>The second supplier must meet the SAME quality and certification
+standards as the primary: BPI/ASTM D6400 compliant output, NatureFlex NM
++ PLA spunbond processing capability, laser perforation equipment (or
+willingness to invest), print quality for co-brand logos at ≥300 DPI,
+and lead time of 3–6 weeks for standard orders. ADDITIONAL: geographic
+diversification (if primary is UK-based Parkside: consider US-based
+ProAmpac or Asia-based alternative for cost/logistics advantages).</td>
+</tr>
+<tr class="even">
+<td><strong>Candidate suppliers</strong></td>
+<td>ProAmpac (US, per P3A Section 1): flexible packaging manufacturer
+with compostable capabilities. Advantages: domestic manufacturing (no
+ocean freight, no import duty, “Made in USA” positioning), faster lead
+times (1–3 weeks vs. 4–6 weeks from UK), and simpler logistics.
+Disadvantages: potentially higher per-unit cost ($0.10–$0.30/unit
+premium over UK/Asia). ShinHigh Packaging (China): if Section 301
+tariffs are resolved or exempted: China manufacturing offers the lowest
+per-unit COGS. Novamont / TIPA (EU): for potential European market
+production if international expansion proceeds per P10C. EVALUATE:
+request samples + quotes from 2–3 candidates during Month 8–10. Conduct:
+the same factory evaluation process as P3A (quality audit, sample
+review, pricing negotiation). SELECT: the second supplier by Month 10
+and produce a TEST RUN of 1,000–2,000 units to verify quality parity
+with the primary supplier.</td>
+</tr>
+<tr class="odd">
+<td><strong>Dual-supplier allocation</strong></td>
+<td>RECOMMENDED MODEL: 70% primary (Parkside) / 30% secondary (ProAmpac)
+for Year 2. The primary retains the MAJORITY of volume (maintaining the
+relationship and volume discount). The secondary receives enough volume
+to: stay engaged as a supplier, maintain quality consistency (they
+produce regularly, not once a year), and be ready to SCALE if needed
+(they can ramp to 50–70% of volume within 4–6 weeks if the primary is
+disrupted). ALTERNATIVE MODEL: primary handles ALL standard orders;
+secondary handles: rush orders (domestic US for faster turnaround),
+“Made in USA” premium SKU (if testing shows consumer willingness to pay
+a premium), and overflow during peak demand months.</td>
+</tr>
+</tbody>
+</table>
+<p>3. Domestic US Manufacturing</p>
+<p><strong>Domestic manufacturing adds: speed, flexibility, and a “Made
+in USA” marketing opportunity</strong> that imported production cannot
+provide. It is NOT a replacement for the primary supplier (higher
+per-unit cost makes it unsuitable for standard high-volume production).
+It IS: a rush-order capability that wins time-sensitive B2B deals, a
+premium SKU option for patriotic/eco-conscious consumers, and a backup
+production source for emergencies.</p>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 81%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Element</strong></td>
+<td><strong>Specification</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Value proposition</strong></td>
+<td>“Made in USA” positioning appeals to: patriotic consumers
+(significant segment of marathon runners, especially Marine Corps
+Marathon and military-affiliated races), sustainability-conscious
+consumers (shorter supply chain = lower transport emissions), and race
+directors who prefer domestic sourcing (government-funded events may
+have domestic sourcing requirements). ProAmpac (Terryville, CT) is the
+leading US candidate: flexible packaging, compostable material
+capabilities, and domestic logistics.</td>
+</tr>
+<tr class="odd">
+<td><strong>Cost comparison</strong></td>
+<td>US manufacturing estimated COGS: $1.40–$1.80/unit (vs. UK
+$0.95–$1.10 at 50K units). The $0.40–$0.70/unit premium is offset by: $0
+ocean freight (saves $0.10–$0.25/unit), $0 import duty (saves
+$0.04–$0.30/unit depending on tariff status), and faster turnaround (1–3
+weeks vs. 4–6 weeks). NET COST DIFFERENCE: $0.05–$0.35/unit premium for
+domestic. At $9.99 DTC pricing: the premium is absorbed within the
+margin. At $3.50–$4.00 B2B pricing: the premium may require a “Made in
+USA” surcharge ($0.25–$0.50/unit) or be offered as a premium option
+alongside the standard imported product.</td>
+</tr>
+<tr class="even">
+<td><strong>Use cases</strong></td>
+<td>RUSH ORDERS: a race director places an urgent order 2 weeks before
+race day (too late for UK production + ocean freight). Domestic
+production delivers in 1–2 weeks. The brand charges: a 15–25% rush
+surcharge (per P3B Section 3) which covers the higher domestic COGS.
+PREMIUM SKU: “[BRAND] — Made in USA” version at $12.99 DTC ($3 premium
+over standard $9.99). Test: on Shopify as a variant. If 10–20% of
+customers choose the Made in USA option: the SKU is viable.
+GOVERNMENT/MILITARY RACES: events with federal funding or military
+affiliation may require or prefer US-sourced products. The Marine Corps
+Marathon and military-base races are prime targets. CO-BRAND PRIORITY:
+race directors who specifically request Made in USA can be served from
+the domestic supply at a modest premium.</td>
+</tr>
+<tr class="odd">
+<td><strong>Timeline</strong></td>
+<td>Month 9–10: contact ProAmpac (or alternative US manufacturer) for:
+capability confirmation, sample production, and pricing at 5K/10K/25K
+volumes. Month 10–11: receive and evaluate samples against the Parkside
+golden sample. If quality meets spec: produce a 2,000-unit test run.
+Month 11–12: if test run passes quality inspection: add “Made in USA” as
+a Shopify product variant ($12.99). Use domestic production for all rush
+orders. Year 2: evaluate demand for Made in USA and adjust the
+dual-supplier allocation model accordingly.</td>
+</tr>
+</tbody>
+</table>
+<p>4. Demand Forecasting</p>
+<p><strong>Year 1 production was planned on ESTIMATES (market size
+projections, pipeline assumptions, and competitive benchmarks from P0
+and P8A).</strong> Year 2 production is planned on DATA: actual Year 1
+sales by channel/month, actual B2B reorder rates, actual DTC conversion
+rates, actual seasonal patterns, and actual pipeline conversion rates.
+The forecast model transforms 12 months of data into: a month-by-month
+Year 2 demand prediction that drives production quantities, inventory
+levels, and cash flow planning.</p>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 81%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Element</strong></td>
+<td><strong>Specification</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Historical baseline</strong></td>
+<td>Year 1 actual data provides: total units sold by channel (B2B
+standard, B2B co-brand, Amazon, Shopify, expo), units by month
+(seasonality curve: which months had peak vs. low demand), B2B pipeline
+conversion rate (what % of pipeline became POs), DTC conversion rate by
+channel, and geographic distribution (which race cities generated the
+most demand). This data replaces: all P8A estimates and projections with
+REALITY.</td>
+</tr>
+<tr class="odd">
+<td><strong>Race calendar model</strong></td>
+<td>Map ALL known Year 2 races to a timeline: confirmed B2B orders
+(locked POs from reorders + early-bird commitments per P5F Section 4),
+probable B2B orders (pipeline deals at “Proposal Sent” or later stage,
+weighted at 50–75% probability), potential B2B leads (expo contacts,
+referrals, and new outreach targets, weighted at 10–25%), and DTC demand
+per race (estimated based on Year 1 race-specific data: NYC Marathon
+week generated X% of annual DTC sales). The race calendar model
+generates: a month-by-month demand forecast with: confirmed demand
+(locked orders), probable demand (weighted pipeline), and upside
+potential (new leads + viral/PR-driven demand).</td>
+</tr>
+<tr class="even">
+<td><strong>Seven-input forecast model</strong></td>
+<td>INPUTS: (1) Year 1 actual sales by month (baseline). (2) Year 1 B2B
+reorder rate (% of Year 1 races reordering — target 80%+). (3) New B2B
+races in pipeline (weighted by probability). (4) Year 1 DTC growth rate
+by channel (Amazon ranking trajectory, Shopify organic growth, ad spend
+planned). (5) Race calendar density (how many major races in each
+month). (6) Seasonal adjustment (fall multiplier vs. spring vs.
+off-season from Year 1 data). (7) External factors (new competitor
+launches, PR/media coverage expected, economic conditions). OUTPUT:
+monthly unit forecast for Year 2 with: base case (expected), downside
+(−20%), and upside (+30%).</td>
+</tr>
+<tr class="odd">
+<td><strong>Safety stock model</strong></td>
+<td>Per P3E Section 3: maintain safety stock of 2–4 weeks of average
+demand. Year 2 safety stock calculation: average monthly demand ÷ 4 ×
+safety-stock-weeks. Example: 5,000 units/month average × 3 weeks safety
+stock = 3,750 units maintained. Safety stock covers: unexpected demand
+spikes (viral TikTok, PR feature, large B2B order), production delays
+(factory equipment issue, shipping delay), and seasonal front-loading
+(build inventory in July–August for the September–November peak).</td>
+</tr>
+<tr class="even">
+<td><strong>Forecast accuracy tracking</strong></td>
+<td>Compare: monthly ACTUAL sales to FORECAST. Calculate: forecast
+accuracy % = 1 − |actual − forecast| ÷ actual. Target: ±20% accuracy for
+monthly forecasts (±10% for quarterly). If consistently OVER-forecasting
+(making too much inventory): reduce forecast multiplier and production
+quantities. If consistently UNDER-forecasting (running out of stock):
+increase safety stock and consider more frequent, smaller production
+runs. Review: monthly during the P&amp;L review (P8B Section 2). Adjust:
+the forecast model inputs after each monthly review.</td>
+</tr>
+</tbody>
+</table>
+<p>5. Year 2 Production Schedule: 3 Runs + Domestic Rush</p>
+<p><strong>Year 2 production is structured around the race
+calendar:</strong> spring races (March–May) require inventory by March,
+fall races (September–November) require inventory by August, and
+holiday/late-fall demand may require a mid-season replenishment. Three
+planned international production runs plus domestic rush capability
+provide: seasonal alignment, cost efficiency (longer runs at lower
+per-unit cost), and flexibility (rush production for unexpected
+demand).</p>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width:50%">
+<col style="width: 35%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Run</strong></td>
+<td><strong>Specification</strong></td>
+<td><strong>Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Run 1 (Spring prep): January–February</strong></td>
+<td>VOLUME: 30–50% of Year 2 forecast. PURPOSE: stock for spring race
+season (March–May) + replenish Amazon FBA + safety stock build.
+PRODUCTION: place PO in January, production in January–February, ship
+via ocean freight in February, arrive US warehouse March. CO-BRAND:
+spring race co-brand orders must have: logos submitted by December,
+mockups approved by January, proofs approved by mid-January.</td>
+<td>Run 1 is the EARLIEST production of the year. Lead time from PO to
+US delivery: 6–8 weeks (UK) or 8–10 weeks (Asia). Spring races start in
+March: PO must be placed by mid-January at the latest.</td>
+</tr>
+<tr class="odd">
+<td><strong>Run 2 (Fall prep): May–June</strong></td>
+<td>VOLUME: 40–60% of Year 2 forecast. PURPOSE: stock for the CRITICAL
+fall race season (September–November) + expo inventory + B2B fall
+orders. This is the LARGEST production run of the year. PRODUCTION: PO
+in May, production in May–June, ship ocean in June–July, arrive US
+warehouse July–August. CO-BRAND: fall race co-brand logos submitted by
+April, approved by May.</td>
+<td>Run 2 is the most important production event of the year. If it is
+late or short: the brand misses the fall race season (55–65% of annual
+revenue). Build a 2-week buffer into every milestone.</td>
+</tr>
+<tr class="even">
+<td><strong>Run 3 (Replenishment): September–October</strong></td>
+<td>VOLUME: 10–20% of Year 2 forecast. PURPOSE: replenish stock depleted
+by early-fall races, cover late-fall races (NYC, Philadelphia, CIM), and
+build holiday gift inventory. PRODUCTION: PO in September, production in
+September–October, ship via AIR FREIGHT if ocean timing is too tight
+(per P3E Section 7), arrive October–November. This run is OPTIONAL: only
+needed if Run 2 quantities were insufficient and fall demand exceeds
+forecast.</td>
+<td>Run 3 is the CONTINGENCY run. It is planned but only executed if:
+September actual sales exceed forecast by &gt;15%, Amazon FBA stock
+drops below 4-week supply, or a large unexpected B2B order materializes.
+Air freight ($2.50–$4.00/kg vs. $0.15–$0.30/kg ocean) is justified only
+if the revenue from the additional units exceeds the freight
+premium.</td>
+</tr>
+<tr class="odd">
+<td><strong>Domestic rush production (as needed)</strong></td>
+<td>VOLUME: 1,000–5,000 units per run. PURPOSE: fill rush B2B orders and
+emergency stock replenishment that cannot wait for ocean freight from
+UK. PRODUCTION: PO to domestic manufacturer (ProAmpac per Section 3),
+production in 1–2 weeks, delivery in 2–3 days (domestic ground
+shipping). COST: $1.40–$1.80/unit (higher than UK but no freight/duty).
+Used sparingly: 2–4 rush runs per year estimated.</td>
+<td>Domestic rush capability is a COMPETITIVE ADVANTAGE: the brand can
+promise race directors “we can fulfill a 2,000-unit order in 2 weeks”
+when competitors (importing from Asia) need 6–10 weeks. This capability
+wins: last-minute orders, emergency replacements, and race directors who
+plan late.</td>
+</tr>
+</tbody>
+</table>
+<p>5.1 Production Quantity Decision Framework</p>
+<p>For EACH production run: STEP 1: calculate CONFIRMED demand (locked
+B2B POs + Amazon FBA replenishment to target stock level + Shopify
+inventory target). STEP 2: add PROBABLE demand (weighted B2B pipeline ×
+probability + DTC growth trajectory extrapolation). STEP 3: add SAFETY
+STOCK (2–4 weeks of average demand per P3E Section 3). STEP 4: subtract
+EXISTING INVENTORY (units currently in warehouse + FBA + in transit).
+RESULT: production quantity for this run. DECISION RULE: if the result
+is &lt;5,000 units: consider combining with the next run to achieve
+volume discount thresholds. If &gt;50,000 units: consider splitting
+across 2 production runs for cash flow management (per P8B Section 4
+timing model). Review: the production quantity calculation with the Year
+2 financial plan (P8D Section 3) to verify: cash is available for the
+deposit, the production timeline aligns with the demand forecast, and
+the inventory level doesn’t exceed 4–6 months of projected demand
+(overstocking ties up cash and risks: product shelf life issues per P2B
+Section 4 — 10–12 month shelf life).</p>
+<p>6. 3PL Fulfillment Upgrade</p>
+<p><strong>The founder’s most valuable resource is TIME, not
+money.</strong> Every hour spent packing Shopify orders, printing
+labels, and driving to the post office is an hour NOT spent on: closing
+B2B deals, creating content, building ambassador relationships, or
+planning Year 3. The 3PL evaluation determines: whether the founder’s
+fulfillment time has crossed the threshold where outsourcing is more
+cost-effective than self-fulfillment.</p>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 81%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Element</strong></td>
+<td><strong>Specification</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Current model assessment</strong></td>
+<td>Year 1 fulfillment: FBA for DTC (Amazon handles picking, packing,
+shipping), Shopify orders fulfilled via: FBA Multi-Channel Fulfillment
+(MCF) or Pirate Ship self-fulfillment from home/storage unit, B2B orders
+shipped directly from factory or from home/storage inventory. ASSESS at
+Month 11: is the current model handling Volume? Is the founder spending
+&gt;5 hours/week on: packing Shopify orders, managing FBA inbound
+shipments, coordinating B2B shipments, or dealing with carrier issues?
+If YES to &gt;5 hours/week: a 3PL upgrade is warranted.</td>
+</tr>
+<tr class="odd">
+<td><strong>3PL upgrade criteria</strong></td>
+<td>TRIGGER: DTC volume exceeds 200 orders/month (Shopify + Amazon
+non-FBA), OR B2B volume exceeds 10 shipments/month, OR the founder is
+spending &gt;5 hours/week on fulfillment. 3PL REQUIREMENTS:
+multi-channel fulfillment (ship from one warehouse for: Shopify, Amazon
+FBA inbound, and B2B), co-brand inventory segregation (separate co-brand
+SKUs by race), kitting capability (assemble multi-packs, ambassador
+kits, sample kits), and B2B pallet shipping (for large orders to race
+venues). CANDIDATES: ShipBob ($5–$8/order + $0.20–$0.40/unit pick +
+$40–$50/month platform fee), ShipMonk ($2.50–$5/order + storage fees),
+or a regional 3PL near a major shipping hub (cheaper, more personalized
+service).</td>
+</tr>
+<tr class="even">
+<td><strong>Cost-benefit analysis</strong></td>
+<td>CURRENT COST: founder’s time at $0 (opportunity cost is real but not
+a cash expense) + Pirate Ship labels ($3–5/shipment) + packing supplies
+($0.50–1.00/order). 3PL COST: $5–$8/order + $0.20–$0.40/unit +
+$40–$50/month = at 200 orders/month: $1,090–$1,730/month. BENEFIT: the
+founder reclaims 20–40 hours/month (currently spent on: packing,
+labeling, carrier drop-off, inventory management, FBA inbound prep).
+Those 20–40 hours redirected to: B2B sales (worth $2,000–$10,000/month
+in pipeline value), content creation, and strategic planning. The 3PL
+pays for itself if: the founder’s reclaimed time generates
+&gt;$1,730/month in additional revenue (equivalent to ~1 small B2B order
+per month).</td>
+</tr>
+<tr class="odd">
+<td><strong>Transition plan</strong></td>
+<td>Month 11: evaluate fulfillment time spent and order volumes against
+the trigger criteria. If triggered: request quotes from 3 3PLs (ShipBob,
+ShipMonk, and 1 regional option). Month 12: select 3PL, begin onboarding
+(set up account, integrate with Shopify + Amazon, ship inventory to 3PL
+warehouse). Month 1 Year 2: parallel operation (founder + 3PL both
+fulfill for 2–4 weeks to verify accuracy). Month 2 Year 2: full
+transition to 3PL. Founder handles: B2B relationship management,
+co-brand coordination, and strategic oversight only. All
+picking/packing/shipping handled by 3PL.</td>
+</tr>
+</tbody>
+</table>
+<p>7. Timeline &amp; Budget</p>
+<p><strong>MONTH 8–9: Begin volume pricing negotiation (Section 1):
+request Year 2 quotes from primary + 2 alternative suppliers. Start
+second supplier qualification (Section 2): contact ProAmpac and 1–2
+other candidates, request samples + pricing. Research domestic
+manufacturing (Section 3): confirm ProAmpac capabilities, request sample
+production.</strong></p>
+<p><strong>MONTH 9–10: Receive and evaluate all supplier quotes and
+samples. Finalize primary supplier Year 2 pricing. Select second
+supplier and produce 1,000–2,000 unit test run. Evaluate domestic
+manufacturer samples against golden sample spec.</strong></p>
+<p><strong>MONTH 10–11: Build the demand forecasting model (Section 4)
+using Year 1 actual data. Generate: Year 2 month-by-month forecast in
+base/downside/upside scenarios. Plan Year 2 production schedule (Section
+5): determine Run 1/2/3 quantities and timing. Evaluate 3PL upgrade
+(Section 6): assess fulfillment time spent, order volumes, and trigger
+criteria.</strong></p>
+<p><strong>MONTH 11–12: Sign Year 2 annual pricing agreement with
+primary supplier. If 3PL triggered: select and begin onboarding.
+Finalize Year 2 production schedule: place Run 1 PO in January for
+spring inventory. Add domestic rush capability: confirm ProAmpac as
+rush-order supplier with 1–2 week turnaround.</strong></p>
+<p>BUDGET: Second supplier sample production: $200–$500. Domestic
+manufacturer samples: $200–$500. 3PL setup (if triggered): $0–$200
+onboarding fee. 3PL ongoing (if triggered): $1,090–$1,730/month at 200
+orders/month. Volume pricing negotiation: $0 (founder’s time). Demand
+forecasting model: $0 (Google Sheets). TOTAL P10A setup: $400–$1,200 +
+$0–$1,730/month ongoing 3PL.</p>
+<p>8. Conclusion: Scale the Machine Before You Feed It More</p>
+<p><strong>The worst outcome in Year 2 is: demand that exceeds the
+ability to fulfill.</strong> A race director who places a 5,000-unit
+order and is told “we can’t deliver in time” never orders again. An
+Amazon customer who sees “out of stock” during NYC Marathon week buys a
+competitor’s product and never returns. A Shopify order that ships late
+because the founder was packing boxes instead of planning production
+erodes the brand’s reputation one review at a time.</p>
+<p><strong>The 6 systems in this document ensure: demand is PREDICTED
+(forecasting), supply is SECURED (dual supplier + domestic), costs are
+OPTIMIZED (volume pricing), production is SCHEDULED (3-run plan), and
+fulfillment is SCALABLE (3PL upgrade).</strong> Build these systems in
+Months 8–12 — before Year 2 demand arrives. The machine must be scaled
+BEFORE it is fed more volume. A machine that isn’t ready for growth
+breaks under load. A machine that is ready turns volume into profit.</p>
+
+        </div>
+    </div></div>
+<footer style="text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px">
+Sustainable Race-Start Warmth Poncho — D2C Brand GTM Project · 60 Subprojects · 391 Tasks · ~15,500¶ · April 2026
+</footer></body></html>

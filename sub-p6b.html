@@ -1,0 +1,812 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>P6B: Shopify Store Build — Race Start Warmth GTM</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0e1a;--surface:#111827;--card:#1a2332;--border:#2a3a4e;--accent:#10b981;--accent2:#3b82f6;--text:#e2e8f0;--muted:#94a3b8;--white:#fff;--red:#ef4444;--amber:#f59e0b;--green:#10b981}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+/* Nav */
+nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
+nav .inner{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;max-width:1200px;margin:0 auto}
+nav .brand{font-weight:700;font-size:15px;color:var(--accent)}
+nav .links{display:flex;gap:8px;flex-wrap:wrap}
+nav .links a{color:var(--muted);font-size:13px;padding:4px 10px;border-radius:6px;transition:.2s}
+nav .links a:hover,nav .links a.active{color:var(--white);background:var(--card);text-decoration:none}
+/* Hero */
+.hero{padding:60px 0 40px;text-align:center}
+.hero h1{font-size:2.4em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:1.1em;max-width:700px;margin:0 auto}
+/* Stats bar */
+.stats{display:flex;justify-content:center;gap:32px;padding:24px 0;flex-wrap:wrap}
+.stat{text-align:center}.stat .num{font-size:1.8em;font-weight:800;color:var(--white)}.stat .label{font-size:.75em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+/* Cards */
+.grid{display:grid;gap:16px;margin:24px 0}
+.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}
+.grid-3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;transition:.2s}
+.card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.card h3{font-size:1.1em;margin-bottom:8px}.card p{color:var(--muted);font-size:.9em}
+.card .badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:8px}
+.card .meta{font-size:.8em;color:var(--muted);margin-top:12px}
+/* Section */
+.section{padding:40px 0}.section h2{font-size:1.6em;font-weight:700;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+/* Table */
+table{width:100%;border-collapse:collapse;font-size:.85em;margin:16px 0}
+th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:52px}
+td{padding:8px 12px;border-bottom:1px solid var(--border)}
+tr:hover td{background:rgba(16,185,129,.05)}
+.status-complete{color:var(--green);font-weight:600}.status-not{color:var(--muted)}
+/* Progress */
+.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:8px}
+.progress .bar{height:100%;background:var(--accent);border-radius:3px}
+/* Back link */
+.back{display:inline-block;color:var(--muted);font-size:.9em;margin-bottom:20px}
+.back:hover{color:var(--accent)}
+/* Download */
+.dl-card{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin:8px 0;transition:.2s}
+.dl-card:hover{border-color:var(--accent);text-decoration:none}
+.dl-card .icon{font-size:2em}.dl-card .info h4{color:var(--white);margin-bottom:4px}.dl-card .info p{color:var(--muted);font-size:.85em}
+/* Footer */
+footer{text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px}
+@media(max-width:768px){.stats{gap:16px}.stat .num{font-size:1.3em}nav .links{gap:4px}nav .links a{font-size:11px;padding:3px 6px}.hero h1{font-size:1.6em}}
+
+.doc-content{max-width:900px;margin:0 auto;padding:20px 0}
+.doc-content h1{font-size:1.8em;font-weight:800;color:var(--white);margin:32px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.doc-content h2{font-size:1.4em;font-weight:700;color:var(--accent);margin:28px 0 12px}
+.doc-content h3{font-size:1.15em;font-weight:600;color:var(--accent2);margin:20px 0 10px}
+.doc-content p{margin:8px 0;line-height:1.7}
+.doc-content table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85em}
+.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;border:1px solid var(--border)}
+.doc-content td{padding:8px 12px;border:1px solid var(--border);vertical-align:top}
+.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.doc-content ul,.doc-content ol{margin:8px 0 8px 24px}
+.doc-content li{margin:4px 0;line-height:1.6}
+.doc-content strong{color:var(--white)}
+.doc-content em{color:var(--muted)}
+.doc-content blockquote{border-left:3px solid var(--accent);padding:8px 16px;margin:12px 0;background:var(--card);border-radius:0 8px 8px 0}
+.nav-sub{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 24px;padding:12px 16px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
+.nav-sub a{font-size:.8em;color:var(--muted);padding:4px 10px;border-radius:4px;transition:.2s;white-space:nowrap}
+.nav-sub a:hover,.nav-sub a.active{color:var(--white);background:var(--surface);text-decoration:none}
+</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a></div></div></nav><div class="container">
+    <div style="padding-top:30px">
+        <a href="p6.html" class="back">← 💻 P6: DTC Digital</a>
+        <div class="nav-sub"><a href="p6.html">💻 P6 Overview</a><a href="sub-p6a.html">P6A</a><a href="sub-p6b.html" class="active">P6B</a><a href="sub-p6c.html">P6C</a><a href="sub-p6d.html">P6D</a><a href="sub-p6e.html">P6E</a></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px">
+            <div>
+                <span style="background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px">P6B</span>
+                <span style="color:var(--muted);font-size:.85em;margin-left:8px">P6: DTC Digital</span>
+            </div>
+            <a href="files/P6B_Shopify_Store_Build.docx" style="font-size:.85em;color:var(--accent);padding:6px 14px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
+        </div>
+        <div class="doc-content">
+            <p><strong>P6B: SHOPIFY</strong></p>
+<p><strong>STORE BUILD</strong></p>
+<p>Sub-Project P6B | DTC Digital Infrastructure | Weeks 10–14</p>
+<p><em>Complete Shopify Storefront: 8-Section Homepage Blueprint,
+Product Listings &amp; Page Anatomy, Impact Counter Implementation,
+Payments/Shipping/Tax Configuration, Klaviyo Email Automation, B2B
+Landing Page, and Mobile Optimization Checklist</em></p>
+<p>March 2026 | Confidential</p>
+<p>Executive Summary</p>
+<p><strong>The Shopify store is the brand’s owned digital storefront —
+the only channel where the brand controls the entire customer
+experience:</strong> the visual design, the messaging, the pricing, the
+checkout flow, and the post-purchase relationship. Amazon is the volume
+channel (search traffic, Prime shipping, review velocity). Shopify is
+the BRAND channel (storytelling, email capture, higher margin, B2B
+inquiry). Both are essential. Shopify builds the brand; Amazon builds
+the revenue.</p>
+<p><strong>This document specifies every element of the Shopify
+store:</strong> an 8-section sustainability-led homepage designed to
+communicate the value proposition in 3 seconds, product listings with
+7–9 image galleries and SEO-optimized titles, an auto-updating impact
+counter showing garbage bags replaced and waste composted, payments with
+express checkout (Shop Pay, Apple Pay), free shipping at $25+ to drive
+multi-pack AOV, Klaviyo email automation with 5 flow types (welcome,
+abandoned cart, post-purchase, pre-race, sunset), a dedicated B2B
+landing page for race director inquiries, and a mobile optimization
+checklist for the 70%+ of runners who browse on phone.</p>
+<p>1. Homepage: 8-Section Blueprint</p>
+<p><strong>The homepage is the brand’s digital storefront.</strong> A
+visitor arriving from Google, Instagram, or a QR code has 3 seconds to
+understand: WHAT the product is, WHO it’s for, and WHY it matters. The 8
+sections below flow in a deliberate sequence: attention (hero) →
+education (how it works) → trust (social proof) → impact (counter) →
+conversion (product showcase) → credibility (race logos) → connection
+(brand story) → capture (email signup).</p>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width:50%">
+<col style="width: 35%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Section</strong></td>
+<td><strong>Content</strong></td>
+<td><strong>Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Hero section</strong></td>
+<td>Full-width hero image: runner in poncho at dawn, start-line
+atmosphere, golden light, metallized lining catching the sun. Headline:
+“Race Warm. Leave No Trace.” (or winning tagline from P1A/P1C).
+Subheadline: “The first BPI-certified compostable warmth poncho for
+marathon start lines.” CTA button: “Shop Now” (links to product page).
+Secondary CTA: “Race Directors: Get a Free Sample Kit” (links to B2B
+landing page, P6B Section 6).</td>
+<td>ABOVE THE FOLD. The hero image and headline must communicate the
+ENTIRE value proposition in 3 seconds: warmth + sustainability +
+runners. Test: if someone screenshots only the top of the homepage, can
+they understand what the product is? If yes, the hero is working.</td>
+</tr>
+<tr class="odd">
+<td><strong>How It Works</strong></td>
+<td>3-column section with icons: PACK (folded poncho in bag), WEAR
+(runner in corral wearing poncho), COMPOST (poncho decomposing into soil
+with seedling). Each column: icon or photo + 1-sentence description.
+Background: Mist White (#F5F2EB).</td>
+<td>Communicates the product lifecycle in 3 steps. The 3-step simplicity
+addresses the “what do I do with it?” question that every new visitor
+has.</td>
+</tr>
+<tr class="even">
+<td><strong>Social proof</strong></td>
+<td>Scrolling testimonial carousel OR static quote blocks: 2–3 runner
+quotes + 1 race director quote from pilot races (P5B Section 5).
+Include: headshot or avatar, name, race name, star rating. “‘Kept me
+warm in the corral and I didn’t feel guilty about the waste. Game
+changer.’ — Sarah M., Chicago Marathon runner.”</td>
+<td>Social proof should appear BEFORE the product listing on the
+homepage. Visitors who see testimonials before seeing the price are 3–5×
+more likely to add to cart.</td>
+</tr>
+<tr class="odd">
+<td><strong>Impact counter</strong></td>
+<td>Large, bold, animated counter: “[X] garbage bags replaced • [Y] lbs
+composted • [Z] races served.” Auto-updating from a Google Sheet or
+manual backend update. Background: Earth Green (#2D6A4F) with white
+text.</td>
+<td>The impact counter is the brand’s sustainability proof-in-motion. It
+grows with every sale and every race, creating a sense of momentum and
+community. Visitors return to see the counter grow. Implementation:
+Section 3 of this document.</td>
+</tr>
+<tr class="even">
+<td><strong>Product showcase</strong></td>
+<td>Featured product: 3-Pack (highest-margin SKU). Large product image,
+price ($24.99 or Race Weekend Special pricing), “Add to Cart” button,
+and “Also available as single ($9.99) and 6-Pack ($49.99)” text
+links.</td>
+<td>Feature the 3-PACK on the homepage, not the single unit. The 3-pack
+drives higher AOV ($24.99 vs. $9.99). Single and 6-pack are accessible
+via the product page. The homepage is the first upsell opportunity.</td>
+</tr>
+<tr class="odd">
+<td><strong>As Seen At</strong></td>
+<td>Logo bar: logos of races where the poncho has been used (pilot races
+per P5B). “As Seen At: [Race Name] • [Race Name] • [Race Name].” If no
+pilot races yet: “Debuting at [Race Name] Fall 2026.”</td>
+<td>Race logos provide instant credibility for runners. A runner
+training for Chicago Marathon who sees the Chicago Marathon logo on the
+site is significantly more likely to purchase.</td>
+</tr>
+<tr class="even">
+<td><strong>Brand story</strong></td>
+<td>1–2 paragraph brand story from P1C Section 1.2 (50–100 word
+version). Include: founder photo, the “why” behind the brand, and a link
+to brand.com/about for the full story. Background: Warm Charcoal
+(#2B2D2F) with Mist White text.</td>
+<td>The brand story humanizes the business. Visitors who connect
+emotionally with the founder’s story become loyal customers, not just
+one-time buyers.</td>
+</tr>
+<tr class="odd">
+<td><strong>Email capture footer</strong></td>
+<td>Inline email signup: “Join the Movement — Sustainability tips,
+race-day warmth guides, and early access to new products.” Input field +
+“Subscribe” button. Connected to Klaviyo list (P6B Section 5).
+Incentive: “Get 10% off your first order.”</td>
+<td>The footer email capture catches visitors who scroll the entire
+homepage but don’t purchase. Target: 3–6% of homepage visitors sign up
+(per P6A Section 6 KPI targets).</td>
+</tr>
+</tbody>
+</table>
+<p>1.1 Homepage Design Principles</p>
+<p>MINIMAL TEXT: runners scan, they don’t read. Every section should
+communicate its message in under 5 seconds of visual scanning. STRONG
+IMAGERY: the hero image, product photos, and race-day photography do the
+heavy lifting. Text supports the images, not the other way around.
+SINGLE CTA PER SECTION: each section has one clear action (shop, sign
+up, learn more, inquire). Multiple CTAs per section create choice
+paralysis. BRAND CONSISTENCY: all design elements follow P1B visual
+identity: Earth Green (#2D6A4F), Dawn Gold (#D4A843), Warm Charcoal
+(#2B2D2F), Mist White (#F5F2EB). Typography: DM Sans headings, Inter
+body. Imagery: warm dawn tones per P1D photography direction.</p>
+<p>2. Product Listings: 3 SKUs</p>
+<p><strong>Three DTC SKUs launch on Shopify, each with a specific
+strategic purpose:</strong> the single ($9.99) is the trial purchase for
+first-time buyers, the 3-pack ($24.99) is the HERO SKU driving AOV, and
+the 6-pack ($49.99) is the club/family pack for group buyers. All three
+are linked as variants on a single product page using Shopify’s variant
+selector.</p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 11%" />
+<col style="width: 7%" />
+<col style="width: 33%" />
+<col style="width: 33%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Product</strong></td>
+<td><strong>SKU</strong></td>
+<td><strong>Price</strong></td>
+<td><strong>Description</strong></td>
+<td><strong>Images</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Single Poncho</strong></td>
+<td>RSW-STD-GRN-1PK</td>
+<td>$9.99</td>
+<td>The compostable warmth poncho for your race start line.
+BPI-certified. Metallized cellulose lining keeps you warm at 40°F+.
+Tear-away design: shed it at the gun in seconds. One size fits XS–XXL.
+Composts after the race — no landfill waste.</td>
+<td>Hero image (white background studio shot), lifestyle (runner wearing
+at start line), detail (metallized lining close-up), packaging (sealed
+inner bag), tear-away demo (sequence: pull tab → tear → off in 3 sec),
+composting lifecycle icon set, size guide graphic</td>
+</tr>
+<tr class="odd">
+<td><strong>3-Pack (HERO SKU)</strong></td>
+<td>RSW-STD-GRN-3PK</td>
+<td>$24.99</td>
+<td>Race crew ready. 3 compostable warmth ponchos for you and your
+running partners. Same BPI-certified quality. Share the warmth, not the
+waste. Save $5 vs. buying singles.</td>
+<td>Same images as single + 3-pack bundle shot (3 ponchos fanned out),
+“Buy for your crew” lifestyle image (3 runners in ponchos, corral
+atmosphere), savings callout graphic (“Save $5 vs. 3 singles”)</td>
+</tr>
+<tr class="even">
+<td><strong>6-Pack</strong></td>
+<td>RSW-STD-GRN-6PK</td>
+<td>$49.99</td>
+<td>Running club ready. 6 compostable warmth ponchos for the whole crew.
+Perfect for teams, families, and relay squads. Save $10 vs. buying
+singles.</td>
+<td>Same core images + 6-pack box shot (kraft mailer box with brand
+logo), “Club Pack” lifestyle image, savings callout (“Save $10 — only
+$8.33 each”)</td>
+</tr>
+</tbody>
+</table>
+<p>2.1 Product Page Anatomy</p>
+<p><strong>Every element on the product page serves a conversion
+function.</strong> The page is structured in a vertical hierarchy that
+mirrors the buyer’s decision process: see it (images), want it (headline
++ bullets), trust it (reviews + certifications), and buy it (Add to Cart
++ express pay).</p>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 81%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Element</strong></td>
+<td><strong>Specification</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Image gallery</strong></td>
+<td>7–9 images per P1D Amazon photography plan: (1) hero/white
+background, (2) lifestyle/start line, (3) detail/metallized lining, (4)
+packaging, (5) tear-away sequence, (6) composting lifecycle, (7) size
+guide, (8) FLIR thermal comparison, (9) co-brand example (if available).
+First image must be the hero shot on white background — this is the
+thumbnail in search results and collection pages.</td>
+</tr>
+<tr class="odd">
+<td><strong>Title</strong></td>
+<td>Format: “[BRAND] Compostable Warmth Poncho — [Pack Size] | BPI
+Certified | Race Start Line”. Example: “[BRAND] Compostable Warmth
+Poncho — 3-Pack | BPI Certified | Race Start Line.” Include: brand name,
+product type, pack size, and primary selling point in the title for
+SEO.</td>
+</tr>
+<tr class="even">
+<td><strong>Price + compare-at</strong></td>
+<td>Price: $24.99 (3-pack). Compare-at price: $29.97 (3 × $9.99).
+Shopify automatically shows the strikethrough: “$29.97 $24.99 — Save
+$4.98.” The compare-at price creates perceived savings even when the
+3-pack IS the intended price.</td>
+</tr>
+<tr class="odd">
+<td><strong>Description (above fold)</strong></td>
+<td>3–4 bullet points (visible without scrolling): • BPI-certified
+compostable — composts in 12–24 weeks at commercial facilities. •
+Metallized cellulose lining — 8–12°F warmer than bare skin at 40°F. •
+Tear-away design — shed at the gun in under 3 seconds. • One size fits
+XS–XXL — 55″W × 34″L with elastic hood.</td>
+</tr>
+<tr class="even">
+<td><strong>Add to Cart + express pay</strong></td>
+<td>Large “Add to Cart” button (Earth Green background, white text).
+Below: Shopify’s dynamic checkout buttons (Shop Pay, Apple Pay, Google
+Pay) for 1-click express purchase. Express checkout reduces checkout
+friction by 40–60% on mobile (per Shopify’s data).</td>
+</tr>
+<tr class="odd">
+<td><strong>Description (below fold)</strong></td>
+<td>Expanded product details: materials (NatureFlex NM + PLA spunbond),
+certifications (BPI, ASTM D6400, Patent Pending), composting
+instructions (4-step lifecycle from P1B Section 6), care/storage (store
+below 77°F, 10–12 month shelf life), and allergen notice (“Contains
+natural rubber latex”). Also: the brand story snippet with “Read our
+full story” link.</td>
+</tr>
+<tr class="even">
+<td><strong>Reviews section</strong></td>
+<td>Shopify review app (Judge.me free tier or Loox $9.99/month for photo
+reviews). Display: star rating, total review count, and individual
+reviews with reviewer name, date, rating, and text. Photo reviews are
+3–5× more persuasive than text-only — incentivize with a “Leave a photo
+review, get 15% off your next order” offer.</td>
+</tr>
+<tr class="odd">
+<td><strong>Related products</strong></td>
+<td>Below reviews: “Complete Your Race Kit” section showing the other
+pack sizes (if viewing single: show 3-pack and 6-pack as upsells). Also:
+“Race directors: Order for your start line” link to the B2B landing
+page.</td>
+</tr>
+</tbody>
+</table>
+<p>3. Impact Counter: Real-Time Sustainability Proof</p>
+<p><strong>The impact counter is the homepage’s emotional
+anchor.</strong> It transforms the brand from a product company into a
+MOVEMENT. Visitors don’t just buy a poncho — they contribute to a
+growing counter of garbage bags replaced, pounds composted, and races
+served. The counter provides: social proof (others are buying and making
+an impact), momentum (the numbers grow visibly over time), and
+accountability (the brand publishes its impact transparently).</p>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width:50%">
+<col style="width: 35%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Element</strong></td>
+<td><strong>Specification</strong></td>
+<td><strong>Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Data source</strong></td>
+<td>Google Sheet with 3 columns: total_garbage_bags_replaced (= total
+units sold × 1, since each poncho replaces 1 garbage bag),
+total_lbs_composted (= total units sold to B2B × 0.06 lbs/poncho ×
+collection rate), total_races_served (= count of distinct races that
+have used the product). Update: weekly from sales data (Shopify + Amazon
++ B2B).</td>
+<td>Manual update is acceptable for Season 1. For Season 2+: automate
+via Shopify webhook → Google Sheets API or a custom app.</td>
+</tr>
+<tr class="odd">
+<td><strong>Frontend display</strong></td>
+<td>Large numeric counters with animated count-up effect on page load
+(e.g., 0 → 12,450 over 2 seconds). Three metrics side by side: [X]
+GARBAGE BAGS REPLACED | [Y] LBS COMPOSTED | [Z] RACES SERVED.
+Background: Earth Green band across full page width. Typography: large
+DM Sans bold numbers, small Inter label text below.</td>
+<td>Count-up animation is a simple JavaScript effect: many Shopify
+themes include it natively (“counter section” or “stats section”). If
+theme doesn’t include: use a free Shopify app (e.g., “CountUp — Animated
+Counters”) or add custom Liquid/JavaScript to the theme.</td>
+</tr>
+<tr class="even">
+<td><strong>Implementation options</strong></td>
+<td>OPTION A (simplest): Use a Shopify theme section with manually
+updated values. Edit the theme → add a “Counter” or “Stats” section to
+the homepage → enter the 3 numbers. Update weekly. OPTION B
+(semi-automated): Embed a Google Sheet chart or data via iframe. The
+Sheet updates when sales data is entered; the homepage reflects changes
+automatically. OPTION C (fully automated, Year 2+): Custom Shopify app
+that pulls Shopify order count and calculates impact metrics in real
+time. Displays dynamically on the homepage.</td>
+<td>RECOMMENDED: Option A for launch. Takes 10 minutes to set up, 2
+minutes to update weekly. The manual update cadence matches the Monday
+KPI dashboard review (P6A Section 6).</td>
+</tr>
+<tr class="odd">
+<td><strong>Seeding the counter</strong></td>
+<td>Pre-launch: if pilot race data exists (P5B), seed the counter with
+real numbers from pilot races (“2,500 garbage bags replaced, 150 lbs
+composted, 3 races served”). If no pilot data yet: start at 0 and let
+the counter grow from actual sales/races. Do NOT fabricate numbers — the
+counter must reflect real, verifiable impact. Transparency is the
+brand’s foundation.</td>
+<td>Starting at 0 is fine and even powerful: visitors who return later
+see the counter growing, which creates a sense of momentum and community
+participation.</td>
+</tr>
+</tbody>
+</table>
+<p>4. Payments, Shipping, Tax &amp; Policies</p>
+<p><strong>Frictionless payments and transparent shipping are the
+foundation of DTC conversion.</strong> A 2.9% processing fee on a $9.99
+sale costs $0.59 — trivial compared to the $9.99 lost from a customer
+who abandons because PayPal isn’t accepted or shipping costs are hidden
+until checkout. Show everything upfront, accept everything, and surprise
+with nothing.</p>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 81%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Element</strong></td>
+<td><strong>Specification</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Payment processor</strong></td>
+<td>Shopify Payments (built-in, recommended). Processing fee: 2.9% +
+$0.30 per online transaction (Basic plan). Supports: credit/debit cards,
+Apple Pay, Google Pay, Shop Pay. NO additional transaction fee when
+using Shopify Payments. Alternative: Stripe (same rates) or PayPal
+(2.99% + $0.49). RECOMMENDATION: enable Shopify Payments + PayPal as a
+secondary option (some customers prefer PayPal).</td>
+</tr>
+<tr class="odd">
+<td><strong>Express checkout</strong></td>
+<td>Enable: Shop Pay (auto-saves customer info for 1-click checkout —
+conversion rate increase of 1.7× per Shopify data), Apple Pay, Google
+Pay. All are enabled in Shopify Payments settings. These appear on the
+product page as dynamic checkout buttons and in the cart as express
+checkout options.</td>
+</tr>
+<tr class="even">
+<td><strong>Shipping rates</strong></td>
+<td>FREE SHIPPING on orders ≥25 (incentivizes 3-pack purchase at
+$24.99). Below $25: flat rate $4.99. Ship via: USPS First Class (2–5
+days for packages &lt;13 oz — the poncho qualifies) or USPS Priority
+Mail (2–3 days for larger orders). Use Pirate Ship (pirateship.com) for
+discounted USPS rates (40–70% off retail). Shopify Shipping (discounted
+UPS/USPS rates available directly in Shopify) is an alternative.</td>
+</tr>
+<tr class="odd">
+<td><strong>Shipping zones</strong></td>
+<td>US domestic only for Season 1 (continental US). Add: Alaska, Hawaii
+at +$3 surcharge (or free shipping threshold of $35). International
+shipping: NOT recommended for Season 1 (customs complexity, higher
+shipping cost, longer transit = higher return rate). Add in Year 2 if
+demand warrants (start with Canada, then UK/EU).</td>
+</tr>
+<tr class="even">
+<td><strong>Tax collection</strong></td>
+<td>Enable Shopify’s automatic tax calculation: Settings → Taxes and
+Duties → United States → enable automatic tax calculation. Shopify uses
+Avalara’s tax engine to calculate the correct state + city + county tax
+rate based on the customer’s shipping address. For states with economic
+nexus thresholds: monitor total sales per state. If any state exceeds
+the nexus threshold (typically $100K in sales or 200 transactions):
+register for sales tax in that state. Use TaxJar ($19–$99/month) for
+automated multi-state filing when volume warrants.</td>
+</tr>
+<tr class="odd">
+<td><strong>Store policies</strong></td>
+<td>Create 4 policy pages in Shopify Admin → Settings → Policies: (1)
+Shipping Policy: delivery timelines, free shipping threshold, carrier
+information. (2) Return Policy: per P4B Section 6.1 (30-day,
+unused/unopened, full refund). (3) Privacy Policy: disclose GA4, Meta
+Pixel, Clarity, cookies, email collection. Use Shopify’s built-in
+privacy policy generator + customize for tracking tools. (4) Terms of
+Service: standard Shopify-generated template. All 4 policies are linked
+in the site footer and are legally required for e-commerce.</td>
+</tr>
+</tbody>
+</table>
+<p>5. Klaviyo Email Automation: 5 Flow Types</p>
+<p><strong>Email marketing generates $36–$42 for every $1 spent (DMA
+industry data) — the highest ROI of any marketing channel.</strong>
+Klaviyo integrates natively with Shopify and enables automated email
+flows that trigger based on customer behavior: sign up, abandon cart,
+purchase, inactivity. These flows run 24/7 without founder intervention,
+generating revenue while the founder sleeps.</p>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 81%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Flow</strong></td>
+<td><strong>Specification</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Setup</strong></td>
+<td>Install Klaviyo Shopify app (free up to 250 contacts, then
+$20–$45/month). Connect to Shopify: Klaviyo automatically syncs:
+customer data, order history, product catalog, and browsing behavior.
+Enable: on-site tracking (Klaviyo’s JavaScript snippet — installed
+automatically by the app).</td>
+</tr>
+<tr class="odd">
+<td><strong>Welcome series (3 emails)</strong></td>
+<td>Trigger: email sign-up (popup, inline form, or checkout). Email 1
+(immediate): “Welcome to [BRAND]! Here’s your 10% off code: WELCOME10.
+Use it on your first order.” Include: hero image, 3-step product
+overview, CTA to shop. Email 2 (Day 3): “Why We Built This” — the brand
+story from P1C Section 1.2. Emotional connection, founder photo, mission
+statement. CTA: “Shop Our Story.” Email 3 (Day 7): “Your 10% Off Expires
+Soon” — urgency reminder with product images and CTA. Include:
+testimonial quote from a pilot race runner.</td>
+</tr>
+<tr class="even">
+<td><strong>Abandoned cart (3 emails)</strong></td>
+<td>Trigger: item added to cart, checkout initiated, but purchase not
+completed. Email 1 (1 hour after abandonment): “You left something
+behind!” Product image, price, “Complete Your Order” CTA. No discount
+yet. Email 2 (24 hours): “Still thinking about it?” Add: 1–2 testimonial
+quotes, FAQ answer (“Yes, it really keeps you warm”). CTA: “Complete
+Your Order.” Email 3 (72 hours): “Last chance + free shipping.” Offer:
+free shipping on the abandoned order (code: FREESHIP or automatic). This
+is the conversion trigger.</td>
+</tr>
+<tr class="odd">
+<td><strong>Post-purchase (4 emails)</strong></td>
+<td>Trigger: purchase completed. Email 1 (immediate): order confirmation
+(Shopify handles this natively, but Klaviyo can customize with branded
+design). Email 2 (Day 3 after delivery): “How’s your poncho?” Quick
+satisfaction check + composting instructions. CTA: “Learn how to compost
+your poncho.” Email 3 (Day 7): “Leave a Review” request. “Tell other
+runners what you think! Leave a review and get 15% off your next order.”
+Direct link to Shopify review page (Judge.me or Loox). Email 4 (Day 14):
+“Share the Warmth” referral prompt per P1E Section 6: “Give $5, Get $5.
+Share your referral link: brand.com/refer/[unique-code].”</td>
+</tr>
+<tr class="even">
+<td><strong>Pre-race flow</strong></td>
+<td>Trigger: geographic/behavioral. If a major race is 2–4 weeks away
+AND the subscriber’s location is the race city (or they’ve browsed
+race-specific content): send a “Don’t Forget Your Poncho” email. “[Race
+Name] is [X] days away. Race-morning forecast: [temp]. Order your
+compostable poncho now and it’ll arrive before race day.” Include:
+shipping guarantee (“Order by [date] for delivery before [race
+name]”).</td>
+</tr>
+<tr class="odd">
+<td><strong>Sunset / re-engagement</strong></td>
+<td>Trigger: subscriber has not opened an email in 90 days. Email 1 (90
+days): “We miss you! Here’s 15% off your next poncho.” Email 2 (120
+days): “Last chance — should we keep you on our list?” If no engagement
+after Email 2: suppress from active list (stop sending to protect
+deliverability). Re-add if they visit the site or make a purchase.</td>
+</tr>
+</tbody>
+</table>
+<p>5.1 Email Design Guidelines</p>
+<p>ALL Klaviyo emails must follow P1B visual identity: header with brand
+logo on Earth Green background, body on Mist White, CTA buttons in Earth
+Green with white text, footer with social links + unsubscribe.
+Mobile-first design: 600px max width, single-column layout, 14px+ body
+text, 44px+ tap targets for buttons. Keep emails under 500 words —
+runners are busy. Every email has ONE primary CTA (not 3 competing
+links). Subject lines: &lt;50 characters, personalized with first name,
+no ALL CAPS, no excessive punctuation.</p>
+<p>6. B2B Landing Page: Race Director Portal</p>
+<p><strong>The B2B landing page converts race directors who find the
+brand online into pipeline contacts.</strong> It is a separate
+experience from the DTC product pages — different messaging
+(sustainability impact, composting logistics, co-branding), different
+CTA (inquiry form + sample kit request, not “Add to Cart”), and
+different social proof (race director quotes, not runner reviews).</p>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 81%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Element</strong></td>
+<td><strong>Specification</strong></td>
+</tr>
+<tr class="even">
+<td><strong>URL</strong></td>
+<td>brand.com/b2b (clean, memorable, included on business cards and B2B
+data sheets)</td>
+</tr>
+<tr class="odd">
+<td><strong>Hero section</strong></td>
+<td>Headline: “Compostable Ponchos for Your Race Start Line.”
+Subheadline: “Custom co-branded. BPI certified. Composting handled. From
+500 units.” CTA: “Request a Free Sample Kit” (prominent button).
+Background: race-day photo with co-branded ponchos visible.</td>
+</tr>
+<tr class="even">
+<td><strong>Value proposition</strong></td>
+<td>3–4 pillar blocks: (1) Co-Branded with Your Logo (co-brand mockup
+image), (2) BPI-Certified Compostable (BPI certification badge), (3) We
+Handle Composting (composting truck photo), (4) Competitive Pricing from
+$3.50/unit (pricing comparison vs. Heatsheets $4.55). Each pillar: icon
++ 1–2 sentence description.</td>
+</tr>
+<tr class="odd">
+<td><strong>Case study preview</strong></td>
+<td>If pilot case study exists (P5B Section 6): embedded 2–3 paragraph
+summary with: race name, key data (units distributed, collection rate,
+waste diverted), race director quote, and “Read Full Case Study” link.
+If no case study yet: “Pilot Program Now Open — Be among the first races
+to eliminate start-line waste.”</td>
+</tr>
+<tr class="even">
+<td><strong>Inquiry form</strong></td>
+<td>Form fields: race name, race date, estimated quantity, name, email,
+phone (optional), “Are you interested in co-branding?” (Y/N), “Would you
+like a free sample kit?” (Y/N), mailing address (for sample kit),
+free-text field for additional questions. Form submission: triggers
+email to founder + auto-response to the race director (“Thanks for your
+inquiry! I’ll be in touch within 24 hours.”). CRM integration: Klaviyo
+or HubSpot captures the form submission as a new contact with
+“b2b_inquiry” tag.</td>
+</tr>
+<tr class="odd">
+<td><strong>Trust elements</strong></td>
+<td>Logo bar: “Trusted by [Race Name], [Race Name], [Race Name]” (from
+pilot races). Certification badges: BPI Certified, Patent Pending, 1%
+for the Planet (if joined per P5C Section 5). Founder photo + direct
+contact info: “Questions? Reach me directly: [email] | [phone].”</td>
+</tr>
+<tr class="even">
+<td><strong>Co-brand gallery</strong></td>
+<td>3–5 co-brand mockup images showing ponchos with different race logos
+(placeholder or real per P3C Section 6). “Your race. Your logo. Your
+sustainability story.” This is the visual conversion tool — race
+directors see their competitors’ logos on ponchos and think: “We should
+do this too.”</td>
+</tr>
+</tbody>
+</table>
+<p>6.1 B2B Page SEO</p>
+<p>Optimize the B2B page for search queries from race directors: title
+tag: “Compostable Ponchos for Race Start Lines | Custom Co-Branded |
+[BRAND]”. Meta description: “BPI-certified compostable warmth ponchos
+for marathon start lines. Custom co-branding from 500 units. We handle
+composting logistics. Request a free sample kit.” Target keywords: “race
+start line poncho,” “compostable race supplies,” “custom race ponchos,”
+“sustainable race products.” Internal links: link to the B2B page from
+the homepage (“Race Directors” nav link) and from the product page
+footer (“Ordering for a race? Visit our Race Director page”).</p>
+<p>7. Mobile Optimization: 70%+ Traffic</p>
+<p><strong>More than 70% of running-related online shopping occurs on
+mobile devices.</strong> The Shopify store must be designed
+MOBILE-FIRST: every element, from the hero image to the checkout button,
+must work perfectly on a 375px-wide screen with a thumb as the input
+device. Desktop is the secondary experience.</p>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 81%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Element</strong></td>
+<td><strong>Specification</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Theme selection</strong></td>
+<td>Choose a Shopify theme optimized for mobile: Dawn (free, Shopify’s
+default, fast, clean), Prestige ($350, premium, beautiful on mobile), or
+Impact ($350, bold, high-conversion). ALL Shopify 2.0 themes are
+responsive, but some render better on mobile than others. TEST: open the
+store on 3 different phones (iPhone, Samsung, budget Android) and
+verify: images load quickly, text is readable without zooming, buttons
+are tappable without misclicks, and checkout flows smoothly.</td>
+</tr>
+<tr class="odd">
+<td><strong>Navigation</strong></td>
+<td>Hamburger menu (standard mobile navigation) with: Shop (links to
+product collection), Our Story (brand.com/about), Race Directors
+(brand.com/b2b), Composting (brand.com/compost), FAQ, and Cart icon with
+item count badge. Keep navigation to 5–7 items maximum. Every extra item
+reduces clarity.</td>
+</tr>
+<tr class="even">
+<td><strong>Product page mobile layout</strong></td>
+<td>Image gallery: swipeable carousel (standard in all Shopify themes).
+Price + Add to Cart: visible IMMEDIATELY below the first image without
+scrolling. Express checkout buttons (Shop Pay, Apple Pay): directly
+below Add to Cart. Description bullets: collapsible accordion (tap to
+expand) to save screen space. Reviews: displayed below description with
+star rating visible at the top of the product page (near the title) as a
+clickable link that scrolls to the reviews section.</td>
+</tr>
+<tr class="odd">
+<td><strong>Page speed</strong></td>
+<td>Target: &lt;3 second full page load on mobile (4G connection).
+Optimize: compress all product images (TinyPNG or Shopify’s built-in
+compression), minimize third-party apps (each app adds JavaScript that
+slows the page — only install essential apps), use system fonts where
+possible (DM Sans + Inter may require Google Fonts loading; if page
+speed suffers, fall back to Arial/Helvetica). Test: Google PageSpeed
+Insights (pagespeed.web.dev) → target: 70+ mobile performance
+score.</td>
+</tr>
+<tr class="even">
+<td><strong>Checkout optimization</strong></td>
+<td>Shopify’s checkout is already mobile-optimized, but verify: (1)
+Guest checkout is enabled (Settings → Checkout → Customer accounts:
+“Accounts are optional”). Requiring account creation kills conversion —
+30–40% of users abandon checkout if forced to create an account. (2)
+Address autocomplete is enabled (Shopify uses Google Places API by
+default). (3) Express checkout buttons are enabled and visible. (4)
+Order summary is collapsible on mobile (reduces vertical scroll in
+checkout).</td>
+</tr>
+<tr class="odd">
+<td><strong>Testing cadence</strong></td>
+<td>Before launch: test the entire purchase flow on mobile (browse →
+product page → add to cart → checkout → purchase) on at least 3 devices.
+Monthly: spot-check the mobile experience after any theme update, app
+installation, or product page change. Use Clarity session recordings
+filtered by “mobile” to identify mobile-specific friction points.</td>
+</tr>
+</tbody>
+</table>
+<p>8. Timeline &amp; Budget</p>
+<p><strong>WEEK 10–11: Choose Shopify plan (Basic, $39/month). Purchase
+and connect domain (brand.com, if not already done in P1A). Select theme
+(Dawn free or Prestige/Impact $350). Set up: homepage hero section,
+navigation, and basic brand styling (colors, fonts, logo). Configure
+Shopify Payments + PayPal.</strong></p>
+<p><strong>WEEK 12–13: Create product listings (single, 3-pack, 6-pack).
+Upload 7–9 images per product. Write titles, descriptions, and bullet
+points. Set prices and compare-at prices. Configure shipping rates (free
+≥$25, flat $4.99 below). Set up tax collection (automatic). Build the
+impact counter section on the homepage. Create store policies (shipping,
+return, privacy, terms).</strong></p>
+<p><strong>WEEK 13–14: Install and configure Klaviyo: welcome series (3
+emails), abandoned cart (3 emails), post-purchase (4 emails). Design
+email templates per P1B visual identity. Build the B2B landing page
+(brand.com/b2b) with inquiry form and sample kit request. Install review
+app (Judge.me or Loox). Optimize for mobile: test on 3 devices, fix any
+issues.</strong></p>
+<p><strong>WEEK 14: Final QA: complete a test purchase through the full
+flow (browse → product page → add to cart → checkout → purchase → order
+confirmation email → post-purchase email sequence). Verify: GA4 tracks
+the purchase, Meta Pixel fires, Clarity records the session, Klaviyo
+captures the customer. Launch the store. HANDOFF to P6C (Amazon
+Marketplace) and P6D (SEO &amp; Content).</strong></p>
+<p>BUDGET: Shopify Basic: $39/month. Domain (if not already purchased):
+$12–$15/year. Theme (if premium): $0–$350 (one-time). Klaviyo:
+$0–$20/month (free up to 250 contacts). Judge.me: $0 (free tier) or
+Loox: $9.99/month. Pirate Ship: $0 (free platform, pay per label). TOTAL
+P6B: $39–$69/month + $0–$365 one-time.</p>
+<p>9. Conclusion: The Store Is the Brand Experience</p>
+<p><strong>A runner who visits brand.com should FEEL the brand before
+they buy the product.</strong> The hero image should evoke the cold dawn
+of a race morning. The impact counter should make them feel part of
+something bigger. The tear-away demo photos should make them curious.
+The race director quote should make them trust. And the “Add to Cart”
+button should feel like the obvious next step, not a hard sell.</p>
+<p><strong>Shopify is not just an online store — it is the brand’s home
+base.</strong> Amazon is a marketplace (the brand is one of many). The
+expo is temporary (2 days, then gone). Social media is rented
+(algorithms control reach). But brand.com is OWNED. The email list is
+OWNED. The customer relationship is OWNED. Every Shopify visitor who
+signs up for email becomes a direct relationship the brand controls
+forever — no algorithm, no marketplace fee, no platform risk. Build the
+store to sell ponchos. Build the email list to build a business.</p>
+
+        </div>
+    </div></div>
+<footer style="text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px">
+Sustainable Race-Start Warmth Poncho — D2C Brand GTM Project · 60 Subprojects · 391 Tasks · ~15,500¶ · April 2026
+</footer></body></html>

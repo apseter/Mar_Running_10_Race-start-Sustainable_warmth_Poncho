@@ -1,0 +1,902 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>P4D: Composting Partner Network — Race Start Warmth GTM</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0e1a;--surface:#111827;--card:#1a2332;--border:#2a3a4e;--accent:#10b981;--accent2:#3b82f6;--text:#e2e8f0;--muted:#94a3b8;--white:#fff;--red:#ef4444;--amber:#f59e0b;--green:#10b981}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+/* Nav */
+nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
+nav .inner{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;max-width:1200px;margin:0 auto}
+nav .brand{font-weight:700;font-size:15px;color:var(--accent)}
+nav .links{display:flex;gap:8px;flex-wrap:wrap}
+nav .links a{color:var(--muted);font-size:13px;padding:4px 10px;border-radius:6px;transition:.2s}
+nav .links a:hover,nav .links a.active{color:var(--white);background:var(--card);text-decoration:none}
+/* Hero */
+.hero{padding:60px 0 40px;text-align:center}
+.hero h1{font-size:2.4em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:1.1em;max-width:700px;margin:0 auto}
+/* Stats bar */
+.stats{display:flex;justify-content:center;gap:32px;padding:24px 0;flex-wrap:wrap}
+.stat{text-align:center}.stat .num{font-size:1.8em;font-weight:800;color:var(--white)}.stat .label{font-size:.75em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+/* Cards */
+.grid{display:grid;gap:16px;margin:24px 0}
+.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}
+.grid-3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;transition:.2s}
+.card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.card h3{font-size:1.1em;margin-bottom:8px}.card p{color:var(--muted);font-size:.9em}
+.card .badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:8px}
+.card .meta{font-size:.8em;color:var(--muted);margin-top:12px}
+/* Section */
+.section{padding:40px 0}.section h2{font-size:1.6em;font-weight:700;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+/* Table */
+table{width:100%;border-collapse:collapse;font-size:.85em;margin:16px 0}
+th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:52px}
+td{padding:8px 12px;border-bottom:1px solid var(--border)}
+tr:hover td{background:rgba(16,185,129,.05)}
+.status-complete{color:var(--green);font-weight:600}.status-not{color:var(--muted)}
+/* Progress */
+.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:8px}
+.progress .bar{height:100%;background:var(--accent);border-radius:3px}
+/* Back link */
+.back{display:inline-block;color:var(--muted);font-size:.9em;margin-bottom:20px}
+.back:hover{color:var(--accent)}
+/* Download */
+.dl-card{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin:8px 0;transition:.2s}
+.dl-card:hover{border-color:var(--accent);text-decoration:none}
+.dl-card .icon{font-size:2em}.dl-card .info h4{color:var(--white);margin-bottom:4px}.dl-card .info p{color:var(--muted);font-size:.85em}
+/* Footer */
+footer{text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px}
+@media(max-width:768px){.stats{gap:16px}.stat .num{font-size:1.3em}nav .links{gap:4px}nav .links a{font-size:11px;padding:3px 6px}.hero h1{font-size:1.6em}}
+
+.doc-content{max-width:900px;margin:0 auto;padding:20px 0}
+.doc-content h1{font-size:1.8em;font-weight:800;color:var(--white);margin:32px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.doc-content h2{font-size:1.4em;font-weight:700;color:var(--accent);margin:28px 0 12px}
+.doc-content h3{font-size:1.15em;font-weight:600;color:var(--accent2);margin:20px 0 10px}
+.doc-content p{margin:8px 0;line-height:1.7}
+.doc-content table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85em}
+.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;border:1px solid var(--border)}
+.doc-content td{padding:8px 12px;border:1px solid var(--border);vertical-align:top}
+.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.doc-content ul,.doc-content ol{margin:8px 0 8px 24px}
+.doc-content li{margin:4px 0;line-height:1.6}
+.doc-content strong{color:var(--white)}
+.doc-content em{color:var(--muted)}
+.doc-content blockquote{border-left:3px solid var(--accent);padding:8px 16px;margin:12px 0;background:var(--card);border-radius:0 8px 8px 0}
+.nav-sub{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 24px;padding:12px 16px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
+.nav-sub a{font-size:.8em;color:var(--muted);padding:4px 10px;border-radius:4px;transition:.2s;white-space:nowrap}
+.nav-sub a:hover,.nav-sub a.active{color:var(--white);background:var(--surface);text-decoration:none}
+</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a></div></div></nav><div class="container">
+    <div style="padding-top:30px">
+        <a href="p4.html" class="back">← 📦 P4: Supply Chain</a>
+        <div class="nav-sub"><a href="p4.html">📦 P4 Overview</a><a href="sub-p4a.html">P4A</a><a href="sub-p4b.html">P4B</a><a href="sub-p4c.html">P4C</a><a href="sub-p4d.html" class="active">P4D</a></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px">
+            <div>
+                <span style="background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px">P4D</span>
+                <span style="color:var(--muted);font-size:.85em;margin-left:8px">P4: Supply Chain</span>
+            </div>
+            <a href="files/P4D_Composting_Partner_Network.docx" style="font-size:.85em;color:var(--accent);padding:6px 14px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
+        </div>
+        <div class="doc-content">
+            <p><strong>P4D: COMPOSTING</strong></p>
+<p><strong>PARTNER NETWORK</strong></p>
+<p>Sub-Project P4D | Supply Chain &amp; Fulfillment | Weeks 18–22</p>
+<p><em>Complete Composting Operations: 10-City Facility Directory,
+Partnership Terms Framework, 6-Step Race-Day Collection Guide, Post-Race
+Composting Report Template, Availability Map for Top 20 Race Cities, and
+9-Question Composting FAQ</em></p>
+<p>March 2026 | Confidential</p>
+<p>Executive Summary</p>
+<p><strong>The composting partner network is the infrastructure that
+makes the brand promise real.</strong> A compostable poncho that ends up
+in a landfill is not much better than a garbage bag — it may biodegrade
+eventually, but without the controlled conditions of a composting
+facility, the timeline extends from months to years and the
+environmental benefit is drastically reduced. The brand’s entire value
+proposition — “Race Warm. Leave No Trace.” — depends on a functioning
+composting chain from the moment a runner sheds the poncho at the start
+line to the moment a composting facility issues a Certificate of
+Composting.</p>
+<p><strong>This document builds the composting infrastructure across 10
+major US race cities,</strong> defines partnership terms with composting
+facilities, provides a 6-step race-day collection guide (bin placement,
+signage, volunteer training, sorting rules, staging, and pickup),
+creates a post-race composting report template for transparency and
+marketing, maps composting availability across the top 20 target race
+venues (9 READY, 1 LIMITED), and builds a 9-question FAQ for race
+directors and runners addressing every common composting concern.</p>
+<p>1. Composting Facility Directory: 10 Major Race Cities</p>
+<p><strong>For each target race city, identify 2–4 commercial composting
+facilities</strong> that accept BPI-certified compostable products. The
+directory below provides the starting point for outreach. For each
+facility: call, introduce the product, send 5–10 sample ponchos, and
+confirm acceptance in writing BEFORE the first race in that city.</p>
+<table>
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 16%" />
+<col style="width: 38%" />
+<col style="width: 33%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>City / Region</strong></td>
+<td><strong>Key Races</strong></td>
+<td><strong>Composting Facilities</strong></td>
+<td><strong>Availability Assessment</strong></td>
+</tr>
+<tr class="even">
+<td><strong>New York City</strong></td>
+<td>NYC Marathon (Nov, 50K), Brooklyn Half (May, 27K), NYC Half (Mar,
+25K)</td>
+<td>NYC Compost Project (dsny.nyc.gov/compost) — municipal drop-off +
+community composting. McEnroe Organic Farm (mcenroeorganics.com) —
+commercial facility, accepts BPI-certified compostable packaging.
+Recycle Track Systems (RTS, rts.com) — commercial hauler with composting
+diversion service, serves event clients. WeCare Organics
+(wecareorganics.com) — large-scale commercial composter in the tri-state
+area.</td>
+<td>HIGH. NYC has robust composting infrastructure. The city mandated
+curbside composting in 2023. Multiple commercial facilities accept
+BPI-certified materials. The NYC Marathon is the #1 target race —
+composting partner MUST be confirmed before the first NYC-area
+race.</td>
+</tr>
+<tr class="odd">
+<td><strong>Chicago</strong></td>
+<td>Chicago Marathon (Oct, 45K), Shamrock Shuffle (Mar, 20K)</td>
+<td>Lakeshore Recycling Systems (lrsrecycles.com) — commercial
+composting, serves events. Midwest Compost (midwestcompost.com) —
+large-scale facility in Illinois, accepts BPI-certified. Resource Center
+Chicago — community composting + education. WM (Waste Management)
+Chicago metro composting services.</td>
+<td>HIGH. Chicago has strong commercial composting and the marathon
+already has sustainability initiatives. Lakeshore Recycling has event
+composting experience.</td>
+</tr>
+<tr class="even">
+<td><strong>Boston</strong></td>
+<td>Boston Marathon (Apr, 30K), BAA Half (Oct, 8K)</td>
+<td>Save That Stuff (savethatstuff.com) — commercial compost hauling in
+greater Boston, event experience. Bootstrap Compost
+(bootstrapcompost.com) — residential + small commercial pickup. Casella
+Organics (casella.com) — large-scale composting in New England. City of
+Boston Public Works composting program.</td>
+<td>HIGH. Boston has established composting infrastructure and the BAA
+(Boston Athletic Association) has expressed sustainability
+commitments.</td>
+</tr>
+<tr class="odd">
+<td><strong>Washington DC</strong></td>
+<td>Marine Corps Marathon (Oct, 30K), Cherry Blossom 10-Miler (Apr,
+15K)</td>
+<td>Compost Crew (compostcrew.com) — DC-area commercial composting,
+event services, pickup + processing. Prince William County composting
+facility. Veteran Compost (veterancompost.com) — Maryland-based, accepts
+BPI-certified. DC Department of Public Works composting drop-off.</td>
+<td>HIGH. DC has a 2032 zero waste goal. Compost Crew specifically
+serves events and has experience with BPI-certified compostable
+packaging.</td>
+</tr>
+<tr class="even">
+<td><strong>Philadelphia</strong></td>
+<td>Philadelphia Marathon (Nov, 25K), Broad Street Run (May, 40K)</td>
+<td>Philly Compost (phillycompost.com) — commercial composting in
+greater Philadelphia. Bennett Compost (bennettcompost.com) — residential
++ commercial pickup. Organic Diversion (organicdiversion.com) —
+large-scale facility in PA.</td>
+<td>MODERATE. Infrastructure exists but may require more coordination
+than NYC or Chicago.</td>
+</tr>
+<tr class="odd">
+<td><strong>Twin Cities (Minneapolis/St. Paul)</strong></td>
+<td>Twin Cities Marathon (Oct, 12K)</td>
+<td>Specialized Environmental Technologies (SET, sfrcompost.com) —
+large-scale commercial composter, accepts BPI-certified. Mulch Store and
+More (mulchstoreandmore.com). Hennepin County organics recycling.</td>
+<td>MODERATE. Minnesota has strong composting culture. SET is a major
+facility that explicitly accepts BPI-certified products.</td>
+</tr>
+<tr class="even">
+<td><strong>Detroit</strong></td>
+<td>Detroit Marathon (Oct, 10K)</td>
+<td>Detroit Dirt (detroitdirt.org) — community composting with
+large-scale processing. Recycle Here! — drop-off composting. Republic
+Services composting division (Michigan operations).</td>
+<td>MODERATE. Smaller composting infrastructure than top-tier cities.
+May require creative partnerships with community composters.</td>
+</tr>
+<tr class="odd">
+<td><strong>Richmond</strong></td>
+<td>Richmond Marathon (Nov, 14K)</td>
+<td>Living Earth (livingearth.net) — large-scale commercial composting
+in the mid-Atlantic. Black Bear Composting (blackbearcomposting.com) —
+Virginia-based commercial composter. City of Richmond composting
+program.</td>
+<td>MODERATE. Mid-Atlantic composting is growing. Black Bear Composting
+explicitly handles BPI-certified materials.</td>
+</tr>
+<tr class="even">
+<td><strong>Sacramento</strong></td>
+<td>California International Marathon (Dec, 8K)</td>
+<td>Atlas Disposal (atlasdisposal.com) — commercial composting,
+California. RecycleMore Sacramento. City of Sacramento organics
+collection (SB 1383 mandated). California has the strongest composting
+infrastructure in the US due to SB 1383 (mandatory organics
+diversion).</td>
+<td>HIGH. California’s SB 1383 mandates commercial composting, creating
+abundant infrastructure. Every major race in California has access to
+commercial composting.</td>
+</tr>
+<tr class="odd">
+<td><strong>General / National</strong></td>
+<td>Any US race city</td>
+<td>US Composting Council facility locator (compostingcouncil.org).
+BioCycle’s directory of composting facilities. FindAComposter.com (BPI’s
+facility finder). State environmental agency composting facility permits
+database.</td>
+<td>For races in cities NOT on this list: use these national databases
+to identify the nearest BPI-accepting commercial composting facility. If
+no facility within 50 miles: consider the “mail-back composting” option
+(Section 2.3) or partner with the race’s existing waste hauler.</td>
+</tr>
+</tbody>
+</table>
+<p>1.1 Facility Pre-Qualification Process</p>
+<p>For EACH composting partner before the first race: (1) Call the
+facility. Introduce: “We manufacture a BPI-certified compostable poncho
+for marathon runners. We’d like to partner with your facility to compost
+collected ponchos after races in [city]. Can you accept BPI-certified
+compostable products?” (2) If yes: send 5–10 sample ponchos for the
+facility manager to inspect. Include: BPI certificate (or “certification
+pending” letter), material composition summary (NatureFlex NM + PLA
+spunbond + compostable ink), and ASTM D6400 test data (decomposition
+timeline, ecotoxicity results per P2D). (3) Request WRITTEN
+confirmation: “We confirm that [product name] is accepted at [facility
+name] for commercial composting.” (4) Negotiate pricing (Section 2) and
+confirm logistics (pickup location, scheduling, minimum load). (5) File:
+confirmation letter, contact info, pricing agreement in
+/Composting/[City]/[Facility Name]/.</p>
+<p>1.2 National Database Resources</p>
+<p>For races NOT in the 10 cities listed above: use these searchable
+databases to find the nearest BPI-accepting commercial composting
+facility. (1) FindAComposter.com — BPI’s official composting facility
+locator. Search by ZIP code. Filter for: accepts certified compostable
+products. (2) US Composting Council Facility Locator
+(compostingcouncil.org) — searchable by state and facility type. (3)
+BioCycle Facility Directory — comprehensive industry directory with
+facility details including capacity, processing method, and accepted
+materials. (4) State environmental agency databases — most states
+publish lists of permitted composting facilities (search: “[state]
+composting facility permit list”).</p>
+<p>2. Partnership Terms Framework</p>
+<p><strong>Composting partnerships must be formalized before the first
+race, not improvised on race day.</strong> A verbal agreement with a
+facility manager is not sufficient — the truck driver who shows up on
+race morning may not know about the arrangement. The terms below ensure:
+clear service scope, agreed pricing, pre-positioned logistics, confirmed
+material acceptance, contamination protocol, certification commitment,
+and partnership duration.</p>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 42%" />
+<col style="width: 42%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Term</strong></td>
+<td><strong>Specification</strong></td>
+<td><strong>Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Service scope</strong></td>
+<td>Collection of compostable ponchos from race venue + transport to
+composting facility + commercial composting + completion
+certificate</td>
+<td>The partner handles EVERYTHING post-collection: hauling, processing,
+and certification. The brand provides: collection bags, sorting signage,
+and volunteer training materials (Section 3 of this document). The race
+provides: bin placement permission, volunteer labor for sorting.</td>
+</tr>
+<tr class="odd">
+<td><strong>Pricing model</strong></td>
+<td>Per-race flat fee ($200–$800 per event depending on volume and
+distance) OR per-ton ($50–$150/ton, typical commercial composting rates)
+OR included in the race’s existing waste management contract (ideal — $0
+incremental to the brand)</td>
+<td>BEST CASE: the race’s existing waste hauler already has a composting
+diversion stream. Adding compostable ponchos to their existing contract
+costs $0–$50 per race. SECOND BEST: a dedicated composting partner
+charges a flat fee per event. BUDGET: $200–$800 per race for a dedicated
+partner; $0–$50 if integrated into existing waste contract.</td>
+</tr>
+<tr class="even">
+<td><strong>Collection logistics</strong></td>
+<td>Partner provides: 1 truck for pickup within 4 hours of race start
+(ponchos are shed in the first 0–30 minutes after the gun). Pickup
+point: designated staging area near the start line where volunteers
+consolidate filled collection bags.</td>
+<td>TIMING IS CRITICAL. Ponchos are shed within 30 minutes of the start.
+Collection must happen before city cleanup crews (who will throw ponchos
+in the trash) arrive. The composting partner’s truck must be
+pre-positioned within 15 minutes of the staging area.</td>
+</tr>
+<tr class="odd">
+<td><strong>Material acceptance</strong></td>
+<td>Partner must confirm: (A) they accept BPI-certified compostable
+products, (B) their facility meets ASTM D6400 processing conditions
+(sustained temperatures &gt;55°C for 12+ weeks), (C) they will NOT
+reject the material based on appearance (“it looks like plastic” —
+common issue with unfamiliar compostable products)</td>
+<td>Pre-qualification: send 5–10 sample ponchos to the composting
+facility manager BEFORE the first race. Let them inspect, handle, and
+confirm acceptance. Get written confirmation: “We confirm that [product
+name], BPI-certified under certificate #[XXX], is accepted at our
+facility.” This prevents day-of-race rejection.</td>
+</tr>
+<tr class="even">
+<td><strong>Contamination protocol</strong></td>
+<td>Define acceptable contamination level: ≤10% non-compostable
+materials in the poncho collection stream (water bottles, clothing,
+plastic bags). Partner agrees to process the load if contamination is
+≤10%. If &gt;10%: partner may reject the load or charge a contamination
+surcharge ($50–$200).</td>
+<td>Race-day sorting by volunteers (Section 3) targets &lt;5%
+contamination. The 10% threshold provides buffer for imperfect sorting.
+Contamination is the #1 reason composting facilities reject event waste
+— volunteer training and clear signage are the primary defenses.</td>
+</tr>
+<tr class="odd">
+<td><strong>Composting certificate</strong></td>
+<td>Partner provides a “Certificate of Composting” within 30 days of
+processing: date of receipt, weight received, weight processed, facility
+name and permit number, composting method used, confirmation that
+material was composted (not landfilled or incinerated)</td>
+<td>This certificate is the PROOF that the sustainability promise was
+kept. It feeds into: the post-race composting report (Section 4), the
+brand’s annual sustainability report, the P1C brand story (“[X] tons of
+race-day waste composted”), and the BPI certification renewal
+documentation.</td>
+</tr>
+<tr class="even">
+<td><strong>Partnership duration</strong></td>
+<td>Annual agreement (covers all races in the partner’s service area for
+12 months). Volume commitment: minimum 3 races/year (for dedicated
+partners) or per-race engagement (for integrated waste contracts).
+Renewal: automatic unless either party provides 60 days notice.</td>
+<td>An annual agreement signals commitment and may unlock better pricing
+than per-race engagement. For Season 1: per-race engagement is
+acceptable while building the relationship.</td>
+</tr>
+</tbody>
+</table>
+<p>2.1 Relationship Building with Composting Partners</p>
+<p>Composting facilities are often small businesses run by passionate
+sustainability advocates. They are IDEAL brand partners — aligned
+values, shared mission, and willingness to support innovative
+compostable products. Build the relationship beyond transactional terms:
+invite the facility manager to attend a race as a VIP guest (see the
+product in action), feature the facility in the brand’s composting story
+(P1C Section 1.2: “Our partner [facility name] turns your race poncho
+into garden soil”), co-create educational content (facility tour video
+for brand.com/impact, per P1D Section 4), and provide a “Composting
+Partner” badge for the facility’s website and marketing materials.</p>
+<p>2.2 Cost Allocation: Who Pays for Composting?</p>
+<p>Three models for composting cost allocation: MODEL A (Brand pays):
+brand covers the composting partner’s fee ($200–$800/race) as an
+operating expense. Best for: Season 1 pilot races where the brand needs
+to demonstrate the full composting chain to build credibility. Budget as
+a marketing/operations expense. MODEL B (Race pays): composting costs
+included in the B2B pricing ($0.05–$0.15/poncho surcharge). Best for:
+races with existing sustainability budgets. Position as: “The poncho
+price includes end-to-end composting logistics — we handle everything.”
+MODEL C (Sponsor pays): composting costs funded by the race’s
+sustainability sponsor (per P0G Section 4). Best for: races with
+corporate sponsors committed to carbon-neutral events. Position as:
+“[Sponsor Name] is funding the composting of every poncho at [Race
+Name].” RECOMMENDED: Model A for Season 1 (build the system), transition
+to Model B or C in Season 2 (sustainable revenue model).</p>
+<p>2.3 Mail-Back Composting Program</p>
+<p>For races without local composting infrastructure or for individual
+DTC customers who want to compost but have no local facility: offer a
+MAIL-BACK composting service. HOW: customer/race director mails used
+ponchos to a centralized composting partner (e.g., WeCare Organics in
+the NYC metro area). Provide: a prepaid shipping label (USPS flat-rate
+envelope, $8–$10) downloadable from brand.com/compost-return. WHO PAYS:
+brand subsidizes as a marketing expense for B2B partners (included in
+the sustainability service). DTC customers pay their own shipping (or
+use the prepaid label if the brand chooses to subsidize for goodwill).
+VOLUME: low. Most DTC customers will use local composting if available.
+The mail-back program is a FALLBACK for areas with no composting
+infrastructure — it ensures the “no poncho goes to landfill” promise can
+be kept anywhere. COST: $8–$10/label × estimated 50–100 mail-backs per
+year = $400–$1,000/year. Budget as a sustainability operations
+expense.</p>
+<p>3. Race-Day Collection Guide: 6-Step Protocol</p>
+<p><strong>The race-day collection guide is a standalone 1-page document
+provided to every B2B race partner.</strong> It is included in the B2B
+shipment (per P4C Section 3) and discussed during the pre-delivery
+coordination call (P4C Section 3 Phase 1). The guide is designed for
+race operations staff and volunteers who have NEVER handled compostable
+products before.</p>
+<table>
+<colgroup>
+<col style="width: 4%" />
+<col style="width: 42%" />
+<col style="width: 52%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Step</strong></td>
+<td><strong>Procedure</strong></td>
+<td><strong>Details</strong></td>
+</tr>
+<tr class="even">
+<td><strong>1. Bin placement</strong></td>
+<td>Place compost bins every 50–100 meters along the course for 500
+meters past the start line. Minimum: 1 bin per 500 runners. For a
+10,000-runner race: 20 bins minimum. Place bins on BOTH sides of the
+course (runners shed ponchos to the left and right randomly). Place
+additional bins at: corral exits, pace group staging areas, and the
+first water station.</td>
+<td>Bin type: 32–65 gallon bins with wide openings (runners are moving,
+not aiming carefully). Color: GREEN (universal composting color) with
+clear signage. Line bins with BPI-certified compostable bags (BioBag
+64-gallon, $0.50–$1.00/bag, source from biobagusa.com or
+novamont.com).</td>
+</tr>
+<tr class="odd">
+<td><strong>2. Signage</strong></td>
+<td>EVERY bin gets a sign: “COMPOSTABLE PONCHOS ONLY — No plastic bags,
+no clothing, no water bottles.” Sign size: minimum 18″ × 24″, clearly
+visible from 10 feet. Colors: green background, white text, with icons
+(poncho YES checkmark, plastic bottle NO X, clothing NO X). Attach signs
+with zip ties (at least 2 per sign so they don’t flap).</td>
+<td>Produce signs in advance: laminated card stock or corrugated plastic
+(Coroplast, $3–$8/sign from a local print shop like FedEx Office).
+REUSABLE across races (laminate or use Coroplast). For a 20-bin race: 20
+signs = $60–$160 one-time cost. The sign is the MOST IMPORTANT
+contamination prevention tool.</td>
+</tr>
+<tr class="even">
+<td><strong>3. Volunteer training</strong></td>
+<td>Pre-race briefing (15 minutes, the morning of the race or the day
+before): “Your job is to make sure only compostable ponchos go into the
+green bins. If you see someone throw in a water bottle, plastic bag, or
+clothing — pull it out and redirect to the trash bin nearby. If the bin
+is full, tie the bag and replace with a fresh compostable liner. Stack
+filled bags at the staging area for the composting truck.”</td>
+<td>Volunteer count: 1 volunteer per 3–5 bins. For 20 bins: 4–7 sorting
+volunteers. They work for 30–60 minutes (from race start until the last
+corral clears). Provide: compostable gloves (starch-based,
+BPI-certified), high-visibility vest, and a printed pocket card with
+sorting rules.</td>
+</tr>
+<tr class="odd">
+<td><strong>4. Sorting rules</strong></td>
+<td>ACCEPT: compostable ponchos (whole, torn, or partially torn),
+compostable poncho packaging (inner bag, card/sleeve, sticker — all
+compostable per P3D), and compostable collection bag liners. REJECT:
+water bottles (redirect to recycling), plastic bags (redirect to trash),
+clothing (redirect to lost and found), food waste (redirect to food
+composting stream if available, otherwise trash), Heatsheets/Mylar
+blankets (NOT compostable — redirect to trash).</td>
+<td>Print a sorting rule card (3″ × 5″ laminated, carried by each
+volunteer and attached to each bin): GREEN CHECK: Ponchos, poncho
+packaging. RED X: Bottles, bags, clothing, Mylar, food. Simplicity
+matters: volunteers make split-second decisions with cold hands in low
+light. Keep the rules to 2 columns: YES and NO.</td>
+</tr>
+<tr class="even">
+<td><strong>5. Bag closure + staging</strong></td>
+<td>When a bin’s compostable bag is ≥75% full: volunteer ties the bag
+closed (twist + knot or compostable tie), removes from bin, places at
+the designated staging area (a 10″ × 10″ tarp or pallet near the
+start-line support area, clearly marked “COMPOST STAGING”). Replace with
+a fresh compostable bag liner.</td>
+<td>Staging area location: coordinate with race operations. Must be:
+accessible to the composting partner’s truck, off the course but near
+the start area, visible to volunteers. Mark with cones + signage. The
+composting truck loads from the staging area.</td>
+</tr>
+<tr class="odd">
+<td><strong>6. Composting partner pickup</strong></td>
+<td>Composting partner’s truck arrives at the staging area within 2–4
+hours of the race start (all poncho shedding is complete within 30
+minutes of the last corral start). Partner loads all compostable bags.
+Founder or designated brand representative observes the load: takes a
+photograph, records the number of bags, estimates weight (or the truck
+has a scale).</td>
+<td>DOCUMENT: number of bags loaded, estimated weight, pickup time,
+composting partner name, truck number, driver name. This documentation
+feeds into the composting certificate request and the post-race report
+(Section 4). If the composting partner no-shows: emergency plan =
+consolidate bags and transport to the nearest composting drop-off in a
+rented van/truck. NEVER allow compostable ponchos to go to landfill if
+avoidable.</td>
+</tr>
+</tbody>
+</table>
+<p>3.1 Collection Rate Targets</p>
+<p>Season 1 target: 60–75% of distributed ponchos collected for
+composting. This accounts for: runners who discard BEFORE reaching the
+bins (in the corral, on the course before bin placement), runners who
+take the poncho home (keep-it behavior, especially if it’s warm enough
+to wear longer), and ponchos that blow away in wind. Season 2+ target:
+75–85% as bin placement and volunteer training improve. Industry
+benchmark: event waste composting programs at major marathons typically
+achieve 60–80% diversion rates for targetable waste streams. TRACKING:
+collection rate = (estimated ponchos collected ÷ ponchos distributed) ×
+100. Estimate ponchos collected from: bag count × estimated units per
+bag (weigh 3 bags, count contents, average).</p>
+<p>4. Post-Race Composting Report Template</p>
+<p><strong>The post-race composting report is the accountability
+document that proves the brand promise was kept.</strong> It serves 4
+audiences: the race director (ROI justification for the sustainability
+investment), race sponsors (ESG reporting and marketing value), the
+brand’s own marketing (content for P1C brand story, social media, and
+press), and regulatory/certification bodies (BPI, state agencies).</p>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 81%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Section</strong></td>
+<td><strong>Content</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Race Information</strong></td>
+<td>Race name, date, city, total finishers, total ponchos distributed,
+weather conditions (temperature at start, precipitation Y/N)</td>
+</tr>
+<tr class="odd">
+<td><strong>Collection Metrics</strong></td>
+<td>Total compost bins deployed, total bags collected, estimated weight
+collected (lbs or kg), collection time (start–finish), volunteer count,
+contamination level (estimated %, based on volunteer sorting
+observation)</td>
+</tr>
+<tr class="even">
+<td><strong>Composting Verification</strong></td>
+<td>Composting facility name, facility location, facility permit number,
+date material received, date composting completed (typically 12–24 weeks
+after receipt), composting method (windrow, aerated static pile,
+in-vessel), composting certificate attached (Y/N)</td>
+</tr>
+<tr class="odd">
+<td><strong>Diversion Impact</strong></td>
+<td>Total weight diverted from landfill (lbs/kg), equivalent trash bags
+avoided (weight ÷ 10 lbs/bag), equivalent CO₂ avoided (landfill methane
+avoidance — EPA estimates 0.9 metric tons CO₂e per ton of food/yard
+waste diverted; compostable packaging may differ, use conservative 0.5
+metric tons CO₂e/ton), percentage of distributed ponchos collected
+(collection rate = bags collected × estimated units/bag ÷ total
+distributed × 100)</td>
+</tr>
+<tr class="even">
+<td><strong>Brand Story Metrics</strong></td>
+<td>Before vs. after comparison: “Before [BRAND]: [X] runners used
+garbage bags, generating [Y] lbs of LDPE waste sent to landfill. After
+[BRAND]: [X] runners used compostable ponchos, and [Z] lbs of poncho
+material was composted.” Year-over-year comparisons (starting Year 2):
+trend in diversion rates, collection rates, and composting partnership
+expansion.</td>
+</tr>
+<tr class="odd">
+<td><strong>Visual Documentation</strong></td>
+<td>Photographs: (A) bins deployed at the start line, (B) volunteers
+sorting, (C) filled bags at the staging area, (D) composting truck
+loading, (E) (if available) mid-process composting pile at the facility.
+Video: 30–60 second time-lapse of collection process (great for social
+media content per P1D Section 4).</td>
+</tr>
+<tr class="even">
+<td><strong>Distribution</strong></td>
+<td>Send completed report to: (A) race director (demonstrates ROI of the
+sustainability partnership), (B) race sponsors (justifies their
+sustainability sponsorship per P0G Section 4), (C) brand’s own marketing
+team (P1C Section 1.2 brand story, P1D content pipeline), (D) BPI (if
+needed for certification renewal), (E) press (if media coverage is
+targeted per P7). Post report on brand.com/impact (public transparency
+page).</td>
+</tr>
+</tbody>
+</table>
+<p>4.1 Report Production Timeline</p>
+<p>WEEK 1 post-race: Complete collection metrics section (data from race
+day). Compile photographs and video. WEEK 2–4: Receive composting
+certificate from partner facility (may take up to 30 days if facility is
+verifying processing completion). WEEK 4–6: Complete full report. Design
+in branded template (Canva or P1B design system). Export as PDF.
+DISTRIBUTE within 6 weeks of race to: race director, sponsors, press,
+and post on brand.com/impact.</p>
+<p>4.2 Annual Sustainability Report</p>
+<p>At the end of each race season: compile all individual race reports
+into an Annual Sustainability Report. Aggregate metrics: total ponchos
+distributed, total collected, total composted, total weight diverted,
+total CO₂e avoided, number of races served, number of composting
+partners. Year-over-year trends (starting Year 2). This report is:
+posted publicly at brand.com/impact, shared with press and
+sustainability publications, included in investor updates (if
+fundraising), and submitted to BPI as part of certification
+maintenance.</p>
+<p>5. Composting Availability Map: Top 20 Race Venues</p>
+<p><strong>This map summarizes composting readiness for each target race
+city.</strong> “READY” means at least one commercial composting facility
+has been identified that accepts BPI-certified products. “AVAILABLE”
+means infrastructure exists but requires advance confirmation. “LIMITED”
+means composting may not be available and alternative solutions
+(mail-back, partner hauler) are needed.</p>
+<table>
+<colgroup>
+<col style="width: 12%" />
+<col style="width: 16%" />
+<col style="width: 27%" />
+<col style="width: 30%" />
+<col style="width: 12%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>City / Region</strong></td>
+<td><strong>Key Races</strong></td>
+<td><strong>Facilities Identified</strong></td>
+<td><strong>Assessment</strong></td>
+<td><strong>Status</strong></td>
+</tr>
+<tr class="even">
+<td><strong>NYC Metro</strong></td>
+<td>NYC Marathon, Brooklyn Half, NYC Half, NJ Marathon</td>
+<td>WeCare Organics, McEnroe Farm, RTS, NYC Compost Project</td>
+<td>Full commercial composting available. Multiple partners.
+BPI-certified products explicitly accepted.</td>
+<td>READY</td>
+</tr>
+<tr class="odd">
+<td><strong>Chicago Metro</strong></td>
+<td>Chicago Marathon, Shamrock Shuffle</td>
+<td>Lakeshore Recycling, Midwest Compost, WM</td>
+<td>Commercial composting available. Event experience confirmed.</td>
+<td>READY</td>
+</tr>
+<tr class="even">
+<td><strong>Boston Metro</strong></td>
+<td>Boston Marathon, BAA Half, Falmouth Road Race</td>
+<td>Save That Stuff, Bootstrap Compost, Casella Organics</td>
+<td>Commercial composting available. Event hauling experience.</td>
+<td>READY</td>
+</tr>
+<tr class="odd">
+<td><strong>Washington DC</strong></td>
+<td>Marine Corps Marathon, Cherry Blossom</td>
+<td>Compost Crew, Veteran Compost</td>
+<td>Strong event composting presence. Compost Crew specializes in
+events.</td>
+<td>READY</td>
+</tr>
+<tr class="even">
+<td><strong>Philadelphia</strong></td>
+<td>Philly Marathon, Broad Street Run</td>
+<td>Philly Compost, Bennett Compost, Organic Diversion</td>
+<td>Commercial composting available. May need advance coordination.</td>
+<td>READY with advance setup</td>
+</tr>
+<tr class="odd">
+<td><strong>Twin Cities</strong></td>
+<td>Twin Cities Marathon</td>
+<td>SET Composting, Hennepin County</td>
+<td>Strong infrastructure. BPI products accepted.</td>
+<td>READY</td>
+</tr>
+<tr class="even">
+<td><strong>Sacramento / Bay Area</strong></td>
+<td>CIM, SF Marathon, Big Sur</td>
+<td>Multiple facilities (SB 1383 mandated). Atlas Disposal.</td>
+<td>California: strongest US composting infrastructure. Mandatory
+organics diversion.</td>
+<td>READY</td>
+</tr>
+<tr class="odd">
+<td><strong>Detroit</strong></td>
+<td>Detroit Marathon</td>
+<td>Detroit Dirt, Recycle Here!</td>
+<td>Smaller infrastructure. Community composting may limit volume
+capacity.</td>
+<td>AVAILABLE with volume limits</td>
+</tr>
+<tr class="even">
+<td><strong>Richmond</strong></td>
+<td>Richmond Marathon</td>
+<td>Black Bear Composting, Living Earth</td>
+<td>Commercial composting available. Confirm BPI acceptance.</td>
+<td>AVAILABLE, confirm acceptance</td>
+</tr>
+<tr class="odd">
+<td><strong>Small / Rural Race Cities</strong></td>
+<td>Community 5K–10K events in towns &lt;50K population</td>
+<td>US Composting Council locator, FindAComposter.com</td>
+<td>Composting may not be available within 50 miles. In these cases: (A)
+partner with a nearby regional facility with extended hauling, (B) use
+the mail-back program (Section 2.3), or (C) designate ponchos for the
+race’s existing recycling stream with clear “compostable product in
+recycling” disclosure.</td>
+<td>LIMITED — requires case-by-case solution</td>
+</tr>
+</tbody>
+</table>
+<p>COVERAGE SUMMARY: 7 of 10 major race metro areas are READY for
+composting. 2 are AVAILABLE with advance setup. 1 category (small/rural)
+requires case-by-case solutions. California races have the strongest
+infrastructure due to SB 1383 mandatory organics diversion. For Season 1
+pilot races: select races in READY cities first to ensure composting
+success without infrastructure risk.</p>
+<p>6. Composting FAQ: 9 Questions</p>
+<p><strong>This FAQ is provided to race directors (in the B2B data sheet
+and composting logistics guide) and to runners (via the QR code on the
+packaging, the brand website, and the Amazon product listing).</strong>
+It addresses every common question and objection about composting
+compostable products at athletic events.</p>
+<table>
+<colgroup>
+<col style="width: 33%" />
+<col style="width: 66%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Question</strong></td>
+<td><strong>Answer</strong></td>
+</tr>
+<tr class="even">
+<td><strong>What happens to the poncho after the race?</strong></td>
+<td>Ponchos are collected at the start line in green compost bins,
+picked up by a commercial composting partner, and transported to a
+composting facility. The poncho breaks down through commercial
+composting (sustained temperatures above 131°F / 55°C for 12–24 weeks)
+into soil-enriching compost. No material goes to landfill.</td>
+</tr>
+<tr class="odd">
+<td><strong>How long does it take to compost?</strong></td>
+<td>In a commercial composting facility: 12–24 weeks (3–6 months). The
+NatureFlex cellulose film decomposes fastest (4–8 weeks). The PLA
+spunbond nonwoven takes longer (12–24 weeks depending on facility
+conditions). The entire poncho meets ASTM D6400 requirements: ≥90%
+biodegradation within 180 days.</td>
+</tr>
+<tr class="even">
+<td><strong>Can I compost it in my home compost bin?</strong></td>
+<td>The poncho is certified for COMMERCIAL composting (ASTM D6400 /
+BPI), which requires sustained high temperatures that home compost piles
+typically don’t reach. Home composting may work but will take
+significantly longer (6–18 months) and results are not guaranteed. For
+best results: use a commercial composting facility or municipal
+composting drop-off. See FindAComposter.com to find one near you.</td>
+</tr>
+<tr class="odd">
+<td><strong>What if my city doesn’t have composting?</strong></td>
+<td>If no commercial composting facility is available within 50 miles of
+the race venue: (A) Check if the race’s waste hauler offers composting
+diversion as a service (many large haulers like WM and Republic Services
+offer this). (B) Use our mail-back composting program: collect ponchos
+in the provided bags and ship them to our partner composting facility
+(shipping label included, cost covered by the brand for B2B partners).
+(C) As a last resort: ponchos can go in regular trash. They will
+eventually biodegrade in a landfill, though much more slowly than in a
+composting facility. We’re transparent: landfill is not ideal, but even
+in landfill, a compostable poncho is better than an LDPE garbage bag
+that persists for 500+ years.</td>
+</tr>
+<tr class="even">
+<td><strong>What if non-poncho items get mixed in?</strong></td>
+<td>Our volunteer sorting protocol targets &lt;5% contamination.
+Composting facilities typically accept event loads with up to 10%
+contamination (removing non-compostable items during pre-processing
+screening). If contamination exceeds 10%: the facility may charge a
+contamination surcharge or reject the load. Proper signage and trained
+volunteers are the primary defenses against contamination.</td>
+</tr>
+<tr class="odd">
+<td><strong>Is the packaging also compostable?</strong></td>
+<td>Yes. The inner bag (PLA film), card/sleeve (recycled/compostable
+kraft), sticker seal (cellulose-based with compostable adhesive), and
+insert card (compostable card stock with soy-based ink) are all designed
+to be composted alongside the poncho. The entire product + packaging
+system is compostable per P3D Section 7.</td>
+</tr>
+<tr class="even">
+<td><strong>How do you verify the ponchos actually get
+composted?</strong></td>
+<td>Our composting partners provide a Certificate of Composting for
+every race: date received, weight processed, facility name and permit
+number, confirmation that material was composted (not landfilled or
+incinerated). We publish composting data in our post-race reports and
+annual sustainability report at brand.com/impact. Full
+transparency.</td>
+</tr>
+<tr class="odd">
+<td><strong>What’s the carbon footprint of the poncho compared to a
+garbage bag?</strong></td>
+<td>A full Life Cycle Assessment (LCA) is planned per P2D Section 7.
+Preliminary comparison: a compostable poncho has higher embodied energy
+in manufacturing (bioplastic production is energy-intensive) but avoids:
+500+ year landfill persistence of LDPE, methane emissions from LDPE
+degradation in landfill, and microplastic pollution. When composted
+properly, the poncho returns organic carbon to the soil rather than
+releasing greenhouse gases. Net climate impact is expected to be
+favorable vs. LDPE, but the LCA will provide definitive numbers.</td>
+</tr>
+<tr class="even">
+<td><strong>Do you accept ponchos back for composting if the runner
+takes it home?</strong></td>
+<td>Yes. If a runner takes the poncho home after the race (rather than
+discarding at the start line): (A) Check FindAComposter.com for a local
+commercial composting facility that accepts BPI-certified products. (B)
+If no local facility: mail the poncho to us using our mail-back program
+(brand.com/compost-return for a prepaid shipping label). (C) Place in
+municipal organics collection (green bin) if your city accepts
+compostable packaging. (D) If none of these options is available: see
+P2D Section 8.3 for the 4-tier disposal hierarchy.</td>
+</tr>
+</tbody>
+</table>
+<p>7. Timeline &amp; Budget</p>
+<p><strong>WEEK 18: Begin composting facility outreach in the 3–5 pilot
+race cities. Call facilities, introduce the product, request acceptance
+confirmation. Send sample ponchos to facility managers. Research: US
+Composting Council directory, FindAComposter.com, state
+databases.</strong></p>
+<p><strong>WEEK 19: Follow up with facility managers who received
+samples. Negotiate partnership terms (Section 2). Confirm pricing and
+logistics for pilot races. Draft partnership agreement (simple 1–2 page
+letter of agreement, not a full legal contract for Season
+1).</strong></p>
+<p><strong>WEEK 20: Create the race-day collection guide (Section 3) as
+a standalone 1-page branded PDF. Design composting bin signage (18″×24″,
+laminated or Coroplast). Order BPI-certified compostable collection bags
+(BioBag 64-gallon). Order compostable gloves for volunteers. Include all
+materials in the B2B shipment to pilot races.</strong></p>
+<p><strong>WEEK 21: Research composting availability for all top 20
+target race venues (Section 5). Flag cities with LIMITED availability.
+Develop mail-back composting program (Section 2.3): create
+brand.com/compost-return page, source prepaid shipping
+labels.</strong></p>
+<p><strong>WEEK 22: Build the post-race composting report template
+(Section 4) in Canva. Draft the composting FAQ (Section 6) for: B2B data
+sheet inclusion, Amazon listing inclusion, brand.com/faq page. Test:
+send FAQ to 2–3 non-expert friends and ask if any questions remain
+unanswered. HANDOFF to ongoing race-day composting operations. P4
+complete.</strong></p>
+<p>BUDGET: Composting facility fees (Season 1, 3–5 races): $600–$4,000
+total (brand-paid, Model A). Compostable collection bags (50–100 bags ×
+$0.50–$1.00): $25–$100. Composting bin signage (20 signs × $3–$8):
+$60–$160 (reusable). Compostable gloves (50 pairs × $0.20–$0.40):
+$10–$20. Mail-back shipping labels (50–100 labels × $8–$10):
+$400–$1,000/year. Canva report template: $0 (free tier). TOTAL P4D
+Season 1: $1,095–$5,280.</p>
+<p>8. Conclusion: Composting Completes the Circle</p>
+<p><strong>The compostable poncho’s lifecycle has four chapters:
+manufactured, worn, shed, composted.</strong> The first three chapters
+happen regardless of the composting infrastructure. The fourth chapter —
+the one that makes the entire brand story true — requires this
+document’s network of composting facilities, trained volunteers,
+properly placed bins, clear signage, and a truck that shows up on
+time.</p>
+<p><strong>The post-race composting report is the proof.</strong> A
+Certificate of Composting from a permitted facility, a photograph of the
+composting truck loading bags of ponchos, a weight measurement showing
+tons diverted from landfill — these are not marketing spin. They are
+auditable facts. They tell the race director: your sustainability
+investment worked. They tell the runner: your choice mattered. They tell
+the sponsor: your name is on something real. And they tell the next race
+director considering the product: this brand delivers on its promise
+from start line to soil.</p>
+
+        </div>
+    </div></div>
+<footer style="text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px">
+Sustainable Race-Start Warmth Poncho — D2C Brand GTM Project · 60 Subprojects · 391 Tasks · ~15,500¶ · April 2026
+</footer></body></html>

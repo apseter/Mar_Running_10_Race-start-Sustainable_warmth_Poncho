@@ -1,0 +1,782 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>P3C: Custom Branding Production System — Race Start Warmth GTM</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0e1a;--surface:#111827;--card:#1a2332;--border:#2a3a4e;--accent:#10b981;--accent2:#3b82f6;--text:#e2e8f0;--muted:#94a3b8;--white:#fff;--red:#ef4444;--amber:#f59e0b;--green:#10b981}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+/* Nav */
+nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
+nav .inner{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;max-width:1200px;margin:0 auto}
+nav .brand{font-weight:700;font-size:15px;color:var(--accent)}
+nav .links{display:flex;gap:8px;flex-wrap:wrap}
+nav .links a{color:var(--muted);font-size:13px;padding:4px 10px;border-radius:6px;transition:.2s}
+nav .links a:hover,nav .links a.active{color:var(--white);background:var(--card);text-decoration:none}
+/* Hero */
+.hero{padding:60px 0 40px;text-align:center}
+.hero h1{font-size:2.4em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:1.1em;max-width:700px;margin:0 auto}
+/* Stats bar */
+.stats{display:flex;justify-content:center;gap:32px;padding:24px 0;flex-wrap:wrap}
+.stat{text-align:center}.stat .num{font-size:1.8em;font-weight:800;color:var(--white)}.stat .label{font-size:.75em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+/* Cards */
+.grid{display:grid;gap:16px;margin:24px 0}
+.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}
+.grid-3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;transition:.2s}
+.card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.card h3{font-size:1.1em;margin-bottom:8px}.card p{color:var(--muted);font-size:.9em}
+.card .badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:8px}
+.card .meta{font-size:.8em;color:var(--muted);margin-top:12px}
+/* Section */
+.section{padding:40px 0}.section h2{font-size:1.6em;font-weight:700;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+/* Table */
+table{width:100%;border-collapse:collapse;font-size:.85em;margin:16px 0}
+th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:52px}
+td{padding:8px 12px;border-bottom:1px solid var(--border)}
+tr:hover td{background:rgba(16,185,129,.05)}
+.status-complete{color:var(--green);font-weight:600}.status-not{color:var(--muted)}
+/* Progress */
+.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:8px}
+.progress .bar{height:100%;background:var(--accent);border-radius:3px}
+/* Back link */
+.back{display:inline-block;color:var(--muted);font-size:.9em;margin-bottom:20px}
+.back:hover{color:var(--accent)}
+/* Download */
+.dl-card{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin:8px 0;transition:.2s}
+.dl-card:hover{border-color:var(--accent);text-decoration:none}
+.dl-card .icon{font-size:2em}.dl-card .info h4{color:var(--white);margin-bottom:4px}.dl-card .info p{color:var(--muted);font-size:.85em}
+/* Footer */
+footer{text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px}
+@media(max-width:768px){.stats{gap:16px}.stat .num{font-size:1.3em}nav .links{gap:4px}nav .links a{font-size:11px;padding:3px 6px}.hero h1{font-size:1.6em}}
+
+.doc-content{max-width:900px;margin:0 auto;padding:20px 0}
+.doc-content h1{font-size:1.8em;font-weight:800;color:var(--white);margin:32px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.doc-content h2{font-size:1.4em;font-weight:700;color:var(--accent);margin:28px 0 12px}
+.doc-content h3{font-size:1.15em;font-weight:600;color:var(--accent2);margin:20px 0 10px}
+.doc-content p{margin:8px 0;line-height:1.7}
+.doc-content table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85em}
+.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;border:1px solid var(--border)}
+.doc-content td{padding:8px 12px;border:1px solid var(--border);vertical-align:top}
+.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.doc-content ul,.doc-content ol{margin:8px 0 8px 24px}
+.doc-content li{margin:4px 0;line-height:1.6}
+.doc-content strong{color:var(--white)}
+.doc-content em{color:var(--muted)}
+.doc-content blockquote{border-left:3px solid var(--accent);padding:8px 16px;margin:12px 0;background:var(--card);border-radius:0 8px 8px 0}
+.nav-sub{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 24px;padding:12px 16px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
+.nav-sub a{font-size:.8em;color:var(--muted);padding:4px 10px;border-radius:4px;transition:.2s;white-space:nowrap}
+.nav-sub a:hover,.nav-sub a.active{color:var(--white);background:var(--surface);text-decoration:none}
+</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a></div></div></nav><div class="container">
+    <div style="padding-top:30px">
+        <a href="p3.html" class="back">← 🏭 P3: Manufacturing</a>
+        <div class="nav-sub"><a href="p3.html">🏭 P3 Overview</a><a href="sub-p3a.html">P3A</a><a href="sub-p3b.html">P3B</a><a href="sub-p3c.html" class="active">P3C</a><a href="sub-p3d.html">P3D</a><a href="sub-p3e.html">P3E</a></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px">
+            <div>
+                <span style="background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px">P3C</span>
+                <span style="color:var(--muted);font-size:.85em;margin-left:8px">P3: Manufacturing</span>
+            </div>
+            <a href="files/P3C_Custom_Branding_Production_System.docx" style="font-size:.85em;color:var(--accent);padding:6px 14px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
+        </div>
+        <div class="doc-content">
+            <p><strong>P3C: CUSTOM BRANDING</strong></p>
+<p><strong>PRODUCTION SYSTEM</strong></p>
+<p>Sub-Project P3C | Manufacturing &amp; Sourcing | Weeks 14–16</p>
+<p><em>Complete Co-Brand Playbook: 9-Step Production Workflow, Mockup
+Template Specification, 6 Print Method Options, 5-Tier Pricing
+Structure, Digital Order Form, and Sample Production Plan for B2B
+Photography</em></p>
+<p>March 2026 | Confidential</p>
+<p>Executive Summary</p>
+<p><strong>Custom branding is the B2B revenue engine and the competitive
+moat.</strong> A race director choosing between a generic warmth product
+and one that carries their race logo, their sponsor’s logo, and a
+sustainability certification mark will choose the branded option every
+time — IF the customization process is fast, affordable, and
+professional. This document builds the complete system for receiving a
+race director’s logos and delivering custom-printed compostable ponchos
+in 3–5 weeks, at MOQs as low as 500 units (vs. Heatsheets’ 3,000-unit
+custom minimum).</p>
+<p><strong>The system has 6 components:</strong> (1) A 9-step production
+workflow from initial inquiry through post-delivery follow-up. (2) A
+Canva/Figma mockup template that generates photo-realistic co-brand
+previews within 24 hours of receiving logos. (3) Six print method
+options from budget 1-color flexo ($0.03/unit) to future full-color
+digital inkjet ($0.30–$0.60/unit). (4) Five pricing tiers including the
+Sponsor-Funded model where the race director pays nothing. (5) A digital
+co-brand order form for self-service ordering. (6) Five real-sample
+mockups using flagship race placeholders for B2B pitch materials and
+photography.</p>
+<p>1. Co-Brand Production Workflow: 9 Steps</p>
+<p><strong>This workflow is the operational backbone of B2B
+sales.</strong> Every co-brand order follows these 9 steps exactly. The
+process is designed for: speed (24-hour mockup turnaround), quality
+(proof approval before production), traceability (every approval
+documented in writing), and scalability (the same process works for
+500-unit charity 5K orders and 50,000-unit NYC Marathon orders).</p>
+<table>
+<colgroup>
+<col style="width: 4%" />
+<col style="width: 23%" />
+<col style="width: 38%" />
+<col style="width: 33%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Step</strong></td>
+<td><strong>Trigger / Input</strong></td>
+<td><strong>Process</strong></td>
+<td><strong>CRM / Documentation</strong></td>
+</tr>
+<tr class="even">
+<td><strong>1. Inquiry</strong></td>
+<td>Race director contacts brand (email, expo meeting, B2B landing page,
+sample kit follow-up)</td>
+<td>Respond within 24 hours with: (A) pricing sheet, (B) co-brand
+process overview (this document’s summary), (C) link to co-brand gallery
+page showing examples. Ask: race name, date, expected quantity, logos
+available Y/N, sponsor involvement Y/N.</td>
+<td>Log in CRM/pipeline tracker: race name, contact name, inquiry date,
+race date, estimated quantity, status = INQUIRY.</td>
+</tr>
+<tr class="odd">
+<td><strong>2. Logo Collection</strong></td>
+<td>Race director provides: race logo (vector EPS/AI preferred), sponsor
+logo(s), layout preferences</td>
+<td>Send a standardized “Logo Requirements” email template: “To create
+your custom poncho mockup, please provide: (1) Race logo in vector
+format (EPS, AI, or SVG preferred; high-res PNG 300 DPI minimum). (2)
+Sponsor logo(s) in same formats. (3) Any layout preferences (e.g.,
+sponsor above/below race logo, specific colors). If you don’t have
+vector files, we can vectorize from a high-res image at no charge.”</td>
+<td>Set 10-business-day deadline for logo receipt (counted backward from
+the co-brand production start date needed to meet the race date). If
+logos not received by deadline: send reminder at Day 7 and Day 9. If Day
+10 passes: inform race director that the delivery date may shift.</td>
+</tr>
+<tr class="even">
+<td><strong>3. Mockup Creation</strong></td>
+<td>Founder/designer creates photo-realistic co-brand mockup using the
+Canva/Figma template</td>
+<td>Open the P1B Section 7 co-brand template. Drop in: race logo (top of
+back panel, max 10″×8″), sponsor logo (middle, max 8″×6″), brand logo
+(bottom, fixed 4″×2″). Adjust sizes and colors. Export as high-res PDF
+(300 DPI). TURNAROUND TARGET: within 24 hours of receiving logos. This
+speed is a stated competitive advantage (P0G).</td>
+<td>Save mockup as: [Race_Name]_[Year]_mockup_v1.pdf in /Artwork/[Race
+Name]/ folder. Version control: v1, v2, v3 as revisions are made.</td>
+</tr>
+<tr class="odd">
+<td><strong>4. Proof Approval</strong></td>
+<td>Email mockup PDF to race director for written approval</td>
+<td>Email includes: front view, back view, detail crop of logo area at
+print size. Message: “Please review your custom poncho design. Confirm:
+(A) logos are correct and positioned as desired, (B) colors are
+acceptable, (C) APPROVED to proceed to production. Reply APPROVED or
+send revision notes.” 3-business-day approval window.</td>
+<td>If race director requests revisions: update mockup within 24 hours.
+Maximum 3 revision rounds included in co-brand pricing. Additional
+revisions: $50/round (communicate upfront). APPROVAL must be in WRITING
+(email reply “APPROVED” is sufficient). No verbal approvals.</td>
+</tr>
+<tr class="even">
+<td><strong>5. Artwork to Factory</strong></td>
+<td>Convert approved mockup into production-ready artwork files</td>
+<td>Create: (A) EPS/AI vector at 1:1 scale with P2B Section 5.2 branding
+zone template, (B) color separation document with Pantone references for
+each color, (C) print specification: method (flexo/screen), ink type
+(compostable certified), registration tolerance (±1mm). Send to factory
+with PO reference and approved mockup PDF as visual reference.</td>
+<td>NEVER send the Canva/Figma file to the factory. Always convert to
+production-ready EPS/AI with proper color separations. Factory print
+operators work from vector files, not design tool exports.</td>
+</tr>
+<tr class="odd">
+<td><strong>6. Proof Sample</strong></td>
+<td>Factory prints 1–3 proof samples on actual poncho material; ships to
+founder express</td>
+<td>Founder inspects: color accuracy (ΔE &lt;5 vs. approved mockup under
+D65 daylight), logo position (±1mm of template spec), print adhesion
+(tape test per P2E Section 3), legibility at 10 ft distance, overall
+visual impression. APPROVE or request corrections.</td>
+<td>For FIRST-TIME designs: proof sample is MANDATORY (adds 5–7 days to
+timeline). For REPEAT orders with identical design: skip proof sample
+(factory retains print plates/screens from previous run). Proof sample
+cost: $30–50 shipping (founder pays); no charge for the printed samples
+themselves.</td>
+</tr>
+<tr class="even">
+<td><strong>7. Production + QC</strong></td>
+<td>Factory produces co-brand run within bulk production batch</td>
+<td>Co-brand units printed after standard units (factory changeover for
+each design). Factory QC: check first unit, middle unit, and last unit
+off the press for: color consistency, registration, adhesion. Pack
+co-brand units in SEPARATE master cartons with clear labeling: “[Race
+Name] Co-Brand — [Quantity] units — PO [number].”</td>
+<td>Include 5–10% over-run allowance (standard in printing industry) at
+no additional charge. Document: total produced, total passed QC, total
+packed. Report to founder in weekly update.</td>
+</tr>
+<tr class="odd">
+<td><strong>8. Ship to Race</strong></td>
+<td>Co-brand units ship to race venue or 3PL for consolidated
+delivery</td>
+<td>Ship ≥3 weeks before race date. Include: packing list, commercial
+invoice, and 1 approved proof sample (physical reference copy for race
+operations staff to verify on receipt). Track shipment and provide
+tracking number to race director.</td>
+<td>Send race director a “shipment notification” email: “Your custom
+ponchos are on the way! [Quantity] units, tracking [number], expected
+delivery [date]. Upon receipt, please spot-check 3–5 units against the
+attached approved proof.”</td>
+</tr>
+<tr class="even">
+<td><strong>9. Post-Delivery Follow-Up</strong></td>
+<td>Within 7 days of race: call race director for feedback</td>
+<td>Debrief questions: (A) Did ponchos arrive on time and in good
+condition? (B) How did runners respond? (C) Any issues with print
+quality, tear-away, or warmth? (D) Composting logistics — did collection
+work smoothly? (E) Would you reorder? (F) Can we collect
+photos/testimonials for marketing? (G) Can you refer other race
+directors?</td>
+<td>Log feedback in CRM. If reorder intent confirmed: send PO for next
+season within 30 days (lock in pricing + lead time early). If issues:
+address immediately and document in P2F Section 1 feedback framework +
+P2E Section 9 complaint tracker.</td>
+</tr>
+</tbody>
+</table>
+<p>2. Co-Brand Mockup Template Specification</p>
+<p><strong>The mockup template is the single most important B2B sales
+tool.</strong> A race director who sees their own logo on a professional
+poncho rendering converts at 3–5× the rate of one receiving a generic
+product sheet (P1B Section 7). The template must enable 24-hour
+turnaround for ANY race logo, by ANY team member (not just a
+professional designer).</p>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 81%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Attribute</strong></td>
+<td><strong>Specification</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Platform</strong></td>
+<td>Canva (free tier) for quick mockups; Figma (free tier) for
+precision. Both support real-time collaboration if a designer assists.
+Canva is recommended for non-designers (most race directors can view
+Canva links directly).</td>
+</tr>
+<tr class="odd">
+<td><strong>Poncho base image</strong></td>
+<td>Photograph the production golden sample from P2E Section 6: front
+view and back view, on a flat surface or worn by a model, with
+consistent lighting. Remove background in Canva or Photoshop. This
+becomes the base layer of the template.</td>
+</tr>
+<tr class="even">
+<td><strong>Drop zones</strong></td>
+<td>Create clearly labeled transparent rectangles overlaid on the back
+panel and front chest per P2B Section 5 branding zones: BACK PANEL: 14″
+× 18″ zone with sub-zones for race logo (top), sponsor logo (middle),
+brand logo (bottom, fixed). FRONT CHEST: 6″ × 8″ zone for brand +
+composting icons (fixed; not customizable per co-brand).</td>
+</tr>
+<tr class="odd">
+<td><strong>Placeholder logos</strong></td>
+<td>Pre-load the template with recognizable PLACEHOLDER race logos (with
+permission or using fictional examples) to demonstrate the concept: a
+marathon-style logo at top, a corporate sponsor logo in the middle,
+brand logo at bottom. When a real race director’s logos are dropped in,
+the mockup instantly looks professional and race-specific.</td>
+</tr>
+<tr class="even">
+<td><strong>Color swatches</strong></td>
+<td>Include the P1B 8-color brand palette as a swatch panel. For
+co-brand: the nonwoven exterior defaults to Earth Green; co-brand
+text/logos default to white (highest contrast on green). If the race
+requests a different nonwoven base color: reference P2F Section 5 color
+variations (white base is available; other colors require custom dye lot
+or full-coverage print).</td>
+</tr>
+<tr class="odd">
+<td><strong>Export settings</strong></td>
+<td>Export as PDF: 300 DPI, RGB color mode (for screen viewing). Export
+as PNG: 300 DPI, transparent background (for embedding in emails and
+presentations). Export as JPG: 150 DPI, white background (for quick
+social media sharing). Always export at FULL SIZE (not scaled down) to
+demonstrate actual print quality.</td>
+</tr>
+<tr class="even">
+<td><strong>Version control</strong></td>
+<td>Naming convention: [Race_Name]_[Year]_mockup_v[N].pdf. Save all
+versions (v1, v2, v3) — never overwrite. The approved version is always
+the HIGHEST version number with “_APPROVED” suffix:
+NYC_Marathon_2026_mockup_v3_APPROVED.pdf</td>
+</tr>
+</tbody>
+</table>
+<p>2.1 Template Setup: Step-by-Step</p>
+<p>STEP 1: Photograph the production golden sample (or hand prototype if
+golden sample not yet available). Shoot front and back on a neutral
+background with even lighting. Camera: iPhone or DSLR at highest
+resolution. Shoot slightly above eye level for a natural
+perspective.</p>
+<p>STEP 2: Open Canva (canva.com, free account). Create a new design at
+3000×4000px (high-res for print quality). Import poncho photos as
+background layers. Use “Background Remover” tool (Canva Pro, $13/month,
+or use remove.bg free tier) to isolate the poncho from the
+background.</p>
+<p>STEP 3: Create transparent overlay rectangles matching the P2B
+Section 5 branding zones: Back panel 14″×18″ (scaled proportionally to
+the photo), Front chest 6″×8″. Label each zone: “Drop race logo here,”
+“Drop sponsor logo here.” Set opacity to 20% so the poncho texture shows
+through.</p>
+<p>STEP 4: Pre-load with placeholder logos. Use generic marathon-style
+logos (search “marathon logo” on Canva’s free stock library, or create
+fictional examples). This allows the template to be DEMONSTRATED to a
+race director before their actual logos are inserted.</p>
+<p>STEP 5: Save as a Canva template (Templates &gt; Save as template).
+This allows any team member to create a new co-brand mockup by: opening
+the template, deleting the placeholders, dragging in the real race
+logos, adjusting size/position, and exporting. No design skills required
+beyond basic Canva proficiency.</p>
+<p>3. Print Quality: 6 Method Options</p>
+<p><strong>Print method selection depends on the co-brand tier, color
+complexity, and order volume.</strong> Most co-brand orders use 1–2
+color flexographic printing, which offers the best balance of cost,
+speed, and quality on PLA spunbond nonwoven. Screen printing is reserved
+for premium clients with strict color requirements. Digital inkjet is a
+V2 future capability.</p>
+<table>
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 22%" />
+<col style="width: 31%" />
+<col style="width: 17%" />
+<col style="width: 11%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Method</strong></td>
+<td><strong>Application</strong></td>
+<td><strong>Quality Notes</strong></td>
+<td><strong>Cost</strong></td>
+<td><strong>MOQ</strong></td>
+</tr>
+<tr class="even">
+<td><strong>1-color flexographic (standard)</strong></td>
+<td>Brand logo in Earth Green OR white on nonwoven</td>
+<td>Fastest, lowest cost. Excellent for single-color brand logo.
+Registration is simple (1 plate). Ink coverage is consistent across
+large runs. RECOMMENDED for standard (non-co-brand) ponchos.</td>
+<td>$0.00 incremental (included in base price)</td>
+<td>All orders</td>
+</tr>
+<tr class="odd">
+<td><strong>1-color flexographic (co-brand)</strong></td>
+<td>Race logo in white on nonwoven (back panel)</td>
+<td>White ink on green nonwoven provides maximum contrast and
+readability. Suitable for most race logos when converted to
+single-color. Many race logos have a single-color variant (check the
+race’s style guide).</td>
+<td>$0.03–$0.05/unit + $300–$500 setup</td>
+<td>MOQ 500</td>
+</tr>
+<tr class="even">
+<td><strong>2-color flexographic (co-brand)</strong></td>
+<td>Race logo + sponsor logo in 2 spot colors</td>
+<td>Two print plates, each with a single color. Registration between
+plates must be ±1mm (standard for commercial flexo). Suitable for: race
+logo in one color + sponsor logo in a different color, or a single logo
+with two colors.</td>
+<td>$0.06–$0.10/unit + $500–$700 setup</td>
+<td>MOQ 500</td>
+</tr>
+<tr class="odd">
+<td><strong>3-color flexographic (premium co-brand)</strong></td>
+<td>Complex race/sponsor logos requiring 3 spot colors</td>
+<td>Three print plates. Registration becomes more demanding (±1mm across
+3 colors). Print proofing is essential. Only needed for: multi-color
+sponsor logos (e.g., corporate logos with 3+ brand colors) or races with
+intricate crests.</td>
+<td>$0.10–$0.15/unit + $600–$800 setup</td>
+<td>MOQ 1,000</td>
+</tr>
+<tr class="even">
+<td><strong>Screen printing (premium)</strong></td>
+<td>Highest ink opacity and color accuracy on nonwoven</td>
+<td>Screen printing deposits a thicker ink layer than flexo, producing:
+richer colors, better opacity (especially whites), and sharper edges.
+Preferred for: premium co-brand clients, sponsors with strict brand
+color requirements, metallic or specialty inks.</td>
+<td>$0.15–$0.25/unit + $400–$600 setup per screen</td>
+<td>MOQ 1,000</td>
+</tr>
+<tr class="odd">
+<td><strong>Digital inkjet (future V2)</strong></td>
+<td>Full-color, photo-quality printing on nonwoven</td>
+<td>Currently limited availability for compostable substrates. Emerging
+technology. Advantages: no plates/screens (no setup cost), MOQ of 1 unit
+theoretically possible, full CMYK color range. Disadvantages: slower
+production speed, higher per-unit cost ($0.30–$0.60/unit), ink
+compostability may not be certified yet.</td>
+<td>$0.30–$0.60/unit, no setup fee</td>
+<td>MOQ 25–50 (V2)</td>
+</tr>
+</tbody>
+</table>
+<p>3.1 Print Method Selection Guide</p>
+<p>Decision tree: Does the co-brand require only 1 color? → 1-color
+flexo ($0.03–$0.05/unit). Does it require 2 colors? → 2-color flexo
+($0.06–$0.10/unit). Does it require 3+ colors or exact Pantone matching?
+→ Screen print ($0.15–$0.25/unit) or 3-color flexo ($0.10–$0.15/unit).
+Does the race director want photo-quality or full-color? → Not available
+in V1; offer screen print as closest option. Evaluate digital inkjet for
+V2 (P2F Section 5.2).</p>
+<p>3.2 Ink Certification Requirement</p>
+<p>ALL inks used on the poncho MUST be certified compostable per P2D
+Section 3 (component verification). The factory must use: Sun Chemical
+SunUno Solimax AP (TÜV OK Compost certified) or hubergroup flexo series
+(tested per EN 13432). If a co-brand requires a color NOT available in
+the certified ink range: (A) check with ink supplier for custom color
+mixing within their certified system, or (B) offer the closest available
+certified color and show the race director a comparison. NEVER use
+non-certified ink to match a brand color — this voids the product’s BPI
+certification and every sustainability claim.</p>
+<p>4. Co-Brand Pricing: 5-Tier Structure</p>
+<p><strong>Pricing is transparent, tiered, and designed to incentivize
+larger orders while keeping the 500-unit minimum accessible to small
+races.</strong> The Sponsor-Funded tier is the most strategically
+valuable: it removes price as an objection for the race director and
+creates a three-way value exchange between brand, race, and sponsor.</p>
+<table>
+<colgroup>
+<col style="width: 12%" />
+<col style="width: 10%" />
+<col style="width: 7%" />
+<col style="width: 10%" />
+<col style="width: 9%" />
+<col style="width: 14%" />
+<col style="width: 34%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Tier</strong></td>
+<td><strong>Print Method</strong></td>
+<td><strong>MOQ</strong></td>
+<td><strong>Base Unit Price</strong></td>
+<td><strong>Setup Fee</strong></td>
+<td><strong>Effective Price/Unit</strong></td>
+<td><strong>Strategic Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Standard (brand logo only)</strong></td>
+<td>1-color flexo</td>
+<td>500+</td>
+<td>$3.50–$5.00</td>
+<td>$0</td>
+<td>$3.50–$5.00</td>
+<td>Default B2B product. Race distributes branded (not co-branded)
+ponchos. Brand gets visibility; race gets a simple procurement
+process.</td>
+</tr>
+<tr class="odd">
+<td><strong>Co-Brand Basic</strong></td>
+<td>1-color co-brand (race logo in white)</td>
+<td>500+</td>
+<td>$3.50–$5.00</td>
+<td>$300–$500</td>
+<td>$3.80–$5.50 (incl. amortized setup at 1,000 units)</td>
+<td>Most popular tier. Race logo on back panel in white on green. Clean,
+professional, cost-effective. RECOMMENDED for first-time race
+partners.</td>
+</tr>
+<tr class="even">
+<td><strong>Co-Brand Plus</strong></td>
+<td>2-color co-brand (race + sponsor)</td>
+<td>500+</td>
+<td>$3.50–$5.00</td>
+<td>$500–$700</td>
+<td>$4.10–$5.70 (incl. amortized setup at 1,000 units)</td>
+<td>Adds sponsor logo or second color. Enables race to sell sponsorship
+placement on poncho (“powered by [sponsor]”). Creates revenue stream for
+the race.</td>
+</tr>
+<tr class="odd">
+<td><strong>Co-Brand Premium</strong></td>
+<td>3-color or screen print</td>
+<td>1,000+</td>
+<td>$3.50–$5.00</td>
+<td>$600–$800</td>
+<td>$4.50–$6.30 (incl. amortized setup at 1,000 units)</td>
+<td>For races with strict brand requirements or complex multi-color
+logos. Premium positioning. May include metallic ink or spot UV effects
+(if compostable options exist).</td>
+</tr>
+<tr class="even">
+<td><strong>Sponsor-Funded</strong></td>
+<td>Any tier; sponsor pays for co-branding</td>
+<td>500+</td>
+<td>$0 to race director</td>
+<td>$0 to race director</td>
+<td>$0 to race director (sponsor pays full cost)</td>
+<td>The IDEAL scenario: a sustainability-focused sponsor (e.g.,
+Schneider Electric, Patagonia, REI) funds the co-branded ponchos for the
+race. Race director pays nothing. Brand + sponsor split costs. Everyone
+wins. Model: brand invoices sponsor at $5.00–$7.00/unit (includes brand
+margin); sponsor receives logo placement on 5,000–50,000 ponchos at a
+major marathon. Per P0G Section 4 sponsor co-branding strategy.</td>
+</tr>
+</tbody>
+</table>
+<p>4.1 Setup Fee Amortization</p>
+<p>Setup fees are a one-time cost per design. The effective per-unit
+cost decreases as order quantity increases. At 500 units with $500
+setup: $1.00/unit setup amortization ($5.50 effective). At 1,000 units:
+$0.50/unit ($5.00 effective). At 3,000 units: $0.17/unit ($4.67
+effective). At 5,000 units: $0.10/unit ($4.60 effective). SALES TACTIC:
+show race directors the amortization table. “At 500 units, setup adds
+$1.00 each. At 2,000 units, it’s only $0.25 each. Ordering more saves
+significantly per unit.” This naturally upsells without being pushy.</p>
+<p>4.2 Heatsheets Pricing Comparison</p>
+<p>Heatsheets custom printing: 3,000-unit MOQ, pricing not publicly
+disclosed but estimated at $2.50–$4.00/unit for custom-printed
+finish-line blankets. Our Co-Brand Basic at 500 MOQ and $3.80–$5.50/unit
+is: (A) accessible to 3× more races (500 MOQ vs. 3,000), (B)
+competitively priced at higher volumes (at 3,000 units: $4.00–$4.50 vs.
+Heatsheets $2.50–$4.00), (C) differentiated on sustainability (BPI
+certified compostable vs. recyclable LDPE), and (D) differentiated on
+product type (start-line warmth poncho vs. finish-line blanket —
+different use case, complementary not competitive at most races).</p>
+<p>5. Digital Co-Brand Order Form</p>
+<p><strong>The order form enables race directors to initiate co-brand
+orders without a phone call or meeting.</strong> It captures all
+information needed to create a mockup, generate a PO, and begin
+production. Build as: a Typeform or Google Form (free), a Shopify B2B
+wholesale page (if using Shopify Plus), or a custom form on the B2B
+landing page (brand.com/b2b).</p>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 81%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Field Group</strong></td>
+<td><strong>Fields</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Race Information</strong></td>
+<td>Race name, race date, race city/state, expected number of finishers,
+race director name, email, phone, billing address, shipping address
+(venue or 3PL)</td>
+</tr>
+<tr class="odd">
+<td><strong>Product Selection</strong></td>
+<td>Tier (Standard / Co-Brand Basic / Co-Brand Plus / Co-Brand Premium /
+Sponsor-Funded), nonwoven color (Earth Green standard, White for
+co-brand, custom color if available)</td>
+</tr>
+<tr class="even">
+<td><strong>Quantity</strong></td>
+<td>Number of units. Minimum: 500. Adjustment: buyer may adjust ±15% at
+final PO without price change.</td>
+</tr>
+<tr class="odd">
+<td><strong>Logo Upload</strong></td>
+<td>Drag-and-drop upload for: race logo file, sponsor logo file(s).
+Accepted formats: EPS, AI, SVG, PDF, PNG (300 DPI min). Note: “If you
+only have a JPEG, we’ll vectorize it at no charge.”</td>
+</tr>
+<tr class="even">
+<td><strong>Layout Preferences</strong></td>
+<td>Optional: “Preferred logo arrangement” (dropdown: standard layout
+per template / custom — describe below). Free-text field for special
+instructions.</td>
+</tr>
+<tr class="odd">
+<td><strong>Delivery Requirements</strong></td>
+<td>Required delivery date (must be ≥3 weeks before race). Delivery
+method preference (direct to venue / to 3PL / pickup at expo). Special
+handling notes (e.g., “deliver to volunteer staging area at
+[address]”).</td>
+</tr>
+<tr class="even">
+<td><strong>Proof Approval Contact</strong></td>
+<td>Name and email of the person who will approve the mockup proof.
+Often the race director or marketing manager. This person receives the
+proof PDF and must reply APPROVED.</td>
+</tr>
+<tr class="odd">
+<td><strong>Billing</strong></td>
+<td>Payment method (invoice / credit card / wire transfer). Payment
+terms (per P3A Section 3: 50% deposit on PO, 50% on shipment for first
+order; 30/70 for repeat customers). PO number (if the race organization
+issues POs).</td>
+</tr>
+<tr class="even">
+<td><strong>Terms &amp; Conditions</strong></td>
+<td>Checkbox: “I agree to the co-brand production terms including:
+3-business-day proof approval window, maximum 3 free revisions, co-brand
+artwork becomes buyer’s property, [BRAND] retains the right to use
+co-brand images in its marketing materials.”</td>
+</tr>
+</tbody>
+</table>
+<p>5.1 Form Integration</p>
+<p>OPTION A (Simple, $0): Google Form that emails responses to founder.
+Manual mockup creation and PO generation. Suitable for V1 with &lt;20
+co-brand orders per season. OPTION B (Intermediate, $30–$60/month):
+Typeform (typeform.com) with conditional logic (show sponsor fields only
+if “Sponsor involvement = Yes”), file upload for logos, automatic email
+confirmation to race director, and Zapier integration to push
+submissions to a Google Sheet CRM. OPTION C (Professional, $200–$500
+setup + $30/month): Custom form on brand.com/b2b built with Shopify or
+WordPress + Gravity Forms. Includes: automatic invoice generation,
+deposit payment via Stripe, and order status tracking. Suitable for
+V1.5+ with 20–50+ orders per season. RECOMMENDED: Start with Option B
+(Typeform) for V1 launch. Upgrade to Option C when order volume
+justifies the development investment.</p>
+<p>6. Sample Production: Real Race Co-Brands for Photography</p>
+<p><strong>Produce 3–5 physical co-brand samples using real (or
+realistic placeholder) race logos</strong> for use in: B2B pitch deck
+photography (P1D Slide 6), Amazon lifestyle images (P1D Section 5), expo
+booth display, press kit, investor presentations, and the co-brand
+gallery page on the website. These samples are MARKETING ASSETS, not
+functional test units.</p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 28%" />
+<col style="width: 28%" />
+<col style="width: 28%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Sample</strong></td>
+<td><strong>Design</strong></td>
+<td><strong>Demonstrates</strong></td>
+<td><strong>Use For</strong></td>
+</tr>
+<tr class="even">
+<td><strong>NYC Marathon (placeholder)</strong></td>
+<td>Blue + orange NYC Marathon-style logo on white nonwoven, Abbot World
+Marathon Majors logo below, brand logo at bottom</td>
+<td>Demonstrates: flagship race co-brand, multi-sponsor layout, premium
+2-color print on white base</td>
+<td>Use for: investor presentations, B2B pitch deck (P1D Slide 6), expo
+booth display, press kit</td>
+</tr>
+<tr class="odd">
+<td><strong>Chicago Marathon (placeholder)</strong></td>
+<td>Red Chicago Marathon-style logo on Earth Green nonwoven, Bank of
+America-style sponsor logo below, brand logo at bottom</td>
+<td>Demonstrates: title-sponsor integration, corporate color matching,
+standard co-brand tier on green base</td>
+<td>Use for: B2B sales meetings with Tier 1 race directors, Amazon
+lifestyle photography (P1D Section 5)</td>
+</tr>
+<tr class="even">
+<td><strong>Local 5K (generic)</strong></td>
+<td>Simple single-color white logo (“Charitable Run 5K”) on Earth Green
+nonwoven, brand logo at bottom</td>
+<td>Demonstrates: the minimum viable co-brand — proof that even a small
+local race can have a professional custom poncho</td>
+<td>Use for: sales to Tier 3 (community/charity) race directors who
+worry co-branding is only for big races</td>
+</tr>
+<tr class="odd">
+<td><strong>Sponsor-funded example</strong></td>
+<td>Brand logo + “Powered by [Sponsor Name]” on Earth Green, with
+sponsor’s corporate logo prominently displayed</td>
+<td>Demonstrates: the sponsor-funded model where the sponsor pays for
+the ponchos and gets brand visibility</td>
+<td>Use for: sponsor pitch meetings (P0G Section 4), demonstrating the
+“race director pays nothing” value proposition</td>
+</tr>
+<tr class="even">
+<td><strong>Charity/running club</strong></td>
+<td>Local running club logo + “Member poncho” text on Trail Sage
+nonwoven (limited-edition color)</td>
+<td>Demonstrates: team customization use case (P2F Section 5, V2.5
+platform), limited-edition colorway</td>
+<td>Use for: V2 product expansion planning, corporate wellness pitch
+(“Your company 5K, your brand on every poncho”)</td>
+</tr>
+</tbody>
+</table>
+<p>6.1 Photography of Co-Brand Samples</p>
+<p>Photograph each co-brand sample using the P1D Amazon photography plan
+(9-shot sequence). Key shots: (1) Flat-lay of co-branded poncho back
+panel showing race + sponsor + brand logos. (2) Poncho worn by a model
+at a race start line (or simulated corral setting). (3) Close-up of the
+logo printing quality (detail shot showing ink coverage and
+registration). (4) Side-by-side: generic branded poncho vs. co-branded
+poncho (demonstrates the customization). (5) Mockup-to-reality
+comparison: the Canva mockup next to the actual printed poncho (proves
+accuracy of the proofing process). These images become: B2B pitch deck
+Slide 6 (“See what your race poncho could look like”), Amazon gallery
+images, website co-brand gallery, and social media content (“Look at
+what we made for [Race Name]!”).</p>
+<p>6.2 Permission for Using Race Logos</p>
+<p>For samples using REAL race logos (NYC Marathon, Chicago Marathon):
+DO NOT produce or publish without written permission from the race
+organization. Many race logos are trademarked. Using them without
+authorization — even on a sample poncho for internal photography —
+creates trademark infringement risk. SAFE ALTERNATIVES: (A) Create
+fictional race logos that LOOK like real marathons but are not (e.g.,
+“Liberty City Marathon” instead of NYC, “Windy City Marathon” instead of
+Chicago). (B) Use the placeholder logos already in the Canva template.
+(C) Reach out to the race director and request permission: “We’d like to
+create a sample co-branded poncho using your race logo for our B2B
+marketing materials. May we have your permission? We’ll send you the
+finished samples as a gift.” Most race directors will say yes,
+especially if they’re already in the sales pipeline.</p>
+<p>7. Timeline &amp; Budget</p>
+<p><strong>WEEK 14: Set up Canva co-brand template with golden sample
+photos and placeholder logos. Build Typeform co-brand order form. Define
+co-brand pricing tiers (finalize with factory). Draft “Logo
+Requirements” email template.</strong></p>
+<p><strong>WEEK 15: Test co-brand print quality: send 2–3 test designs
+to factory during bulk production run (P3B). Factory prints proof
+samples. Founder evaluates: color accuracy, registration, adhesion.
+Approve print method (flexo vs. screen) for each tier.</strong></p>
+<p><strong>WEEK 16: Produce 3–5 co-brand samples for photography
+(Section 6). Photograph using P1D shot plan. Add to B2B pitch deck,
+Amazon gallery, and website. Launch co-brand order form on
+brand.com/b2b. Send B2B sample kits (P3B Section 6) with co-brand mockup
+included. Begin accepting co-brand orders for Fall 2026
+races.</strong></p>
+<p>BUDGET: Canva Pro subscription ($13/month). Typeform subscription
+($30–60/month). Sample co-brand production (5 designs × 3–5 units each =
+15–25 units, ~$25–$50 in product cost + $50–$100 shipping). Co-brand
+template photography ($0 if DIY, $200–$500 if professional
+photographer). TOTAL P3C: $120–$720.</p>
+<p>8. Conclusion: Customization Is the Conversion Engine</p>
+<p><strong>A race director who sees a generic product thinks
+“interesting.”</strong> A race director who sees THEIR logo on that
+product thinks “I want this.” The co-brand mockup transforms a product
+pitch into a partnership pitch. The 24-hour mockup turnaround transforms
+a “I’ll think about it” into a “let’s proceed.” The 500-unit MOQ
+transforms a “we’re too small” into a “we can afford this.”</p>
+<p><strong>The Sponsor-Funded tier is the ultimate unlock.</strong> When
+a sustainability-focused sponsor (per P0G Section 4: TCS $40M/yr in
+running sponsorships, Bank of America, Schneider Electric) agrees to
+fund co-branded ponchos for a race, the race director’s cost drops to
+zero. The sponsor gets their logo on 5,000–50,000 ponchos at a major
+marathon. The brand gets revenue AND a showcase placement. The runners
+get warmth. The environment gets composted ponchos instead of garbage
+bags. This is the only business model where every single stakeholder
+wins.</p>
+
+        </div>
+    </div></div>
+<footer style="text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px">
+Sustainable Race-Start Warmth Poncho — D2C Brand GTM Project · 60 Subprojects · 391 Tasks · ~15,500¶ · April 2026
+</footer></body></html>

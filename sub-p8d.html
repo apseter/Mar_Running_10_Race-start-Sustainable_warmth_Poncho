@@ -1,0 +1,758 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>P8D: Financial Decision Points — Race Start Warmth GTM</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0e1a;--surface:#111827;--card:#1a2332;--border:#2a3a4e;--accent:#10b981;--accent2:#3b82f6;--text:#e2e8f0;--muted:#94a3b8;--white:#fff;--red:#ef4444;--amber:#f59e0b;--green:#10b981}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+/* Nav */
+nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
+nav .inner{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;max-width:1200px;margin:0 auto}
+nav .brand{font-weight:700;font-size:15px;color:var(--accent)}
+nav .links{display:flex;gap:8px;flex-wrap:wrap}
+nav .links a{color:var(--muted);font-size:13px;padding:4px 10px;border-radius:6px;transition:.2s}
+nav .links a:hover,nav .links a.active{color:var(--white);background:var(--card);text-decoration:none}
+/* Hero */
+.hero{padding:60px 0 40px;text-align:center}
+.hero h1{font-size:2.4em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:1.1em;max-width:700px;margin:0 auto}
+/* Stats bar */
+.stats{display:flex;justify-content:center;gap:32px;padding:24px 0;flex-wrap:wrap}
+.stat{text-align:center}.stat .num{font-size:1.8em;font-weight:800;color:var(--white)}.stat .label{font-size:.75em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+/* Cards */
+.grid{display:grid;gap:16px;margin:24px 0}
+.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}
+.grid-3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;transition:.2s}
+.card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.card h3{font-size:1.1em;margin-bottom:8px}.card p{color:var(--muted);font-size:.9em}
+.card .badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:8px}
+.card .meta{font-size:.8em;color:var(--muted);margin-top:12px}
+/* Section */
+.section{padding:40px 0}.section h2{font-size:1.6em;font-weight:700;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+/* Table */
+table{width:100%;border-collapse:collapse;font-size:.85em;margin:16px 0}
+th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:52px}
+td{padding:8px 12px;border-bottom:1px solid var(--border)}
+tr:hover td{background:rgba(16,185,129,.05)}
+.status-complete{color:var(--green);font-weight:600}.status-not{color:var(--muted)}
+/* Progress */
+.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:8px}
+.progress .bar{height:100%;background:var(--accent);border-radius:3px}
+/* Back link */
+.back{display:inline-block;color:var(--muted);font-size:.9em;margin-bottom:20px}
+.back:hover{color:var(--accent)}
+/* Download */
+.dl-card{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin:8px 0;transition:.2s}
+.dl-card:hover{border-color:var(--accent);text-decoration:none}
+.dl-card .icon{font-size:2em}.dl-card .info h4{color:var(--white);margin-bottom:4px}.dl-card .info p{color:var(--muted);font-size:.85em}
+/* Footer */
+footer{text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px}
+@media(max-width:768px){.stats{gap:16px}.stat .num{font-size:1.3em}nav .links{gap:4px}nav .links a{font-size:11px;padding:3px 6px}.hero h1{font-size:1.6em}}
+
+.doc-content{max-width:900px;margin:0 auto;padding:20px 0}
+.doc-content h1{font-size:1.8em;font-weight:800;color:var(--white);margin:32px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.doc-content h2{font-size:1.4em;font-weight:700;color:var(--accent);margin:28px 0 12px}
+.doc-content h3{font-size:1.15em;font-weight:600;color:var(--accent2);margin:20px 0 10px}
+.doc-content p{margin:8px 0;line-height:1.7}
+.doc-content table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85em}
+.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;border:1px solid var(--border)}
+.doc-content td{padding:8px 12px;border:1px solid var(--border);vertical-align:top}
+.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.doc-content ul,.doc-content ol{margin:8px 0 8px 24px}
+.doc-content li{margin:4px 0;line-height:1.6}
+.doc-content strong{color:var(--white)}
+.doc-content em{color:var(--muted)}
+.doc-content blockquote{border-left:3px solid var(--accent);padding:8px 16px;margin:12px 0;background:var(--card);border-radius:0 8px 8px 0}
+.nav-sub{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 24px;padding:12px 16px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
+.nav-sub a{font-size:.8em;color:var(--muted);padding:4px 10px;border-radius:4px;transition:.2s;white-space:nowrap}
+.nav-sub a:hover,.nav-sub a.active{color:var(--white);background:var(--surface);text-decoration:none}
+</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a></div></div></nav><div class="container">
+    <div style="padding-top:30px">
+        <a href="p8.html" class="back">← 💰 P8: Financial Ops</a>
+        <div class="nav-sub"><a href="p8.html">💰 P8 Overview</a><a href="sub-p8a.html">P8A</a><a href="sub-p8b.html">P8B</a><a href="sub-p8c.html">P8C</a><a href="sub-p8d.html" class="active">P8D</a></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px">
+            <div>
+                <span style="background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px">P8D</span>
+                <span style="color:var(--muted);font-size:.85em;margin-left:8px">P8: Financial Ops</span>
+            </div>
+            <a href="files/P8D_Financial_Decision_Points.docx" style="font-size:.85em;color:var(--accent);padding:6px 14px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
+        </div>
+        <div class="doc-content">
+            <p><strong>P8D: FINANCIAL</strong></p>
+<p><strong>DECISION POINTS</strong></p>
+<p>Sub-Project P8D | Financial Operations | Months 6–12</p>
+<p><em>Critical Decision Framework: Month 6 Pipeline Check (7 Metrics),
+Month 10 Financial Review (6 Metrics), Year 2 Financial Plan (3
+Scenarios), Investor Materials Package (5 Components), and Year 1
+Complete P&amp;L with Strategic Learnings</em></p>
+<p>March 2026 | Confidential</p>
+<p>Executive Summary</p>
+<p><strong>Financial decision gates remove emotion from the biggest
+decisions a founder makes: whether to invest more, pull back, pivot, or
+stop.</strong> Without pre-committed thresholds, the founder makes these
+decisions under stress, with sunk-cost bias, and with incomplete
+emotional processing. With pre-committed thresholds, the decision is
+simple: check the metrics, compare to the gates, and execute the
+pre-defined response. This document defines: 7 metrics for the Month 6
+pipeline check, 6 metrics for the Month 10 financial review, 3 Year 2
+financial scenarios, a complete investor materials package, and a Year 1
+P&amp;L template with strategic learnings documentation.</p>
+<p><strong>The decision gates follow a traffic-light system:</strong>
+GREEN (all/most metrics at threshold) = accelerate. YELLOW (mixed
+results) = proceed with caution and fix lagging metrics. RED (most
+metrics below threshold) = pause, diagnose, and evaluate alternatives.
+The founder should commit to these gates NOW — before Month 6 arrives —
+and evaluate honestly against them when the time comes.</p>
+<p>1. Month 6 Pipeline Check: 7 Metrics</p>
+<p><strong>Month 6 is the first critical decision point.</strong> It
+occurs BEFORE the fall race season — there is still time to adjust
+strategy, increase investment, or pull back. The 7 metrics below provide
+a comprehensive view of the business’s health across: B2B pipeline, DTC
+traction, product quality, cash position, and audience growth. Each
+metric has a specific threshold for Bootstrap and Full Launch
+scenarios.</p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 19%" />
+<col style="width: 19%" />
+<col style="width: 47%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Metric</strong></td>
+<td><strong>Data Source</strong></td>
+<td><strong>Threshold</strong></td>
+<td><strong>Action if Below</strong></td>
+</tr>
+<tr class="even">
+<td><strong>B2B pipeline value</strong></td>
+<td>CRM (HubSpot): total weighted pipeline value</td>
+<td>$30K+ (Bootstrap) / $100K+ (Full Launch)</td>
+<td>Pipeline below threshold signals: insufficient outreach volume (per
+P5A), product-market fit concerns, or pricing misalignment. ACTION:
+increase outreach, adjust pricing, or pivot to DTC-led strategy.</td>
+</tr>
+<tr class="odd">
+<td><strong>Active B2B conversations</strong></td>
+<td>CRM: deals in “Meeting Scheduled” through “Proposal Sent”
+stages</td>
+<td>3+ (Bootstrap) / 8+ (Full Launch)</td>
+<td>Conversations = future revenue. If &lt;3 conversations after 6
+months of outreach: the sales approach needs fundamental rethinking
+(message, channel, or target customer profile).</td>
+</tr>
+<tr class="even">
+<td><strong>Signed POs or LOIs</strong></td>
+<td>CRM: deals in “PO Received” stage or later</td>
+<td>1+ (Bootstrap) / 3+ (Full Launch)</td>
+<td>A signed PO is the ONLY definitive proof of B2B product-market fit.
+Pipeline value and conversations are leading indicators; POs are the
+lagging confirmation. Zero POs at Month 6 is a SERIOUS warning
+signal.</td>
+</tr>
+<tr class="odd">
+<td><strong>DTC sales velocity</strong></td>
+<td>Shopify + Amazon: total units sold in Month 5–6</td>
+<td>50+ units/month (Bootstrap) / 200+ (Full Launch)</td>
+<td>DTC velocity indicates: whether runners will buy the product at the
+current price, whether the listing/store converts, and whether marketing
+channels are working. Below threshold: investigate listing quality,
+pricing, or traffic volume.</td>
+</tr>
+<tr class="even">
+<td><strong>Amazon review count</strong></td>
+<td>Seller Central: total reviews</td>
+<td>10+ reviews at 4.0+ stars</td>
+<td>Reviews &lt;10 at Month 6: Vine enrollment may have been delayed, or
+Vine reviewers haven’t posted yet. Reviews &lt;4.0 stars: product
+quality or listing-expectation mismatch. Either issue must be addressed
+before fall race season advertising ramps.</td>
+</tr>
+<tr class="odd">
+<td><strong>Cash runway</strong></td>
+<td>Bank balance ÷ monthly burn rate</td>
+<td>3+ months of runway remaining</td>
+<td>If runway &lt;3 months at Month 6: the business cannot afford the
+fall season marketing investment. Options: inject personal capital,
+reduce planned marketing spend, or accelerate B2B deposit
+collection.</td>
+</tr>
+<tr class="even">
+<td><strong>Email list size</strong></td>
+<td>Klaviyo: total subscribers</td>
+<td>500+ (Bootstrap) / 1,500+ (Full Launch)</td>
+<td>The email list is the foundation of race-week campaigns (P7B Section
+8) and holiday marketing (P7F Section 3). Below 500: the email channel
+won’t generate meaningful revenue. Focus: checklist lead magnet (P7B
+Section 7), popup optimization, expo email capture.</td>
+</tr>
+</tbody>
+</table>
+<p>1.1 Month 6 Outcomes: Traffic Light</p>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 33%" />
+<col style="width: 52%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Outcome</strong></td>
+<td><strong>Criteria</strong></td>
+<td><strong>Action</strong></td>
+</tr>
+<tr class="even">
+<td><strong>GREEN: All metrics at or above threshold</strong></td>
+<td>ACCELERATE. Proceed with full fall campaign investment (P7F Section
+1). Confirm second production run. Expand ambassador program. Register
+for fall expo booths. Increase ad budget to peak-season levels. The
+business is tracking toward the moderate B2B scenario or better.</td>
+<td>This is the outcome the founder plans for and hopes for. Month 6
+GREEN means: the product works, customers want it, and the fall season
+is positioned for strong execution.</td>
+</tr>
+<tr class="odd">
+<td><strong>YELLOW: 4–5 of 7 metrics at threshold</strong></td>
+<td>PROCEED WITH CAUTION. Invest in fall at a REDUCED level: fewer expos
+(1–2 instead of 3–4), lower ad budget (50–70% of planned), smaller
+production run (+5K units instead of +15K). Investigate the lagging
+metrics: is B2B pipeline weak (outreach problem) or is DTC slow
+(conversion problem)? Fix the weakest metric before allocating
+additional capital.</td>
+<td>YELLOW is the most common Month 6 outcome for a new brand. Not
+everything will be on track. The key: identify the 1–2 lagging metrics
+and create a focused 90-day remediation plan. Do NOT ignore YELLOW
+metrics and hope they fix themselves.</td>
+</tr>
+<tr class="even">
+<td><strong>RED: 3 or fewer metrics at threshold</strong></td>
+<td>PAUSE AND EVALUATE. Do NOT invest in the full fall campaign. Reduce:
+production to minimum, marketing to maintenance level, and expo
+attendance to zero. Conduct: a DEEP evaluation of why the business is
+underperforming. Common causes: (A) the product doesn’t work well enough
+(tear-away issues, warmth complaints, sizing problems), (B) the price is
+wrong (too high for B2B, not compelling enough for DTC), (C) the market
+doesn’t exist as hypothesized (runners don’t care about sustainability
+enough to switch from garbage bags), or (D) the founder hasn’t had
+enough time to execute (outreach hasn’t started, expos haven’t happened,
+marketing hasn’t launched). If (D): extend the timeline — the product
+may be viable but the execution was delayed. If (A), (B), or (C):
+consider a fundamental pivot or orderly wind-down.</td>
+<td>RED at Month 6 does not necessarily mean the business should close.
+It means: something is fundamentally wrong and must be diagnosed before
+investing further. The worst response to RED is: spending the remaining
+cash on a full fall campaign hoping the numbers will improve without
+understanding WHY they’re weak.</td>
+</tr>
+</tbody>
+</table>
+<p>2. Month 10 Financial Review: 6 Metrics</p>
+<p><strong>Month 10 occurs AFTER the peak fall race season.</strong> The
+data is in: pilot races have executed, fall DTC sales have materialized,
+and customer satisfaction feedback has been collected. Month 10 provides
+enough data to make a Year 2 commitment with confidence — not certainty,
+but INFORMED confidence based on 10 months of actual performance.</p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 19%" />
+<col style="width: 19%" />
+<col style="width: 47%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Metric</strong></td>
+<td><strong>Data Source</strong></td>
+<td><strong>Threshold</strong></td>
+<td><strong>Significance</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Total revenue (cumulative)</strong></td>
+<td>All channels: Shopify + Amazon + B2B + Expo</td>
+<td>Bootstrap: $12,000+ / Full Launch: $40,000+</td>
+<td>Revenue should cover &gt;60% of cumulative costs by Month 10. If
+&lt;60%: the business is burning cash faster than it’s generating
+revenue, and Year 2 profitability is unlikely without significant
+changes.</td>
+</tr>
+<tr class="odd">
+<td><strong>B2B reorder signals</strong></td>
+<td>Post-race debrief results (P5B Section 5): did the race director
+indicate interest in reordering? Verbal commitment, email confirmation,
+or signed Year 2 PO?</td>
+<td>80%+ of pilot race directors express reorder interest</td>
+<td>Reorder intent is the #1 indicator of product-market fit in B2B. If
+4 of 5 pilot race directors want to reorder: the product works and the
+B2B model is validated. If &lt;50% want to reorder: investigate product
+quality, service quality, or pricing issues.</td>
+</tr>
+<tr class="even">
+<td><strong>Customer satisfaction</strong></td>
+<td>Amazon reviews (average rating) + Shopify reviews + post-race survey
+scores (P5B Section 4)</td>
+<td>4.0+ out of 5.0 across all sources</td>
+<td>Satisfaction below 4.0 means: the product is not meeting
+expectations. Common issues: warmth insufficient for very cold
+conditions, tear-away force too high or inconsistent, sizing too small
+for larger runners, packaging not intuitive. Feed ALL satisfaction data
+into P2F product improvement framework.</td>
+</tr>
+<tr class="odd">
+<td><strong>DTC conversion rate</strong></td>
+<td>GA4: ecommerce purchase rate (purchases ÷ sessions)</td>
+<td>2.0%+ (Shopify) / 10%+ (Amazon)</td>
+<td>Conversion below target means: the listing/product page is not
+persuading visitors to buy. Investigate: image quality, price display,
+review count, social proof elements (per P6E). Do NOT increase ad spend
+to drive more traffic to a low-converting page — fix the page
+first.</td>
+</tr>
+<tr class="even">
+<td><strong>Cash position</strong></td>
+<td>Bank balance + expected inflows (next 30 days) − expected outflows
+(next 30 days)</td>
+<td>Positive net cash position with 2+ months runway</td>
+<td>If cash position is negative or runway &lt;2 months: the business
+cannot fund spring production or Year 2 operations without external
+capital. Decision: inject personal funds, raise capital, or reduce
+operations to cash-flow-positive level.</td>
+</tr>
+<tr class="odd">
+<td><strong>Composting verification</strong></td>
+<td>Post-race composting reports from pilot races (P4D Section 4)</td>
+<td>At least 1 verified composting report with weight-diverted data</td>
+<td>The composting report is PROOF that the sustainability promise is
+real. Without it: the brand’s sustainability claims are unverified
+marketing language. With it: the brand can publish the data on the
+website, in investor materials, and in B2B pitch decks. If composting
+logistics failed at a pilot race: diagnose and fix before scaling.</td>
+</tr>
+</tbody>
+</table>
+<p>2.1 Month 10 Outcomes</p>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 33%" />
+<col style="width: 52%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Outcome</strong></td>
+<td><strong>Criteria</strong></td>
+<td><strong>Action</strong></td>
+</tr>
+<tr class="even">
+<td><strong>COMMIT TO YEAR 2</strong></td>
+<td>All 6 metrics at or above threshold. Revenue &gt;60% of costs.
+Reorder rate &gt;80%. Satisfaction &gt;4.0. Cash positive with
+runway.</td>
+<td>Place spring production order. Begin Year 2 B2B outreach with fall
+case studies. Expand: ambassador program, content calendar, and ad
+budget. Build: Year 2 financial plan (Section 3). Start: Year 2 product
+development (P2F V1.5 improvements). Timeline: 90 days of intense Year 2
+preparation.</td>
+</tr>
+<tr class="odd">
+<td><strong>CONDITIONAL COMMIT</strong></td>
+<td>4–5 of 6 metrics at threshold. Revenue approaching 60% but not quite
+there. 1–2 metrics lagging.</td>
+<td>Commit to Year 2 at a REDUCED scale. Place a smaller spring
+production order (50–70% of planned). Reduce: marketing budget to
+maintenance level. Focus: on fixing the lagging metrics before scaling.
+Create: a 90-day remediation plan for weak areas. Decision: revisit at
+Month 12 with updated data. If the lagging metrics improve by Month 12:
+scale to full Year 2 plan. If not: further reduction or pivot.</td>
+</tr>
+<tr class="even">
+<td><strong>EVALUATE ALTERNATIVES</strong></td>
+<td>3 or fewer metrics at threshold. Revenue &lt;40% of costs. Reorder
+rate &lt;50%. Cash runway &lt;2 months.</td>
+<td>Options: (A) RAISE CAPITAL: if the product works (satisfaction
+&gt;4.0, reorders &gt;50%) but revenue is slow, outside funding can
+extend the runway. Prepare investor materials (Section 5). (B) PARTNER:
+approach a larger brand to distribute or co-brand the product. Negotiate
+licensing or distribution terms. (C) LICENSE: sell or license the IP
+(patent, BPI certification, brand assets) to a manufacturer. Collect
+royalties without operating the business. (D) WIND DOWN: if the product
+doesn’t work (satisfaction &lt;4.0, reorders &lt;50%) and there’s no
+clear path to fixing it: sell remaining inventory at cost, fulfill
+outstanding B2B commitments, and close the business. This is not failure
+— it is responsible stewardship of limited resources.</td>
+</tr>
+</tbody>
+</table>
+<p>3. Year 2 Financial Plan: 3 Scenarios</p>
+<p><strong>The Year 2 plan is built at Month 11–12 using ACTUAL Year 1
+data.</strong> It replaces the hypothetical Year 1 scenarios (P8A
+Sections 1–2) with REALITY-BASED projections. Three scenarios
+(conservative, moderate, aggressive) provide: a floor (what happens with
+minimal investment), a target (what’s achievable with reasonable
+investment), and a ceiling (what’s possible with significant investment
+or external capital).</p>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 52%" />
+<col style="width: 33%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Scenario</strong></td>
+<td><strong>Revenue &amp; Growth</strong></td>
+<td><strong>Funding &amp; Risk</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Conservative</strong></td>
+<td>Revenue: 1.5× Year 1 actual. B2B: Year 1 reorders + 3–5 new races
+from referrals. DTC: 1.5× Year 1 DTC with improved organic traffic.
+Marketing: same budget, better efficiency. Production: 1 production run,
+conservative quantities. No new hires.</td>
+<td>Funding: self-funded from Year 1 cash flow + small cash reserve.
+Risk: LOW. Suitable if: Year 1 was marginally profitable and cash is
+tight.</td>
+</tr>
+<tr class="odd">
+<td><strong>Moderate</strong></td>
+<td>Revenue: 2–3× Year 1. B2B: reorders + 5–10 new races + 1 small
+series deal (REVEL or Mainly Marathons). DTC: 2× with improved SEO,
+expanded ambassador program, and optimized paid ads. Marketing: 1.5×
+Year 1 budget with proven ROI channels. Production: 2 production runs.
+Consider: part-time operations help (virtual assistant, $15–$25/hour,
+10–20 hours/week).</td>
+<td>Funding: self-funded from Year 1 profits + $10K–30K additional
+investment (personal or angel). Risk: MODERATE. Suitable if: Year 1 was
+profitable with strong reorder rates and growing DTC.</td>
+</tr>
+<tr class="even">
+<td><strong>Aggressive</strong></td>
+<td>Revenue: 3–5× Year 1. B2B: reorders + 10–20 new races + 1–2 series
+deals + 2–5 sponsor-funded races. DTC: 3× with new product SKUs
+(finish-line wrap, bib sleeve per P2F). Marketing: 2× budget with
+podcast sponsorships + expanded PR. Production: 3+ runs. Hire: part-time
+marketing coordinator + part-time operations manager (or 1 full-time
+generalist). Begin international expansion (Canada).</td>
+<td>Funding: requires $50K–$200K external capital (angel round or
+pre-seed). Risk: HIGH. Suitable if: Year 1 exceeded the moderate B2B
+scenario, product-market fit is proven, and the founder is ready to
+transition from solo operator to company builder.</td>
+</tr>
+</tbody>
+</table>
+<p>3.1 Year 2 Planning Timeline</p>
+<p>MONTH 10: Begin Year 2 planning. Review: all Month 10 metrics
+(Section 2). Identify: Year 2 scenario
+(conservative/moderate/aggressive) based on Year 1 performance and
+available capital. Draft: Year 2 revenue projections using actual Year 1
+data as the baseline. MONTH 11: Build the Year 2 financial model.
+Update: unit economics with actual COGS, fees, and CAC data. Plan:
+production quantities, marketing budget, and staffing needs for each
+scenario. If raising capital: begin investor outreach (send the Month 11
+update with a preview of Year 2 plans and an invitation to discuss).
+MONTH 12: Finalize Year 2 plan. Commit: to a scenario based on available
+funding and Month 12 decision gate outcome. Place: spring production
+order. Lock: Year 2 B2B pricing. Set: Year 2 marketing calendar. If
+raising capital: formal pitch process begins (deck, meetings, data
+room).</p>
+<p>4. Investor Materials: 5 Components</p>
+<p><strong>Investor materials should be READY by Month 12 even if the
+founder is not certain about raising capital.</strong> Having materials
+ready means: if an investor opportunity arises (a chance meeting, an
+advisor introduction, an accelerator application), the founder can
+respond immediately with professional materials instead of scrambling to
+assemble them. Preparation is not commitment to raise — it is
+optionality.</p>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width:50%">
+<col style="width: 35%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Component</strong></td>
+<td><strong>Specification</strong></td>
+<td><strong>Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Pitch deck (10–15 slides)</strong></td>
+<td>Slide 1: Title (brand name, tagline, one-line description). Slide 2:
+Problem (35K+ garbage bags per marathon, 60K–120K lbs LDPE annually, $0
+alternative exists). Slide 3: Solution (compostable warmth poncho, BPI
+certified, tear-away design, end-to-end composting logistics). Slide 4:
+Market (TAM $100M+ race-day warmth market, 2.5M+ cold-weather race
+participants, 600+ target races). Slide 5: Product (materials,
+performance data, FLIR image, patent-pending status). Slide 6: Traction
+(Year 1 revenue, units sold, races served, composting impact, customer
+satisfaction scores, review count). Slide 7: Business model (DTC
+channels + B2B at margins per P8A Section 3, unit economics by channel).
+Slide 8: Go-to-market (B2B pipeline + DTC strategy + seasonal marketing
+model). Slide 9: Competitive landscape (Heatsheets comparison, barriers
+to entry: BPI certification, composting network, race director
+relationships). Slide 10: Team (founder bio, relevant experience,
+advisors if any). Slide 11: Financials (Year 1 actual + Year 2
+projections, 3 scenarios per Section 3). Slide 12: Ask (amount raising,
+use of funds, terms). Slide 13: Vision (Year 3–5: product line
+expansion, international, category leadership).</td>
+<td>DESIGN: clean, visual, minimal text per slide. Use P1B brand
+identity (Earth Green, Dawn Gold, DM Sans). Include: product photos,
+FLIR image, race-day photos, composting lifecycle infographic. TOOLS:
+Canva ($0–$13/month), Google Slides (free), or Pitch (pitch.com, free
+tier). DO NOT use PowerPoint templates with generic stock photos. The
+deck should LOOK like the brand — sustainable, thoughtful,
+authentic.</td>
+</tr>
+<tr class="odd">
+<td><strong>Financial model (spreadsheet)</strong></td>
+<td>Google Sheet or Excel with tabs: ASSUMPTIONS (COGS, pricing, volume
+scenarios, marketing spend, headcount), YEAR 1 ACTUAL (monthly P&amp;L
+from P8B Section 2), YEAR 2 PROJECTIONS (3 scenarios: conservative,
+moderate, aggressive per Section 3), YEAR 3 PROJECTIONS (high-level, 2
+scenarios), UNIT ECONOMICS (per P8A Section 3 with actual Year 1 data),
+and CAP TABLE (current ownership, proposed investment, post-money
+valuation, dilution). The model should be: editable (investor will
+change assumptions to test scenarios), clearly labeled (every assumption
+in one tab, formulas reference the assumption tab), and honest (do not
+inflate projections — sophisticated investors will see through
+them).</td>
+<td>Investors evaluate the financial model for: reasonableness (are the
+assumptions credible?), scenario awareness (has the founder considered
+downside scenarios?), and founder sophistication (does the founder
+understand their own economics?). A clean, honest financial model builds
+more investor trust than an aggressive model with hockey-stick
+projections.</td>
+</tr>
+<tr class="even">
+<td><strong>Customer evidence</strong></td>
+<td>Compile: 5–10 runner testimonials (from reviews, pilot surveys,
+ambassador feedback) with: name, race, quote, and photo if available.
+2–3 race director testimonials: “We used [BRAND] ponchos at [Race Name]
+and our runners loved them. We’re ordering again next season.” 1–2
+composting verification reports (P4D Section 4): “[X] lbs of poncho
+waste composted at [facility name] in [Y] weeks.” Amazon review
+screenshots (4.5+ star average). Media coverage clippings (if any per
+P7C). Case study summary from pilot race (P5B Section 6).</td>
+<td>Customer evidence is the MOST PERSUASIVE element of the fundraising
+package. Investors see: hundreds of pitch decks with optimistic
+financial projections. They see very few with: actual customer quotes,
+verified composting data, and photo evidence of the product being used
+at real races. The evidence package differentiates this pitch from 95%
+of startup pitches.</td>
+</tr>
+<tr class="odd">
+<td><strong>Data room (Google Drive folder)</strong></td>
+<td>Organize: /Investor_Data_Room/ with subfolders: /Financials (Year 1
+P&amp;L, cash flow, unit economics, Year 2 model), /Legal (business
+formation docs, trademark filing, patent application, BPI certificate),
+/Product (product spec sheet, FLIR test results, material
+certifications, composting reports), /Customers (testimonials, case
+studies, review screenshots, NPS data), /Marketing (brand guidelines,
+key metrics dashboard screenshot, content performance), /Press (media
+coverage links + screenshots). Share: as a Google Drive link with
+view-only access. Send: AFTER the pitch meeting, not before (the pitch
+deck should create interest; the data room provides depth for due
+diligence).</td>
+<td>The data room demonstrates: operational maturity (the founder is
+organized and prepared), transparency (everything is available for
+review), and readiness (the business is ready for investment, not
+scrambling to assemble materials). Most pre-seed and angel investors do
+NOT conduct formal due diligence — but having the data room ready
+signals professionalism that differentiates the founder.</td>
+</tr>
+<tr class="even">
+<td><strong>Monthly investor updates</strong></td>
+<td>Per P8B Section 6: the 12 months of consistent monthly updates sent
+throughout Year 1 become the STRONGEST fundraising tool. An investor who
+has received 12 months of transparent updates has: watched the business
+grow from $0 to $X in revenue, seen the founder acknowledge and address
+challenges, observed consistent execution and learning, and developed
+trust in the founder’s character and capability. The ask at Month 12 is
+not cold — it’s the natural next step in a 12-month relationship.</td>
+<td>START sending monthly updates from Month 1 to: any personal contacts
+who might invest in the future, any advisors or mentors, and any
+accelerator/incubator contacts. Even if the founder is NOT currently
+raising: the updates build relationships that can be activated at Month
+12 if capital is needed.</td>
+</tr>
+</tbody>
+</table>
+<p>4.1 Fundraising Options by Stage</p>
+<p>PRE-SEED ($25K–$100K): friends and family, angel investors, startup
+pitch competitions, micro-VCs (Precursor Ventures, Hustle Fund,
+Unshackled Ventures). Use: SAFE note (Simple Agreement for Future
+Equity) with a valuation cap of $500K–$2M depending on traction. SAFE
+notes are standard for pre-seed and avoid: valuation negotiation, board
+seat complexity, and legal costs. ANGEL ROUND ($100K–$500K): angel
+investor networks (AngelList, local angel groups),
+climate/sustainability-focused funds (Closed Loop Partners, Obvious
+Ventures, Prelude Ventures), and running/outdoor industry angels (former
+executives at Brooks, Hoka, Patagonia). Use: SAFE note or convertible
+note with $1M–$5M cap. GRANTS: USDA BioPreferred program, EPA SBIR
+grants for sustainable materials, state-level green business grants, and
+accelerator programs with non-dilutive funding (Techstars
+Sustainability, Circular Economy accelerators). Grants are FREE MONEY —
+always worth applying even if the odds are low. REVENUE-BASED FINANCING:
+Clearco, Pipe, or Shopify Capital provide: capital advances repaid as a
+percentage of monthly revenue (typically 6–12% of monthly revenue until
+1.2–1.5× the advance is repaid). No dilution, no board seats. Best for:
+businesses with proven revenue and predictable cash flows.</p>
+<p>5. Year 1 Complete P&amp;L with Channel Analysis</p>
+<p><strong>The Year 1 P&amp;L is the business’s financial
+autobiography.</strong> It tells the story of: how much revenue was
+generated (and from which channels), how much it cost to produce and
+sell the product, how much was invested in marketing (and which channels
+delivered ROI), and what the net result was. Combined with the strategic
+learnings section, it transforms 12 months of experience into a document
+that guides every Year 2 decision.</p>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width:50%">
+<col style="width: 35%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Section</strong></td>
+<td><strong>What to Include</strong></td>
+<td><strong>Analysis</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Revenue by channel</strong></td>
+<td>Shopify DTC: $[X]. Amazon DTC: $[X]. B2B Standard: $[X]. B2B
+Co-Brand: $[X]. Expo Direct: $[X]. TOTAL REVENUE: $[X].</td>
+<td>Compare to: P8A Section 5 scenarios. Which scenario did reality most
+closely match? Why?</td>
+</tr>
+<tr class="odd">
+<td><strong>COGS by channel</strong></td>
+<td>Calculate: units sold per channel × actual per-unit COGS. Include:
+inventory purchases, freight, import duties, FBA fees, Shopify
+transaction fees. TOTAL COGS: $[X]. GROSS MARGIN: Revenue − COGS = $[X]
+([X]%).</td>
+<td>Compare actual COGS per unit to P8A Section 3 estimates. Were
+estimates accurate? Where did reality diverge? Update the unit economics
+model with actual data for Year 2 planning.</td>
+</tr>
+<tr class="even">
+<td><strong>Marketing spend by channel</strong></td>
+<td>Meta Ads: $[X]. Google Ads: $[X]. Amazon PPC: $[X]. Ambassador
+program: $[X]. PR/media: $[X]. Expo total: $[X]. Content/tools: $[X].
+Email (Klaviyo): $[X]. TOTAL MARKETING: $[X].</td>
+<td>Calculate: CAC by channel (channel spend ÷ new customers from that
+channel). Identify: highest-ROI channel (invest more in Year 2) and
+lowest-ROI channel (reduce or eliminate).</td>
+</tr>
+<tr class="odd">
+<td><strong>Operating expenses</strong></td>
+<td>Shopify: $[X]. Amazon Seller: $[X]. Software: $[X]. Insurance: $[X].
+Professional services: $[X]. Travel: $[X]. Home office: $[X]. Other:
+$[X]. TOTAL OPERATING: $[X].</td>
+<td>Review: are operating expenses proportional to revenue? A healthy
+Year 1 ratio: operating expenses &lt;20% of revenue. If &gt;30%:
+identify areas to reduce or grow revenue to improve the ratio.</td>
+</tr>
+<tr class="even">
+<td><strong>Net income</strong></td>
+<td>Revenue − COGS − Marketing − Operating = NET INCOME: $[X]
+([X]%).</td>
+<td>Year 1 net income range per P8A: Bootstrap ($5,257 loss) to ($4,314
+profit). Full Launch ($22,958 loss) to ($25,888 profit). The ACTUAL
+number determines: the Year 2 path (self-fund if profitable, raise
+capital if not but product-market fit is proven).</td>
+</tr>
+<tr class="odd">
+<td><strong>Key customer metrics</strong></td>
+<td>Total unique customers (DTC): [X]. Repeat purchase rate: [X]%.
+Average order value (AOV): $[X]. Customer lifetime value (CLV,
+estimated): $[X]. B2B races served: [X]. B2B total units shipped: [X].
+B2B reorder rate: [X]%. Email subscribers: [X]. Amazon reviews: [X] at
+[X] stars.</td>
+<td>These metrics are MORE IMPORTANT than the P&amp;L numbers for
+predicting Year 2 success. High satisfaction + high reorder rate +
+growing customer base = a business that will be profitable in Year 2
+even if Year 1 was not.</td>
+</tr>
+<tr class="even">
+<td><strong>Strategic learnings</strong></td>
+<td>Document: (1) what WORKED better than expected (surprise wins), (2)
+what DIDN’T work (failed experiments, abandoned strategies), (3) what
+the founder would do DIFFERENTLY with hindsight, and (4) the #1 priority
+for Year 2. This section is the most VALUABLE part of the Year 1
+P&amp;L: it transforms 12 months of experience into actionable wisdom
+for Year 2.</td>
+<td>Write this section HONESTLY. It is not for external consumption
+(unless shared with investors who value transparency). It is for the
+FOUNDER: a personal record of what was learned, what was hard, and what
+the path forward looks like with the clarity of experience.</td>
+</tr>
+</tbody>
+</table>
+<p>5.1 Year 1 P&amp;L Template</p>
+<p>GOOGLE SHEET STRUCTURE: Tab 1: YEAR 1 P&amp;L SUMMARY. Revenue
+section: 5 rows (Shopify, Amazon, B2B Standard, B2B Co-Brand, Expo) +
+Total Revenue. COGS section: 1 row (total, broken down in Tab 2). Gross
+Profit: Revenue − COGS. Gross Margin %: Gross Profit ÷ Revenue.
+Marketing section: 8 rows (Meta, Google, Amazon PPC, Klaviyo,
+Ambassador, PR, Expo costs, Content/Tools) + Total Marketing. Operating
+section: 8 rows (Shopify plan, Amazon Seller, Software, Insurance,
+Professional, Travel, Home Office, Other) + Total Operating. NET INCOME:
+Gross Profit − Marketing − Operating. NET MARGIN %: Net Income ÷
+Revenue. Tab 2: COGS DETAIL (per channel, per unit, total). Tab 3:
+MONTHLY BREAKDOWN (12 columns, 1 per month, showing the monthly P&amp;L
+evolution). Tab 4: CHANNEL ANALYSIS (revenue, COGS, marketing spend, and
+net contribution per channel). Tab 5: CUSTOMER METRICS (total customers,
+repeat rate, AOV, CLV, email list, reviews). Tab 6: STRATEGIC LEARNINGS
+(narrative, per Section 5 row 7).</p>
+<p>6. Timeline &amp; Budget</p>
+<p><strong>MONTH 6: Conduct the Month 6 Pipeline Check (Section 1).
+Score all 7 metrics against thresholds. Determine: GREEN/YELLOW/RED.
+Execute the corresponding action plan. Document: the Month 6 assessment
+in the investor update email (P8B Section 6) with honest
+analysis.</strong></p>
+<p><strong>MONTH 10: Conduct the Month 10 Financial Review (Section 2).
+Score all 6 metrics. Determine: COMMIT/CONDITIONAL COMMIT/EVALUATE
+ALTERNATIVES. Begin Year 2 planning (Section 3) based on the outcome. If
+raising capital: begin preparing investor materials (Section
+4).</strong></p>
+<p><strong>MONTH 11–12: Finalize Year 2 financial plan (3 scenarios).
+Complete investor materials package if needed (pitch deck, financial
+model, customer evidence, data room). Compile Year 1 Complete P&amp;L
+(Section 5) with channel analysis and strategic learnings. Make the Year
+2 commitment decision. If self-funding: place production order, set
+budgets, execute. If raising: begin formal investor outreach with pitch
+deck + data room.</strong></p>
+<p>BUDGET: Google Sheets (financial models, P&amp;L): $0. Pitch deck
+design (Canva/Pitch): $0–$13. Data room (Google Drive): $0. Legal review
+of SAFE note (if raising): $500–$2,000 (or use standard YC SAFE template
+for $0). TOTAL P8D: $0–$2,013. The decision frameworks cost nothing to
+prepare and save everything by preventing: premature investment in a
+failing business, premature abandonment of a viable business, or
+uninformed fundraising that wastes the founder’s time and
+reputation.</p>
+<p>7. Conclusion: Decide with Data, Not Emotion</p>
+<p><strong>The founder who writes down decision thresholds in Month 1
+and evaluates honestly against them in Month 6, 10, and 12 will make
+BETTER DECISIONS than the founder who “goes with their gut.”</strong>
+Gut feelings are influenced by: sunk-cost bias (“I’ve invested too much
+to stop now”), confirmation bias (“that one positive email from a race
+director means the whole market wants this”), and recency bias (“last
+week was great so the whole business must be working”). Data cuts
+through all three biases and reveals: the actual state of the business,
+the actual trajectory, and the actual options.</p>
+<p><strong>P8 is complete.</strong> The financial foundation is built: a
+cash flow forecast (P8A), a cash management system (P8B), a tax
+compliance framework (P8C), and a decision framework (P8D). Together,
+they ensure: the founder knows the numbers, manages the cash, complies
+with obligations, and makes informed decisions at every critical
+juncture. The business is financially ready to launch, operate, and
+scale.</p>
+
+        </div>
+    </div></div>
+<footer style="text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px">
+Sustainable Race-Start Warmth Poncho — D2C Brand GTM Project · 60 Subprojects · 391 Tasks · ~15,500¶ · April 2026
+</footer></body></html>

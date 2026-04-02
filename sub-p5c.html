@@ -1,0 +1,764 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>P5C: Race Series Large Account — Race Start Warmth GTM</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0e1a;--surface:#111827;--card:#1a2332;--border:#2a3a4e;--accent:#10b981;--accent2:#3b82f6;--text:#e2e8f0;--muted:#94a3b8;--white:#fff;--red:#ef4444;--amber:#f59e0b;--green:#10b981}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+/* Nav */
+nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
+nav .inner{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;max-width:1200px;margin:0 auto}
+nav .brand{font-weight:700;font-size:15px;color:var(--accent)}
+nav .links{display:flex;gap:8px;flex-wrap:wrap}
+nav .links a{color:var(--muted);font-size:13px;padding:4px 10px;border-radius:6px;transition:.2s}
+nav .links a:hover,nav .links a.active{color:var(--white);background:var(--card);text-decoration:none}
+/* Hero */
+.hero{padding:60px 0 40px;text-align:center}
+.hero h1{font-size:2.4em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:1.1em;max-width:700px;margin:0 auto}
+/* Stats bar */
+.stats{display:flex;justify-content:center;gap:32px;padding:24px 0;flex-wrap:wrap}
+.stat{text-align:center}.stat .num{font-size:1.8em;font-weight:800;color:var(--white)}.stat .label{font-size:.75em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+/* Cards */
+.grid{display:grid;gap:16px;margin:24px 0}
+.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}
+.grid-3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;transition:.2s}
+.card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.card h3{font-size:1.1em;margin-bottom:8px}.card p{color:var(--muted);font-size:.9em}
+.card .badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:8px}
+.card .meta{font-size:.8em;color:var(--muted);margin-top:12px}
+/* Section */
+.section{padding:40px 0}.section h2{font-size:1.6em;font-weight:700;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+/* Table */
+table{width:100%;border-collapse:collapse;font-size:.85em;margin:16px 0}
+th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:52px}
+td{padding:8px 12px;border-bottom:1px solid var(--border)}
+tr:hover td{background:rgba(16,185,129,.05)}
+.status-complete{color:var(--green);font-weight:600}.status-not{color:var(--muted)}
+/* Progress */
+.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:8px}
+.progress .bar{height:100%;background:var(--accent);border-radius:3px}
+/* Back link */
+.back{display:inline-block;color:var(--muted);font-size:.9em;margin-bottom:20px}
+.back:hover{color:var(--accent)}
+/* Download */
+.dl-card{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin:8px 0;transition:.2s}
+.dl-card:hover{border-color:var(--accent);text-decoration:none}
+.dl-card .icon{font-size:2em}.dl-card .info h4{color:var(--white);margin-bottom:4px}.dl-card .info p{color:var(--muted);font-size:.85em}
+/* Footer */
+footer{text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px}
+@media(max-width:768px){.stats{gap:16px}.stat .num{font-size:1.3em}nav .links{gap:4px}nav .links a{font-size:11px;padding:3px 6px}.hero h1{font-size:1.6em}}
+
+.doc-content{max-width:900px;margin:0 auto;padding:20px 0}
+.doc-content h1{font-size:1.8em;font-weight:800;color:var(--white);margin:32px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.doc-content h2{font-size:1.4em;font-weight:700;color:var(--accent);margin:28px 0 12px}
+.doc-content h3{font-size:1.15em;font-weight:600;color:var(--accent2);margin:20px 0 10px}
+.doc-content p{margin:8px 0;line-height:1.7}
+.doc-content table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85em}
+.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;border:1px solid var(--border)}
+.doc-content td{padding:8px 12px;border:1px solid var(--border);vertical-align:top}
+.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.doc-content ul,.doc-content ol{margin:8px 0 8px 24px}
+.doc-content li{margin:4px 0;line-height:1.6}
+.doc-content strong{color:var(--white)}
+.doc-content em{color:var(--muted)}
+.doc-content blockquote{border-left:3px solid var(--accent);padding:8px 16px;margin:12px 0;background:var(--card);border-radius:0 8px 8px 0}
+.nav-sub{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 24px;padding:12px 16px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
+.nav-sub a{font-size:.8em;color:var(--muted);padding:4px 10px;border-radius:4px;transition:.2s;white-space:nowrap}
+.nav-sub a:hover,.nav-sub a.active{color:var(--white);background:var(--surface);text-decoration:none}
+</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a></div></div></nav><div class="container">
+    <div style="padding-top:30px">
+        <a href="p5.html" class="back">← 🤝 P5: B2B Sales</a>
+        <div class="nav-sub"><a href="p5.html">🤝 P5 Overview</a><a href="sub-p5a.html">P5A</a><a href="sub-p5b.html">P5B</a><a href="sub-p5c.html" class="active">P5C</a><a href="sub-p5d.html">P5D</a><a href="sub-p5e.html">P5E</a><a href="sub-p5f.html">P5F</a></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px">
+            <div>
+                <span style="background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px">P5C</span>
+                <span style="color:var(--muted);font-size:.85em;margin-left:8px">P5: B2B Sales</span>
+            </div>
+            <a href="files/P5C_Race_Series_Large_Account.docx" style="font-size:.85em;color:var(--accent);padding:6px 14px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
+        </div>
+        <div class="doc-content">
+            <p><strong>P5C: RACE SERIES &amp;</strong></p>
+<p><strong>LARGE ACCOUNT TARGETING</strong></p>
+<p>Sub-Project P5C | B2B Sales Engine | Weeks 16–30</p>
+<p><em>Complete Enterprise Sales Strategy: 5 Race Series Profiles,
+Sustainability Intelligence Framework, 8-Section Partnership Proposal,
+Industry Event Plan, Environmental Organization Partnerships, and Race
+Sustainability Calculator Specification</em></p>
+<p>March 2026 | Confidential</p>
+<p>Executive Summary</p>
+<p><strong>Race series are the B2B growth accelerator.</strong> A single
+race director controls one race per year. A single series operator
+controls 8–35+ races per year. Converting one series decision-maker is
+equivalent to converting 8–35 individual race directors. The volume
+potential is transformative: Rock ’n’ Roll alone could consume
+100,000–200,000 ponchos annually, representing $250K–$700K in revenue
+from ONE account.</p>
+<p><strong>This document builds the enterprise sales strategy for 5
+priority race series,</strong> a sustainability intelligence framework
+for researching each series’ environmental commitments and sponsor
+landscape, an 8-section partnership proposal template for series-level
+deals, a plan for 5 industry events where series decision-makers can be
+reached in person, partnerships with 5 environmental organizations that
+amplify the brand’s credibility, and a Race Sustainability Calculator
+that turns race directors into self-qualifying leads.</p>
+<p>1. Race Series Targets: 5 Priority Profiles</p>
+<p><strong>Each series is profiled on: size, geography, cold-weather
+relevance, organizational structure, decision-making speed, and
+recommended deal structure.</strong> Prioritize REVEL (fastest decision
+cycle, guaranteed cold weather) and Mainly Marathons (small volume but
+high marketing value) for Year 1. Approach Rock ’n’ Roll (highest
+volume) in Year 1 but expect a 6–12 month sales cycle. Reserve Spartan
+(OCR, different use case) and Run Disney (extreme procurement
+complexity) for Year 2–3.</p>
+<table>
+<colgroup>
+<col style="width: 10%" />
+<col style="width: 9%" />
+<col style="width: 5%" />
+<col style="width: 8%" />
+<col style="width: 10%" />
+<col style="width: 26%" />
+<col style="width: 28%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Series</strong></td>
+<td><strong>Parent Company</strong></td>
+<td><strong>Race Count</strong></td>
+<td><strong>Annual Finishers (US)</strong></td>
+<td><strong>Key Race Locations</strong></td>
+<td><strong>Assessment</strong></td>
+<td><strong>Recommended Deal</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Rock ’n’ Roll Running Series</strong></td>
+<td>Ironman Group (acquired by Advance)</td>
+<td>35+ races globally, ~15 US</td>
+<td>500,000+ total annual finishers (US)</td>
+<td>Nashville, San Diego, Las Vegas, DC, Savannah, San Antonio, Arizona,
+Denver, others</td>
+<td>HIGH. Massive volume: a single series deal could supply
+50,000–200,000+ units/year. Ironman Group has scale and established
+vendor procurement. However: large corporate structure means slow
+decision cycles (6–12 months). Contact: VP of Event Operations or Head
+of Sustainability (if role exists). Start: identify the decision-maker
+via LinkedIn + Ironman Group corporate directory.</td>
+<td>Series-wide deal: exclusive compostable poncho supplier for all US
+Rock ’n’ Roll events. Volume: 100,000–200,000 units/year. Pricing:
+$2.50–$3.50/unit at enterprise volume. Co-brand: series logo +
+individual race logo + sponsor logo per event. Term: 2–3 year
+agreement.</td>
+</tr>
+<tr class="odd">
+<td><strong>REVEL Race Series</strong></td>
+<td>REVEL Races LLC</td>
+<td>8–10 races (US mountain/downhill courses)</td>
+<td>50,000–75,000 total annual</td>
+<td>Big Cottonwood (UT), Mt. Charleston (NV), Rockies (CO), Big Bear
+(CA), Mt. Hood (OR), Tunnel (WA)</td>
+<td>VERY HIGH. Mountain/downhill courses = cold start lines at altitude.
+Every REVEL race is a cold-weather event. Smaller organization = faster
+decision-making. Already positioned as a “premium experience” brand.
+Contact: REVEL CEO or Director of Operations (small team, likely direct
+access).</td>
+<td>Series-wide deal: compostable poncho for all REVEL events. Volume:
+30,000–50,000 units/year. Pricing: $3.00–$4.00/unit. Co-brand: REVEL
+series logo + individual race name. Altitude and cold make the value
+proposition irresistible.</td>
+</tr>
+<tr class="even">
+<td><strong>Mainly Marathons</strong></td>
+<td>Mainly Marathons LLC</td>
+<td>7-day marathon “crawls” across US regions</td>
+<td>3,000–5,000 total annual (small per-race but dedicated
+audience)</td>
+<td>Various rural/highway locations across US</td>
+<td>MODERATE. Small volume but ultra-dedicated runners (many running 7
+marathons in 7 days). High media coverage relative to size. The “7
+compostable ponchos for 7 marathons” story is marketing gold. Contact:
+founder/race director directly (very small operation).</td>
+<td>Series deal: compostable poncho for all 7-day crawls. Volume:
+3,000–5,000 units/year. Pricing: standard B2B. Co-brand: series logo.
+Marketing value: testimonials from ultra-dedicated marathon
+community.</td>
+</tr>
+<tr class="odd">
+<td><strong>Spartan Race</strong></td>
+<td>Spartan Race Inc.</td>
+<td>100+ events globally, 30+ US</td>
+<td>1,000,000+ total annual (US)</td>
+<td>Various locations (OCR/obstacle course races, not road races)</td>
+<td>EXPLORATORY. Spartan is obstacle course racing (OCR), not road
+running. Start-line warmth need is DIFFERENT: OCR races often start
+later in the day (9–10 AM), runners get muddy/wet during the race
+(poncho at start only). However: Spartan Stadion and Super events at
+cold locations (winter Spartan, mountain venues) have genuine start-line
+cold. Contact: VP of Event Experience. Proposal: pilot at 2–3
+cold-weather Spartan events before series commitment.</td>
+<td>Pilot first: 2–3 cold-weather Spartan events (winter stadium,
+mountain). Volume: 5,000–10,000 pilot units. If successful: scale to
+30,000–100,000 units/year for cold-weather events only (not all 100+
+events).</td>
+</tr>
+<tr class="even">
+<td><strong>Run Disney</strong></td>
+<td>Walt Disney World / Disneyland</td>
+<td>6–8 race weekends per year (US)</td>
+<td>150,000–200,000 total annual</td>
+<td>Walt Disney World (Orlando, FL), Disneyland (Anaheim, CA)</td>
+<td>LONG-TERM. Disney has extreme procurement complexity (Disney Vendor
+Standards, environmental safety requirements, IP restrictions).
+Florida/California races are rarely cold enough for warmth ponchos.
+HOWEVER: Disney’s Dopey Challenge (January) and Wine &amp; Dine Half
+(November) at WDW start at 3–5 AM when Orlando temperatures can be
+40–55°F. Disney has massive sustainability commitments. Contact: Walt
+Disney World Sports event procurement or the runDisney vendor management
+team. Timeline: 12–18 month sales cycle minimum.</td>
+<td>Year 2–3 target. Do NOT approach Disney until the brand has 3+
+successful pilot case studies, BPI certification confirmed, and a
+professional B2B infrastructure in place. Disney’s vendor vetting is
+thorough.</td>
+</tr>
+</tbody>
+</table>
+<p>1.1 Series Prioritization Matrix</p>
+<p>PRIORITY 1 (Year 1 active pursuit): REVEL — small team, guaranteed
+cold, premium brand positioning, 30K–50K annual volume. Every REVEL race
+is a mountain race with cold start-line conditions. Approach the
+CEO/founder directly. Timeline: 2–4 month sales cycle. PRIORITY 2 (Year
+1 active pursuit): Mainly Marathons — small volume but dedicated
+community, marketing goldmine, easy access to founder/race director.
+Timeline: 1–2 month sales cycle. PRIORITY 3 (Year 1 initiate, Year 2
+close): Rock ’n’ Roll — massive volume, corporate decision-making
+(Ironman/Advance). Initiate contact in Year 1 with pilot case studies.
+Expect: 6–12 months to navigate procurement. Close for Year 2 Fall
+season. PRIORITY 4 (Year 2 pilot): Spartan — explore cold-weather events
+only. Not all Spartan events need ponchos. Propose a 2–3 event pilot.
+PRIORITY 5 (Year 2–3): Run Disney — extreme complexity, Disney vendor
+requirements. Approach only after the brand has 3+ successful series
+partnerships and confirmed BPI certification.</p>
+<p>2. Sustainability Intelligence: 5-Source Research Framework</p>
+<p><strong>Before approaching any series, complete a sustainability
+dossier.</strong> This research takes 2–3 hours per series and provides:
+the RIGHT messaging for the first outreach, specific sustainability
+claims to reference in the proposal, sponsor intelligence for the
+Sponsor-Funded pitch, and competitive intelligence on what they
+currently use at the start line.</p>
+<table>
+<colgroup>
+<col style="width: 19%" />
+<col style="width: 42%" />
+<col style="width: 38%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Source</strong></td>
+<td><strong>What to Research</strong></td>
+<td><strong>How This Informs the Pitch</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Series website</strong></td>
+<td>Check for: dedicated sustainability page, environmental commitments
+(zero waste, carbon neutral, plastic-free), partnerships with
+environmental organizations, specific waste reduction metrics or
+goals</td>
+<td>Sustainability page exists = CHAMPION. General eco-mention =
+PRAGMATIC. No mention = SKEPTIC. Same segmentation framework as P5A
+Section 2 but applied at the series level.</td>
+</tr>
+<tr class="odd">
+<td><strong>Annual/ESG reports</strong></td>
+<td>For corporate-owned series (Rock ’n’ Roll/Ironman, Spartan): check
+the parent company’s ESG or sustainability report. Often available at
+the corporate website under Investors or About sections.</td>
+<td>ESG reports reveal: specific environmental KPIs (waste diversion
+targets, plastic reduction goals), budget allocated to sustainability,
+and the decision-maker responsible for sustainability initiatives (often
+a VP or Director of Sustainability).</td>
+</tr>
+<tr class="even">
+<td><strong>Sponsor analysis</strong></td>
+<td>Identify the series’ title and presenting sponsors. For each: check
+if the sponsor has their own sustainability commitments (many
+corporations now require their sponsored events to align with ESG
+goals).</td>
+<td>Sponsor sustainability alignment creates a three-way opportunity:
+the sponsor funds the compostable poncho (per P3C Section 4
+Sponsor-Funded tier), the series gets free ponchos, and the brand gets
+volume. Research sponsor ESG pages: search “[Sponsor Name]
+sustainability report” or “[Sponsor Name] ESG.”</td>
+</tr>
+<tr class="odd">
+<td><strong>Social media + press</strong></td>
+<td>Search: “[Series Name] sustainability” or “[Series Name]
+environment” or “[Series Name] waste.” Check: Twitter/X, Instagram,
+race-specific Facebook groups, Runner’s World coverage, local
+press.</td>
+<td>Look for: race participants complaining about waste (“Saw so many
+garbage bags littering the course”), race promoting sustainability
+efforts (“We diverted 80% of race waste this year”), or media coverage
+of environmental issues at the event.</td>
+</tr>
+<tr class="even">
+<td><strong>Competitor product usage</strong></td>
+<td>Determine: does the series currently use Heatsheets, generic garbage
+bags, or nothing at the start line? Has the series tried compostable
+alternatives before?</td>
+<td>If currently using Heatsheets: pitch as a SWITCH (compostable poncho
+replaces non-compostable blankets at competitive pricing). If garbage
+bags: pitch as an UPGRADE (from trash to branded sustainability). If
+nothing: pitch as a NEW SERVICE (enhance runner experience + create
+sustainability story).</td>
+</tr>
+</tbody>
+</table>
+<p>2.1 Sustainability Dossier Template</p>
+<p>For each target series, compile a 1-page dossier: SERIES: [name].
+PARENT COMPANY: [name]. SUSTAINABILITY TIER: Champion / Pragmatic /
+Skeptic. KEY SUSTAINABILITY INITIATIVES: [list]. CURRENT START-LINE
+SOLUTION: garbage bags / Heatsheets / other / unknown. TITLE SPONSORS:
+[list with sustainability commitment Y/N]. KEY DECISION-MAKER: [name,
+title, LinkedIn URL, email]. RECOMMENDED APPROACH: lead with
+sustainability / lead with value / lead with proof. NOTES: [any relevant
+press coverage, social media mentions, or insider intelligence]. Store
+dossiers in CRM as notes attached to the series contact record.</p>
+<p>3. Series Partnership Proposal: 8-Section Template</p>
+<p><strong>The series partnership proposal is a professional 8–12 page
+document</strong> that positions the brand as a strategic sustainability
+partner, not just a product vendor. Race series don’t buy ponchos — they
+buy sustainability solutions that improve runner experience, generate
+sponsor value, and create positive media coverage. The proposal must
+speak to ALL THREE value dimensions.</p>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 81%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Section</strong></td>
+<td><strong>Content</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Cover page</strong></td>
+<td>Series logo + brand logo. Title: “Sustainability Partnership
+Proposal: Compostable Warmth Ponchos for [Series Name].” Subtitle:
+“Eliminating start-line waste across [X] races, [Y] runners.” Date and
+confidentiality notice.</td>
+</tr>
+<tr class="odd">
+<td><strong>Executive summary (1 page)</strong></td>
+<td>3–4 paragraphs: The problem (start-line waste across the series),
+the solution (BPI-certified compostable poncho with co-branding and
+composting logistics), the opportunity (first major race series to
+eliminate start-line waste = PR + ESG impact), and the ask (series-wide
+partnership for [Year]).</td>
+</tr>
+<tr class="even">
+<td><strong>The waste problem (1 page)</strong></td>
+<td>Quantify start-line waste for the series: [X] races × [Y] runners
+per race × estimated [Z] garbage bags/Heatsheets used = [W] lbs of LDPE
+waste to landfill per year. Include: race-specific waste data from P0A
+if available, industry-wide data from P0A Section 2 (35K–45K garbage
+bags at a major marathon, 700–1,200 lbs LDPE waste per race).
+Visualization: before/after photo (garbage bags littering course vs.
+compostable ponchos in compost bins).</td>
+</tr>
+<tr class="odd">
+<td><strong>Product overview (1 page)</strong></td>
+<td>Product specs, BPI certification, thermal performance (FLIR images),
+tear-away mechanism, sizing/fit. Include: 1–2 pilot case study summaries
+(“At [Race Name], 75% of ponchos were collected and composted, diverting
+[X] lbs from landfill”). Photo of the co-branded poncho with a
+placeholder series logo.</td>
+</tr>
+<tr class="even">
+<td><strong>Partnership structure (1–2 pages)</strong></td>
+<td>Volume pricing: series-wide pricing tier based on total annual
+volume (per P3E Section 6 volume targets). Co-branding: series logo +
+individual race logo + optional sponsor logo per event. Composting
+logistics: brand coordinates composting partners in each race city (per
+P4D network). Data + reporting: post-race composting reports for every
+event, annual sustainability impact roll-up. Exclusivity option: brand
+is the exclusive compostable poncho supplier for the series (in exchange
+for volume commitment).</td>
+</tr>
+<tr class="odd">
+<td><strong>Financial model (1 page)</strong></td>
+<td>Scenario table: Unit price at different volume tiers (25K, 50K, 100K
+units/year). Total annual cost to the series. Compare to: current spend
+on Heatsheets or garbage bags (if known). Sponsor-funded option: “If
+[Sponsor Name] funds the ponchos at $[X]/unit, the series cost is $0.”
+ROI: sustainability PR value, runner satisfaction improvement, sponsor
+activation opportunity.</td>
+</tr>
+<tr class="even">
+<td><strong>Implementation timeline (1 page)</strong></td>
+<td>Month 1–2: Agreement signed, co-brand templates created for all race
+logos. Month 3–4: Production of first-season ponchos. Month 5: Delivery
+begins for first races of the season. Month 6–12: Execute across all
+races, collect data, produce reports. Month 12: Annual review + Year 2
+planning.</td>
+</tr>
+<tr class="odd">
+<td><strong>Appendices</strong></td>
+<td>Appendix A: Pilot case study (full version per P5B Section 6).
+Appendix B: BPI certification documentation. Appendix C: Material
+technical specifications. Appendix D: Composting partner network
+coverage map (P4D Section 5). Appendix E: Runner satisfaction survey
+data from pilots.</td>
+</tr>
+</tbody>
+</table>
+<p>3.1 Proposal Customization</p>
+<p>EVERY proposal must be customized for the specific series. Generic
+proposals are ignored by enterprise buyers. Customize: (1) Cover page
+with the series’ logo (request permission or use from their public media
+kit). (2) Waste problem section with series-specific data (total races ×
+total runners × waste estimate). (3) Co-brand mockup with the series
+logo on a poncho rendering. (4) Financial model with the series’
+estimated volume and pricing tier. (5) Composting logistics section
+referencing specific cities where the series hosts events. (6) Reference
+any series-specific sustainability goals from the dossier. TIME: 4–8
+hours per customized proposal. COST: $0 (founder’s time + Canva design).
+VALUE: a custom proposal that shows “I did my homework on your series”
+opens doors that generic emails cannot.</p>
+<p>4. Industry Events: Decision-Maker Access Points</p>
+<p><strong>Race series decision-makers attend a small number of industry
+events each year.</strong> These events are the highest-probability
+environments for initiating enterprise relationships — a face-to-face
+conversation at a conference is 10× more effective than a cold email for
+reaching a VP at Ironman Group or a director at Spartan.</p>
+<table>
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 9%" />
+<col style="width: 9%" />
+<col style="width: 64%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Event</strong></td>
+<td><strong>Timing</strong></td>
+<td><strong>Location</strong></td>
+<td><strong>Strategy</strong></td>
+</tr>
+<tr class="even">
+<td><strong>The Running Event (TRE)</strong></td>
+<td>Annual (typically December)</td>
+<td>Austin, TX</td>
+<td>THE premier running industry trade show. Attended by: race
+directors, running retail, running brands, media. 2,000+ attendees.
+Cost: $200–$400 registration. PRIORITY 1 event. Actions: attend, walk
+the expo floor, network, hand out sample kits + business cards. If
+budget allows: book a booth ($1,500–$3,000) for maximum visibility.</td>
+</tr>
+<tr class="odd">
+<td><strong>Running USA Conference</strong></td>
+<td>Annual (typically February–March)</td>
+<td>Various US cities</td>
+<td>Running USA is the industry association for the road running
+industry. Conference attendees: race directors, series operators,
+running industry executives. 500+ attendees. Cost: $300–$500 (member) or
+$500–$700 (non-member). Actions: attend seminars, participate in
+networking events, present at the sustainability track (submit a speaker
+proposal: “How Compostable Ponchos Are Changing Race-Day Waste”).</td>
+</tr>
+<tr class="even">
+<td><strong>RRCA National Convention</strong></td>
+<td>Annual (typically April)</td>
+<td>Various US cities</td>
+<td>Road Runners Club of America annual gathering. Attendees: local
+running club leaders, race directors, community race organizers. More
+grassroots than TRE/Running USA. 300–500 attendees. Cost: $200–$350.
+Actions: network with small/community race directors (Tier 3 per P0C),
+distribute sample kits, speak on sustainability panel.</td>
+</tr>
+<tr class="odd">
+<td><strong>Green Sports Alliance Summit</strong></td>
+<td>Annual (typically varies)</td>
+<td>Various US cities</td>
+<td>Focused on sustainability in sports. Attendees: sustainability
+directors from sports organizations, facilities, and brands. 300+
+attendees. Cost: $400–$700. Actions: position the brand as a
+sustainability innovation leader, connect with sustainability directors
+at race series and large event organizations, explore partnership with
+Green Sports Alliance (Section 6).</td>
+</tr>
+<tr class="even">
+<td><strong>Pack Expo</strong></td>
+<td>Annual (October/November)</td>
+<td>Chicago or Las Vegas</td>
+<td>Packaging industry trade show. Relevant for: meeting compostable
+packaging suppliers (already covered in P3A), but ALSO for meeting
+sustainability-focused brands and retailers who might carry or
+co-promote the poncho. Actions: walk the compostable packaging section,
+identify new material suppliers, network with eco-brand founders.</td>
+</tr>
+</tbody>
+</table>
+<p>4.1 Event Preparation Checklist</p>
+<p>Before EVERY industry event: (1) Research attendee list (if
+published) and identify target contacts. Pre-schedule meetings via
+email: “I’ll be at [Event] next week — would love to grab 15 minutes to
+show you what we’re building.” (2) Prepare: 50 business cards, 10–20 B2B
+sample kits, 5 customized co-brand mockups for target series (printed on
+card stock), 1 poncho to wear as a conversation starter. (3) Prepare:
+30-second elevator pitch (“We make a BPI-certified compostable warmth
+poncho for race start lines. It replaces garbage bags, composts after
+the race, and we handle all the logistics. [Race Name] just piloted it
+and composted 450 lbs of waste.”). (4) Set goals: X meetings booked, Y
+sample kits distributed, Z email sign-ups. (5) Follow up within 48 hours
+of the event with everyone met: personalized email referencing the
+conversation + attached sample kit offer.</p>
+<p>5. Environmental Organization Partnerships</p>
+<p><strong>Environmental organization partnerships provide third-party
+credibility</strong> that the brand cannot generate alone. A BPI
+certification proves the product is compostable. A Green Sports Alliance
+endorsement proves the brand is a legitimate sustainability player. A 1%
+for the Planet membership proves the founder’s commitment is genuine,
+not performative. These partnerships address the #1 B2B objection for
+sustainability products: “Is this real or just greenwashing?”</p>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 10%" />
+<col style="width: 38%" />
+<col style="width: 36%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Organization</strong></td>
+<td><strong>Website</strong></td>
+<td><strong>Relevance</strong></td>
+<td><strong>Recommended Action</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Green Sports Alliance</strong></td>
+<td>greensportsalliance.org</td>
+<td>Coalition of sports teams, leagues, and venues committed to
+environmental sustainability. Members include: NFL, MLB, MLS venues.
+Relevance: if GSA endorses the poncho as a recommended product for race
+events, it provides instant credibility with sustainability-committed
+race directors.</td>
+<td>Join as an organizational member ($500–$2,500/year depending on
+tier). Attend the annual summit. Propose the poncho as a “Recommended
+Sustainable Product” for events. Co-create a case study with GSA
+branding.</td>
+</tr>
+<tr class="odd">
+<td><strong>1% for the Planet</strong></td>
+<td>onepercentfortheplanet.org</td>
+<td>Network of businesses that donate 1% of annual sales to
+environmental organizations. Members include: Patagonia, Klean Kanteen.
+Relevance: joining 1% for the Planet signals genuine environmental
+commitment (not greenwashing) and connects the brand with a network of
+sustainability-focused consumers and businesses.</td>
+<td>Join: commit 1% of annual revenue to an approved environmental
+nonprofit. At $50K Year 1 revenue: $500 donation. The 1% for the Planet
+logo on packaging, website, and marketing materials is a powerful trust
+signal. Apply at onepercentfortheplanet.org/join.</td>
+</tr>
+<tr class="even">
+<td><strong>Council for Responsible Sport</strong></td>
+<td>councilforresponsiblesport.org</td>
+<td>Certifies events (races, tournaments, festivals) for sustainability
+excellence. Races that earn CRS certification are actively seeking
+sustainable products for their supply chain.</td>
+<td>Research: which of the P0C target races have CRS certification or
+are pursuing it. These are CHAMPION-tier prospects (P5A Section 2).
+Offer: partnership where using compostable ponchos counts toward their
+CRS certification scoring. Contact CRS to explore: can the poncho be
+listed as an approved sustainable product in their certification
+criteria?</td>
+</tr>
+<tr class="odd">
+<td><strong>Leave No Trace Center for Outdoor Ethics</strong></td>
+<td>lnt.org</td>
+<td>Promotes responsible outdoor recreation. Widely recognized in the
+trail running and outdoor sports community. The brand name “Leave No
+Trace” directly aligns with the poncho’s tagline.</td>
+<td>Explore licensing or endorsement partnership: can the poncho carry a
+“Leave No Trace Approved” or “Supports Leave No Trace” badge? This is
+especially powerful for: trail marathon races, races in national
+parks/forests, and runners who identify with the outdoor ethics
+community. Contact LNT partnership team.</td>
+</tr>
+<tr class="even">
+<td><strong>Surfrider Foundation / 5 Gyres / Plastic Pollution
+Coalition</strong></td>
+<td>Various</td>
+<td>Marine plastic pollution organizations. Relevance: the poncho
+replaces LDPE (polyethylene) which is a major ocean plastic pollutant. A
+partnership with a plastic pollution organization reinforces the
+“replacing plastic with compostable” narrative.</td>
+<td>Explore: co-marketing partnership where the organization endorses
+the poncho as an alternative to single-use plastic ponchos/garbage bags.
+Provide: donation per unit sold ($0.05–$0.10/poncho). Use: their logo on
+packaging as a “Proud supporter of [organization]” badge.</td>
+</tr>
+</tbody>
+</table>
+<p>5.1 Partnership Prioritization</p>
+<p>YEAR 1 (immediate): 1% for the Planet ($500 commitment at $50K
+revenue — minimal cost, maximum credibility signal). Council for
+Responsible Sport (research which target races hold CRS certification).
+YEAR 1–2 (build relationship): Green Sports Alliance (join as member,
+attend summit, propose product recommendation). Leave No Trace (explore
+endorsement/licensing for trail race segment). YEAR 2–3 (expand):
+Surfrider/5 Gyres/Plastic Pollution Coalition (co-marketing partnership,
+donation per unit, logo on packaging).</p>
+<p>6. Race Sustainability Calculator</p>
+<p><strong>The calculator is a digital B2B lead generation tool hosted
+at brand.com/calculator.</strong> A race director enters their runner
+count and current start-line solution, and the tool instantly shows:
+waste generated today, waste diverted with compostable ponchos, CO₂
+avoided, and estimated cost with comparison to Heatsheets. The output is
+a shareable infographic card the director can show their board or
+sponsors. Behind the scenes: every calculator use captures an email for
+the CRM pipeline.</p>
+<table>
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 42%" />
+<col style="width: 40%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Element</strong></td>
+<td><strong>Description</strong></td>
+<td><strong>Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Input: Runner count</strong></td>
+<td>Race director enters the total number of registered runners (or
+expected finishers)</td>
+<td>Numeric input field. Default: 5,000. Range: 100–100,000.</td>
+</tr>
+<tr class="odd">
+<td><strong>Input: Current start-line solution</strong></td>
+<td>Dropdown: “Garbage bags,” “Heatsheets/Mylar blankets,” “Old clothing
+donations,” “Nothing,” “Other”</td>
+<td>Determines the comparison baseline for waste calculations.</td>
+</tr>
+<tr class="even">
+<td><strong>Output: Waste generated (current)</strong></td>
+<td>Runner count × waste-per-unit factor. Garbage bags: 0.04 lbs/bag
+(LDPE). Heatsheets: 0.02 lbs/blanket (LDPE/PET). Old clothing: 0.5
+lbs/item (textile). Nothing: 0 lbs.</td>
+<td>Displays: “Your race currently generates approximately [X] lbs of
+start-line waste.”</td>
+</tr>
+<tr class="odd">
+<td><strong>Output: Waste diverted (with poncho)</strong></td>
+<td>Runner count × 0.06 lbs/poncho (poncho weight) × collection rate
+(70% default) = lbs diverted from landfill</td>
+<td>Displays: “With compostable ponchos, you could divert [X] lbs from
+landfill to composting.”</td>
+</tr>
+<tr class="even">
+<td><strong>Output: CO₂e avoided</strong></td>
+<td>Waste diverted (tons) × 0.5 metric tons CO₂e/ton (conservative
+estimate per P4D Section 4)</td>
+<td>Displays: “Equivalent to [X] metric tons of CO₂ emissions
+avoided.”</td>
+</tr>
+<tr class="odd">
+<td><strong>Output: Cost estimate</strong></td>
+<td>Runner count × unit price ($3.50–$5.00 based on volume tier from P3C
+Section 4). Show: total cost, cost per runner, comparison to Heatsheets
+cost ($4.55/blanket × runners)</td>
+<td>Displays: “Estimated cost: $[X] total ($[Y] per runner). Compared to
+Heatsheets: $[Z] total ($4.55/runner). You save $[W].”</td>
+</tr>
+<tr class="even">
+<td><strong>Output: Sustainability impact summary</strong></td>
+<td>Branded infographic card: “If [Race Name] switched to compostable
+ponchos: [X] lbs diverted, [Y] CO₂e avoided, [Z] runners kept warm
+sustainably.” Downloadable as PDF. Shareable on social media.</td>
+<td>Include: “Ready to make it happen? Request a sample kit and co-brand
+mockup: brand.com/b2b” with CTA button.</td>
+</tr>
+<tr class="odd">
+<td><strong>Technical build</strong></td>
+<td>React component (P5C artifact) or simple HTML/JS page hosted at
+brand.com/calculator. Mobile-responsive. No login required. Email
+capture optional (“Enter your email to save your results and receive a
+custom proposal”).</td>
+<td>Build as a lightweight web tool. The calculator itself is a B2B lead
+generation tool: race directors who use it are self-qualifying. Capture:
+email + race name + runner count for CRM pipeline (with consent per
+GDPR/CAN-SPAM).</td>
+</tr>
+</tbody>
+</table>
+<p>6.1 Calculator as Sales Tool</p>
+<p>USE IN MEETINGS: during a B2B sales call (P5A Section 6), share the
+calculator screen and enter the race’s actual runner count live: “Let me
+show you what this looks like for [Race Name] with [X] runners.” The
+live calculation creates an “aha moment” as the race director sees their
+specific waste impact quantified. USE IN OUTREACH: include a link in
+Email 1 (P5A Section 3): “Curious how much start-line waste your race
+generates? Try our calculator: brand.com/calculator.” Self-service
+engagement — the race director qualifies themselves by using the tool.
+USE AT EXPOS: display the calculator on a tablet at the booth. Let expo
+attendees enter their race’s data and see the results. Print the
+infographic card for them to take home.</p>
+<p>7. Timeline &amp; Budget</p>
+<p><strong>WEEK 16–18: Compile sustainability dossiers for all 5 target
+series. Identify and verify decision-maker contacts. Draft the series
+partnership proposal template in Canva. Begin outreach to REVEL
+(Priority 1) and Mainly Marathons (Priority 2).</strong></p>
+<p><strong>WEEK 18–20: Customize partnership proposals for REVEL and
+Mainly Marathons. Send proposals with accompanying sample kits. Initiate
+LinkedIn contact with Rock ’n’ Roll / Ironman Group decision-makers.
+Research environmental organizations (Section 5).</strong></p>
+<p><strong>WEEK 20–24: Conduct meetings with REVEL and Mainly Marathons
+decision-makers. Join 1% for the Planet. Apply for Green Sports Alliance
+membership. Register for The Running Event (December) and Running USA
+Conference (February). Build the Race Sustainability Calculator (Section
+6).</strong></p>
+<p><strong>WEEK 22–26: Deploy calculator at brand.com/calculator.
+Include in all outreach emails and B2B materials. Send Rock ’n’ Roll
+partnership proposal. Explore Spartan pilot opportunity for cold-weather
+events. Attend RRCA Convention (if timing aligns). Use pilot case
+studies (P5B Section 6) in all series proposals.</strong></p>
+<p><strong>WEEK 26–30: Close REVEL and/or Mainly Marathons agreements
+for Year 2 season. Advance Rock ’n’ Roll conversation to proposal review
+stage. Attend The Running Event for face-to-face networking. Plan Year 2
+series pipeline based on conversations and case study
+strength.</strong></p>
+<p>BUDGET: Series partnership proposals (design/print): $0–$50 per
+proposal (Canva + printing). Sample kits for series targets (10 kits ×
+$25): $250. 1% for the Planet membership: $500/year. Green Sports
+Alliance membership: $500–$2,500/year. Industry event registration (2–3
+events): $600–$1,500. Industry event travel (2–3 trips): $1,000–$3,000.
+Race Sustainability Calculator development: $0 (built as React artifact
+or simple HTML). TOTAL P5C: $2,850–$7,800.</p>
+<p>8. Conclusion: Series Deals Are the Path to Scale</p>
+<p><strong>Individual race directors build the foundation. Series deals
+build the business.</strong> One REVEL partnership covers 8–10 races and
+30,000–50,000 units per year. One Rock ’n’ Roll deal covers 15+ US races
+and 100,000+ units. These are the deals that transform the brand from a
+promising startup into a viable business with predictable, recurring
+revenue.</p>
+<p><strong>The approach is methodical: research before contact,
+customize before sending, prove before proposing.</strong> No series
+operator will sign a 100,000-unit deal based on an email. They will sign
+it based on: a custom proposal that quantifies THEIR waste problem, a
+pilot case study that proves the product works at a comparable race, an
+in-person relationship built at The Running Event or Running USA
+Conference, and a sustainability calculator that shows THEIR board the
+ROI. The first 2–3 pilot case studies (P5B) are the foundation.
+Everything in this section builds on that foundation to reach enterprise
+scale.</p>
+
+        </div>
+    </div></div>
+<footer style="text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px">
+Sustainable Race-Start Warmth Poncho — D2C Brand GTM Project · 60 Subprojects · 391 Tasks · ~15,500¶ · April 2026
+</footer></body></html>

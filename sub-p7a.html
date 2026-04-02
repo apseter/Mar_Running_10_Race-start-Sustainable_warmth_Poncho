@@ -1,0 +1,745 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>P7A: Ambassador Seeding Program — Race Start Warmth GTM</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0e1a;--surface:#111827;--card:#1a2332;--border:#2a3a4e;--accent:#10b981;--accent2:#3b82f6;--text:#e2e8f0;--muted:#94a3b8;--white:#fff;--red:#ef4444;--amber:#f59e0b;--green:#10b981}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+/* Nav */
+nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
+nav .inner{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;max-width:1200px;margin:0 auto}
+nav .brand{font-weight:700;font-size:15px;color:var(--accent)}
+nav .links{display:flex;gap:8px;flex-wrap:wrap}
+nav .links a{color:var(--muted);font-size:13px;padding:4px 10px;border-radius:6px;transition:.2s}
+nav .links a:hover,nav .links a.active{color:var(--white);background:var(--card);text-decoration:none}
+/* Hero */
+.hero{padding:60px 0 40px;text-align:center}
+.hero h1{font-size:2.4em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:1.1em;max-width:700px;margin:0 auto}
+/* Stats bar */
+.stats{display:flex;justify-content:center;gap:32px;padding:24px 0;flex-wrap:wrap}
+.stat{text-align:center}.stat .num{font-size:1.8em;font-weight:800;color:var(--white)}.stat .label{font-size:.75em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+/* Cards */
+.grid{display:grid;gap:16px;margin:24px 0}
+.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}
+.grid-3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;transition:.2s}
+.card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.card h3{font-size:1.1em;margin-bottom:8px}.card p{color:var(--muted);font-size:.9em}
+.card .badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:8px}
+.card .meta{font-size:.8em;color:var(--muted);margin-top:12px}
+/* Section */
+.section{padding:40px 0}.section h2{font-size:1.6em;font-weight:700;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+/* Table */
+table{width:100%;border-collapse:collapse;font-size:.85em;margin:16px 0}
+th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:52px}
+td{padding:8px 12px;border-bottom:1px solid var(--border)}
+tr:hover td{background:rgba(16,185,129,.05)}
+.status-complete{color:var(--green);font-weight:600}.status-not{color:var(--muted)}
+/* Progress */
+.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:8px}
+.progress .bar{height:100%;background:var(--accent);border-radius:3px}
+/* Back link */
+.back{display:inline-block;color:var(--muted);font-size:.9em;margin-bottom:20px}
+.back:hover{color:var(--accent)}
+/* Download */
+.dl-card{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin:8px 0;transition:.2s}
+.dl-card:hover{border-color:var(--accent);text-decoration:none}
+.dl-card .icon{font-size:2em}.dl-card .info h4{color:var(--white);margin-bottom:4px}.dl-card .info p{color:var(--muted);font-size:.85em}
+/* Footer */
+footer{text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px}
+@media(max-width:768px){.stats{gap:16px}.stat .num{font-size:1.3em}nav .links{gap:4px}nav .links a{font-size:11px;padding:3px 6px}.hero h1{font-size:1.6em}}
+
+.doc-content{max-width:900px;margin:0 auto;padding:20px 0}
+.doc-content h1{font-size:1.8em;font-weight:800;color:var(--white);margin:32px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.doc-content h2{font-size:1.4em;font-weight:700;color:var(--accent);margin:28px 0 12px}
+.doc-content h3{font-size:1.15em;font-weight:600;color:var(--accent2);margin:20px 0 10px}
+.doc-content p{margin:8px 0;line-height:1.7}
+.doc-content table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85em}
+.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;border:1px solid var(--border)}
+.doc-content td{padding:8px 12px;border:1px solid var(--border);vertical-align:top}
+.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.doc-content ul,.doc-content ol{margin:8px 0 8px 24px}
+.doc-content li{margin:4px 0;line-height:1.6}
+.doc-content strong{color:var(--white)}
+.doc-content em{color:var(--muted)}
+.doc-content blockquote{border-left:3px solid var(--accent);padding:8px 16px;margin:12px 0;background:var(--card);border-radius:0 8px 8px 0}
+.nav-sub{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 24px;padding:12px 16px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
+.nav-sub a{font-size:.8em;color:var(--muted);padding:4px 10px;border-radius:4px;transition:.2s;white-space:nowrap}
+.nav-sub a:hover,.nav-sub a.active{color:var(--white);background:var(--surface);text-decoration:none}
+</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a></div></div></nav><div class="container">
+    <div style="padding-top:30px">
+        <a href="p7.html" class="back">← 📣 P7: Marketing & PR</a>
+        <div class="nav-sub"><a href="p7.html">📣 P7 Overview</a><a href="sub-p7a.html" class="active">P7A</a><a href="sub-p7b.html">P7B</a><a href="sub-p7c.html">P7C</a><a href="sub-p7d.html">P7D</a><a href="sub-p7e.html">P7E</a><a href="sub-p7f.html">P7F</a></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px">
+            <div>
+                <span style="background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px">P7A</span>
+                <span style="color:var(--muted);font-size:.85em;margin-left:8px">P7: Marketing & PR</span>
+            </div>
+            <a href="files/P7A_Ambassador_Seeding_Program.docx" style="font-size:.85em;color:var(--accent);padding:6px 14px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
+        </div>
+        <div class="doc-content">
+            <p><strong>P7A: AMBASSADOR &amp;</strong></p>
+<p><strong>SEEDING PROGRAM</strong></p>
+<p>Sub-Project P7A | Marketing, PR &amp; Community | Weeks 12–20</p>
+<p><em>Complete Ambassador Playbook: 3-Tier Ambassador Structure, 6
+Recruitment Channels, 3-Post Content Brief, Ambassador Kit
+Specification, 6-Metric Performance Tracking, and UGC Library
+Management</em></p>
+<p>March 2026 | Confidential</p>
+<p>Executive Summary</p>
+<p><strong>Ambassadors are the brand’s most authentic marketing
+channel.</strong> A runner who posts a genuine race-day photo wearing
+the poncho — cold breath visible, dawn light, surrounded by other
+runners in garbage bags — is 10× more persuasive than any brand-produced
+advertisement. Ambassador content feels real because it IS real: real
+runners, real races, real cold, real warmth, real composting. This
+authenticity cannot be manufactured by the brand’s own social
+accounts.</p>
+<p><strong>The program operates on 3 tiers:</strong> Tier 1 (20–40
+eco-runners, free product only, grassroots credibility), Tier 2 (5–10
+micro-influencers with 10K–50K followers, product + potential paid
+content, professional reach), and Tier 3 (1–3 macro-influencers, Year
+2+, paid partnerships for massive reach). Season 1 focuses on Tier 1 and
+Tier 2: recruiting 25–50 ambassadors through 6 channels, shipping
+ambassador kits with a 3-post content brief, tracking performance across
+6 metrics, and building a UGC library that fuels paid ads, website
+content, Amazon listings, and B2B pitch materials.</p>
+<p>1. Ambassador Tiers: 3 Levels</p>
+<p><strong>Each tier serves a different strategic purpose.</strong> Tier
+1 provides AUTHENTICITY and grassroots word-of-mouth at near-zero cost.
+Tier 2 provides REACH and professional content production. Tier 3 (Year
+2+) provides ASPIRATION and press-worthy partnerships. Season 1 invests
+in Tier 1 + Tier 2; Tier 3 is built once the brand has the social proof
+and budget to attract larger creators.</p>
+<table>
+<colgroup>
+<col style="width: 9%" />
+<col style="width: 8%" />
+<col style="width: 30%" />
+<col style="width: 26%" />
+<col style="width: 25%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Tier</strong></td>
+<td><strong>Quantity</strong></td>
+<td><strong>Profile</strong></td>
+<td><strong>Compensation</strong></td>
+<td><strong>Cost</strong></td>
+</tr>
+<tr class="even">
+<td><strong>TIER 1: Eco-Runners</strong></td>
+<td>20–40 ambassadors</td>
+<td>Everyday runners who care about sustainability. Run 3–10 races/year.
+Active on Instagram/Strava/Reddit. Followers: 500–5,000. They are NOT
+influencers — they are authentic runners whose posts feel genuine, not
+sponsored. Their value is: authentic UGC, word-of-mouth in their running
+clubs, grassroots credibility.</td>
+<td>Free product (3-pack per race season), 20% personal discount code,
+10% discount code to share with friends (unique code per ambassador for
+tracking), name listed on brand.com/ambassadors page, early access to
+new products/colors.</td>
+<td>LOW: $7.50–15.00/ambassador/season (3 ponchos at COGS). No cash
+payment. Total for 30 ambassadors: $225–$450/season in product
+cost.</td>
+</tr>
+<tr class="odd">
+<td><strong>TIER 2: Micro-Influencers</strong></td>
+<td>5–10 ambassadors</td>
+<td>Running and/or sustainability content creators with 10K–50K
+followers on Instagram, TikTok, YouTube, or Strava. They create polished
+content (not just casual posts). Their value is: reach (10K–50K engaged
+followers), professional content production (usable as ads), and
+credibility within the running community.</td>
+<td>Free product (6-pack per season), 25% personal discount code, 15%
+code to share, featured on brand social channels (repost/reshare),
+potential paid collaboration for specific deliverables ($50–$200 per
+dedicated post/video if budget allows, but many micro-influencers in the
+eco/running niche will create content for product-only compensation in
+the early stages).</td>
+<td>MEDIUM: $15–30/influencer/season (product) + $0–$200/influencer for
+paid content. Total for 7 influencers: $105–$1,610/season.</td>
+</tr>
+<tr class="even">
+<td><strong>TIER 3: Macro-Influencers (Year 2+)</strong></td>
+<td>1–3 ambassadors</td>
+<td>Running personalities with 50K–500K+ followers. Podcast hosts,
+YouTube running vloggers, professional/semi-professional runners, or
+running media personalities (e.g., coaches with large followings, race
+recap vloggers). Their value is: massive reach, aspirational
+association, and press-worthy partnerships.</td>
+<td>Paid partnerships: $500–$2,000 per post/video + free product +
+exclusive discount code + co-created content (e.g., “[Influencer Name] x
+[BRAND] race morning routine” video). Potentially: equity or advisory
+role for the right partnership.</td>
+<td>HIGH: $500–$6,000/influencer/season. NOT recommended for Season 1
+(budget constraints + brand not yet proven). Build to Tier 3 in Year 2
+once: product is validated, reviews are strong, and pilot case studies
+provide social proof that makes the brand attractive to larger
+influencers.</td>
+</tr>
+</tbody>
+</table>
+<p>1.1 Ambassador Agreement</p>
+<p>Every ambassador (Tier 1 and Tier 2) signs a simple 1-page agreement
+covering: program duration (one race season, renewable), content
+expectations (3 posts suggested, not required — framed as “we’d love to
+see” not “you must create”), discount code terms (personal use 20–25%,
+sharing code 10–15%, not for resale), UGC rights (brand may use content
+across channels with attribution), product ownership (ambassador keeps
+all product), and termination (either party can end participation at any
+time without penalty). Keep the agreement LIGHT. Ambassadors are
+volunteers, not employees. Heavy legal language kills the authentic
+relationship. A simple email confirmation (“I agree to the ambassador
+terms”) is sufficient for Tier 1. Tier 2 may warrant a more formal
+agreement given potential paid content.</p>
+<p>2. Recruitment: 6 Channels</p>
+<p><strong>Recruitment is an ongoing process, not a one-time
+event.</strong> The best ambassadors are DISCOVERED through genuine
+community engagement, not mass outreach. The founder who spends 30
+minutes per day contributing to running subreddits, Strava clubs, and
+Instagram hashtags will naturally identify potential ambassadors through
+authentic interaction.</p>
+<table>
+<colgroup>
+<col style="width: 19%" />
+<col style="width: 47%" />
+<col style="width: 33%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Channel</strong></td>
+<td><strong>Process</strong></td>
+<td><strong>Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Instagram hashtag search</strong></td>
+<td>Search: #sustainablerunning, #ecofriendlyrunner, #marathontraining,
+#runnersofinstagram, #zerowanstrunner, #plasticfreerunning,
+#compostable. Look for: runners who post race photos + have
+sustainability content in their bio or captions. Engagement rate &gt;3%
+(comments + likes / followers). Based in cold-weather US race
+cities.</td>
+<td>Spend 30 minutes: scroll through each hashtag, identify 10–15
+candidates, note their handle, follower count, and a recent post that
+shows sustainability interest. Save to a Google Sheet (“Ambassador
+Prospect List”).</td>
+</tr>
+<tr class="odd">
+<td><strong>Strava clubs</strong></td>
+<td>Join Strava clubs focused on: sustainability, eco-running, marathon
+training, and local running clubs in target race cities. Look for:
+active members who post run descriptions mentioning sustainability, gear
+reviews, or race recaps. Strava athletes who also have Instagram
+accounts are ideal dual-platform ambassadors.</td>
+<td>Strava athletes are HIGHLY authentic. A Strava ambassador who posts
+a run with the caption “Wore my compostable poncho at the start this
+morning — stayed warm and it’s already at the composting facility” is
+more credible than a polished Instagram ad.</td>
+</tr>
+<tr class="even">
+<td><strong>Reddit communities</strong></td>
+<td>Communities: r/running (2M+ members), r/marathontraining,
+r/ultrarunning, r/sustainability, r/zerowaste. DO NOT recruit directly
+on Reddit (violates community norms). Instead: contribute genuine value
+for 4–8 weeks (per P7E Section 1 community guidelines), then DM active
+members who post about sustainability + running. Approach: “Hey, I
+noticed your post about reducing waste at races. I’m building a
+compostable poncho for start lines and looking for runners to test it.
+Would you be interested in trying one?”</td>
+<td>Reddit recruitment is SLOW but yields the most authentic
+ambassadors. A Reddit runner who becomes an ambassador will post about
+the product on Reddit organically — reaching the highest-intent running
+community online.</td>
+</tr>
+<tr class="odd">
+<td><strong>Running club partnerships</strong></td>
+<td>Contact local running clubs in target race cities (NYC, Chicago,
+Boston, DC). Offer: free 3-packs for club leaders + discount code for
+all members. Club leaders who become ambassadors distribute
+word-of-mouth across 50–200 club members. Find clubs via: RRCA club
+finder (rrca.org), Meetup.com running groups, or local Fleet Feet store
+club listings.</td>
+<td>Running clubs are MULTIPLIERS. 1 club captain ambassador reaches
+50–200 runners who trust the captain’s gear recommendations. Club
+endorsement is the running world’s version of word-of-mouth.</td>
+</tr>
+<tr class="even">
+<td><strong>Race expo encounters</strong></td>
+<td>At expos (P5D), identify runners who are enthusiastic about the
+product: they stop at the booth, try the tear-away demo, ask detailed
+questions, and express genuine interest. Invite them: “Would you like to
+be an ambassador? We’ll send you a free 3-pack for your next race, and
+you just share your experience on social media.” Collect: name, email,
+Instagram handle, next race.</td>
+<td>Expo-recruited ambassadors have ALREADY touched the product. They
+don’t need convincing — they self-selected by stopping at the booth and
+engaging. These are the highest-quality Tier 1 recruits.</td>
+</tr>
+<tr class="odd">
+<td><strong>Micro-influencer discovery tools</strong></td>
+<td>For TIER 2: use free/low-cost tools to find running and
+sustainability micro-influencers. Heepsy (heepsy.com, free tier: 5
+searches/month), Modash (modash.io, free trial), or manual
+Instagram/TikTok search for creators with 10K–50K followers who post
+running content + have sustainability values. Filter: US-based, 3%+
+engagement rate, posts within last 30 days.</td>
+<td>Micro-influencer outreach is more like B2B sales than DTC marketing.
+It requires: research (review their content), personalized outreach
+(reference specific posts), and relationship building (they must WANT to
+partner, not feel cold-pitched).</td>
+</tr>
+</tbody>
+</table>
+<p>2.1 Recruitment Outreach Template</p>
+<p>For Tier 1 (DM on Instagram or Reddit): “Hi [Name]! I’ve been
+following your running journey and love your commitment to
+sustainability. I’m building a compostable warmth poncho for marathon
+start lines — it replaces garbage bags and composts after the race. I’d
+love to send you a free pack to try at your next race. No strings
+attached — if you love it, share your experience. If not, I’d still love
+your feedback. Interested?” For Tier 2 (email to micro-influencer): “Hi
+[Name], I’m [Founder Name], founder of [BRAND]. We’ve developed a
+BPI-certified compostable poncho for race start lines, and I think it’s
+a perfect fit for your audience. I’d love to send you a kit to try at
+your next race — and if you’re interested, explore a content
+partnership. Your [specific recent post about sustainability/running]
+really resonated with our mission. Would you be open to chatting?”</p>
+<p>2.2 Qualification Criteria</p>
+<p>Before sending a kit, verify: (1) the ambassador is a REAL runner
+(Strava profile with recent runs, race results, or race bib photos).
+Fake accounts and non-runners waste product. (2) Their content aligns
+with brand values (sustainability, positivity, runner community). Avoid:
+ambassadors who post controversial content, excessive profanity, or
+product-bashing. (3) They have SOME audience (Tier 1: 500+ followers on
+at least one platform; Tier 2: 10K+ with 3%+ engagement). (4) They are
+based in the US (Season 1 focus) and ideally in a cold-weather race
+city. (5) They are genuinely interested (responded enthusiastically to
+the outreach, not just “sure, send me free stuff”).</p>
+<p>3. Content Brief: 3 Post Ideas</p>
+<p><strong>The content brief gives ambassadors a FRAMEWORK, not a
+script.</strong> The 3 posts align with the product lifecycle —
+unboxing, race day, composting — which naturally tells the brand story
+across 3 touchpoints over 2–4 weeks. Ambassadors who follow the brief
+produce content that is: timely (tied to their race), authentic (their
+own words and experience), and structured (each post has a clear purpose
+for the brand’s marketing needs).</p>
+<table>
+<colgroup>
+<col style="width: 9%" />
+<col style="width: 54%" />
+<col style="width: 35%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Post</strong></td>
+<td><strong>Prompt</strong></td>
+<td><strong>Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Post 1: Unboxing / First Impressions</strong></td>
+<td>TIMING: within 48 hours of receiving the ambassador kit. FORMAT:
+Instagram Reel/Story or TikTok (30–60 sec). CONTENT: open the ambassador
+kit on camera. Show: branded box, tissue paper, ponchos in inner bags,
+card/sleeve packaging. React to: the metallized lining (“the silver
+shimmer is so cool”), the weight (“so lightweight”), the fold size
+(“fits in my race belt”). End with: “Can’t wait to use this at [Race
+Name] next month!” HASHTAGS: #[BRAND] #RaceWarmLeaveNoTrace
+#CompostablePoncho #MarathonTraining #SustainableRunning. TAG: @[BRAND]
+Instagram handle.</td>
+<td>DO NOT script the ambassador’s words. Provide the BRIEF (what to
+show, what to highlight) but let them say it in their own voice.
+Authentic reactions convert better than scripted reads. If they say
+something unexpected (“I wasn’t sure it would feel warm but the lining
+is amazing”), that’s GOLD.</td>
+</tr>
+<tr class="odd">
+<td><strong>Post 2: Race-Day Use</strong></td>
+<td>TIMING: race day or the day after. FORMAT: Instagram carousel (3–5
+photos) or Reel/TikTok (30–60 sec). CONTENT: wearing the poncho at the
+start line (corral selfie), tearing it off at the gun (capture the
+moment!), and the post-race feeling (“stayed warm for 45 minutes in the
+corral at 42°F”). Include: race name, weather conditions, honest warmth
+assessment. BONUS: video of the tear-away — the ripping sound and clean
+tear are viscerally satisfying content. TAG: @[BRAND] + tag the race’s
+official account.</td>
+<td>Race-day content is the most valuable UGC. A runner in a poncho at
+the actual start line of the Chicago Marathon at 6 AM is PROOF the
+product works in the real world. These posts become: Amazon lifestyle
+images, website social proof, B2B pitch content, and paid ad creative
+(with permission).</td>
+</tr>
+<tr class="even">
+<td><strong>Post 3: Composting Follow-Up</strong></td>
+<td>TIMING: 1–2 weeks after the race. FORMAT: Instagram post (single
+image or carousel) or Story. CONTENT: the composting story. Show or
+describe: “After the race, I dropped my poncho in the compost bin at the
+start line. It’s now at [composting facility name] being turned into
+soil. No landfill, no guilt.” Include: the brand’s composting data if
+available (“[BRAND] composted [X] lbs of ponchos from [Race Name]”).
+ALTERNATIVE: if the runner took the poncho home, show them composting it
+at their local facility or mail-back composting. TAG: @[BRAND].</td>
+<td>The composting post CLOSES THE LOOP on the sustainability story.
+Unboxing → race day → composting = the full lifecycle in 3 posts. This
+post addresses the skeptic: “They don’t just SAY it composts — here’s
+proof.”</td>
+</tr>
+</tbody>
+</table>
+<p>3.1 Content Do’s and Don’ts</p>
+<p>DO: speak in your own voice, share your honest experience (even if
+something wasn’t perfect — honest feedback is valuable), tag the brand
+so we can find and reshare your content, and include the branded hashtag
+(#RaceWarmLeaveNoTrace). DON’T: make medical or health claims (“this
+poncho prevents hypothermia” — it doesn’t, it provides warmth),
+disparage competitors by name (say “garbage bags” not “Heatsheets”), or
+post misleading information about the product’s capabilities. FTC
+COMPLIANCE: Tier 1 ambassadors who received free product must disclose
+the material connection. Instagram: use the “Paid partnership” tag OR
+include #gifted or #sponsored in the caption. TikTok: use the “branded
+content” toggle. The FTC requires clear and conspicuous disclosure of
+any material relationship between the endorser and the brand.</p>
+<p>4. Ambassador Kit: 6 Components</p>
+<p><strong>The ambassador kit is the physical introduction to the
+partnership.</strong> It should feel like a GIFT, not a marketing
+package. The branded tote bag, tissue paper, handwritten note, and
+thoughtful presentation transform a product shipment into a personal
+moment that the ambassador wants to unbox on camera.</p>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width:50%">
+<col style="width: 35%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Component</strong></td>
+<td><strong>Specification</strong></td>
+<td><strong>Purpose</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Ponchos</strong></td>
+<td>3 ponchos (Tier 1) or 6 ponchos (Tier 2) in full packaging (inner
+bag + card/sleeve)</td>
+<td>Enough for 1–2 race seasons. The ambassador should WEAR one at a
+race and have extras for: photography, giving to a running friend (viral
+seeding), or testing in training.</td>
+</tr>
+<tr class="odd">
+<td><strong>Brand story card</strong></td>
+<td>Printed card (4″×6″, double-sided) with: the brand story (50-word
+version), the founder’s personal note (“Thanks for joining us. Your
+voice helps us replace garbage bags with something better.”), and the
+3-post content brief summary</td>
+<td>The brand story card ensures the ambassador understands the WHY
+behind the product, not just the WHAT. Ambassadors who connect with the
+mission create more authentic content.</td>
+</tr>
+<tr class="even">
+<td><strong>Branded tote bag</strong></td>
+<td>Cotton canvas tote bag in Earth Green with brand logo
+screen-printed. 14″×16″ standard size. Cost: $3–$6/bag at 50+ quantity
+(4imprint.com, Custom Ink, or Printful).</td>
+<td>The tote is a WALKING BILLBOARD: the ambassador carries it to races,
+running club meetups, grocery stores. It’s also the packaging the kit
+arrives in — sustainable (no plastic mailer), reusable (the ambassador
+keeps it), and branded.</td>
+</tr>
+<tr class="odd">
+<td><strong>Discount code cards</strong></td>
+<td>10 business-card-sized cards (2″×3.5″) with: “10% OFF your first
+order at brand.com” and a unique discount code (e.g., AMB-SARAH-10). The
+ambassador hands these to running friends, club members, or strangers at
+races who ask about the poncho.</td>
+<td>The unique code per ambassador enables TRACKING: which ambassador
+drives the most referral purchases? The top performers become candidates
+for Tier 2 elevation or increased product allocation.</td>
+</tr>
+<tr class="even">
+<td><strong>Content brief printout</strong></td>
+<td>1-page printout of the 3-post content brief (Section 3) with: what
+to post, when, format, hashtags, and tagging instructions. Simple,
+visual, actionable.</td>
+<td>The brief ensures the ambassador knows what’s expected without
+feeling pressured. Framing: “These are ideas, not requirements. Post
+what feels natural to you.”</td>
+</tr>
+<tr class="odd">
+<td><strong>Handwritten note</strong></td>
+<td>A handwritten thank-you note from the founder: “Hi [Name], thank you
+for joining [BRAND] as an ambassador. Your voice matters — every post,
+every conversation, every runner you introduce to compostable ponchos
+helps us replace garbage bags forever. I can’t wait to see your content!
+— [Founder Name]”</td>
+<td>The handwritten note transforms a product shipment into a PERSONAL
+RELATIONSHIP. Ambassadors who feel personally valued by the founder
+create more content, stay longer, and refer more friends. 2 minutes per
+note × 30 ambassadors = 1 hour. Worth every minute.</td>
+</tr>
+</tbody>
+</table>
+<p>4.1 Kit Production &amp; Shipping</p>
+<p>PRODUCTION: assemble kits alongside B2B sample kits (P3B Section 6)
+to share assembly time and materials. Kit components: branded tote
+($3–6), 3 or 6 ponchos ($3.45–$10.80 at COGS), brand story card
+($0.10–$0.20), discount code cards ($0.30 for 10 cards), content brief
+printout ($0.05), tissue paper ($0.20). Total kit cost: $7.10–$17.35 per
+kit. SHIPPING: USPS Priority Mail ($8–15 per kit) or UPS Ground
+($10–20). Ship within 48 hours of ambassador acceptance — enthusiasm
+decays quickly. TOTAL: 30 Tier 1 kits + 7 Tier 2 kits = 37 kits × $15–32
+(kit + shipping) = $555–$1,184. This is the ENTIRE ambassador program
+cost for Season 1 (excluding optional Tier 2 paid content).</p>
+<p>5. Performance Tracking: 6 Metrics</p>
+<p><strong>What gets measured gets managed.</strong> Ambassador
+performance tracking serves 3 purposes: (1) identify top performers for
+recognition, elevation, and increased investment, (2) identify
+underperformers for a gentle check-in or program exit, and (3) calculate
+the program’s ROI to justify Season 2 expansion.</p>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 21%" />
+<col style="width: 28%" />
+<col style="width: 35%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Metric</strong></td>
+<td><strong>Definition</strong></td>
+<td><strong>Tracking Method</strong></td>
+<td><strong>Target</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Posts created</strong></td>
+<td>Count of Instagram/TikTok/Strava posts mentioning or tagging the
+brand per ambassador per month</td>
+<td>Monthly: scroll each ambassador’s tagged posts and @mentions. Or:
+use a social listening tool (Mention $29/month, Brand24 $79/month, or
+free: manual search for @brandhandle + #brandhashtag on
+Instagram/TikTok).</td>
+<td>Target: 1–2 posts/month per Tier 1 ambassador, 2–4 posts/month per
+Tier 2.</td>
+</tr>
+<tr class="odd">
+<td><strong>Total impressions</strong></td>
+<td>Estimated reach of ambassador posts (Instagram: use Insights if
+ambassador shares data; TikTok: view counts are public; Strava: limited
+data)</td>
+<td>Request: ambassadors share a screenshot of their post Insights
+(reach, impressions) via DM monthly. Or: estimate from follower count ×
+average engagement rate. Example: 2,000 followers × 5% reach = 100
+impressions per post.</td>
+<td>30 Tier 1 ambassadors × 2 posts/month × 100 impressions = 6,000
+impressions/month. 7 Tier 2 × 3 posts × 2,000 impressions =
+42,000/month. TOTAL: ~48,000 ambassador impressions/month.</td>
+</tr>
+<tr class="even">
+<td><strong>Engagement</strong></td>
+<td>Likes, comments, shares, saves on ambassador posts</td>
+<td>Track: total engagement per ambassador per month. Calculate:
+engagement rate (engagement ÷ impressions × 100). Target: 3–10%
+engagement rate (micro-community content typically has 3–5× higher
+engagement than brand-produced content).</td>
+<td>High engagement = the content is resonating. Low engagement on a
+specific post type = adjust the content brief for that type.</td>
+</tr>
+<tr class="odd">
+<td><strong>Discount code redemptions</strong></td>
+<td>Number of times each ambassador’s unique code (AMB-SARAH-10) is used
+for a purchase on Shopify</td>
+<td>Shopify: Reports → Discounts → filter by discount code. Track:
+monthly redemptions per ambassador, total revenue attributed to each
+code, average order value for code-using customers.</td>
+<td>This is the DIRECT REVENUE ATTRIBUTION metric. An ambassador whose
+code generates 10 purchases/month at $15 AOV = $150/month in directly
+attributable revenue from $5–15 in product cost. ROI: 10–30×.</td>
+</tr>
+<tr class="even">
+<td><strong>Attributable sales</strong></td>
+<td>Total revenue generated through ambassador discount codes +
+UTM-tagged links</td>
+<td>Combine: Shopify discount report + GA4 traffic filtered by UTM
+source=ambassador. Some sales influenced by ambassadors won’t use the
+code (e.g., a friend sees the ambassador’s post and Googles the brand) —
+this is the “dark social” effect. Actual ambassador influence is 2–3×
+the directly attributable number.</td>
+<td>Track monthly. Target: $500–$2,000/month in ambassador-attributed
+revenue by Month 6 (across all ambassadors combined). At $330–$2,060
+total program cost per season: break-even requires $330–$2,060 in
+attributed revenue. Most ambassador programs break even within 2–3
+months.</td>
+</tr>
+<tr class="odd">
+<td><strong>Content quality score</strong></td>
+<td>Subjective 1–5 rating per ambassador per month: 5 =
+professional-quality content usable as ads, 4 = strong authentic
+content, 3 = acceptable, 2 = low effort, 1 = no content posted</td>
+<td>Founder reviews each ambassador’s monthly posts and assigns a score.
+Use to: identify top-performing ambassadors for Tier elevation (Tier 1 →
+Tier 2), identify underperformers for a gentle nudge or program exit,
+and curate UGC for paid ads (Section 7: only use 4–5 rated
+content).</td>
+<td>Send a personal DM to top performers each month: “Your [Race Name]
+post was incredible! We’re featuring it on our social channels. Thank
+you!” Recognition retains ambassadors better than product alone.</td>
+</tr>
+</tbody>
+</table>
+<p>5.1 Ambassador Performance Dashboard</p>
+<p>Google Sheet with columns: Ambassador Name | Tier | Platform(s) |
+Followers | Posts This Month | Impressions (est.) | Engagement Rate |
+Code Redemptions | Revenue Attributed | Content Quality Score | Notes.
+Update: monthly. Review: during the Monday marketing review. ACTIONS:
+Top 3 ambassadors each month: send a DM thank-you + feature their
+content on the brand’s channels. Bottom 3 (no posts for 2+ months): send
+a friendly check-in: “Hey [Name], just checking in! Do you have any
+upcoming races where you might use the poncho? Happy to send more
+product if you’re running low.” If no response or content for 3+ months:
+remove from active program (no formal termination needed — just stop
+including in future communications and kit shipments).</p>
+<p>5.2 Ambassador ROI Calculation</p>
+<p>SEASON 1 INVESTMENT: kit production + shipping ($555–$1,184) +
+optional Tier 2 paid content ($0–$1,400) = $555–$2,584. SEASON 1
+RETURNS: direct attributable revenue from discount codes ($500–$2,000,
+target), UGC content value (if repurposed as paid ads: equivalent to
+$2,000–$5,000 in content production costs avoided), review generation
+(ambassadors who leave Amazon/Shopify reviews: 5–10 reviews × estimated
+$50–$100 value per review in conversion impact = $250–$1,000), and brand
+awareness (impressions × estimated CPM value: 48,000 impressions/month ×
+6 months × $5 CPM / 1,000 = $1,440). TOTAL ESTIMATED RETURN:
+$4,190–$9,440. ROI: 3–8× on investment. Ambassador programs are
+consistently one of the highest-ROI marketing channels for DTC
+brands.</p>
+<p>6. UGC Library: Content Asset Management</p>
+<p><strong>Every ambassador post is a marketing ASSET that can be
+repurposed across 5+ channels.</strong> A single 30-second race-day Reel
+from an ambassador can become: an organic Instagram post (reshare), a
+paid Meta ad creative, an Amazon product gallery image, a website
+testimonial, a B2B pitch deck slide, and a PR press kit photo. The UGC
+library ensures these assets are: organized, permissioned, and
+accessible for any marketing need.</p>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 81%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Element</strong></td>
+<td><strong>Specification</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Content folder structure</strong></td>
+<td>Google Drive or Dropbox: /UGC/[Ambassador
+Name]/[Date]_[Platform]_[Content Type].jpg/mp4. Example:
+/UGC/Sarah_M/2026-10-12_Instagram_RaceDay_Reel.mp4. Also maintain a
+“Best Of” subfolder: /UGC/Best_Of/ with only the top 10–20 assets across
+all ambassadors.</td>
+</tr>
+<tr class="odd">
+<td><strong>Permission and rights</strong></td>
+<td>EVERY piece of UGC must have written permission before the brand
+uses it. Send DM or email: “Hi [Name], loved your [Race Name] post!
+Would you be okay with us using this photo/video on our social channels
+and website? We’ll credit you. Just reply ‘yes’ and you’re set!” Include
+UGC rights language in the ambassador agreement: “Ambassador grants
+[BRAND] a non-exclusive, royalty-free license to use, reproduce, and
+modify content created as part of the ambassador program for marketing
+purposes across all channels, with attribution.”</td>
+</tr>
+<tr class="even">
+<td><strong>Usage across channels</strong></td>
+<td>ORGANIC SOCIAL: repost/reshare ambassador content on the brand’s
+Instagram, TikTok, and Strava with credit (“Repost from
+@ambassadorhandle”). WEBSITE: add to the product page social proof
+gallery, homepage testimonials, and brand story page. PAID ADS:
+UGC-style ads (ambassador content repurposed as paid creative)
+consistently outperform brand-produced ads by 2–4× in click-through rate
+and 1.5–2× in conversion rate (Meta’s published data). AMAZON: use UGC
+photos (with permission) as supplementary product gallery images. B2B
+PITCH: include in the B2B pitch deck and case studies.</td>
+</tr>
+<tr class="odd">
+<td><strong>Content refresh cadence</strong></td>
+<td>Refresh the UGC library every race season (fall + spring). Remove:
+old/outdated content, low-performing posts, content from ambassadors who
+have left the program. Add: new race-day content from the latest season.
+The “Best Of” folder should always contain the TOP 20 most compelling,
+most authentic, most visually striking pieces of ambassador
+content.</td>
+</tr>
+</tbody>
+</table>
+<p>6.1 UGC in Paid Advertising</p>
+<p>UGC-style ads are the HIGHEST-PERFORMING paid creative format on Meta
+(Facebook/Instagram) and TikTok. They outperform brand-produced content
+because: they look like organic posts (not ads), they feature real
+people (not models), they show real scenarios (not studio setups), and
+they carry implicit social proof (“a real person chose to share this”).
+HOW TO USE: take the ambassador’s race-day Reel or carousel post, add a
+text overlay with the brand’s value proposition (“Compostable. BPI
+Certified. Race-Ready.”), and run it as a Sponsored Reel or Story ad.
+Always credit the ambassador (“@ambassadorhandle”) even in paid ads — it
+reinforces authenticity. PERMISSION: the ambassador agreement grants the
+brand rights to use content in paid ads. However, best practice is to DM
+the ambassador: “We’d love to boost your amazing [Race Name] post as a
+paid ad. You’ll be credited. Okay with you?” This courtesy builds
+long-term loyalty.</p>
+<p>7. Timeline &amp; Budget</p>
+<p><strong>WEEK 12: Define ambassador tiers (Section 1). Draft the
+1-page ambassador agreement. Create the “Ambassador Prospect List”
+Google Sheet with columns for: name, platform, handle, followers,
+engagement rate, sustainability signal, outreach status,
+response.</strong></p>
+<p><strong>WEEK 14–16: Begin recruitment (Section 2). Send personalized
+outreach DMs/emails to 50–75 prospects across all 6 channels. Expect
+30–50% response rate and 20–30% acceptance rate = 10–23 ambassadors from
+the first recruitment wave. Create the 3-post content brief (Section 3).
+Design the brand story card and discount code cards. Order branded tote
+bags (3–4 week production lead time).</strong></p>
+<p><strong>WEEK 16–18: Assemble and ship ambassador kits (Section 4).
+Ship within 48 hours of each ambassador’s acceptance. Begin receiving
+Post 1 (unboxing) content within 1–2 weeks of kit delivery.
+Repost/reshare on brand channels. Continue recruitment for Tier 2
+micro-influencers (longer outreach and negotiation cycle).</strong></p>
+<p><strong>WEEK 18–20: Ambassador race-day content begins (Post 2) as
+fall race season starts. Collect and organize UGC in the library
+(Section 6). Begin tracking performance (Section 5). Ship additional
+kits to late-joining ambassadors. By Week 20: 25–50 active ambassadors
+generating 30–80 posts/month across platforms. HANDOFF to ongoing
+ambassador management: monthly performance review, seasonal kit
+refreshes, and program expansion.</strong></p>
+<p>BUDGET: Ambassador kits (37 kits × $15–32): $555–$1,184. Branded tote
+bags (50 bags × $3–6): $150–$300 (may already be included in kit cost
+above). Discount code cards (370 cards at $0.03 each): $11. Content
+brief printing: $5. Optional Tier 2 paid content (5–10 posts ×
+$50–$200): $0–$2,000. Social listening tool (optional): $0–$29/month.
+TOTAL P7A Season 1: $720–$3,520. EXPECTED RETURN: $4,190–$9,440 in
+direct + indirect value. ROI: 3–8×.</p>
+<p>8. Conclusion: Ambassadors Are the Brand’s Voice in the Wild</p>
+<p><strong>A brand can post 1,000 times on its own Instagram and never
+match the persuasive power of ONE authentic post from a runner at a real
+start line on a cold morning.</strong> The runner’s followers see: a
+real person, a real race, real conditions, and a real product doing what
+it promises. No filter, no studio, no script. That’s trust that money
+can’t buy — but it CAN be earned through a structured program that:
+recruits the right people (authentic eco-runners), equips them (product
++ content guidance), and values them (handwritten notes + recognition +
+genuine relationship).</p>
+<p><strong>The UGC flywheel:</strong> ambassadors create content →
+content is reshared on brand channels (organic reach) → best content
+becomes paid ad creative (paid reach) → paid ads drive new customers →
+new customers become ambassadors. By Year 2, the ambassador program
+should be self-sustaining: new ambassadors come from customer referrals
+and expo encounters, not cold outreach. The program grows WITH the brand
+because the brand’s growth creates more runners who want to
+participate.</p>
+
+        </div>
+    </div></div>
+<footer style="text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px">
+Sustainable Race-Start Warmth Poncho — D2C Brand GTM Project · 60 Subprojects · 391 Tasks · ~15,500¶ · April 2026
+</footer></body></html>

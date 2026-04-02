@@ -1,0 +1,836 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>P7B: Content Marketing — Race Start Warmth GTM</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0e1a;--surface:#111827;--card:#1a2332;--border:#2a3a4e;--accent:#10b981;--accent2:#3b82f6;--text:#e2e8f0;--muted:#94a3b8;--white:#fff;--red:#ef4444;--amber:#f59e0b;--green:#10b981}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+/* Nav */
+nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
+nav .inner{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;max-width:1200px;margin:0 auto}
+nav .brand{font-weight:700;font-size:15px;color:var(--accent)}
+nav .links{display:flex;gap:8px;flex-wrap:wrap}
+nav .links a{color:var(--muted);font-size:13px;padding:4px 10px;border-radius:6px;transition:.2s}
+nav .links a:hover,nav .links a.active{color:var(--white);background:var(--card);text-decoration:none}
+/* Hero */
+.hero{padding:60px 0 40px;text-align:center}
+.hero h1{font-size:2.4em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:1.1em;max-width:700px;margin:0 auto}
+/* Stats bar */
+.stats{display:flex;justify-content:center;gap:32px;padding:24px 0;flex-wrap:wrap}
+.stat{text-align:center}.stat .num{font-size:1.8em;font-weight:800;color:var(--white)}.stat .label{font-size:.75em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+/* Cards */
+.grid{display:grid;gap:16px;margin:24px 0}
+.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}
+.grid-3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;transition:.2s}
+.card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.card h3{font-size:1.1em;margin-bottom:8px}.card p{color:var(--muted);font-size:.9em}
+.card .badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:8px}
+.card .meta{font-size:.8em;color:var(--muted);margin-top:12px}
+/* Section */
+.section{padding:40px 0}.section h2{font-size:1.6em;font-weight:700;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+/* Table */
+table{width:100%;border-collapse:collapse;font-size:.85em;margin:16px 0}
+th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:52px}
+td{padding:8px 12px;border-bottom:1px solid var(--border)}
+tr:hover td{background:rgba(16,185,129,.05)}
+.status-complete{color:var(--green);font-weight:600}.status-not{color:var(--muted)}
+/* Progress */
+.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:8px}
+.progress .bar{height:100%;background:var(--accent);border-radius:3px}
+/* Back link */
+.back{display:inline-block;color:var(--muted);font-size:.9em;margin-bottom:20px}
+.back:hover{color:var(--accent)}
+/* Download */
+.dl-card{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin:8px 0;transition:.2s}
+.dl-card:hover{border-color:var(--accent);text-decoration:none}
+.dl-card .icon{font-size:2em}.dl-card .info h4{color:var(--white);margin-bottom:4px}.dl-card .info p{color:var(--muted);font-size:.85em}
+/* Footer */
+footer{text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px}
+@media(max-width:768px){.stats{gap:16px}.stat .num{font-size:1.3em}nav .links{gap:4px}nav .links a{font-size:11px;padding:3px 6px}.hero h1{font-size:1.6em}}
+
+.doc-content{max-width:900px;margin:0 auto;padding:20px 0}
+.doc-content h1{font-size:1.8em;font-weight:800;color:var(--white);margin:32px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.doc-content h2{font-size:1.4em;font-weight:700;color:var(--accent);margin:28px 0 12px}
+.doc-content h3{font-size:1.15em;font-weight:600;color:var(--accent2);margin:20px 0 10px}
+.doc-content p{margin:8px 0;line-height:1.7}
+.doc-content table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85em}
+.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;border:1px solid var(--border)}
+.doc-content td{padding:8px 12px;border:1px solid var(--border);vertical-align:top}
+.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.doc-content ul,.doc-content ol{margin:8px 0 8px 24px}
+.doc-content li{margin:4px 0;line-height:1.6}
+.doc-content strong{color:var(--white)}
+.doc-content em{color:var(--muted)}
+.doc-content blockquote{border-left:3px solid var(--accent);padding:8px 16px;margin:12px 0;background:var(--card);border-radius:0 8px 8px 0}
+.nav-sub{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 24px;padding:12px 16px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
+.nav-sub a{font-size:.8em;color:var(--muted);padding:4px 10px;border-radius:4px;transition:.2s;white-space:nowrap}
+.nav-sub a:hover,.nav-sub a.active{color:var(--white);background:var(--surface);text-decoration:none}
+</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a></div></div></nav><div class="container">
+    <div style="padding-top:30px">
+        <a href="p7.html" class="back">← 📣 P7: Marketing & PR</a>
+        <div class="nav-sub"><a href="p7.html">📣 P7 Overview</a><a href="sub-p7a.html">P7A</a><a href="sub-p7b.html" class="active">P7B</a><a href="sub-p7c.html">P7C</a><a href="sub-p7d.html">P7D</a><a href="sub-p7e.html">P7E</a><a href="sub-p7f.html">P7F</a></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px">
+            <div>
+                <span style="background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px">P7B</span>
+                <span style="color:var(--muted);font-size:.85em;margin-left:8px">P7: Marketing & PR</span>
+            </div>
+            <a href="files/P7B_Content_Marketing.docx" style="font-size:.85em;color:var(--accent);padding:6px 14px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
+        </div>
+        <div class="doc-content">
+            <p><strong>P7B: CONTENT</strong></p>
+<p><strong>MARKETING</strong></p>
+<p>Sub-Project P7B | Marketing, PR &amp; Community | Weeks
+14–Ongoing</p>
+<p><em>Complete Content Strategy: Weekly Content Calendar, 4-Pillar
+Content Mix, Start-Line Waste Stats Series, 6 Video Content Templates,
+TikTok/Reels Strategy, 10+ Blog Plan, Sustainability Checklist Lead
+Magnet, and 6-Stage Race-Week Email Campaign</em></p>
+<p>March 2026 | Confidential</p>
+<p>Executive Summary</p>
+<p><strong>Content marketing is the engine that turns strangers into
+followers, followers into customers, and customers into
+advocates.</strong> Unlike paid advertising (which stops when the budget
+stops), content compounds: a blog post published in Week 14 drives
+traffic in Month 12. A TikTok Reel about the tear-away demo can go viral
+and generate 100,000 impressions from $0 in ad spend. An infographic
+about start-line waste gets shared by running communities, earning
+backlinks that boost SEO for the entire site.</p>
+<p><strong>This document builds the complete content system:</strong> a
+weekly 3-day posting calendar (Monday/Wednesday/Friday + race-week
+bonus), a 4-pillar content mix balancing sustainability science (30%),
+runner culture (30%), product in action (25%), and impact/transparency
+(15%), a 5-race Start-Line Waste Stats infographic series, 6 video
+content templates including the viral tear-away demo, a 6-format
+TikTok/Reels strategy, a 10+ blog publication plan across 6 months, a
+Race Day Sustainability Checklist PDF as an email-capture lead magnet,
+and a 6-stage race-week email campaign timed from 6 weeks to race
+day.</p>
+<p>1. Content Calendar: 3 Posts Per Week</p>
+<p><strong>Consistency matters more than volume.</strong> 3 posts per
+week (Monday, Wednesday, Friday) is sustainable for a solo founder and
+sufficient to build audience + algorithmic momentum on Instagram and
+TikTok. Each day has a THEME that aligns with the 4-pillar content mix
+(Section 2): Monday = Educate, Wednesday = Inspire, Friday = Engage.
+Race weeks add a bonus SELL post.</p>
+<table>
+<colgroup>
+<col style="width: 9%" />
+<col style="width: 9%" />
+<col style="width:50%">
+<col style="width: 30%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Day</strong></td>
+<td><strong>Theme</strong></td>
+<td><strong>Content Example</strong></td>
+<td><strong>Platform</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Monday</strong></td>
+<td>EDUCATE</td>
+<td>Sustainability fact, composting tip, or waste statistic. Example:
+“Did you know? 35,000+ garbage bags are discarded at the start line of a
+single marathon. That’s [X] lbs of LDPE going straight to landfill.”
+Format: single-image infographic or carousel with data from P0A.</td>
+<td>Instagram feed post (carousel or single image). Cross-post to:
+LinkedIn (text + image), Facebook page.</td>
+</tr>
+<tr class="odd">
+<td><strong>Wednesday</strong></td>
+<td>INSPIRE</td>
+<td>Runner story, ambassador spotlight, race-day photo, or founder
+update. Example: “Meet Sarah — she ran the Chicago Marathon in a
+compostable poncho and composted it right at the start line. Here’s her
+story.” Format: photo + caption or short video.</td>
+<td>Instagram feed post or Reel. Cross-post to: TikTok (if video),
+Facebook, Strava Club.</td>
+</tr>
+<tr class="even">
+<td><strong>Friday</strong></td>
+<td>ENGAGE</td>
+<td>Interactive content: poll (“What’s your worst start-line cold
+story?”), question (“What temperature makes you want a poncho?”), or
+meme/humor (“Marathon runners in the corral at 5 AM be like...” with a
+relatable image). Format: Story poll/question sticker, carousel, or
+Reel.</td>
+<td>Instagram Story (poll/question). Cross-post: TikTok (if video),
+Facebook Story.</td>
+</tr>
+<tr class="odd">
+<td><strong>Race week (bonus)</strong></td>
+<td>SELL</td>
+<td>Product-focused: “[Race Name] is this weekend! Order now for
+race-day warmth. Ships free on 3-packs.” Countdown, urgency, direct CTA.
+Format: Story with “Shop Now” link, feed post with product shot.</td>
+<td>Instagram Story + feed post. Cross-post: email (race-week campaign,
+Section 7), Facebook, TikTok.</td>
+</tr>
+</tbody>
+</table>
+<p>1.1 Content Batch Production</p>
+<p>BATCH CREATION: instead of creating content daily (stressful,
+inconsistent), batch-produce 1–2 weeks of content in a single 2–3 hour
+session. WORKFLOW: (1) Sunday evening: plan the week’s 3 posts using the
+calendar template. (2) Monday morning: create all 3 posts (write
+captions, design graphics in Canva, edit video clips). (3) Schedule: use
+Shopify’s built-in social scheduling, Later ($18/month, recommended for
+visual planning), or Buffer ($6/month per channel). (4) Race weeks: add
+the bonus SELL post and schedule race-week emails (Section 7) on the
+same day. TOTAL TIME: 2–3 hours/week for all social content creation and
+scheduling. This is manageable for a solo founder alongside all other
+operational responsibilities.</p>
+<p>2. Content Pillars: 4-Category Mix</p>
+<p><strong>Content pillars prevent the brand from becoming a one-note
+product account.</strong> A running brand that only posts about its
+product is boring. A running brand that posts about sustainability
+science, runner culture, product experiences, AND composting impact is
+interesting. The 4-pillar mix ensures: the brand speaks to multiple
+audience motivations (eco-conscious, community-seeking, gear-curious,
+impact-driven) while maintaining a cohesive identity.</p>
+<table>
+<colgroup>
+<col style="width: 16%" />
+<col style="width: 7%" />
+<col style="width: 42%" />
+<col style="width: 33%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Pillar</strong></td>
+<td><strong>% of Content</strong></td>
+<td><strong>Content Types</strong></td>
+<td><strong>Strategic Purpose</strong></td>
+</tr>
+<tr class="even">
+<td><strong>SUSTAINABILITY SCIENCE</strong></td>
+<td>30%</td>
+<td>Waste statistics by race (P0A data), composting process explained,
+LDPE vs. compostable comparison, BPI certification meaning, circular
+economy concepts, ocean plastic impact. Tone: informative, data-driven,
+no preaching. Let the numbers speak.</td>
+<td>Establishes topical AUTHORITY. Google and social algorithms favor
+accounts that consistently produce expert-level content on a specific
+topic. Every sustainability post strengthens the brand’s position as the
+running industry’s sustainability voice.</td>
+</tr>
+<tr class="odd">
+<td><strong>RUNNER CULTURE</strong></td>
+<td>30%</td>
+<td>Start-line traditions, corral cold stories, race-day rituals,
+training updates, running humor, race recaps, runner community moments.
+Tone: relatable, funny, warm. This is the content that makes runners
+feel “this brand GETS me.”</td>
+<td>Builds COMMUNITY. Runners follow brands that speak their language. A
+brand that only posts about its product is boring. A brand that posts
+about the runner EXPERIENCE — and happens to make a product — earns
+followers who become customers.</td>
+</tr>
+<tr class="even">
+<td><strong>PRODUCT IN ACTION</strong></td>
+<td>25%</td>
+<td>Product demos (tear-away, warmth test, unboxing), race-day footage
+of runners in ponchos, co-brand reveals, packaging process,
+factory/production behind-the-scenes. Tone: honest, visual,
+educational.</td>
+<td>Drives CONVERSION. This is the content that turns awareness into
+purchases. But it’s only 25% of the mix — if every post is a product
+pitch, followers tune out. The 30/30/25 balance ensures the product
+content lands on an audience that already trusts and relates to the
+brand.</td>
+</tr>
+<tr class="odd">
+<td><strong>IMPACT + TRANSPARENCY</strong></td>
+<td>15%</td>
+<td>Composting results from pilot races, waste diverted updates (impact
+counter data), facility tours, annual sustainability report highlights,
+“where does your poncho go?” stories, behind-the-scenes of composting
+partnerships. Tone: transparent, proud but humble, data-backed.</td>
+<td>Builds TRUST. Transparency is the antidote to greenwashing
+skepticism. Every post showing REAL composting data, REAL facility
+photos, and REAL weight-diverted numbers tells the audience: “This brand
+does what it says.”</td>
+</tr>
+</tbody>
+</table>
+<p>2.1 Pillar-to-Day Mapping</p>
+<p>MONDAY (Educate) draws from: Sustainability Science (primary) and
+Impact + Transparency. WEDNESDAY (Inspire) draws from: Runner Culture
+(primary) and Product in Action. FRIDAY (Engage) draws from: Runner
+Culture (primary) and any pillar. RACE WEEK (Sell) draws from: Product
+in Action. This mapping is a GUIDELINE, not a rigid rule. If a great
+runner-culture post idea comes on Monday, post it Monday. Authenticity
+trumps scheduling. The pillar ratios should average out over a month,
+not be enforced per week.</p>
+<p>3. Start-Line Waste Stats Series: 5 Infographics</p>
+<p><strong>The waste stats series is the brand’s signature content
+franchise.</strong> Each infographic quantifies the start-line waste
+problem at a specific major marathon, making the abstract (“race-day
+waste is bad”) concrete (“35,000 garbage bags at the NYC Marathon”). The
+series builds: brand authority on the waste issue, race-specific
+relevance (NYC runners share the NYC infographic), and a library of
+shareable assets that earn backlinks from sustainability blogs.</p>
+<table>
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 28%" />
+<col style="width: 33%" />
+<col style="width: 26%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Race</strong></td>
+<td><strong>Data</strong></td>
+<td><strong>Design</strong></td>
+<td><strong>Timing</strong></td>
+</tr>
+<tr class="even">
+<td><strong>NYC Marathon</strong></td>
+<td>35,000–45,000 garbage bags discarded, ~1,000–1,200 lbs LDPE waste,
+500+ year landfill persistence</td>
+<td>Infographic: silhouette of NYC skyline with garbage bag pile in
+foreground. Stat overlay: “35,000 garbage bags. 1 marathon. 500 years in
+a landfill.” Brand CTA at bottom: “There’s a better way.”</td>
+<td>Post 6 weeks before NYC Marathon (late September). Tie to: NYC
+Marathon landing page (P6D Sec 3).</td>
+</tr>
+<tr class="odd">
+<td><strong>Chicago Marathon</strong></td>
+<td>30,000–40,000 garbage bags, ~900–1,100 lbs</td>
+<td>Infographic: Lake Michigan shoreline with garbage bag pile. Same
+stat format. CTA: “Compostable ponchos at the Chicago start line — link
+in bio.”</td>
+<td>Post 6 weeks before Chicago (late August/early September).</td>
+</tr>
+<tr class="even">
+<td><strong>Boston Marathon</strong></td>
+<td>20,000–30,000 garbage bags at Athletes’ Village (Hopkinton) +
+donated clothing (2–4 tons estimated)</td>
+<td>Infographic: Hopkinton town green with clothing pile. Stat: “26,000
+garbage bags + 4,000 lbs of donated clothing. Every year at Hopkinton.”
+Unique angle: the “donate your old clothes” tradition creates TEXTILE
+waste.</td>
+<td>Post 6 weeks before Boston (late February). Boston’s clothing
+donation angle is unique and newsworthy.</td>
+</tr>
+<tr class="odd">
+<td><strong>Marine Corps Marathon</strong></td>
+<td>25,000–30,000 garbage bags at Pentagon start</td>
+<td>Infographic: Pentagon building with start-line crowd and garbage
+bags. Stat format. Tie to: MCM’s mission of honoring service members —
+“Honor the mission. Respect the Earth.”</td>
+<td>Post 6 weeks before MCM (late August).</td>
+</tr>
+<tr class="even">
+<td><strong>All US Marathons (aggregate)</strong></td>
+<td>Estimated 2–4 million garbage bags discarded across all US marathons
+annually, 60,000–120,000 lbs LDPE waste</td>
+<td>Summary infographic: US map with waste icons at major race cities.
+Stat: “3 million garbage bags. 1 marathon season. 0 composting.” CTA:
+“Until now.”</td>
+<td>Post as the FIRST piece in the series (Week 14), before
+race-specific stats begin. This is the MACRO frame that makes each
+race-specific stat feel urgent.</td>
+</tr>
+</tbody>
+</table>
+<p>3.1 Infographic Design Template</p>
+<p>Create a REUSABLE Canva template for the series: consistent layout
+across all 5 infographics. Format: 1080×1080px (Instagram square) or
+1080×1350px (portrait, more screen real estate on mobile). Elements:
+race-city silhouette or landmark illustration (top), bold stat number
+(center, large DM Sans font), explanatory text (bottom), brand logo +
+#RaceWarmLeaveNoTrace (footer). Color: Earth Green background with Mist
+White text, or Mist White background with Warm Charcoal text. The
+TEMPLATE approach ensures: (A) each new infographic takes &lt;30 minutes
+to produce (swap city illustration + stats), (B) the series has a
+cohesive visual identity that’s recognizable in the feed, and (C) the
+template is reusable for: new races, updated data, and Year 2
+comparisons (“Before [BRAND]: X garbage bags. After: Y ponchos
+composted”).</p>
+<p>4. Video Content: 6 Templates</p>
+<p><strong>Video is the highest-engagement format on every
+platform.</strong> Instagram Reels get 2–3× the reach of static posts.
+TikTok videos reach audiences far beyond the brand’s followers. YouTube
+Shorts surface in Google search results. The 6 video templates below
+cover the full product story: demo, comparison, behind-the-scenes,
+testimonial, composting proof, and first-person experience.</p>
+<table>
+<colgroup>
+<col style="width: 16%" />
+<col style="width:50%">
+<col style="width: 33%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Video</strong></td>
+<td><strong>Shot List</strong></td>
+<td><strong>Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Tear-away demo (15–30 sec)</strong></td>
+<td>Close-up of hands wearing the poncho. Pull the tab. The perforation
+tears cleanly. Poncho drops away in &lt;3 seconds. Slow-motion replay of
+the tear. Satisfying ASMR-style audio of the ripping sound.</td>
+<td>This is the #1 viral content opportunity. The tear sound, the clean
+line, the speed — it’s inherently satisfying and shareable. TikTok/Reels
+viewers love “oddly satisfying” content. Film from multiple angles:
+front, side, overhead, POV (wearing GoPro or phone on chest).</td>
+</tr>
+<tr class="odd">
+<td><strong>Corral simulation (30–60 sec)</strong></td>
+<td>Set up in a parking lot or park at dawn (5–6 AM, cold, low light).
+Gather 3–5 runners. Half wear garbage bags, half wear the poncho.
+Compare: movement, warmth (interview: “how do you feel?”), appearance,
+and ease of removal at “the gun” (someone blows a horn). Side-by-side
+split-screen.</td>
+<td>This video is the COMPARATIVE proof: poncho vs. garbage bag in a
+realistic setting. The visual contrast (silver metallized poncho vs.
+black garbage bag) is instantly compelling. Use FLIR camera if available
+for a thermal comparison overlay.</td>
+</tr>
+<tr class="even">
+<td><strong>Composting time-lapse (60–90 sec)</strong></td>
+<td>Time-lapse of the poncho decomposing in a commercial composting
+facility over 12–24 weeks. Compressed to 60 seconds: intact poncho →
+beginning to break down → fragments → soil. Overlay: week counter (“Week
+1... Week 4... Week 12... Week 24”). End: hands holding finished compost
+with a seedling growing.</td>
+<td>This requires: coordination with a composting facility to document
+the actual poncho over months. START THIS EARLY (Week 14–16): place 2–3
+ponchos in a facility and photograph weekly. The time-lapse won’t be
+ready until Month 4–6 but will be the most shared piece of content the
+brand produces. It is VISUAL PROOF of the sustainability promise.</td>
+</tr>
+<tr class="odd">
+<td><strong>Race-day POV (30–60 sec)</strong></td>
+<td>GoPro or chest-mounted phone POV: put on the poncho in the corral,
+wait with thousands of other runners, hear the gun, tear off the poncho,
+start running. First-person perspective of the entire product
+experience.</td>
+<td>POV content is immersive. The viewer FEELS the experience: the cold
+corral, the nervousness, the poncho warmth, the gun, the tear, the
+freedom. This converts because it answers the question: “What is it
+actually like to use this product?”</td>
+</tr>
+<tr class="even">
+<td><strong>Behind-the-scenes: factory (60–90 sec)</strong></td>
+<td>Tour of the factory (Parkside, ShinHigh, or ProAmpac): raw material
+rolls, lamination machine, laser perforation, printing, folding,
+packaging. Narration: “Here’s how your poncho is made — from raw
+cellulose to race-ready in 4 weeks.”</td>
+<td>Behind-the-scenes builds trust and differentiates from generic
+imports. Viewers see: the product is MANUFACTURED with intention, not
+mass-produced in a faceless factory. Request: factory permission to film
+during a production visit (P3A).</td>
+</tr>
+<tr class="odd">
+<td><strong>Runner testimonial compilation (60 sec)</strong></td>
+<td>3–5 runner clips (10–15 sec each) answering: “How was the poncho?”
+Shot at: the finish line, post-race food area, or expo. Quick-cut style.
+Runners: diverse ages, genders, race types. End with: the brand logo and
+“Race Warm. Leave No Trace.”</td>
+<td>Compilation testimonials are social proof in video form. The
+diversity of runners shows: the product works for EVERYONE, not just
+elite athletes or eco-purists. Collect clips at every pilot race (P5B)
+and expo (P5D).</td>
+</tr>
+</tbody>
+</table>
+<p>4.1 Video Production Setup</p>
+<p>EQUIPMENT (budget): smartphone (iPhone 12+ or equivalent Android for
+4K video), gimbal stabilizer ($50–$100: DJI OM 6 or Zhiyun Smooth 5),
+clip-on lavalier microphone ($15–$30: Boya BY-M1 for testimonial audio),
+portable LED light ($20–40: for indoor/low-light shots). TOTAL: $85–$170
+in equipment (all reusable). Editing: CapCut (free, mobile, excellent
+for Reels/TikTok), DaVinci Resolve (free desktop, professional-grade),
+or InShot ($4/month, simple mobile editor). NO professional videographer
+needed for Season 1. Authentic smartphone video outperforms polished
+brand videos on TikTok/Reels because it feels REAL, not produced.</p>
+<p>5. TikTok/Reels Strategy: 6 Hook Formats</p>
+<p><strong>TikTok and Instagram Reels reward: strong hooks (first 1–2
+seconds), relatable content, trending audio, and authentic
+presentation.</strong> The poncho has NATURAL TikTok appeal: the
+tear-away is oddly satisfying, the garbage-bag comparison is visually
+striking, the sustainability angle resonates with Gen Z/Millennial
+runners, and the race-day context is emotionally charged. The 6 hook
+formats below are proven TikTok structures adapted to the poncho’s
+strengths.</p>
+<table>
+<colgroup>
+<col style="width: 16%" />
+<col style="width:50%">
+<col style="width: 33%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Format</strong></td>
+<td><strong>Content</strong></td>
+<td><strong>Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Hook: Problem → Solution</strong></td>
+<td>Content: “Things marathon runners hate: standing in a cold corral in
+a garbage bag” [relatable footage] → “But what if it kept you warm AND
+composted after the race?” [reveal the poncho]. TRENDING AUDIO: use a
+popular “before/after” or “problem/solution” sound.</td>
+<td>This format WORKS on TikTok because: it starts with a relatable pain
+point (scroll-stopping), introduces a novel solution (curiosity), and
+ends with a product reveal (conversion). Target: 100K+ views if the hook
+is strong and the audio is trending.</td>
+</tr>
+<tr class="odd">
+<td><strong>Hook: Oddly Satisfying</strong></td>
+<td>Content: close-up tear-away demo. The perforation ripping. Slow
+motion. ASMR audio. No narration needed — let the visual and sound carry
+it. Text overlay: “The most satisfying thing about marathon
+morning.”</td>
+<td>Oddly satisfying content is TikTok’s bread and butter. The tear-away
+is INHERENTLY satisfying: clean line, consistent force, satisfying rip
+sound. This format has the highest VIRAL potential of any content
+type.</td>
+</tr>
+<tr class="even">
+<td><strong>Hook: Did You Know?</strong></td>
+<td>Content: “Did you know 35,000 garbage bags are thrown away at the
+start of the NYC Marathon? Here’s what we’re doing about it.” [waste
+stats infographic → product reveal → composting footage]. Text overlay
+with bold stats.</td>
+<td>Educational content performs well on TikTok when paired with
+surprising facts. The waste statistics from P0A are genuinely surprising
+to most runners — they’ve never quantified the problem.</td>
+</tr>
+<tr class="odd">
+<td><strong>Hook: Get Ready With Me (GRWM)</strong></td>
+<td>Content: “Get ready with me for the Chicago Marathon” — race-morning
+routine. Alarm clock at 4 AM, oatmeal, pinning bib, applying Body Glide,
+putting on the poncho, heading to the corral. The poncho is ONE element
+of the routine, not the entire focus.</td>
+<td>GRWM is a massive TikTok format. The poncho appears naturally within
+a relatable routine. Viewers who are training for a marathon save this
+video for their own race prep. The product sells itself through context,
+not pitch.</td>
+</tr>
+<tr class="even">
+<td><strong>Hook: What I Wish I Knew</strong></td>
+<td>Content: “What I wish I knew before my first marathon: #4 — You’re
+going to be FREEZING at the start line for 45 minutes. Bring a
+compostable poncho, not a garbage bag.” Listicle format with the poncho
+as one tip among 5–7.</td>
+<td>Advice/listicle content positions the brand as a RUNNING AUTHORITY,
+not just a product seller. The poncho recommendation is embedded in
+genuinely useful advice, making it more credible.</td>
+</tr>
+<tr class="odd">
+<td><strong>Hook: Before/After</strong></td>
+<td>Content: “Before: [runner shivering in garbage bag at start line].
+After: [same runner cozy in poncho, smiling].” Split-screen or
+transition. End: “And the best part? It composts.”</td>
+<td>Before/after is a proven TikTok format. The visual contrast between
+garbage bag (ugly, cold-looking, wasteful) and poncho (sleek, warm,
+sustainable) is immediately compelling.</td>
+</tr>
+</tbody>
+</table>
+<p>5.1 TikTok Posting Strategy</p>
+<p>FREQUENCY: 3–5 TikToks per week (higher frequency than Instagram
+because TikTok’s algorithm favors volume). Each TikTok can also be
+posted as an Instagram Reel (cross-post saves time). TIMING: post
+between 6–8 AM (runners scrolling before morning run) or 7–9 PM (evening
+scroll). Experiment with timing — TikTok’s analytics show when followers
+are most active. AUDIO: use trending audio sounds. Check TikTok’s
+“Discover” page daily for trending sounds that fit the content. A poncho
+video with a trending audio can reach 10–100× the audience of the same
+video with original audio. HASHTAGS: #marathon #running #raceday
+#sustainability #compostable #marathontraining #runningtiktok + brand
+hashtag. 3–5 hashtags per post (TikTok’s algorithm doesn’t benefit from
+hashtag flooding).</p>
+<p>6. Blog Publication Plan: 10+ Posts in 6 Months</p>
+<p><strong>The blog is the SEO engine and the content LIBRARY.</strong>
+Social posts disappear in the feed within 48 hours. Blog posts rank on
+Google for years. Every blog post serves multiple purposes: SEO ranking
+(drives organic traffic), email content (excerpted in newsletters),
+social content (blog excerpts become Instagram carousels), and B2B sales
+tool (blog links in outreach emails demonstrate thought leadership).</p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 5%" />
+<col style="width: 47%" />
+<col style="width: 34%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Period</strong></td>
+<td><strong>Posts</strong></td>
+<td><strong>Topics</strong></td>
+<td><strong>Strategic Purpose</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Month 1 (Week 14–18)</strong></td>
+<td>4 posts</td>
+<td>Blog 1: The Hidden Waste Problem (cornerstone, per P6D). Blog 2:
+Zero-Waste Race Day Guide (pillar, per P6D). Blog 3: How Composting
+Works (educational, per P6D). Blog 4: Race Director’s Guide (B2B, per
+P6D).</td>
+<td>Foundation content. These 4 posts establish topical authority and
+begin ranking for target keywords.</td>
+</tr>
+<tr class="odd">
+<td><strong>Month 2 (Week 18–22)</strong></td>
+<td>2 posts</td>
+<td>Blog 5: “10 Things to Bring to Your First Marathon Start Line”
+(listicle, poncho = #3). Blog 6: “The Science of Staying Warm: Why
+Metallized Cellulose Works” (product science deep dive).</td>
+<td>Expand the keyword footprint. Blog 5 targets broad marathon prep
+queries. Blog 6 builds E-E-A-T (Google’s Experience, Expertise,
+Authority, Trustworthiness) for the product’s technology.</td>
+</tr>
+<tr class="even">
+<td><strong>Month 3–4 (Week 22–30)</strong></td>
+<td>3–4 posts</td>
+<td>Blog 7: Pilot race recap (“How We Composted [X] lbs at [Race
+Name]”). Blog 8: “Compostable vs. Biodegradable vs. Recyclable: What’s
+the Difference?”. Blog 9: Ambassador spotlight interview. Blog 10
+(optional): “[Race Name] Start-Line Weather History: 10 Years of
+Data.”</td>
+<td>Race recaps = timely content that ranks for race-name queries.
+Comparison post = evergreen educational content. Ambassador spotlight =
+UGC/social proof. Weather history = SEO landmine for race-specific
+searches.</td>
+</tr>
+<tr class="odd">
+<td><strong>Month 5–6 (Week 30–40)</strong></td>
+<td>2–3 posts</td>
+<td>Blog 11: Annual impact report in blog format (“Year 1: [X] Ponchos
+Composted, [Y] Races Served, [Z] Runners Warmed”). Blog 12: “Why We’re
+Building a Compostable Poncho — The Founder’s Story”. Blog 13
+(optional): Guest post from a composting partner or race director.</td>
+<td>Impact report content = press-worthy and backlink-worthy. Founder
+story = emotional connection for brand loyalists. Guest post = backlink
+from the guest author’s network.</td>
+</tr>
+</tbody>
+</table>
+<p>7. Race Day Sustainability Checklist: Lead Magnet</p>
+<p><strong>The checklist is a downloadable PDF that captures email
+addresses.</strong> It provides genuine VALUE (practical sustainability
+tips for race day) while serving as an EMAIL CAPTURE tool and a BRANDING
+asset. The checklist format is ideal because: runners love checklists
+(race-day prep is inherently checklist-driven), it’s shareable (running
+clubs forward it to members), and it positions the brand as a
+sustainability authority beyond just selling ponchos.</p>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 81%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Element</strong></td>
+<td><strong>Specification</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Title</strong></td>
+<td>Race Day Sustainability Checklist: Run Fast, Leave No Trace</td>
+</tr>
+<tr class="odd">
+<td><strong>Format</strong></td>
+<td>PDF, 1 page, double-sided. Front: checklist. Back: brand story + QR
+code to brand.com + CTA (“Get your compostable poncho: brand.com”).
+Design: P1B visual identity, Earth Green accent, checkmark icons.</td>
+</tr>
+<tr class="even">
+<td><strong>Checklist items</strong></td>
+<td>PRE-RACE: bring a reusable water bottle, pack your compostable
+poncho, wear sustainable clothing brands, skip single-use plastic bags
+for gear. RACE DAY: use the poncho instead of a garbage bag, drop it in
+the compost bin at the start, refuse single-use cups at aid stations if
+carrying your own, pick up any litter you see on course. POST-RACE:
+compost your poncho packaging at home (or recycle), share your
+sustainable race story on social media (#RaceWarmLeaveNoTrace), leave a
+review of the poncho, and refer a friend.</td>
+</tr>
+<tr class="odd">
+<td><strong>Distribution</strong></td>
+<td>Email capture lead magnet: “Download our free Race Day
+Sustainability Checklist” (landing page at brand.com/checklist, email
+required for download). Social share: post the checklist as an Instagram
+carousel (each item = 1 slide). Print: include in B2B sample kits and
+expo booth handouts. Partner: offer to running clubs for their
+members.</td>
+</tr>
+<tr class="even">
+<td><strong>Email capture integration</strong></td>
+<td>Klaviyo form on brand.com/checklist: name + email → triggers welcome
+series (P6B Section 5). Tag: “checklist-download” for segmentation.
+Expected: 5–10% of site visitors who see the checklist offer will
+download, providing 50–200 email sign-ups per month at moderate
+traffic.</td>
+</tr>
+</tbody>
+</table>
+<p>8. Race-Week Email Campaign: 6 Stages</p>
+<p><strong>Race-week emails are the highest-converting email
+content.</strong> A runner 2 weeks before their marathon is ACTIVELY
+preparing: buying gear, planning nutrition, checking weather. An email
+about start-line warmth at this moment is not spam — it’s helpful and
+timely. The 6-stage sequence moves from awareness (6 weeks out) through
+consideration (4 weeks), urgency (2 weeks), last chance (race week),
+emotional connection (race day), and gratitude + review request
+(post-race).</p>
+<table>
+<colgroup>
+<col style="width: 9%" />
+<col style="width: 9%" />
+<col style="width: 42%" />
+<col style="width: 38%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Timing</strong></td>
+<td><strong>Stage</strong></td>
+<td><strong>Content</strong></td>
+<td><strong>Segmentation</strong></td>
+</tr>
+<tr class="even">
+<td><strong>6 weeks before race</strong></td>
+<td>AWARENESS</td>
+<td>Subject: “[Race Name] is 6 weeks away — start planning your race
+morning.” Content: link to race-specific landing page (P6D Section 3).
+Reminder: “Have you thought about what you’ll wear at the start line?”
+Soft CTA: “Check out our [Race Name] Start-Line Guide.”</td>
+<td>Segment: subscribers in the race city or who have browsed the
+race-specific landing page. Volume: low (awareness building, not selling
+yet).</td>
+</tr>
+<tr class="odd">
+<td><strong>4 weeks before race</strong></td>
+<td>CONSIDERATION</td>
+<td>Subject: “4 weeks to [Race Name] — here’s what the pros do at the
+start line.” Content: tips for race-day warmth (excerpt from Blog 5: 10
+Things to Bring). Product mention: “Our compostable poncho is the
+eco-friendly way to stay warm in the corral.” CTA: “Shop the poncho —
+arrives in time for [Race Name].”</td>
+<td>Begin introducing the product as a solution. Not hard-selling yet.
+The tip-based content provides value first.</td>
+</tr>
+<tr class="even">
+<td><strong>2 weeks before race</strong></td>
+<td>URGENCY</td>
+<td>Subject: “[Race Name] forecast: [X]°F at the start. Are you ready?”
+Content: actual weather forecast for race morning (or historical
+average), FLIR thermal comparison image. CTA: “Order by [date] for
+guaranteed delivery before [Race Name]. Free shipping on 3-packs.”</td>
+<td>This is the CONVERSION email. The weather forecast makes the cold
+REAL. The shipping deadline creates urgency. The FLIR image provides
+proof. The free shipping removes the last objection.</td>
+</tr>
+<tr class="odd">
+<td><strong>Race week (Mon–Wed)</strong></td>
+<td>LAST CHANCE</td>
+<td>Subject: “Last chance to get your poncho for [Race Name] — order
+TODAY.” Content: final shipping cutoff reminder. Testimonial from a
+pilot race runner. CTA: “Order now — arrives by Thursday.” Alternative:
+“Missed the shipping window? Grab one at our expo booth ([Hall], [Booth
+#]).”</td>
+<td>This email converts the last 10–20% of interested subscribers who
+procrastinated. If the brand has an expo booth: redirect to in-person
+purchase. If no booth: this is the final digital touchpoint.</td>
+</tr>
+<tr class="even">
+<td><strong>Race day</strong></td>
+<td>EXPERIENCE</td>
+<td>Subject: “Good luck at [Race Name] today! ” Content: “Wishing all
+[Race Name] runners an amazing race! If you’re wearing a compostable
+poncho today, tag us in your corral selfie: @[BRAND]
+#RaceWarmLeaveNoTrace.” No selling. Pure brand warmth and
+community.</td>
+<td>This email builds EMOTIONAL CONNECTION. The runner is nervous,
+excited, and checking their phone one last time before the start. A warm
+good-luck message from a brand they’ve purchased from creates loyalty.
+The UGC request (tag us!) generates race-day content.</td>
+</tr>
+<tr class="odd">
+<td><strong>Post-race (Day 1)</strong></td>
+<td>GRATITUDE + REVIEW</td>
+<td>Subject: “You did it! How was [Race Name]?” Content:
+congratulations, quick satisfaction survey link (2 min), review request
+(“Tell other runners about your poncho — leave a review”). CTA: “Leave a
+review and get 15% off your next order.”</td>
+<td>The post-race high is the BEST time to collect: feedback, reviews,
+and UGC. The runner just accomplished something incredible and is
+emotionally primed to share. Capture this moment.</td>
+</tr>
+</tbody>
+</table>
+<p>8.1 Race-Week Email Automation</p>
+<p>BUILD IN KLAVIYO: create a “Race-Week Campaign” flow for EACH major
+target race (NYC, Chicago, Boston, MCM, Philadelphia). Trigger: based on
+the race date (set as a fixed date in the flow). Audience: subscribers
+in the race city (geographic segmentation) OR subscribers who have
+visited the race-specific landing page (behavioral segmentation). Each
+flow sends 6 emails per the schedule above. ALTERNATIVELY: for Season 1
+with limited races, send these as manual campaigns (not automated flows)
+timed to each race. Manual campaigns allow: last-minute weather forecast
+updates in the 2-week email, real-time expo booth information in the
+race-week email, and flexible timing adjustments. Transition to
+automated flows in Season 2 when the race calendar is predictable and
+the email list is larger.</p>
+<p>9. Timeline &amp; Budget</p>
+<p><strong>WEEK 14: Build the content calendar template in Google Sheets
+or Notion. Define content pillars and pillar-to-day mapping. Create the
+Canva template for the waste stats infographic series. Produce the first
+3 social posts (Mon/Wed/Fri). Publish Blog 1 (per P6D). Begin composting
+time-lapse documentation at partner facility.</strong></p>
+<p><strong>WEEK 14–16: Launch the waste stats series: post #1 (All US
+Marathons aggregate), then race-specific stats every 1–2 weeks aligned
+to the race calendar. Produce the tear-away demo video (Video Template
+1). Post first TikTok. Create the Race Day Sustainability Checklist PDF
+in Canva and set up the email capture landing page.</strong></p>
+<p><strong>WEEK 16–20: Produce the corral simulation video (Video
+Template 2) and race-day POV (Template 4). Build the first race-week
+email campaign for the earliest Fall 2026 race. Publish Blogs 5–6.
+Continue 3 posts/week social cadence. Batch-produce content every Sunday
+for the week ahead.</strong></p>
+<p><strong>WEEK 20–ONGOING: Race-day content from pilot races (Video
+Template 6: testimonial compilation). Publish pilot race recaps as blog
+posts. Launch the ambassador content flow (UGC resharing per P7A Section
+6). Build race-week email campaigns for each subsequent race. Maintain 3
+posts/week + 3–5 TikToks/week. Monthly: review content performance
+(impressions, engagement, clicks, conversions per post type) and adjust
+the pillar mix based on what performs best.</strong></p>
+<p>BUDGET: Canva Pro (design tool): $13/month. Later or Buffer (social
+scheduling): $6–$18/month. CapCut (video editing): $0 (free). Video
+equipment (gimbal + mic + light): $85–$170 one-time. Sustainability
+Checklist printing (for expos): $30–$60. Blog writing (founder-written):
+$0. TOTAL P7B: $85–$230 one-time + $19–$31/month.</p>
+<p>10. Conclusion: Content Is the Brand’s Heartbeat</p>
+<p><strong>A brand that goes silent between race seasons is forgotten by
+race season.</strong> Content keeps the brand alive in feeds, inboxes,
+and search results 365 days a year. The Monday sustainability fact
+reminds a runner that garbage bags are wasteful. The Wednesday
+ambassador spotlight reminds them that real runners use the poncho. The
+Friday poll reminds them that the brand is fun, relatable, and human.
+And when race week arrives and the 2-week email lands with a 42°F
+forecast, the decision is already made.</p>
+<p><strong>The content flywheel:</strong> social content builds
+awareness → awareness drives website traffic → traffic drives email
+sign-ups (checklist lead magnet) → email nurtures consideration
+(race-week sequence) → consideration drives purchases → purchases
+generate reviews + UGC → UGC becomes new social content. Every piece of
+content feeds the next. The flywheel spins faster with each race season,
+each new ambassador, and each piece of pilot-race data. By Month 12, the
+content engine runs on its own momentum: there is always something to
+post, always a race to prepare for, always a composting story to
+tell.</p>
+
+        </div>
+    </div></div>
+<footer style="text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px">
+Sustainable Race-Start Warmth Poncho — D2C Brand GTM Project · 60 Subprojects · 391 Tasks · ~15,500¶ · April 2026
+</footer></body></html>

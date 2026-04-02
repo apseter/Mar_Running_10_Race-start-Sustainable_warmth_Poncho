@@ -1,0 +1,833 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>P9D: Contracts Agreements — Race Start Warmth GTM</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0e1a;--surface:#111827;--card:#1a2332;--border:#2a3a4e;--accent:#10b981;--accent2:#3b82f6;--text:#e2e8f0;--muted:#94a3b8;--white:#fff;--red:#ef4444;--amber:#f59e0b;--green:#10b981}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+/* Nav */
+nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
+nav .inner{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;max-width:1200px;margin:0 auto}
+nav .brand{font-weight:700;font-size:15px;color:var(--accent)}
+nav .links{display:flex;gap:8px;flex-wrap:wrap}
+nav .links a{color:var(--muted);font-size:13px;padding:4px 10px;border-radius:6px;transition:.2s}
+nav .links a:hover,nav .links a.active{color:var(--white);background:var(--card);text-decoration:none}
+/* Hero */
+.hero{padding:60px 0 40px;text-align:center}
+.hero h1{font-size:2.4em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:1.1em;max-width:700px;margin:0 auto}
+/* Stats bar */
+.stats{display:flex;justify-content:center;gap:32px;padding:24px 0;flex-wrap:wrap}
+.stat{text-align:center}.stat .num{font-size:1.8em;font-weight:800;color:var(--white)}.stat .label{font-size:.75em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+/* Cards */
+.grid{display:grid;gap:16px;margin:24px 0}
+.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}
+.grid-3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;transition:.2s}
+.card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.card h3{font-size:1.1em;margin-bottom:8px}.card p{color:var(--muted);font-size:.9em}
+.card .badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:8px}
+.card .meta{font-size:.8em;color:var(--muted);margin-top:12px}
+/* Section */
+.section{padding:40px 0}.section h2{font-size:1.6em;font-weight:700;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+/* Table */
+table{width:100%;border-collapse:collapse;font-size:.85em;margin:16px 0}
+th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:52px}
+td{padding:8px 12px;border-bottom:1px solid var(--border)}
+tr:hover td{background:rgba(16,185,129,.05)}
+.status-complete{color:var(--green);font-weight:600}.status-not{color:var(--muted)}
+/* Progress */
+.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:8px}
+.progress .bar{height:100%;background:var(--accent);border-radius:3px}
+/* Back link */
+.back{display:inline-block;color:var(--muted);font-size:.9em;margin-bottom:20px}
+.back:hover{color:var(--accent)}
+/* Download */
+.dl-card{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin:8px 0;transition:.2s}
+.dl-card:hover{border-color:var(--accent);text-decoration:none}
+.dl-card .icon{font-size:2em}.dl-card .info h4{color:var(--white);margin-bottom:4px}.dl-card .info p{color:var(--muted);font-size:.85em}
+/* Footer */
+footer{text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px}
+@media(max-width:768px){.stats{gap:16px}.stat .num{font-size:1.3em}nav .links{gap:4px}nav .links a{font-size:11px;padding:3px 6px}.hero h1{font-size:1.6em}}
+
+.doc-content{max-width:900px;margin:0 auto;padding:20px 0}
+.doc-content h1{font-size:1.8em;font-weight:800;color:var(--white);margin:32px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.doc-content h2{font-size:1.4em;font-weight:700;color:var(--accent);margin:28px 0 12px}
+.doc-content h3{font-size:1.15em;font-weight:600;color:var(--accent2);margin:20px 0 10px}
+.doc-content p{margin:8px 0;line-height:1.7}
+.doc-content table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85em}
+.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;border:1px solid var(--border)}
+.doc-content td{padding:8px 12px;border:1px solid var(--border);vertical-align:top}
+.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.doc-content ul,.doc-content ol{margin:8px 0 8px 24px}
+.doc-content li{margin:4px 0;line-height:1.6}
+.doc-content strong{color:var(--white)}
+.doc-content em{color:var(--muted)}
+.doc-content blockquote{border-left:3px solid var(--accent);padding:8px 16px;margin:12px 0;background:var(--card);border-radius:0 8px 8px 0}
+.nav-sub{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 24px;padding:12px 16px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
+.nav-sub a{font-size:.8em;color:var(--muted);padding:4px 10px;border-radius:4px;transition:.2s;white-space:nowrap}
+.nav-sub a:hover,.nav-sub a.active{color:var(--white);background:var(--surface);text-decoration:none}
+</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a></div></div></nav><div class="container">
+    <div style="padding-top:30px">
+        <a href="p9.html" class="back">← ⚖️ P9: Legal & Compliance</a>
+        <div class="nav-sub"><a href="p9.html">⚖️ P9 Overview</a><a href="sub-p9a.html">P9A</a><a href="sub-p9b.html">P9B</a><a href="sub-p9c.html">P9C</a><a href="sub-p9d.html" class="active">P9D</a><a href="sub-p9e.html">P9E</a></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px">
+            <div>
+                <span style="background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px">P9D</span>
+                <span style="color:var(--muted);font-size:.85em;margin-left:8px">P9: Legal & Compliance</span>
+            </div>
+            <a href="files/P9D_Contracts_Agreements.docx" style="font-size:.85em;color:var(--accent);padding:6px 14px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
+        </div>
+        <div class="doc-content">
+            <p><strong>P9D: CONTRACTS &amp;</strong></p>
+<p><strong>AGREEMENTS</strong></p>
+<p>Sub-Project P9D | Legal, Compliance &amp; Sustainability Certs |
+Weeks 6–12</p>
+<p><em>Complete Contract Templates: B2B Terms &amp; Conditions (8
+Clauses), Ambassador Agreement (6 Provisions), Supplier Agreement (6
+Clauses), Pilot Race Agreement (6 Sections), Platform TOS Compliance,
+and Website Legal Pages (4 Policies)</em></p>
+<p>March 2026 | Confidential | NOT LEGAL ADVICE — Consult an
+Attorney</p>
+<p><strong>CROSS-REFERENCE:</strong> <em>This section covers the LEGAL
+AGREEMENT FRAMEWORK for pilot races (6 contract sections: scope,
+pricing, data collection, composting, exclusivity, case study rights).
+For the OPERATIONAL EXECUTION of the pilot — including: race-day
+logistics, volunteer coordination, runner survey protocols, data
+collection procedures, post-race debrief process, and case study
+production workflow — see P5B Pilot Race Execution. Both documents
+should be used together: P9D defines what is agreed; P5B defines how it
+is executed.</em></p>
+<p>Executive Summary</p>
+<p><strong>Contracts define the rules of every business
+relationship.</strong> Without written contracts: every agreement is
+verbal, every expectation is assumed, and every dispute is unprovable. A
+race director who claims “you promised free shipping” has no written
+record to contradict. A supplier who delivers substandard quality has no
+specification to violate. An ambassador who posts misleading claims has
+no compliance obligation to breach. Contracts transform: assumptions
+into agreements, expectations into obligations, and disputes into
+resolvable conflicts with clear remedies.</p>
+<p><strong>This document provides 6 contract frameworks:</strong> (1)
+B2B terms and conditions covering orders, payment, delivery, returns,
+liability, logo usage, and termination, (2) an ambassador agreement
+covering content expectations, FTC disclosure, IP rights, compensation,
+and termination, (3) a supplier agreement covering quality standards, IP
+protection, confidentiality, exclusivity, and indemnification, (4) a
+pilot race agreement covering scope, pricing, data collection,
+composting commitment, exclusivity, and case study rights, (5) platform
+TOS compliance review for Amazon and Shopify, and (6) website legal
+pages for Terms of Service, Privacy Policy, Return Policy, and
+Environmental Claims Disclaimer.</p>
+<p><strong>DISCLAIMER:</strong> <em>These contract frameworks are
+educational outlines, NOT ready-to-sign legal documents. Each contract
+should be drafted or reviewed by a qualified attorney before use.
+Contract law varies by state, and template contracts from the internet
+may not comply with the specific legal requirements of the founder’s
+jurisdiction.</em></p>
+<p>1. B2B Terms &amp; Conditions: 8 Clauses</p>
+<p><strong>The B2B terms and conditions govern every sale to a race
+director or event organizer.</strong> They are: attached to or
+referenced in every PO acceptance, included in the race director
+onboarding guide (P5F Section 2), and published on brand.com/b2b/terms
+for reference. The terms protect against: payment default, delivery
+disputes, defect claims, logo misuse, and catastrophic liability
+exposure.</p>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width:50%">
+<col style="width: 35%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Clause</strong></td>
+<td><strong>Language Summary</strong></td>
+<td><strong>Rationale</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Orders &amp; acceptance</strong></td>
+<td>All orders are subject to acceptance by [BRAND]. A purchase order
+becomes binding upon: (A) written acceptance by [BRAND] via email, or
+(B) commencement of production. [BRAND] reserves the right to decline
+any order for any reason including: insufficient inventory, credit
+concerns, or order quantities below the 500-unit minimum order quantity
+(MOQ).</td>
+<td>The acceptance clause protects against: being contractually
+obligated to fulfill an order the brand cannot deliver (inventory
+shortage, production delay) or an order from a customer with poor credit
+history.</td>
+</tr>
+<tr class="odd">
+<td><strong>Pricing &amp; payment</strong></td>
+<td>Pricing: per the current published price list or as specified in the
+accepted PO. Prices are subject to change with 30 days written notice
+for future orders. Payment terms: 50% deposit due within 5 business days
+of PO acceptance (first order) or 30% deposit (repeat orders with clean
+payment history). Balance due: on shipment date (50/50 terms) or net-30
+from shipment (30/70 terms). Late payment: overdue balances accrue
+interest at 1.5% per month (18% annually). Orders may be held or
+cancelled if deposit is not received within 10 business days of PO
+acceptance.</td>
+<td>Payment terms align with P4C Section 2 (invoicing) and P5F Section 1
+(order management). The 1.5%/month interest clause incentivizes timely
+payment but is rarely enforced — it exists to provide leverage in
+escalation conversations.</td>
+</tr>
+<tr class="even">
+<td><strong>Delivery &amp; shipping</strong></td>
+<td>Delivery dates are estimates, not guarantees. [BRAND] will use
+commercially reasonable efforts to meet estimated delivery dates.
+Shipping terms: FOB origin (title and risk transfer to buyer at point of
+shipment). Buyer is responsible for: providing accurate delivery
+address, being available to receive shipment, and inspecting goods
+within 5 business days of receipt. Shipping costs: included in unit
+pricing for orders ≥1,000 units; additional $0.10–$0.30/unit for orders
+&lt;1,000 units.</td>
+<td>FOB origin means: once the product ships, the BUYER bears the risk
+of loss/damage in transit. This protects the brand from: transit damage
+claims, carrier delays, and lost shipments. The buyer should insure
+their own shipment or request the brand to add insurance (at buyer’s
+cost).</td>
+</tr>
+<tr class="odd">
+<td><strong>Returns &amp; defects</strong></td>
+<td>Defective goods: [BRAND] will replace or refund defective units
+reported within 30 days of delivery. Defects include: manufacturing
+defects (seal failure, print misalignment, perforation failure),
+material defects (holes, tears, discoloration), and packaging defects
+(damaged inner bags, missing labels). NOT defective: normal wear from
+use, damage caused by improper storage (heat, moisture), or units used
+as intended (ponchos that have been worn and torn are not defective).
+Return process: buyer contacts [BRAND] with photos of defective units.
+[BRAND] issues a return authorization number. Defective units are
+returned at [BRAND]’s expense. Replacement or refund issued within 10
+business days of receipt of returned goods.</td>
+<td>The defect definition is NARROW and SPECIFIC: it covers
+manufacturing and material problems, NOT product dissatisfaction or
+post-use condition. This prevents: race directors returning used ponchos
+claiming “defective” and protects the brand from frivolous return claims
+on B2B bulk orders.</td>
+</tr>
+<tr class="even">
+<td><strong>Liability limitation</strong></td>
+<td>[BRAND]’s total liability under this agreement shall not exceed: the
+total amount paid by the buyer for the specific order giving rise to the
+claim. [BRAND] is not liable for: consequential, incidental, special, or
+punitive damages, including but not limited to: lost profits, lost
+revenue, business interruption, or reputational harm. This limitation
+applies regardless of the form of action (contract, tort, negligence,
+strict liability, or otherwise).</td>
+<td>The liability cap ($X = order value) protects the brand from:
+catastrophic claims that exceed the order’s revenue. Example: a race
+director claims the ponchos “failed” and caused reputational damage
+worth $500,000. Without a liability cap: the brand is exposed to the
+full $500K claim. With the cap: liability is limited to the order value
+($5,000–$20,000 typically).</td>
+</tr>
+<tr class="odd">
+<td><strong>Co-brand logo usage</strong></td>
+<td>Buyer grants [BRAND] a non-exclusive license to: display the buyer’s
+race logo on co-branded ponchos as specified in the approved mockup.
+[BRAND] grants buyer a non-exclusive license to: use [BRAND]’s logo in
+race communications referencing the poncho partnership. Both parties may
+use the other’s logo in: press releases, social media, and marketing
+materials ONLY in connection with the poncho partnership. Neither party
+may: modify the other’s logo, use it in a manner that implies
+endorsement beyond the poncho partnership, or sublicense logo usage to
+third parties.</td>
+<td>The mutual logo license is essential for co-brand operations (P3C)
+and for the brand’s ability to reference the race partnership in
+marketing (P5B case studies, P7C PR). Without explicit license: using
+the race’s logo could be a trademark violation.</td>
+</tr>
+<tr class="even">
+<td><strong>Termination</strong></td>
+<td>Either party may terminate this agreement: with 30 days written
+notice for future orders (does not affect orders already in production
+or shipped). Immediate termination: if the other party materially
+breaches the agreement and fails to cure within 15 days of written
+notice. Upon termination: buyer pays for all goods produced or in
+production; [BRAND] delivers all completed goods; any prepaid amounts
+for undelivered goods are refunded within 30 days.</td>
+<td>The termination clause provides a clean exit for both parties. The
+“pay for goods in production” clause protects the brand from: a race
+director cancelling a co-brand order AFTER the brand has purchased
+materials and begun production.</td>
+</tr>
+<tr class="odd">
+<td><strong>Governing law + dispute resolution</strong></td>
+<td>This agreement is governed by the laws of [Founder’s State]. Any
+dispute shall be resolved through: good-faith negotiation (30 days),
+then mediation (60 days, mediator mutually agreed), then binding
+arbitration under the rules of the American Arbitration Association.
+Arbitration shall take place in [Founder’s City, State]. Each party
+bears its own costs; the prevailing party in arbitration is entitled to
+reasonable attorney’s fees.</td>
+<td>Arbitration is faster and cheaper than litigation. Including the
+dispute resolution ladder (negotiate → mediate → arbitrate) ensures:
+most disputes are resolved informally without legal costs. The governing
+law and venue clause prevents: the brand from being dragged into a
+distant jurisdiction by a race director in another state.</td>
+</tr>
+</tbody>
+</table>
+<p>2. Ambassador Agreement: 6 Provisions</p>
+<p><strong>The ambassador agreement balances: clear expectations with
+authentic relationships.</strong> Too formal and the ambassador feels
+like an employee. Too informal and there is no protection for: FTC
+compliance, content rights, or code misuse. The agreement below is
+designed to be: 1–2 pages, written in plain language, and signable via
+email (“I agree to the terms” reply is sufficient for Tier 1).</p>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width:50%">
+<col style="width: 35%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Provision</strong></td>
+<td><strong>Language Summary</strong></td>
+<td><strong>Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Program description</strong></td>
+<td>Ambassador agrees to: use [BRAND] products and create social media
+content about their experience. This is a PARTNERSHIP, not an employment
+relationship. Ambassador is an independent contractor and is solely
+responsible for their own taxes, insurance, and compliance with
+applicable laws.</td>
+<td>The independent contractor classification is essential. If
+ambassadors are classified as employees: the brand owes payroll taxes,
+benefits, and employment protections. The agreement should clearly
+state: no employment relationship, no guaranteed compensation, and no
+exclusivity.</td>
+</tr>
+<tr class="odd">
+<td><strong>Content expectations</strong></td>
+<td>Ambassador is encouraged (but not required) to create: 1–3 social
+media posts per race season showcasing [BRAND] products. Suggested
+content types: unboxing, race-day use, and composting follow-up (per P7A
+Section 3 content brief). Ambassador retains full creative control over
+content style, voice, and messaging. [BRAND] may suggest topics,
+hashtags, and talking points but does not dictate or approve content
+before publication.</td>
+<td>The “encouraged but not required” language is critical. If content
+is REQUIRED: the relationship looks more like employment (IRS scrutiny)
+and the content feels forced (audience detects inauthenticity). The
+brief SUGGESTS; the ambassador DECIDES.</td>
+</tr>
+<tr class="even">
+<td><strong>FTC disclosure</strong></td>
+<td>Ambassador must comply with FTC Endorsement Guides: clearly and
+conspicuously disclose the material connection with [BRAND] in EVERY
+post mentioning the product. Acceptable disclosures: #ad, #sponsored,
+#gifted, Instagram’s “Paid partnership” tag, or TikTok’s “Branded
+content” toggle. The disclosure must be: visible without clicking
+“more,” not buried among 30 hashtags, and in the SAME language as the
+post.</td>
+<td>FTC compliance is NON-NEGOTIABLE. The FTC holds BOTH the brand AND
+the endorser responsible for non-disclosure. Fines: $10K–$50K+ per
+violation. Include: specific examples of compliant disclosures in the
+agreement and content brief.</td>
+</tr>
+<tr class="odd">
+<td><strong>IP and content rights</strong></td>
+<td>Ambassador grants [BRAND] a non-exclusive, royalty-free, worldwide
+license to: use, reproduce, modify, and display content created as part
+of the ambassador program for marketing purposes across all channels
+(social media, website, advertising, packaging, B2B materials), with
+attribution to the ambassador. Ambassador retains ownership of their
+content and may: post it on their own channels, remove it from their own
+channels, and use it for their own purposes. [BRAND] will credit the
+ambassador when using their content (e.g., “Photo by
+@ambassadorhandle”).</td>
+<td>The license is NON-EXCLUSIVE (the ambassador keeps their rights) and
+ROYALTY-FREE (the brand doesn’t pay per use). Attribution is a COURTESY
+that builds goodwill, not a legal requirement of the license — but
+including it in the agreement signals respect for the ambassador’s
+work.</td>
+</tr>
+<tr class="even">
+<td><strong>Compensation</strong></td>
+<td>Tier 1: free product (3-pack per season), 20% personal discount
+code, 10% sharing code (10 cards). Tier 2: free product (6-pack per
+season), 25% personal code, 15% sharing code, potential paid content
+($50–$200 per dedicated post/video, negotiated separately per
+deliverable). NO guaranteed compensation beyond free product. Discount
+codes are personal and may not be resold, distributed commercially, or
+shared on public coupon websites.</td>
+<td>The compensation section prevents: disputes about what was promised.
+Free product is the BASE; paid content is OPTIONAL and separately
+negotiated. The coupon-site prohibition prevents: discount code abuse
+that erodes margin.</td>
+</tr>
+<tr class="odd">
+<td><strong>Term and termination</strong></td>
+<td>This agreement is effective for one race season (approximately 6
+months) and renews automatically unless: either party gives 14 days
+written notice of non-renewal. Either party may terminate at any time
+for any reason with 14 days written notice. Upon termination: ambassador
+keeps all product received; [BRAND]’s content license survives
+termination (the brand may continue to use content created during the
+partnership); discount codes are deactivated within 7 days.</td>
+<td>The low-friction termination (14 days, no penalty) ensures: neither
+party feels trapped. The surviving content license ensures: the brand
+doesn’t lose access to UGC it has already incorporated into marketing
+materials. The code deactivation prevents: former ambassadors
+distributing codes after the relationship ends.</td>
+</tr>
+</tbody>
+</table>
+<p>3. Supplier Agreement: 6 Clauses</p>
+<p><strong>The supplier agreement protects the brand’s most critical
+operational relationship.</strong> The factory that produces the poncho
+has access to: product designs, material specifications, production
+processes, and brand artwork. Without contractual protection: the
+factory could produce identical ponchos for a competitor, share
+specifications with other brands, or deliver substandard quality with no
+contractual accountability.</p>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width:50%">
+<col style="width: 35%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Clause</strong></td>
+<td><strong>Language Summary</strong></td>
+<td><strong>Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Quality standards</strong></td>
+<td>Supplier shall produce goods in accordance with: the approved
+product specification (P2B technical spec), the approved golden sample
+(P3A Section 3), and the quality inspection checklist (P3A Section 5).
+Goods must meet: BPI/ASTM D6400 compostability requirements, specified
+material composition (NatureFlex NM 23µm + PLA spunbond 35gsm),
+specified dimensions (±2% tolerance), and specified tear-away force
+(3–5N per P2C). [BRAND] may inspect goods at: the factory during
+production (pre-shipment inspection) and upon receipt (incoming
+inspection per P4A Section 6).</td>
+<td>The quality standards clause ties the supplier to: SPECIFIC,
+MEASURABLE requirements. If the supplier delivers ponchos with 8N tear
+force (too hard to tear): the brand has a contractual basis to reject
+the shipment or demand rework. Without specific standards: the supplier
+can argue “the goods are acceptable” and the brand has no recourse.</td>
+</tr>
+<tr class="odd">
+<td><strong>IP protection</strong></td>
+<td>Supplier agrees that: all product designs, specifications, artwork,
+and brand materials provided by [BRAND] are confidential and
+proprietary. Supplier shall not: manufacture the same or substantially
+similar product for any third party, share [BRAND]’s designs or
+specifications with any third party, or use [BRAND]’s brand name, logo,
+or other IP for any purpose other than fulfilling [BRAND]’s orders. This
+obligation survives termination of the agreement for 3 years.</td>
+<td>This clause prevents the MOST COMMON IP risk with overseas
+manufacturers: the factory takes the brand’s design and sells identical
+products to competitors or directly on Amazon under a different brand.
+The 3-year survival ensures: even after the brand switches factories,
+the old factory cannot immediately produce copies.</td>
+</tr>
+<tr class="even">
+<td><strong>Confidentiality</strong></td>
+<td>Supplier agrees to: maintain the confidentiality of all [BRAND]
+proprietary information including: product specifications, material
+formulations, pricing, order volumes, customer information, and business
+plans. Confidential information may not be disclosed to: supplier’s
+employees beyond those directly involved in production, any third party,
+or any competitor of [BRAND].</td>
+<td>Works in conjunction with the NDA (P9B Section 6). The supplier
+agreement’s confidentiality clause provides CONTRACTUAL protection
+(breach of contract claim) in addition to the NDA’s protection (trade
+secret misappropriation claim). Double protection for the brand’s most
+sensitive information.</td>
+</tr>
+<tr class="odd">
+<td><strong>Exclusivity</strong></td>
+<td>OPTION A (preferred): supplier agrees to an EXCLUSIVE manufacturing
+arrangement for compostable race ponchos in the US market. Supplier will
+not produce: the same or substantially similar product for any brand
+competing in the US marathon/race market. OPTION B (realistic): if the
+supplier will not agree to exclusivity: request a NON-COMPETE for the
+specific product category (“compostable warmth ponchos for athletic
+events”) for 12–24 months, with the right to renegotiate at each order
+renewal.</td>
+<td>Full exclusivity is IDEAL but may be unrealistic with major
+converters (Parkside, ProAmpac) who serve many clients. The
+category-specific non-compete is a practical middle ground: the supplier
+can make other products for other clients but cannot produce the SAME
+product for a direct competitor.</td>
+</tr>
+<tr class="even">
+<td><strong>Pricing and terms</strong></td>
+<td>Pricing: as specified in the accepted PO or annual pricing
+agreement. Supplier guarantees pricing for: 6 months from PO acceptance
+(protecting against mid-order price increases). Payment: per P3A Section
+4 negotiated terms (typically 30% deposit, 70% before shipment, or LC at
+sight). Annual pricing review: supplier provides Year 2 pricing 90 days
+before the first Year 2 PO, allowing the brand to: negotiate, accept, or
+seek alternative suppliers.</td>
+<td>The 6-month price guarantee protects against: mid-season price
+increases due to raw material cost spikes or currency fluctuations. The
+90-day advance notice for Year 2 pricing gives the brand time to:
+compare quotes from backup suppliers (ProAmpac per P3A Section 1) and
+negotiate from a position of information.</td>
+</tr>
+<tr class="odd">
+<td><strong>Liability and indemnification</strong></td>
+<td>Supplier indemnifies [BRAND] against: any claims, damages, or losses
+arising from: defective goods, goods that do not meet the specified
+quality standards, goods that fail to meet compostability certification
+requirements, and any IP infringement claims related to the supplier’s
+manufacturing process. [BRAND]’s liability to supplier is limited to:
+payment for accepted goods per the agreed pricing and terms.</td>
+<td>The indemnification clause shifts product-quality risk to the
+supplier: if defective ponchos cause customer complaints, product
+recalls, or BPI certification issues, the SUPPLIER bears the cost — not
+the brand. This is standard in manufacturing agreements and protects the
+brand from: financial exposure caused by factory quality failures.</td>
+</tr>
+</tbody>
+</table>
+<p>4. Pilot Race Agreement: 6 Sections</p>
+<p><strong>The pilot agreement is the foundation of the B2B
+relationship.</strong> It defines: what the brand provides (product,
+logistics, composting), what the race director provides (access,
+communication, volunteer support), and what the brand RETAINS (data,
+photos, case study rights). The case study rights clause is the most
+valuable provision in the entire contract portfolio: a single pilot case
+study generates $5,000–$20,000 in marketing value and closes the next
+5–10 B2B deals.</p>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width:50%">
+<col style="width: 35%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Section</strong></td>
+<td><strong>Language Summary</strong></td>
+<td><strong>Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Scope</strong></td>
+<td>[BRAND] agrees to provide: [X] compostable warmth ponchos for
+distribution at the start line of [Race Name] on [Date]. [BRAND]
+provides: product delivery to the race venue per P4C Section 3,
+composting bin placement and signage per P4D Section 3, composting
+facility coordination and pickup, and post-race composting verification
+report within 30 days. Race Director agrees to: allow distribution of
+ponchos at the designated start-line area, provide reasonable access for
+composting bin placement, include [BRAND] in pre-race communications to
+runners (optional but requested), and participate in a post-race debrief
+within 14 days.</td>
+<td>The scope clause ensures: both parties know exactly what to expect.
+The race director provides: access and communication support. The brand
+provides: product, logistics, and composting. Both are clearly
+defined.</td>
+</tr>
+<tr class="odd">
+<td><strong>Pricing (pilot)</strong></td>
+<td>Pilot pricing: $[X] per unit (“pilot rate” — typically 15–25% below
+standard B2B pricing to incentivize the first order per P5B Section 1).
+Payment terms: 50% deposit at PO acceptance, 50% balance on delivery.
+Pilot pricing is available for: the first order only. Subsequent orders
+revert to standard B2B pricing.</td>
+<td>The pilot discount is an INVESTMENT in the case study and the
+long-term relationship. The terms explicitly state: pilot pricing is
+one-time only. This prevents: race directors expecting permanent
+pilot-rate pricing.</td>
+</tr>
+<tr class="even">
+<td><strong>Data collection rights</strong></td>
+<td>[BRAND] retains the right to: collect data at the race event
+including: poncho distribution count, start-line collection count,
+runner feedback (verbal or survey), photographs and video of ponchos in
+use at the start line and composting operations, and composting facility
+weight verification. Race Director grants [BRAND] permission to: use
+event photographs, data, and the race name in marketing materials
+including: case studies, website content, social media, press releases,
+B2B pitch materials, and investor presentations.</td>
+<td>The data collection rights clause is ESSENTIAL for: building case
+studies (P5B Section 6), creating marketing content (P7B race-day
+content), PR (P7C pilot race press coverage), and B2B sales (showing
+other race directors the proof). Without explicit permission: using the
+race’s name and photos in marketing materials could violate the race’s
+IP rights.</td>
+</tr>
+<tr class="odd">
+<td><strong>Composting commitment</strong></td>
+<td>[BRAND] commits to: composting all collected ponchos at a certified
+commercial composting facility within [City/Region]. [BRAND] provides: a
+post-race composting verification report including: total weight
+collected, composting facility name and location, composting timeline,
+and verification that materials were processed according to ASTM D6400
+standards. Race Director agrees to: support composting collection
+efforts by: allowing bin placement at designated start-line areas,
+including composting instructions in pre-race runner communications
+(optional), and providing volunteer support for collection (1 volunteer
+per 3–5 bins recommended per P4D Section 3).</td>
+<td>The composting commitment is the brand’s unique value proposition
+vs. Heatsheets or garbage bags. It transforms the poncho from: “a
+product the race buys” to “a sustainability SERVICE the race partners
+on.” The verification report is the PROOF that the promise was
+delivered.</td>
+</tr>
+<tr class="even">
+<td><strong>Exclusivity (pilot)</strong></td>
+<td>During the pilot race event: [BRAND] is the exclusive provider of
+compostable warmth products for the start line. The Race Director agrees
+not to: distribute competing compostable warmth products at the same
+event. This exclusivity applies only to: the specific race date and
+start-line location. It does NOT prevent the Race Director from: using
+other brands at different events, using non-compostable alternatives
+(garbage bags, Heatsheets) at the same event (recognizing the transition
+may be gradual), or evaluating other compostable products for future
+events.</td>
+<td>The limited exclusivity protects the pilot’s integrity: if the race
+director distributes 2 competing compostable ponchos at the same event,
+the data is contaminated and the case study is weakened. The carve-out
+for non-compostable alternatives is realistic: most races will not go
+100% compostable in the first year.</td>
+</tr>
+<tr class="odd">
+<td><strong>Case study rights</strong></td>
+<td>[BRAND] retains the right to: create and publish a case study based
+on the pilot race, including: race name, race date, distribution data,
+composting data, runner feedback quotes, race director quotes (with
+approval), and race-day photographs. The case study may be used for:
+website publication, B2B sales materials, press releases, investor
+presentations, and award submissions. Race Director has the right to:
+review and approve the case study before publication (5 business day
+review period; no response = approval). Race Director may request:
+removal of specific quotes or data points but may not: prevent
+publication of the case study entirely (the brand’s data is the brand’s
+data).</td>
+<td>The case study rights clause is the MOST VALUABLE provision in the
+pilot agreement. A single case study (“[Race Name] composted [X] lbs
+using [BRAND] ponchos”) is worth: $5,000–$20,000 in marketing value
+(content for website, social, B2B pitch, PR) and is the #1 tool for
+closing the next 5–10 B2B deals. The review-and-approve process respects
+the race director’s reputation while ensuring the brand can
+publish.</td>
+</tr>
+</tbody>
+</table>
+<p>5. Platform TOS Compliance: Amazon &amp; Shopify</p>
+<p><strong>Amazon and Shopify impose their own terms of service on all
+sellers.</strong> Violating platform TOS can result in: account
+suspension (losing access to the sales channel entirely), listing
+removal, payment holds, and permanent bans. Understanding and complying
+with platform TOS is as important as complying with federal/state law —
+because the PLATFORM is the judge, jury, and executioner with no appeals
+court.</p>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width:50%">
+<col style="width: 35%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Platform</strong></td>
+<td><strong>Key Requirements</strong></td>
+<td><strong>Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Amazon Seller Agreement</strong></td>
+<td>KEY TERMS: seller must maintain account health metrics (ODR &lt;1%,
+late shipment &lt;4%, cancellation &lt;2.5%). Seller must not:
+manipulate reviews (incentivized reviews, fake reviews,
+review-for-discount), engage in price manipulation (artificially
+inflating prices then “discounting”), use competitor brand names in
+listing keywords (backend or visible), or make unsubstantiated claims in
+listing content. ENVIRONMENTAL CLAIMS: Amazon’s Climate Pledge Friendly
+program has its own verification requirements. If applying for the
+badge: ensure claims match BPI/ASTM D6400 documentation. Amazon may
+require: additional documentation or third-party certification
+verification.</td>
+<td>Review: annually and whenever Amazon updates its policies (Amazon
+typically updates seller policies 2–4 times per year). The most common
+violation risks for this business: environmental claims that don’t match
+certification (per P9C), review manipulation (NEVER incentivize Amazon
+reviews outside of Vine per P6C Section 4), and keyword misuse
+(competitor brand names in backend keywords).</td>
+</tr>
+<tr class="odd">
+<td><strong>Shopify Terms of Service</strong></td>
+<td>KEY TERMS: seller must not: sell prohibited products (the poncho is
+not a prohibited product), use Shopify for: fraud, deceptive practices,
+or illegal activities. Seller must: maintain accurate product
+descriptions, honor stated return policies, and comply with all
+applicable laws (including environmental claims per P9C and sales tax
+per P8C). PAYMENTS: Shopify Payments terms prohibit: chargebacks above
+Shopify’s threshold (varies, typically &lt;1% of transactions).
+Excessive chargebacks result in: Shopify Payments account suspension,
+requiring a switch to a third-party payment processor.</td>
+<td>Review: at account setup and annually. Shopify’s terms are less
+restrictive than Amazon’s for most legitimate businesses. The primary
+compliance risk: environmental claims on the product page that don’t
+match the qualification requirements in P9C. Shopify does not actively
+police product claims (unlike Amazon), but: a consumer complaint or FTC
+inquiry can reference Shopify product pages as evidence.</td>
+</tr>
+</tbody>
+</table>
+<p>6. Website Legal Pages: 4 Policies</p>
+<p><strong>Every e-commerce website must publish: Terms of Service,
+Privacy Policy, Return Policy, and (for this brand) an Environmental
+Claims Disclaimer.</strong> These pages are: legally required in most
+jurisdictions, linked in the site footer on every page, referenced
+during checkout (Shopify automatically links the Privacy Policy and
+Terms of Service at checkout), and the FIRST documents reviewed by a
+regulator, attorney, or journalist investigating the brand.</p>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width:50%">
+<col style="width: 35%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Page</strong></td>
+<td><strong>Specification</strong></td>
+<td><strong>Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Terms of Service</strong></td>
+<td>Governs: use of the website (brand.com). Includes: acceptable use,
+account creation (if applicable), intellectual property ownership,
+user-generated content license (if accepting reviews or UGC uploads),
+limitation of liability, disclaimer of warranties (“AS IS”), governing
+law, and dispute resolution. USE: Shopify’s built-in Terms of Service
+generator (Settings → Policies → Terms of Service) provides a compliant
+template. Customize: add product-specific disclaimers (“the poncho
+provides warmth but is not a medical device and does not prevent
+hypothermia”).</td>
+<td>The Terms of Service protects against: frivolous lawsuits from
+website visitors, liability for website downtime or errors, and IP theft
+(someone copying website content or images). It is linked in: the site
+footer (legally required for e-commerce sites in most
+jurisdictions).</td>
+</tr>
+<tr class="odd">
+<td><strong>Privacy Policy</strong></td>
+<td>Governs: collection, use, and protection of personal data. MUST
+DISCLOSE: what data is collected (name, email, address, payment,
+browsing behavior), how it’s used (order fulfillment, email marketing,
+analytics, advertising), which third parties receive data (Shopify,
+Klaviyo, Meta Pixel, Google Analytics, Microsoft Clarity, Amazon), how
+users can opt out (email unsubscribe, cookie preferences), and data
+retention periods. COMPLIANCE: CCPA (California Consumer Privacy Act) if
+any California customers (right to know, right to delete, right to opt
+out of sale of personal data). GDPR (if selling to EU customers in Year
+2+). CAN-SPAM (email marketing: unsubscribe link required in every
+email, honor unsubscribe within 10 days).</td>
+<td>The Privacy Policy is legally REQUIRED for any website collecting
+personal data (which all e-commerce sites do). Use: Shopify’s Privacy
+Policy generator as a starting point, then customize to disclose: all
+third-party tools installed (GA4, Meta Pixel, Clarity per P6A), email
+marketing platform (Klaviyo per P6B), and any data shared with B2B
+partners. Annual review: update when new tracking tools or data-sharing
+relationships are added.</td>
+</tr>
+<tr class="even">
+<td><strong>Return Policy</strong></td>
+<td>Per P4B Section 6.1: DTC returns accepted within 30 days of delivery
+for unused/unopened products in original packaging. Full refund to
+original payment method. Return shipping: customer pays (or brand
+provides prepaid label for defective items). Exceptions: opened/used
+ponchos are not returnable (hygienic product exception). Amazon returns:
+governed by Amazon’s return policy (brand cannot override). Shopify
+returns: governed by this policy (linked on product page + checkout +
+order confirmation email).</td>
+<td>The return policy must be: clearly visible before purchase (product
+page, cart, and checkout), consistent across all communications, and
+actually HONORED (failing to honor a posted return policy is an FTC
+violation and consumer fraud in most states). The 30-day window and
+unused-condition requirement are standard for consumable products.</td>
+</tr>
+<tr class="odd">
+<td><strong>Environmental Claims Disclaimer</strong></td>
+<td>A dedicated disclaimer page or section on brand.com/sustainability
+(per P9C Section 2 row 7): “Our compostable warmth poncho is
+BPI-certified to meet ASTM D6400 standards for composting at commercial
+composting facilities. The poncho requires commercial composting
+infrastructure (sustained temperatures of 58°C / 136°F) and will not
+biodegrade in landfill conditions or home composting environments.
+Composting results vary by facility. Composting availability varies by
+region. [BRAND] coordinates with local composting facilities for race
+events where composting logistics are included in the partnership.
+Individual consumers should verify commercial composting availability in
+their area via FindAComposter.com.”</td>
+<td>The Environmental Claims Disclaimer is the brand’s INSURANCE POLICY
+against greenwashing accusations. It says: “here is exactly what the
+product does and does not do.” A consumer who reads this page and still
+misunderstands the claims has no reasonable basis for complaint. A
+regulator who reviews this page sees: good-faith transparency. Link to:
+from the product page footer, the FAQ page, and the sustainability
+page.</td>
+</tr>
+</tbody>
+</table>
+<p>7. Timeline &amp; Budget</p>
+<p><strong>WEEK 6–8: Draft the B2B terms and conditions (Section 1) and
+the pilot race agreement (Section 4). These are needed FIRST because:
+B2B outreach (P5A) begins in Weeks 6–12, and pilot race conversations
+(P5B) begin shortly after. Use: a template from SCORE or Rocket Lawyer,
+customize with the specific provisions above, and have an attorney
+review ($500–$1,500 for B2B terms + pilot agreement
+review).</strong></p>
+<p><strong>WEEK 8: Draft the ambassador agreement (Section 2). This is
+needed before: ambassador recruitment begins (P7A Week 12–14). The
+agreement can be: a simple 1–2 page document sent via email. Attorney
+review optional for Tier 1 (low risk); recommended for Tier 2 (potential
+paid content complicates the relationship).</strong></p>
+<p><strong>WEEK 8–10: Draft the supplier agreement (Section 3). This is
+needed before: the first production order (P3B). If using Parkside (UK):
+the supplier may have their own terms; negotiate: quality standards, IP
+protection, and confidentiality provisions INTO their terms or as an
+addendum. Attorney review recommended ($500–$1,000).</strong></p>
+<p><strong>WEEK 10–12: Review Amazon Seller Agreement and Shopify TOS
+(Section 5). Create website legal pages (Section 6): generate via
+Shopify’s built-in policy generators, customize with: product-specific
+disclaimers, environmental claims disclaimer, and tracking tool
+disclosures. Publish: link in site footer before the store launches.
+Attorney review of website legal pages: optional ($200–$500) but
+recommended for the Privacy Policy (CCPA compliance is
+complex).</strong></p>
+<p>BUDGET: Attorney review of B2B terms + pilot agreement: $500–$1,500.
+Attorney review of supplier agreement: $500–$1,000. Ambassador agreement
+(template-based): $0–$200. Website legal pages (Shopify generator +
+customization): $0–$500. TOTAL P9D: $1,000–$3,200. Contracts are a
+ONE-TIME investment that protects the business for years. The cost of
+NOT having contracts: one bad B2B dispute or one product liability claim
+without a liability cap can cost $10,000–$100,000+.</p>
+<p>8. Conclusion: Contracts Enable Trust</p>
+<p><strong>Contracts are not adversarial — they are clarifying.</strong>
+A race director who signs a B2B agreement with clear payment terms,
+delivery expectations, and defect procedures feels: MORE confident in
+the partnership, not less. An ambassador who signs an agreement with
+clear content expectations and FTC guidance feels: MORE supported, not
+constrained. A supplier who signs quality standards feels: MORE
+accountable, not threatened. Good contracts ENABLE trust by: removing
+ambiguity, setting mutual expectations, and providing clear paths for
+resolving disagreements.</p>
+<p><strong>Sign everything. Document everything. Honor
+everything.</strong> A business that operates on handshakes in Year 1
+will face: disputes in Year 2 that could have been prevented by a 2-page
+agreement signed in Week 8. The time to write contracts is BEFORE the
+relationship begins — not after the dispute starts.</p>
+
+        </div>
+    </div></div>
+<footer style="text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px">
+Sustainable Race-Start Warmth Poncho — D2C Brand GTM Project · 60 Subprojects · 391 Tasks · ~15,500¶ · April 2026
+</footer></body></html>

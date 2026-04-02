@@ -1,0 +1,896 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>P0A: Race Start Waste Sustainability Landscape — Race Start Warmth GTM</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0e1a;--surface:#111827;--card:#1a2332;--border:#2a3a4e;--accent:#10b981;--accent2:#3b82f6;--text:#e2e8f0;--muted:#94a3b8;--white:#fff;--red:#ef4444;--amber:#f59e0b;--green:#10b981}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+/* Nav */
+nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
+nav .inner{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;max-width:1200px;margin:0 auto}
+nav .brand{font-weight:700;font-size:15px;color:var(--accent)}
+nav .links{display:flex;gap:8px;flex-wrap:wrap}
+nav .links a{color:var(--muted);font-size:13px;padding:4px 10px;border-radius:6px;transition:.2s}
+nav .links a:hover,nav .links a.active{color:var(--white);background:var(--card);text-decoration:none}
+/* Hero */
+.hero{padding:60px 0 40px;text-align:center}
+.hero h1{font-size:2.4em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:1.1em;max-width:700px;margin:0 auto}
+/* Stats bar */
+.stats{display:flex;justify-content:center;gap:32px;padding:24px 0;flex-wrap:wrap}
+.stat{text-align:center}.stat .num{font-size:1.8em;font-weight:800;color:var(--white)}.stat .label{font-size:.75em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+/* Cards */
+.grid{display:grid;gap:16px;margin:24px 0}
+.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}
+.grid-3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;transition:.2s}
+.card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.card h3{font-size:1.1em;margin-bottom:8px}.card p{color:var(--muted);font-size:.9em}
+.card .badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:8px}
+.card .meta{font-size:.8em;color:var(--muted);margin-top:12px}
+/* Section */
+.section{padding:40px 0}.section h2{font-size:1.6em;font-weight:700;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+/* Table */
+table{width:100%;border-collapse:collapse;font-size:.85em;margin:16px 0}
+th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:52px}
+td{padding:8px 12px;border-bottom:1px solid var(--border)}
+tr:hover td{background:rgba(16,185,129,.05)}
+.status-complete{color:var(--green);font-weight:600}.status-not{color:var(--muted)}
+/* Progress */
+.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:8px}
+.progress .bar{height:100%;background:var(--accent);border-radius:3px}
+/* Back link */
+.back{display:inline-block;color:var(--muted);font-size:.9em;margin-bottom:20px}
+.back:hover{color:var(--accent)}
+/* Download */
+.dl-card{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin:8px 0;transition:.2s}
+.dl-card:hover{border-color:var(--accent);text-decoration:none}
+.dl-card .icon{font-size:2em}.dl-card .info h4{color:var(--white);margin-bottom:4px}.dl-card .info p{color:var(--muted);font-size:.85em}
+/* Footer */
+footer{text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px}
+@media(max-width:768px){.stats{gap:16px}.stat .num{font-size:1.3em}nav .links{gap:4px}nav .links a{font-size:11px;padding:3px 6px}.hero h1{font-size:1.6em}}
+
+.doc-content{max-width:900px;margin:0 auto;padding:20px 0}
+.doc-content h1{font-size:1.8em;font-weight:800;color:var(--white);margin:32px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.doc-content h2{font-size:1.4em;font-weight:700;color:var(--accent);margin:28px 0 12px}
+.doc-content h3{font-size:1.15em;font-weight:600;color:var(--accent2);margin:20px 0 10px}
+.doc-content p{margin:8px 0;line-height:1.7}
+.doc-content table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85em}
+.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;border:1px solid var(--border)}
+.doc-content td{padding:8px 12px;border:1px solid var(--border);vertical-align:top}
+.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.doc-content ul,.doc-content ol{margin:8px 0 8px 24px}
+.doc-content li{margin:4px 0;line-height:1.6}
+.doc-content strong{color:var(--white)}
+.doc-content em{color:var(--muted)}
+.doc-content blockquote{border-left:3px solid var(--accent);padding:8px 16px;margin:12px 0;background:var(--card);border-radius:0 8px 8px 0}
+.nav-sub{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 24px;padding:12px 16px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
+.nav-sub a{font-size:.8em;color:var(--muted);padding:4px 10px;border-radius:4px;transition:.2s;white-space:nowrap}
+.nav-sub a:hover,.nav-sub a.active{color:var(--white);background:var(--surface);text-decoration:none}
+</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a></div></div></nav><div class="container">
+    <div style="padding-top:30px">
+        <a href="p0.html" class="back">← 🔍 P0: Market Research</a>
+        <div class="nav-sub"><a href="p0.html">🔍 P0 Overview</a><a href="sub-p0a.html" class="active">P0A</a><a href="sub-p0b.html">P0B</a><a href="sub-p0c.html">P0C</a><a href="sub-p0d.html">P0D</a><a href="sub-p0e.html">P0E</a><a href="sub-p0f.html">P0F</a><a href="sub-p0g.html">P0G</a><a href="sub-p0h.html">P0H</a><a href="sub-p0.html">P0</a></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px">
+            <div>
+                <span style="background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px">P0A</span>
+                <span style="color:var(--muted);font-size:.85em;margin-left:8px">P0: Market Research</span>
+            </div>
+            <a href="files/P0A_Race_Start_Waste_Sustainability_Landscape.docx" style="font-size:.85em;color:var(--accent);padding:6px 14px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
+        </div>
+        <div class="doc-content">
+            <p><strong>P0A: RACE-START WASTE &amp;</strong></p>
+<p><strong>SUSTAINABILITY LANDSCAPE</strong></p>
+<p>Sub-Project P0A | Market Research &amp; Concept Validation | Weeks
+1–3</p>
+<p><em>Comprehensive Research Report for the Sustainable Race-Start
+Warmth Layer D2C Brand</em></p>
+<p>March 2026 | Confidential</p>
+<p>Executive Summary</p>
+<p><strong>The race start-line waste problem is massive, quantified, and
+growing—yet no product exists at the intersection of compostability and
+thermal warmth.</strong> Major US marathons collectively discard over
+500,000 lbs of clothing annually at start lines, with the NYC Marathon
+alone generating 123,000 lbs in a single morning. Race organizations are
+spending aggressively on sustainability (NYRR has pledged net-zero by
+2040; Chicago diverts 83% of waste from landfill), municipal composting
+mandates are tightening in key marathon cities, and the Council for
+Responsible Sport certification system directly rewards compostable
+product adoption.</p>
+<p>Meanwhile, runners still rely on garbage bags and $1 Goodwill
+sweatshirts because <strong>no affordable, compostable, thermally
+insulating start-line garment exists anywhere in the market.</strong>
+This report details every data point needed to size, validate, and
+position a D2C compostable warmth poncho.</p>
+<p>1. Discarded Clothing at Major Marathons</p>
+<p>The start-line clothing waste problem is not theoretical—it is
+measured in tons, documented by race organizations, and growing with
+participation. The table below represents the most comprehensive
+publicly available dataset on marathon start-line discards.</p>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 23%" />
+<col style="width: 14%" />
+<col style="width: 35%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Marathon</strong></td>
+<td><strong>Weight Discarded</strong></td>
+<td><strong>Year</strong></td>
+<td><strong>Destination</strong></td>
+</tr>
+<tr class="even">
+<td><strong>NYC Marathon</strong></td>
+<td>123,000 lbs (61.5 tons)</td>
+<td>2025</td>
+<td>All of Us Clothing</td>
+</tr>
+<tr class="odd">
+<td><strong>NYC Marathon</strong></td>
+<td>96,000 lbs</td>
+<td>2024</td>
+<td>All of Us Clothing</td>
+</tr>
+<tr class="even">
+<td><strong>Chicago Marathon</strong></td>
+<td>54,500 lbs (27.25 tons)</td>
+<td>2024</td>
+<td>IL AMVETS / Salvation Army</td>
+</tr>
+<tr class="odd">
+<td><strong>Boston Marathon</strong></td>
+<td>~42,000 lbs (21 tons)</td>
+<td>Annual avg</td>
+<td>Big Brothers Big Sisters</td>
+</tr>
+<tr class="even">
+<td><strong>London Marathon</strong></td>
+<td>41,667 lbs (18.9 tonnes)</td>
+<td>2024</td>
+<td>Salvation Army Trading Co.</td>
+</tr>
+<tr class="odd">
+<td><strong>Disney WDW Marathon</strong></td>
+<td>24,000 lbs (12 tons)</td>
+<td>2025</td>
+<td>Harvest Time International</td>
+</tr>
+<tr class="even">
+<td><strong>Tokyo Marathon</strong></td>
+<td>10,538 lbs (4,780 kg)</td>
+<td>2025</td>
+<td>Chemical/thermal recycling</td>
+</tr>
+<tr class="odd">
+<td><strong>Philadelphia Marathon</strong></td>
+<td>~8,000 lbs</td>
+<td>2015</td>
+<td>Clothes-pin to shelters</td>
+</tr>
+<tr class="even">
+<td><strong>Grandma’s Marathon</strong></td>
+<td>7,511 lbs</td>
+<td>2025</td>
+<td>True North Goodwill</td>
+</tr>
+<tr class="odd">
+<td><strong>Marine Corps Marathon</strong></td>
+<td>5,280–7,140 lbs</td>
+<td>2018–2019</td>
+<td>DC-area shelters</td>
+</tr>
+<tr class="even">
+<td><strong>Houston Marathon</strong></td>
+<td>~6,000 lbs (3 tons)</td>
+<td>Ongoing</td>
+<td>Star of Hope</td>
+</tr>
+<tr class="odd">
+<td><strong>LA Marathon</strong></td>
+<td>5,825 lbs</td>
+<td>2019</td>
+<td>Goodwill Industries</td>
+</tr>
+<tr class="even">
+<td><strong>Twin Cities Marathon</strong></td>
+<td>~4,000 lbs</td>
+<td>Annual est.</td>
+<td>USAgain</td>
+</tr>
+<tr class="odd">
+<td><strong>Pittsburgh Marathon</strong></td>
+<td>~4,000 lbs (2 tons)</td>
+<td>2019</td>
+<td>Goodwill of SW PA</td>
+</tr>
+<tr class="even">
+<td><strong>Big Sur Marathon</strong></td>
+<td>4.32 tons (combined)</td>
+<td>2024</td>
+<td>Last Chance Mercantile</td>
+</tr>
+<tr class="odd">
+<td><strong>CIM Sacramento</strong></td>
+<td>~2,000 lbs (1 ton)</td>
+<td>2024</td>
+<td>Goodwill</td>
+</tr>
+<tr class="even">
+<td><strong>Rock ’n’ Roll Phoenix</strong></td>
+<td>~2,000 lbs</td>
+<td>Undated</td>
+<td>Goodwill of Central AZ</td>
+</tr>
+<tr class="odd">
+<td><strong>Rock ’n’ Roll Dallas</strong></td>
+<td>1,800 lbs</td>
+<td>2015</td>
+<td>ATRS to charity</td>
+</tr>
+<tr class="even">
+<td><strong>Valencia Marathon</strong></td>
+<td>2,167 kg (4,778 lbs)</td>
+<td>2023</td>
+<td>Koopera Cáritas</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Aggregate estimate:</strong> The top 10 reporting US races
+generate approximately 300,000+ lbs annually. With ~1,100 marathon
+events and ~2,500+ half-marathon events in the US, total annual race
+start-line clothing waste almost certainly exceeds 500,000 lbs (250+
+tons). NYRR alone has collected over 1 million lbs of clothing across
+NYC Marathon, NYC Half, and Brooklyn Half combined from 2012–2019.</p>
+<p>Weather variability drives significant year-to-year
+fluctuation—Boston’s rainy 2018 generated far more discards than typical
+years. Races without published data (REVEL series, Denver Colfax,
+Seattle, Richmond, Indianapolis, Austin) confirm clothing collection and
+donation but do not quantify weight.</p>
+<p>2. Sustainability Commitments: 30+ US Race Organizations</p>
+<p>Race sustainability spans a wide spectrum from world-class programs
+to no documented effort. The landscape divides into four tiers: Elite,
+Strong, Emerging, and No Documented Programs.</p>
+<p>2.1 Sustainability Commitment Matrix</p>
+<table>
+<colgroup>
+<col style="width: 21%" />
+<col style="width: 19%" />
+<col style="width: 19%" />
+<col style="width: 40%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Organization</strong></td>
+<td><strong>CRS Status</strong></td>
+<td><strong>Key Metric</strong></td>
+<td><strong>Notable Achievements</strong></td>
+</tr>
+<tr class="even">
+<td><strong>NYRR (NYC)</strong></td>
+<td>Gold (Org)</td>
+<td>Net-zero 2040</td>
+<td>123K lbs clothing; 200K bottles replaced; recycled medals</td>
+</tr>
+<tr class="odd">
+<td><strong>Chicago Marathon</strong></td>
+<td>Evergreen + Inspire</td>
+<td>83% diversion (2024)</td>
+<td>15 tons composted; Heatsheets recycled via Trex</td>
+</tr>
+<tr class="even">
+<td><strong>Big Sur Marathon</strong></td>
+<td>Evergreen</td>
+<td>80–98.4% diversion</td>
+<td>200 Green Team volunteers; zero standard garbage cans</td>
+</tr>
+<tr class="odd">
+<td><strong>Grandma’s Marathon</strong></td>
+<td>Evergreen (2025)</td>
+<td>UN 50% by 2030</td>
+<td>436K cups composted; 234K lbs CO2 avoided</td>
+</tr>
+<tr class="even">
+<td><strong>Pittsburgh Marathon</strong></td>
+<td>Zero-waste since 2015</td>
+<td>≥90% annually</td>
+<td>PA Resource Council 10+ year partner</td>
+</tr>
+<tr class="odd">
+<td><strong>LA Marathon</strong></td>
+<td>Evergreen (2025)</td>
+<td>First CRS cert (2009)</td>
+<td>Foopak Bio cups; first certified marathon globally</td>
+</tr>
+<tr class="even">
+<td><strong>Houston Marathon</strong></td>
+<td>Gold (9 consecutive)</td>
+<td>76–83% diversion</td>
+<td>2015 AIMS Green Award</td>
+</tr>
+<tr class="odd">
+<td><strong>CIM Sacramento</strong></td>
+<td>Gold (2017+)</td>
+<td>75%+ diversion</td>
+<td>2018 Green Sports Alliance Innovator</td>
+</tr>
+<tr class="even">
+<td><strong>Boston (BAA)</strong></td>
+<td>Not CRS certified</td>
+<td>62–80% by area</td>
+<td>21+ tons clothing/yr; compostable cups since 2022</td>
+</tr>
+<tr class="odd">
+<td><strong>Marine Corps</strong></td>
+<td>Gold (2019)</td>
+<td>25% diversion</td>
+<td>UNFCCC signatory; Recover Brands partner</td>
+</tr>
+<tr class="even">
+<td><strong>Cowtown (Fort Worth)</strong></td>
+<td>Gold (3x)</td>
+<td>Carbon neutral 2021</td>
+<td>406 metric tons offset</td>
+</tr>
+<tr class="odd">
+<td><strong>Philadelphia</strong></td>
+<td>Green Cert (2012–13)</td>
+<td>90%+ (2014–15)</td>
+<td>$200K clothing donated (2023)</td>
+</tr>
+<tr class="even">
+<td><strong>Detroit Free Press</strong></td>
+<td>Not CRS</td>
+<td>Net zero waste 23–24</td>
+<td>First major Detroit zero-waste event</td>
+</tr>
+<tr class="odd">
+<td><strong>Indianapolis Monumental</strong></td>
+<td>Not CRS</td>
+<td>43.4% (2021)</td>
+<td>Athletic Brewing Green Team sponsor</td>
+</tr>
+<tr class="even">
+<td><strong>Denver Colfax</strong></td>
+<td>Not CRS</td>
+<td>Green Footprint program</td>
+<td>Charity clothing donation; no published metrics</td>
+</tr>
+<tr class="odd">
+<td><strong>SF Marathon</strong></td>
+<td>Not CRS</td>
+<td>77% diversion (2023)</td>
+<td>Silverback production partner</td>
+</tr>
+</tbody>
+</table>
+<p>2.2 NYRR Deep Dive</p>
+<p>NYRR operates the most ambitious sustainability program in distance
+running. Their net-zero by 2040 commitment encompasses emissions,
+circularity, water, and transparency, aligned with the UNFCCC Sports for
+Climate Action initiative. In September 2024, NYRR became the first
+running organization to earn CRS organizational certification at Gold
+level.</p>
+<p>Key 2024–2025 innovations include: the NYRR Team for Climate (200
+runners per marquee race fundraising for carbon offset projects via Anew
+Climate), a partnership with Culligan to replace 200,000+ single-use
+plastic bottles with recyclable aluminum at the NYC Marathon, finisher
+medals made from 100% recycled steel with recycled PET ribbon, solar
+generators powering start tents, and a partnership with GreenGear Supply
+for sugarcane-based eco-friendly ponchos.</p>
+<p>2.3 Chicago Marathon Deep Dive</p>
+<p>The Bank of America Chicago Marathon holds the highest CRS
+certification level—Evergreen with Inspire status—first earned in 2016
+and renewed through 2025. Their 83% waste diversion rate (2024)
+encompasses 15 tons of organic materials composted and donated to
+Chicago community gardens, 54,500 lbs of start-line clothing donated,
+Heatsheets blankets recycled into composite wood boards via Trex, 100%
+renewable energy at all event facilities, and battery storage systems
+reducing diesel reliance.</p>
+<p>2.4 No Documented Programs (Notable Gaps)</p>
+<p>Rock ’n’ Roll Marathon Series (Ironman Group), REVEL Running, Mainly
+Marathons, Honolulu Marathon, and Richmond Marathon have no formal,
+publicly documented sustainability programs. This is particularly
+notable for Rock ’n’ Roll, the world’s largest road running series.</p>
+<p>3. Council for Responsible Sport (CRS) Certification</p>
+<p>3.1 Certification Levels</p>
+<p>The CRS standard (Version 5 for Events) evaluates across five
+pillars: Planning &amp; Communications, Procurement, Resource
+Management, Access &amp; Equity, and Community Legacy. Over 250 events
+worldwide have earned certification across 8+ countries.</p>
+<table>
+<colgroup>
+<col style="width: 19%" />
+<col style="width: 14%" />
+<col style="width: 19%" />
+<col style="width: 46%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Level</strong></td>
+<td><strong>Threshold</strong></td>
+<td><strong>Credits Needed</strong></td>
+<td><strong>Notable Certified Marathons</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Certified</strong></td>
+<td>45%</td>
+<td>30–39 credits</td>
+<td>Peachtree Road Race, Flying Pig</td>
+</tr>
+<tr class="odd">
+<td><strong>Silver</strong></td>
+<td>60%</td>
+<td>40–49 credits</td>
+<td>Marine Corps (historic), Houston (historic)</td>
+</tr>
+<tr class="even">
+<td><strong>Gold</strong></td>
+<td>75%</td>
+<td>50–59 credits</td>
+<td>Cowtown, CIM, Houston, Cherry Blossom</td>
+</tr>
+<tr class="odd">
+<td><strong>Evergreen</strong></td>
+<td>90%+</td>
+<td>60+ credits</td>
+<td>Chicago, LA, Grandma’s, London, Toronto</td>
+</tr>
+</tbody>
+</table>
+<p>3.2 How a Compostable Poncho Earns CRS Credits</p>
+<p><strong>Procurement credits:</strong> Choosing compostable materials
+over single-use plastics demonstrates responsible sourcing. Vendor
+agreements requiring recyclable/compostable materials earn additional
+credits.</p>
+<p><strong>Resource Management credits:</strong> Compostable items sent
+to commercial composting facilities count directly toward the waste
+diversion rate—the single most important waste metric CRS tracks. A
+compostable poncho replacing a polyethylene garbage bag shifts material
+from the landfill stream to the compost stream, directly increasing
+diversion percentages.</p>
+<p><strong>Critical caveat:</strong> For composting credits to count,
+the product must be collected properly, processed at a commercial
+facility, and meet ASTM D6400 (North America) or EN 13432 (Europe)
+standards.</p>
+<p>3.3 CRS Certification Costs</p>
+<table>
+<colgroup>
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+<col style="width: 25%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Annual Revenue</strong></td>
+<td><strong>One-Time Fee</strong></td>
+<td><strong>Per Year (2-yr)</strong></td>
+<td><strong>Per Year (4-yr, 12% off)</strong></td>
+</tr>
+<tr class="even">
+<td><strong>$500K–$999K</strong></td>
+<td>$5,400</td>
+<td>$3,600</td>
+<td>$3,180</td>
+</tr>
+<tr class="odd">
+<td><strong>$1M–$2.9M</strong></td>
+<td>$6,300</td>
+<td>$4,500</td>
+<td>$3,960</td>
+</tr>
+<tr class="even">
+<td><strong>$3M–$4.9M</strong></td>
+<td>$7,800</td>
+<td>$6,000</td>
+<td>$5,280</td>
+</tr>
+<tr class="odd">
+<td><strong>$5M–$10M</strong></td>
+<td>$9,375</td>
+<td>$7,500</td>
+<td>$6,600</td>
+</tr>
+<tr class="even">
+<td><strong>$10M+</strong></td>
+<td>$10,625</td>
+<td>$8,750</td>
+<td>$7,700</td>
+</tr>
+</tbody>
+</table>
+<p>4. Racing for Sustainability: Direct Partnership Pathway</p>
+<p>Racing for Sustainability (RFS) is a 501(c)(3) nonprofit founded by
+Tina Muir, launched in early 2025. Its vision: a world where
+sustainability is as integral to a race as the start and finish lines.
+RFS specifically targets the gap between major marathons with full-time
+sustainability staff and the thousands of small/mid-sized races that
+lack guidance and budget.</p>
+<p>4.1 Tina Muir’s Credentials</p>
+<p>Former elite professional runner who represented Great Britain in
+world championships. Founder of the Running for Real podcast (439
+episodes, 150K+ downloads/month). Co-author of Becoming a Sustainable
+Runner. NYRR Team for Climate Ambassador. Running USA board member.
+Instagram (@tinamuir88): ~26,000 followers with an engaged running
+audience.</p>
+<p>4.2 RFS Membership &amp; Pricing</p>
+<p>Race membership: $50/year for an individual event or series—includes
+toolkit, certification eligibility, digital badge, editable templates,
+and topic guides. Industry Partner membership: $1,000/year for vendors
+and affiliated organizations. Sustainability Support Fund: targeted
+grants that directly procure sustainable products for member races. RFS
+is a certified 1% for the Planet Environmental Partner.</p>
+<p>4.3 Partnership Opportunities for a Compostable Warmth Brand</p>
+<p>The most direct path is the Industry Partner membership ($1,000/year)
+plus a brand collaboration with Tina Muir. She only endorses brands she
+personally trusts. The Sustainability Support Fund is designed to
+directly procure vetted sustainable products—a compostable poncho fits
+perfectly. Integration into the RFS Toolkit as a recommended sustainable
+start-line solution would reach every race director in the network.</p>
+<p>5. Search Seasonality: Peaks in October–November and March–April</p>
+<p>48% of all US races occur in just four months: October, September,
+April, and May. Adding November brings the total to 57% of all US races
+occurring in the five months where cold-weather start-line warmth is
+most needed. October alone accounts for ~21% of all races.</p>
+<p>Content publication timing from major running brands clusters in
+August–September to capture pre-October SEO value. Weather-triggered
+spikes are acute: when forecasts predict cold/rain for a major marathon,
+search volume surges within days.</p>
+<p><strong>Critical marketing windows:</strong> September 15–November 15
+(fall: Chicago, NYC, Marine Corps, Philadelphia) and March 1–April 30
+(spring: Boston and spring marathons). B2B ordering should target 3–6
+months before these windows.</p>
+<p>6. Market Sizing: TAM / SAM / SOM</p>
+<table>
+<colgroup>
+<col style="width: 37%" />
+<col style="width: 26%" />
+<col style="width: 35%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Metric</strong></td>
+<td><strong>Value</strong></td>
+<td><strong>Source</strong></td>
+</tr>
+<tr class="even">
+<td><strong>US marathon finishers (2024)</strong></td>
+<td>432,562</td>
+<td>RunRepeat / World Athletics</td>
+</tr>
+<tr class="odd">
+<td><strong>US half-marathon finishers</strong></td>
+<td>~1.5–2.0 million</td>
+<td>Running USA estimates</td>
+</tr>
+<tr class="even">
+<td><strong>US marathon events</strong></td>
+<td>~1,100</td>
+<td>RunSignUp / Running USA</td>
+</tr>
+<tr class="odd">
+<td><strong>US half-marathon events</strong></td>
+<td>~2,500–3,000+</td>
+<td>RunSignUp / Running USA</td>
+</tr>
+<tr class="even">
+<td><strong>Cold-weather start races (%)</strong></td>
+<td>40–60%</td>
+<td>Seasonal distribution analysis</td>
+</tr>
+<tr class="odd">
+<td><strong>Cold-weather race participants (SAM)</strong></td>
+<td>800K–1.4 million</td>
+<td>Total participants x cold % filter</td>
+</tr>
+<tr class="even">
+<td><strong>Global marathon finishers</strong></td>
+<td>~1.5–2.0 million</td>
+<td>World Athletics / Sub-3</td>
+</tr>
+<tr class="odd">
+<td><strong>Global half-marathon finishers</strong></td>
+<td>~3–5 million</td>
+<td>World Athletics estimates</td>
+</tr>
+<tr class="even">
+<td><strong>Year 1–2 obtainable units (SOM)</strong></td>
+<td>40,000–140,000</td>
+<td>5–10% SAM penetration</td>
+</tr>
+<tr class="odd">
+<td><strong>US running gear market (2024)</strong></td>
+<td>$11.93 billion</td>
+<td>SNS Insider / Yahoo Finance</td>
+</tr>
+<tr class="even">
+<td><strong>Global road running growth (2024)</strong></td>
+<td>+17.1%</td>
+<td>Road Race Management</td>
+</tr>
+</tbody>
+</table>
+<p>6.1 Cold-Weather Filtering</p>
+<p>An estimated 40–60% of US marathons and half-marathons start in
+temperatures below 55°F. October/November races (33% of total)
+predominantly start at 35–55°F. March/April races (21%) frequently start
+below 55°F. Major cold-weather events include Boston (avg start ~48°F),
+NYC (~45°F), Chicago (~50°F), Philadelphia (~40°F), CIM (~40°F), and
+Marine Corps (~50°F).</p>
+<p>6.2 Industry Economics Context</p>
+<p>Average marathon registration: $91.62. Total marathon spending per
+participant: $600–$2,000 including gear, travel, and entry. The top 50
+marathons worldwide generate $5.2 billion in economic impact annually.
+The US running gear market is valued at $11.93 billion (2024), projected
+to reach $17.82 billion by 2032 at 5.2% CAGR. Global road running
+participation grew 17.1% in 2024.</p>
+<p><strong>The sustainability gap:</strong> Fewer than 1% of US races
+(~175 of 30,000+) hold formal CRS certification. No race currently
+provides a dedicated compostable start-line warmth product. The market
+for such a product is 100% whitespace.</p>
+<p>7. Municipal Mandates: Regulatory Tailwinds in Key Marathon
+Cities</p>
+<p>Multiple major marathon cities now legally require waste diversion,
+composting, or sustainability planning for large events—creating
+regulatory pressure that makes compostable products increasingly
+attractive to race organizers.</p>
+<table>
+<colgroup>
+<col style="width: 17%" />
+<col style="width: 19%" />
+<col style="width: 63%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>City</strong></td>
+<td><strong>Status</strong></td>
+<td><strong>Key Requirements</strong></td>
+</tr>
+<tr class="even">
+<td><strong>San Francisco</strong></td>
+<td>Mandatory</td>
+<td>Events 1K+: zero-waste plan; BPI-certified products required;
+plastic bottles banned</td>
+</tr>
+<tr class="odd">
+<td><strong>Seattle</strong></td>
+<td>Mandatory</td>
+<td>All events: compostable food packaging; mandatory composting under
+state law</td>
+</tr>
+<tr class="even">
+<td><strong>Boulder</strong></td>
+<td>Mandatory</td>
+<td>All public-land events: zero-waste; $250 compostable product
+rebate</td>
+</tr>
+<tr class="odd">
+<td><strong>Denver</strong></td>
+<td>Mandatory (Sep 2026)</td>
+<td>Waste No More: diversion plan or permit denial; voter-approved
+2022</td>
+</tr>
+<tr class="even">
+<td><strong>Minneapolis</strong></td>
+<td>Mandatory</td>
+<td>1:1 garbage/recycling bins; recycling plan required; compostable
+serviceware (ASTM D6400)</td>
+</tr>
+<tr class="odd">
+<td><strong>Austin</strong></td>
+<td>Mandatory</td>
+<td>Waste management in all permits; Styrofoam/glass banned; post-event
+proof required</td>
+</tr>
+<tr class="even">
+<td><strong>New York City</strong></td>
+<td>Mandatory</td>
+<td>Organic waste separation for events 500+ daily attendees (DSNY
+§1-11)</td>
+</tr>
+<tr class="odd">
+<td><strong>Portland</strong></td>
+<td>Strong guidance</td>
+<td>Zero-waste event toolkit; banned polystyrene; composting
+encouraged</td>
+</tr>
+<tr class="even">
+<td><strong>Chicago</strong></td>
+<td>Voluntary (strong)</td>
+<td>83% diversion achieved; Evergreen CRS; no formal mandate</td>
+</tr>
+<tr class="odd">
+<td><strong>Boston</strong></td>
+<td>Voluntary</td>
+<td>No event composting mandate; BAA self-driven sustainability</td>
+</tr>
+</tbody>
+</table>
+<p>7.1 State-Level Amplifiers</p>
+<p>California leads nationally: AB 2176 requires waste reduction plans
+for events with 2,000+ attendees; SB 1383 mandates food recovery and
+organics recycling for all major events. Washington State targets 75%
+organic waste reduction by 2030. Colorado regulates compostable product
+labeling. Oregon bans polystyrene and requires food waste source
+separation. Illinois requires composting bins at facilities hosting
+events with 3,500+ attendees.</p>
+<p><strong>Strategic implication:</strong> Denver’s Waste No More
+ordinance (enforcement September 2026) creates time-pressured demand. A
+compostable poncho helps race directors in regulated cities meet permit
+requirements—converting a landfill-bound waste stream into a
+compost-eligible material.</p>
+<p>8. Competitive Landscape: The Warmth × Compostability Gap</p>
+<p>The competitive landscape reveals a clear gap at the intersection of
+thermal warmth and compostability. No company currently makes a
+compostable poncho with thermal/heat-retention properties.</p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 18%" />
+<col style="width: 13%" />
+<col style="width: 13%" />
+<col style="width: 13%" />
+<col style="width: 22%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Product</strong></td>
+<td><strong>Material</strong></td>
+<td><strong>Warmth?</strong></td>
+<td><strong>Compostable?</strong></td>
+<td><strong>Price</strong></td>
+<td><strong>Distribution</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Heatsheets</strong></td>
+<td>LDPE metallized</td>
+<td>Yes (reflects 90%)</td>
+<td>No (recyclable #4)</td>
+<td>$4.30 retail</td>
+<td>NYC, Boston, Chicago</td>
+</tr>
+<tr class="odd">
+<td><strong>GRD Green Guard Pro</strong></td>
+<td>Plant-based bioplastic</td>
+<td>No (rain only)</td>
+<td>Yes (compostable)</td>
+<td>~$3–4 retail</td>
+<td>Amazon DTC</td>
+</tr>
+<tr class="even">
+<td><strong>GreenGear Supply</strong></td>
+<td>Sugarcane bioplastic</td>
+<td>No (rain only)</td>
+<td>Yes (recyclable #4)</td>
+<td>B2B pricing</td>
+<td>NYRR partner</td>
+</tr>
+<tr class="odd">
+<td><strong>PromoMission</strong></td>
+<td>PLA corn-plastic</td>
+<td>No (rain only)</td>
+<td>Yes (compostable)</td>
+<td>£1.50/unit B2B</td>
+<td>UK-based</td>
+</tr>
+<tr class="even">
+<td><strong>RAINRAVER</strong></td>
+<td>HOME compostable</td>
+<td>No (rain only)</td>
+<td>Yes (EN 13432)</td>
+<td>Premium</td>
+<td>Festival/event focus</td>
+</tr>
+<tr class="odd">
+<td><strong>RetiSports</strong></td>
+<td>PE/aluminum mylar</td>
+<td>Yes (reflective)</td>
+<td>No</td>
+<td>~$15–20 kit</td>
+<td>Amazon DTC</td>
+</tr>
+<tr class="even">
+<td><strong>Garbage bag</strong></td>
+<td>Polyethylene</td>
+<td>Minimal (wind)</td>
+<td>No</td>
+<td>$0.05–0.15</td>
+<td>Universal default</td>
+</tr>
+<tr class="odd">
+<td><strong>Goodwill sweatshirt</strong></td>
+<td>Cotton/poly textile</td>
+<td>Yes (good)</td>
+<td>No (textile waste)</td>
+<td>$1–5</td>
+<td>Universal default</td>
+</tr>
+<tr class="even">
+<td><strong>YOUR PRODUCT</strong></td>
+<td>PLA + cellulose</td>
+<td>YES (insulated)</td>
+<td>YES (compostable)</td>
+<td>$2.50–4 B2B</td>
+<td>THE WHITESPACE</td>
+</tr>
+</tbody>
+</table>
+<p>8.1 Heatsheets: The B2B Incumbent</p>
+<p>Heatsheets (AFM Inc.), founded in 1980 at the NYC Marathon, uses
+proprietary Silver Lining technology (NASA-derived) reflecting 90% of
+body heat. Material is 1 mil white metallized #4 recyclable LDPE film,
+produced in North America. Key relationships span 36+ years with NYC
+Marathon, Boston Marathon (official B.A.A. licensee since 2015), and
+Chicago Marathon. Heatsheets’ weakness: LDPE is recyclable but not
+compostable.</p>
+<p>8.2 The Critical Market Gap</p>
+<p><strong>No company currently makes a compostable poncho with
+thermal/heat-retention properties.</strong> Existing compostable ponchos
+provide rain/wind protection only. Heatsheets provides thermal
+insulation but uses non-compostable LDPE. The garbage bag and Goodwill
+sweatshirt remain the default solutions despite generating hundreds of
+tons of waste annually. No Kickstarter campaigns, no patent filings, and
+no startups were found addressing this intersection. This represents a
+genuine first-mover opportunity.</p>
+<p>9. Runner Sentiment: Function and Price Dominate, Guilt Creates an
+Opening</p>
+<p>9.1 The Garbage Bag Is Universal but Unloved</p>
+<p>Forum analysis across LetsRun, RunningAHEAD, Reddit, and running
+blogs reveals the garbage bag appears in approximately 80–90% of all
+cold-weather race preparation advice threads.</p>
+<blockquote>
+<p><em>Only thing you really need is an extra large garbage bag and an
+empty bottle. — LetsRun, Boston Marathon prep thread</em></p>
+<p><em>SORRY — A TRASH BAG IS NOT GOING TO DO THE TRICK for extended
+pre-race waits of 1–2+ hours in extreme cold. Running gear and a trash
+bag are not going to help you conquer the hours pre-race when you are
+not generating your own heat. — Team Z marathon gear guide</em></p>
+</blockquote>
+<p>9.2 Sustainability Ranks Last for Individuals but Drives
+Organizational Buying</p>
+<p>A Formula4Media consumer survey of women runners found the most
+important gear traits are fit, comfort, performance benefits, and
+price—sustainability was the least important trait. The price threshold
+for a disposable start-line warmth item appears to be $5–10 maximum for
+individual buyers.</p>
+<p><strong>Key strategic insight:</strong> Because individual runners
+prioritize cost over sustainability, the most viable commercial path is
+selling to race organizers who are actively investing in sustainability
+programs and have dedicated budgets. The B2B-first, DTC-second model is
+strongly supported by this sentiment data.</p>
+<p>10. Conclusion: A Rare Convergence</p>
+<p>This research confirms a structurally attractive opportunity at the
+intersection of:</p>
+<p><strong>• Quantified waste:</strong> 500,000+ lbs/year discarded at
+US race start lines</p>
+<p><strong>• Regulatory momentum:</strong> Mandatory composting in SF,
+Seattle, Boulder, Denver, Minneapolis, Austin</p>
+<p><strong>• Organizational buying power:</strong> NYRR spending
+$111M/year; Chicago generating $683M economic impact</p>
+<p><strong>• Total competitive whitespace:</strong> Zero compostable
+thermal products exist in the market</p>
+<p><strong>• Partnership infrastructure:</strong> Racing for
+Sustainability’s $1,000/year Industry Partner tier is designed for this
+product</p>
+<p><strong>• Certification incentives:</strong> CRS credits directly
+reward compostable product adoption, driving B2B demand</p>
+<p><strong>Three novel insights stand out.</strong> First, the CRS
+certification system creates a quantifiable ROI for race directors—every
+compostable poncho that diverts weight from landfill to compost directly
+improves the waste diversion percentage that determines certification
+level. Second, Denver’s Waste No More ordinance (enforcement September
+2026) creates time-pressured demand—race directors in regulated cities
+will need compliant waste solutions. Third, the B2B-first model is
+strongly supported by sentiment data: individual runners won’t pay a
+premium for sustainability, but race organizations will—and once runners
+experience the product through a race, DTC demand follows naturally.</p>
+
+        </div>
+    </div></div>
+<footer style="text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px">
+Sustainable Race-Start Warmth Poncho — D2C Brand GTM Project · 60 Subprojects · 391 Tasks · ~15,500¶ · April 2026
+</footer></body></html>

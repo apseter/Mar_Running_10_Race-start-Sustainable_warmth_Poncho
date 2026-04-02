@@ -1,0 +1,667 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>P10C: International Expansion — Race Start Warmth GTM</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0e1a;--surface:#111827;--card:#1a2332;--border:#2a3a4e;--accent:#10b981;--accent2:#3b82f6;--text:#e2e8f0;--muted:#94a3b8;--white:#fff;--red:#ef4444;--amber:#f59e0b;--green:#10b981}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+/* Nav */
+nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
+nav .inner{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;max-width:1200px;margin:0 auto}
+nav .brand{font-weight:700;font-size:15px;color:var(--accent)}
+nav .links{display:flex;gap:8px;flex-wrap:wrap}
+nav .links a{color:var(--muted);font-size:13px;padding:4px 10px;border-radius:6px;transition:.2s}
+nav .links a:hover,nav .links a.active{color:var(--white);background:var(--card);text-decoration:none}
+/* Hero */
+.hero{padding:60px 0 40px;text-align:center}
+.hero h1{font-size:2.4em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:1.1em;max-width:700px;margin:0 auto}
+/* Stats bar */
+.stats{display:flex;justify-content:center;gap:32px;padding:24px 0;flex-wrap:wrap}
+.stat{text-align:center}.stat .num{font-size:1.8em;font-weight:800;color:var(--white)}.stat .label{font-size:.75em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+/* Cards */
+.grid{display:grid;gap:16px;margin:24px 0}
+.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}
+.grid-3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;transition:.2s}
+.card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.card h3{font-size:1.1em;margin-bottom:8px}.card p{color:var(--muted);font-size:.9em}
+.card .badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:8px}
+.card .meta{font-size:.8em;color:var(--muted);margin-top:12px}
+/* Section */
+.section{padding:40px 0}.section h2{font-size:1.6em;font-weight:700;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+/* Table */
+table{width:100%;border-collapse:collapse;font-size:.85em;margin:16px 0}
+th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:52px}
+td{padding:8px 12px;border-bottom:1px solid var(--border)}
+tr:hover td{background:rgba(16,185,129,.05)}
+.status-complete{color:var(--green);font-weight:600}.status-not{color:var(--muted)}
+/* Progress */
+.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:8px}
+.progress .bar{height:100%;background:var(--accent);border-radius:3px}
+/* Back link */
+.back{display:inline-block;color:var(--muted);font-size:.9em;margin-bottom:20px}
+.back:hover{color:var(--accent)}
+/* Download */
+.dl-card{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin:8px 0;transition:.2s}
+.dl-card:hover{border-color:var(--accent);text-decoration:none}
+.dl-card .icon{font-size:2em}.dl-card .info h4{color:var(--white);margin-bottom:4px}.dl-card .info p{color:var(--muted);font-size:.85em}
+/* Footer */
+footer{text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px}
+@media(max-width:768px){.stats{gap:16px}.stat .num{font-size:1.3em}nav .links{gap:4px}nav .links a{font-size:11px;padding:3px 6px}.hero h1{font-size:1.6em}}
+
+.doc-content{max-width:900px;margin:0 auto;padding:20px 0}
+.doc-content h1{font-size:1.8em;font-weight:800;color:var(--white);margin:32px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.doc-content h2{font-size:1.4em;font-weight:700;color:var(--accent);margin:28px 0 12px}
+.doc-content h3{font-size:1.15em;font-weight:600;color:var(--accent2);margin:20px 0 10px}
+.doc-content p{margin:8px 0;line-height:1.7}
+.doc-content table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85em}
+.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;border:1px solid var(--border)}
+.doc-content td{padding:8px 12px;border:1px solid var(--border);vertical-align:top}
+.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.doc-content ul,.doc-content ol{margin:8px 0 8px 24px}
+.doc-content li{margin:4px 0;line-height:1.6}
+.doc-content strong{color:var(--white)}
+.doc-content em{color:var(--muted)}
+.doc-content blockquote{border-left:3px solid var(--accent);padding:8px 16px;margin:12px 0;background:var(--card);border-radius:0 8px 8px 0}
+.nav-sub{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 24px;padding:12px 16px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
+.nav-sub a{font-size:.8em;color:var(--muted);padding:4px 10px;border-radius:4px;transition:.2s;white-space:nowrap}
+.nav-sub a:hover,.nav-sub a.active{color:var(--white);background:var(--surface);text-decoration:none}
+</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a></div></div></nav><div class="container">
+    <div style="padding-top:30px">
+        <a href="p10.html" class="back">← 📈 P10: Scaling & Growth</a>
+        <div class="nav-sub"><a href="p10.html">📈 P10 Overview</a><a href="sub-p10a.html">P10A</a><a href="sub-p10b.html">P10B</a><a href="sub-p10c.html" class="active">P10C</a><a href="sub-p10d.html">P10D</a><a href="sub-p10e.html">P10E</a><a href="sub-p10f.html">P10F</a></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px">
+            <div>
+                <span style="background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px">P10C</span>
+                <span style="color:var(--muted);font-size:.85em;margin-left:8px">P10: Scaling & Growth</span>
+            </div>
+            <a href="files/P10C_International_Expansion.docx" style="font-size:.85em;color:var(--accent);padding:6px 14px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
+        </div>
+        <div class="doc-content">
+            <p><strong>P10C: INTERNATIONAL</strong></p>
+<p><strong>EXPANSION</strong></p>
+<p>Sub-Project P10C | Scaling, Expansion &amp; Category Leadership |
+Months 10–18</p>
+<p><em>Complete International Strategy: 7 European Race Markets, EU
+Regulatory Framework, 4-Option Distribution Strategy, European Race
+Director Outreach, Canadian Market Entry, and International Pricing
+Model</em></p>
+<p>March 2026 | Confidential</p>
+<p>Executive Summary</p>
+<p><strong>The US marathon market is the launchpad. The GLOBAL marathon
+market is the destination.</strong> 2.5 million cold-weather race
+participants in the US represent the initial TAM. Add: 3+ million
+European marathon/half-marathon finishers, 500K+ Canadian participants,
+and 2M+ runners across Japan, Australia, and other markets — the GLOBAL
+TAM exceeds 8 million participants generating 16–40 million single-use
+warmth products per year. International expansion transforms the brand
+from: a US niche product into a global category leader in compostable
+athletic event products.</p>
+<p><strong>This document maps the international expansion
+strategy:</strong> 7 European target races prioritized by: runner
+volume, cold-weather potential, composting infrastructure, and
+sustainability culture. An EU regulatory framework covering: EN 13432
+certification, PPWR packaging compliance, Green Claims Directive, and
+VAT/customs. 4 distribution options from direct-from-UK (simplest) to EU
+distribution partner (most scalable). European race director outreach
+with translated materials and industry event strategy. Canadian market
+entry leveraging: USMCA 0% duty, Amazon.ca, and bilingual packaging. And
+a comprehensive international pricing model accounting for: COGS,
+freight, duties, currency, VAT, and local competitive dynamics.</p>
+<p>1. European Race Market: 7 Target Races</p>
+<p><strong>Europe hosts 4 of the 6 World Marathon Majors (Berlin,
+London, Tokyo) and hundreds of additional marathons with: cold
+start-line conditions, strong environmental awareness, and developing
+composting infrastructure.</strong> The European market is: larger than
+the US by runner volume, more sustainability-conscious by culture, and
+increasingly regulated in favor of compostable products (France’s
+mandatory biowaste collection, EU PPWR, Green Claims Directive). The
+timing is ideal: regulatory tailwinds are pushing the market TOWARD
+compostable solutions faster than the US market.</p>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width:50%">
+<col style="width: 35%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Race</strong></td>
+<td><strong>Details</strong></td>
+<td><strong>Priority / Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Berlin Marathon</strong></td>
+<td>September. 45,000+ runners. Cold start potential (12–18°C / 54–65°F
+average). Organizer: SCC Events. Sustainability: Berlin has aggressive
+municipal composting infrastructure and strong public environmental
+awareness. One of the World Marathon Majors.</td>
+<td>HIGH PRIORITY. Berlin combines: massive scale, cold-weather
+potential, strong composting infrastructure, and a
+sustainability-conscious city culture. SCC Events is a professional
+organizer open to innovation.</td>
+</tr>
+<tr class="odd">
+<td><strong>London Marathon</strong></td>
+<td>April. 50,000+ runners. Variable weather (8–15°C / 46–59°F).
+Organizer: London Marathon Events. Sustainability: LME has published
+sustainability commitments and works with environmental partners. WORLD
+MARATHON MAJOR.</td>
+<td>HIGH PRIORITY. Largest European marathon. Cold April starts.
+London’s composting infrastructure is developing. The brand’s UK
+supplier (Parkside) enables: LOCAL production with zero international
+freight to the UK market.</td>
+</tr>
+<tr class="even">
+<td><strong>Paris Marathon</strong></td>
+<td>April. 50,000+ runners. Cool starts (8–14°C / 46–57°F). Organizer:
+Amaury Sport Organisation (ASO). France has strong municipal composting
+laws (mandatory biowaste collection from 2024).</td>
+<td>HIGH PRIORITY. France’s mandatory biowaste collection law creates
+regulatory TAILWIND for compostable products. ASO operates multiple
+events (Paris Marathon, Tour de France) — a partnership could extend
+beyond running.</td>
+</tr>
+<tr class="odd">
+<td><strong>Valencia Marathon</strong></td>
+<td>December. 25,000+ runners. Mild weather (10–16°C / 50–61°F — cooler
+than expected for Spain). Growing sustainability focus. Known for: fast
+course, growing international participation.</td>
+<td>MEDIUM PRIORITY. Cooler December weather creates poncho demand.
+Valencia is a growing marathon destination with increasing international
+attention. Lower competition for sustainability partnerships than
+London/Berlin/Paris.</td>
+</tr>
+<tr class="even">
+<td><strong>Amsterdam Marathon</strong></td>
+<td>October. 15,000+ runners. Cold starts (8–14°C / 46–57°F).
+Netherlands has: the highest composting rate in Europe and strong
+circular economy policies. Organizer: Le Champion.</td>
+<td>MEDIUM PRIORITY. Netherlands’ composting leadership makes:
+composting logistics straightforward. Smaller race than the Majors but:
+a strong pilot candidate due to: composting infrastructure,
+sustainability-oriented city, and professional organizer.</td>
+</tr>
+<tr class="odd">
+<td><strong>Copenhagen Marathon</strong></td>
+<td>May. 12,000+ runners. Cool weather (10–16°C / 50–61°F). Denmark:
+aggressive circular economy policies, strong composting infrastructure,
+and high public environmental awareness.</td>
+<td>MEDIUM PRIORITY. Denmark’s circular economy leadership aligns with
+the brand’s sustainability mission. Copenhagen’s compact size makes
+composting logistics manageable for a pilot. Smaller scale but:
+high-value sustainability story.</td>
+</tr>
+<tr class="even">
+<td><strong>Tokyo Marathon</strong></td>
+<td>March. 38,000+ runners. Cool starts (5–12°C / 41–54°F). World
+Marathon Major. Japan: highly organized composting systems, cultural
+emphasis on waste separation, and strong sustainability awareness.</td>
+<td>YEAR 3+ PRIORITY. Japan’s cultural alignment with waste reduction is
+ideal. HOWEVER: language barriers, regulatory complexity (Japanese
+composting standards differ from ASTM/EN), and the need for a local
+distribution partner make this a longer-term opportunity.</td>
+</tr>
+</tbody>
+</table>
+<p>1.1 EU Market Entry Sequence</p>
+<p>YEAR 2 (2 pilot races): London Marathon (UK market, zero customs via
+domestic Parkside production, English-speaking) + 1 Continental European
+race (Amsterdam or Berlin — strong composting infrastructure, English
+widely used). The UK pilot tests: product-market fit in Europe with
+minimal logistics complexity (Parkside produces and ships domestically).
+The Continental pilot tests: cross-border logistics, EN 13432 compliance
+in practice, and non-English race director engagement. YEAR 3 (expand to
+4–6 races): add Paris (France’s composting mandate creates demand),
+Berlin (World Marathon Major scale), Copenhagen/Valencia
+(sustainability-focused smaller races). YEAR 4+: Tokyo and other Asian
+markets (requires: local certification, distribution partner, and
+significant cultural adaptation).</p>
+<p>2. EU Regulatory Framework: 5 Areas</p>
+<p><strong>The EU regulatory environment for compostable products is
+MORE COMPLEX than the US but also MORE FAVORABLE.</strong> Where the US
+has: voluntary FTC Green Guides and BPI certification, the EU has:
+mandatory composting standards (EN 13432), mandatory packaging
+regulations (PPWR), and forthcoming mandatory green claims verification
+(Green Claims Directive). This regulation HELPS the brand because: it
+creates BARRIERS TO ENTRY that unsubstantiated competitors cannot cross,
+and it creates DEMAND for certified compostable products from race
+directors seeking regulatory compliance.</p>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width:50%">
+<col style="width: 35%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Area</strong></td>
+<td><strong>Details</strong></td>
+<td><strong>Impact</strong></td>
+</tr>
+<tr class="even">
+<td><strong>EN 13432 certification</strong></td>
+<td>REQUIRED for “compostable” claims in EU markets. EN 13432 sets:
+stricter biodegradation thresholds than ASTM D6400 (90% in 6 months vs.
+60% in 6 months). If the product already has EN 13432 certification
+(obtained simultaneously with ASTM D6400 per P9C Section 3
+recommendation): the product is EU-market-ready. If NOT: testing takes
+6–9 months and costs $2,000–$5,000 additional. PRIORITY: obtain EN 13432
+during Year 1 if budget allows (run both ASTM D6400 and EN 13432 tests
+simultaneously at the same lab for incremental cost savings).</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><strong>EU Packaging and Packaging Waste Regulation
+(PPWR)</strong></td>
+<td>The PPWR (effective 2025–2030, phased implementation) introduces:
+mandatory recycled content targets for packaging, restrictions on
+certain single-use packaging materials, and specific labeling
+requirements for compostable packaging. The poncho’s compostable inner
+bag and card/sleeve must comply with: PPWR labeling requirements
+(harmonized EU-wide labels for composting/recycling disposal), material
+composition reporting, and Extended Producer Responsibility (EPR)
+obligations (the brand may need to register in each EU country and
+contribute to national packaging waste collection systems). IMPACT: EPR
+registration adds: $500–$2,000/year per country and requires: reporting
+packaging weight placed on the market.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><strong>EU Green Claims Directive</strong></td>
+<td>Expected implementation 2026–2027. Requires: substantiation of ALL
+environmental claims with scientific evidence, pre-approval of certain
+claims before use in advertising, and penalties for unsubstantiated
+greenwashing. The brand’s EN 13432 certification and BPI certification
+provide: strong substantiation for “compostable” claims. However: the
+specific claim LANGUAGE may need to be adapted to EU requirements (which
+may differ from FTC Green Guides per P9C Section 1).</td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><strong>CE marking and product safety</strong></td>
+<td>The poncho may be classified as: Personal Protective Equipment (PPE)
+if marketed for “protection” against cold, OR a general consumer product
+if marketed for “warmth and comfort.” PPE classification requires: CE
+marking, conformity assessment, and EU type-examination. RECOMMENDATION:
+market as “warmth and comfort” (NOT “protection” or “safety”) to avoid
+PPE classification. This aligns with: the current US marketing (the
+poncho provides warmth, not safety) and reduces: regulatory burden.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td><strong>VAT and customs</strong></td>
+<td>EU VAT rates: 19–27% depending on country (Germany 19%, France 20%,
+Netherlands 21%, Denmark 25%). VAT must be: charged to EU consumers at
+the applicable rate AND remitted to the relevant EU tax authority.
+CUSTOMS: if shipping from the US to EU: import duties apply (varies by
+HTS classification and country). If shipping from UK (Parkside):
+post-Brexit, UK-to-EU shipments are subject to customs procedures but:
+the EU-UK Trade and Cooperation Agreement provides 0% tariffs on goods
+originating in the UK that meet rules-of-origin requirements. STRATEGY:
+produce at Parkside UK and ship directly to EU customers to leverage:
+UK-EU trade agreement for 0% tariffs + proximity for faster
+delivery.</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>3. EU Distribution: 4 Options</p>
+<p><strong>Distribution is the operational challenge of international
+expansion.</strong> The product must physically reach: EU race venues
+(for B2B), EU consumers (for DTC), and EU Amazon warehouses (for
+marketplace sales). Each option trades: cost vs. control vs.
+scalability. The recommended approach phases from:
+minimal-infrastructure direct shipping (Year 2) to hub-and-spoke 3PL
+(Year 2–3) to distribution partnership (Year 3+).</p>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 81%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Option</strong></td>
+<td><strong>Specification</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Option A: Direct from UK (Parkside)</strong></td>
+<td>Ship finished goods from Parkside UK directly to: EU race venues for
+B2B orders, and an EU-based 3PL for DTC orders. Advantages: zero
+additional manufacturing setup, Parkside handles production + UK-to-EU
+logistics, and UK-EU 0% tariff under the Trade and Cooperation
+Agreement. Disadvantages: customs paperwork for every UK-to-EU shipment,
+potential delays at customs, and EPR registration required in each
+destination country.</td>
+</tr>
+<tr class="odd">
+<td><strong>Option B: EU 3PL hub</strong></td>
+<td>Stock inventory at an EU-based 3PL warehouse (e.g., Hive, byrd, or
+Amazon FBA Europe) and fulfill: DTC orders within the EU from the hub,
+and B2B orders via direct shipment from the hub to race venues.
+Advantages: no customs delays for individual orders (customs cleared
+once on bulk inbound), faster DTC delivery (2–5 days within EU), Amazon
+FBA Europe integration for EU Amazon marketplace. Disadvantages:
+additional warehousing cost ($200–$500/month), inventory tied up in the
+EU hub, and the brand must manage: EU VAT registration, EPR compliance,
+and EU-specific labeling.</td>
+</tr>
+<tr class="even">
+<td><strong>Option C: EU distribution partner</strong></td>
+<td>Partner with an established EU sports/event distributor who:
+imports, warehouses, and distributes on behalf of the brand. The
+distributor handles: customs clearance, VAT, EPR, and fulfillment. The
+brand provides: product and marketing support. TERMS: the distributor
+buys at wholesale (40–50% of retail) and resells to race directors and
+retail outlets. Advantages: minimal operational burden for the brand,
+leverages the distributor’s existing race director relationships and
+logistics infrastructure. Disadvantages: lower margin (brand earns
+wholesale, not retail), less control over pricing and customer
+relationships, and dependency on the distributor’s sales effort.</td>
+</tr>
+<tr class="odd">
+<td><strong>Recommended approach</strong></td>
+<td>YEAR 2: start with Option A (direct from Parkside UK) for B2B orders
+to 2–3 EU pilot races. This requires: minimal setup (Parkside ships
+directly), tests: EU demand without significant infrastructure
+investment. YEAR 2–3 (if EU demand is proven): transition to Option B
+(EU 3PL hub) for: DTC orders on EU Amazon + Shopify international, and
+continued B2B fulfillment. YEAR 3+ (if EU volume justifies): evaluate
+Option C (distribution partner) for: scaling beyond the founder’s
+capacity to manage EU operations directly.</td>
+</tr>
+</tbody>
+</table>
+<p>4. European Race Director Outreach</p>
+<p><strong>EU B2B outreach follows the same framework as US outreach
+(P5A) with: cultural adaptations, language considerations, and different
+industry event access points.</strong> The US pilot case studies are the
+#1 sales tool: European race directors respect US marathon innovation
+(the World Marathon Majors brand carries global credibility), and
+composting data from US pilots provides proof that the concept works at
+scale.</p>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 81%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Phase</strong></td>
+<td><strong>Specification</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Research phase (Month 14–16)</strong></td>
+<td>Identify 10–15 European race directors at target races (Section 1
+table). Source contacts via: race websites (contact pages), LinkedIn
+(search: “[Race Name] race director”), European running industry events
+(The Running Event EU, European Athletics events), and referrals from US
+race directors who have connections to European counterparts.</td>
+</tr>
+<tr class="odd">
+<td><strong>Initial outreach (Month 16–18)</strong></td>
+<td>Send personalized emails to 10–15 EU race directors. PITCH: “I’m
+[Founder Name], founder of [BRAND]. We make BPI and EN 13432 certified
+compostable warmth ponchos for marathon start lines. We’ve successfully
+piloted at [X] US races, composting [Y] lbs of start-line waste. I’d
+love to discuss a pilot at [Race Name]. We handle all composting
+logistics including local facility coordination. Can I send you a sample
+kit?” INCLUDE: press release, case study from US pilot, product samples
+(ship 2–3 ponchos via international mail, $15–30 shipping).</td>
+</tr>
+<tr class="even">
+<td><strong>EU industry events</strong></td>
+<td>The Running Event EU (TRE EU): annual trade show for the European
+running industry. Location rotates (Munich, Amsterdam, etc.).
+Attendance: race directors, brand representatives, sustainability
+professionals. COST: $1,000–$3,000 (registration + travel +
+accommodation). VALUE: direct access to 50–100+ European race directors
+in 2 days. Booth: $2,000–$5,000 (if exhibiting). RECOMMENDATION: attend
+without a booth in Year 2 (networking only, $1,000–$1,500 cost). Exhibit
+in Year 3 if EU B2B pipeline justifies the investment.</td>
+</tr>
+<tr class="odd">
+<td><strong>Language and cultural considerations</strong></td>
+<td>English is widely used in: UK, Netherlands, Scandinavia, and
+international race organizations. German, French, and Spanish race
+directors may prefer: communication in their native language.
+MITIGATION: hire a freelance translator ($50–$150 per translated
+email/document) for: initial outreach emails, product data sheets, and
+B2B terms in German, French, and Spanish. Long-term: if EU B2B grows to
+5+ races: consider a part-time EU business development contractor
+($2,000–$4,000/month, 10–20 hours/week) who is native in German or
+French and handles: outreach, relationship management, and trade event
+attendance.</td>
+</tr>
+</tbody>
+</table>
+<p>5. Canadian Market Entry</p>
+<p><strong>Canada is the EASIEST international expansion
+target:</strong> English-speaking (except Quebec — bilingual
+requirement), 0% import duty under USMCA, strong municipal composting
+infrastructure in all major cities, cold-weather races that create
+strong poncho demand, and proximity (ground shipping from US warehouse,
+3–7 day delivery). Canada is the “test case” for international
+expansion: if the brand can serve Canadian races and DTC customers
+efficiently, it validates the operational model for further
+international scaling.</p>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 81%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Element</strong></td>
+<td><strong>Specification</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Market overview</strong></td>
+<td>Canada hosts 100+ marathons and half-marathons annually. Key
+cold-weather races: Ottawa Marathon (May, 5–15°C / 41–59°F), Toronto
+Waterfront Marathon (October, 5–15°C), Vancouver Marathon (May,
+10–18°C), Montreal Marathon (September, 10–20°C), and Calgary Marathon
+(May, 5–15°C). Canadian runners are: cold-weather experienced (races in
+April–May and September–October are frequently &lt;10°C),
+environmentally conscious (Canada has strong municipal composting
+programs in all major cities), and underserved by compostable
+alternatives (garbage bags and donated clothing are the norm at Canadian
+start lines).</td>
+</tr>
+<tr class="odd">
+<td><strong>Regulatory requirements</strong></td>
+<td>Compostable claims: Canada follows: Canadian Standards Association
+(CSA) standards for compostable products. CSA Group Standard CAN/BNQ
+0017-088: “Compostable Plastics” is harmonized with ASTM D6400. If the
+product has ASTM D6400 certification: it likely meets CAN/BNQ 0017-088
+(verify with a testing lab). Competition Bureau of Canada: regulates
+environmental claims (similar to FTC Green Guides). Claims must be:
+specific, substantiated, and not misleading. Bilingual labeling: ALL
+consumer products sold in Canada must have: English AND French labeling.
+Packaging text, product descriptions, and marketing materials must be
+bilingual. HST/GST: Canadian sales tax (5% federal GST + 0–10%
+provincial HST/PST). Sellers shipping to Canada from the US must:
+register for GST/HST if annual Canadian revenue exceeds CAD
+$30,000.</td>
+</tr>
+<tr class="even">
+<td><strong>Distribution strategy</strong></td>
+<td>SHIP FROM US: for B2B orders: ship directly from US warehouse to
+Canadian race venues via: UPS, FedEx, or Canada Post (USPS hands off to
+Canada Post at the border). Customs: duty rate for compostable garments
+entering Canada from the US may be 0% under USMCA (United
+States-Mexico-Canada Agreement) if rules of origin are met. Verify: with
+a customs broker. DTC: Shopify supports: automatic Canadian shipping
+rate calculation, automatic currency conversion (CAD), and customs
+declaration generation. Amazon: sell on Amazon.ca (Canadian
+marketplace). FBA: ship inventory to Amazon Canada FBA warehouses
+(Amazon handles customs clearance for FBA inbound shipments).</td>
+</tr>
+<tr class="odd">
+<td><strong>Timeline</strong></td>
+<td>Month 12–13: research Canadian race directors at 5 target races
+(Ottawa, Toronto, Vancouver, Montreal, Calgary). Verify: ASTM D6400
+meets CAN/BNQ 0017-088 (contact CSA or testing lab). Create: bilingual
+packaging design (English + French text on card/sleeve). Month 13–14:
+outreach to 5 Canadian race directors with: sample kits, US pilot case
+study, and Canadian-specific pricing. Set up: Amazon.ca listing
+(leverage existing US Amazon content with CAD pricing). Add: Canadian
+shipping rates to Shopify. Month 14–18: close 1–2 Canadian B2B pilot
+races. Execute: same pilot process as US (P5B) with: composting facility
+coordination in the Canadian city (Canadian cities have strong municipal
+composting infrastructure).</td>
+</tr>
+</tbody>
+</table>
+<p>6. International Pricing Model</p>
+<p><strong>International pricing must balance: cost recovery (the
+product costs MORE to deliver internationally than domestically),
+competitive positioning (the price must be attractive vs. local
+alternatives), and psychological anchoring (prices must feel “right” in
+local currency).</strong> The model below builds international pricing
+from: US COGS + incremental international costs + margin target, then
+adjusts for: local currency, VAT inclusion, and competitive
+dynamics.</p>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 81%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Component</strong></td>
+<td><strong>Specification</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Base product cost</strong></td>
+<td>US landed COGS per unit (per P8A Section 3 unit economics model).
+This is the STARTING POINT for international pricing. Example:
+$1.10/unit landed in the US.</td>
+</tr>
+<tr class="odd">
+<td><strong>International freight</strong></td>
+<td>Additional shipping cost per unit from: US warehouse to
+international destination (for US-stocked inventory), OR from Parkside
+UK to international destination (for UK-produced goods shipped
+directly). US to EU: $0.30–$0.60/unit (ocean freight to EU 3PL). US to
+Canada: $0.15–$0.30/unit (ground freight). UK to EU: $0.10–$0.25/unit
+(short-distance truck or ferry freight — the LOWEST international
+shipping cost due to proximity).</td>
+</tr>
+<tr class="even">
+<td><strong>Import duties</strong></td>
+<td>EU: 0–3.4% if shipped from UK under Trade and Cooperation Agreement
+(verify rules of origin compliance). 3.4–12% if shipped from US (varies
+by HTS classification and EU tariff schedule). Canada: 0% under USMCA if
+rules of origin met. Japan: 5–10% (varies by classification). STRATEGY:
+produce at Parkside UK and ship to EU for: 0% duty + lowest freight
+cost. Ship from US to Canada for: 0% duty under USMCA.</td>
+</tr>
+<tr class="odd">
+<td><strong>Currency adjustment</strong></td>
+<td>Price in LOCAL CURRENCY (EUR for EU, CAD for Canada, GBP for UK, JPY
+for Japan). Set prices at: psychologically attractive price points in
+local currency (e.g., €9.99 not €10.47). Build in: a 5–10% currency
+buffer to absorb exchange rate fluctuations without repricing (e.g., if
+the USD/EUR rate moves ±5%: the brand absorbs the variation within the
+buffer rather than changing the listed price monthly).</td>
+</tr>
+<tr class="even">
+<td><strong>VAT/GST inclusion</strong></td>
+<td>EU: prices MUST include VAT (the listed price is the total price the
+consumer pays). Standard VAT rates: Germany 19%, France 20%, Netherlands
+21%, UK 20%, Denmark 25%. Example: US price $9.99 = €9.99 including 20%
+VAT = €8.33 net revenue to the brand + €1.66 VAT remitted to tax
+authority. Canada: GST/HST may be: excluded from listed price (Canadian
+convention for online sales, added at checkout) or included (Quebec
+requires tax-inclusive pricing for advertising).</td>
+</tr>
+<tr class="odd">
+<td><strong>International B2B pricing</strong></td>
+<td>Apply the same MARGIN TARGET as US B2B (51–69% per P8A Section 3)
+but adjust the COST BASE: international cost = US COGS + international
+freight + duty + currency buffer. Example: US COGS $1.10 + UK-to-EU
+freight $0.15 + duty $0 (TCA) + 7% currency buffer $0.09 = €1.34
+international cost. At 60% margin target: B2B price = €1.34 / (1 − 0.60)
+= €3.35. COMPARE: to local alternatives (EU Heatsheets pricing, local
+disposable blanket pricing) to ensure: the price is competitive in the
+local market.</td>
+</tr>
+<tr class="even">
+<td><strong>DTC pricing strategy</strong></td>
+<td>Price MATCH the US DTC price in local currency: if US $9.99 = EU
+€9.99 = UK £8.99 = CAD $13.99. The slight premium in local currency
+(reflecting the exchange rate) is: expected by consumers (US-imported
+products typically cost 5–15% more in EU/Canada), justified by: the
+sustainability premium and lack of local alternatives, and absorbed by:
+rounding to psychologically attractive price points. Amazon
+international pricing: set per marketplace (Amazon.de, Amazon.co.uk,
+Amazon.ca, Amazon.fr) at the local-currency equivalent.</td>
+</tr>
+</tbody>
+</table>
+<p>6.1 International Pricing Summary</p>
+<p>DTC PRICING: US $9.99 = EU €9.99 (incl. VAT) = UK £8.99 (incl. VAT) =
+CAD $13.99. 3-Pack: US $24.99 = EU €24.99 = UK £21.99 = CAD $34.99. B2B
+PRICING: EU €3.00–€4.50/unit (comparable to US $3.50–$5.00, adjusted
+for: local freight + duty + currency). Canada: CAD $4.50–$6.50/unit. The
+MARGIN on international sales is: 5–15% lower than US sales due to:
+additional freight, duty (for non-UK-to-EU routes), and currency buffer.
+This is acceptable if: international volume contributes to total
+production volume (driving down per-unit COGS across ALL markets) and
+the brand captures: the first-mover advantage in compostable race-day
+products internationally (before a European competitor launches).</p>
+<p>7. Timeline &amp; Budget</p>
+<p><strong>MONTH 10–12: Research EU and Canadian markets (Sections 1 and
+5). Verify: EN 13432 certification status (obtain if not already done).
+Create: bilingual packaging for Canada (English + French). Research: EU
+packaging regulations (PPWR compliance requirements). Identify: 10–15
+European race director contacts for initial outreach.</strong></p>
+<p><strong>MONTH 12–14: Begin outreach to European race directors
+(Section 4). Ship sample kits to 5–10 prospects. Set up: Amazon.ca
+listing, Shopify international shipping for Canada. Begin outreach to 5
+Canadian race directors. Research: EU 3PL options (Hive, byrd, Amazon
+FBA Europe) for Year 2–3 DTC.</strong></p>
+<p><strong>MONTH 14–18: Close 1–2 European pilot races (target: London +
+Amsterdam or Berlin). Close 1–2 Canadian pilot races (target: Ottawa or
+Toronto). Execute: EU/Canadian pilots using same process as US (P5B).
+Produce: EU-compliant packaging with EN 13432 marking + bilingual
+labeling. Evaluate: EU distribution options for Year 3 scaling. Attend:
+TRE EU or European running industry event (if budget
+allows).</strong></p>
+<p>BUDGET: EN 13432 certification (if not already obtained):
+$2,000–$5,000. Bilingual packaging design: $200–$500. International
+sample kit shipping (10–15 kits × $15–30 each): $150–$450. EU trade
+event attendance (Year 2, no booth): $1,000–$1,500 (registration +
+travel). EU 3PL setup (Year 2–3): $200–$500 onboarding. Translation
+services (5–10 documents): $250–$750. Amazon.ca setup: $0 (leverage
+existing US seller account). EPR registration (per EU country, Year
+2–3): $500–$2,000/country. TOTAL P10C Year 2: $4,300–$10,700.</p>
+<p>8. Conclusion: Go Global Before the Competition Does</p>
+<p><strong>The compostable race poncho category does not yet exist
+internationally.</strong> European and Canadian race directors are
+distributing the same garbage bags, donated clothing, and Heatsheets
+Mylar blankets as US races. NO international competitor has: BPI + EN
+13432 dual certification, a composting logistics model, or an
+established B2B sales engine. The brand that enters Europe and Canada
+FIRST with: a certified product, a proven composting model, and US case
+study data will DEFINE the category internationally — just as it is
+defining the category in the US.</p>
+<p><strong>The UK supplier advantage is the strategic enabler.</strong>
+Parkside UK can produce and ship to: UK races domestically (zero
+customs), EU races with 0% tariff under the Trade and Cooperation
+Agreement, and US races via ocean freight (the current model). This
+single-supplier, tri-market production capability means: the brand can
+serve the US, UK, and EU from ONE production source. No international
+startup can match this operational simplicity. The supply chain was
+designed for international expansion from Day 1. Now it’s time to
+activate it.</p>
+
+        </div>
+    </div></div>
+<footer style="text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px">
+Sustainable Race-Start Warmth Poncho — D2C Brand GTM Project · 60 Subprojects · 391 Tasks · ~15,500¶ · April 2026
+</footer></body></html>

@@ -1,0 +1,569 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>P6D: Website SEO Content — Race Start Warmth GTM</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0e1a;--surface:#111827;--card:#1a2332;--border:#2a3a4e;--accent:#10b981;--accent2:#3b82f6;--text:#e2e8f0;--muted:#94a3b8;--white:#fff;--red:#ef4444;--amber:#f59e0b;--green:#10b981}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+/* Nav */
+nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
+nav .inner{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;max-width:1200px;margin:0 auto}
+nav .brand{font-weight:700;font-size:15px;color:var(--accent)}
+nav .links{display:flex;gap:8px;flex-wrap:wrap}
+nav .links a{color:var(--muted);font-size:13px;padding:4px 10px;border-radius:6px;transition:.2s}
+nav .links a:hover,nav .links a.active{color:var(--white);background:var(--card);text-decoration:none}
+/* Hero */
+.hero{padding:60px 0 40px;text-align:center}
+.hero h1{font-size:2.4em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:1.1em;max-width:700px;margin:0 auto}
+/* Stats bar */
+.stats{display:flex;justify-content:center;gap:32px;padding:24px 0;flex-wrap:wrap}
+.stat{text-align:center}.stat .num{font-size:1.8em;font-weight:800;color:var(--white)}.stat .label{font-size:.75em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+/* Cards */
+.grid{display:grid;gap:16px;margin:24px 0}
+.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}
+.grid-3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;transition:.2s}
+.card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.card h3{font-size:1.1em;margin-bottom:8px}.card p{color:var(--muted);font-size:.9em}
+.card .badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:8px}
+.card .meta{font-size:.8em;color:var(--muted);margin-top:12px}
+/* Section */
+.section{padding:40px 0}.section h2{font-size:1.6em;font-weight:700;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+/* Table */
+table{width:100%;border-collapse:collapse;font-size:.85em;margin:16px 0}
+th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:52px}
+td{padding:8px 12px;border-bottom:1px solid var(--border)}
+tr:hover td{background:rgba(16,185,129,.05)}
+.status-complete{color:var(--green);font-weight:600}.status-not{color:var(--muted)}
+/* Progress */
+.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:8px}
+.progress .bar{height:100%;background:var(--accent);border-radius:3px}
+/* Back link */
+.back{display:inline-block;color:var(--muted);font-size:.9em;margin-bottom:20px}
+.back:hover{color:var(--accent)}
+/* Download */
+.dl-card{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin:8px 0;transition:.2s}
+.dl-card:hover{border-color:var(--accent);text-decoration:none}
+.dl-card .icon{font-size:2em}.dl-card .info h4{color:var(--white);margin-bottom:4px}.dl-card .info p{color:var(--muted);font-size:.85em}
+/* Footer */
+footer{text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px}
+@media(max-width:768px){.stats{gap:16px}.stat .num{font-size:1.3em}nav .links{gap:4px}nav .links a{font-size:11px;padding:3px 6px}.hero h1{font-size:1.6em}}
+
+.doc-content{max-width:900px;margin:0 auto;padding:20px 0}
+.doc-content h1{font-size:1.8em;font-weight:800;color:var(--white);margin:32px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.doc-content h2{font-size:1.4em;font-weight:700;color:var(--accent);margin:28px 0 12px}
+.doc-content h3{font-size:1.15em;font-weight:600;color:var(--accent2);margin:20px 0 10px}
+.doc-content p{margin:8px 0;line-height:1.7}
+.doc-content table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85em}
+.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;border:1px solid var(--border)}
+.doc-content td{padding:8px 12px;border:1px solid var(--border);vertical-align:top}
+.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.doc-content ul,.doc-content ol{margin:8px 0 8px 24px}
+.doc-content li{margin:4px 0;line-height:1.6}
+.doc-content strong{color:var(--white)}
+.doc-content em{color:var(--muted)}
+.doc-content blockquote{border-left:3px solid var(--accent);padding:8px 16px;margin:12px 0;background:var(--card);border-radius:0 8px 8px 0}
+.nav-sub{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 24px;padding:12px 16px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
+.nav-sub a{font-size:.8em;color:var(--muted);padding:4px 10px;border-radius:4px;transition:.2s;white-space:nowrap}
+.nav-sub a:hover,.nav-sub a.active{color:var(--white);background:var(--surface);text-decoration:none}
+</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a></div></div></nav><div class="container">
+    <div style="padding-top:30px">
+        <a href="p6.html" class="back">← 💻 P6: DTC Digital</a>
+        <div class="nav-sub"><a href="p6.html">💻 P6 Overview</a><a href="sub-p6a.html">P6A</a><a href="sub-p6b.html">P6B</a><a href="sub-p6c.html">P6C</a><a href="sub-p6d.html" class="active">P6D</a><a href="sub-p6e.html">P6E</a></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px">
+            <div>
+                <span style="background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px">P6D</span>
+                <span style="color:var(--muted);font-size:.85em;margin-left:8px">P6: DTC Digital</span>
+            </div>
+            <a href="files/P6D_Website_SEO_Content.docx" style="font-size:.85em;color:var(--accent);padding:6px 14px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
+        </div>
+        <div class="doc-content">
+            <p><strong>P6D: WEBSITE SEO</strong></p>
+<p><strong>&amp; CONTENT</strong></p>
+<p>Sub-Project P6D | DTC Digital Infrastructure | Weeks 12–18</p>
+<p><em>Complete SEO &amp; Content Strategy: 10-Keyword Target Map, 4
+Cornerstone Blog Posts, Race-Specific Landing Page System, 6 Editorial
+Submission Targets, and 6-Channel Backlink Acquisition Plan</em></p>
+<p>March 2026 | Confidential</p>
+<p>Executive Summary</p>
+<p><strong>SEO is the only marketing channel that compounds.</strong> A
+Facebook ad stops generating traffic the moment the budget runs out. An
+SEO-optimized blog post generates traffic for YEARS. A race-specific
+landing page captures seasonal search traffic every fall and spring
+without any incremental spend. The content created in Weeks 12–18 will
+drive organic traffic in Month 6, Month 12, and Month 36.</p>
+<p><strong>This document builds the complete organic search
+strategy:</strong> 10 target keywords mapped across product,
+informational, and race-specific intent, 4 cornerstone blog posts
+establishing topical authority, a scalable race-specific landing page
+system capturing thousands of seasonal searches per major marathon,
+editorial submission pitches to 6 running and outdoor media outlets, and
+a 6-channel backlink acquisition plan.</p>
+<p>1. SEO Keyword Strategy: 10 Target Keywords</p>
+<p><strong>Keywords are organized in 3 layers:</strong> PRIMARY keywords
+(exact product + problem-aware terms), LONG-TAIL keywords (specific
+queries with high conversion intent), and RACE-SPECIFIC keywords
+(massive seasonal volume tied to marathon dates). The strategy targets
+LOW competition first.</p>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 9%" />
+<col style="width: 8%" />
+<col style="width: 7%" />
+<col style="width: 19%" />
+<col style="width: 41%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Keyword</strong></td>
+<td><strong>Intent</strong></td>
+<td><strong>Volume</strong></td>
+<td><strong>Competition</strong></td>
+<td><strong>Where to Use</strong></td>
+<td><strong>Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>compostable race poncho</strong></td>
+<td>PRIMARY — exact product</td>
+<td>Low (new category)</td>
+<td>LOW</td>
+<td>Product page, meta, blog cornerstone</td>
+<td>Brand-defining keyword. Own this and every compostable poncho search
+finds us.</td>
+</tr>
+<tr class="odd">
+<td><strong>marathon start line warmth</strong></td>
+<td>PRIMARY — problem-aware</td>
+<td>Medium (500–1K/mo)</td>
+<td>MEDIUM</td>
+<td>Blog 1 cornerstone, race pages</td>
+<td>Bridges problem → solution. Runners know the problem but not our
+product.</td>
+</tr>
+<tr class="even">
+<td><strong>race poncho</strong></td>
+<td>PRIMARY — category</td>
+<td>Medium (1K–2K/mo)</td>
+<td>MEDIUM-HIGH</td>
+<td>Product page, blog posts, Amazon backend</td>
+<td>Generic category. Differentiate: warmth poncho that COMPOSTS.</td>
+</tr>
+<tr class="odd">
+<td><strong>what to wear at start of marathon</strong></td>
+<td>LONG-TAIL — info</td>
+<td>Medium (500–1.5K/mo)</td>
+<td>LOW-MEDIUM</td>
+<td>Blog 2, race pages</td>
+<td>Informational intent. Position poncho as the answer.</td>
+</tr>
+<tr class="even">
+<td><strong>marathon garbage bag</strong></td>
+<td>LONG-TAIL — behavior</td>
+<td>Low-Med (200–500/mo)</td>
+<td>LOW</td>
+<td>Blog 1, product page</td>
+<td>The behavior we replace. “Stop wearing garbage bags.”</td>
+</tr>
+<tr class="odd">
+<td><strong>sustainable running gear</strong></td>
+<td>BROAD — category</td>
+<td>High (2K–5K/mo)</td>
+<td>HIGH</td>
+<td>Blog posts, about page, backlink anchors</td>
+<td>Supporting keyword, not primary target. High competition.</td>
+</tr>
+<tr class="even">
+<td><strong>NYC Marathon start line tips</strong></td>
+<td>RACE-SPECIFIC</td>
+<td>High seasonal (5K–10K Oct–Nov)</td>
+<td>MEDIUM</td>
+<td>brand.com/nyc-marathon</td>
+<td>Massive seasonal volume. Landing page captures runners
+preparing.</td>
+</tr>
+<tr class="odd">
+<td><strong>Chicago Marathon cold weather</strong></td>
+<td>RACE-SPECIFIC</td>
+<td>High seasonal (3K–8K Sep–Oct)</td>
+<td>MEDIUM</td>
+<td>brand.com/chicago-marathon</td>
+<td>Same strategy: seasonal landing page for race-specific search.</td>
+</tr>
+<tr class="even">
+<td><strong>BPI certified compostable</strong></td>
+<td>NICHE — cert</td>
+<td>Low (100–300/mo)</td>
+<td>LOW</td>
+<td>Sustainability page, blog 3, product page</td>
+<td>Very high intent eco-conscious consumers seeking certified
+products.</td>
+</tr>
+<tr class="odd">
+<td><strong>how to stay warm before a race</strong></td>
+<td>LONG-TAIL — info</td>
+<td>Medium (500–1K/mo)</td>
+<td>LOW-MEDIUM</td>
+<td>Blog 2, race pages, FAQ</td>
+<td>Broad tips article. Poncho = #1 recommended solution.</td>
+</tr>
+</tbody>
+</table>
+<p>1.1 Keyword Research Tools</p>
+<p>FREE: Google Search Console (actual queries after 2–4 weeks), Google
+Keyword Planner (volumes, free with Ads account), AnswerThePublic
+(question discovery). PAID ($29–$49/month): Ahrefs Lite or Helium 10 for
+difficulty scores, competitor analysis, backlink monitoring.
+RECOMMENDATION: free tools for Season 1, add Ahrefs Month 3–6.</p>
+<p>1.2 On-Page SEO Checklist</p>
+<p>For EVERY page: (1) Title tag: primary keyword + brand, &lt;60 chars.
+(2) Meta description: keyword + compelling copy, &lt;155 chars. (3) H1:
+1 per page with keyword. (4) URL slug: short, keyword-rich. (5) Image
+alt text: descriptive with keyword where natural. (6) Internal links:
+2–3 per page to relevant site pages. (7) Schema markup: Product schema
+on product pages for rich snippets. Use JSON-LD for SEO Shopify app
+($0–$10/month).</p>
+<p>2. Cornerstone Blog Content: 4 Posts</p>
+<p><strong>Cornerstone content establishes topical authority.</strong> 4
+posts cover: the problem (Blog 1: race waste), the lifestyle (Blog 2:
+sustainable running), the science (Blog 3: composting), and the B2B
+angle (Blog 4: race director guide). Together they signal to Google that
+brand.com is THE authority on compostable products for running.</p>
+<table style="width:100%;">
+<colgroup>
+<col style="width: 19%" />
+<col style="width: 8%" />
+<col style="width: 5%" />
+<col style="width:50%">
+<col style="width: 16%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Post</strong></td>
+<td><strong>Type</strong></td>
+<td><strong>Words</strong></td>
+<td><strong>Content &amp; Keywords</strong></td>
+<td><strong>Timing</strong></td>
+</tr>
+<tr class="even">
+<td><strong>The Hidden Waste Problem at Marathon Start
+Lines</strong></td>
+<td>CORNERSTONE</td>
+<td>1,500–2,000</td>
+<td>Targets: marathon start line warmth, marathon garbage bag, race
+start line waste. Covers: 35K–45K garbage bags per major marathon (P0A
+data), LDPE environmental impact, current solutions comparison,
+compostable poncho introduction. Includes: FLIR image, composting
+infographic, CTA to product page.</td>
+<td>Week 14</td>
+</tr>
+<tr class="odd">
+<td><strong>Zero-Waste Race Day Guide</strong></td>
+<td>PILLAR</td>
+<td>2,000–2,500</td>
+<td>Targets: what to wear at start of marathon, sustainable running, how
+to stay warm before a race. Comprehensive guide: pre-race nutrition,
+race-day outfit, start-line warmth (poncho = #1 recommendation),
+hydration, gear disposal. Poncho is one section, not the whole article —
+builds topical breadth. High backlink potential.</td>
+<td>Week 15</td>
+</tr>
+<tr class="even">
+<td><strong>What Happens When You Compost a Race Poncho</strong></td>
+<td>EDUCATIONAL</td>
+<td>1,000–1,500</td>
+<td>Targets: BPI certified compostable, compostable vs biodegradable,
+how composting works. Step-by-step composting process, ASTM D6400
+explained, material decomposition timeline (NatureFlex 4–8 wks, PLA
+12–24 wks), FindAComposter.com resource. Addresses skepticism with
+science.</td>
+<td>Week 16–17</td>
+</tr>
+<tr class="odd">
+<td><strong>Race Director’s Guide to Eliminating Start-Line
+Waste</strong></td>
+<td>B2B SEO</td>
+<td>1,500–2,000</td>
+<td>Targets: race director sustainability, race waste management.
+Covers: waste cleanup costs, solutions comparison, implementation guide
+(ordering, co-branding, composting logistics), pilot case study preview,
+CTA to sample kit. B2B equivalent of cornerstone content.</td>
+<td>Week 17–18</td>
+</tr>
+</tbody>
+</table>
+<p>2.1 Blog Publishing Checklist</p>
+<p>Before every post: (1) On-page SEO complete per Section 1.2. (2)
+Internal links to 2+ site pages. (3) External links to 1–2 authoritative
+sources (BPI, NOAA, EPA). (4) 2–3 images with alt text. (5) CTA at end
+(shop or request sample kit). (6) Share on all social channels with UTM
+links. (7) Feature in next Klaviyo email. (8) Submit URL to Search
+Console for indexing.</p>
+<p>2.2 Ongoing Content Calendar</p>
+<p>Post-launch: 1–2 new posts per month. Topics: race recaps (“How We
+Composted 450 lbs at [Race]”), seasonal guides (“Winter Running Warmth
+Checklist”), sustainability features (“5 Compostable Products for
+Runners”), product updates (“Introducing the 3-Pack”). Consistent
+publishing builds topical authority over time.</p>
+<p>3. Race-Specific Landing Pages</p>
+<p><strong>Race-specific pages capture seasonal search traffic:</strong>
+5,000–10,000 searches for “NYC Marathon start line tips” in
+October–November. Each page is a low-competition, high-intent SEO asset:
+race tips → poncho recommendation → product page CTA.</p>
+<table>
+<colgroup>
+<col style="width: 11%" />
+<col style="width: 16%" />
+<col style="width: 7%" />
+<col style="width: 33%" />
+<col style="width: 30%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>URL</strong></td>
+<td><strong>Title</strong></td>
+<td><strong>Timing</strong></td>
+<td><strong>Content</strong></td>
+<td><strong>SEO Notes</strong></td>
+</tr>
+<tr class="even">
+<td><strong>brand.com/nyc-marathon</strong></td>
+<td>NYC Marathon Start-Line Guide</td>
+<td>Publish by Sep (race Nov)</td>
+<td>NYC-specific: Staten Island ferry wait, corral timing, weather
+history (85–90% &lt;50°F), what to wear, poncho recommendation,
+composting partner (NYC), CTA to shop.</td>
+<td>Target: “NYC Marathon start line tips.” 5K–10K seasonal searches. At
+3% CTR × 3% conversion: 5–9 sales/season.</td>
+</tr>
+<tr class="odd">
+<td><strong>brand.com/chicago-marathon</strong></td>
+<td>Chicago Marathon Start-Line Guide</td>
+<td>Publish by Aug (race Oct)</td>
+<td>Grant Park weather, 7:30 AM start, Lake Michigan wind, historical
+temps (65–75% &lt;50°F), poncho recommendation, Chicago composting
+partner, CTA.</td>
+<td>Target: “Chicago Marathon cold weather.” 3K–8K seasonal
+searches.</td>
+</tr>
+<tr class="even">
+<td><strong>brand.com/boston-marathon</strong></td>
+<td>Boston Marathon Start-Line Guide</td>
+<td>Publish by Feb (race Apr)</td>
+<td>Hopkinton Athletes’ Village 2–4 hour wait, historical weather
+(40–50°F April), throw-away clothing tradition and waste impact, poncho
+as compostable alternative, CTA.</td>
+<td>Boston’s unique long wait makes warmth critical. High search
+volume.</td>
+</tr>
+<tr class="odd">
+<td><strong>brand.com/marine-corps-marathon</strong></td>
+<td>MCM Start-Line Guide</td>
+<td>Publish by Aug (race Oct)</td>
+<td>Pentagon start, military community, security timing, DC weather,
+composting partner (Compost Crew), CTA.</td>
+<td>Military/service community angle adds unique content
+differentiation.</td>
+</tr>
+<tr class="even">
+<td><strong>brand.com/[race-name]</strong></td>
+<td>Template for additional races</td>
+<td>6–8 weeks before race</td>
+<td>TEMPLATE: H1 with race name, weather data, start logistics, what to
+wear, poncho recommendation, composting info for race city, CTA.
+800–1,200 words.</td>
+<td>Scale to 10–20 pages for all cold-weather target races. Each page =
+low-competition seasonal asset.</td>
+</tr>
+</tbody>
+</table>
+<p>3.1 Seasonal Amplification</p>
+<p>To maximize ranking: (1) Internal links from all blog posts to
+relevant race pages. (2) Refresh each page 8 weeks before race with
+updated weather forecast and logistics changes — Google rewards fresh
+content. (3) Social promotion 6, 4, and 2 weeks before race with UTM
+links. (4) Targeted email to subscribers in race city 3–4 weeks before.
+(5) Strava Club post with race guide link.</p>
+<p>4. Editorial Submissions: 6 Targets</p>
+<p><strong>Editorial coverage provides:</strong> high-authority
+backlinks (DR 50–85+), brand credibility (“As featured in Runner’s
+World”), direct traffic (100K–1M readers), and social proof for B2B
+pitch decks. Landing 1–2 editorial features in Year 1 is
+transformative.</p>
+<table>
+<colgroup>
+<col style="width: 14%" />
+<col style="width: 14%" />
+<col style="width: 47%" />
+<col style="width: 23%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Publication</strong></td>
+<td><strong>Website</strong></td>
+<td><strong>Audience &amp; Approach</strong></td>
+<td><strong>Value</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Runner’s World</strong></td>
+<td>runnersworld.com</td>
+<td>Largest running media, millions of readers. Pitch: gear review via
+“Gear of the Year” nominations, or story angle: “The Race-Day Waste
+Problem Nobody Talks About.” Contact: gear editor or sustainability
+editor via LinkedIn.</td>
+<td>DR 85+ backlink. 500K–$1M monthly readers. A feature here = months
+of SEO work in one article.</td>
+</tr>
+<tr class="odd">
+<td><strong>Outside Magazine</strong></td>
+<td>outsideonline.com</td>
+<td>Outdoor enthusiasts, trail runners, eco-conscious athletes. Strong
+sustainability editorial. Pitch: “The Race Industry’s Waste Problem”
+feature or gear review.</td>
+<td>Audience over-indexes on sustainability. Feature reaches runners
+motivated to buy eco-friendly.</td>
+</tr>
+<tr class="even">
+<td><strong>iRunFar</strong></td>
+<td>irunfar.com</td>
+<td>Ultra/trail running community. Highly engaged niche. Pitch: gear
+review or advertorial. Poncho relevant to cold mountain starts and
+pre-dawn ultras.</td>
+<td>Smaller audience but deeply engaged. Positive review circulates
+through ultra community.</td>
+</tr>
+<tr class="odd">
+<td><strong>GearJunkie</strong></td>
+<td>gearjunkie.com</td>
+<td>Outdoor gear reviews, DR 75+. Submit via “Submit Gear for Review”
+page. Include: 2–3 samples, press release, data sheet.</td>
+<td>Reviews syndicated across outdoor media = 3–5 backlinks from one
+review.</td>
+</tr>
+<tr class="even">
+<td><strong>Citius Mag</strong></td>
+<td>citiusmag.com</td>
+<td>Running culture, growing younger audience. Pitch: sustainability
+story, founder interview, or product feature.</td>
+<td>Younger, social-media-active audience drives Instagram/TikTok
+sharing.</td>
+</tr>
+<tr class="odd">
+<td><strong>Trail Runner</strong></td>
+<td>trailrunnermag.com</td>
+<td>Trail/mountain running. Pitch for cold-weather gear roundup or
+pre-race essentials. Mountain races = coldest start lines.</td>
+<td>Seasonal gear guides (“Winter Running Gear”) align perfectly. Time
+pitch 2–3 months early.</td>
+</tr>
+</tbody>
+</table>
+<p>4.1 Pitch Template</p>
+<p>SUBJECT: Compostable Alternative to Garbage Bags at Marathon Start
+Lines. BODY: introduce founder + product, reference pilot data
+(“composted [X] lbs at [Race Name]”), offer samples + photos +
+interview, ask for gear review or feature. ATTACH: 2–3 high-res race-day
+photos, 1-page data sheet, case study summary. TIMING: pitch 3–4 months
+before the publication’s editorial window.</p>
+<p>5. Backlink Acquisition: 6 Channels</p>
+<p><strong>Backlinks are the #1 off-page SEO factor.</strong> Running
+authority links + composting authority links = definitive source for
+compostable running products in Google’s view. Target: 10–20 quality
+backlinks in 6 months.</p>
+<table>
+<colgroup>
+<col style="width: 18%" />
+<col style="width: 81%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Channel</strong></td>
+<td><strong>Strategy</strong></td>
+</tr>
+<tr class="even">
+<td><strong>Guest posts on running blogs</strong></td>
+<td>Pitch 10–20 running blogs (DR 20–50): “5 Ways to Make Race Day More
+Sustainable,” “The Environmental Cost of Running Events.” Expect 3–5
+acceptances. Each post includes: author bio link to brand.com + 1–2
+contextual content links.</td>
+</tr>
+<tr class="odd">
+<td><strong>Sustainability blog features</strong></td>
+<td>Pitch TreeHugger (DR 80+), EcoWatch, Green Matters, Sustainable
+Jungle: “First BPI-certified race poncho — feature in sustainable
+product roundup?” A TreeHugger mention = massive SEO + audience
+alignment.</td>
+</tr>
+<tr class="even">
+<td><strong>Race director resources</strong></td>
+<td>Create brand.com/resources: downloadable composting guide,
+sustainability calculator (P5C), waste audit template. Pitch to Running
+USA, RRCA, RunSignUp. Earns PASSIVE backlinks as directors share.</td>
+</tr>
+<tr class="odd">
+<td><strong>Pilot race press coverage</strong></td>
+<td>Press release to local media per race city after each pilot. “[City]
+Marathon Uses Compostable Ponchos, Diverts [X] lbs.” Local newspaper/TV
+sites provide DR 30–70 backlinks + press screenshots for social
+proof.</td>
+</tr>
+<tr class="even">
+<td><strong>Composting industry publications</strong></td>
+<td>Pitch BioCycle (DR 55+), US Composting Council, Compost Magazine:
+“New BPI-certified product entering event waste stream.” Niche-relevant
+composting authority links are highly valued by Google.</td>
+</tr>
+<tr class="odd">
+<td><strong>Strava Club + community</strong></td>
+<td>Create branded Strava Club. Club description links to brand.com.
+Posts link to blog articles. Nofollow links but drive: referral traffic,
+brand awareness, and social signals supporting SEO.</td>
+</tr>
+</tbody>
+</table>
+<p>5.1 Backlink Tracking</p>
+<p>Google Sheet: Date | Source URL | Domain | DR | Anchor Text | Target
+Page | Status | Method. Monitor with Ahrefs Lite ($29/month) monthly
+for: new links, lost links, toxic links. TARGET: 10–20 DR 20+ backlinks
+by Month 6. 30–50 by Month 12. Each quality backlink improves ranking
+for ALL pages site-wide.</p>
+<p>6. Timeline &amp; Budget</p>
+<p><strong>WEEK 12–13: Build keyword strategy. Conduct research with
+free tools. Map keywords to pages. Optimize existing pages per on-page
+checklist.</strong></p>
+<p><strong>WEEK 14: Publish Blog 1 (Hidden Waste Problem). Share on
+social + email. Submit to Search Console. Begin guest post
+outreach.</strong></p>
+<p><strong>WEEK 15: Publish Blog 2 (Zero-Waste Race Day Guide). Begin
+race-specific landing pages (NYC, Chicago).</strong></p>
+<p><strong>WEEK 16–17: Publish Blog 3 (Composting explainer). Publish
+race landing pages (NYC, Chicago, Boston, MCM). Begin editorial outreach
+to Runner’s World, GearJunkie, iRunFar.</strong></p>
+<p><strong>WEEK 17–18: Publish Blog 4 (Race Director Guide). Create
+Resources page for passive backlinks. Pitch sustainability blogs.
+Establish Strava Club. HANDOFF to ongoing: 1–2 posts/month + seasonal
+page updates.</strong></p>
+<p>BUDGET: Blog writing (founder): $0. Freelance alternative:
+$100–$300/post. Keyword tools (free): $0. Ahrefs Lite (Month 3+):
+$29/month. Schema app: $0–10/month. Editorial sample shipping: $50–$100.
+TOTAL P6D: $50–$100 one-time + $0–$39/month.</p>
+<p>7. Conclusion: Content Is the Compounding Asset</p>
+<p><strong>Blog 1 is written once and generates traffic for 3–5
+years.</strong> The NYC Marathon landing page captures 5,000–10,000
+searches every October. A GearJunkie review earns a DR 75 backlink that
+no competitor can replicate. Every piece of content is an ASSET that
+appreciates over time as Google recognizes the site’s authority.</p>
+<p><strong>4 blog posts, 5 race pages, and 10 backlinks in the first 6
+months</strong> = page 1 ranking for “compostable race poncho” by Month
+12 = 500–2,000 free visits per month = $2,000–$8,000/month in equivalent
+paid traffic. No ad budget. No monthly fee. Just content that
+compounds.</p>
+
+        </div>
+    </div></div>
+<footer style="text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px">
+Sustainable Race-Start Warmth Poncho — D2C Brand GTM Project · 60 Subprojects · 391 Tasks · ~15,500¶ · April 2026
+</footer></body></html>
