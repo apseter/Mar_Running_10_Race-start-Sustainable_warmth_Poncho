@@ -1,0 +1,90 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Financials — Race Start Warmth</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0e1a;--surface:#111827;--card:#1a2332;--border:#2a3a4e;--accent:#10b981;--accent2:#3b82f6;--text:#e2e8f0;--muted:#94a3b8;--white:#fff;--red:#ef4444;--amber:#f59e0b;--green:#10b981}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+/* Nav */
+nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
+nav .inner{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;max-width:1200px;margin:0 auto}
+nav .brand{font-weight:700;font-size:15px;color:var(--accent)}
+nav .links{display:flex;gap:8px;flex-wrap:wrap}
+nav .links a{color:var(--muted);font-size:13px;padding:4px 10px;border-radius:6px;transition:.2s}
+nav .links a:hover,nav .links a.active{color:var(--white);background:var(--card);text-decoration:none}
+/* Hero */
+.hero{padding:60px 0 40px;text-align:center}
+.hero h1{font-size:2.4em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:1.1em;max-width:700px;margin:0 auto}
+/* Stats bar */
+.stats{display:flex;justify-content:center;gap:32px;padding:24px 0;flex-wrap:wrap}
+.stat{text-align:center}.stat .num{font-size:1.8em;font-weight:800;color:var(--white)}.stat .label{font-size:.75em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+/* Cards */
+.grid{display:grid;gap:16px;margin:24px 0}
+.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}
+.grid-3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;transition:.2s}
+.card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.card h3{font-size:1.1em;margin-bottom:8px}.card p{color:var(--muted);font-size:.9em}
+.card .badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:8px}
+.card .meta{font-size:.8em;color:var(--muted);margin-top:12px}
+/* Section */
+.section{padding:40px 0}.section h2{font-size:1.6em;font-weight:700;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+/* Table */
+table{width:100%;border-collapse:collapse;font-size:.85em;margin:16px 0}
+th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:52px}
+td{padding:8px 12px;border-bottom:1px solid var(--border)}
+tr:hover td{background:rgba(16,185,129,.05)}
+.status-complete{color:var(--green);font-weight:600}.status-not{color:var(--muted)}
+/* Progress */
+.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:8px}
+.progress .bar{height:100%;background:var(--accent);border-radius:3px}
+/* Back link */
+.back{display:inline-block;color:var(--muted);font-size:.9em;margin-bottom:20px}
+.back:hover{color:var(--accent)}
+/* Download */
+.dl-card{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin:8px 0;transition:.2s}
+.dl-card:hover{border-color:var(--accent);text-decoration:none}
+.dl-card .icon{font-size:2em}.dl-card .info h4{color:var(--white);margin-bottom:4px}.dl-card .info p{color:var(--muted);font-size:.85em}
+/* Footer */
+footer{text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px}
+@media(max-width:768px){.stats{gap:16px}.stat .num{font-size:1.3em}nav .links{gap:4px}nav .links a{font-size:11px;padding:3px 6px}.hero h1{font-size:1.6em}}
+</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Executive Summary</a><a href="financials.html" class="active">Financials</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a></div></div></nav><div class="container">
+    <div class="section" style="padding-top:40px">
+        <a href="index.html" class="back">← Dashboard</a>
+        <h2>💰 Financial Model</h2>
+        <p style="margin-bottom:24px">Complete financial framework from P8A Financial Planning & Modeling (328¶). Unit economics, cash flow, breakeven, and decision gates.</p>
+
+        <h3 style="margin:24px 0 12px">Unit Economics: 7-Channel Model</h3>
+        <table>
+            <tr><th>Channel</th><th>Selling Price</th><th>COGS</th><th>Platform Fees</th><th>Net Margin</th><th>Margin %</th></tr>
+            <tr><td>Amazon FBA (single)</td><td>$9.99</td><td>$1.15</td><td>$4.42 (FBA+ref)</td><td>$2.38</td><td>24%</td></tr>
+            <tr><td>Shopify 3-Pack</td><td>$24.99</td><td>$3.45</td><td>$2.04 (ship+tx)</td><td>$13.50</td><td>54%</td></tr>
+            <tr><td>B2B Standard</td><td>$3.50</td><td>$1.15</td><td>$0.00</td><td>$1.79</td><td>51%</td></tr>
+            <tr><td>B2B Co-Brand</td><td>$4.50</td><td>$1.35</td><td>$0.00</td><td>$2.71</td><td>60%</td></tr>
+            <tr><td>Expo Direct</td><td>$9.99</td><td>$1.15</td><td>$0.32 (Square)</td><td>$6.52</td><td>65%</td></tr>
+            <tr><td>Registration Add-On</td><td>$9.99</td><td>$1.15</td><td>$0.72 (platform)</td><td>$6.07</td><td>61%</td></tr>
+            <tr><td>Sponsor-Funded B2B</td><td>$5.00–$6.00</td><td>$1.15</td><td>$0.00</td><td>$3.85–$4.85</td><td>71–81%</td></tr>
+        </table>
+
+        <h3 style="margin:24px 0 12px">Breakeven Analysis</h3>
+        <table>
+            <tr><th>Scenario</th><th>Fixed Costs</th><th>Breakeven Units (B2B)</th><th>Breakeven Units (DTC)</th></tr>
+            <tr><td>Bootstrap</td><td>$10,700–$26,200</td><td>5,978–14,637 units</td><td>2,282–5,588 units</td></tr>
+            <tr><td>Full Launch</td><td>$50,900–$131,500</td><td>28,436–73,464 units</td><td>10,854–28,043 units</td></tr>
+        </table>
+
+        <h3 style="margin:24px 0 12px">Decision Gates</h3>
+        <table>
+            <tr><th>Gate</th><th>Timing</th><th>Key Metrics</th></tr>
+            <tr><td>Pipeline Check</td><td>Month 6</td><td>B2B pipeline >$30K, 3+ conversations, 1+ PO, DTC 50+ units/mo</td></tr>
+            <tr><td>Financial Review</td><td>Month 10</td><td>Revenue >60% of costs, 80%+ reorder intent, NPS >4.0</td></tr>
+            <tr><td>Year 2 Commitment</td><td>Month 12</td><td>Self-fund vs. raise vs. partner vs. wind-down</td></tr>
+        </table>
+
+        <div style="margin-top:24px">
+            <a href="files/P8A_Financial_Planning_Modeling.docx" class="dl-card"><div class="icon">📊</div><div class="info"><h4>Download Full Financial Model (P8A)</h4><p>328 paragraphs · 12-month cash flow · 7-channel economics · 6 B2B scenarios</p></div></a>
+        </div>
+    </div></div>
+<footer>Sustainable Race-Start Warmth Poncho — D2C Brand GTM Project · 60 Subprojects · 391 Tasks · ~15,500¶ · April 2026 · Confidential</footer></body></html>

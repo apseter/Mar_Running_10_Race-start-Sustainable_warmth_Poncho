@@ -1,0 +1,69 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>P1: Brand Development & Identity — Race Start Warmth</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0e1a;--surface:#111827;--card:#1a2332;--border:#2a3a4e;--accent:#10b981;--accent2:#3b82f6;--text:#e2e8f0;--muted:#94a3b8;--white:#fff;--red:#ef4444;--amber:#f59e0b;--green:#10b981}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+/* Nav */
+nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
+nav .inner{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;max-width:1200px;margin:0 auto}
+nav .brand{font-weight:700;font-size:15px;color:var(--accent)}
+nav .links{display:flex;gap:8px;flex-wrap:wrap}
+nav .links a{color:var(--muted);font-size:13px;padding:4px 10px;border-radius:6px;transition:.2s}
+nav .links a:hover,nav .links a.active{color:var(--white);background:var(--card);text-decoration:none}
+/* Hero */
+.hero{padding:60px 0 40px;text-align:center}
+.hero h1{font-size:2.4em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:1.1em;max-width:700px;margin:0 auto}
+/* Stats bar */
+.stats{display:flex;justify-content:center;gap:32px;padding:24px 0;flex-wrap:wrap}
+.stat{text-align:center}.stat .num{font-size:1.8em;font-weight:800;color:var(--white)}.stat .label{font-size:.75em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+/* Cards */
+.grid{display:grid;gap:16px;margin:24px 0}
+.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}
+.grid-3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;transition:.2s}
+.card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.card h3{font-size:1.1em;margin-bottom:8px}.card p{color:var(--muted);font-size:.9em}
+.card .badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:8px}
+.card .meta{font-size:.8em;color:var(--muted);margin-top:12px}
+/* Section */
+.section{padding:40px 0}.section h2{font-size:1.6em;font-weight:700;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+/* Table */
+table{width:100%;border-collapse:collapse;font-size:.85em;margin:16px 0}
+th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:52px}
+td{padding:8px 12px;border-bottom:1px solid var(--border)}
+tr:hover td{background:rgba(16,185,129,.05)}
+.status-complete{color:var(--green);font-weight:600}.status-not{color:var(--muted)}
+/* Progress */
+.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:8px}
+.progress .bar{height:100%;background:var(--accent);border-radius:3px}
+/* Back link */
+.back{display:inline-block;color:var(--muted);font-size:.9em;margin-bottom:20px}
+.back:hover{color:var(--accent)}
+/* Download */
+.dl-card{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin:8px 0;transition:.2s}
+.dl-card:hover{border-color:var(--accent);text-decoration:none}
+.dl-card .icon{font-size:2em}.dl-card .info h4{color:var(--white);margin-bottom:4px}.dl-card .info p{color:var(--muted);font-size:.85em}
+/* Footer */
+footer{text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px}
+@media(max-width:768px){.stats{gap:16px}.stat .num{font-size:1.3em}nav .links{gap:4px}nav .links a{font-size:11px;padding:3px 6px}.hero h1{font-size:1.6em}}
+</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Executive Summary</a><a href="financials.html" class="">Financials</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a></div></div></nav><div class="container">
+    <div class="section" style="padding-top:40px">
+        <a href="index.html" class="back">← Dashboard</a>
+        <h2>🎨 P1: Brand Development & Identity</h2>
+        <p style="margin-bottom:8px">30 tasks · 5 subprojects · 2,176 paragraphs · Wk 4–10 · 100% Complete</p>
+        <div class="progress" style="margin-bottom:32px"><div class="bar" style="width:100%"></div></div>
+
+        <h3 style="margin:24px 0 16px">📂 Subproject Documents</h3>
+        <div class="grid grid-2"><div class="card"><div class="badge">P1A</div><h3>Brand Naming & Trademark</h3><p style="margin:8px 0">25+ candidates, USPTO search, domain/social verification, runner polls</p><div class="meta">Complete · <a href="files/P1A_Brand_Naming_Trademark.docx">Download DOCX</a></div></div><div class="card"><div class="badge">P1B</div><h3>Visual Identity & Design System</h3><p style="margin:8px 0">Logo, color palette, typography, co-brand templates, brand guidelines</p><div class="meta">Complete · <a href="files/P1B_Visual_Identity_Design_System.docx">Download DOCX</a></div></div><div class="card"><div class="badge">P1C</div><h3>Brand Messaging & Story</h3><p style="margin:8px 0">Origin story, B2B messaging, DTC messaging, tagline testing, impact framework</p><div class="meta">Complete · <a href="files/P1C_Brand_Messaging_Story.docx">Download DOCX</a></div></div><div class="card"><div class="badge">P1D</div><h3>Brand Film & Visual Content</h3><p style="margin:8px 0">60-90s brand film, race photography, product photography, B2B pitch deck</p><div class="meta">Complete · <a href="files/P1D_Brand_Film_Visual_Content.docx">Download DOCX</a></div></div><div class="card"><div class="badge">P1E</div><h3>Pre-Launch List Building</h3><p style="margin:8px 0">Landing page, Klaviyo welcome sequence, Reddit/Facebook seeding, referral program</p><div class="meta">Complete · <a href="files/P1E_PreLaunch_List_Building.docx">Download DOCX</a></div></div></div>
+
+        <h3 style="margin:32px 0 16px">All Tasks</h3>
+        <div style="overflow-x:auto"><table>
+            <tr><th>ID</th><th>Task</th><th>Timeline</th><th>Status</th></tr>
+            <tr><td colspan="4" style="background:var(--surface);font-weight:600;color:var(--accent);padding:10px">P1A: Brand Naming & Trademark</td></tr><tr><td><strong>1.01</strong></td><td>Brainstorm 25+ brand name candidates referencing sustainability, warmth, race day, start line, compost, green</td><td>Wk 4</td><td class="status-complete">Complete</td></tr><tr><td><strong>1.02</strong></td><td>Check USPTO trademark availability for top 10 name candidates</td><td>Wk 4-5</td><td class="status-complete">Complete</td></tr><tr><td><strong>1.03</strong></td><td>Verify .com domain + social handle availability for top 5 names</td><td>Wk 5</td><td class="status-complete">Complete</td></tr><tr><td><strong>1.04</strong></td><td>Test 3-5 name finalists via runner polls (Reddit, Instagram Stories, interview subjects)</td><td>Wk 5-6</td><td class="status-complete">Complete</td></tr><tr><td><strong>1.05</strong></td><td>File trademark application (USPTO + consider Madrid Protocol for international)</td><td>Wk 6</td><td class="status-complete">Complete</td></tr><tr><td><strong>1.06</strong></td><td>Secure domain, social handles, and Google Workspace email for selected brand name</td><td>Wk 6</td><td class="status-complete">Complete</td></tr><tr><td colspan="4" style="background:var(--surface);font-weight:600;color:var(--accent);padding:10px">P1B: Visual Identity & Design System</td></tr><tr><td><strong>1.07</strong></td><td>Define brand positioning: "The first running brand built around race-day sustainability" — refine with research insights</td><td>Wk 5</td><td class="status-complete">Complete</td></tr><tr><td><strong>1.08</strong></td><td>Design logo: must work on product (1-2 color print), web, and small social avatars</td><td>Wk 5-7</td><td class="status-complete">Complete</td></tr><tr><td><strong>1.09</strong></td><td>Develop color palette: earthy/sustainable tones that stand out in race photography</td><td>Wk 6-7</td><td class="status-complete">Complete</td></tr><tr><td><strong>1.10</strong></td><td>Design product packaging: compostable wrapper with composting instructions, QR code, brand story</td><td>Wk 6-8</td><td class="status-complete">Complete</td></tr><tr><td><strong>1.11</strong></td><td>Create co-brand template: race logo + sponsor logo placement areas on poncho and packaging</td><td>Wk 7-8</td><td class="status-complete">Complete</td></tr><tr><td><strong>1.12</strong></td><td>Design sustainability one-pager / data sheet for B2B sales: waste stats, product specs, certifications, pricing</td><td>Wk 7-8</td><td class="status-complete">Complete</td></tr><tr><td><strong>1.13</strong></td><td>Build brand guidelines document: logo usage, colors, typography, photography style, tone of voice</td><td>Wk 8</td><td class="status-complete">Complete</td></tr><tr><td colspan="4" style="background:var(--surface);font-weight:600;color:var(--accent);padding:10px">P1C: Brand Messaging & Story</td></tr><tr><td><strong>1.14</strong></td><td>Write brand origin story: "Every year, millions of garments are thrown away at marathon start lines. We built the alternative."</td><td>Wk 5-6</td><td class="status-complete">Complete</td></tr><tr><td><strong>1.15</strong></td><td>Develop B2B messaging: waste reduction metrics, sustainability certification, co-branding value, runner experience upgrade</td><td>Wk 6</td><td class="status-complete">Complete</td></tr><tr><td><strong>1.16</strong></td><td>Develop DTC messaging: warmth, convenience, sustainability, "better than a garbage bag" positioning</td><td>Wk 6</td><td class="status-complete">Complete</td></tr><tr><td><strong>1.17</strong></td><td>Test 5+ tagline candidates via social polls and runner interviews</td><td>Wk 6-7</td><td class="status-complete">Complete</td></tr><tr><td><strong>1.18</strong></td><td>Write product description copy for Amazon, Shopify, and B2B pitch deck (3 versions)</td><td>Wk 7-8</td><td class="status-complete">Complete</td></tr><tr><td><strong>1.19</strong></td><td>Build impact messaging framework: "Each poncho replaces X garbage bags, diverts Y lbs from landfill, saves Z garments"</td><td>Wk 7-8</td><td class="status-complete">Complete</td></tr><tr><td colspan="4" style="background:var(--surface);font-weight:600;color:var(--accent);padding:10px">P1D: Brand Film & Visual Content</td></tr><tr><td><strong>1.20</strong></td><td>Storyboard 60-90s brand film: drone footage of start-line waste → our poncho → composting → soil</td><td>Wk 8</td><td class="status-complete">Complete</td></tr><tr><td><strong>1.21</strong></td><td>Produce brand film: Bootstrap = iPhone/GoPro at local race; Full Launch = professional videographer at major marathon</td><td>Wk 8-10</td><td class="status-complete">Complete</td></tr><tr><td><strong>1.22</strong></td><td>Capture race start-line waste photography: before/during/after shots at 3+ races for B2B pitch deck and website</td><td>Wk 8-10</td><td class="status-complete">Complete</td></tr><tr><td><strong>1.23</strong></td><td>Create product photography: studio shots of poncho (packed, unfolded, worn, tear-away demo, composting)</td><td>Wk 9-10</td><td class="status-complete">Complete</td></tr><tr><td><strong>1.24</strong></td><td>Create B2B pitch deck: 10-slide presentation for race directors with co-brand mockups + sustainability data</td><td>Wk 9-10</td><td class="status-complete">Complete</td></tr><tr><td colspan="4" style="background:var(--surface);font-weight:600;color:var(--accent);padding:10px">P1E: Pre-Launch List Building</td></tr><tr><td><strong>1.25</strong></td><td>Build landing page with email capture: "Be first to race warm and waste-free" — Shopify or Carrd</td><td>Wk 6-7</td><td class="status-complete">Complete</td></tr><tr><td><strong>1.26</strong></td><td>Set up email marketing: Klaviyo or Mailchimp with welcome sequence (3 emails: story, problem, product reveal)</td><td>Wk 7</td><td class="status-complete">Complete</td></tr><tr><td><strong>1.27</strong></td><td>Seed pre-launch list via Reddit posts, running Facebook groups, Strava clubs</td><td>Wk 7-10</td><td class="status-complete">Complete</td></tr><tr><td><strong>1.28</strong></td><td>Build B2B prospect list: 50+ race directors with email/LinkedIn from P0C research</td><td>Wk 7-8</td><td class="status-complete">Complete</td></tr><tr><td><strong>1.29</strong></td><td>Create referral incentive: "Refer a race director, get a free 3-pack" program structure</td><td>Wk 8-9</td><td class="status-complete">Complete</td></tr><tr><td><strong>1.30</strong></td><td>Partner with 2-3 running Instagram/TikTok accounts for pre-launch content seeding</td><td>Wk 9-10</td><td class="status-complete">Complete</td></tr>
+        </table></div>
+    </div></div>
+<footer>Sustainable Race-Start Warmth Poncho — D2C Brand GTM Project · 60 Subprojects · 391 Tasks · ~15,500¶ · April 2026 · Confidential</footer></body></html>

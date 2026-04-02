@@ -1,0 +1,106 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Executive Summary — Race Start Warmth</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0a0e1a;--surface:#111827;--card:#1a2332;--border:#2a3a4e;--accent:#10b981;--accent2:#3b82f6;--text:#e2e8f0;--muted:#94a3b8;--white:#fff;--red:#ef4444;--amber:#f59e0b;--green:#10b981}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+/* Nav */
+nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
+nav .inner{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;max-width:1200px;margin:0 auto}
+nav .brand{font-weight:700;font-size:15px;color:var(--accent)}
+nav .links{display:flex;gap:8px;flex-wrap:wrap}
+nav .links a{color:var(--muted);font-size:13px;padding:4px 10px;border-radius:6px;transition:.2s}
+nav .links a:hover,nav .links a.active{color:var(--white);background:var(--card);text-decoration:none}
+/* Hero */
+.hero{padding:60px 0 40px;text-align:center}
+.hero h1{font-size:2.4em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:1.1em;max-width:700px;margin:0 auto}
+/* Stats bar */
+.stats{display:flex;justify-content:center;gap:32px;padding:24px 0;flex-wrap:wrap}
+.stat{text-align:center}.stat .num{font-size:1.8em;font-weight:800;color:var(--white)}.stat .label{font-size:.75em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+/* Cards */
+.grid{display:grid;gap:16px;margin:24px 0}
+.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}
+.grid-3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;transition:.2s}
+.card:hover{border-color:var(--accent);transform:translateY(-2px)}
+.card h3{font-size:1.1em;margin-bottom:8px}.card p{color:var(--muted);font-size:.9em}
+.card .badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:8px}
+.card .meta{font-size:.8em;color:var(--muted);margin-top:12px}
+/* Section */
+.section{padding:40px 0}.section h2{font-size:1.6em;font-weight:700;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+/* Table */
+table{width:100%;border-collapse:collapse;font-size:.85em;margin:16px 0}
+th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:52px}
+td{padding:8px 12px;border-bottom:1px solid var(--border)}
+tr:hover td{background:rgba(16,185,129,.05)}
+.status-complete{color:var(--green);font-weight:600}.status-not{color:var(--muted)}
+/* Progress */
+.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:8px}
+.progress .bar{height:100%;background:var(--accent);border-radius:3px}
+/* Back link */
+.back{display:inline-block;color:var(--muted);font-size:.9em;margin-bottom:20px}
+.back:hover{color:var(--accent)}
+/* Download */
+.dl-card{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin:8px 0;transition:.2s}
+.dl-card:hover{border-color:var(--accent);text-decoration:none}
+.dl-card .icon{font-size:2em}.dl-card .info h4{color:var(--white);margin-bottom:4px}.dl-card .info p{color:var(--muted);font-size:.85em}
+/* Footer */
+footer{text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px}
+@media(max-width:768px){.stats{gap:16px}.stat .num{font-size:1.3em}nav .links{gap:4px}nav .links a{font-size:11px;padding:3px 6px}.hero h1{font-size:1.6em}}
+</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="active">Executive Summary</a><a href="financials.html" class="">Financials</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a></div></div></nav><div class="container">
+    <div class="section" style="padding-top:40px">
+        <a href="index.html" class="back">← Dashboard</a>
+        <h2>Executive Summary</h2>
+        <p style="font-size:1.1em;margin-bottom:24px">The first BPI-certified compostable warmth poncho designed specifically for marathon race start lines — replacing the 35,000+ garbage bags discarded at every major marathon.</p>
+
+        <h3 style="margin:24px 0 12px">The Problem</h3>
+        <p>Every major marathon generates 35,000–60,000 single-use warmth products at the start line. Runners wear garbage bags, donated sweatshirts, or Heatsheets Mylar blankets for 30–60 minutes, then discard them. NYC Marathon alone generates 26 tons of start-line textile waste. Zero compostable alternatives exist in the market.</p>
+
+        <h3 style="margin:24px 0 12px">The Solution</h3>
+        <p>A BPI-certified compostable warmth poncho (NatureFlex NM metallized cellulose + PLA spunbond) with patent-pending tear-away design. Provides equivalent warmth to current solutions, composts in 12–24 weeks at commercial facilities, and includes end-to-end composting logistics for race directors.</p>
+
+        <h3 style="margin:24px 0 12px">Market Opportunity</h3>
+        <table>
+            <tr><th>Metric</th><th>Value</th></tr>
+            <tr><td>TAM (US cold-weather participants)</td><td>2.5M+ runners annually</td></tr>
+            <tr><td>Target races</td><td>600+ cold-weather US marathons/halfs</td></tr>
+            <tr><td>Key differentiator</td><td>Only compostable warmth product for race start lines</td></tr>
+            <tr><td>Competitive landscape</td><td>Heatsheets (44yr incumbent, NOT compostable) — zero direct competitors</td></tr>
+        </table>
+
+        <h3 style="margin:24px 0 12px">Business Model</h3>
+        <table>
+            <tr><th>Channel</th><th>Price</th><th>Margin</th></tr>
+            <tr><td>B2B Standard (race directors)</td><td>$3.50–$4.00/unit</td><td>51–58%</td></tr>
+            <tr><td>B2B Co-Branded</td><td>$4.00–$5.00/unit</td><td>59–69%</td></tr>
+            <tr><td>Amazon FBA (single)</td><td>$9.99</td><td>24–32%</td></tr>
+            <tr><td>Shopify 3-Pack</td><td>$24.99</td><td>54–58%</td></tr>
+            <tr><td>Expo Direct</td><td>$9.99</td><td>62–68%</td></tr>
+            <tr><td>Registration Add-On</td><td>$9.99</td><td>58–70%</td></tr>
+        </table>
+
+        <h3 style="margin:24px 0 12px">Year 1 Revenue Projections</h3>
+        <table>
+            <tr><th>Scenario</th><th>Revenue</th><th>Net Income</th></tr>
+            <tr><td>Bootstrap Conservative</td><td>$10,500</td><td>–$5,257</td></tr>
+            <tr><td>Bootstrap Aggressive</td><td>$30,700</td><td>+$4,314</td></tr>
+            <tr><td>Full Launch Conservative</td><td>$35,200</td><td>–$22,958</td></tr>
+            <tr><td>Full Launch Aggressive</td><td>$112,800</td><td>+$25,888</td></tr>
+        </table>
+
+        <h3 style="margin:24px 0 12px">Investment Required</h3>
+        <p><strong>Bootstrap:</strong> $10,700–$26,200 · <strong>Full Launch:</strong> $50,900–$131,500</p>
+
+        <h3 style="margin:24px 0 12px">Sustainability Credentials</h3>
+        <p>BPI Certified (ASTM D6400) · 1% for the Planet member · Green Sports Alliance · B Corp roadmap (Year 2–3) · Composting verification reports for every race · EN13432 for EU expansion</p>
+
+        <div style="margin-top:32px;display:flex;gap:12px;flex-wrap:wrap">
+            <a href="financials.html" class="card" style="text-decoration:none;flex:1;min-width:200px"><h3>💰 Full Financials →</h3></a>
+            <a href="all-tasks.html" class="card" style="text-decoration:none;flex:1;min-width:200px"><h3>📋 All 391 Tasks →</h3></a>
+            <a href="gaps.html" class="card" style="text-decoration:none;flex:1;min-width:200px"><h3>🔧 Gap Analysis →</h3></a>
+        </div>
+    </div></div>
+<footer>Sustainable Race-Start Warmth Poncho — D2C Brand GTM Project · 60 Subprojects · 391 Tasks · ~15,500¶ · April 2026 · Confidential</footer></body></html>
