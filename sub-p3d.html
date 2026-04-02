@@ -1,89 +1,65 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>P3D: Packaging Labeling — Race Start Warmth GTM</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-<style>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>P3D — Race Start Warmth GTM</title><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet"><style>
 :root{--bg:#0a0e1a;--surface:#111827;--card:#1a2332;--border:#2a3a4e;--accent:#10b981;--accent2:#3b82f6;--text:#e2e8f0;--muted:#94a3b8;--white:#fff;--red:#ef4444;--amber:#f59e0b;--green:#10b981}
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
 a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
 .container{max-width:1200px;margin:0 auto;padding:0 24px}
-/* Nav */
-nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
-nav .inner{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;max-width:1200px;margin:0 auto}
-nav .brand{font-weight:700;font-size:15px;color:var(--accent)}
-nav .links{display:flex;gap:8px;flex-wrap:wrap}
-nav .links a{color:var(--muted);font-size:13px;padding:4px 10px;border-radius:6px;transition:.2s}
+nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
+nav .inner{display:flex;align-items:center;justify-content:space-between;padding:10px 24px;max-width:1200px;margin:0 auto;flex-wrap:wrap;gap:8px}
+nav .brand{font-weight:700;font-size:14px;color:var(--accent);white-space:nowrap}
+nav .links{display:flex;gap:4px;flex-wrap:wrap}
+nav .links a{color:var(--muted);font-size:12px;padding:4px 8px;border-radius:6px;transition:.2s;white-space:nowrap}
 nav .links a:hover,nav .links a.active{color:var(--white);background:var(--card);text-decoration:none}
-/* Hero */
-.hero{padding:60px 0 40px;text-align:center}
-.hero h1{font-size:2.4em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hero p{color:var(--muted);font-size:1.1em;max-width:700px;margin:0 auto}
-/* Stats bar */
-.stats{display:flex;justify-content:center;gap:32px;padding:24px 0;flex-wrap:wrap}
-.stat{text-align:center}.stat .num{font-size:1.8em;font-weight:800;color:var(--white)}.stat .label{font-size:.75em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
-/* Cards */
-.grid{display:grid;gap:16px;margin:24px 0}
-.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}
-.grid-3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
-.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;transition:.2s}
-.card:hover{border-color:var(--accent);transform:translateY(-2px)}
-.card h3{font-size:1.1em;margin-bottom:8px}.card p{color:var(--muted);font-size:.9em}
-.card .badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:8px}
-.card .meta{font-size:.8em;color:var(--muted);margin-top:12px}
-/* Section */
-.section{padding:40px 0}.section h2{font-size:1.6em;font-weight:700;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--border)}
-/* Table */
-table{width:100%;border-collapse:collapse;font-size:.85em;margin:16px 0}
-th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:52px}
-td{padding:8px 12px;border-bottom:1px solid var(--border)}
-tr:hover td{background:rgba(16,185,129,.05)}
-.status-complete{color:var(--green);font-weight:600}.status-not{color:var(--muted)}
-/* Progress */
-.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:8px}
-.progress .bar{height:100%;background:var(--accent);border-radius:3px}
-/* Back link */
-.back{display:inline-block;color:var(--muted);font-size:.9em;margin-bottom:20px}
-.back:hover{color:var(--accent)}
-/* Download */
-.dl-card{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin:8px 0;transition:.2s}
-.dl-card:hover{border-color:var(--accent);text-decoration:none}
-.dl-card .icon{font-size:2em}.dl-card .info h4{color:var(--white);margin-bottom:4px}.dl-card .info p{color:var(--muted);font-size:.85em}
-/* Footer */
-footer{text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px}
-@media(max-width:768px){.stats{gap:16px}.stat .num{font-size:1.3em}nav .links{gap:4px}nav .links a{font-size:11px;padding:3px 6px}.hero h1{font-size:1.6em}}
-
-.doc-content{max-width:900px;margin:0 auto;padding:20px 0}
-.doc-content h1{font-size:1.8em;font-weight:800;color:var(--white);margin:32px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
-.doc-content h2{font-size:1.4em;font-weight:700;color:var(--accent);margin:28px 0 12px}
-.doc-content h3{font-size:1.15em;font-weight:600;color:var(--accent2);margin:20px 0 10px}
-.doc-content p{margin:8px 0;line-height:1.7}
-.doc-content table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85em}
-.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;border:1px solid var(--border)}
-.doc-content td{padding:8px 12px;border:1px solid var(--border);vertical-align:top}
-.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
-.doc-content ul,.doc-content ol{margin:8px 0 8px 24px}
-.doc-content li{margin:4px 0;line-height:1.6}
-.doc-content strong{color:var(--white)}
-.doc-content em{color:var(--muted)}
-.doc-content blockquote{border-left:3px solid var(--accent);padding:8px 16px;margin:12px 0;background:var(--card);border-radius:0 8px 8px 0}
-.nav-sub{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 24px;padding:12px 16px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
-.nav-sub a{font-size:.8em;color:var(--muted);padding:4px 10px;border-radius:4px;transition:.2s;white-space:nowrap}
+nav .links a.cc-link{color:var(--accent2);border:1px solid var(--accent2);font-weight:600}
+nav .links a.cc-link:hover{background:var(--accent2);color:var(--white)}
+.hero{padding:50px 0 30px;text-align:center}
+.hero h1{font-size:2.2em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:1.05em;max-width:700px;margin:0 auto}
+.stats{display:flex;justify-content:center;gap:28px;padding:20px 0;flex-wrap:wrap}
+.stat{text-align:center}.stat .num{font-size:1.7em;font-weight:800;color:var(--white)}.stat .label{font-size:.7em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.grid{display:grid;gap:16px;margin:24px 0}.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}.grid-3{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;transition:.2s;display:block}
+.card:hover{border-color:var(--accent);transform:translateY(-2px);text-decoration:none}
+.card h3{font-size:1.05em;margin-bottom:6px;color:var(--white)}.card p{color:var(--muted);font-size:.88em}
+.badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.65em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:6px}
+.badge-amber{background:var(--amber)}.badge-blue{background:var(--accent2)}
+.card .meta{font-size:.78em;color:var(--muted);margin-top:10px}
+.section{padding:32px 0}.section h2{font-size:1.5em;font-weight:700;margin-bottom:20px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+table{width:100%;border-collapse:collapse;font-size:.83em;margin:16px 0}
+th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:48px}
+td{padding:8px 12px;border-bottom:1px solid var(--border)}tr:hover td{background:rgba(16,185,129,.04)}
+.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:6px}
+.progress .bar{height:100%;border-radius:3px}
+.back{display:inline-block;color:var(--muted);font-size:.88em;margin-bottom:16px}.back:hover{color:var(--accent)}
+.dl-card{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;margin:8px 0;transition:.2s}
+.dl-card:hover{border-color:var(--accent);text-decoration:none}.dl-card .icon{font-size:1.8em}.dl-card .info h4{color:var(--white);margin-bottom:2px;font-size:.95em}.dl-card .info p{color:var(--muted);font-size:.8em}
+.phase-tag{display:inline-block;font-size:.65em;font-weight:600;padding:2px 6px;border-radius:3px;margin-right:4px}
+.phase-plan{background:rgba(16,185,129,.15);color:var(--green)}.phase-exec{background:rgba(245,158,11,.15);color:var(--amber)}.phase-not{background:rgba(148,163,184,.1);color:var(--muted)}
+.nav-sub{display:flex;flex-wrap:wrap;gap:5px;margin:12px 0 20px;padding:10px 14px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
+.nav-sub a{font-size:.78em;color:var(--muted);padding:3px 8px;border-radius:4px;transition:.2s;white-space:nowrap}
 .nav-sub a:hover,.nav-sub a.active{color:var(--white);background:var(--surface);text-decoration:none}
-</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a></div></div></nav><div class="container">
-    <div style="padding-top:30px">
+.doc-content{max-width:900px;margin:0 auto;padding:16px 0}
+.doc-content h1{font-size:1.7em;font-weight:800;color:var(--white);margin:28px 0 14px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+.doc-content h2{font-size:1.3em;font-weight:700;color:var(--accent);margin:24px 0 10px}
+.doc-content h3{font-size:1.1em;font-weight:600;color:var(--accent2);margin:18px 0 8px}
+.doc-content p{margin:6px 0;line-height:1.65}.doc-content table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.83em}
+.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:8px 10px;font-weight:600;border:1px solid var(--border)}
+.doc-content td{padding:7px 10px;border:1px solid var(--border);vertical-align:top}
+.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.doc-content ul,.doc-content ol{margin:6px 0 6px 20px}.doc-content li{margin:3px 0;line-height:1.55}
+.doc-content strong{color:var(--white)}.doc-content em{color:var(--muted)}
+footer{text-align:center;padding:32px 0;color:var(--muted);font-size:.78em;border-top:1px solid var(--border);margin-top:50px}
+footer a{color:var(--accent2)}
+@media(max-width:768px){.stats{gap:14px}.stat .num{font-size:1.2em}nav .links a{font-size:10px;padding:3px 5px}.hero h1{font-size:1.5em}}
+</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="projections.html" class="">Projections</a><a href="action-plan.html" class="">Action Plan</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a><a href="https://apseter.github.io/Retail_Ventures_Command_Center/" class="cc-link" target="_blank">🏠 Command Center</a></div></div></nav><div class="container"><div style="padding-top:28px">
         <a href="p3.html" class="back">← 🏭 P3: Manufacturing</a>
         <div class="nav-sub"><a href="p3.html">🏭 P3 Overview</a><a href="sub-p3a.html">P3A</a><a href="sub-p3b.html">P3B</a><a href="sub-p3c.html">P3C</a><a href="sub-p3d.html" class="active">P3D</a><a href="sub-p3e.html">P3E</a></div>
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px">
-            <div>
-                <span style="background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px">P3D</span>
-                <span style="color:var(--muted);font-size:.85em;margin-left:8px">P3: Manufacturing</span>
-            </div>
-            <a href="files/P3D_Packaging_Labeling.docx" style="font-size:.85em;color:var(--accent);padding:6px 14px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+            <div><span class="badge">P3D</span> <span style="color:var(--muted);font-size:.83em">P3: Manufacturing</span></div>
+            <a href="files/P3D_Packaging_Labeling.docx" style="font-size:.83em;color:var(--accent);padding:5px 12px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
         </div>
-        <div class="doc-content">
-            <p><strong>P3D: PACKAGING</strong></p>
+        <div class="doc-content"><p><strong><a href="sub-p3d.html" style="color:var(--accent)">P3D</a>: PACKAGING</strong></p>
 <p><strong>&amp; LABELING</strong></p>
-<p>Sub-Project P3D | Manufacturing &amp; Sourcing | Weeks 14–17</p>
+<p>Sub-Project <a href="sub-p3d.html" style="color:var(--accent)">P3D</a> | Manufacturing &amp; Sourcing | Weeks 14–17</p>
 <p><em>Complete Packaging Specification: Inner Bag Wrapper, Card/Sleeve,
 DTC Multi-Pack Formats, B2B Bulk Packaging, Barcode Strategy, Insert
 Card, Compostable Materials Sourcing, and Amazon FBA Compliance</em></p>
@@ -153,7 +129,7 @@ existing PLA film converting lines.</td>
 <td><strong>Printing (front)</strong></td>
 <td>Brand logo (Earth Green, top center), product name (“Compostable
 Race-Start Warmth Poncho”), BPI Certification Mark (or “Certification
-Pending”), “Patent Pending” notice, QR code (bottom right, per P1B Sec
+Pending”), “Patent Pending” notice, QR code (bottom right, per <a href="sub-p1b.html" style="color:var(--accent)">P1B</a> Sec
 6.2)</td>
 <td>Print in 1–2 colors using compostable flexo ink on the PLA film. QR
 code links to brand.com/scan (composting instructions + feedback form +
@@ -161,7 +137,7 @@ email capture).</td>
 </tr>
 <tr class="even">
 <td><strong>Printing (back)</strong></td>
-<td>Composting instruction icons (4-step lifecycle per P1B Sec 6),
+<td>Composting instruction icons (4-step lifecycle per <a href="sub-p1b.html" style="color:var(--accent)">P1B</a> Sec 6),
 “Contains natural rubber latex” allergy warning, legal disclaimers (“For
 single use. Drizzle-resistant, not waterproof.”), country of origin,
 batch number placeholder</td>
@@ -185,7 +161,7 @@ compostable adhesive). Ink: certified compostable (Sun Chemical SunUno
 Solimax AP).</td>
 <td>If ANY packaging component is not compostable, the “fully
 compostable product + packaging” claim collapses. Verify each component
-per P2D Section 3 framework.</td>
+per <a href="sub-p2d.html" style="color:var(--accent)">P2D</a> Section 3 framework.</td>
 </tr>
 </tbody>
 </table>
@@ -221,13 +197,13 @@ belly band or slides into a pocket slot on the bag</td>
 <tr class="even">
 <td><strong>Print (front)</strong></td>
 <td>Brand logo, product name, tagline (“Race Warm. Leave No Trace.” or
-winning tagline from P1A/P1C), hero image (runner in poncho at dawn —
+winning tagline from <a href="sub-p1a.html" style="color:var(--accent)">P1A</a>/<a href="sub-p1c.html" style="color:var(--accent)">P1C</a>), hero image (runner in poncho at dawn —
 simplified illustration or photo), “$9.99” price (for retail/expo
 display units only)</td>
 </tr>
 <tr class="odd">
 <td><strong>Print (back)</strong></td>
-<td>Brand origin story (50-word version from P1C Section 1.2), QR code
+<td>Brand origin story (50-word version from <a href="sub-p1c.html" style="color:var(--accent)">P1C</a> Section 1.2), QR code
 (same as wrapper — brand.com/scan), social media handles (@brandname on
 Instagram, TikTok, Strava), website URL, barcode (UPC-A for retail,
 FNSKU for Amazon — or both)</td>
@@ -240,10 +216,10 @@ $0.08–$0.15/card at 5K+.</td>
 </tr>
 <tr class="odd">
 <td><strong>Design alignment</strong></td>
-<td>Card design must match P1B visual identity system: Earth Green
+<td>Card design must match <a href="sub-p1b.html" style="color:var(--accent)">P1B</a> visual identity system: Earth Green
 (#2D6A4F) + Dawn Gold (#D4A843) + Warm Charcoal (#2B2D2F) on Mist White
 (#F5F2EB) card stock. Typography: DM Sans headings, Inter body. Follow
-P1B Section 12 brand guidelines outline.</td>
+<a href="sub-p1b.html" style="color:var(--accent)">P1B</a> Section 12 brand guidelines outline.</td>
 </tr>
 </tbody>
 </table>
@@ -318,11 +294,11 @@ insert card $0.10 + assembly $0.20–$0.30)</td>
 </tr>
 <tr class="odd">
 <td><strong>B2B sample kit</strong></td>
-<td>5 ponchos + sales materials (per P3B Section 6)</td>
-<td>Already specified in P3B. The packaging IS the B2B sample kit:
+<td>5 ponchos + sales materials (per <a href="sub-p3b.html" style="color:var(--accent)">P3B</a> Section 6)</td>
+<td>Already specified in <a href="sub-p3b.html" style="color:var(--accent)">P3B</a>. The packaging IS the B2B sample kit:
 branded kraft box with tissue paper, ponchos, data sheet, pricing sheet,
 FLIR card, etc.</td>
-<td>$15–$25/kit (see P3B Section 6.1)</td>
+<td>$15–$25/kit (see <a href="sub-p3b.html" style="color:var(--accent)">P3B</a> Section 6.1)</td>
 <td>N/A — sales tool, not for resale</td>
 </tr>
 </tbody>
@@ -385,7 +361,7 @@ clear labeling. NEVER mix co-brand designs in the same carton.</td>
 21 of a 25-carton shipment). Placed inside the carton on top of the
 ponchos.</td>
 <td>SpotSee or Cold Chain Technologies, threshold 40°C / 104°F,
-irreversible color change. Cost: $0.10–$0.15/strip. Per P2E Section 11.3
+irreversible color change. Cost: $0.10–$0.15/strip. Per <a href="sub-p2e.html" style="color:var(--accent)">P2E</a> Section 11.3
 transport heat damage prevention.</td>
 </tr>
 <tr class="even">
@@ -433,7 +409,7 @@ maps which barcodes go where.</p>
 <col style="width: 16%" />
 <col style="width: 14%" />
 <col style="width: 19%" />
-<col style="width:50%">
+<col style="width: 50%" />
 </colgroup>
 <tbody>
 <tr class="odd">
@@ -448,14 +424,14 @@ maps which barcodes go where.</p>
 <td>Single-unit poncho, 3-pack, 6-pack</td>
 <td>Required for: Amazon product listing (product identifier), Shopify
 POS, Fleet Feet retail, any retail channel. Register at gs1us.org ($250
-+ $50/year for 1–10 products per P2E Section 10.1).</td>
++ $50/year for 1–10 products per <a href="sub-p2e.html" style="color:var(--accent)">P2E</a> Section 10.1).</td>
 </tr>
 <tr class="odd">
 <td><strong>FNSKU (Amazon FBA)</strong></td>
 <td>Amazon-assigned barcode</td>
 <td>ALL units shipped to FBA warehouses</td>
 <td>Applied as sticker label over UPC (Option A) or printed on
-card/sleeve by factory (Option B per P2E Section 10.3). FNSKU is
+card/sleeve by factory (Option B per <a href="sub-p2e.html" style="color:var(--accent)">P2E</a> Section 10.3). FNSKU is
 generated after product listing is created in Seller Central. Must be on
 EVERY individual unit in FBA inventory.</td>
 </tr>
@@ -516,18 +492,18 @@ the BRAND (QR → email → social), and invite them to REFER a friend.</p>
 <tr class="even">
 <td><strong>Front side</strong></td>
 <td>Hero content: composting lifecycle infographic (4-step icon sequence
-from P1B Section 6: Pack → Wear → Shed → Compost), tagline (“Race Warm.
+from <a href="sub-p1b.html" style="color:var(--accent)">P1B</a> Section 6: Pack → Wear → Shed → Compost), tagline (“Race Warm.
 Leave No Trace.”), large QR code (brand.com/scan), “Scan for composting
 instructions + exclusive offers” call-to-action</td>
 </tr>
 <tr class="odd">
 <td><strong>Back side</strong></td>
-<td>Brand story (50-word version from P1C Section 1.2), “How to Use” (3
+<td>Brand story (50-word version from <a href="sub-p1c.html" style="color:var(--accent)">P1C</a> Section 1.2), “How to Use” (3
 steps: 1. Open and unfold. 2. Wear at the start line. 3. Tear off at the
 gun — drop in compost bin.), social media handles + hashtag
-(#RaceWarmLeaveNoTrace or brand hashtag from P1E), referral program URL
+(#RaceWarmLeaveNoTrace or brand hashtag from <a href="sub-p1e.html" style="color:var(--accent)">P1E</a>), referral program URL
 (brand.com/refer — “Give a friend $5 off, get $5 off your next order”
-per P1E Section 6), “Contains natural rubber latex” allergy notice</td>
+per <a href="sub-p1e.html" style="color:var(--accent)">P1E</a> Section 6), “Contains natural rubber latex” allergy notice</td>
 </tr>
 <tr class="even">
 <td><strong>Material</strong></td>
@@ -545,7 +521,7 @@ run for cost efficiency).</td>
 </tr>
 <tr class="even">
 <td><strong>QR code specification</strong></td>
-<td>Dynamic QR (QR.io at $7/month or Bitly QR at $10/month per P1B
+<td>Dynamic QR (QR.io at $7/month or Bitly QR at $10/month per <a href="sub-p1b.html" style="color:var(--accent)">P1B</a>
 Section 6.2). Brand-colored (Earth Green modules on Mist White
 background). Brand logo in center. Minimum 20mm × 20mm (0.8″ × 0.8″).
 Test scanning from 6–12″ with 3+ phone models before production.</td>
@@ -556,7 +532,7 @@ Test scanning from 6–12″ with 3+ phone models before production.</td>
 first thing they see after opening the inner bag (insert sits on top of
 the folded poncho). It must communicate: (A) how to use the product (3
 simple steps), (B) how to dispose of it (compost), and (C) how to
-connect with the brand (QR, social, referral). Visual design per P1B
+connect with the brand (QR, social, referral). Visual design per <a href="sub-p1b.html" style="color:var(--accent)">P1B</a>
 brand guidelines.</td>
 </tr>
 </tbody>
@@ -744,7 +720,7 @@ is NOT perishable and does NOT require an expiration date per Amazon’s
 current policy for non-food items. HOWEVER: if the product listing
 mentions a shelf life (e.g., “12-month shelf life”), Amazon may flag it.
 RECOMMENDATION: do NOT mention shelf life in the Amazon listing or
-packaging. Internally manage FIFO (P2D Section 5) without
+packaging. Internally manage FIFO (<a href="sub-p2d.html" style="color:var(--accent)">P2D</a> Section 5) without
 consumer-facing expiration dates.</td>
 </tr>
 <tr class="odd">
@@ -773,16 +749,16 @@ handles FBA prep. Receive cartons at home or storage unit, apply FNSKU
 labels manually, create FBA shipment, pack into Amazon-approved boxes,
 ship via UPS/FedEx partnered carrier (discounted rates through Seller
 Central). Suitable for: very small first orders (&lt;500 units) to
-minimize 3PL costs. OPTION C: Factory handles FBA prep (ask during P3A
+minimize 3PL costs. OPTION C: Factory handles FBA prep (ask during <a href="sub-p3a.html" style="color:var(--accent)">P3A</a>
 negotiation). Some factories, especially those with Amazon audit
 experience (ShinHigh), can apply FNSKU labels and pack to Amazon
 specifications before shipping. Saves 3PL fees but requires FNSKU number
 finalized before production — tight coordination needed.</p>
 <p>9. Timeline &amp; Budget</p>
 <p><strong>WEEK 14: Finalize inner bag artwork (brand logo, QR code,
-legal text). Finalize card/sleeve artwork per P1B visual identity. Send
+legal text). Finalize card/sleeve artwork per <a href="sub-p1b.html" style="color:var(--accent)">P1B</a> visual identity. Send
 both to respective printers/factory. Order GS1 UPC barcodes (if not
-already done per P2E Section 10.1). Generate FNSKU from Seller
+already done per <a href="sub-p2e.html" style="color:var(--accent)">P2E</a> Section 10.1). Generate FNSKU from Seller
 Central.</strong></p>
 <p><strong>WEEK 15: Approve inner bag and card/sleeve print proofs.
 Order kraft mailer boxes for 3-pack/6-pack (EcoEnclose or Packlane, 2–3
@@ -799,14 +775,14 @@ assembles: poncho in inner bag + insert card + card/sleeve + sticker
 seal + FNSKU label = finished DTC unit. Pack multi-packs. Create FBA
 shipment. Ship to Amazon FBA fulfillment center. B2B units: standard
 ponchos in master cartons ship to 3PL for storage; co-brand units ship
-directly to race venues per P3B Section 3.</strong></p>
+directly to race venues per <a href="sub-p3b.html" style="color:var(--accent)">P3B</a> Section 3.</strong></p>
 <p>BUDGET: Inner bag printing (included in factory BOM — $0
 incremental). Card/sleeve printing ($400–$750 for 5K–10K cards at
 $0.08–$0.15 each). Insert card printing ($250–$500 if separate, $0 if
 combined onto sleeve). Sticker seals ($100–$150 for 5K at $0.02–$0.03
 each). Kraft mailer boxes for multi-packs ($200–$400 for 500 boxes at
 $0.40–$0.80 each). FNSKU labels ($15–$50 for Avery label sheets). GS1
-registration ($250 if not already completed). TOTAL P3D: $1,215–$2,100
+registration ($250 if not already completed). TOTAL <a href="sub-p3d.html" style="color:var(--accent)">P3D</a>: $1,215–$2,100
 (excluding factory BOM items).</p>
 <p>10. Conclusion: Packaging Is the Product’s Introduction</p>
 <p><strong>A runner receiving the poncho from an Amazon box opens the
@@ -827,9 +803,4 @@ promise. The runner who finds a non-compostable sticker or plastic film
 in the packaging loses trust permanently. Walk the talk in every detail
 — from the NatureFlex wrapper to the soy-based ink on the kraft card to
 the cellulose sticker holding it shut.</p>
-
-        </div>
-    </div></div>
-<footer style="text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px">
-Sustainable Race-Start Warmth Poncho — D2C Brand GTM Project · 60 Subprojects · 391 Tasks · ~15,500¶ · April 2026
-</footer></body></html>
+</div></div></div><footer>Sustainable Race-Start Warmth Poncho — GTM Project · 60 Subprojects · 391 Tasks · ~120K Words · April 2026<br><a href="https://apseter.github.io/Retail_Ventures_Command_Center/">← Retail Ventures Command Center</a> · <a href="index.html">Project Home</a></footer></body></html>

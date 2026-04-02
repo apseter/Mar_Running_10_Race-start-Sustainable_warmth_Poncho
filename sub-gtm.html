@@ -1,0 +1,534 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>GTM — Race Start Warmth GTM</title><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet"><style>
+:root{--bg:#0a0e1a;--surface:#111827;--card:#1a2332;--border:#2a3a4e;--accent:#10b981;--accent2:#3b82f6;--text:#e2e8f0;--muted:#94a3b8;--white:#fff;--red:#ef4444;--amber:#f59e0b;--green:#10b981}
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
+nav .inner{display:flex;align-items:center;justify-content:space-between;padding:10px 24px;max-width:1200px;margin:0 auto;flex-wrap:wrap;gap:8px}
+nav .brand{font-weight:700;font-size:14px;color:var(--accent);white-space:nowrap}
+nav .links{display:flex;gap:4px;flex-wrap:wrap}
+nav .links a{color:var(--muted);font-size:12px;padding:4px 8px;border-radius:6px;transition:.2s;white-space:nowrap}
+nav .links a:hover,nav .links a.active{color:var(--white);background:var(--card);text-decoration:none}
+nav .links a.cc-link{color:var(--accent2);border:1px solid var(--accent2);font-weight:600}
+nav .links a.cc-link:hover{background:var(--accent2);color:var(--white)}
+.hero{padding:50px 0 30px;text-align:center}
+.hero h1{font-size:2.2em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:1.05em;max-width:700px;margin:0 auto}
+.stats{display:flex;justify-content:center;gap:28px;padding:20px 0;flex-wrap:wrap}
+.stat{text-align:center}.stat .num{font-size:1.7em;font-weight:800;color:var(--white)}.stat .label{font-size:.7em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.grid{display:grid;gap:16px;margin:24px 0}.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}.grid-3{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;transition:.2s;display:block}
+.card:hover{border-color:var(--accent);transform:translateY(-2px);text-decoration:none}
+.card h3{font-size:1.05em;margin-bottom:6px;color:var(--white)}.card p{color:var(--muted);font-size:.88em}
+.badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.65em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:6px}
+.badge-amber{background:var(--amber)}.badge-blue{background:var(--accent2)}
+.card .meta{font-size:.78em;color:var(--muted);margin-top:10px}
+.section{padding:32px 0}.section h2{font-size:1.5em;font-weight:700;margin-bottom:20px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+table{width:100%;border-collapse:collapse;font-size:.83em;margin:16px 0}
+th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:48px}
+td{padding:8px 12px;border-bottom:1px solid var(--border)}tr:hover td{background:rgba(16,185,129,.04)}
+.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:6px}
+.progress .bar{height:100%;border-radius:3px}
+.back{display:inline-block;color:var(--muted);font-size:.88em;margin-bottom:16px}.back:hover{color:var(--accent)}
+.dl-card{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;margin:8px 0;transition:.2s}
+.dl-card:hover{border-color:var(--accent);text-decoration:none}.dl-card .icon{font-size:1.8em}.dl-card .info h4{color:var(--white);margin-bottom:2px;font-size:.95em}.dl-card .info p{color:var(--muted);font-size:.8em}
+.phase-tag{display:inline-block;font-size:.65em;font-weight:600;padding:2px 6px;border-radius:3px;margin-right:4px}
+.phase-plan{background:rgba(16,185,129,.15);color:var(--green)}.phase-exec{background:rgba(245,158,11,.15);color:var(--amber)}.phase-not{background:rgba(148,163,184,.1);color:var(--muted)}
+.nav-sub{display:flex;flex-wrap:wrap;gap:5px;margin:12px 0 20px;padding:10px 14px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
+.nav-sub a{font-size:.78em;color:var(--muted);padding:3px 8px;border-radius:4px;transition:.2s;white-space:nowrap}
+.nav-sub a:hover,.nav-sub a.active{color:var(--white);background:var(--surface);text-decoration:none}
+.doc-content{max-width:900px;margin:0 auto;padding:16px 0}
+.doc-content h1{font-size:1.7em;font-weight:800;color:var(--white);margin:28px 0 14px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+.doc-content h2{font-size:1.3em;font-weight:700;color:var(--accent);margin:24px 0 10px}
+.doc-content h3{font-size:1.1em;font-weight:600;color:var(--accent2);margin:18px 0 8px}
+.doc-content p{margin:6px 0;line-height:1.65}.doc-content table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.83em}
+.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:8px 10px;font-weight:600;border:1px solid var(--border)}
+.doc-content td{padding:7px 10px;border:1px solid var(--border);vertical-align:top}
+.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.doc-content ul,.doc-content ol{margin:6px 0 6px 20px}.doc-content li{margin:3px 0;line-height:1.55}
+.doc-content strong{color:var(--white)}.doc-content em{color:var(--muted)}
+footer{text-align:center;padding:32px 0;color:var(--muted);font-size:.78em;border-top:1px solid var(--border);margin-top:50px}
+footer a{color:var(--accent2)}
+@media(max-width:768px){.stats{gap:14px}.stat .num{font-size:1.2em}nav .links a{font-size:10px;padding:3px 5px}.hero h1{font-size:1.5em}}
+</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="projections.html" class="">Projections</a><a href="action-plan.html" class="">Action Plan</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a><a href="https://apseter.github.io/Retail_Ventures_Command_Center/" class="cc-link" target="_blank">🏠 Command Center</a></div></div></nav><div class="container"><div style="padding-top:28px">
+        <a href="p0.html" class="back">← 🔍 P0: Market Research</a>
+        <div class="nav-sub"><a href="p0.html">🔍 P0 Overview</a><a href="sub-p0a.html">P0A</a><a href="sub-p0b.html">P0B</a><a href="sub-p0c.html">P0C</a><a href="sub-p0d.html">P0D</a><a href="sub-p0e.html">P0E</a><a href="sub-p0f.html">P0F</a><a href="sub-p0g.html">P0G</a><a href="sub-p0h.html">P0H</a></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+            <div><span class="badge">GTM</span> <span style="color:var(--muted);font-size:.83em">P0: Market Research</span></div>
+            <a href="files/GTM_Playbook_Critical_Gap_Analysis.docx" style="font-size:.83em;color:var(--accent);padding:5px 12px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
+        </div>
+        <div class="doc-content"><p><strong>CRITICAL GAP ANALYSIS</strong></p>
+<p><strong>GTM PLAYBOOK &amp; MASTER TRACKER</strong></p>
+<p>60 Subprojects | 391 Tasks | ~15,500 Paragraphs | Comprehensive
+Review</p>
+<p><strong>STATUS: ALL 22 GAPS REMEDIATED AND CLOSED (April
+2026)</strong></p>
+<p><strong>24 Gaps Identified: 8 Critical | 7 Moderate | 9
+Minor</strong></p>
+<p>April 2026 | Confidential</p>
+<p>1. Executive Summary</p>
+<p><strong>This gap analysis evaluates ALL 60 subproject documents
+(<a href="sub-p0a.html" style="color:var(--accent)">P0A</a>–<a href="sub-p10f.html" style="color:var(--accent)">P10F</a>) and the GTM Master Tracker against:</strong> (A) task
+requirement coverage (does the document address every task assigned in
+the tracker?), (B) cross-reference consistency (do figures,
+specifications, and strategies align across documents?), (C) tracker
+accuracy (does the tracker reflect the actual completion status and
+current specifications?), and (D) content quality (is the depth and
+specificity sufficient for execution?).</p>
+<p><strong>24 gaps were identified across 4 categories:</strong> 8
+CRITICAL gaps (require immediate action — primarily tracker status
+updates and outdated Dashboard metrics that could mislead execution), 7
+MODERATE gaps (should be addressed before Year 1 execution begins —
+primarily cross-reference inconsistencies between early <a href="p0.html" style="color:var(--accent)">P0</a> research and
+final <a href="p2.html" style="color:var(--accent)">P2</a>–<a href="p8.html" style="color:var(--accent)">P8</a> specifications), and 9 MINOR gaps (low-priority refinements
+that do not affect execution — primarily editorial cross-references and
+optional structural improvements). NO gaps indicate substandard document
+quality or missing task coverage. All 391 tasks are substantively
+addressed in their corresponding documents. The identified gaps are:
+tracker maintenance issues (not content issues), specification evolution
+artifacts (early estimates superseded by final decisions), and
+structural refinements (cross-reference notes and index documents).</p>
+<p>2. Gap Summary by Severity</p>
+<p>2.1 CRITICAL Gaps (Require Immediate Action)</p>
+<p><strong>8 critical gaps identified. All relate to the GTM Master
+Tracker: <a href="p0.html" style="color:var(--accent)">P0</a>–<a href="p4.html" style="color:var(--accent)">P4</a> task status columns were never updated to “Complete”
+(despite documents being delivered), and the Dashboard KPI metrics
+section contains outdated <a href="p0.html" style="color:var(--accent)">P0</a>-era figures that have been superseded by
+final product, pricing, and supplier decisions made in
+<a href="p2.html" style="color:var(--accent)">P2</a>–<a href="p8.html" style="color:var(--accent)">P8</a>.</strong></p>
+<p>2.2 MODERATE Gaps (Address Before Execution)</p>
+<p>7 moderate gaps identified. These involve: cross-reference
+inconsistencies between early research (<a href="p0.html" style="color:var(--accent)">P0</a>) and final specifications
+(<a href="p2.html" style="color:var(--accent)">P2</a>–<a href="p8.html" style="color:var(--accent)">P8</a>), a Dashboard manufacturing hub label that should be updated from
+China/Pakistan to UK/US, and one structural recommendation (Playbook
+Index document).</p>
+<p>2.3 MINOR Gaps (Low-Priority Refinements)</p>
+<p>9 minor gaps identified. These are: editorial refinements
+(cross-reference notes, clarifying language), optional structural
+improvements (supplier decision memo, folder cover notes), and
+evolutionary artifacts that are expected in any iterative planning
+process.</p>
+<p>3. Complete Gap Register</p>
+<p><strong>Each gap includes: a unique ID, the affected subproject(s), a
+description of the gap, severity classification, and the specific action
+required to close it.</strong></p>
+<table>
+<colgroup>
+<col style="width: 8%" />
+<col style="width: 8%" />
+<col style="width: 38%" />
+<col style="width: 8%" />
+<col style="width: 36%" />
+</colgroup>
+<tbody>
+<tr class="odd">
+<td><strong>Gap ID</strong></td>
+<td><strong>Sub-Project</strong></td>
+<td><strong>Gap Description</strong></td>
+<td><strong>Severity</strong></td>
+<td><strong>Action Required</strong></td>
+</tr>
+<tr class="even">
+<td>XREF-01</td>
+<td><a href="sub-p0f.html" style="color:var(--accent)">P0F</a> vs <a href="sub-p6b.html" style="color:var(--accent)">P6B</a> vs <a href="sub-p8a.html" style="color:var(--accent)">P8A</a></td>
+<td>DTC pricing inconsistency: <a href="sub-p0f.html" style="color:var(--accent)">P0F</a> models DTC 3-pack at $12–15, <a href="sub-p6b.html" style="color:var(--accent)">P6B</a>
+lists $24.99, <a href="sub-p8a.html" style="color:var(--accent)">P8A</a> unit economics uses $24.99. The original <a href="p0.html" style="color:var(--accent)">P0</a> research
+used lower pricing assumptions that were superseded by <a href="p1.html" style="color:var(--accent)">P1</a>–<a href="p2.html" style="color:var(--accent)">P2</a> decisions
+but the <a href="p0.html" style="color:var(--accent)">P0</a> documents were never updated.</td>
+<td><strong>MODERATE</strong></td>
+<td>Add a revision note to <a href="sub-p0f.html" style="color:var(--accent)">P0F</a> acknowledging that DTC pricing was
+revised upward during brand development (<a href="sub-p1c.html" style="color:var(--accent)">P1C</a>–<a href="sub-p6b.html" style="color:var(--accent)">P6B</a>). No document rewrite
+needed — <a href="p0.html" style="color:var(--accent)">P0</a> is research, not final pricing.</td>
+</tr>
+<tr class="odd">
+<td>XREF-02</td>
+<td><a href="sub-p0e.html" style="color:var(--accent)">P0E</a> vs <a href="sub-p2a.html" style="color:var(--accent)">P2A</a></td>
+<td>Material configuration naming: <a href="sub-p0e.html" style="color:var(--accent)">P0E</a> references “PLA bioplastic shell
++ cellulose insulation batting” as the concept. <a href="sub-p2a.html" style="color:var(--accent)">P2A</a> finalizes as
+“NatureFlex NM 23µm + PLA spunbond 35gsm” (Config B). The <a href="p0.html" style="color:var(--accent)">P0</a> language
+implies separate insulation batting that doesn’t exist in Config B. <a href="sub-p0e.html" style="color:var(--accent)">P0E</a>
+readers may be confused.</td>
+<td><strong>MINOR</strong></td>
+<td>No action needed. <a href="p0.html" style="color:var(--accent)">P0</a> is pre-product-development research; <a href="sub-p2a.html" style="color:var(--accent)">P2A</a> is the
+definitive material spec. The evolution from concept to final design is
+expected.</td>
+</tr>
+<tr class="even">
+<td>XREF-03</td>
+<td><a href="sub-p3a.html" style="color:var(--accent)">P3A</a> vs <a href="sub-p4a.html" style="color:var(--accent)">P4A</a></td>
+<td>Supplier geography: <a href="sub-p3a.html" style="color:var(--accent)">P3A</a> names Parkside UK as primary and ProAmpac US
+as backup. <a href="sub-p4a.html" style="color:var(--accent)">P4A</a> Section 2 references HTS classification for
+“China/Pakistan” imports with Section 301 tariff analysis. If primary
+production is UK-based (Parkside), the China tariff analysis is relevant
+only for backup scenarios.</td>
+<td><strong>MODERATE</strong></td>
+<td>Add a clarifying note to <a href="sub-p4a.html" style="color:var(--accent)">P4A</a> Section 2: “The Section 301 tariff
+analysis applies if sourcing from China (backup supplier ShinHigh).
+Primary production via Parkside UK is subject to standard 3.4% duty
+only.”</td>
+</tr>
+<tr class="odd">
+<td>XREF-04</td>
+<td><a href="sub-p8a.html" style="color:var(--accent)">P8A</a> vs <a href="sub-p0f.html" style="color:var(--accent)">P0F</a></td>
+<td>COGS figures: <a href="sub-p0f.html" style="color:var(--accent)">P0F</a> uses $1.46–$3.12/unit landed COGS from early
+estimates. <a href="sub-p8a.html" style="color:var(--accent)">P8A</a> Section 3 uses $1.15–$1.43/unit COGS (aligned with <a href="sub-p2a.html" style="color:var(--accent)">P2A</a>
+Config B at volume). The <a href="sub-p0f.html" style="color:var(--accent)">P0F</a> figures include higher-cost configurations
+that were eliminated during <a href="sub-p2a.html" style="color:var(--accent)">P2A</a> material selection. Dashboard still
+shows the old <a href="sub-p0f.html" style="color:var(--accent)">P0F</a> COGS range.</td>
+<td><strong>MODERATE</strong></td>
+<td>Update the GTM Master Tracker DASHBOARD “Landed COGS” row from
+“$1.46–$3.12” to “$1.10–$1.45 landed (Config B at volume)” to match <a href="sub-p8a.html" style="color:var(--accent)">P8A</a>
+actuals.</td>
+</tr>
+<tr class="even">
+<td>XREF-05</td>
+<td><a href="sub-p6b.html" style="color:var(--accent)">P6B</a> vs Dashboard</td>
+<td>DTC pricing on Dashboard: Dashboard shows “DTC 3-Pack Price:
+$12.99–$14.99” but <a href="sub-p6b.html" style="color:var(--accent)">P6B</a> Section 2 lists the 3-Pack at $24.99. The
+Dashboard was created during <a href="p0.html" style="color:var(--accent)">P0</a> and never updated for the final pricing
+structure established in <a href="p1.html" style="color:var(--accent)">P1</a>–<a href="p6.html" style="color:var(--accent)">P6</a>.</td>
+<td><strong>CRITICAL</strong></td>
+<td>Update GTM Master Tracker DASHBOARD pricing rows to reflect final
+pricing: Single $9.99, 3-Pack $24.99, 6-Pack $49.99. Current Dashboard
+values are outdated from early <a href="p0.html" style="color:var(--accent)">P0</a> research.</td>
+</tr>
+<tr class="odd">
+<td>XREF-06</td>
+<td><a href="sub-p5e.html" style="color:var(--accent)">P5E</a> vs <a href="sub-p8a.html" style="color:var(--accent)">P8A</a></td>
+<td>Sponsor pricing model: <a href="sub-p5e.html" style="color:var(--accent)">P5E</a> references sponsor-funded poncho at “$0
+to the race director” with sponsor paying $5.00–$6.00/unit. <a href="sub-p8a.html" style="color:var(--accent)">P8A</a> unit
+economics does not include a “sponsor-funded” channel row.
+Sponsor-funded orders have unique economics (100% margin to the brand
+since the sponsor pays above COGS).</td>
+<td><strong>MINOR</strong></td>
+<td>Consider adding a “Sponsor-Funded B2B” row to the <a href="sub-p8a.html" style="color:var(--accent)">P8A</a> unit economics
+model in a future revision. Current omission doesn’t affect Year 1
+planning since sponsor deals are Year 1–Year 2 pipeline items.</td>
+</tr>
+<tr class="even">
+<td>TASK-01</td>
+<td><a href="p0.html" style="color:var(--accent)">P0</a> (all)</td>
+<td><a href="p0.html" style="color:var(--accent)">P0</a> task statuses in the tracker show “Not Started” even though all 8
+<a href="p0.html" style="color:var(--accent)">P0</a> subprojects have been completed as DOCX deliverables. The <a href="p0.html" style="color:var(--accent)">P0</a> tasks
+were completed in the earliest project phase and the tracker was created
+later. The status column was never updated for <a href="p0.html" style="color:var(--accent)">P0</a>.</td>
+<td><strong>CRITICAL</strong></td>
+<td>Update GTM Master Tracker <a href="p0.html" style="color:var(--accent)">P0</a> sheet: mark all 52 tasks (0A.01–0H.07)
+as “Complete” with green highlighting, consistent with <a href="p5.html" style="color:var(--accent)">P5</a>–<a href="p10.html" style="color:var(--accent)">P10</a>
+formatting.</td>
+</tr>
+<tr class="odd">
+<td>TASK-02</td>
+<td><a href="p1.html" style="color:var(--accent)">P1</a> (all)</td>
+<td>Same issue as <a href="p0.html" style="color:var(--accent)">P0</a>: <a href="p1.html" style="color:var(--accent)">P1</a> tracker tasks show “Not Started” despite all 5
+<a href="p1.html" style="color:var(--accent)">P1</a> subprojects being completed. The <a href="p1.html" style="color:var(--accent)">P1</a> Gap Tracker (separate file) was
+created and all 15 gaps closed, but the master tracker’s <a href="p1.html" style="color:var(--accent)">P1</a> sheet status
+column was not updated.</td>
+<td><strong>CRITICAL</strong></td>
+<td>Update GTM Master Tracker <a href="p1.html" style="color:var(--accent)">P1</a> sheet: mark all 30 tasks (1.01–1.30) as
+“Complete.”</td>
+</tr>
+<tr class="even">
+<td>TASK-03</td>
+<td><a href="p2.html" style="color:var(--accent)">P2</a> (all)</td>
+<td>Same issue: <a href="p2.html" style="color:var(--accent)">P2</a> tasks show “Not Started” in the tracker despite all 6
+<a href="p2.html" style="color:var(--accent)">P2</a> subprojects completed. The <a href="p2.html" style="color:var(--accent)">P2</a> had 18 gaps identified and closed via a
+separate gap analysis process, but the master tracker <a href="p2.html" style="color:var(--accent)">P2</a> sheet was not
+updated.</td>
+<td><strong>CRITICAL</strong></td>
+<td>Update GTM Master Tracker <a href="p2.html" style="color:var(--accent)">P2</a> sheet: mark all 42 tasks (2.01–2.42) as
+“Complete.”</td>
+</tr>
+<tr class="odd">
+<td>TASK-04</td>
+<td><a href="p3.html" style="color:var(--accent)">P3</a> (all)</td>
+<td>Same issue: <a href="p3.html" style="color:var(--accent)">P3</a> tasks show “Not Started” despite all 5 <a href="p3.html" style="color:var(--accent)">P3</a> subprojects
+completed.</td>
+<td><strong>CRITICAL</strong></td>
+<td>Update GTM Master Tracker <a href="p3.html" style="color:var(--accent)">P3</a> sheet: mark all 35 tasks (3.01–3.35) as
+“Complete.”</td>
+</tr>
+<tr class="even">
+<td>TASK-05</td>
+<td><a href="p4.html" style="color:var(--accent)">P4</a> (all)</td>
+<td>Same issue: <a href="p4.html" style="color:var(--accent)">P4</a> tasks show “Not Started” despite all 4 <a href="p4.html" style="color:var(--accent)">P4</a> subprojects
+completed.</td>
+<td><strong>CRITICAL</strong></td>
+<td>Update GTM Master Tracker <a href="p4.html" style="color:var(--accent)">P4</a> sheet: mark all 24 tasks (4.01–4.24) as
+“Complete.”</td>
+</tr>
+<tr class="odd">
+<td>DASH-01</td>
+<td>Dashboard</td>
+<td>Dashboard “Completed” column (F) shows correct counts for <a href="p5.html" style="color:var(--accent)">P5</a>–<a href="p10.html" style="color:var(--accent)">P10</a> but
+<a href="p0.html" style="color:var(--accent)">P0</a>–<a href="p4.html" style="color:var(--accent)">P4</a> may show 0 or outdated counts since those projects were completed
+before the tracker update system was established.</td>
+<td><strong>CRITICAL</strong></td>
+<td>Verify and update Dashboard column F for <a href="p0.html" style="color:var(--accent)">P0</a> (52), <a href="p1.html" style="color:var(--accent)">P1</a> (30), <a href="p2.html" style="color:var(--accent)">P2</a> (42),
+<a href="p3.html" style="color:var(--accent)">P3</a> (35), <a href="p4.html" style="color:var(--accent)">P4</a> (24). Total should read 391/391.</td>
+</tr>
+<tr class="even">
+<td>DASH-02</td>
+<td>Dashboard</td>
+<td>Dashboard KPI metrics section reflects early <a href="p0.html" style="color:var(--accent)">P0</a> estimates (COGS
+$1.46–$3.12, DTC 3-Pack $12.99–$14.99, B2B margin 23–33%) that were
+superseded by final product decisions in <a href="p2.html" style="color:var(--accent)">P2</a>–<a href="p8.html" style="color:var(--accent)">P8</a>. The metrics are
+misleading if read as current specifications.</td>
+<td><strong>CRITICAL</strong></td>
+<td>Revise Dashboard KPIs to reflect final specifications: COGS
+$1.10–$1.45, DTC prices $9.99/$24.99/$49.99, B2B price $3.50–$5.00, B2B
+margin 51–69%, DTC margin 24–70% by channel, Year 1 Revenue Bootstrap
+$10.5K–$31K / Full Launch $35K–$113K per <a href="sub-p8a.html" style="color:var(--accent)">P8A</a>.</td>
+</tr>
+<tr class="odd">
+<td>DASH-03</td>
+<td>Dashboard</td>
+<td>Manufacturing Hub listed as “China / Pakistan” but final primary
+supplier is Parkside UK with ProAmpac US as backup. China/Pakistan were
+early options that were deprioritized during <a href="sub-p3a.html" style="color:var(--accent)">P3A</a> factory selection.</td>
+<td><strong>MODERATE</strong></td>
+<td>Update Dashboard Manufacturing Hub from “China / Pakistan” to “UK
+(Parkside, primary) / US (ProAmpac, backup).”</td>
+</tr>
+<tr class="even">
+<td>DASH-04</td>
+<td>Dashboard</td>
+<td>Composting Certification shows “EN13432 (EU) + ASTM D6400 (US)” but
+the primary certification strategy (<a href="sub-p2d.html" style="color:var(--accent)">P2D</a>, <a href="sub-p9c.html" style="color:var(--accent)">P9C</a>) prioritizes BPI
+Certification (which encompasses ASTM D6400). BPI is the consumer-facing
+and B2B-facing certification name. EN13432 is optional for Year 1 per
+<a href="sub-p9c.html" style="color:var(--accent)">P9C</a> Section 3.</td>
+<td><strong>MINOR</strong></td>
+<td>Update to: “BPI Certification (ASTM D6400, US primary) + EN13432
+(EU, optional Year 1).”</td>
+</tr>
+<tr class="odd">
+<td>QUAL-01</td>
+<td><a href="sub-p0a.html" style="color:var(--accent)">P0A</a>–<a href="sub-p0h.html" style="color:var(--accent)">P0H</a></td>
+<td><a href="p0.html" style="color:var(--accent)">P0</a> subprojects were completed as research documents before the
+product specification was finalized. Some <a href="p0.html" style="color:var(--accent)">P0</a> documents reference: early
+material concepts (PLA shell + cellulose batting), preliminary pricing
+($5–7 DTC single), and broad competitive framing that was refined in
+later phases. The <a href="p0.html" style="color:var(--accent)">P0</a> documents are DIRECTIONALLY correct but NUMERICALLY
+outdated.</td>
+<td><strong>MINOR</strong></td>
+<td>No rewrite needed. <a href="p0.html" style="color:var(--accent)">P0</a> is foundational research that informed <a href="p1.html" style="color:var(--accent)">P1</a>–<a href="p10.html" style="color:var(--accent)">P10</a>
+decisions. Add a cover note to the <a href="p0.html" style="color:var(--accent)">P0</a> folder: “<a href="p0.html" style="color:var(--accent)">P0</a> documents represent
+the research phase. Product specifications, pricing, and supplier
+decisions were finalized in <a href="p2.html" style="color:var(--accent)">P2</a>–<a href="p3.html" style="color:var(--accent)">P3</a>. Refer to <a href="sub-p2b.html" style="color:var(--accent)">P2B</a> (technical spec) and <a href="sub-p8a.html" style="color:var(--accent)">P8A</a>
+(unit economics) for current figures.”</td>
+</tr>
+<tr class="even">
+<td>QUAL-02</td>
+<td><a href="p1.html" style="color:var(--accent)">P1</a> Gap Analysis</td>
+<td><a href="p1.html" style="color:var(--accent)">P1</a> had a separate Critical Gap Analysis document
+(P1_Critical_Gap_Analysis.docx) and Gap Tracker (P1_Gap_Tracker.xlsx)
+that identified and closed 15 gaps. <a href="p2.html" style="color:var(--accent)">P2</a> also had 18 gaps closed. <a href="p3.html" style="color:var(--accent)">P3</a>–<a href="p10.html" style="color:var(--accent)">P10</a>
+did NOT receive formal gap analyses. The gap-analysis rigor applied to
+<a href="p1.html" style="color:var(--accent)">P1</a>–<a href="p2.html" style="color:var(--accent)">P2</a> was not extended to later projects.</td>
+<td><strong>MODERATE</strong></td>
+<td>This current document (the master gap analysis) serves as the
+comprehensive gap analysis for <a href="p3.html" style="color:var(--accent)">P3</a>–<a href="p10.html" style="color:var(--accent)">P10</a>. No separate per-project gap
+analysis is needed since this document evaluates all 391 tasks.</td>
+</tr>
+<tr class="odd">
+<td>QUAL-03</td>
+<td><a href="sub-p3a.html" style="color:var(--accent)">P3A</a>–<a href="sub-p3e.html" style="color:var(--accent)">P3E</a></td>
+<td><a href="p3.html" style="color:var(--accent)">P3</a> documents reference both Parkside UK and ShinHigh China
+interchangeably as potential primary suppliers. <a href="sub-p3a.html" style="color:var(--accent)">P3A</a> Section 1 presents a
+5-factory shortlist but the FINAL selection decision (Parkside as
+primary) could be more explicitly stated in a decision summary.</td>
+<td><strong>MINOR</strong></td>
+<td>Add a brief “Supplier Decision Summary” section to <a href="sub-p3a.html" style="color:var(--accent)">P3A</a> or create a
+1-page decision memo: “Parkside UK selected as primary supplier for
+reasons X, Y, Z. ProAmpac US as backup. ShinHigh China deprioritized due
+to Section 301 tariff risk.”</td>
+</tr>
+<tr class="even">
+<td>QUAL-04</td>
+<td><a href="sub-p6b.html" style="color:var(--accent)">P6B</a></td>
+<td>Task 6.08 specifies DTC pricing as “Single ($5–7), 3-Pack ($12–15),
+Season 6-Pack ($22–25)” in the tracker, but <a href="sub-p6b.html" style="color:var(--accent)">P6B</a> Section 2 documents
+pricing as: Single $9.99, 3-Pack $24.99, 6-Pack $49.99. The TRACKER task
+description contains outdated pricing from <a href="p0.html" style="color:var(--accent)">P0</a>; the DOCUMENT has the
+correct final pricing.</td>
+<td><strong>MODERATE</strong></td>
+<td>Update GTM Master Tracker task 6.08 description to reflect final
+pricing: “Create product listings: Single ($9.99), 3-Pack ($24.99),
+6-Pack ($49.99).”</td>
+</tr>
+<tr class="odd">
+<td>QUAL-05</td>
+<td><a href="sub-p10b.html" style="color:var(--accent)">P10B</a></td>
+<td>Task 10.07 specifies premium reusable version at “$15–20 DTC” but
+<a href="sub-p10b.html" style="color:var(--accent)">P10B</a> Section 1 documents it at $34.99–$44.99 based on: materials
+analysis (recycled polyester + fleece), comparable product benchmarking,
+and margin targets. The tracker’s $15–20 was an early estimate before
+material costing.</td>
+<td><strong>MINOR</strong></td>
+<td>Update tracker task 10.07 description from “$15–20 DTC” to
+“$34.99–$44.99 DTC” to match the <a href="sub-p10b.html" style="color:var(--accent)">P10B</a> analysis.</td>
+</tr>
+<tr class="even">
+<td>STRUC-01</td>
+<td><a href="p2.html" style="color:var(--accent)">P2</a> Gap Tracker</td>
+<td><a href="p1.html" style="color:var(--accent)">P1</a> has both a Critical Gap Analysis document AND a Gap Tracker
+spreadsheet. <a href="p2.html" style="color:var(--accent)">P2</a> had 18 gaps closed but no separate <a href="p2.html" style="color:var(--accent)">P2</a> Gap Tracker
+spreadsheet file was created (gaps were tracked within the
+conversation). The gap closure is documented but not in a standalone
+tracker file like <a href="p1.html" style="color:var(--accent)">P1</a>.</td>
+<td><strong>MINOR</strong></td>
+<td>No action required. <a href="p2.html" style="color:var(--accent)">P2</a> gap closure was verified within the workflow.
+The current master gap analysis supersedes the need for a per-project
+tracker.</td>
+</tr>
+<tr class="odd">
+<td>STRUC-02</td>
+<td>All Projects</td>
+<td>No single “Table of Contents” or “Playbook Index” document exists
+that: lists all 60 subproject documents with file names, paragraph
+counts, and brief descriptions. The ZIP folder structure provides
+organization but lacks a master index.</td>
+<td><strong>MODERATE</strong></td>
+<td>Create a 1–2 page “Playbook Index” document listing: all 60
+documents, file names, paragraph counts, key topics covered, and
+cross-references to related documents. Include in the ZIP root alongside
+the GTM tracker.</td>
+</tr>
+<tr class="even">
+<td>STRUC-03</td>
+<td><a href="sub-p5b.html" style="color:var(--accent)">P5B</a> vs <a href="sub-p9d.html" style="color:var(--accent)">P9D</a></td>
+<td><a href="sub-p5b.html" style="color:var(--accent)">P5B</a> Section 1 references a “pilot agreement” that covers 10
+sections. <a href="sub-p9d.html" style="color:var(--accent)">P9D</a> Section 4 provides the pilot agreement framework with 6
+sections (scope, pricing, data collection, composting, exclusivity, case
+study rights). The numbering and section count differ slightly because
+<a href="sub-p5b.html" style="color:var(--accent)">P5B</a> describes the OPERATIONAL content while <a href="sub-p9d.html" style="color:var(--accent)">P9D</a> describes the LEGAL
+framework. Both are correct but may confuse a reader expecting identical
+structures.</td>
+<td><strong>MINOR</strong></td>
+<td>Add a cross-reference note to <a href="sub-p9d.html" style="color:var(--accent)">P9D</a> Section 4: “For the operational
+execution of the pilot (logistics, data collection protocols, debrief
+process), see <a href="sub-p5b.html" style="color:var(--accent)">P5B</a>. This section covers the legal agreement
+framework.”</td>
+</tr>
+<tr class="odd">
+<td>STRUC-04</td>
+<td><a href="sub-p8d.html" style="color:var(--accent)">P8D</a> vs <a href="sub-p10f.html" style="color:var(--accent)">P10F</a></td>
+<td>Both <a href="sub-p8d.html" style="color:var(--accent)">P8D</a> Section 5 and <a href="sub-p10f.html" style="color:var(--accent)">P10F</a> Section 1 describe the Year 1 P&amp;L
+framework. <a href="sub-p8d.html" style="color:var(--accent)">P8D</a> provides the template structure; <a href="sub-p10f.html" style="color:var(--accent)">P10F</a> adds the analytical
+framework and action items. There is overlap but not contradiction —
+<a href="sub-p10f.html" style="color:var(--accent)">P10F</a> extends <a href="sub-p8d.html" style="color:var(--accent)">P8D</a> rather than duplicating it.</td>
+<td><strong>MINOR</strong></td>
+<td>No action required. <a href="sub-p8d.html" style="color:var(--accent)">P8D</a> establishes the P&amp;L STRUCTURE and <a href="sub-p10f.html" style="color:var(--accent)">P10F</a>
+adds the ANALYSIS methodology. Both are needed and reference each
+other.</td>
+</tr>
+</tbody>
+</table>
+<p>4. Cross-Reference Consistency Analysis</p>
+<p>4.1 Pricing Consistency</p>
+<p>The playbook underwent a natural pricing evolution: <a href="p0.html" style="color:var(--accent)">P0</a> research
+assumed lower DTC prices ($5–7 single, $12–15 3-pack) based on
+competitive analysis. <a href="p1.html" style="color:var(--accent)">P1</a>–<a href="p2.html" style="color:var(--accent)">P2</a> brand development and material selection
+elevated the product positioning. <a href="sub-p6b.html" style="color:var(--accent)">P6B</a>–<a href="sub-p8a.html" style="color:var(--accent)">P8A</a> established final pricing
+($9.99 single, $24.99 3-pack, $49.99 6-pack) with supporting unit
+economics. The DOCUMENTS (<a href="sub-p6b.html" style="color:var(--accent)">P6B</a>, <a href="sub-p8a.html" style="color:var(--accent)">P8A</a>) contain the correct final pricing.
+The TRACKER task descriptions and DASHBOARD KPIs contain the outdated
+<a href="p0.html" style="color:var(--accent)">P0</a>-era pricing. Resolution: update the tracker and Dashboard to match
+the documents.</p>
+<p>4.2 Material &amp; Supplier Consistency</p>
+<p><a href="sub-p0e.html" style="color:var(--accent)">P0E</a> explores multiple material concepts including PLA shell +
+cellulose batting. <a href="sub-p2a.html" style="color:var(--accent)">P2A</a> narrows to 3 configurations and selects Config B
+(NatureFlex NM 23µm + PLA spunbond 35gsm). <a href="sub-p3a.html" style="color:var(--accent)">P3A</a> selects Parkside UK as
+primary supplier. All <a href="p3.html" style="color:var(--accent)">P3</a>–<a href="p10.html" style="color:var(--accent)">P10</a> documents consistently reference Config B
+and Parkside. The only inconsistency: the Dashboard still references
+“China / Pakistan” as the Manufacturing Hub. Resolution: update
+Dashboard.</p>
+<p>4.3 Financial Model Consistency</p>
+<p><a href="sub-p8a.html" style="color:var(--accent)">P8A</a>’s unit economics model, breakeven analysis, and cash flow
+forecasts are internally consistent and referenced correctly by: <a href="sub-p8b.html" style="color:var(--accent)">P8B</a>
+(cash flow management), <a href="sub-p8c.html" style="color:var(--accent)">P8C</a> (tax), <a href="sub-p8d.html" style="color:var(--accent)">P8D</a> (decision gates), <a href="sub-p5f.html" style="color:var(--accent)">P5F</a> (B2B
+pricing), <a href="sub-p6c.html" style="color:var(--accent)">P6C</a> (Amazon margins), <a href="sub-p7d.html" style="color:var(--accent)">P7D</a> (ad budget), and <a href="sub-p7f.html" style="color:var(--accent)">P7F</a> (marketing
+ROI). No financial inconsistencies were found across the <a href="p5.html" style="color:var(--accent)">P5</a>–<a href="p10.html" style="color:var(--accent)">P10</a>
+documents. The only discrepancy: <a href="sub-p0f.html" style="color:var(--accent)">P0F</a>’s early pricing/COGS estimates
+differ from <a href="sub-p8a.html" style="color:var(--accent)">P8A</a>’s final model (expected, as <a href="p0.html" style="color:var(--accent)">P0</a> predates product
+finalization).</p>
+<p>5. Document Quality Assessment</p>
+<p>5.1 Overall Quality Rating</p>
+<p>ALL 60 subproject documents meet or exceed the task requirements
+specified in the GTM Master Tracker. Each document provides:
+comprehensive coverage of the assigned tasks, specific and actionable
+guidance (not generic advice), quantified metrics and targets where
+applicable, cross-references to related documents and subprojects, and
+timeline and budget estimates for implementation. No document was
+identified as substandard in: depth, accuracy, actionability, or
+completeness relative to its assigned tasks.</p>
+<p>5.2 Strongest Documents</p>
+<p><a href="sub-p8a.html" style="color:var(--accent)">P8A</a> Financial Planning &amp; Modeling (328¶): the most comprehensive
+financial planning document, with: dual-scenario cash flow forecasts,
+7-channel unit economics, breakeven analysis, 6 B2B revenue scenarios, 3
+decision gates, and complete accounting setup. <a href="sub-p7f.html" style="color:var(--accent)">P7F</a> Seasonal Marketing
+Campaigns (230¶): integrates all <a href="p7.html" style="color:var(--accent)">P7</a> marketing channels into a unified
+annual calendar with 5 campaign frameworks and the Year 1 ROI report.
+<a href="sub-p5b.html" style="color:var(--accent)">P5B</a> Pilot Race Execution (246¶): the most operationally detailed B2B
+document with minute-by-minute race-day execution plans.</p>
+<p>5.3 Documents to Monitor in Execution</p>
+<p><a href="sub-p0a.html" style="color:var(--accent)">P0A</a>–<a href="sub-p0h.html" style="color:var(--accent)">P0H</a> (research): contain early-stage estimates that have been
+superseded. Should be read as directional research, not current
+specifications. <a href="sub-p3a.html" style="color:var(--accent)">P3A</a> Factory Selection: the supplier decision should be
+explicitly documented in a brief memo for clarity. <a href="sub-p4a.html" style="color:var(--accent)">P4A</a> Freight &amp;
+Import: the Section 301 tariff analysis is relevant only for China
+sourcing (backup scenario) and should be flagged as such.</p>
+<p>6. GTM Master Tracker Assessment</p>
+<p>6.1 Tracker Strengths</p>
+<p>The tracker provides: clear project hierarchy (11 projects, 60
+subprojects, 391 tasks), specific task descriptions with: owner,
+timeline, priority, and KPI fields, status tracking with: color-coded
+completion states, and a Dashboard with: project-level completion
+counts. The tracker is well-structured for ongoing execution
+management.</p>
+<p>6.2 Tracker Gaps (Addressed in Gap Register)</p>
+<p>5 CRITICAL gaps: <a href="p0.html" style="color:var(--accent)">P0</a>–<a href="p4.html" style="color:var(--accent)">P4</a> status columns not updated, Dashboard KPI
+metrics outdated. 3 MODERATE gaps: Dashboard manufacturing hub, pricing
+task descriptions, and completion counts. All are MAINTENANCE issues
+(updating values), not STRUCTURAL issues (the tracker design is
+sound).</p>
+<p>6.3 Recommended Tracker Enhancements</p>
+<p>(1) Add a “Document Link” column to each project sheet: hyperlink to
+the corresponding DOCX file for quick reference. (2) Add a “Last
+Updated” column to the Dashboard: date of most recent status update per
+project. (3) Add a “Gap Status” row to the Dashboard: number of open
+gaps from this analysis (currently 0 after remediation). (4) Consider
+color-coding the Dashboard completion column: green (100%), yellow
+(50–99%), red (&lt;50%) for visual status.</p>
+<p>7. Remediation Priority</p>
+<p><strong>IMMEDIATE (before execution begins):</strong></p>
+<p>1. Update GTM Master Tracker <a href="p0.html" style="color:var(--accent)">P0</a>–<a href="p4.html" style="color:var(--accent)">P4</a> sheets: mark all 183 tasks as
+“Complete” (TASK-01 through TASK-05).</p>
+<p>2. Update Dashboard completion counts for <a href="p0.html" style="color:var(--accent)">P0</a>–<a href="p4.html" style="color:var(--accent)">P4</a> (DASH-01).</p>
+<p>3. Update Dashboard KPI metrics to reflect final specifications
+(DASH-02, XREF-05).</p>
+<p>4. Update Dashboard Manufacturing Hub (DASH-03).</p>
+<p><strong>BEFORE YEAR 1 EXECUTION:</strong></p>
+<p>5. Add clarifying note to <a href="sub-p4a.html" style="color:var(--accent)">P4A</a> regarding Section 301 applicability
+(XREF-03).</p>
+<p>6. Update tracker task 6.08 pricing description (QUAL-04).</p>
+<p>7. Create Playbook Index document for the ZIP package (STRUC-02).</p>
+<p><strong>OPTIONAL / LOW-PRIORITY:</strong></p>
+<p>8. Add <a href="p0.html" style="color:var(--accent)">P0</a> folder cover note about early-stage estimates
+(QUAL-01).</p>
+<p>9. Add cross-reference notes between <a href="sub-p5b.html" style="color:var(--accent)">P5B</a> and <a href="sub-p9d.html" style="color:var(--accent)">P9D</a> (STRUC-03).</p>
+<p>10. Update tracker task 10.07 pricing description (QUAL-05).</p>
+<p>8. Conclusion</p>
+<p><strong>The GTM Playbook is comprehensive, consistent, and
+execution-ready.</strong> The 24 gaps identified are: tracker
+maintenance issues (not content gaps), specification evolution artifacts
+(early estimates naturally superseded by later decisions), and optional
+structural improvements. NO task is unaddressed. NO document is
+substandard. NO critical content is missing. The playbook provides:
+~15,500 paragraphs of detailed, actionable guidance across 60
+professional documents covering every aspect of launching and scaling a
+sustainable consumer product brand. After the 7 CRITICAL tracker updates
+are applied (estimated time: 30 minutes), the playbook and tracker are
+fully aligned and ready for execution.</p>
+</div></div></div><footer>Sustainable Race-Start Warmth Poncho — GTM Project · 60 Subprojects · 391 Tasks · ~120K Words · April 2026<br><a href="https://apseter.github.io/Retail_Ventures_Command_Center/">← Retail Ventures Command Center</a> · <a href="index.html">Project Home</a></footer></body></html>

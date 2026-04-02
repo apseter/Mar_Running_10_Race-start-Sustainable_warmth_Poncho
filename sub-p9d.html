@@ -1,89 +1,65 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>P9D: Contracts Agreements — Race Start Warmth GTM</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-<style>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>P9D — Race Start Warmth GTM</title><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet"><style>
 :root{--bg:#0a0e1a;--surface:#111827;--card:#1a2332;--border:#2a3a4e;--accent:#10b981;--accent2:#3b82f6;--text:#e2e8f0;--muted:#94a3b8;--white:#fff;--red:#ef4444;--amber:#f59e0b;--green:#10b981}
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
 a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
 .container{max-width:1200px;margin:0 auto;padding:0 24px}
-/* Nav */
-nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
-nav .inner{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;max-width:1200px;margin:0 auto}
-nav .brand{font-weight:700;font-size:15px;color:var(--accent)}
-nav .links{display:flex;gap:8px;flex-wrap:wrap}
-nav .links a{color:var(--muted);font-size:13px;padding:4px 10px;border-radius:6px;transition:.2s}
+nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
+nav .inner{display:flex;align-items:center;justify-content:space-between;padding:10px 24px;max-width:1200px;margin:0 auto;flex-wrap:wrap;gap:8px}
+nav .brand{font-weight:700;font-size:14px;color:var(--accent);white-space:nowrap}
+nav .links{display:flex;gap:4px;flex-wrap:wrap}
+nav .links a{color:var(--muted);font-size:12px;padding:4px 8px;border-radius:6px;transition:.2s;white-space:nowrap}
 nav .links a:hover,nav .links a.active{color:var(--white);background:var(--card);text-decoration:none}
-/* Hero */
-.hero{padding:60px 0 40px;text-align:center}
-.hero h1{font-size:2.4em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hero p{color:var(--muted);font-size:1.1em;max-width:700px;margin:0 auto}
-/* Stats bar */
-.stats{display:flex;justify-content:center;gap:32px;padding:24px 0;flex-wrap:wrap}
-.stat{text-align:center}.stat .num{font-size:1.8em;font-weight:800;color:var(--white)}.stat .label{font-size:.75em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
-/* Cards */
-.grid{display:grid;gap:16px;margin:24px 0}
-.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}
-.grid-3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
-.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;transition:.2s}
-.card:hover{border-color:var(--accent);transform:translateY(-2px)}
-.card h3{font-size:1.1em;margin-bottom:8px}.card p{color:var(--muted);font-size:.9em}
-.card .badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:8px}
-.card .meta{font-size:.8em;color:var(--muted);margin-top:12px}
-/* Section */
-.section{padding:40px 0}.section h2{font-size:1.6em;font-weight:700;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--border)}
-/* Table */
-table{width:100%;border-collapse:collapse;font-size:.85em;margin:16px 0}
-th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:52px}
-td{padding:8px 12px;border-bottom:1px solid var(--border)}
-tr:hover td{background:rgba(16,185,129,.05)}
-.status-complete{color:var(--green);font-weight:600}.status-not{color:var(--muted)}
-/* Progress */
-.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:8px}
-.progress .bar{height:100%;background:var(--accent);border-radius:3px}
-/* Back link */
-.back{display:inline-block;color:var(--muted);font-size:.9em;margin-bottom:20px}
-.back:hover{color:var(--accent)}
-/* Download */
-.dl-card{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin:8px 0;transition:.2s}
-.dl-card:hover{border-color:var(--accent);text-decoration:none}
-.dl-card .icon{font-size:2em}.dl-card .info h4{color:var(--white);margin-bottom:4px}.dl-card .info p{color:var(--muted);font-size:.85em}
-/* Footer */
-footer{text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px}
-@media(max-width:768px){.stats{gap:16px}.stat .num{font-size:1.3em}nav .links{gap:4px}nav .links a{font-size:11px;padding:3px 6px}.hero h1{font-size:1.6em}}
-
-.doc-content{max-width:900px;margin:0 auto;padding:20px 0}
-.doc-content h1{font-size:1.8em;font-weight:800;color:var(--white);margin:32px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
-.doc-content h2{font-size:1.4em;font-weight:700;color:var(--accent);margin:28px 0 12px}
-.doc-content h3{font-size:1.15em;font-weight:600;color:var(--accent2);margin:20px 0 10px}
-.doc-content p{margin:8px 0;line-height:1.7}
-.doc-content table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85em}
-.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;border:1px solid var(--border)}
-.doc-content td{padding:8px 12px;border:1px solid var(--border);vertical-align:top}
-.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
-.doc-content ul,.doc-content ol{margin:8px 0 8px 24px}
-.doc-content li{margin:4px 0;line-height:1.6}
-.doc-content strong{color:var(--white)}
-.doc-content em{color:var(--muted)}
-.doc-content blockquote{border-left:3px solid var(--accent);padding:8px 16px;margin:12px 0;background:var(--card);border-radius:0 8px 8px 0}
-.nav-sub{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 24px;padding:12px 16px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
-.nav-sub a{font-size:.8em;color:var(--muted);padding:4px 10px;border-radius:4px;transition:.2s;white-space:nowrap}
+nav .links a.cc-link{color:var(--accent2);border:1px solid var(--accent2);font-weight:600}
+nav .links a.cc-link:hover{background:var(--accent2);color:var(--white)}
+.hero{padding:50px 0 30px;text-align:center}
+.hero h1{font-size:2.2em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:1.05em;max-width:700px;margin:0 auto}
+.stats{display:flex;justify-content:center;gap:28px;padding:20px 0;flex-wrap:wrap}
+.stat{text-align:center}.stat .num{font-size:1.7em;font-weight:800;color:var(--white)}.stat .label{font-size:.7em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.grid{display:grid;gap:16px;margin:24px 0}.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}.grid-3{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;transition:.2s;display:block}
+.card:hover{border-color:var(--accent);transform:translateY(-2px);text-decoration:none}
+.card h3{font-size:1.05em;margin-bottom:6px;color:var(--white)}.card p{color:var(--muted);font-size:.88em}
+.badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.65em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:6px}
+.badge-amber{background:var(--amber)}.badge-blue{background:var(--accent2)}
+.card .meta{font-size:.78em;color:var(--muted);margin-top:10px}
+.section{padding:32px 0}.section h2{font-size:1.5em;font-weight:700;margin-bottom:20px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+table{width:100%;border-collapse:collapse;font-size:.83em;margin:16px 0}
+th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:48px}
+td{padding:8px 12px;border-bottom:1px solid var(--border)}tr:hover td{background:rgba(16,185,129,.04)}
+.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:6px}
+.progress .bar{height:100%;border-radius:3px}
+.back{display:inline-block;color:var(--muted);font-size:.88em;margin-bottom:16px}.back:hover{color:var(--accent)}
+.dl-card{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;margin:8px 0;transition:.2s}
+.dl-card:hover{border-color:var(--accent);text-decoration:none}.dl-card .icon{font-size:1.8em}.dl-card .info h4{color:var(--white);margin-bottom:2px;font-size:.95em}.dl-card .info p{color:var(--muted);font-size:.8em}
+.phase-tag{display:inline-block;font-size:.65em;font-weight:600;padding:2px 6px;border-radius:3px;margin-right:4px}
+.phase-plan{background:rgba(16,185,129,.15);color:var(--green)}.phase-exec{background:rgba(245,158,11,.15);color:var(--amber)}.phase-not{background:rgba(148,163,184,.1);color:var(--muted)}
+.nav-sub{display:flex;flex-wrap:wrap;gap:5px;margin:12px 0 20px;padding:10px 14px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
+.nav-sub a{font-size:.78em;color:var(--muted);padding:3px 8px;border-radius:4px;transition:.2s;white-space:nowrap}
 .nav-sub a:hover,.nav-sub a.active{color:var(--white);background:var(--surface);text-decoration:none}
-</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a></div></div></nav><div class="container">
-    <div style="padding-top:30px">
+.doc-content{max-width:900px;margin:0 auto;padding:16px 0}
+.doc-content h1{font-size:1.7em;font-weight:800;color:var(--white);margin:28px 0 14px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+.doc-content h2{font-size:1.3em;font-weight:700;color:var(--accent);margin:24px 0 10px}
+.doc-content h3{font-size:1.1em;font-weight:600;color:var(--accent2);margin:18px 0 8px}
+.doc-content p{margin:6px 0;line-height:1.65}.doc-content table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.83em}
+.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:8px 10px;font-weight:600;border:1px solid var(--border)}
+.doc-content td{padding:7px 10px;border:1px solid var(--border);vertical-align:top}
+.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.doc-content ul,.doc-content ol{margin:6px 0 6px 20px}.doc-content li{margin:3px 0;line-height:1.55}
+.doc-content strong{color:var(--white)}.doc-content em{color:var(--muted)}
+footer{text-align:center;padding:32px 0;color:var(--muted);font-size:.78em;border-top:1px solid var(--border);margin-top:50px}
+footer a{color:var(--accent2)}
+@media(max-width:768px){.stats{gap:14px}.stat .num{font-size:1.2em}nav .links a{font-size:10px;padding:3px 5px}.hero h1{font-size:1.5em}}
+</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="projections.html" class="">Projections</a><a href="action-plan.html" class="">Action Plan</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a><a href="https://apseter.github.io/Retail_Ventures_Command_Center/" class="cc-link" target="_blank">🏠 Command Center</a></div></div></nav><div class="container"><div style="padding-top:28px">
         <a href="p9.html" class="back">← ⚖️ P9: Legal & Compliance</a>
         <div class="nav-sub"><a href="p9.html">⚖️ P9 Overview</a><a href="sub-p9a.html">P9A</a><a href="sub-p9b.html">P9B</a><a href="sub-p9c.html">P9C</a><a href="sub-p9d.html" class="active">P9D</a><a href="sub-p9e.html">P9E</a></div>
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px">
-            <div>
-                <span style="background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px">P9D</span>
-                <span style="color:var(--muted);font-size:.85em;margin-left:8px">P9: Legal & Compliance</span>
-            </div>
-            <a href="files/P9D_Contracts_Agreements.docx" style="font-size:.85em;color:var(--accent);padding:6px 14px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+            <div><span class="badge">P9D</span> <span style="color:var(--muted);font-size:.83em">P9: Legal & Compliance</span></div>
+            <a href="files/P9D_Contracts_Agreements.docx" style="font-size:.83em;color:var(--accent);padding:5px 12px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
         </div>
-        <div class="doc-content">
-            <p><strong>P9D: CONTRACTS &amp;</strong></p>
+        <div class="doc-content"><p><strong><a href="sub-p9d.html" style="color:var(--accent)">P9D</a>: CONTRACTS &amp;</strong></p>
 <p><strong>AGREEMENTS</strong></p>
-<p>Sub-Project P9D | Legal, Compliance &amp; Sustainability Certs |
+<p>Sub-Project <a href="sub-p9d.html" style="color:var(--accent)">P9D</a> | Legal, Compliance &amp; Sustainability Certs |
 Weeks 6–12</p>
 <p><em>Complete Contract Templates: B2B Terms &amp; Conditions (8
 Clauses), Ambassador Agreement (6 Provisions), Supplier Agreement (6
@@ -97,8 +73,8 @@ pricing, data collection, composting, exclusivity, case study rights).
 For the OPERATIONAL EXECUTION of the pilot — including: race-day
 logistics, volunteer coordination, runner survey protocols, data
 collection procedures, post-race debrief process, and case study
-production workflow — see P5B Pilot Race Execution. Both documents
-should be used together: P9D defines what is agreed; P5B defines how it
+production workflow — see <a href="sub-p5b.html" style="color:var(--accent)">P5B</a> Pilot Race Execution. Both documents
+should be used together: <a href="sub-p9d.html" style="color:var(--accent)">P9D</a> defines what is agreed; <a href="sub-p5b.html" style="color:var(--accent)">P5B</a> defines how it
 is executed.</em></p>
 <p>Executive Summary</p>
 <p><strong>Contracts define the rules of every business
@@ -131,14 +107,14 @@ jurisdiction.</em></p>
 <p><strong>The B2B terms and conditions govern every sale to a race
 director or event organizer.</strong> They are: attached to or
 referenced in every PO acceptance, included in the race director
-onboarding guide (P5F Section 2), and published on brand.com/b2b/terms
+onboarding guide (<a href="sub-p5f.html" style="color:var(--accent)">P5F</a> Section 2), and published on brand.com/b2b/terms
 for reference. The terms protect against: payment default, delivery
 disputes, defect claims, logo misuse, and catastrophic liability
 exposure.</p>
 <table>
 <colgroup>
 <col style="width: 14%" />
-<col style="width:50%">
+<col style="width: 50%" />
 <col style="width: 35%" />
 </colgroup>
 <tbody>
@@ -171,7 +147,7 @@ from shipment (30/70 terms). Late payment: overdue balances accrue
 interest at 1.5% per month (18% annually). Orders may be held or
 cancelled if deposit is not received within 10 business days of PO
 acceptance.</td>
-<td>Payment terms align with P4C Section 2 (invoicing) and P5F Section 1
+<td>Payment terms align with <a href="sub-p4c.html" style="color:var(--accent)">P4C</a> Section 2 (invoicing) and <a href="sub-p5f.html" style="color:var(--accent)">P5F</a> Section 1
 (order management). The 1.5%/month interest clause incentivizes timely
 payment but is rarely enforced — it exists to provide leverage in
 escalation conversations.</td>
@@ -238,9 +214,9 @@ materials ONLY in connection with the poncho partnership. Neither party
 may: modify the other’s logo, use it in a manner that implies
 endorsement beyond the poncho partnership, or sublicense logo usage to
 third parties.</td>
-<td>The mutual logo license is essential for co-brand operations (P3C)
+<td>The mutual logo license is essential for co-brand operations (<a href="sub-p3c.html" style="color:var(--accent)">P3C</a>)
 and for the brand’s ability to reference the race partnership in
-marketing (P5B case studies, P7C PR). Without explicit license: using
+marketing (<a href="sub-p5b.html" style="color:var(--accent)">P5B</a> case studies, <a href="sub-p7c.html" style="color:var(--accent)">P7C</a> PR). Without explicit license: using
 the race’s logo could be a trademark violation.</td>
 </tr>
 <tr class="even">
@@ -284,7 +260,7 @@ email (“I agree to the terms” reply is sufficient for Tier 1).</p>
 <table>
 <colgroup>
 <col style="width: 14%" />
-<col style="width:50%">
+<col style="width: 50%" />
 <col style="width: 35%" />
 </colgroup>
 <tbody>
@@ -310,7 +286,7 @@ exclusivity.</td>
 <td><strong>Content expectations</strong></td>
 <td>Ambassador is encouraged (but not required) to create: 1–3 social
 media posts per race season showcasing [BRAND] products. Suggested
-content types: unboxing, race-day use, and composting follow-up (per P7A
+content types: unboxing, race-day use, and composting follow-up (per <a href="sub-p7a.html" style="color:var(--accent)">P7A</a>
 Section 3 content brief). Ambassador retains full creative control over
 content style, voice, and messaging. [BRAND] may suggest topics,
 hashtags, and talking points but does not dictate or approve content
@@ -393,7 +369,7 @@ contractual accountability.</p>
 <table>
 <colgroup>
 <col style="width: 14%" />
-<col style="width:50%">
+<col style="width: 50%" />
 <col style="width: 35%" />
 </colgroup>
 <tbody>
@@ -405,14 +381,14 @@ contractual accountability.</p>
 <tr class="even">
 <td><strong>Quality standards</strong></td>
 <td>Supplier shall produce goods in accordance with: the approved
-product specification (P2B technical spec), the approved golden sample
-(P3A Section 3), and the quality inspection checklist (P3A Section 5).
+product specification (<a href="sub-p2b.html" style="color:var(--accent)">P2B</a> technical spec), the approved golden sample
+(<a href="sub-p3a.html" style="color:var(--accent)">P3A</a> Section 3), and the quality inspection checklist (<a href="sub-p3a.html" style="color:var(--accent)">P3A</a> Section 5).
 Goods must meet: BPI/ASTM D6400 compostability requirements, specified
 material composition (NatureFlex NM 23µm + PLA spunbond 35gsm),
 specified dimensions (±2% tolerance), and specified tear-away force
-(3–5N per P2C). [BRAND] may inspect goods at: the factory during
+(3–5N per <a href="sub-p2c.html" style="color:var(--accent)">P2C</a>). [BRAND] may inspect goods at: the factory during
 production (pre-shipment inspection) and upon receipt (incoming
-inspection per P4A Section 6).</td>
+inspection per <a href="sub-p4a.html" style="color:var(--accent)">P4A</a> Section 6).</td>
 <td>The quality standards clause ties the supplier to: SPECIFIC,
 MEASURABLE requirements. If the supplier delivers ponchos with 8N tear
 force (too hard to tear): the brand has a contractual basis to reject
@@ -442,7 +418,7 @@ formulations, pricing, order volumes, customer information, and business
 plans. Confidential information may not be disclosed to: supplier’s
 employees beyond those directly involved in production, any third party,
 or any competitor of [BRAND].</td>
-<td>Works in conjunction with the NDA (P9B Section 6). The supplier
+<td>Works in conjunction with the NDA (<a href="sub-p9b.html" style="color:var(--accent)">P9B</a> Section 6). The supplier
 agreement’s confidentiality clause provides CONTRACTUAL protection
 (breach of contract claim) in addition to the NDA’s protection (trade
 secret misappropriation claim). Double protection for the brand’s most
@@ -468,7 +444,7 @@ product for a direct competitor.</td>
 <td><strong>Pricing and terms</strong></td>
 <td>Pricing: as specified in the accepted PO or annual pricing
 agreement. Supplier guarantees pricing for: 6 months from PO acceptance
-(protecting against mid-order price increases). Payment: per P3A Section
+(protecting against mid-order price increases). Payment: per <a href="sub-p3a.html" style="color:var(--accent)">P3A</a> Section
 4 negotiated terms (typically 30% deposit, 70% before shipment, or LC at
 sight). Annual pricing review: supplier provides Year 2 pricing 90 days
 before the first Year 2 PO, allowing the brand to: negotiate, accept, or
@@ -476,7 +452,7 @@ seek alternative suppliers.</td>
 <td>The 6-month price guarantee protects against: mid-season price
 increases due to raw material cost spikes or currency fluctuations. The
 90-day advance notice for Year 2 pricing gives the brand time to:
-compare quotes from backup suppliers (ProAmpac per P3A Section 1) and
+compare quotes from backup suppliers (ProAmpac per <a href="sub-p3a.html" style="color:var(--accent)">P3A</a> Section 1) and
 negotiate from a position of information.</td>
 </tr>
 <tr class="odd">
@@ -507,7 +483,7 @@ study generates $5,000–$20,000 in marketing value and closes the next
 <table>
 <colgroup>
 <col style="width: 14%" />
-<col style="width:50%">
+<col style="width: 50%" />
 <col style="width: 35%" />
 </colgroup>
 <tbody>
@@ -520,8 +496,8 @@ study generates $5,000–$20,000 in marketing value and closes the next
 <td><strong>Scope</strong></td>
 <td>[BRAND] agrees to provide: [X] compostable warmth ponchos for
 distribution at the start line of [Race Name] on [Date]. [BRAND]
-provides: product delivery to the race venue per P4C Section 3,
-composting bin placement and signage per P4D Section 3, composting
+provides: product delivery to the race venue per <a href="sub-p4c.html" style="color:var(--accent)">P4C</a> Section 3,
+composting bin placement and signage per <a href="sub-p4d.html" style="color:var(--accent)">P4D</a> Section 3, composting
 facility coordination and pickup, and post-race composting verification
 report within 30 days. Race Director agrees to: allow distribution of
 ponchos at the designated start-line area, provide reasonable access for
@@ -536,7 +512,7 @@ defined.</td>
 <tr class="odd">
 <td><strong>Pricing (pilot)</strong></td>
 <td>Pilot pricing: $[X] per unit (“pilot rate” — typically 15–25% below
-standard B2B pricing to incentivize the first order per P5B Section 1).
+standard B2B pricing to incentivize the first order per <a href="sub-p5b.html" style="color:var(--accent)">P5B</a> Section 1).
 Payment terms: 50% deposit at PO acceptance, 50% balance on delivery.
 Pilot pricing is available for: the first order only. Subsequent orders
 revert to standard B2B pricing.</td>
@@ -556,8 +532,8 @@ event photographs, data, and the race name in marketing materials
 including: case studies, website content, social media, press releases,
 B2B pitch materials, and investor presentations.</td>
 <td>The data collection rights clause is ESSENTIAL for: building case
-studies (P5B Section 6), creating marketing content (P7B race-day
-content), PR (P7C pilot race press coverage), and B2B sales (showing
+studies (<a href="sub-p5b.html" style="color:var(--accent)">P5B</a> Section 6), creating marketing content (<a href="sub-p7b.html" style="color:var(--accent)">P7B</a> race-day
+content), PR (<a href="sub-p7c.html" style="color:var(--accent)">P7C</a> pilot race press coverage), and B2B sales (showing
 other race directors the proof). Without explicit permission: using the
 race’s name and photos in marketing materials could violate the race’s
 IP rights.</td>
@@ -573,7 +549,7 @@ standards. Race Director agrees to: support composting collection
 efforts by: allowing bin placement at designated start-line areas,
 including composting instructions in pre-race runner communications
 (optional), and providing volunteer support for collection (1 volunteer
-per 3–5 bins recommended per P4D Section 3).</td>
+per 3–5 bins recommended per <a href="sub-p4d.html" style="color:var(--accent)">P4D</a> Section 3).</td>
 <td>The composting commitment is the brand’s unique value proposition
 vs. Heatsheets or garbage bags. It transforms the poncho from: “a
 product the race buys” to “a sustainability SERVICE the race partners
@@ -631,7 +607,7 @@ court.</p>
 <table>
 <colgroup>
 <col style="width: 14%" />
-<col style="width:50%">
+<col style="width: 50%" />
 <col style="width: 35%" />
 </colgroup>
 <tbody>
@@ -656,8 +632,8 @@ verification.</td>
 <td>Review: annually and whenever Amazon updates its policies (Amazon
 typically updates seller policies 2–4 times per year). The most common
 violation risks for this business: environmental claims that don’t match
-certification (per P9C), review manipulation (NEVER incentivize Amazon
-reviews outside of Vine per P6C Section 4), and keyword misuse
+certification (per <a href="sub-p9c.html" style="color:var(--accent)">P9C</a>), review manipulation (NEVER incentivize Amazon
+reviews outside of Vine per <a href="sub-p6c.html" style="color:var(--accent)">P6C</a> Section 4), and keyword misuse
 (competitor brand names in backend keywords).</td>
 </tr>
 <tr class="odd">
@@ -666,15 +642,15 @@ reviews outside of Vine per P6C Section 4), and keyword misuse
 not a prohibited product), use Shopify for: fraud, deceptive practices,
 or illegal activities. Seller must: maintain accurate product
 descriptions, honor stated return policies, and comply with all
-applicable laws (including environmental claims per P9C and sales tax
-per P8C). PAYMENTS: Shopify Payments terms prohibit: chargebacks above
+applicable laws (including environmental claims per <a href="sub-p9c.html" style="color:var(--accent)">P9C</a> and sales tax
+per <a href="sub-p8c.html" style="color:var(--accent)">P8C</a>). PAYMENTS: Shopify Payments terms prohibit: chargebacks above
 Shopify’s threshold (varies, typically &lt;1% of transactions).
 Excessive chargebacks result in: Shopify Payments account suspension,
 requiring a switch to a third-party payment processor.</td>
 <td>Review: at account setup and annually. Shopify’s terms are less
 restrictive than Amazon’s for most legitimate businesses. The primary
 compliance risk: environmental claims on the product page that don’t
-match the qualification requirements in P9C. Shopify does not actively
+match the qualification requirements in <a href="sub-p9c.html" style="color:var(--accent)">P9C</a>. Shopify does not actively
 police product claims (unlike Amazon), but: a consumer complaint or FTC
 inquiry can reference Shopify product pages as evidence.</td>
 </tr>
@@ -691,7 +667,7 @@ regulator, attorney, or journalist investigating the brand.</p>
 <table>
 <colgroup>
 <col style="width: 14%" />
-<col style="width:50%">
+<col style="width: 50%" />
 <col style="width: 35%" />
 </colgroup>
 <tbody>
@@ -733,14 +709,14 @@ email, honor unsubscribe within 10 days).</td>
 <td>The Privacy Policy is legally REQUIRED for any website collecting
 personal data (which all e-commerce sites do). Use: Shopify’s Privacy
 Policy generator as a starting point, then customize to disclose: all
-third-party tools installed (GA4, Meta Pixel, Clarity per P6A), email
-marketing platform (Klaviyo per P6B), and any data shared with B2B
+third-party tools installed (GA4, Meta Pixel, Clarity per <a href="sub-p6a.html" style="color:var(--accent)">P6A</a>), email
+marketing platform (Klaviyo per <a href="sub-p6b.html" style="color:var(--accent)">P6B</a>), and any data shared with B2B
 partners. Annual review: update when new tracking tools or data-sharing
 relationships are added.</td>
 </tr>
 <tr class="even">
 <td><strong>Return Policy</strong></td>
-<td>Per P4B Section 6.1: DTC returns accepted within 30 days of delivery
+<td>Per <a href="sub-p4b.html" style="color:var(--accent)">P4B</a> Section 6.1: DTC returns accepted within 30 days of delivery
 for unused/unopened products in original packaging. Full refund to
 original payment method. Return shipping: customer pays (or brand
 provides prepaid label for defective items). Exceptions: opened/used
@@ -757,7 +733,7 @@ unused-condition requirement are standard for consumable products.</td>
 <tr class="odd">
 <td><strong>Environmental Claims Disclaimer</strong></td>
 <td>A dedicated disclaimer page or section on brand.com/sustainability
-(per P9C Section 2 row 7): “Our compostable warmth poncho is
+(per <a href="sub-p9c.html" style="color:var(--accent)">P9C</a> Section 2 row 7): “Our compostable warmth poncho is
 BPI-certified to meet ASTM D6400 standards for composting at commercial
 composting facilities. The poncho requires commercial composting
 infrastructure (sustained temperatures of 58°C / 136°F) and will not
@@ -780,18 +756,18 @@ page.</td>
 <p>7. Timeline &amp; Budget</p>
 <p><strong>WEEK 6–8: Draft the B2B terms and conditions (Section 1) and
 the pilot race agreement (Section 4). These are needed FIRST because:
-B2B outreach (P5A) begins in Weeks 6–12, and pilot race conversations
-(P5B) begin shortly after. Use: a template from SCORE or Rocket Lawyer,
+B2B outreach (<a href="sub-p5a.html" style="color:var(--accent)">P5A</a>) begins in Weeks 6–12, and pilot race conversations
+(<a href="sub-p5b.html" style="color:var(--accent)">P5B</a>) begin shortly after. Use: a template from SCORE or Rocket Lawyer,
 customize with the specific provisions above, and have an attorney
 review ($500–$1,500 for B2B terms + pilot agreement
 review).</strong></p>
 <p><strong>WEEK 8: Draft the ambassador agreement (Section 2). This is
-needed before: ambassador recruitment begins (P7A Week 12–14). The
+needed before: ambassador recruitment begins (<a href="sub-p7a.html" style="color:var(--accent)">P7A</a> Week 12–14). The
 agreement can be: a simple 1–2 page document sent via email. Attorney
 review optional for Tier 1 (low risk); recommended for Tier 2 (potential
 paid content complicates the relationship).</strong></p>
 <p><strong>WEEK 8–10: Draft the supplier agreement (Section 3). This is
-needed before: the first production order (P3B). If using Parkside (UK):
+needed before: the first production order (<a href="sub-p3b.html" style="color:var(--accent)">P3B</a>). If using Parkside (UK):
 the supplier may have their own terms; negotiate: quality standards, IP
 protection, and confidentiality provisions INTO their terms or as an
 addendum. Attorney review recommended ($500–$1,000).</strong></p>
@@ -806,7 +782,7 @@ complex).</strong></p>
 <p>BUDGET: Attorney review of B2B terms + pilot agreement: $500–$1,500.
 Attorney review of supplier agreement: $500–$1,000. Ambassador agreement
 (template-based): $0–$200. Website legal pages (Shopify generator +
-customization): $0–$500. TOTAL P9D: $1,000–$3,200. Contracts are a
+customization): $0–$500. TOTAL <a href="sub-p9d.html" style="color:var(--accent)">P9D</a>: $1,000–$3,200. Contracts are a
 ONE-TIME investment that protects the business for years. The cost of
 NOT having contracts: one bad B2B dispute or one product liability claim
 without a liability cap can cost $10,000–$100,000+.</p>
@@ -825,9 +801,4 @@ everything.</strong> A business that operates on handshakes in Year 1
 will face: disputes in Year 2 that could have been prevented by a 2-page
 agreement signed in Week 8. The time to write contracts is BEFORE the
 relationship begins — not after the dispute starts.</p>
-
-        </div>
-    </div></div>
-<footer style="text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px">
-Sustainable Race-Start Warmth Poncho — D2C Brand GTM Project · 60 Subprojects · 391 Tasks · ~15,500¶ · April 2026
-</footer></body></html>
+</div></div></div><footer>Sustainable Race-Start Warmth Poncho — GTM Project · 60 Subprojects · 391 Tasks · ~120K Words · April 2026<br><a href="https://apseter.github.io/Retail_Ventures_Command_Center/">← Retail Ventures Command Center</a> · <a href="index.html">Project Home</a></footer></body></html>

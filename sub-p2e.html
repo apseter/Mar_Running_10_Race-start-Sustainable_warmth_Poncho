@@ -1,89 +1,65 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>P2E: Quality Assurance Protocol — Race Start Warmth GTM</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-<style>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>P2E — Race Start Warmth GTM</title><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet"><style>
 :root{--bg:#0a0e1a;--surface:#111827;--card:#1a2332;--border:#2a3a4e;--accent:#10b981;--accent2:#3b82f6;--text:#e2e8f0;--muted:#94a3b8;--white:#fff;--red:#ef4444;--amber:#f59e0b;--green:#10b981}
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
 a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
 .container{max-width:1200px;margin:0 auto;padding:0 24px}
-/* Nav */
-nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
-nav .inner{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;max-width:1200px;margin:0 auto}
-nav .brand{font-weight:700;font-size:15px;color:var(--accent)}
-nav .links{display:flex;gap:8px;flex-wrap:wrap}
-nav .links a{color:var(--muted);font-size:13px;padding:4px 10px;border-radius:6px;transition:.2s}
+nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
+nav .inner{display:flex;align-items:center;justify-content:space-between;padding:10px 24px;max-width:1200px;margin:0 auto;flex-wrap:wrap;gap:8px}
+nav .brand{font-weight:700;font-size:14px;color:var(--accent);white-space:nowrap}
+nav .links{display:flex;gap:4px;flex-wrap:wrap}
+nav .links a{color:var(--muted);font-size:12px;padding:4px 8px;border-radius:6px;transition:.2s;white-space:nowrap}
 nav .links a:hover,nav .links a.active{color:var(--white);background:var(--card);text-decoration:none}
-/* Hero */
-.hero{padding:60px 0 40px;text-align:center}
-.hero h1{font-size:2.4em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hero p{color:var(--muted);font-size:1.1em;max-width:700px;margin:0 auto}
-/* Stats bar */
-.stats{display:flex;justify-content:center;gap:32px;padding:24px 0;flex-wrap:wrap}
-.stat{text-align:center}.stat .num{font-size:1.8em;font-weight:800;color:var(--white)}.stat .label{font-size:.75em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
-/* Cards */
-.grid{display:grid;gap:16px;margin:24px 0}
-.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}
-.grid-3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
-.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;transition:.2s}
-.card:hover{border-color:var(--accent);transform:translateY(-2px)}
-.card h3{font-size:1.1em;margin-bottom:8px}.card p{color:var(--muted);font-size:.9em}
-.card .badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:8px}
-.card .meta{font-size:.8em;color:var(--muted);margin-top:12px}
-/* Section */
-.section{padding:40px 0}.section h2{font-size:1.6em;font-weight:700;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--border)}
-/* Table */
-table{width:100%;border-collapse:collapse;font-size:.85em;margin:16px 0}
-th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:52px}
-td{padding:8px 12px;border-bottom:1px solid var(--border)}
-tr:hover td{background:rgba(16,185,129,.05)}
-.status-complete{color:var(--green);font-weight:600}.status-not{color:var(--muted)}
-/* Progress */
-.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:8px}
-.progress .bar{height:100%;background:var(--accent);border-radius:3px}
-/* Back link */
-.back{display:inline-block;color:var(--muted);font-size:.9em;margin-bottom:20px}
-.back:hover{color:var(--accent)}
-/* Download */
-.dl-card{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin:8px 0;transition:.2s}
-.dl-card:hover{border-color:var(--accent);text-decoration:none}
-.dl-card .icon{font-size:2em}.dl-card .info h4{color:var(--white);margin-bottom:4px}.dl-card .info p{color:var(--muted);font-size:.85em}
-/* Footer */
-footer{text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px}
-@media(max-width:768px){.stats{gap:16px}.stat .num{font-size:1.3em}nav .links{gap:4px}nav .links a{font-size:11px;padding:3px 6px}.hero h1{font-size:1.6em}}
-
-.doc-content{max-width:900px;margin:0 auto;padding:20px 0}
-.doc-content h1{font-size:1.8em;font-weight:800;color:var(--white);margin:32px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
-.doc-content h2{font-size:1.4em;font-weight:700;color:var(--accent);margin:28px 0 12px}
-.doc-content h3{font-size:1.15em;font-weight:600;color:var(--accent2);margin:20px 0 10px}
-.doc-content p{margin:8px 0;line-height:1.7}
-.doc-content table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85em}
-.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;border:1px solid var(--border)}
-.doc-content td{padding:8px 12px;border:1px solid var(--border);vertical-align:top}
-.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
-.doc-content ul,.doc-content ol{margin:8px 0 8px 24px}
-.doc-content li{margin:4px 0;line-height:1.6}
-.doc-content strong{color:var(--white)}
-.doc-content em{color:var(--muted)}
-.doc-content blockquote{border-left:3px solid var(--accent);padding:8px 16px;margin:12px 0;background:var(--card);border-radius:0 8px 8px 0}
-.nav-sub{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 24px;padding:12px 16px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
-.nav-sub a{font-size:.8em;color:var(--muted);padding:4px 10px;border-radius:4px;transition:.2s;white-space:nowrap}
+nav .links a.cc-link{color:var(--accent2);border:1px solid var(--accent2);font-weight:600}
+nav .links a.cc-link:hover{background:var(--accent2);color:var(--white)}
+.hero{padding:50px 0 30px;text-align:center}
+.hero h1{font-size:2.2em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:1.05em;max-width:700px;margin:0 auto}
+.stats{display:flex;justify-content:center;gap:28px;padding:20px 0;flex-wrap:wrap}
+.stat{text-align:center}.stat .num{font-size:1.7em;font-weight:800;color:var(--white)}.stat .label{font-size:.7em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.grid{display:grid;gap:16px;margin:24px 0}.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}.grid-3{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;transition:.2s;display:block}
+.card:hover{border-color:var(--accent);transform:translateY(-2px);text-decoration:none}
+.card h3{font-size:1.05em;margin-bottom:6px;color:var(--white)}.card p{color:var(--muted);font-size:.88em}
+.badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.65em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:6px}
+.badge-amber{background:var(--amber)}.badge-blue{background:var(--accent2)}
+.card .meta{font-size:.78em;color:var(--muted);margin-top:10px}
+.section{padding:32px 0}.section h2{font-size:1.5em;font-weight:700;margin-bottom:20px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+table{width:100%;border-collapse:collapse;font-size:.83em;margin:16px 0}
+th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:48px}
+td{padding:8px 12px;border-bottom:1px solid var(--border)}tr:hover td{background:rgba(16,185,129,.04)}
+.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:6px}
+.progress .bar{height:100%;border-radius:3px}
+.back{display:inline-block;color:var(--muted);font-size:.88em;margin-bottom:16px}.back:hover{color:var(--accent)}
+.dl-card{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;margin:8px 0;transition:.2s}
+.dl-card:hover{border-color:var(--accent);text-decoration:none}.dl-card .icon{font-size:1.8em}.dl-card .info h4{color:var(--white);margin-bottom:2px;font-size:.95em}.dl-card .info p{color:var(--muted);font-size:.8em}
+.phase-tag{display:inline-block;font-size:.65em;font-weight:600;padding:2px 6px;border-radius:3px;margin-right:4px}
+.phase-plan{background:rgba(16,185,129,.15);color:var(--green)}.phase-exec{background:rgba(245,158,11,.15);color:var(--amber)}.phase-not{background:rgba(148,163,184,.1);color:var(--muted)}
+.nav-sub{display:flex;flex-wrap:wrap;gap:5px;margin:12px 0 20px;padding:10px 14px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
+.nav-sub a{font-size:.78em;color:var(--muted);padding:3px 8px;border-radius:4px;transition:.2s;white-space:nowrap}
 .nav-sub a:hover,.nav-sub a.active{color:var(--white);background:var(--surface);text-decoration:none}
-</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a></div></div></nav><div class="container">
-    <div style="padding-top:30px">
+.doc-content{max-width:900px;margin:0 auto;padding:16px 0}
+.doc-content h1{font-size:1.7em;font-weight:800;color:var(--white);margin:28px 0 14px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+.doc-content h2{font-size:1.3em;font-weight:700;color:var(--accent);margin:24px 0 10px}
+.doc-content h3{font-size:1.1em;font-weight:600;color:var(--accent2);margin:18px 0 8px}
+.doc-content p{margin:6px 0;line-height:1.65}.doc-content table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.83em}
+.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:8px 10px;font-weight:600;border:1px solid var(--border)}
+.doc-content td{padding:7px 10px;border:1px solid var(--border);vertical-align:top}
+.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.doc-content ul,.doc-content ol{margin:6px 0 6px 20px}.doc-content li{margin:3px 0;line-height:1.55}
+.doc-content strong{color:var(--white)}.doc-content em{color:var(--muted)}
+footer{text-align:center;padding:32px 0;color:var(--muted);font-size:.78em;border-top:1px solid var(--border);margin-top:50px}
+footer a{color:var(--accent2)}
+@media(max-width:768px){.stats{gap:14px}.stat .num{font-size:1.2em}nav .links a{font-size:10px;padding:3px 5px}.hero h1{font-size:1.5em}}
+</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="projections.html" class="">Projections</a><a href="action-plan.html" class="">Action Plan</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a><a href="https://apseter.github.io/Retail_Ventures_Command_Center/" class="cc-link" target="_blank">🏠 Command Center</a></div></div></nav><div class="container"><div style="padding-top:28px">
         <a href="p2.html" class="back">← ⚙️ P2: Product Design</a>
         <div class="nav-sub"><a href="p2.html">⚙️ P2 Overview</a><a href="sub-p2a.html">P2A</a><a href="sub-p2b.html">P2B</a><a href="sub-p2c.html">P2C</a><a href="sub-p2d.html">P2D</a><a href="sub-p2e.html" class="active">P2E</a><a href="sub-p2f.html">P2F</a></div>
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px">
-            <div>
-                <span style="background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px">P2E</span>
-                <span style="color:var(--muted);font-size:.85em;margin-left:8px">P2: Product Design</span>
-            </div>
-            <a href="files/P2E_Quality_Assurance_Protocol.docx" style="font-size:.85em;color:var(--accent);padding:6px 14px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+            <div><span class="badge">P2E</span> <span style="color:var(--muted);font-size:.83em">P2: Product Design</span></div>
+            <a href="files/P2E_Quality_Assurance_Protocol.docx" style="font-size:.83em;color:var(--accent);padding:5px 12px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
         </div>
-        <div class="doc-content">
-            <p><strong>P2E: QUALITY ASSURANCE</strong></p>
+        <div class="doc-content"><p><strong><a href="sub-p2e.html" style="color:var(--accent)">P2E</a>: QUALITY ASSURANCE</strong></p>
 <p><strong>PROTOCOL</strong></p>
-<p>Sub-Project P2E | Product Design &amp; Material Engineering | Weeks
+<p>Sub-Project <a href="sub-p2e.html" style="color:var(--accent)">P2E</a> | Product Design &amp; Material Engineering | Weeks
 10–14</p>
 <p><em>Complete QA System: 20-Point Inspection Checklist, Tear-Away
 Acceptance Protocol, Branding Durability, Wind Resistance Standard,
@@ -94,7 +70,7 @@ Inspection</em></p>
 <p><strong>Quality assurance is the firewall between the factory and the
 customer.</strong> Every unit that reaches a runner’s hands must meet
 the same standard as the prototype that earned “would buy” from 8 out of
-10 testers in P2C. A single defective batch — perforations that won’t
+10 testers in <a href="sub-p2c.html" style="color:var(--accent)">P2C</a>. A single defective batch — perforations that won’t
 tear, metallization that peels, ink that smears — generates negative
 reviews that take months to recover from. For a new brand with zero
 review history, the first 100 reviews define the product’s trajectory on
@@ -236,7 +212,7 @@ side-to-side 10×)</td>
 <td>≤3 seconds from grab to full poncho removal</td>
 <td>Stopwatch; room-temperature dry-hand test</td>
 <td>5 units / carton</td>
-<td>Consistent with P2C field trial targets</td>
+<td>Consistent with <a href="sub-p2c.html" style="color:var(--accent)">P2C</a> field trial targets</td>
 </tr>
 <tr class="even">
 <td><strong>13</strong></td>
@@ -255,7 +231,7 @@ prematurely</td>
 N).</td>
 <td>Spring gauge + manual test</td>
 <td>3 units (all 5 snaps) / carton</td>
-<td>Skip if V1 launches without snaps per P2B Sec 4 recommendation</td>
+<td>Skip if V1 launches without snaps per <a href="sub-p2b.html" style="color:var(--accent)">P2B</a> Sec 4 recommendation</td>
 </tr>
 <tr class="even">
 <td><strong>15</strong></td>
@@ -328,7 +304,7 @@ material incoming inspection + environmental controls verification
 (temperature, humidity in storage areas). Estimated time: 1 full day at
 factory.</p>
 <p>1.2 Defect Classification System: Critical / Major / Minor</p>
-<p><strong>[GAP P2-08 CLOSED]</strong> Industry-standard QC uses tiered
+<p><strong>[GAP <a href="p2.html" style="color:var(--accent)">P2</a>-08 CLOSED]</strong> Industry-standard QC uses tiered
 defect classification with different Acceptable Quality Levels (AQL) for
 each tier. Without tiering, an inspector must reject an entire batch for
 a minor cosmetic issue (slight packaging wrinkle) using the same
@@ -471,7 +447,7 @@ calibration, material batch change, bonding process drift). (4)
 Converter corrects and produces 50 replacement samples. (5) Re-run the
 FULL 7-test protocol on replacement samples. (6) If replacement samples
 pass: converter may correct the remaining batch (re-perforate or
-re-produce) at no cost per P2C Manufacturing Agreement quality
+re-produce) at no cost per <a href="sub-p2c.html" style="color:var(--accent)">P2C</a> Manufacturing Agreement quality
 guarantee. (7) If replacement samples ALSO fail: escalate to management
 review. Consider switching to backup converter.</p>
 <p>2.2 Tear Force Calibration</p>
@@ -639,7 +615,7 @@ tests on first production run and annually thereafter. If converter
 changes perforation spec or bonding method: re-run full wind test
 suite.</p>
 <p>5. Skin Contact Safety Testing</p>
-<p><strong>[GAP P2-07 CLOSED]</strong> The poncho is worn directly
+<p><strong>[GAP <a href="p2.html" style="color:var(--accent)">P2</a>-07 CLOSED]</strong> The poncho is worn directly
 against skin or thin base layers for 30–90 minutes in conditions that
 promote perspiration and friction. Metallized films, compostable inks,
 and PLA have different dermatological profiles than traditional PE. A
@@ -668,21 +644,21 @@ migration, but body heat + moisture may soften ink at contact points.
 RISK: MEDIUM. This is the most likely irritation source. Require ink SDS
 Section 11 (Toxicological Information) to confirm: no skin sensitizers,
 no Category 1 or 2 irritants. If ink is printed on the NONWOVEN EXTERIOR
-(recommended per P2B Section 5.1), skin contact with ink is minimal
+(recommended per <a href="sub-p2b.html" style="color:var(--accent)">P2B</a> Section 5.1), skin contact with ink is minimal
 (only at armhole/neck edges where printed zones may touch skin). If ink
 is on the METALLIZED INTERIOR, risk increases.</p>
 <p>Natural rubber latex elastic (hood) — DIRECT SKIN CONTACT at
 forehead/face: RISK: MEDIUM. Latex allergy affects 1–6% of the general
 population and up to 12% of healthcare workers. Type I (IgE-mediated)
 latex allergy can cause urticaria, angioedema, or anaphylaxis. ALREADY
-ADDRESSED in P2B Section 2.1: allergy labeling required on packaging
+ADDRESSED in <a href="sub-p2b.html" style="color:var(--accent)">P2B</a> Section 2.1: allergy labeling required on packaging
 (“Contains natural rubber latex”). The elastic is enclosed in a fabric
 hem channel, reducing direct skin exposure — but trace latex proteins
 can migrate through fabric. Consider offering a “latex-free” variant
 using PLA elastic for V1.5 if latex complaints arise.</p>
 <p>5.2 Testing Protocol: Tiered Approach</p>
 <p><strong>TIER 1 — Field Trial Skin Assessment (Cost: $0, integrated
-into P2C): Add 3 questions to the P2C corral simulation debrief
+into <a href="sub-p2c.html" style="color:var(--accent)">P2C</a>): Add 3 questions to the <a href="sub-p2c.html" style="color:var(--accent)">P2C</a> corral simulation debrief
 interview: (1) “Did you experience any itching, redness, tingling, or
 irritation during or after wearing the poncho?” (yes/no + describe). (2)
 “Do you have any known skin allergies or sensitivities?” (yes/no +
@@ -717,7 +693,7 @@ biocompatibility).</strong></p>
 <p>5.3 Documentation &amp; Claims</p>
 <p>If all 3 tiers pass: add to product listing: “Dermatologically
 tested. Hypoallergenic PLA nonwoven exterior. Skin-safe metallized
-lining.” Add to MSDS Section 11 (P2E Section 6.1): “No skin irritation
+lining.” Add to MSDS Section 11 (<a href="sub-p2e.html" style="color:var(--accent)">P2E</a> Section 6.1): “No skin irritation
 observed in 48-hour closed patch test (N=20) or 30-minute wear test
 (N=10). ISO 10993-5 cytotoxicity: PASS.” Add to B2B data sheet:
 “Skin-contact safety verified through independent testing.” These claims
@@ -732,7 +708,7 @@ both a legal requirement and a liability protection measure.</p>
 samples from that specific production run.</strong> This process
 prevents quality drift and gives the founder a binding standard against
 which any shipment dispute can be resolved. It is non-negotiable and
-must be written into the Manufacturing Agreement (P2C Section 7.1).</p>
+must be written into the Manufacturing Agreement (<a href="sub-p2c.html" style="color:var(--accent)">P2C</a> Section 7.1).</p>
 <table>
 <colgroup>
 <col style="width: 7%" />
@@ -875,7 +851,7 @@ hazard.</td>
 <td><strong>7. Handling &amp; Storage</strong></td>
 <td>Handle with clean, dry hands. Store below 25°C / 77°F, below 50% RH,
 away from direct sunlight. FIFO inventory management. Shelf life: 12
-months under recommended conditions (see P2D Section 5).</td>
+months under recommended conditions (see <a href="sub-p2d.html" style="color:var(--accent)">P2D</a> Section 5).</td>
 </tr>
 <tr class="odd">
 <td><strong>8. Exposure Controls / PPE</strong></td>
@@ -979,7 +955,7 @@ Mandatory for Amazon FBA in some categories.</td>
 <td><strong>Product Specification Sheet</strong></td>
 <td>1-page PDF: dimensions, weight, materials, certifications,
 performance claims</td>
-<td>B2B sales tool. Complements P1C B2B data sheet with technical
+<td>B2B sales tool. Complements <a href="sub-p1c.html" style="color:var(--accent)">P1C</a> B2B data sheet with technical
 details.</td>
 </tr>
 <tr class="odd">
@@ -1011,14 +987,14 @@ customers.</td>
 <td><strong>Testing Photos &amp; Video</strong></td>
 <td>Corral simulation photos, FLIR thermal images, tear-away video
 clips</td>
-<td>Marketing + sales evidence. Include in B2B presentations (P1D pitch
+<td>Marketing + sales evidence. Include in B2B presentations (<a href="sub-p1d.html" style="color:var(--accent)">P1D</a> pitch
 deck). Share on social media.</td>
 </tr>
 </tbody>
 </table>
 <p>DELIVERY: Bundle all documents into a single “Compliance Package” ZIP
 file or shared Google Drive folder. Provide to race directors at the
-LOI/sample stage (P1E B2B outreach). Update whenever a certification is
+LOI/sample stage (<a href="sub-p1e.html" style="color:var(--accent)">P1E</a> B2B outreach). Update whenever a certification is
 obtained or renewed. The compliance package demonstrates professionalism
 and reduces procurement friction — race directors can forward it
 directly to their sustainability committee, legal team, or procurement
@@ -1119,7 +1095,7 @@ acceptable vs. unacceptable examples for each checkpoint. The inspector
 uses YOUR checklist, not a generic one — ensuring the inspection matches
 your specific quality standards.</p>
 <p>9. Customer Complaint Handling &amp; Product Recall Procedure</p>
-<p><strong>[GAP P2-09 CLOSED]</strong> Amazon suspends seller accounts
+<p><strong>[GAP <a href="p2.html" style="color:var(--accent)">P2</a>-09 CLOSED]</strong> Amazon suspends seller accounts
 if complaint-to-sale ratio exceeds internal thresholds. Race directors
 expect a named contact for quality issues. A safety recall without a
 pre-written procedure creates chaos and legal exposure. This section
@@ -1129,7 +1105,7 @@ protocol BEFORE the first unit ships.</p>
 <p>(1) AMAZON BUYER MESSAGES: Customer contacts through Amazon Seller
 Central messaging. Response SLA: acknowledge within 12 hours, resolve
 within 48 hours. (2) QR CODE FEEDBACK (brand.com/scan): The 3-question
-feedback form from P1B Section 6.2 includes a free-text field. Flag any
+feedback form from <a href="sub-p1b.html" style="color:var(--accent)">P1B</a> Section 6.2 includes a free-text field. Flag any
 response mentioning “rash,” “tear,” “broke,” “burn,” or “hallergy” for
 immediate review. (3) DIRECT EMAIL (support@[brand].com): Listed on
 packaging, Shopify, and B2B data sheet. Response SLA: acknowledge within
@@ -1143,7 +1119,7 @@ to ALL 1–3 star reviews within 24 hours.</p>
 from photo,” “wish it were longer”): Response: empathetic acknowledgment
 + offer 15% discount on next purchase. Log in complaint tracker. No
 product investigation needed. Volume threshold: if &gt;10% of reviews
-cite same cosmetic issue, escalate to V1.5 improvement backlog (P2F
+cite same cosmetic issue, escalate to V1.5 improvement backlog (<a href="sub-p2f.html" style="color:var(--accent)">P2F</a>
 Section 1).</strong></p>
 <p><strong>TIER 2 — FUNCTIONAL DEFECT (e.g., “tear-away didn’t work,”
 “metallization peeled off,” “elastic broke”): Response: full refund OR
@@ -1211,8 +1187,8 @@ NPS recovery (% of complainants who rate resolution positively). Share
 complaint trends with converter quarterly as part of continuous
 improvement.</p>
 <p>10. Amazon Product Compliance &amp; Launch Readiness</p>
-<p><strong>[GAP P2-10 CLOSED]</strong> Amazon is the primary DTC sales
-channel (per P0F). Listing a new product on Amazon requires:
+<p><strong>[GAP <a href="p2.html" style="color:var(--accent)">P2</a>-10 CLOSED]</strong> Amazon is the primary DTC sales
+channel (per <a href="sub-p0f.html" style="color:var(--accent)">P0F</a>). Listing a new product on Amazon requires:
 GS1-registered UPC barcodes, category-specific product safety
 documentation, FNSKU labels for FBA inventory, compliant listing
 content, and preparation for A-to-Z Guarantee claims. Missing any of
@@ -1257,7 +1233,7 @@ The poncho (6″×4.5″×0.75″, ~4–5 oz packaged) qualifies as “Small
 Standard-Size” tier. Estimated FBA fees (2026): $3.22–$3.68 per unit
 (fulfillment) + $0.78–$1.20/month storage (per cubic foot, varies by
 season — Q4 Oct–Dec storage fees are 3× higher). At $9.99 retail: FBA
-fees consume ~35–40% of revenue. This is already modeled in P0F Section
+fees consume ~35–40% of revenue. This is already modeled in <a href="sub-p0f.html" style="color:var(--accent)">P0F</a> Section
 3 (Low-Price FBA saves $0.86/unit). Ship to FBA in master cartons of 50
 or 100 units, labeled per Amazon’s carton content information
 requirements.</p>
@@ -1270,20 +1246,20 @@ features, certification, use case. Do NOT include: pricing, promotional
 language (“best seller”), or subjective claims (“amazing”).</p>
 <p>IMAGES: Amazon requires minimum 1 image; recommend 7–9. Main image:
 product on pure white background (RGB 255/255/255), filling ≥85% of
-frame, no text overlay — per P1D Section 5 Amazon photography plan.
+frame, no text overlay — per <a href="sub-p1d.html" style="color:var(--accent)">P1D</a> Section 5 Amazon photography plan.
 Images 2–7: lifestyle (runner in corral), feature callouts (metallized
 lining close-up, tear-away demo, fold size comparison to gel packet),
 infographic (composting lifecycle), size reference (held in hand, in
-jacket pocket). Image 8–9: A+ Content modules (per P1C Section 6.4).</p>
+jacket pocket). Image 8–9: A+ Content modules (per <a href="sub-p1c.html" style="color:var(--accent)">P1C</a> Section 6.4).</p>
 <p>BULLET POINTS: 5 bullets, each 200–250 characters. Use the exact copy
-from P1C Section 6.2 (Amazon Product Bullets). Lead each bullet with a
+from <a href="sub-p1c.html" style="color:var(--accent)">P1C</a> Section 6.2 (Amazon Product Bullets). Lead each bullet with a
 CAPITALIZED benefit phrase: REFLECTS 95% BODY HEAT, CERTIFIED
 COMPOSTABLE, TEARS OFF IN 3 SECONDS, PACKS SMALLER THAN A GEL, DESIGNED
 FOR THE START LINE.</p>
-<p>A+ CONTENT: Upload the 5 A+ Content modules from P1C Section 6.4
+<p>A+ CONTENT: Upload the 5 A+ Content modules from <a href="sub-p1c.html" style="color:var(--accent)">P1C</a> Section 6.4
 through Amazon Seller Central &gt; A+ Content Manager. Approval: 1–7
 days. Requires Amazon Brand Registry (free with trademark filing receipt
-— coordinate with P1A trademark timeline).</p>
+— coordinate with <a href="sub-p1a.html" style="color:var(--accent)">P1A</a> trademark timeline).</p>
 <p>10.5 A-to-Z Guarantee Claims Handling</p>
 <p>Amazon’s A-to-Z Guarantee allows buyers to file claims for: item not
 received, item significantly different from listing, or return not
@@ -1304,7 +1280,7 @@ poncho SKU.</strong></p>
 <p><strong>☐ Amazon Seller Central account created (Professional plan,
 $39.99/month).</strong></p>
 <p><strong>☐ Amazon Brand Registry application submitted (requires
-trademark filing receipt from P1A).</strong></p>
+trademark filing receipt from <a href="sub-p1a.html" style="color:var(--accent)">P1A</a>).</strong></p>
 <p><strong>☐ Product listing created as draft: title, bullets,
 description, images, category, dimensions, weight.</strong></p>
 <p><strong>☐ FNSKU labels generated and applied to all units (or printed
@@ -1313,7 +1289,7 @@ on packaging by converter).</strong></p>
 (test demand before committing full inventory).</strong></p>
 <p><strong>☐ A+ Content modules uploaded and approved (1–7 day
 review).</strong></p>
-<p><strong>☐ Pricing set: $9.99 (per P0F optimal pricing). Confirm FBA
+<p><strong>☐ Pricing set: $9.99 (per <a href="sub-p0f.html" style="color:var(--accent)">P0F</a> optimal pricing). Confirm FBA
 fee estimate in Revenue Calculator.</strong></p>
 <p><strong>☐ Launch promotion planned: Amazon PPC campaign ($10–20/day
 initial budget), Vine program enrollment (30 free units for early
@@ -1323,10 +1299,10 @@ Amazon Buyer Message monitoring, QR code feedback page
 live.</strong></p>
 <p>TOTAL AMAZON LAUNCH BUDGET: $550–$800 (GS1 $250 + Seller Central
 $40/month + Vine $200 + FNSKU labels $50–$100) + PPC advertising
-($300–$600/month ongoing). All costs already included in P0F marketing
+($300–$600/month ongoing). All costs already included in <a href="sub-p0f.html" style="color:var(--accent)">P0F</a> marketing
 budget.</p>
 <p>11. Race-Day Failure Contingency Protocol</p>
-<p><strong>[GAP P2-12 CLOSED]</strong> A race director who ordered 5,000
+<p><strong>[GAP <a href="p2.html" style="color:var(--accent)">P2</a>-12 CLOSED]</strong> A race director who ordered 5,000
 ponchos and receives damaged, short, or defective product the day before
 a marathon will never order again AND will tell other race directors.
 This is a brand-ending scenario for B2B. Race-day logistics are
@@ -1347,7 +1323,7 @@ to a shipping error. Emergency stock is en route and will arrive by
 [time]. We’re prioritizing your earliest corrals.” (5) POST-RACE:
 investigate root cause with converter/3PL. If converter short-shipped:
 demand replacement units at no cost per Manufacturing Agreement quality
-guarantee (P2C Section 7).</p>
+guarantee (<a href="sub-p2c.html" style="color:var(--accent)">P2C</a> Section 7).</p>
 <p>11.2 Scenario B: Quality Issue Discovered at Expo/Pre-Race</p>
 <p>TRIGGER: Founder or race operations staff inspects units upon arrival
 at expo venue and discovers a defect (metallization peeling, tear-away
@@ -1388,7 +1364,7 @@ fail: reject carton, claim against carrier insurance.</p>
 <p>TRIGGER: Shipment is lost in transit, destroyed in a warehouse
 incident, or held at customs beyond the race date. IMMEDIATE ACTIONS:
 (1) If discovered ≥7 days before race: activate backup converter for a
-rush production order (2–3 weeks at 15–25% premium, per P2C Section 7).
+rush production order (2–3 weeks at 15–25% premium, per <a href="sub-p2c.html" style="color:var(--accent)">P2C</a> Section 7).
 Simultaneously: source generic PE ponchos from Uline ($0.35–0.50/unit,
 next-day delivery) as a bridge. (2) If discovered &lt;7 days before
 race: generic PE ponchos are the only option. Order from Uline or Amazon
@@ -1428,9 +1404,9 @@ bulk production + packing. Schedule pre-shipment inspection (if using
 third-party). Begin wind resistance testing on approved batch
 samples.</strong></p>
 <p><strong>WEEK 14: Pre-shipment inspection complete. Batch cleared for
-shipping. Product enters supply chain (P3). All QA documentation filed
+shipping. Product enters supply chain (<a href="p3.html" style="color:var(--accent)">P3</a>). All QA documentation filed
 in compliance package folder.</strong></p>
-<p>TOTAL P2E BUDGET: $500–$1,500 (equipment + MSDS production). Add
+<p>TOTAL <a href="sub-p2e.html" style="color:var(--accent)">P2E</a> BUDGET: $500–$1,500 (equipment + MSDS production). Add
 $300–$700 for third-party inspection per batch. Add $500–$2,000/year for
 product liability insurance (required for compliance package).</p>
 <p>13. Conclusion: Quality Is the Brand Promise</p>
@@ -1452,9 +1428,4 @@ hours of QC inspection per batch prevents two months of damage control.
 A $400 third-party inspection prevents a $4,000 defective batch return.
 A $20 spring gauge prevents a $20,000 negative-review crater on Amazon.
 Invest in inspection. The returns are asymmetric.</p>
-
-        </div>
-    </div></div>
-<footer style="text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px">
-Sustainable Race-Start Warmth Poncho — D2C Brand GTM Project · 60 Subprojects · 391 Tasks · ~15,500¶ · April 2026
-</footer></body></html>
+</div></div></div><footer>Sustainable Race-Start Warmth Poncho — GTM Project · 60 Subprojects · 391 Tasks · ~120K Words · April 2026<br><a href="https://apseter.github.io/Retail_Ventures_Command_Center/">← Retail Ventures Command Center</a> · <a href="index.html">Project Home</a></footer></body></html>

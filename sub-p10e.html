@@ -1,89 +1,65 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>P10E: Category Leadership — Race Start Warmth GTM</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-<style>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>P10E — Race Start Warmth GTM</title><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet"><style>
 :root{--bg:#0a0e1a;--surface:#111827;--card:#1a2332;--border:#2a3a4e;--accent:#10b981;--accent2:#3b82f6;--text:#e2e8f0;--muted:#94a3b8;--white:#fff;--red:#ef4444;--amber:#f59e0b;--green:#10b981}
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
 a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
 .container{max-width:1200px;margin:0 auto;padding:0 24px}
-/* Nav */
-nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
-nav .inner{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;max-width:1200px;margin:0 auto}
-nav .brand{font-weight:700;font-size:15px;color:var(--accent)}
-nav .links{display:flex;gap:8px;flex-wrap:wrap}
-nav .links a{color:var(--muted);font-size:13px;padding:4px 10px;border-radius:6px;transition:.2s}
+nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
+nav .inner{display:flex;align-items:center;justify-content:space-between;padding:10px 24px;max-width:1200px;margin:0 auto;flex-wrap:wrap;gap:8px}
+nav .brand{font-weight:700;font-size:14px;color:var(--accent);white-space:nowrap}
+nav .links{display:flex;gap:4px;flex-wrap:wrap}
+nav .links a{color:var(--muted);font-size:12px;padding:4px 8px;border-radius:6px;transition:.2s;white-space:nowrap}
 nav .links a:hover,nav .links a.active{color:var(--white);background:var(--card);text-decoration:none}
-/* Hero */
-.hero{padding:60px 0 40px;text-align:center}
-.hero h1{font-size:2.4em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hero p{color:var(--muted);font-size:1.1em;max-width:700px;margin:0 auto}
-/* Stats bar */
-.stats{display:flex;justify-content:center;gap:32px;padding:24px 0;flex-wrap:wrap}
-.stat{text-align:center}.stat .num{font-size:1.8em;font-weight:800;color:var(--white)}.stat .label{font-size:.75em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
-/* Cards */
-.grid{display:grid;gap:16px;margin:24px 0}
-.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}
-.grid-3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
-.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;transition:.2s}
-.card:hover{border-color:var(--accent);transform:translateY(-2px)}
-.card h3{font-size:1.1em;margin-bottom:8px}.card p{color:var(--muted);font-size:.9em}
-.card .badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:8px}
-.card .meta{font-size:.8em;color:var(--muted);margin-top:12px}
-/* Section */
-.section{padding:40px 0}.section h2{font-size:1.6em;font-weight:700;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--border)}
-/* Table */
-table{width:100%;border-collapse:collapse;font-size:.85em;margin:16px 0}
-th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:52px}
-td{padding:8px 12px;border-bottom:1px solid var(--border)}
-tr:hover td{background:rgba(16,185,129,.05)}
-.status-complete{color:var(--green);font-weight:600}.status-not{color:var(--muted)}
-/* Progress */
-.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:8px}
-.progress .bar{height:100%;background:var(--accent);border-radius:3px}
-/* Back link */
-.back{display:inline-block;color:var(--muted);font-size:.9em;margin-bottom:20px}
-.back:hover{color:var(--accent)}
-/* Download */
-.dl-card{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin:8px 0;transition:.2s}
-.dl-card:hover{border-color:var(--accent);text-decoration:none}
-.dl-card .icon{font-size:2em}.dl-card .info h4{color:var(--white);margin-bottom:4px}.dl-card .info p{color:var(--muted);font-size:.85em}
-/* Footer */
-footer{text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px}
-@media(max-width:768px){.stats{gap:16px}.stat .num{font-size:1.3em}nav .links{gap:4px}nav .links a{font-size:11px;padding:3px 6px}.hero h1{font-size:1.6em}}
-
-.doc-content{max-width:900px;margin:0 auto;padding:20px 0}
-.doc-content h1{font-size:1.8em;font-weight:800;color:var(--white);margin:32px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
-.doc-content h2{font-size:1.4em;font-weight:700;color:var(--accent);margin:28px 0 12px}
-.doc-content h3{font-size:1.15em;font-weight:600;color:var(--accent2);margin:20px 0 10px}
-.doc-content p{margin:8px 0;line-height:1.7}
-.doc-content table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85em}
-.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;border:1px solid var(--border)}
-.doc-content td{padding:8px 12px;border:1px solid var(--border);vertical-align:top}
-.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
-.doc-content ul,.doc-content ol{margin:8px 0 8px 24px}
-.doc-content li{margin:4px 0;line-height:1.6}
-.doc-content strong{color:var(--white)}
-.doc-content em{color:var(--muted)}
-.doc-content blockquote{border-left:3px solid var(--accent);padding:8px 16px;margin:12px 0;background:var(--card);border-radius:0 8px 8px 0}
-.nav-sub{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 24px;padding:12px 16px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
-.nav-sub a{font-size:.8em;color:var(--muted);padding:4px 10px;border-radius:4px;transition:.2s;white-space:nowrap}
+nav .links a.cc-link{color:var(--accent2);border:1px solid var(--accent2);font-weight:600}
+nav .links a.cc-link:hover{background:var(--accent2);color:var(--white)}
+.hero{padding:50px 0 30px;text-align:center}
+.hero h1{font-size:2.2em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:1.05em;max-width:700px;margin:0 auto}
+.stats{display:flex;justify-content:center;gap:28px;padding:20px 0;flex-wrap:wrap}
+.stat{text-align:center}.stat .num{font-size:1.7em;font-weight:800;color:var(--white)}.stat .label{font-size:.7em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.grid{display:grid;gap:16px;margin:24px 0}.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}.grid-3{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;transition:.2s;display:block}
+.card:hover{border-color:var(--accent);transform:translateY(-2px);text-decoration:none}
+.card h3{font-size:1.05em;margin-bottom:6px;color:var(--white)}.card p{color:var(--muted);font-size:.88em}
+.badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.65em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:6px}
+.badge-amber{background:var(--amber)}.badge-blue{background:var(--accent2)}
+.card .meta{font-size:.78em;color:var(--muted);margin-top:10px}
+.section{padding:32px 0}.section h2{font-size:1.5em;font-weight:700;margin-bottom:20px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+table{width:100%;border-collapse:collapse;font-size:.83em;margin:16px 0}
+th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:48px}
+td{padding:8px 12px;border-bottom:1px solid var(--border)}tr:hover td{background:rgba(16,185,129,.04)}
+.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:6px}
+.progress .bar{height:100%;border-radius:3px}
+.back{display:inline-block;color:var(--muted);font-size:.88em;margin-bottom:16px}.back:hover{color:var(--accent)}
+.dl-card{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;margin:8px 0;transition:.2s}
+.dl-card:hover{border-color:var(--accent);text-decoration:none}.dl-card .icon{font-size:1.8em}.dl-card .info h4{color:var(--white);margin-bottom:2px;font-size:.95em}.dl-card .info p{color:var(--muted);font-size:.8em}
+.phase-tag{display:inline-block;font-size:.65em;font-weight:600;padding:2px 6px;border-radius:3px;margin-right:4px}
+.phase-plan{background:rgba(16,185,129,.15);color:var(--green)}.phase-exec{background:rgba(245,158,11,.15);color:var(--amber)}.phase-not{background:rgba(148,163,184,.1);color:var(--muted)}
+.nav-sub{display:flex;flex-wrap:wrap;gap:5px;margin:12px 0 20px;padding:10px 14px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
+.nav-sub a{font-size:.78em;color:var(--muted);padding:3px 8px;border-radius:4px;transition:.2s;white-space:nowrap}
 .nav-sub a:hover,.nav-sub a.active{color:var(--white);background:var(--surface);text-decoration:none}
-</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a></div></div></nav><div class="container">
-    <div style="padding-top:30px">
+.doc-content{max-width:900px;margin:0 auto;padding:16px 0}
+.doc-content h1{font-size:1.7em;font-weight:800;color:var(--white);margin:28px 0 14px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+.doc-content h2{font-size:1.3em;font-weight:700;color:var(--accent);margin:24px 0 10px}
+.doc-content h3{font-size:1.1em;font-weight:600;color:var(--accent2);margin:18px 0 8px}
+.doc-content p{margin:6px 0;line-height:1.65}.doc-content table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.83em}
+.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:8px 10px;font-weight:600;border:1px solid var(--border)}
+.doc-content td{padding:7px 10px;border:1px solid var(--border);vertical-align:top}
+.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.doc-content ul,.doc-content ol{margin:6px 0 6px 20px}.doc-content li{margin:3px 0;line-height:1.55}
+.doc-content strong{color:var(--white)}.doc-content em{color:var(--muted)}
+footer{text-align:center;padding:32px 0;color:var(--muted);font-size:.78em;border-top:1px solid var(--border);margin-top:50px}
+footer a{color:var(--accent2)}
+@media(max-width:768px){.stats{gap:14px}.stat .num{font-size:1.2em}nav .links a{font-size:10px;padding:3px 5px}.hero h1{font-size:1.5em}}
+</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="projections.html" class="">Projections</a><a href="action-plan.html" class="">Action Plan</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a><a href="https://apseter.github.io/Retail_Ventures_Command_Center/" class="cc-link" target="_blank">🏠 Command Center</a></div></div></nav><div class="container"><div style="padding-top:28px">
         <a href="p10.html" class="back">← 📈 P10: Scaling & Growth</a>
         <div class="nav-sub"><a href="p10.html">📈 P10 Overview</a><a href="sub-p10a.html">P10A</a><a href="sub-p10b.html">P10B</a><a href="sub-p10c.html">P10C</a><a href="sub-p10d.html">P10D</a><a href="sub-p10e.html" class="active">P10E</a><a href="sub-p10f.html">P10F</a></div>
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px">
-            <div>
-                <span style="background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px">P10E</span>
-                <span style="color:var(--muted);font-size:.85em;margin-left:8px">P10: Scaling & Growth</span>
-            </div>
-            <a href="files/P10E_Category_Leadership.docx" style="font-size:.85em;color:var(--accent);padding:6px 14px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+            <div><span class="badge">P10E</span> <span style="color:var(--muted);font-size:.83em">P10: Scaling & Growth</span></div>
+            <a href="files/P10E_Category_Leadership.docx" style="font-size:.83em;color:var(--accent);padding:5px 12px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
         </div>
-        <div class="doc-content">
-            <p><strong>P10E: CATEGORY</strong></p>
+        <div class="doc-content"><p><strong><a href="sub-p10e.html" style="color:var(--accent)">P10E</a>: CATEGORY</strong></p>
 <p><strong>LEADERSHIP</strong></p>
-<p>Sub-Project P10E | Scaling, Expansion &amp; Category Leadership |
+<p>Sub-Project <a href="sub-p10e.html" style="color:var(--accent)">P10E</a> | Scaling, Expansion &amp; Category Leadership |
 Months 10–18</p>
 <p><em>Complete Category Leadership Strategy: Annual Start-Line Waste
 Report, Innovation Award Submissions, Industry Speaking Program,
@@ -160,7 +136,7 @@ microplastic generation; donated clothing: textile waste volume,
 processing pathways; Mylar blankets: material composition, end-of-life
 options). SECTION 5: Composting infrastructure availability (map of US
 cities with commercial composting facilities accepting event waste, per
-P4D Section 1). SECTION 6: Solutions and alternatives (compostable
+<a href="sub-p4d.html" style="color:var(--accent)">P4D</a> Section 1). SECTION 6: Solutions and alternatives (compostable
 ponchos: the brand’s data from pilot races, wraps, and emerging
 alternatives; old clothing donation programs: volume and effectiveness;
 race director best practices). SECTION 7: Recommendations (for race
@@ -171,8 +147,8 @@ trends).</td>
 <tr class="odd">
 <td><strong>Data sources</strong></td>
 <td>PRIMARY: the brand’s own pilot race composting data (weight
-collected, weight composted, collection rate, runner count per P4D
-Section 4 and P5B Section 4). SECONDARY: publicly available race
+collected, weight composted, collection rate, runner count per <a href="sub-p4d.html" style="color:var(--accent)">P4D</a>
+Section 4 and <a href="sub-p5b.html" style="color:var(--accent)">P5B</a> Section 4). SECONDARY: publicly available race
 sustainability reports (NYC Marathon, Chicago Marathon, Boston Marathon
 — many publish annual sustainability data), EPA municipal solid waste
 data on plastic film and textiles, academic research on LDPE
@@ -181,12 +157,12 @@ race directors in the brand’s B2B network (anonymous, aggregated).
 LIMITATIONS: clearly state that the brand’s own data is limited to pilot
 races and may not be representative of all US marathons. The report is
 an ESTIMATE based on: available data + reasonable extrapolation.
-Transparency about limitations INCREASES credibility (per P9C
+Transparency about limitations INCREASES credibility (per <a href="sub-p9c.html" style="color:var(--accent)">P9C</a>
 environmental claims transparency principles).</td>
 </tr>
 <tr class="even">
 <td><strong>Design and distribution</strong></td>
-<td>DESIGN: 20–30 page PDF designed per P1B visual identity.
+<td>DESIGN: 20–30 page PDF designed per <a href="sub-p1b.html" style="color:var(--accent)">P1B</a> visual identity.
 Professional but not overproduced: data visualizations (charts, maps,
 infographics), race-day photographs, and clear, readable text. Include:
 the brand’s logo and sponsorship of the report on every page but avoid:
@@ -194,7 +170,7 @@ making the report feel like a sales document. The report’s credibility
 depends on: data quality and perceived objectivity, not brand promotion.
 DISTRIBUTION: publish on brand.com/waste-report (gated: email required
 for download — lead generation). Email to: all B2B contacts, media list
-(P7C), GSA members, Running USA, and RRCA. Share: on social media with
+(<a href="sub-p7c.html" style="color:var(--accent)">P7C</a>), GSA members, Running USA, and RRCA. Share: on social media with
 UTM links. Pitch: to media as a data source (“Our annual waste report
 found that US marathons generate an estimated [X] lbs of start-line
 waste per year”). Present: at industry events (Section 3 of this
@@ -225,7 +201,7 @@ with the LONGEST shelf life: the badge works forever.</p>
 <table>
 <colgroup>
 <col style="width: 14%" />
-<col style="width:50%">
+<col style="width: 50%" />
 <col style="width: 35%" />
 </colgroup>
 <tbody>
@@ -288,7 +264,7 @@ BREAK-OUT-OF-THE-NICHE award.</td>
 </tr>
 <tr class="even">
 <td><strong>B Corp Best for the World</strong></td>
-<td>After B Corp certification (Year 2–3 per P9E Section 3): eligible
+<td>After B Corp certification (Year 2–3 per <a href="sub-p9e.html" style="color:var(--accent)">P9E</a> Section 3): eligible
 for B Corp’s annual “Best for the World” recognition, awarded to B Corps
 scoring in the top 5% for: overall impact, environment, community,
 workers, governance, or customers. The brand’s environmental score is
@@ -313,7 +289,7 @@ in the hallway asking “how do we start?”</p>
 <table>
 <colgroup>
 <col style="width: 14%" />
-<col style="width:50%">
+<col style="width: 50%" />
 <col style="width: 35%" />
 </colgroup>
 <tbody>
@@ -360,7 +336,7 @@ director is a peer, not a vendor).</td>
 Audience: race directors, brand representatives, technology companies.
 SUBMIT: a speaking proposal or apply for an exhibitor presentation slot.
 TOPIC: adapt the Running USA presentation with updated data. TRE
-combines: a trade show (booth opportunity per P5D) with educational
+combines: a trade show (booth opportunity per <a href="sub-p5d.html" style="color:var(--accent)">P5D</a>) with educational
 sessions (speaking opportunity).</td>
 <td>TRE combines: SELLING (expo booth) with EDUCATING (speaking
 session). A founder who: speaks on stage about race-day sustainability
@@ -374,7 +350,7 @@ panels, and university sustainability programs. APPROACH: volunteer as a
 panelist or presenter on: “Sustainable Innovation in Consumer Products”
 or “Circular Economy Case Studies.” These are: easier to get on than
 national conferences (fewer applicants), local media may cover the event
-(local PR per P7C Section 4), and they build: the founder’s personal
+(local PR per <a href="sub-p7c.html" style="color:var(--accent)">P7C</a> Section 4), and they build: the founder’s personal
 brand as a sustainability thought leader in their home city.</td>
 <td>Local speaking builds: the founder’s PERSONAL brand (which drives:
 investor interest, advisory board recruitment, and media interview
@@ -447,12 +423,12 @@ credibility.</td>
 director from a mid-to-large marathon who provides: insight into race
 operations, introductions to peer race directors, and validation of the
 B2B value proposition. Source: from the brand’s pilot race relationships
-(P5B) — a race director who had a successful pilot and is enthusiastic
+(<a href="sub-p5b.html" style="color:var(--accent)">P5B</a>) — a race director who had a successful pilot and is enthusiastic
 about the product. SUSTAINABILITY EXPERT (1 person): a professional in:
 composting, circular economy, or environmental policy who provides:
 credibility on sustainability claims, connections to environmental
 organizations, and guidance on B Corp, LCA, and carbon offset decisions.
-Source: from 1% for the Planet or GSA networks (P9E), academic
+Source: from 1% for the Planet or GSA networks (<a href="sub-p9e.html" style="color:var(--accent)">P9E</a>), academic
 connections, or local sustainability organizations. DTC BRAND BUILDER (1
 person): a founder or executive who has: scaled a DTC consumer product
 brand from launch to $1M+ revenue. Provides: tactical advice on
@@ -537,7 +513,7 @@ presentations.</td>
 </tr>
 <tr class="odd">
 <td><strong>Badge design</strong></td>
-<td>A branded certification badge per P1B visual identity: circular or
+<td>A branded certification badge per <a href="sub-p1b.html" style="color:var(--accent)">P1B</a> visual identity: circular or
 shield shape, Earth Green background, white text: “[BRAND]
 Sustainability Partner — Certified Zero-Waste Start Line — [Year].”
 Include: the brand logo (small) and a composting icon. The badge should
@@ -550,11 +526,11 @@ use on their website and materials.</td>
 <td><strong>Qualification criteria</strong></td>
 <td>MINIMUM requirements: (1) use the brand’s compostable ponchos for
 ≥50% of start-line warmth products distributed, (2) participate in
-composting collection (bins placed per P4D Section 3, volunteers
+composting collection (bins placed per <a href="sub-p4d.html" style="color:var(--accent)">P4D</a> Section 3, volunteers
 assigned), (3) achieve ≥60% collection rate (measured by weight: ponchos
 collected ÷ ponchos distributed), and (4) complete a post-race
-composting verification (brand provides the report per P4D Section 4).
-ADVANCED tier (Year 2+): ≥ 80% collection rate + finish-line wraps (P10B
+composting verification (brand provides the report per <a href="sub-p4d.html" style="color:var(--accent)">P4D</a> Section 4).
+ADVANCED tier (Year 2+): ≥ 80% collection rate + finish-line wraps (<a href="sub-p10b.html" style="color:var(--accent)">P10B</a>
 Section 2) also composted + race publishes sustainability data in their
 own communications.</td>
 </tr>
@@ -656,7 +632,7 @@ due to composting vs. landfill methane), and waste generation
 (dramatically). It may be: comparable or slightly higher on:
 manufacturing energy and raw material extraction. The LCA will QUANTIFY
 these trade-offs and enable: honest, specific environmental claims (per
-P9C).</td>
+<a href="sub-p9c.html" style="color:var(--accent)">P9C</a>).</td>
 </tr>
 <tr class="even">
 <td><strong>Commission timeline</strong></td>
@@ -668,25 +644,25 @@ OpenLCA software (free software, $500 Ecoinvent database license, 40–80
 hours of founder time — lowest cost but requires: LCA expertise or
 significant self-education). Month 16–18: LCA in progress (3–6 months
 for a thorough comparative assessment). Provide: detailed material
-composition data (per P2A), manufacturing process data (per P3A),
-transportation data (per P4A), and end-of-life data (per P4D composting
+composition data (per <a href="sub-p2a.html" style="color:var(--accent)">P2A</a>), manufacturing process data (per <a href="sub-p3a.html" style="color:var(--accent)">P3A</a>),
+transportation data (per <a href="sub-p4a.html" style="color:var(--accent)">P4A</a>), and end-of-life data (per <a href="sub-p4d.html" style="color:var(--accent)">P4D</a> composting
 reports). Month 18–24: LCA complete. Results published in: the annual
-sustainability report (P9E Section 5), a standalone LCA summary on
+sustainability report (<a href="sub-p9e.html" style="color:var(--accent)">P9E</a> Section 5), a standalone LCA summary on
 brand.com/impact, press release (“Compostable poncho produces [X]% less
-carbon than garbage bags, LCA finds” per P7C), B2B pitch materials, and
+carbon than garbage bags, LCA finds” per <a href="sub-p7c.html" style="color:var(--accent)">P7C</a>), B2B pitch materials, and
 investor presentations.</td>
 </tr>
 <tr class="odd">
 <td><strong>Marketing use</strong></td>
 <td>The LCA enables: SPECIFIC, QUANTIFIED environmental claims that no
 competitor can match. Instead of: “Our poncho is better for the
-environment” (vague, potentially greenwashing per P9C). Use: “Our poncho
+environment” (vague, potentially greenwashing per <a href="sub-p9c.html" style="color:var(--accent)">P9C</a>). Use: “Our poncho
 produces 47% less CO₂e than an LDPE garbage bag over its lifecycle and
 generates zero landfill waste (verified by independent lifecycle
 assessment per ISO 14040).” This claim is: specific (47% less CO₂e),
 substantiated (LCA per ISO 14040), and defensible (the full LCA is
 available for review). The LCA is the ULTIMATE substantiation tool: it
-makes every environmental claim in the playbook (P9C) stronger, more
+makes every environmental claim in the playbook (<a href="sub-p9c.html" style="color:var(--accent)">P9C</a>) stronger, more
 specific, and more credible.</td>
 </tr>
 </tbody>
@@ -716,7 +692,7 @@ GSA Summit (registration + travel): $1,000–$2,500. Podcast appearances:
 $0. Advisory board (equity or recognition): $0 cash. Sustainability
 Partner badge design: $100–$300. Lifecycle assessment: $3,000–$25,000
 (university program at $3K–$10K recommended for Year 2; professional
-consultancy at $10K–$25K for Year 3). TOTAL P10E: $5,100–$30,850. The
+consultancy at $10K–$25K for Year 3). TOTAL <a href="sub-p10e.html" style="color:var(--accent)">P10E</a>: $5,100–$30,850. The
 LCA ($3K–$25K) is the largest investment; everything else costs under
 $6K combined.</p>
 <p>8. Conclusion: Define the Category or Be Defined By It</p>
@@ -735,15 +711,10 @@ data, they define the vocabulary, and they control the narrative. Every
 competitor who follows will be measured against: the report, the
 certification, the LCA, and the awards that the category leader
 established.</p>
-<p><strong>This is the final section of the playbook.</strong> From P0
-(market research) through P10E (category leadership): every system,
+<p><strong>This is the final section of the playbook.</strong> From <a href="p0.html" style="color:var(--accent)">P0</a>
+(market research) through <a href="sub-p10e.html" style="color:var(--accent)">P10E</a> (category leadership): every system,
 every document, every process has been designed to: not just launch a
 compostable poncho, but to build the CATEGORY of compostable race-day
 products and ensure that this brand leads it. The playbook is complete.
 The execution begins.</p>
-
-        </div>
-    </div></div>
-<footer style="text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px">
-Sustainable Race-Start Warmth Poncho — D2C Brand GTM Project · 60 Subprojects · 391 Tasks · ~15,500¶ · April 2026
-</footer></body></html>
+</div></div></div><footer>Sustainable Race-Start Warmth Poncho — GTM Project · 60 Subprojects · 391 Tasks · ~120K Words · April 2026<br><a href="https://apseter.github.io/Retail_Ventures_Command_Center/">← Retail Ventures Command Center</a> · <a href="index.html">Project Home</a></footer></body></html>

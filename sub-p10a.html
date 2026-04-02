@@ -1,89 +1,65 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>P10A: Volume Scaling — Race Start Warmth GTM</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-<style>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>P10A — Race Start Warmth GTM</title><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet"><style>
 :root{--bg:#0a0e1a;--surface:#111827;--card:#1a2332;--border:#2a3a4e;--accent:#10b981;--accent2:#3b82f6;--text:#e2e8f0;--muted:#94a3b8;--white:#fff;--red:#ef4444;--amber:#f59e0b;--green:#10b981}
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
 a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
 .container{max-width:1200px;margin:0 auto;padding:0 24px}
-/* Nav */
-nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
-nav .inner{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;max-width:1200px;margin:0 auto}
-nav .brand{font-weight:700;font-size:15px;color:var(--accent)}
-nav .links{display:flex;gap:8px;flex-wrap:wrap}
-nav .links a{color:var(--muted);font-size:13px;padding:4px 10px;border-radius:6px;transition:.2s}
+nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
+nav .inner{display:flex;align-items:center;justify-content:space-between;padding:10px 24px;max-width:1200px;margin:0 auto;flex-wrap:wrap;gap:8px}
+nav .brand{font-weight:700;font-size:14px;color:var(--accent);white-space:nowrap}
+nav .links{display:flex;gap:4px;flex-wrap:wrap}
+nav .links a{color:var(--muted);font-size:12px;padding:4px 8px;border-radius:6px;transition:.2s;white-space:nowrap}
 nav .links a:hover,nav .links a.active{color:var(--white);background:var(--card);text-decoration:none}
-/* Hero */
-.hero{padding:60px 0 40px;text-align:center}
-.hero h1{font-size:2.4em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hero p{color:var(--muted);font-size:1.1em;max-width:700px;margin:0 auto}
-/* Stats bar */
-.stats{display:flex;justify-content:center;gap:32px;padding:24px 0;flex-wrap:wrap}
-.stat{text-align:center}.stat .num{font-size:1.8em;font-weight:800;color:var(--white)}.stat .label{font-size:.75em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
-/* Cards */
-.grid{display:grid;gap:16px;margin:24px 0}
-.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}
-.grid-3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
-.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;transition:.2s}
-.card:hover{border-color:var(--accent);transform:translateY(-2px)}
-.card h3{font-size:1.1em;margin-bottom:8px}.card p{color:var(--muted);font-size:.9em}
-.card .badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:8px}
-.card .meta{font-size:.8em;color:var(--muted);margin-top:12px}
-/* Section */
-.section{padding:40px 0}.section h2{font-size:1.6em;font-weight:700;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--border)}
-/* Table */
-table{width:100%;border-collapse:collapse;font-size:.85em;margin:16px 0}
-th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:52px}
-td{padding:8px 12px;border-bottom:1px solid var(--border)}
-tr:hover td{background:rgba(16,185,129,.05)}
-.status-complete{color:var(--green);font-weight:600}.status-not{color:var(--muted)}
-/* Progress */
-.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:8px}
-.progress .bar{height:100%;background:var(--accent);border-radius:3px}
-/* Back link */
-.back{display:inline-block;color:var(--muted);font-size:.9em;margin-bottom:20px}
-.back:hover{color:var(--accent)}
-/* Download */
-.dl-card{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin:8px 0;transition:.2s}
-.dl-card:hover{border-color:var(--accent);text-decoration:none}
-.dl-card .icon{font-size:2em}.dl-card .info h4{color:var(--white);margin-bottom:4px}.dl-card .info p{color:var(--muted);font-size:.85em}
-/* Footer */
-footer{text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px}
-@media(max-width:768px){.stats{gap:16px}.stat .num{font-size:1.3em}nav .links{gap:4px}nav .links a{font-size:11px;padding:3px 6px}.hero h1{font-size:1.6em}}
-
-.doc-content{max-width:900px;margin:0 auto;padding:20px 0}
-.doc-content h1{font-size:1.8em;font-weight:800;color:var(--white);margin:32px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
-.doc-content h2{font-size:1.4em;font-weight:700;color:var(--accent);margin:28px 0 12px}
-.doc-content h3{font-size:1.15em;font-weight:600;color:var(--accent2);margin:20px 0 10px}
-.doc-content p{margin:8px 0;line-height:1.7}
-.doc-content table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85em}
-.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;border:1px solid var(--border)}
-.doc-content td{padding:8px 12px;border:1px solid var(--border);vertical-align:top}
-.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
-.doc-content ul,.doc-content ol{margin:8px 0 8px 24px}
-.doc-content li{margin:4px 0;line-height:1.6}
-.doc-content strong{color:var(--white)}
-.doc-content em{color:var(--muted)}
-.doc-content blockquote{border-left:3px solid var(--accent);padding:8px 16px;margin:12px 0;background:var(--card);border-radius:0 8px 8px 0}
-.nav-sub{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 24px;padding:12px 16px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
-.nav-sub a{font-size:.8em;color:var(--muted);padding:4px 10px;border-radius:4px;transition:.2s;white-space:nowrap}
+nav .links a.cc-link{color:var(--accent2);border:1px solid var(--accent2);font-weight:600}
+nav .links a.cc-link:hover{background:var(--accent2);color:var(--white)}
+.hero{padding:50px 0 30px;text-align:center}
+.hero h1{font-size:2.2em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:1.05em;max-width:700px;margin:0 auto}
+.stats{display:flex;justify-content:center;gap:28px;padding:20px 0;flex-wrap:wrap}
+.stat{text-align:center}.stat .num{font-size:1.7em;font-weight:800;color:var(--white)}.stat .label{font-size:.7em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.grid{display:grid;gap:16px;margin:24px 0}.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}.grid-3{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;transition:.2s;display:block}
+.card:hover{border-color:var(--accent);transform:translateY(-2px);text-decoration:none}
+.card h3{font-size:1.05em;margin-bottom:6px;color:var(--white)}.card p{color:var(--muted);font-size:.88em}
+.badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.65em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:6px}
+.badge-amber{background:var(--amber)}.badge-blue{background:var(--accent2)}
+.card .meta{font-size:.78em;color:var(--muted);margin-top:10px}
+.section{padding:32px 0}.section h2{font-size:1.5em;font-weight:700;margin-bottom:20px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+table{width:100%;border-collapse:collapse;font-size:.83em;margin:16px 0}
+th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:48px}
+td{padding:8px 12px;border-bottom:1px solid var(--border)}tr:hover td{background:rgba(16,185,129,.04)}
+.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:6px}
+.progress .bar{height:100%;border-radius:3px}
+.back{display:inline-block;color:var(--muted);font-size:.88em;margin-bottom:16px}.back:hover{color:var(--accent)}
+.dl-card{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;margin:8px 0;transition:.2s}
+.dl-card:hover{border-color:var(--accent);text-decoration:none}.dl-card .icon{font-size:1.8em}.dl-card .info h4{color:var(--white);margin-bottom:2px;font-size:.95em}.dl-card .info p{color:var(--muted);font-size:.8em}
+.phase-tag{display:inline-block;font-size:.65em;font-weight:600;padding:2px 6px;border-radius:3px;margin-right:4px}
+.phase-plan{background:rgba(16,185,129,.15);color:var(--green)}.phase-exec{background:rgba(245,158,11,.15);color:var(--amber)}.phase-not{background:rgba(148,163,184,.1);color:var(--muted)}
+.nav-sub{display:flex;flex-wrap:wrap;gap:5px;margin:12px 0 20px;padding:10px 14px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
+.nav-sub a{font-size:.78em;color:var(--muted);padding:3px 8px;border-radius:4px;transition:.2s;white-space:nowrap}
 .nav-sub a:hover,.nav-sub a.active{color:var(--white);background:var(--surface);text-decoration:none}
-</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a></div></div></nav><div class="container">
-    <div style="padding-top:30px">
+.doc-content{max-width:900px;margin:0 auto;padding:16px 0}
+.doc-content h1{font-size:1.7em;font-weight:800;color:var(--white);margin:28px 0 14px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+.doc-content h2{font-size:1.3em;font-weight:700;color:var(--accent);margin:24px 0 10px}
+.doc-content h3{font-size:1.1em;font-weight:600;color:var(--accent2);margin:18px 0 8px}
+.doc-content p{margin:6px 0;line-height:1.65}.doc-content table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.83em}
+.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:8px 10px;font-weight:600;border:1px solid var(--border)}
+.doc-content td{padding:7px 10px;border:1px solid var(--border);vertical-align:top}
+.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.doc-content ul,.doc-content ol{margin:6px 0 6px 20px}.doc-content li{margin:3px 0;line-height:1.55}
+.doc-content strong{color:var(--white)}.doc-content em{color:var(--muted)}
+footer{text-align:center;padding:32px 0;color:var(--muted);font-size:.78em;border-top:1px solid var(--border);margin-top:50px}
+footer a{color:var(--accent2)}
+@media(max-width:768px){.stats{gap:14px}.stat .num{font-size:1.2em}nav .links a{font-size:10px;padding:3px 5px}.hero h1{font-size:1.5em}}
+</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="projections.html" class="">Projections</a><a href="action-plan.html" class="">Action Plan</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a><a href="https://apseter.github.io/Retail_Ventures_Command_Center/" class="cc-link" target="_blank">🏠 Command Center</a></div></div></nav><div class="container"><div style="padding-top:28px">
         <a href="p10.html" class="back">← 📈 P10: Scaling & Growth</a>
         <div class="nav-sub"><a href="p10.html">📈 P10 Overview</a><a href="sub-p10a.html" class="active">P10A</a><a href="sub-p10b.html">P10B</a><a href="sub-p10c.html">P10C</a><a href="sub-p10d.html">P10D</a><a href="sub-p10e.html">P10E</a><a href="sub-p10f.html">P10F</a></div>
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px">
-            <div>
-                <span style="background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px">P10A</span>
-                <span style="color:var(--muted);font-size:.85em;margin-left:8px">P10: Scaling & Growth</span>
-            </div>
-            <a href="files/P10A_Volume_Scaling.docx" style="font-size:.85em;color:var(--accent);padding:6px 14px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+            <div><span class="badge">P10A</span> <span style="color:var(--muted);font-size:.83em">P10: Scaling & Growth</span></div>
+            <a href="files/P10A_Volume_Scaling.docx" style="font-size:.83em;color:var(--accent);padding:5px 12px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
         </div>
-        <div class="doc-content">
-            <p><strong>P10A: VOLUME</strong></p>
+        <div class="doc-content"><p><strong><a href="sub-p10a.html" style="color:var(--accent)">P10A</a>: VOLUME</strong></p>
 <p><strong>SCALING</strong></p>
-<p>Sub-Project P10A | Scaling, Expansion &amp; Category Leadership |
+<p>Sub-Project <a href="sub-p10a.html" style="color:var(--accent)">P10A</a> | Scaling, Expansion &amp; Category Leadership |
 Months 8–12</p>
 <p><em>Complete Volume Scaling Strategy: Volume Pricing Negotiation,
 Second Supplier Qualification, Domestic US Manufacturing for Rush &amp;
@@ -130,10 +106,10 @@ This is PURE profit improvement with zero additional sales effort.</p>
 </tr>
 <tr class="even">
 <td><strong>Current pricing (Year 1)</strong></td>
-<td>5,000 units: $1.15/unit COGS (Config B per P2A). 10,000 units:
+<td>5,000 units: $1.15/unit COGS (Config B per <a href="sub-p2a.html" style="color:var(--accent)">P2A</a>). 10,000 units:
 $1.05–$1.10/unit. 25,000 units: $0.95–$1.05/unit. These are MATERIAL +
 CONVERSION costs ex-works (before freight, duty, packaging). Landed cost
-adds: $0.15–$0.40/unit for freight + duty (per P4A). Total landed COGS
+adds: $0.15–$0.40/unit for freight + duty (per <a href="sub-p4a.html" style="color:var(--accent)">P4A</a>). Total landed COGS
 at 25K: $1.10–$1.45/unit.</td>
 </tr>
 <tr class="odd">
@@ -165,12 +141,12 @@ supplier’s cash flow risk.</td>
 <tr class="odd">
 <td><strong>Annual pricing agreement</strong></td>
 <td>Formalize Year 2 pricing in a WRITTEN annual pricing agreement
-(addendum to the supplier agreement per P9D Section 3). Include: unit
+(addendum to the supplier agreement per <a href="sub-p9d.html" style="color:var(--accent)">P9D</a> Section 3). Include: unit
 pricing at each volume tier, price validity period (12 months), volume
 commitment (minimum annual quantity), pricing review trigger (raw
 material cost changes &gt;10% trigger a mid-year review), and payment
 terms. The annual agreement protects against: mid-year price increases
-and provides: budgeting certainty for the Year 2 financial plan (P8D
+and provides: budgeting certainty for the Year 2 financial plan (<a href="sub-p8d.html" style="color:var(--accent)">P8D</a>
 Section 3).</td>
 </tr>
 </tbody>
@@ -185,7 +161,7 @@ payment terms. Present: the competitive landscape to the primary
 supplier (“We have a quote at $X from [Supplier B] — can you match?”).
 MONTH 10: finalize Year 2 annual pricing agreement. Lock: pricing for 12
 months with mid-year review trigger at ±10% raw material cost change.
-The annual agreement becomes: an addendum to the supplier agreement (P9D
+The annual agreement becomes: an addendum to the supplier agreement (<a href="sub-p9d.html" style="color:var(--accent)">P9D</a>
 Section 3).</p>
 <p>2. Second Supplier Qualification</p>
 <p><strong>A business with one supplier is a business with one point of
@@ -229,7 +205,7 @@ ProAmpac or Asia-based alternative for cost/logistics advantages).</td>
 </tr>
 <tr class="even">
 <td><strong>Candidate suppliers</strong></td>
-<td>ProAmpac (US, per P3A Section 1): flexible packaging manufacturer
+<td>ProAmpac (US, per <a href="sub-p3a.html" style="color:var(--accent)">P3A</a> Section 1): flexible packaging manufacturer
 with compostable capabilities. Advantages: domestic manufacturing (no
 ocean freight, no import duty, “Made in USA” positioning), faster lead
 times (1–3 weeks vs. 4–6 weeks from UK), and simpler logistics.
@@ -237,9 +213,9 @@ Disadvantages: potentially higher per-unit cost ($0.10–$0.30/unit
 premium over UK/Asia). ShinHigh Packaging (China): if Section 301
 tariffs are resolved or exempted: China manufacturing offers the lowest
 per-unit COGS. Novamont / TIPA (EU): for potential European market
-production if international expansion proceeds per P10C. EVALUATE:
+production if international expansion proceeds per <a href="sub-p10c.html" style="color:var(--accent)">P10C</a>. EVALUATE:
 request samples + quotes from 2–3 candidates during Month 8–10. Conduct:
-the same factory evaluation process as P3A (quality audit, sample
+the same factory evaluation process as <a href="sub-p3a.html" style="color:var(--accent)">P3A</a> (quality audit, sample
 review, pricing negotiation). SELECT: the second supplier by Month 10
 and produce a TEST RUN of 1,000–2,000 units to verify quality parity
 with the primary supplier.</td>
@@ -305,7 +281,7 @@ alongside the standard imported product.</td>
 <td>RUSH ORDERS: a race director places an urgent order 2 weeks before
 race day (too late for UK production + ocean freight). Domestic
 production delivers in 1–2 weeks. The brand charges: a 15–25% rush
-surcharge (per P3B Section 3) which covers the higher domestic COGS.
+surcharge (per <a href="sub-p3b.html" style="color:var(--accent)">P3B</a> Section 3) which covers the higher domestic COGS.
 PREMIUM SKU: “[BRAND] — Made in USA” version at $12.99 DTC ($3 premium
 over standard $9.99). Test: on Shopify as a variant. If 10–20% of
 customers choose the Made in USA option: the SKU is viable.
@@ -330,8 +306,8 @@ dual-supplier allocation model accordingly.</td>
 </table>
 <p>4. Demand Forecasting</p>
 <p><strong>Year 1 production was planned on ESTIMATES (market size
-projections, pipeline assumptions, and competitive benchmarks from P0
-and P8A).</strong> Year 2 production is planned on DATA: actual Year 1
+projections, pipeline assumptions, and competitive benchmarks from <a href="p0.html" style="color:var(--accent)">P0</a>
+and <a href="sub-p8a.html" style="color:var(--accent)">P8A</a>).</strong> Year 2 production is planned on DATA: actual Year 1
 sales by channel/month, actual B2B reorder rates, actual DTC conversion
 rates, actual seasonal patterns, and actual pipeline conversion rates.
 The forecast model transforms 12 months of data into: a month-by-month
@@ -354,13 +330,13 @@ standard, B2B co-brand, Amazon, Shopify, expo), units by month
 (seasonality curve: which months had peak vs. low demand), B2B pipeline
 conversion rate (what % of pipeline became POs), DTC conversion rate by
 channel, and geographic distribution (which race cities generated the
-most demand). This data replaces: all P8A estimates and projections with
+most demand). This data replaces: all <a href="sub-p8a.html" style="color:var(--accent)">P8A</a> estimates and projections with
 REALITY.</td>
 </tr>
 <tr class="odd">
 <td><strong>Race calendar model</strong></td>
 <td>Map ALL known Year 2 races to a timeline: confirmed B2B orders
-(locked POs from reorders + early-bird commitments per P5F Section 4),
+(locked POs from reorders + early-bird commitments per <a href="sub-p5f.html" style="color:var(--accent)">P5F</a> Section 4),
 probable B2B orders (pipeline deals at “Proposal Sent” or later stage,
 weighted at 50–75% probability), potential B2B leads (expo contacts,
 referrals, and new outreach targets, weighted at 10–25%), and DTC demand
@@ -385,7 +361,7 @@ monthly unit forecast for Year 2 with: base case (expected), downside
 </tr>
 <tr class="odd">
 <td><strong>Safety stock model</strong></td>
-<td>Per P3E Section 3: maintain safety stock of 2–4 weeks of average
+<td>Per <a href="sub-p3e.html" style="color:var(--accent)">P3E</a> Section 3: maintain safety stock of 2–4 weeks of average
 demand. Year 2 safety stock calculation: average monthly demand ÷ 4 ×
 safety-stock-weeks. Example: 5,000 units/month average × 3 weeks safety
 stock = 3,750 units maintained. Safety stock covers: unexpected demand
@@ -401,7 +377,7 @@ monthly forecasts (±10% for quarterly). If consistently OVER-forecasting
 (making too much inventory): reduce forecast multiplier and production
 quantities. If consistently UNDER-forecasting (running out of stock):
 increase safety stock and consider more frequent, smaller production
-runs. Review: monthly during the P&amp;L review (P8B Section 2). Adjust:
+runs. Review: monthly during the P&amp;L review (<a href="sub-p8b.html" style="color:var(--accent)">P8B</a> Section 2). Adjust:
 the forecast model inputs after each monthly review.</td>
 </tr>
 </tbody>
@@ -418,7 +394,7 @@ demand).</p>
 <table>
 <colgroup>
 <col style="width: 14%" />
-<col style="width:50%">
+<col style="width: 50%" />
 <col style="width: 35%" />
 </colgroup>
 <tbody>
@@ -457,7 +433,7 @@ revenue). Build a 2-week buffer into every milestone.</td>
 by early-fall races, cover late-fall races (NYC, Philadelphia, CIM), and
 build holiday gift inventory. PRODUCTION: PO in September, production in
 September–October, ship via AIR FREIGHT if ocean timing is too tight
-(per P3E Section 7), arrive October–November. This run is OPTIONAL: only
+(per <a href="sub-p3e.html" style="color:var(--accent)">P3E</a> Section 7), arrive October–November. This run is OPTIONAL: only
 needed if Run 2 quantities were insufficient and fall demand exceeds
 forecast.</td>
 <td>Run 3 is the CONTINGENCY run. It is planned but only executed if:
@@ -488,17 +464,17 @@ plan late.</td>
 B2B POs + Amazon FBA replenishment to target stock level + Shopify
 inventory target). STEP 2: add PROBABLE demand (weighted B2B pipeline ×
 probability + DTC growth trajectory extrapolation). STEP 3: add SAFETY
-STOCK (2–4 weeks of average demand per P3E Section 3). STEP 4: subtract
+STOCK (2–4 weeks of average demand per <a href="sub-p3e.html" style="color:var(--accent)">P3E</a> Section 3). STEP 4: subtract
 EXISTING INVENTORY (units currently in warehouse + FBA + in transit).
 RESULT: production quantity for this run. DECISION RULE: if the result
 is &lt;5,000 units: consider combining with the next run to achieve
 volume discount thresholds. If &gt;50,000 units: consider splitting
-across 2 production runs for cash flow management (per P8B Section 4
+across 2 production runs for cash flow management (per <a href="sub-p8b.html" style="color:var(--accent)">P8B</a> Section 4
 timing model). Review: the production quantity calculation with the Year
-2 financial plan (P8D Section 3) to verify: cash is available for the
+2 financial plan (<a href="sub-p8d.html" style="color:var(--accent)">P8D</a> Section 3) to verify: cash is available for the
 deposit, the production timeline aligns with the demand forecast, and
 the inventory level doesn’t exceed 4–6 months of projected demand
-(overstocking ties up cash and risks: product shelf life issues per P2B
+(overstocking ties up cash and risks: product shelf life issues per <a href="sub-p2b.html" style="color:var(--accent)">P2B</a>
 Section 4 — 10–12 month shelf life).</p>
 <p>6. 3PL Fulfillment Upgrade</p>
 <p><strong>The founder’s most valuable resource is TIME, not
@@ -597,7 +573,7 @@ rush-order supplier with 1–2 week turnaround.</strong></p>
 manufacturer samples: $200–$500. 3PL setup (if triggered): $0–$200
 onboarding fee. 3PL ongoing (if triggered): $1,090–$1,730/month at 200
 orders/month. Volume pricing negotiation: $0 (founder’s time). Demand
-forecasting model: $0 (Google Sheets). TOTAL P10A setup: $400–$1,200 +
+forecasting model: $0 (Google Sheets). TOTAL <a href="sub-p10a.html" style="color:var(--accent)">P10A</a> setup: $400–$1,200 +
 $0–$1,730/month ongoing 3PL.</p>
 <p>8. Conclusion: Scale the Machine Before You Feed It More</p>
 <p><strong>The worst outcome in Year 2 is: demand that exceeds the
@@ -614,9 +590,4 @@ fulfillment is SCALABLE (3PL upgrade).</strong> Build these systems in
 Months 8–12 — before Year 2 demand arrives. The machine must be scaled
 BEFORE it is fed more volume. A machine that isn’t ready for growth
 breaks under load. A machine that is ready turns volume into profit.</p>
-
-        </div>
-    </div></div>
-<footer style="text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px">
-Sustainable Race-Start Warmth Poncho — D2C Brand GTM Project · 60 Subprojects · 391 Tasks · ~15,500¶ · April 2026
-</footer></body></html>
+</div></div></div><footer>Sustainable Race-Start Warmth Poncho — GTM Project · 60 Subprojects · 391 Tasks · ~120K Words · April 2026<br><a href="https://apseter.github.io/Retail_Ventures_Command_Center/">← Retail Ventures Command Center</a> · <a href="index.html">Project Home</a></footer></body></html>

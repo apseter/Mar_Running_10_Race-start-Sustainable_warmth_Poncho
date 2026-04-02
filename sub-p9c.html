@@ -1,89 +1,65 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>P9C: Environmental Claims Compliance — Race Start Warmth GTM</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-<style>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>P9C — Race Start Warmth GTM</title><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet"><style>
 :root{--bg:#0a0e1a;--surface:#111827;--card:#1a2332;--border:#2a3a4e;--accent:#10b981;--accent2:#3b82f6;--text:#e2e8f0;--muted:#94a3b8;--white:#fff;--red:#ef4444;--amber:#f59e0b;--green:#10b981}
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
 a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
 .container{max-width:1200px;margin:0 auto;padding:0 24px}
-/* Nav */
-nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
-nav .inner{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;max-width:1200px;margin:0 auto}
-nav .brand{font-weight:700;font-size:15px;color:var(--accent)}
-nav .links{display:flex;gap:8px;flex-wrap:wrap}
-nav .links a{color:var(--muted);font-size:13px;padding:4px 10px;border-radius:6px;transition:.2s}
+nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
+nav .inner{display:flex;align-items:center;justify-content:space-between;padding:10px 24px;max-width:1200px;margin:0 auto;flex-wrap:wrap;gap:8px}
+nav .brand{font-weight:700;font-size:14px;color:var(--accent);white-space:nowrap}
+nav .links{display:flex;gap:4px;flex-wrap:wrap}
+nav .links a{color:var(--muted);font-size:12px;padding:4px 8px;border-radius:6px;transition:.2s;white-space:nowrap}
 nav .links a:hover,nav .links a.active{color:var(--white);background:var(--card);text-decoration:none}
-/* Hero */
-.hero{padding:60px 0 40px;text-align:center}
-.hero h1{font-size:2.4em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hero p{color:var(--muted);font-size:1.1em;max-width:700px;margin:0 auto}
-/* Stats bar */
-.stats{display:flex;justify-content:center;gap:32px;padding:24px 0;flex-wrap:wrap}
-.stat{text-align:center}.stat .num{font-size:1.8em;font-weight:800;color:var(--white)}.stat .label{font-size:.75em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
-/* Cards */
-.grid{display:grid;gap:16px;margin:24px 0}
-.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}
-.grid-3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
-.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;transition:.2s}
-.card:hover{border-color:var(--accent);transform:translateY(-2px)}
-.card h3{font-size:1.1em;margin-bottom:8px}.card p{color:var(--muted);font-size:.9em}
-.card .badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:8px}
-.card .meta{font-size:.8em;color:var(--muted);margin-top:12px}
-/* Section */
-.section{padding:40px 0}.section h2{font-size:1.6em;font-weight:700;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--border)}
-/* Table */
-table{width:100%;border-collapse:collapse;font-size:.85em;margin:16px 0}
-th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:52px}
-td{padding:8px 12px;border-bottom:1px solid var(--border)}
-tr:hover td{background:rgba(16,185,129,.05)}
-.status-complete{color:var(--green);font-weight:600}.status-not{color:var(--muted)}
-/* Progress */
-.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:8px}
-.progress .bar{height:100%;background:var(--accent);border-radius:3px}
-/* Back link */
-.back{display:inline-block;color:var(--muted);font-size:.9em;margin-bottom:20px}
-.back:hover{color:var(--accent)}
-/* Download */
-.dl-card{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin:8px 0;transition:.2s}
-.dl-card:hover{border-color:var(--accent);text-decoration:none}
-.dl-card .icon{font-size:2em}.dl-card .info h4{color:var(--white);margin-bottom:4px}.dl-card .info p{color:var(--muted);font-size:.85em}
-/* Footer */
-footer{text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px}
-@media(max-width:768px){.stats{gap:16px}.stat .num{font-size:1.3em}nav .links{gap:4px}nav .links a{font-size:11px;padding:3px 6px}.hero h1{font-size:1.6em}}
-
-.doc-content{max-width:900px;margin:0 auto;padding:20px 0}
-.doc-content h1{font-size:1.8em;font-weight:800;color:var(--white);margin:32px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
-.doc-content h2{font-size:1.4em;font-weight:700;color:var(--accent);margin:28px 0 12px}
-.doc-content h3{font-size:1.15em;font-weight:600;color:var(--accent2);margin:20px 0 10px}
-.doc-content p{margin:8px 0;line-height:1.7}
-.doc-content table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85em}
-.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;border:1px solid var(--border)}
-.doc-content td{padding:8px 12px;border:1px solid var(--border);vertical-align:top}
-.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
-.doc-content ul,.doc-content ol{margin:8px 0 8px 24px}
-.doc-content li{margin:4px 0;line-height:1.6}
-.doc-content strong{color:var(--white)}
-.doc-content em{color:var(--muted)}
-.doc-content blockquote{border-left:3px solid var(--accent);padding:8px 16px;margin:12px 0;background:var(--card);border-radius:0 8px 8px 0}
-.nav-sub{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 24px;padding:12px 16px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
-.nav-sub a{font-size:.8em;color:var(--muted);padding:4px 10px;border-radius:4px;transition:.2s;white-space:nowrap}
+nav .links a.cc-link{color:var(--accent2);border:1px solid var(--accent2);font-weight:600}
+nav .links a.cc-link:hover{background:var(--accent2);color:var(--white)}
+.hero{padding:50px 0 30px;text-align:center}
+.hero h1{font-size:2.2em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:1.05em;max-width:700px;margin:0 auto}
+.stats{display:flex;justify-content:center;gap:28px;padding:20px 0;flex-wrap:wrap}
+.stat{text-align:center}.stat .num{font-size:1.7em;font-weight:800;color:var(--white)}.stat .label{font-size:.7em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.grid{display:grid;gap:16px;margin:24px 0}.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}.grid-3{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;transition:.2s;display:block}
+.card:hover{border-color:var(--accent);transform:translateY(-2px);text-decoration:none}
+.card h3{font-size:1.05em;margin-bottom:6px;color:var(--white)}.card p{color:var(--muted);font-size:.88em}
+.badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.65em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:6px}
+.badge-amber{background:var(--amber)}.badge-blue{background:var(--accent2)}
+.card .meta{font-size:.78em;color:var(--muted);margin-top:10px}
+.section{padding:32px 0}.section h2{font-size:1.5em;font-weight:700;margin-bottom:20px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+table{width:100%;border-collapse:collapse;font-size:.83em;margin:16px 0}
+th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:48px}
+td{padding:8px 12px;border-bottom:1px solid var(--border)}tr:hover td{background:rgba(16,185,129,.04)}
+.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:6px}
+.progress .bar{height:100%;border-radius:3px}
+.back{display:inline-block;color:var(--muted);font-size:.88em;margin-bottom:16px}.back:hover{color:var(--accent)}
+.dl-card{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;margin:8px 0;transition:.2s}
+.dl-card:hover{border-color:var(--accent);text-decoration:none}.dl-card .icon{font-size:1.8em}.dl-card .info h4{color:var(--white);margin-bottom:2px;font-size:.95em}.dl-card .info p{color:var(--muted);font-size:.8em}
+.phase-tag{display:inline-block;font-size:.65em;font-weight:600;padding:2px 6px;border-radius:3px;margin-right:4px}
+.phase-plan{background:rgba(16,185,129,.15);color:var(--green)}.phase-exec{background:rgba(245,158,11,.15);color:var(--amber)}.phase-not{background:rgba(148,163,184,.1);color:var(--muted)}
+.nav-sub{display:flex;flex-wrap:wrap;gap:5px;margin:12px 0 20px;padding:10px 14px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
+.nav-sub a{font-size:.78em;color:var(--muted);padding:3px 8px;border-radius:4px;transition:.2s;white-space:nowrap}
 .nav-sub a:hover,.nav-sub a.active{color:var(--white);background:var(--surface);text-decoration:none}
-</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a></div></div></nav><div class="container">
-    <div style="padding-top:30px">
+.doc-content{max-width:900px;margin:0 auto;padding:16px 0}
+.doc-content h1{font-size:1.7em;font-weight:800;color:var(--white);margin:28px 0 14px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+.doc-content h2{font-size:1.3em;font-weight:700;color:var(--accent);margin:24px 0 10px}
+.doc-content h3{font-size:1.1em;font-weight:600;color:var(--accent2);margin:18px 0 8px}
+.doc-content p{margin:6px 0;line-height:1.65}.doc-content table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.83em}
+.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:8px 10px;font-weight:600;border:1px solid var(--border)}
+.doc-content td{padding:7px 10px;border:1px solid var(--border);vertical-align:top}
+.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.doc-content ul,.doc-content ol{margin:6px 0 6px 20px}.doc-content li{margin:3px 0;line-height:1.55}
+.doc-content strong{color:var(--white)}.doc-content em{color:var(--muted)}
+footer{text-align:center;padding:32px 0;color:var(--muted);font-size:.78em;border-top:1px solid var(--border);margin-top:50px}
+footer a{color:var(--accent2)}
+@media(max-width:768px){.stats{gap:14px}.stat .num{font-size:1.2em}nav .links a{font-size:10px;padding:3px 5px}.hero h1{font-size:1.5em}}
+</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="projections.html" class="">Projections</a><a href="action-plan.html" class="">Action Plan</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a><a href="https://apseter.github.io/Retail_Ventures_Command_Center/" class="cc-link" target="_blank">🏠 Command Center</a></div></div></nav><div class="container"><div style="padding-top:28px">
         <a href="p9.html" class="back">← ⚖️ P9: Legal & Compliance</a>
         <div class="nav-sub"><a href="p9.html">⚖️ P9 Overview</a><a href="sub-p9a.html">P9A</a><a href="sub-p9b.html">P9B</a><a href="sub-p9c.html" class="active">P9C</a><a href="sub-p9d.html">P9D</a><a href="sub-p9e.html">P9E</a></div>
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px">
-            <div>
-                <span style="background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px">P9C</span>
-                <span style="color:var(--muted);font-size:.85em;margin-left:8px">P9: Legal & Compliance</span>
-            </div>
-            <a href="files/P9C_Environmental_Claims_Compliance.docx" style="font-size:.85em;color:var(--accent);padding:6px 14px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+            <div><span class="badge">P9C</span> <span style="color:var(--muted);font-size:.83em">P9: Legal & Compliance</span></div>
+            <a href="files/P9C_Environmental_Claims_Compliance.docx" style="font-size:.83em;color:var(--accent);padding:5px 12px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
         </div>
-        <div class="doc-content">
-            <p><strong>P9C: ENVIRONMENTAL</strong></p>
+        <div class="doc-content"><p><strong><a href="sub-p9c.html" style="color:var(--accent)">P9C</a>: ENVIRONMENTAL</strong></p>
 <p><strong>CLAIMS COMPLIANCE</strong></p>
-<p>Sub-Project P9C | Legal, Compliance &amp; Sustainability Certs |
+<p>Sub-Project <a href="sub-p9c.html" style="color:var(--accent)">P9C</a> | Legal, Compliance &amp; Sustainability Certs |
 Weeks 4–14</p>
 <p><em>Complete Environmental Claims Framework: FTC Green Guides Review,
 Compliant Claim Language for 7 Marketing Surfaces, BPI/ASTM D6400/EN
@@ -132,7 +108,7 @@ FTC.</p>
 <table>
 <colgroup>
 <col style="width: 14%" />
-<col style="width:50%">
+<col style="width: 50%" />
 <col style="width: 35%" />
 </colgroup>
 <tbody>
@@ -219,7 +195,7 @@ the brand makes ANY carbon-related claims: they must be backed by a
 formal lifecycle assessment (LCA) or carbon offset certification.
 RECOMMENDATION: do NOT make carbon-neutral claims in Year 1. Focus on:
 compostable claims (backed by BPI/ASTM certification) and
-waste-reduction claims (backed by P0A data and pilot composting
+waste-reduction claims (backed by <a href="sub-p0a.html" style="color:var(--accent)">P0A</a> data and pilot composting
 reports). Carbon claims can be added in Year 2+ after a formal LCA is
 commissioned ($5,000–$15,000).</td>
 <td>Carbon claims are the NEWEST area of FTC scrutiny. The FTC’s updated
@@ -274,7 +250,7 @@ verify: the BPI certification (bpiworld.org), the ASTM standard
 <td><strong>Packaging claim</strong></td>
 <td>“Commercially Compostable — BPI Certified — ASTM D6400” with the BPI
 certification logo.</td>
-<td>Per P3D Section 3: the packaging includes the BPI logo and ASTM
+<td>Per <a href="sub-p3d.html" style="color:var(--accent)">P3D</a> Section 3: the packaging includes the BPI logo and ASTM
 D6400 reference. The word “commercially” qualifies the composting claim.
 The packaging should also include: “Compost at a commercial facility.
 Not suitable for home composting.”</td>
@@ -331,7 +307,7 @@ infrastructure.”).</td>
 (explains the claim in detail), (B) regulatory defense (demonstrates
 good-faith effort to provide clear, qualified information), and (C) SEO
 (ranks for “BPI certified compostable products,” “compostable vs
-biodegradable” per P6D Section 1 keyword strategy).</td>
+biodegradable” per <a href="sub-p6d.html" style="color:var(--accent)">P6D</a> Section 1 keyword strategy).</td>
 <td></td>
 </tr>
 </tbody>
@@ -347,7 +323,7 @@ just the raw materials.</p>
 <table>
 <colgroup>
 <col style="width: 14%" />
-<col style="width:50%">
+<col style="width: 50%" />
 <col style="width: 35%" />
 </colgroup>
 <tbody>
@@ -367,7 +343,7 @@ conducts: biodegradation test (60%+ CO₂ evolution in 180 days),
 disintegration test (90%+ disintegration in 84 days at 58°C),
 ecotoxicity test (compost supports plant growth), and heavy metals
 analysis (below thresholds). (3) Lab issues test report. (4) Submit test
-report + application to BPI ($500–$2,500 for small companies per P2D
+report + application to BPI ($500–$2,500 for small companies per <a href="sub-p2d.html" style="color:var(--accent)">P2D</a>
 Section 3). (5) BPI reviews and issues certificate + listing in BPI
 directory + right to use BPI logo on packaging.</td>
 <td>BPI certification is the GOLD STANDARD for compostability claims in
@@ -387,7 +363,7 @@ or ASTM D5338). (2) DISINTEGRATION: ≥90% of the product passes through a
 2mm sieve after 84 days of composting at 58°C (test: ISO 16929 or ASTM
 D6400 Annex A1). (3) ECOTOXICITY: compost from the product must support
 plant growth at ≥90% of control compost (test: OECD 208 or equivalent).
-Testing lab cost: $5,000–$15,000 per product (per P2D Section 3).
+Testing lab cost: $5,000–$15,000 per product (per <a href="sub-p2d.html" style="color:var(--accent)">P2D</a> Section 3).
 Timeline: 6–9 months for complete testing.</td>
 <td>The ASSEMBLED poncho (NatureFlex NM film + PLA spunbond + adhesive +
 any inks/dyes) must pass as a WHOLE PRODUCT, not just the individual raw
@@ -402,7 +378,7 @@ overlooked step in compostable product certification.</td>
 are similar to ASTM D6400 but with some differences: 90% biodegradation
 in 6 months (vs. 60% in 6 months for ASTM D6400), and additional
 requirements for heavy metals and volatile solids. If the brand plans
-INTERNATIONAL EXPANSION to the EU (per P2F Section 6): EN 13432
+INTERNATIONAL EXPANSION to the EU (per <a href="sub-p2f.html" style="color:var(--accent)">P2F</a> Section 6): EN 13432
 certification is required for “compostable” claims in EU markets. If
 US-only for Year 1: EN 13432 is optional but: adds credibility (“meets
 both US and EU compostability standards”) and reduces Year 2 effort if
@@ -425,7 +401,7 @@ product. The adhesive used to bond the NatureFlex to the PLA, the ink
 used for printing, and any other additives may affect compostability. If
 the assembly introduces a non-compostable component (even in small
 quantities): the WHOLE PRODUCT fails.</td>
-<td>Verify with the converter (Parkside per P3A): does the lamination
+<td>Verify with the converter (Parkside per <a href="sub-p3a.html" style="color:var(--accent)">P3A</a>): does the lamination
 process introduce any non-compostable adhesives? Does the printing ink
 meet compostability standards? Is the entire finished product (not just
 the raw materials) covered by a compostability certificate? If
@@ -570,7 +546,7 @@ as a potentially public document.</td>
 <td>Provide ambassadors with APPROVED language: “compostable at
 commercial facilities,” “BPI certified,” “meets ASTM D6400.” Instruct:
 do NOT say “biodegradable” or “this breaks down in your backyard.”
-Include approved/prohibited language in the content brief (per P7A
+Include approved/prohibited language in the content brief (per <a href="sub-p7a.html" style="color:var(--accent)">P7A</a>
 Section 3).</td>
 <td>Ambassador claims are ATTRIBUTED TO THE BRAND even though the
 ambassador posts them. The FTC holds brands responsible for:
@@ -593,7 +569,7 @@ calmly to any challenge.</p>
 <table>
 <colgroup>
 <col style="width: 14%" />
-<col style="width:50%">
+<col style="width: 50%" />
 <col style="width: 35%" />
 </colgroup>
 <tbody>
@@ -668,7 +644,7 @@ of regulatory changes rather than being caught off-guard.</p>
 <table>
 <colgroup>
 <col style="width: 14%" />
-<col style="width:50%">
+<col style="width: 50%" />
 <col style="width: 35%" />
 </colgroup>
 <tbody>
@@ -714,7 +690,7 @@ implementation 2026–2027): will require: substantiation of ALL
 environmental claims with scientific evidence, pre-approval of certain
 green claims before use in advertising, and penalties for
 unsubstantiated greenwashing. If the brand expands to EU markets (per
-P2F Section 6): EN 13432 certification + compliance with the Green
+<a href="sub-p2f.html" style="color:var(--accent)">P2F</a> Section 6): EN 13432 certification + compliance with the Green
 Claims Directive will be required.</td>
 <td>Monitor for US businesses selling to EU consumers: the Green Claims
 Directive may apply to: products sold on EU Amazon marketplaces,
@@ -767,7 +743,7 @@ weeks.</strong></p>
 testing (if needed independently): $5,000–$15,000. BPI certification
 application: $500–$2,500. EN 13432 testing (optional, if pursuing EU
 readiness): $2,000–$5,000 additional. Regulatory monitoring (Google
-Alerts): $0. TOTAL P9C: $800–$3,500 (if Parkside’s cert covers the
+Alerts): $0. TOTAL <a href="sub-p9c.html" style="color:var(--accent)">P9C</a>: $800–$3,500 (if Parkside’s cert covers the
 product) or $5,800–$18,500 (if independent testing required). The
 certification cost is the MOST IMPORTANT investment in the entire legal
 section — it is the foundation of every environmental claim the brand
@@ -792,9 +768,4 @@ not a constraint on marketing — it IS the marketing. Consumers, race
 directors, journalists, and regulators can all tell the difference
 between a brand that makes honest, qualified claims and a brand that
 hides behind vague green language. Be the honest brand.</p>
-
-        </div>
-    </div></div>
-<footer style="text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px">
-Sustainable Race-Start Warmth Poncho — D2C Brand GTM Project · 60 Subprojects · 391 Tasks · ~15,500¶ · April 2026
-</footer></body></html>
+</div></div></div><footer>Sustainable Race-Start Warmth Poncho — GTM Project · 60 Subprojects · 391 Tasks · ~120K Words · April 2026<br><a href="https://apseter.github.io/Retail_Ventures_Command_Center/">← Retail Ventures Command Center</a> · <a href="index.html">Project Home</a></footer></body></html>

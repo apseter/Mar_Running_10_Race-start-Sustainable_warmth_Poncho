@@ -1,89 +1,65 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>P6A: Analytics Tracking — Race Start Warmth GTM</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-<style>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>P6A — Race Start Warmth GTM</title><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet"><style>
 :root{--bg:#0a0e1a;--surface:#111827;--card:#1a2332;--border:#2a3a4e;--accent:#10b981;--accent2:#3b82f6;--text:#e2e8f0;--muted:#94a3b8;--white:#fff;--red:#ef4444;--amber:#f59e0b;--green:#10b981}
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
 a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
 .container{max-width:1200px;margin:0 auto;padding:0 24px}
-/* Nav */
-nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
-nav .inner{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;max-width:1200px;margin:0 auto}
-nav .brand{font-weight:700;font-size:15px;color:var(--accent)}
-nav .links{display:flex;gap:8px;flex-wrap:wrap}
-nav .links a{color:var(--muted);font-size:13px;padding:4px 10px;border-radius:6px;transition:.2s}
+nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
+nav .inner{display:flex;align-items:center;justify-content:space-between;padding:10px 24px;max-width:1200px;margin:0 auto;flex-wrap:wrap;gap:8px}
+nav .brand{font-weight:700;font-size:14px;color:var(--accent);white-space:nowrap}
+nav .links{display:flex;gap:4px;flex-wrap:wrap}
+nav .links a{color:var(--muted);font-size:12px;padding:4px 8px;border-radius:6px;transition:.2s;white-space:nowrap}
 nav .links a:hover,nav .links a.active{color:var(--white);background:var(--card);text-decoration:none}
-/* Hero */
-.hero{padding:60px 0 40px;text-align:center}
-.hero h1{font-size:2.4em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hero p{color:var(--muted);font-size:1.1em;max-width:700px;margin:0 auto}
-/* Stats bar */
-.stats{display:flex;justify-content:center;gap:32px;padding:24px 0;flex-wrap:wrap}
-.stat{text-align:center}.stat .num{font-size:1.8em;font-weight:800;color:var(--white)}.stat .label{font-size:.75em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
-/* Cards */
-.grid{display:grid;gap:16px;margin:24px 0}
-.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}
-.grid-3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
-.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;transition:.2s}
-.card:hover{border-color:var(--accent);transform:translateY(-2px)}
-.card h3{font-size:1.1em;margin-bottom:8px}.card p{color:var(--muted);font-size:.9em}
-.card .badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:8px}
-.card .meta{font-size:.8em;color:var(--muted);margin-top:12px}
-/* Section */
-.section{padding:40px 0}.section h2{font-size:1.6em;font-weight:700;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--border)}
-/* Table */
-table{width:100%;border-collapse:collapse;font-size:.85em;margin:16px 0}
-th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:52px}
-td{padding:8px 12px;border-bottom:1px solid var(--border)}
-tr:hover td{background:rgba(16,185,129,.05)}
-.status-complete{color:var(--green);font-weight:600}.status-not{color:var(--muted)}
-/* Progress */
-.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:8px}
-.progress .bar{height:100%;background:var(--accent);border-radius:3px}
-/* Back link */
-.back{display:inline-block;color:var(--muted);font-size:.9em;margin-bottom:20px}
-.back:hover{color:var(--accent)}
-/* Download */
-.dl-card{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin:8px 0;transition:.2s}
-.dl-card:hover{border-color:var(--accent);text-decoration:none}
-.dl-card .icon{font-size:2em}.dl-card .info h4{color:var(--white);margin-bottom:4px}.dl-card .info p{color:var(--muted);font-size:.85em}
-/* Footer */
-footer{text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px}
-@media(max-width:768px){.stats{gap:16px}.stat .num{font-size:1.3em}nav .links{gap:4px}nav .links a{font-size:11px;padding:3px 6px}.hero h1{font-size:1.6em}}
-
-.doc-content{max-width:900px;margin:0 auto;padding:20px 0}
-.doc-content h1{font-size:1.8em;font-weight:800;color:var(--white);margin:32px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
-.doc-content h2{font-size:1.4em;font-weight:700;color:var(--accent);margin:28px 0 12px}
-.doc-content h3{font-size:1.15em;font-weight:600;color:var(--accent2);margin:20px 0 10px}
-.doc-content p{margin:8px 0;line-height:1.7}
-.doc-content table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85em}
-.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;border:1px solid var(--border)}
-.doc-content td{padding:8px 12px;border:1px solid var(--border);vertical-align:top}
-.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
-.doc-content ul,.doc-content ol{margin:8px 0 8px 24px}
-.doc-content li{margin:4px 0;line-height:1.6}
-.doc-content strong{color:var(--white)}
-.doc-content em{color:var(--muted)}
-.doc-content blockquote{border-left:3px solid var(--accent);padding:8px 16px;margin:12px 0;background:var(--card);border-radius:0 8px 8px 0}
-.nav-sub{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 24px;padding:12px 16px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
-.nav-sub a{font-size:.8em;color:var(--muted);padding:4px 10px;border-radius:4px;transition:.2s;white-space:nowrap}
+nav .links a.cc-link{color:var(--accent2);border:1px solid var(--accent2);font-weight:600}
+nav .links a.cc-link:hover{background:var(--accent2);color:var(--white)}
+.hero{padding:50px 0 30px;text-align:center}
+.hero h1{font-size:2.2em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:1.05em;max-width:700px;margin:0 auto}
+.stats{display:flex;justify-content:center;gap:28px;padding:20px 0;flex-wrap:wrap}
+.stat{text-align:center}.stat .num{font-size:1.7em;font-weight:800;color:var(--white)}.stat .label{font-size:.7em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.grid{display:grid;gap:16px;margin:24px 0}.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}.grid-3{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;transition:.2s;display:block}
+.card:hover{border-color:var(--accent);transform:translateY(-2px);text-decoration:none}
+.card h3{font-size:1.05em;margin-bottom:6px;color:var(--white)}.card p{color:var(--muted);font-size:.88em}
+.badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.65em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:6px}
+.badge-amber{background:var(--amber)}.badge-blue{background:var(--accent2)}
+.card .meta{font-size:.78em;color:var(--muted);margin-top:10px}
+.section{padding:32px 0}.section h2{font-size:1.5em;font-weight:700;margin-bottom:20px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+table{width:100%;border-collapse:collapse;font-size:.83em;margin:16px 0}
+th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:48px}
+td{padding:8px 12px;border-bottom:1px solid var(--border)}tr:hover td{background:rgba(16,185,129,.04)}
+.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:6px}
+.progress .bar{height:100%;border-radius:3px}
+.back{display:inline-block;color:var(--muted);font-size:.88em;margin-bottom:16px}.back:hover{color:var(--accent)}
+.dl-card{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;margin:8px 0;transition:.2s}
+.dl-card:hover{border-color:var(--accent);text-decoration:none}.dl-card .icon{font-size:1.8em}.dl-card .info h4{color:var(--white);margin-bottom:2px;font-size:.95em}.dl-card .info p{color:var(--muted);font-size:.8em}
+.phase-tag{display:inline-block;font-size:.65em;font-weight:600;padding:2px 6px;border-radius:3px;margin-right:4px}
+.phase-plan{background:rgba(16,185,129,.15);color:var(--green)}.phase-exec{background:rgba(245,158,11,.15);color:var(--amber)}.phase-not{background:rgba(148,163,184,.1);color:var(--muted)}
+.nav-sub{display:flex;flex-wrap:wrap;gap:5px;margin:12px 0 20px;padding:10px 14px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
+.nav-sub a{font-size:.78em;color:var(--muted);padding:3px 8px;border-radius:4px;transition:.2s;white-space:nowrap}
 .nav-sub a:hover,.nav-sub a.active{color:var(--white);background:var(--surface);text-decoration:none}
-</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a></div></div></nav><div class="container">
-    <div style="padding-top:30px">
+.doc-content{max-width:900px;margin:0 auto;padding:16px 0}
+.doc-content h1{font-size:1.7em;font-weight:800;color:var(--white);margin:28px 0 14px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+.doc-content h2{font-size:1.3em;font-weight:700;color:var(--accent);margin:24px 0 10px}
+.doc-content h3{font-size:1.1em;font-weight:600;color:var(--accent2);margin:18px 0 8px}
+.doc-content p{margin:6px 0;line-height:1.65}.doc-content table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.83em}
+.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:8px 10px;font-weight:600;border:1px solid var(--border)}
+.doc-content td{padding:7px 10px;border:1px solid var(--border);vertical-align:top}
+.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.doc-content ul,.doc-content ol{margin:6px 0 6px 20px}.doc-content li{margin:3px 0;line-height:1.55}
+.doc-content strong{color:var(--white)}.doc-content em{color:var(--muted)}
+footer{text-align:center;padding:32px 0;color:var(--muted);font-size:.78em;border-top:1px solid var(--border);margin-top:50px}
+footer a{color:var(--accent2)}
+@media(max-width:768px){.stats{gap:14px}.stat .num{font-size:1.2em}nav .links a{font-size:10px;padding:3px 5px}.hero h1{font-size:1.5em}}
+</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="projections.html" class="">Projections</a><a href="action-plan.html" class="">Action Plan</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a><a href="https://apseter.github.io/Retail_Ventures_Command_Center/" class="cc-link" target="_blank">🏠 Command Center</a></div></div></nav><div class="container"><div style="padding-top:28px">
         <a href="p6.html" class="back">← 💻 P6: DTC Digital</a>
         <div class="nav-sub"><a href="p6.html">💻 P6 Overview</a><a href="sub-p6a.html" class="active">P6A</a><a href="sub-p6b.html">P6B</a><a href="sub-p6c.html">P6C</a><a href="sub-p6d.html">P6D</a><a href="sub-p6e.html">P6E</a></div>
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px">
-            <div>
-                <span style="background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px">P6A</span>
-                <span style="color:var(--muted);font-size:.85em;margin-left:8px">P6: DTC Digital</span>
-            </div>
-            <a href="files/P6A_Analytics_Tracking.docx" style="font-size:.85em;color:var(--accent);padding:6px 14px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+            <div><span class="badge">P6A</span> <span style="color:var(--muted);font-size:.83em">P6: DTC Digital</span></div>
+            <a href="files/P6A_Analytics_Tracking.docx" style="font-size:.83em;color:var(--accent);padding:5px 12px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
         </div>
-        <div class="doc-content">
-            <p><strong>P6A: ANALYTICS</strong></p>
+        <div class="doc-content"><p><strong><a href="sub-p6a.html" style="color:var(--accent)">P6A</a>: ANALYTICS</strong></p>
 <p><strong>&amp; TRACKING</strong></p>
-<p>Sub-Project P6A | DTC Digital Infrastructure | Weeks 10–12</p>
+<p>Sub-Project <a href="sub-p6a.html" style="color:var(--accent)">P6A</a> | DTC Digital Infrastructure | Weeks 10–12</p>
 <p><em>Complete Digital Measurement Foundation: GA4 Ecommerce Setup,
 Meta Pixel + Conversions API, Google Search Console, Heatmap &amp;
 Session Recording, UTM Tracking System, and 10-KPI Performance
@@ -95,8 +71,8 @@ Every visitor to the website before tracking is configured is invisible
 data — their behavior, their source, their conversion path is lost
 permanently. This document establishes the complete digital measurement
 infrastructure during Weeks 10–12, well before the Shopify store
-launches (P6B), Amazon listings go live (P6C), or any marketing spend
-begins (P7). The infrastructure captures: WHERE visitors come from (UTMs
+launches (<a href="sub-p6b.html" style="color:var(--accent)">P6B</a>), Amazon listings go live (<a href="sub-p6c.html" style="color:var(--accent)">P6C</a>), or any marketing spend
+begins (<a href="p7.html" style="color:var(--accent)">P7</a>). The infrastructure captures: WHERE visitors come from (UTMs
 + GA4 acquisition), WHAT they do on the site (GA4 events + Clarity
 heatmaps), WHETHER they convert (GA4 ecommerce + Meta Pixel), and HOW
 much it costs to acquire them (KPI dashboard with CAC by channel).</p>
@@ -120,7 +96,7 @@ single most actionable piece of data for DTC optimization.</p>
 <table>
 <colgroup>
 <col style="width: 7%" />
-<col style="width:50%">
+<col style="width: 50%" />
 <col style="width: 42%" />
 </colgroup>
 <tbody>
@@ -189,7 +165,7 @@ Pandectes GDPR, $0–$10/month, or Cookie Banner by Avada, free).</td>
 <tr class="odd">
 <td><strong>Link Google Ads (future)</strong></td>
 <td>GA4: Admin → Product Links → Google Ads. Link when/if Google Ads
-campaigns are launched (P7 or Year 2). This enables: importing GA4
+campaigns are launched (<a href="p7.html" style="color:var(--accent)">P7</a> or Year 2). This enables: importing GA4
 conversions as Google Ads conversion actions, building remarketing
 audiences in GA4 and using them in Google Ads, and seeing Google Ads
 performance data in GA4 reports.</td>
@@ -212,7 +188,7 @@ the effectiveness of awareness campaigns. ECOMMERCE FUNNEL (Explore →
 Funnel Exploration): create a custom funnel: view_item → add_to_cart →
 begin_checkout → purchase. This shows: product page → cart conversion
 rate, cart → checkout rate, and checkout → purchase rate. If 50% drop
-off between cart and checkout: investigate checkout friction (P6E
+off between cart and checkout: investigate checkout friction (<a href="sub-p6e.html" style="color:var(--accent)">P6E</a>
 Section 4). LANDING PAGES (Reports → Engagement → Landing Page): shows
 which pages users land on first. Use to: identify high-performing
 content (blog posts, race-specific landing pages) and pages with high
@@ -229,7 +205,7 @@ are tracked from Day 1.</p>
 <table>
 <colgroup>
 <col style="width: 7%" />
-<col style="width:50%">
+<col style="width: 50%" />
 <col style="width: 42%" />
 </colgroup>
 <tbody>
@@ -244,7 +220,7 @@ are tracked from Day 1.</p>
 Manager → Connect Data Sources → Web → Meta Pixel. Name: “[BRAND]
 Pixel.” Copy the Pixel ID (format: 15-digit number).</td>
 <td>Requires: a Facebook Business Page for the brand (create if not
-already done per P1E). A personal Facebook account is needed to create
+already done per <a href="sub-p1e.html" style="color:var(--accent)">P1E</a>). A personal Facebook account is needed to create
 Business Manager.</td>
 </tr>
 <tr class="odd">
@@ -282,7 +258,7 @@ Request” (URL rule: brand.com/b2b/sample-request-confirmed). These
 custom conversions enable: optimizing future Meta ad campaigns for
 specific B2B or DTC actions beyond just purchases.</td>
 <td>Custom conversions are NOT needed for launch but should be
-configured NOW so that when Meta ads launch (P7), the pixel has
+configured NOW so that when Meta ads launch (<a href="p7.html" style="color:var(--accent)">P7</a>), the pixel has
 historical conversion data to optimize against.</td>
 </tr>
 <tr class="even">
@@ -309,7 +285,7 @@ ads to existing customers), and cross-sell campaigns (show 3-pack ads to
 single-unit buyers). EMAIL SUBSCRIBERS: upload Klaviyo email list to
 Meta as a custom audience (monthly sync). Use for: lookalike audience
 creation from engaged email subscribers. These audiences are GOLDMINES
-for paid social advertising in P7. Building them now means they’re ready
+for paid social advertising in <a href="p7.html" style="color:var(--accent)">P7</a>. Building them now means they’re ready
 when ad spend begins.</p>
 <p>3. Google Search Console</p>
 <p><strong>Search Console is the window into how Google sees the
@@ -322,7 +298,7 @@ specific queries.</p>
 <table>
 <colgroup>
 <col style="width: 7%" />
-<col style="width:50%">
+<col style="width: 50%" />
 <col style="width: 42%" />
 </colgroup>
 <tbody>
@@ -373,7 +349,7 @@ monitor: “compostable poncho,” “race start line warmth,” “marathon
 poncho,” “sustainable running gear.”</td>
 <td>Search Console data has a 2–3 day lag. Performance report shows the
 ACTUAL search queries people use to find the site — this data feeds
-directly into P6D SEO keyword strategy.</td>
+directly into <a href="sub-p6d.html" style="color:var(--accent)">P6D</a> SEO keyword strategy.</td>
 </tr>
 </tbody>
 </table>
@@ -384,7 +360,7 @@ important pages are “Excluded”: investigate the reason (noindex tag,
 crawl error, redirect issue). (2) MOBILE USABILITY report: flags pages
 with mobile display issues (text too small, clickable elements too close
 together). Fix any issues before launch — 70%+ of running shoppers
-browse on mobile (per P6B Section 7). (3) CORE WEB VITALS (Experience →
+browse on mobile (per <a href="sub-p6b.html" style="color:var(--accent)">P6B</a> Section 7). (3) CORE WEB VITALS (Experience →
 Core Web Vitals): measures page speed and user experience. Targets: LCP
 (Largest Contentful Paint) &lt;2.5 seconds, FID (First Input Delay)
 &lt;100ms, CLS (Cumulative Layout Shift) &lt;0.1. Shopify themes
@@ -449,7 +425,7 @@ image, price, CTA) above the fold.</td>
 <td><strong>Review cadence</strong></td>
 <td>Weekly during the first month after launch (identify and fix
 critical UX issues). Monthly after the first month (ongoing
-optimization). Before any A/B test (P6E Section 3): review heatmaps +
+optimization). Before any A/B test (<a href="sub-p6e.html" style="color:var(--accent)">P6E</a> Section 3): review heatmaps +
 recordings to form a hypothesis about what to test.</td>
 </tr>
 </tbody>
@@ -625,7 +601,7 @@ ranking</td>
 <td>Seller Central: Product Reviews</td>
 <td>Target: 25+ reviews within 90 days (via Vine + organic + expo
 follow-ups). Average rating target: 4.3+ stars. Track: weekly. If rating
-drops &lt;4.0: investigate specific complaints and address in P2F
+drops &lt;4.0: investigate specific complaints and address in <a href="sub-p2f.html" style="color:var(--accent)">P2F</a>
 product improvement.</td>
 <td>Seller Central + Helium 10</td>
 </tr>
@@ -633,7 +609,7 @@ product improvement.</td>
 <td><strong>B2B pipeline value</strong></td>
 <td>CRM (HubSpot): total weighted pipeline value across all deal
 stages</td>
-<td>Target: $30K+ by Week 12 (Bootstrap) or $100K+ (Full Launch) per P5A
+<td>Target: $30K+ by Week 12 (Bootstrap) or $100K+ (Full Launch) per <a href="sub-p5a.html" style="color:var(--accent)">P5A</a>
 Section 7. Track: weekly during Monday CRM review.</td>
 <td>HubSpot CRM dashboard</td>
 </tr>
@@ -650,7 +626,7 @@ root cause.</td>
 <td>Total units sold × weight/unit × collection rate = lbs diverted.
 Running total.</td>
 <td>Track: cumulative lbs diverted from landfill, cumulative CO₂e
-avoided. Display on homepage impact counter (P6B Section 3) and in
+avoided. Display on homepage impact counter (<a href="sub-p6b.html" style="color:var(--accent)">P6B</a> Section 3) and in
 annual sustainability report.</td>
 <td>Manual calculation from B2B pilot data + sales data</td>
 </tr>
@@ -689,13 +665,13 @@ purchase through the full Shopify checkout — confirm: GA4 records the
 purchase event, Meta Pixel fires the Purchase event, Clarity records the
 session, UTMs are correctly attributed. Run a full “tracking audit”:
 visit the site from 3 different UTM-tagged links and verify all 3 appear
-correctly in GA4 Traffic Acquisition. HANDOFF to P6B (Shopify Store
+correctly in GA4 Traffic Acquisition. HANDOFF to <a href="sub-p6b.html" style="color:var(--accent)">P6B</a> (Shopify Store
 Build) with full tracking infrastructure live.</strong></p>
 <p>BUDGET: GA4: $0 (free). Meta Pixel: $0 (free). Google Search Console:
 $0 (free). Microsoft Clarity: $0 (free). Google Looker Studio: $0
 (free). UTM Builder: $0 (Google’s tool is free). Bitly (short links):
 $0–$10/month. Cookie consent banner (Shopify app): $0–$10/month. TOTAL
-P6A: $0–$20/month. The entire analytics infrastructure is FREE. There is
+<a href="sub-p6a.html" style="color:var(--accent)">P6A</a>: $0–$20/month. The entire analytics infrastructure is FREE. There is
 zero reason to delay implementation.</p>
 <p>8. Conclusion: Measure Before You Market</p>
 <p><strong>Every dollar spent on marketing without tracking is a dollar
@@ -714,9 +690,4 @@ needs crawl data before SEO insights emerge. The sooner tracking is
 live, the richer the data foundation when marketing spend begins. The
 best time to plant a tracking pixel was 6 months ago. The second best
 time is today.</p>
-
-        </div>
-    </div></div>
-<footer style="text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px">
-Sustainable Race-Start Warmth Poncho — D2C Brand GTM Project · 60 Subprojects · 391 Tasks · ~15,500¶ · April 2026
-</footer></body></html>
+</div></div></div><footer>Sustainable Race-Start Warmth Poncho — GTM Project · 60 Subprojects · 391 Tasks · ~120K Words · April 2026<br><a href="https://apseter.github.io/Retail_Ventures_Command_Center/">← Retail Ventures Command Center</a> · <a href="index.html">Project Home</a></footer></body></html>

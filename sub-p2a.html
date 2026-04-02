@@ -1,89 +1,65 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>P2A: Material Configuration Selection — Race Start Warmth GTM</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-<style>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>P2A — Race Start Warmth GTM</title><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet"><style>
 :root{--bg:#0a0e1a;--surface:#111827;--card:#1a2332;--border:#2a3a4e;--accent:#10b981;--accent2:#3b82f6;--text:#e2e8f0;--muted:#94a3b8;--white:#fff;--red:#ef4444;--amber:#f59e0b;--green:#10b981}
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
 a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
 .container{max-width:1200px;margin:0 auto;padding:0 24px}
-/* Nav */
-nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
-nav .inner{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;max-width:1200px;margin:0 auto}
-nav .brand{font-weight:700;font-size:15px;color:var(--accent)}
-nav .links{display:flex;gap:8px;flex-wrap:wrap}
-nav .links a{color:var(--muted);font-size:13px;padding:4px 10px;border-radius:6px;transition:.2s}
+nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
+nav .inner{display:flex;align-items:center;justify-content:space-between;padding:10px 24px;max-width:1200px;margin:0 auto;flex-wrap:wrap;gap:8px}
+nav .brand{font-weight:700;font-size:14px;color:var(--accent);white-space:nowrap}
+nav .links{display:flex;gap:4px;flex-wrap:wrap}
+nav .links a{color:var(--muted);font-size:12px;padding:4px 8px;border-radius:6px;transition:.2s;white-space:nowrap}
 nav .links a:hover,nav .links a.active{color:var(--white);background:var(--card);text-decoration:none}
-/* Hero */
-.hero{padding:60px 0 40px;text-align:center}
-.hero h1{font-size:2.4em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hero p{color:var(--muted);font-size:1.1em;max-width:700px;margin:0 auto}
-/* Stats bar */
-.stats{display:flex;justify-content:center;gap:32px;padding:24px 0;flex-wrap:wrap}
-.stat{text-align:center}.stat .num{font-size:1.8em;font-weight:800;color:var(--white)}.stat .label{font-size:.75em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
-/* Cards */
-.grid{display:grid;gap:16px;margin:24px 0}
-.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}
-.grid-3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
-.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;transition:.2s}
-.card:hover{border-color:var(--accent);transform:translateY(-2px)}
-.card h3{font-size:1.1em;margin-bottom:8px}.card p{color:var(--muted);font-size:.9em}
-.card .badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:8px}
-.card .meta{font-size:.8em;color:var(--muted);margin-top:12px}
-/* Section */
-.section{padding:40px 0}.section h2{font-size:1.6em;font-weight:700;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--border)}
-/* Table */
-table{width:100%;border-collapse:collapse;font-size:.85em;margin:16px 0}
-th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:52px}
-td{padding:8px 12px;border-bottom:1px solid var(--border)}
-tr:hover td{background:rgba(16,185,129,.05)}
-.status-complete{color:var(--green);font-weight:600}.status-not{color:var(--muted)}
-/* Progress */
-.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:8px}
-.progress .bar{height:100%;background:var(--accent);border-radius:3px}
-/* Back link */
-.back{display:inline-block;color:var(--muted);font-size:.9em;margin-bottom:20px}
-.back:hover{color:var(--accent)}
-/* Download */
-.dl-card{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin:8px 0;transition:.2s}
-.dl-card:hover{border-color:var(--accent);text-decoration:none}
-.dl-card .icon{font-size:2em}.dl-card .info h4{color:var(--white);margin-bottom:4px}.dl-card .info p{color:var(--muted);font-size:.85em}
-/* Footer */
-footer{text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px}
-@media(max-width:768px){.stats{gap:16px}.stat .num{font-size:1.3em}nav .links{gap:4px}nav .links a{font-size:11px;padding:3px 6px}.hero h1{font-size:1.6em}}
-
-.doc-content{max-width:900px;margin:0 auto;padding:20px 0}
-.doc-content h1{font-size:1.8em;font-weight:800;color:var(--white);margin:32px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
-.doc-content h2{font-size:1.4em;font-weight:700;color:var(--accent);margin:28px 0 12px}
-.doc-content h3{font-size:1.15em;font-weight:600;color:var(--accent2);margin:20px 0 10px}
-.doc-content p{margin:8px 0;line-height:1.7}
-.doc-content table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85em}
-.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;border:1px solid var(--border)}
-.doc-content td{padding:8px 12px;border:1px solid var(--border);vertical-align:top}
-.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
-.doc-content ul,.doc-content ol{margin:8px 0 8px 24px}
-.doc-content li{margin:4px 0;line-height:1.6}
-.doc-content strong{color:var(--white)}
-.doc-content em{color:var(--muted)}
-.doc-content blockquote{border-left:3px solid var(--accent);padding:8px 16px;margin:12px 0;background:var(--card);border-radius:0 8px 8px 0}
-.nav-sub{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 24px;padding:12px 16px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
-.nav-sub a{font-size:.8em;color:var(--muted);padding:4px 10px;border-radius:4px;transition:.2s;white-space:nowrap}
+nav .links a.cc-link{color:var(--accent2);border:1px solid var(--accent2);font-weight:600}
+nav .links a.cc-link:hover{background:var(--accent2);color:var(--white)}
+.hero{padding:50px 0 30px;text-align:center}
+.hero h1{font-size:2.2em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:1.05em;max-width:700px;margin:0 auto}
+.stats{display:flex;justify-content:center;gap:28px;padding:20px 0;flex-wrap:wrap}
+.stat{text-align:center}.stat .num{font-size:1.7em;font-weight:800;color:var(--white)}.stat .label{font-size:.7em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.grid{display:grid;gap:16px;margin:24px 0}.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}.grid-3{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;transition:.2s;display:block}
+.card:hover{border-color:var(--accent);transform:translateY(-2px);text-decoration:none}
+.card h3{font-size:1.05em;margin-bottom:6px;color:var(--white)}.card p{color:var(--muted);font-size:.88em}
+.badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.65em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:6px}
+.badge-amber{background:var(--amber)}.badge-blue{background:var(--accent2)}
+.card .meta{font-size:.78em;color:var(--muted);margin-top:10px}
+.section{padding:32px 0}.section h2{font-size:1.5em;font-weight:700;margin-bottom:20px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+table{width:100%;border-collapse:collapse;font-size:.83em;margin:16px 0}
+th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:48px}
+td{padding:8px 12px;border-bottom:1px solid var(--border)}tr:hover td{background:rgba(16,185,129,.04)}
+.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:6px}
+.progress .bar{height:100%;border-radius:3px}
+.back{display:inline-block;color:var(--muted);font-size:.88em;margin-bottom:16px}.back:hover{color:var(--accent)}
+.dl-card{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;margin:8px 0;transition:.2s}
+.dl-card:hover{border-color:var(--accent);text-decoration:none}.dl-card .icon{font-size:1.8em}.dl-card .info h4{color:var(--white);margin-bottom:2px;font-size:.95em}.dl-card .info p{color:var(--muted);font-size:.8em}
+.phase-tag{display:inline-block;font-size:.65em;font-weight:600;padding:2px 6px;border-radius:3px;margin-right:4px}
+.phase-plan{background:rgba(16,185,129,.15);color:var(--green)}.phase-exec{background:rgba(245,158,11,.15);color:var(--amber)}.phase-not{background:rgba(148,163,184,.1);color:var(--muted)}
+.nav-sub{display:flex;flex-wrap:wrap;gap:5px;margin:12px 0 20px;padding:10px 14px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
+.nav-sub a{font-size:.78em;color:var(--muted);padding:3px 8px;border-radius:4px;transition:.2s;white-space:nowrap}
 .nav-sub a:hover,.nav-sub a.active{color:var(--white);background:var(--surface);text-decoration:none}
-</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a></div></div></nav><div class="container">
-    <div style="padding-top:30px">
+.doc-content{max-width:900px;margin:0 auto;padding:16px 0}
+.doc-content h1{font-size:1.7em;font-weight:800;color:var(--white);margin:28px 0 14px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+.doc-content h2{font-size:1.3em;font-weight:700;color:var(--accent);margin:24px 0 10px}
+.doc-content h3{font-size:1.1em;font-weight:600;color:var(--accent2);margin:18px 0 8px}
+.doc-content p{margin:6px 0;line-height:1.65}.doc-content table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.83em}
+.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:8px 10px;font-weight:600;border:1px solid var(--border)}
+.doc-content td{padding:7px 10px;border:1px solid var(--border);vertical-align:top}
+.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.doc-content ul,.doc-content ol{margin:6px 0 6px 20px}.doc-content li{margin:3px 0;line-height:1.55}
+.doc-content strong{color:var(--white)}.doc-content em{color:var(--muted)}
+footer{text-align:center;padding:32px 0;color:var(--muted);font-size:.78em;border-top:1px solid var(--border);margin-top:50px}
+footer a{color:var(--accent2)}
+@media(max-width:768px){.stats{gap:14px}.stat .num{font-size:1.2em}nav .links a{font-size:10px;padding:3px 5px}.hero h1{font-size:1.5em}}
+</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="projections.html" class="">Projections</a><a href="action-plan.html" class="">Action Plan</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a><a href="https://apseter.github.io/Retail_Ventures_Command_Center/" class="cc-link" target="_blank">🏠 Command Center</a></div></div></nav><div class="container"><div style="padding-top:28px">
         <a href="p2.html" class="back">← ⚙️ P2: Product Design</a>
         <div class="nav-sub"><a href="p2.html">⚙️ P2 Overview</a><a href="sub-p2a.html" class="active">P2A</a><a href="sub-p2b.html">P2B</a><a href="sub-p2c.html">P2C</a><a href="sub-p2d.html">P2D</a><a href="sub-p2e.html">P2E</a><a href="sub-p2f.html">P2F</a></div>
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px">
-            <div>
-                <span style="background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px">P2A</span>
-                <span style="color:var(--muted);font-size:.85em;margin-left:8px">P2: Product Design</span>
-            </div>
-            <a href="files/P2A_Material_Configuration_Selection.docx" style="font-size:.85em;color:var(--accent);padding:6px 14px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+            <div><span class="badge">P2A</span> <span style="color:var(--muted);font-size:.83em">P2: Product Design</span></div>
+            <a href="files/P2A_Material_Configuration_Selection.docx" style="font-size:.83em;color:var(--accent);padding:5px 12px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
         </div>
-        <div class="doc-content">
-            <p><strong>P2A: MATERIAL CONFIGURATION</strong></p>
+        <div class="doc-content"><p><strong><a href="sub-p2a.html" style="color:var(--accent)">P2A</a>: MATERIAL CONFIGURATION</strong></p>
 <p><strong>SELECTION</strong></p>
-<p>Sub-Project P2A | Product Design &amp; Material Engineering | Weeks
+<p>Sub-Project <a href="sub-p2a.html" style="color:var(--accent)">P2A</a> | Product Design &amp; Material Engineering | Weeks
 4–8</p>
 <p><em>Complete Technical Dossier: 5 Configurations Evaluated, Film
 Thickness Testing, Supplier Directory, Field Trial Protocol,
@@ -101,7 +77,7 @@ comfort, water resistance, compostability, and cost. Config B wins on
 the combined scorecard. Config C (metallized BOPLA + PLA spunbond) is
 the leading alternative with better shelf life, recommended as a
 dual-source option.</p>
-<p><strong>This document covers all 8 P2A tasks:</strong>
+<p><strong>This document covers all 8 <a href="sub-p2a.html" style="color:var(--accent)">P2A</a> tasks:</strong>
 5-configuration evaluation matrix (task 2.01), PLA shell thickness
 testing at 25–50µm (2.02), cellulose/PLA insulation sourcing from 6
 metallized film + 5 spunbond suppliers (2.03), 8+ tester field trial
@@ -110,7 +86,7 @@ composting (2.05), waterproofing testing for light rain/drizzle (2.06),
 final selection rationale (2.07), and volume pricing negotiation
 strategy (2.08).</p>
 <p>1. Five Material Configurations Evaluated</p>
-<p><strong>Building on P0E’s material science research,</strong> five
+<p><strong>Building on <a href="sub-p0e.html" style="color:var(--accent)">P0E</a>’s material science research,</strong> five
 distinct configurations were evaluated. Each uses a different
 combination of metallized compostable film and PLA nonwoven
 reinforcement. The evaluation covers: warmth (CLO), waterproofing (cfm
@@ -463,12 +439,12 @@ NWFabric/Weboss from China — both offer MOQ 500–1,000 kg at
 factory-direct pricing. At 35 gsm, 1,000 kg of PLA spunbond = ~28,500 m²
 = enough for ~15,800 ponchos (1.8 m² each).</p>
 <p>5. Field Trial Protocol: 8+ Tester Corral Simulation</p>
-<p><strong>This is the most critical P2A activity.</strong> Lab-measured
+<p><strong>This is the most critical <a href="sub-p2a.html" style="color:var(--accent)">P2A</a> activity.</strong> Lab-measured
 CLO values confirm thermal physics, but only real-world field testing
 confirms the RUNNER EXPERIENCE: does the poncho feel warm, comfortable,
 and easy to use at 6 AM in a cold corral? The following protocol
 generates the data needed for both the final material decision (task
-2.07) and the B2B pitch deck (P1D Slide 8).</p>
+2.07) and the B2B pitch deck (<a href="sub-p1d.html" style="color:var(--accent)">P1D</a> Slide 8).</p>
 <table>
 <colgroup>
 <col style="width: 18%" />
@@ -547,8 +523,8 @@ cleanly in ≤3 seconds in all 3 hand conditions, (4) receive &gt;75%
 </tbody>
 </table>
 <p>6. Decomposition Verification: Industrial + Home Composting</p>
-<p><strong>P0E established that metallized compostable films CAN be
-certified.</strong> P2A verifies that the SPECIFIC final product
+<p><strong><a href="sub-p0e.html" style="color:var(--accent)">P0E</a> established that metallized compostable films CAN be
+certified.</strong> <a href="sub-p2a.html" style="color:var(--accent)">P2A</a> verifies that the SPECIFIC final product
 configuration (not just the individual film) composts as claimed. The
 complete product — including bonding method, any adhesive, ink, and the
 PLA nonwoven — must be tested as an assembled unit.</p>
@@ -715,8 +691,8 @@ This orientation also protects the delicate metallization layer from
 external abrasion and rain. Confirm this orientation with the converter
 during prototype production.</p>
 <p>8. CLO / Thermal Performance Testing Protocol</p>
-<p><strong>[GAP P2-06 CLOSED]</strong> CLO values (2.5–3.0) and the “95%
-infrared heat reflection” claim are cited throughout P0E, P1C, and P2A
+<p><strong>[GAP <a href="p2.html" style="color:var(--accent)">P2</a>-06 CLOSED]</strong> CLO values (2.5–3.0) and the “95%
+infrared heat reflection” claim are cited throughout <a href="sub-p0e.html" style="color:var(--accent)">P0E</a>, <a href="sub-p1c.html" style="color:var(--accent)">P1C</a>, and <a href="sub-p2a.html" style="color:var(--accent)">P2A</a>
 as the scientific foundation for warmth marketing and competitive
 equivalence vs. Heatsheets. However, these values have been estimated
 from published metallized film data, not measured on the actual
@@ -781,8 +757,8 @@ exterior. (5) The temperature difference between bare surface and poncho
 exterior quantifies IR blocking. If exterior shows near-ambient
 temperature while surface underneath remains at 35°C, the metallization
 is reflecting &gt;90% of IR radiation. This produces the FLIR comparison
-images needed for P1D Section 7 (FLIR thermal content) and the Amazon A+
-Content comparison graphic (P1C Section 6.4 Module 2).</p>
+images needed for <a href="sub-p1d.html" style="color:var(--accent)">P1D</a> Section 7 (FLIR thermal content) and the Amazon A+
+Content comparison graphic (<a href="sub-p1c.html" style="color:var(--accent)">P1C</a> Section 6.4 Module 2).</p>
 <p>IMPORTANT: FLIR cameras measure SURFACE TEMPERATURE, not CLO
 directly. A FLIR image shows that the poncho is blocking IR radiation
 (which proves the metallization works), but converting FLIR temperature
@@ -860,7 +836,7 @@ A summer warehouse at 35°C can degrade product in 3–6 months.
 Non-negotiable storage requirements: below 25°C (77°F), below 50%
 relative humidity, no direct UV exposure. Individual ponchos must be
 sealed in moisture-barrier packaging (the compostable inner bag
-specified in P1B Section 6). FIFO inventory management is essential.</p>
+specified in <a href="sub-p1b.html" style="color:var(--accent)">P1B</a> Section 6). FIFO inventory management is essential.</p>
 <p>Config C (ENVIROMET metallized BOPLA) has a natural shelf life
 advantage over Config B (NatureFlex cellulose) because the metallization
 layer on BOPLA is protective against moisture ingress to the PLA
@@ -921,7 +897,7 @@ risk). Fallback: EPOTAL CF 430.</td>
 <td>Volume commitments unlock the largest savings on film (30–40% of
 COGS). Negotiate 2–3 year framework agreements with annual price
 locks.</td>
-<td>See P0F Section 1 for complete COGS breakdown by volume tier.</td>
+<td>See <a href="sub-p0f.html" style="color:var(--accent)">P0F</a> Section 1 for complete COGS breakdown by volume tier.</td>
 </tr>
 </tbody>
 </table>
@@ -941,7 +917,7 @@ aggressively — the compostable film industry is small and relationships
 matter. Instead: be transparent that you are dual-sourcing for supply
 resilience and let pricing competition happen naturally.</p>
 <p>11. Supply Chain Risk Assessment &amp; Contingency Plan</p>
-<p><strong>[GAP P2-04 CLOSED]</strong> The compostable film supply chain
+<p><strong>[GAP <a href="p2.html" style="color:var(--accent)">P2</a>-04 CLOSED]</strong> The compostable film supply chain
 is concentrated among a small number of specialized manufacturers. A
 single-source dependency on any critical component creates an
 existential risk for a seasonal product with 8–10 week lead times: one
@@ -957,7 +933,7 @@ Wigton, UK and Tecumseh, KS, USA. A disruption at either plant (fire,
 equipment failure, raw material shortage, labor dispute) could halt
 poncho production. Mitigation: Config C (Celplast ENVIROMET or TIPA
 312MET) uses metallized BOPLA film, which provides equivalent warmth
-performance. Qualification status: evaluated in P2A Section 1 (scored
+performance. Qualification status: evaluated in <a href="sub-p2a.html" style="color:var(--accent)">P2A</a> Section 1 (scored
 24/30 vs Config B’s 26/30). Switching cost: $500–$2,000 for converter
 retooling + $500–$1,500 for new sample validation. Switching time: 4–6
 weeks for new samples + 4–6 weeks for production = 8–12 weeks
@@ -986,9 +962,9 @@ folding, packaging): RISK LEVEL: MEDIUM-HIGH. The converter relationship
 is the most operationally complex dependency: they hold the production
 tooling, know the machine settings, and produce the finished product.
 Losing a converter requires qualifying a new one from scratch.
-Mitigation: P2C Section 6 establishes a primary + backup converter from
+Mitigation: <a href="sub-p2c.html" style="color:var(--accent)">P2C</a> Section 6 establishes a primary + backup converter from
 prototype phase. NEVER grant a converter exclusive manufacturing rights
-(per P2C Section 7 — Exclusivity &amp; IP). Switching time: 6–12 weeks
+(per <a href="sub-p2c.html" style="color:var(--accent)">P2C</a> Section 7 — Exclusivity &amp; IP). Switching time: 6–12 weeks
 for full qualification of a new converter.</strong></p>
 <p>11.2 Backup Activation Triggers</p>
 <p>Activate backup supplier if ANY of the following conditions are met:
@@ -1014,7 +990,7 @@ pricing). This keeps the account active, the contact relationship warm,
 and generates a small batch of Config C material for shelf life testing
 and emergency stock. (2) Place a small annual order with the backup
 nonwoven supplier: 100–500 kg ($60–$250). (3) Maintain backup converter
-qualification: after the initial P2C prototype run from 2–3 converters,
+qualification: after the initial <a href="sub-p2c.html" style="color:var(--accent)">P2C</a> prototype run from 2–3 converters,
 select the second-highest-scoring converter as backup. Place a small
 reorder every 12 months (500–1,000 units, $500–$1,500) to keep tooling
 current and operator familiarity fresh. (4) Update backup suppliers on
@@ -1026,7 +1002,7 @@ supplier.</p>
 critical single-source component (metallized cellulose film). At 25,000
 units/year run rate: annual film consumption = ~45,000 m². 6-week safety
 stock = ~5,200 m² of NatureFlex NM rolls. Cost: $1,300–$2,600 at volume
-pricing. Storage: climate-controlled per P2D Section 5 (≤25°C, ≤50% RH).
+pricing. Storage: climate-controlled per <a href="sub-p2d.html" style="color:var(--accent)">P2D</a> Section 5 (≤25°C, ≤50% RH).
 FIFO rotation: use safety stock for production and replace with fresh
 rolls quarterly to prevent shelf-life degradation. Alternative:
 negotiate with Futamura to hold consignment stock at their US facility
@@ -1094,17 +1070,17 @@ consultation.</strong></p>
 <p><strong>WEEK 8: DECISION WEEK. Compile field trial results into
 selection rationale document. Select winning config. Negotiate
 production pricing with top 2 film suppliers + 2 nonwoven suppliers.
-Document final material specification for handoff to P2B (Industrial
+Document final material specification for handoff to <a href="sub-p2b.html" style="color:var(--accent)">P2B</a> (Industrial
 Design).</strong></p>
-<p>Budget for P2A sprint: $1,200–$2,800. Includes: FLIR camera
+<p>Budget for <a href="sub-p2a.html" style="color:var(--accent)">P2A</a> sprint: $1,200–$2,800. Includes: FLIR camera
 ($200–$300), impulse heat sealer ($80–$150), tester incentives
 ($200–$300 for 8–12 testers), thermocouple data loggers ($150–$300),
 sample shipping ($100–$200), prototype materials ($50–$100), and
 contingency ($200–$500). Excludes formal lab testing (hot plate/thermal
-manikin), which is a P0E/P2D activity at $2K–$30K.</p>
+manikin), which is a <a href="sub-p0e.html" style="color:var(--accent)">P0E</a>/<a href="sub-p2d.html" style="color:var(--accent)">P2D</a> activity at $2K–$30K.</p>
 <p>14. Conclusion: Material Selection Is the Product</p>
 <p><strong>For a single-product brand, the material IS the
-product.</strong> Every claim in P1C (95% heat reflection, certified
+product.</strong> Every claim in <a href="sub-p1c.html" style="color:var(--accent)">P1C</a> (95% heat reflection, certified
 compostable, composts in 90 days) depends on the material performing
 exactly as specified. Every negative review stems from material failure
 (tears, doesn’t keep warm, feels cheap). Every race director reorder
@@ -1116,16 +1092,11 @@ wearing the poncho at 6 AM in 38°F weather and telling you whether
 they’d spend $9.99 on it. Run the trial. Trust the data. Let the runners
 decide.</p>
 <p><strong>Config B (NatureFlex NM + PLA spunbond) is the current
-frontrunner</strong> based on P0E research synthesis, but the field
+frontrunner</strong> based on <a href="sub-p0e.html" style="color:var(--accent)">P0E</a> research synthesis, but the field
 trial in Weeks 6–7 is the binding decision point. If the data says
 Config C wins, follow the data. If neither config achieves 75% “would
 buy,” pause and invest in Config D before committing $50K+ to production
 inventory. The worst outcome is launching with a material that fails in
 the corral. The second-worst outcome is delaying launch by 4 weeks to
 get the material right. The math is clear.</p>
-
-        </div>
-    </div></div>
-<footer style="text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px">
-Sustainable Race-Start Warmth Poncho — D2C Brand GTM Project · 60 Subprojects · 391 Tasks · ~15,500¶ · April 2026
-</footer></body></html>
+</div></div></div><footer>Sustainable Race-Start Warmth Poncho — GTM Project · 60 Subprojects · 391 Tasks · ~120K Words · April 2026<br><a href="https://apseter.github.io/Retail_Ventures_Command_Center/">← Retail Ventures Command Center</a> · <a href="index.html">Project Home</a></footer></body></html>

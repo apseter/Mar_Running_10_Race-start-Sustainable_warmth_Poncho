@@ -1,89 +1,65 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>P8D: Financial Decision Points — Race Start Warmth GTM</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-<style>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>P8D — Race Start Warmth GTM</title><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet"><style>
 :root{--bg:#0a0e1a;--surface:#111827;--card:#1a2332;--border:#2a3a4e;--accent:#10b981;--accent2:#3b82f6;--text:#e2e8f0;--muted:#94a3b8;--white:#fff;--red:#ef4444;--amber:#f59e0b;--green:#10b981}
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
 a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
 .container{max-width:1200px;margin:0 auto;padding:0 24px}
-/* Nav */
-nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
-nav .inner{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;max-width:1200px;margin:0 auto}
-nav .brand{font-weight:700;font-size:15px;color:var(--accent)}
-nav .links{display:flex;gap:8px;flex-wrap:wrap}
-nav .links a{color:var(--muted);font-size:13px;padding:4px 10px;border-radius:6px;transition:.2s}
+nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
+nav .inner{display:flex;align-items:center;justify-content:space-between;padding:10px 24px;max-width:1200px;margin:0 auto;flex-wrap:wrap;gap:8px}
+nav .brand{font-weight:700;font-size:14px;color:var(--accent);white-space:nowrap}
+nav .links{display:flex;gap:4px;flex-wrap:wrap}
+nav .links a{color:var(--muted);font-size:12px;padding:4px 8px;border-radius:6px;transition:.2s;white-space:nowrap}
 nav .links a:hover,nav .links a.active{color:var(--white);background:var(--card);text-decoration:none}
-/* Hero */
-.hero{padding:60px 0 40px;text-align:center}
-.hero h1{font-size:2.4em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hero p{color:var(--muted);font-size:1.1em;max-width:700px;margin:0 auto}
-/* Stats bar */
-.stats{display:flex;justify-content:center;gap:32px;padding:24px 0;flex-wrap:wrap}
-.stat{text-align:center}.stat .num{font-size:1.8em;font-weight:800;color:var(--white)}.stat .label{font-size:.75em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
-/* Cards */
-.grid{display:grid;gap:16px;margin:24px 0}
-.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}
-.grid-3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
-.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;transition:.2s}
-.card:hover{border-color:var(--accent);transform:translateY(-2px)}
-.card h3{font-size:1.1em;margin-bottom:8px}.card p{color:var(--muted);font-size:.9em}
-.card .badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:8px}
-.card .meta{font-size:.8em;color:var(--muted);margin-top:12px}
-/* Section */
-.section{padding:40px 0}.section h2{font-size:1.6em;font-weight:700;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--border)}
-/* Table */
-table{width:100%;border-collapse:collapse;font-size:.85em;margin:16px 0}
-th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:52px}
-td{padding:8px 12px;border-bottom:1px solid var(--border)}
-tr:hover td{background:rgba(16,185,129,.05)}
-.status-complete{color:var(--green);font-weight:600}.status-not{color:var(--muted)}
-/* Progress */
-.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:8px}
-.progress .bar{height:100%;background:var(--accent);border-radius:3px}
-/* Back link */
-.back{display:inline-block;color:var(--muted);font-size:.9em;margin-bottom:20px}
-.back:hover{color:var(--accent)}
-/* Download */
-.dl-card{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin:8px 0;transition:.2s}
-.dl-card:hover{border-color:var(--accent);text-decoration:none}
-.dl-card .icon{font-size:2em}.dl-card .info h4{color:var(--white);margin-bottom:4px}.dl-card .info p{color:var(--muted);font-size:.85em}
-/* Footer */
-footer{text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px}
-@media(max-width:768px){.stats{gap:16px}.stat .num{font-size:1.3em}nav .links{gap:4px}nav .links a{font-size:11px;padding:3px 6px}.hero h1{font-size:1.6em}}
-
-.doc-content{max-width:900px;margin:0 auto;padding:20px 0}
-.doc-content h1{font-size:1.8em;font-weight:800;color:var(--white);margin:32px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
-.doc-content h2{font-size:1.4em;font-weight:700;color:var(--accent);margin:28px 0 12px}
-.doc-content h3{font-size:1.15em;font-weight:600;color:var(--accent2);margin:20px 0 10px}
-.doc-content p{margin:8px 0;line-height:1.7}
-.doc-content table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85em}
-.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;border:1px solid var(--border)}
-.doc-content td{padding:8px 12px;border:1px solid var(--border);vertical-align:top}
-.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
-.doc-content ul,.doc-content ol{margin:8px 0 8px 24px}
-.doc-content li{margin:4px 0;line-height:1.6}
-.doc-content strong{color:var(--white)}
-.doc-content em{color:var(--muted)}
-.doc-content blockquote{border-left:3px solid var(--accent);padding:8px 16px;margin:12px 0;background:var(--card);border-radius:0 8px 8px 0}
-.nav-sub{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 24px;padding:12px 16px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
-.nav-sub a{font-size:.8em;color:var(--muted);padding:4px 10px;border-radius:4px;transition:.2s;white-space:nowrap}
+nav .links a.cc-link{color:var(--accent2);border:1px solid var(--accent2);font-weight:600}
+nav .links a.cc-link:hover{background:var(--accent2);color:var(--white)}
+.hero{padding:50px 0 30px;text-align:center}
+.hero h1{font-size:2.2em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:1.05em;max-width:700px;margin:0 auto}
+.stats{display:flex;justify-content:center;gap:28px;padding:20px 0;flex-wrap:wrap}
+.stat{text-align:center}.stat .num{font-size:1.7em;font-weight:800;color:var(--white)}.stat .label{font-size:.7em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.grid{display:grid;gap:16px;margin:24px 0}.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}.grid-3{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;transition:.2s;display:block}
+.card:hover{border-color:var(--accent);transform:translateY(-2px);text-decoration:none}
+.card h3{font-size:1.05em;margin-bottom:6px;color:var(--white)}.card p{color:var(--muted);font-size:.88em}
+.badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.65em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:6px}
+.badge-amber{background:var(--amber)}.badge-blue{background:var(--accent2)}
+.card .meta{font-size:.78em;color:var(--muted);margin-top:10px}
+.section{padding:32px 0}.section h2{font-size:1.5em;font-weight:700;margin-bottom:20px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+table{width:100%;border-collapse:collapse;font-size:.83em;margin:16px 0}
+th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:48px}
+td{padding:8px 12px;border-bottom:1px solid var(--border)}tr:hover td{background:rgba(16,185,129,.04)}
+.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:6px}
+.progress .bar{height:100%;border-radius:3px}
+.back{display:inline-block;color:var(--muted);font-size:.88em;margin-bottom:16px}.back:hover{color:var(--accent)}
+.dl-card{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;margin:8px 0;transition:.2s}
+.dl-card:hover{border-color:var(--accent);text-decoration:none}.dl-card .icon{font-size:1.8em}.dl-card .info h4{color:var(--white);margin-bottom:2px;font-size:.95em}.dl-card .info p{color:var(--muted);font-size:.8em}
+.phase-tag{display:inline-block;font-size:.65em;font-weight:600;padding:2px 6px;border-radius:3px;margin-right:4px}
+.phase-plan{background:rgba(16,185,129,.15);color:var(--green)}.phase-exec{background:rgba(245,158,11,.15);color:var(--amber)}.phase-not{background:rgba(148,163,184,.1);color:var(--muted)}
+.nav-sub{display:flex;flex-wrap:wrap;gap:5px;margin:12px 0 20px;padding:10px 14px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
+.nav-sub a{font-size:.78em;color:var(--muted);padding:3px 8px;border-radius:4px;transition:.2s;white-space:nowrap}
 .nav-sub a:hover,.nav-sub a.active{color:var(--white);background:var(--surface);text-decoration:none}
-</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a></div></div></nav><div class="container">
-    <div style="padding-top:30px">
+.doc-content{max-width:900px;margin:0 auto;padding:16px 0}
+.doc-content h1{font-size:1.7em;font-weight:800;color:var(--white);margin:28px 0 14px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+.doc-content h2{font-size:1.3em;font-weight:700;color:var(--accent);margin:24px 0 10px}
+.doc-content h3{font-size:1.1em;font-weight:600;color:var(--accent2);margin:18px 0 8px}
+.doc-content p{margin:6px 0;line-height:1.65}.doc-content table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.83em}
+.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:8px 10px;font-weight:600;border:1px solid var(--border)}
+.doc-content td{padding:7px 10px;border:1px solid var(--border);vertical-align:top}
+.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.doc-content ul,.doc-content ol{margin:6px 0 6px 20px}.doc-content li{margin:3px 0;line-height:1.55}
+.doc-content strong{color:var(--white)}.doc-content em{color:var(--muted)}
+footer{text-align:center;padding:32px 0;color:var(--muted);font-size:.78em;border-top:1px solid var(--border);margin-top:50px}
+footer a{color:var(--accent2)}
+@media(max-width:768px){.stats{gap:14px}.stat .num{font-size:1.2em}nav .links a{font-size:10px;padding:3px 5px}.hero h1{font-size:1.5em}}
+</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="projections.html" class="">Projections</a><a href="action-plan.html" class="">Action Plan</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a><a href="https://apseter.github.io/Retail_Ventures_Command_Center/" class="cc-link" target="_blank">🏠 Command Center</a></div></div></nav><div class="container"><div style="padding-top:28px">
         <a href="p8.html" class="back">← 💰 P8: Financial Ops</a>
         <div class="nav-sub"><a href="p8.html">💰 P8 Overview</a><a href="sub-p8a.html">P8A</a><a href="sub-p8b.html">P8B</a><a href="sub-p8c.html">P8C</a><a href="sub-p8d.html" class="active">P8D</a></div>
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px">
-            <div>
-                <span style="background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px">P8D</span>
-                <span style="color:var(--muted);font-size:.85em;margin-left:8px">P8: Financial Ops</span>
-            </div>
-            <a href="files/P8D_Financial_Decision_Points.docx" style="font-size:.85em;color:var(--accent);padding:6px 14px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+            <div><span class="badge">P8D</span> <span style="color:var(--muted);font-size:.83em">P8: Financial Ops</span></div>
+            <a href="files/P8D_Financial_Decision_Points.docx" style="font-size:.83em;color:var(--accent);padding:5px 12px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
         </div>
-        <div class="doc-content">
-            <p><strong>P8D: FINANCIAL</strong></p>
+        <div class="doc-content"><p><strong><a href="sub-p8d.html" style="color:var(--accent)">P8D</a>: FINANCIAL</strong></p>
 <p><strong>DECISION POINTS</strong></p>
-<p>Sub-Project P8D | Financial Operations | Months 6–12</p>
+<p>Sub-Project <a href="sub-p8d.html" style="color:var(--accent)">P8D</a> | Financial Operations | Months 6–12</p>
 <p><em>Critical Decision Framework: Month 6 Pipeline Check (7 Metrics),
 Month 10 Financial Review (6 Metrics), Year 2 Financial Plan (3
 Scenarios), Investor Materials Package (5 Components), and Year 1
@@ -133,7 +109,7 @@ scenarios.</p>
 <td>CRM (HubSpot): total weighted pipeline value</td>
 <td>$30K+ (Bootstrap) / $100K+ (Full Launch)</td>
 <td>Pipeline below threshold signals: insufficient outreach volume (per
-P5A), product-market fit concerns, or pricing misalignment. ACTION:
+<a href="sub-p5a.html" style="color:var(--accent)">P5A</a>), product-market fit concerns, or pricing misalignment. ACTION:
 increase outreach, adjust pricing, or pivot to DTC-led strategy.</td>
 </tr>
 <tr class="odd">
@@ -185,9 +161,9 @@ collection.</td>
 <td><strong>Email list size</strong></td>
 <td>Klaviyo: total subscribers</td>
 <td>500+ (Bootstrap) / 1,500+ (Full Launch)</td>
-<td>The email list is the foundation of race-week campaigns (P7B Section
-8) and holiday marketing (P7F Section 3). Below 500: the email channel
-won’t generate meaningful revenue. Focus: checklist lead magnet (P7B
+<td>The email list is the foundation of race-week campaigns (<a href="sub-p7b.html" style="color:var(--accent)">P7B</a> Section
+8) and holiday marketing (<a href="sub-p7f.html" style="color:var(--accent)">P7F</a> Section 3). Below 500: the email channel
+won’t generate meaningful revenue. Focus: checklist lead magnet (<a href="sub-p7b.html" style="color:var(--accent)">P7B</a>
 Section 7), popup optimization, expo email capture.</td>
 </tr>
 </tbody>
@@ -207,7 +183,7 @@ Section 7), popup optimization, expo email capture.</td>
 </tr>
 <tr class="even">
 <td><strong>GREEN: All metrics at or above threshold</strong></td>
-<td>ACCELERATE. Proceed with full fall campaign investment (P7F Section
+<td>ACCELERATE. Proceed with full fall campaign investment (<a href="sub-p7f.html" style="color:var(--accent)">P7F</a> Section
 1). Confirm second production run. Expand ambassador program. Register
 for fall expo booths. Increase ad budget to peak-season levels. The
 business is tracking toward the moderate B2B scenario or better.</td>
@@ -281,7 +257,7 @@ changes.</td>
 </tr>
 <tr class="odd">
 <td><strong>B2B reorder signals</strong></td>
-<td>Post-race debrief results (P5B Section 5): did the race director
+<td>Post-race debrief results (<a href="sub-p5b.html" style="color:var(--accent)">P5B</a> Section 5): did the race director
 indicate interest in reordering? Verbal commitment, email confirmation,
 or signed Year 2 PO?</td>
 <td>80%+ of pilot race directors express reorder interest</td>
@@ -293,13 +269,13 @@ quality, service quality, or pricing issues.</td>
 <tr class="even">
 <td><strong>Customer satisfaction</strong></td>
 <td>Amazon reviews (average rating) + Shopify reviews + post-race survey
-scores (P5B Section 4)</td>
+scores (<a href="sub-p5b.html" style="color:var(--accent)">P5B</a> Section 4)</td>
 <td>4.0+ out of 5.0 across all sources</td>
 <td>Satisfaction below 4.0 means: the product is not meeting
 expectations. Common issues: warmth insufficient for very cold
 conditions, tear-away force too high or inconsistent, sizing too small
 for larger runners, packaging not intuitive. Feed ALL satisfaction data
-into P2F product improvement framework.</td>
+into <a href="sub-p2f.html" style="color:var(--accent)">P2F</a> product improvement framework.</td>
 </tr>
 <tr class="odd">
 <td><strong>DTC conversion rate</strong></td>
@@ -307,7 +283,7 @@ into P2F product improvement framework.</td>
 <td>2.0%+ (Shopify) / 10%+ (Amazon)</td>
 <td>Conversion below target means: the listing/product page is not
 persuading visitors to buy. Investigate: image quality, price display,
-review count, social proof elements (per P6E). Do NOT increase ad spend
+review count, social proof elements (per <a href="sub-p6e.html" style="color:var(--accent)">P6E</a>). Do NOT increase ad spend
 to drive more traffic to a low-converting page — fix the page
 first.</td>
 </tr>
@@ -323,7 +299,7 @@ operations to cash-flow-positive level.</td>
 </tr>
 <tr class="odd">
 <td><strong>Composting verification</strong></td>
-<td>Post-race composting reports from pilot races (P4D Section 4)</td>
+<td>Post-race composting reports from pilot races (<a href="sub-p4d.html" style="color:var(--accent)">P4D</a> Section 4)</td>
 <td>At least 1 verified composting report with weight-diverted data</td>
 <td>The composting report is PROOF that the sustainability promise is
 real. Without it: the brand’s sustainability claims are unverified
@@ -354,7 +330,7 @@ runway.</td>
 <td>Place spring production order. Begin Year 2 B2B outreach with fall
 case studies. Expand: ambassador program, content calendar, and ad
 budget. Build: Year 2 financial plan (Section 3). Start: Year 2 product
-development (P2F V1.5 improvements). Timeline: 90 days of intense Year 2
+development (<a href="sub-p2f.html" style="color:var(--accent)">P2F</a> V1.5 improvements). Timeline: 90 days of intense Year 2
 preparation.</td>
 </tr>
 <tr class="odd">
@@ -388,7 +364,7 @@ outstanding B2B commitments, and close the business. This is not failure
 </table>
 <p>3. Year 2 Financial Plan: 3 Scenarios</p>
 <p><strong>The Year 2 plan is built at Month 11–12 using ACTUAL Year 1
-data.</strong> It replaces the hypothetical Year 1 scenarios (P8A
+data.</strong> It replaces the hypothetical Year 1 scenarios (<a href="sub-p8a.html" style="color:var(--accent)">P8A</a>
 Sections 1–2) with REALITY-BASED projections. Three scenarios
 (conservative, moderate, aggressive) provide: a floor (what happens with
 minimal investment), a target (what’s achievable with reasonable
@@ -432,7 +408,7 @@ profitable with strong reorder rates and growing DTC.</td>
 <td><strong>Aggressive</strong></td>
 <td>Revenue: 3–5× Year 1. B2B: reorders + 10–20 new races + 1–2 series
 deals + 2–5 sponsor-funded races. DTC: 3× with new product SKUs
-(finish-line wrap, bib sleeve per P2F). Marketing: 2× budget with
+(finish-line wrap, bib sleeve per <a href="sub-p2f.html" style="color:var(--accent)">P2F</a>). Marketing: 2× budget with
 podcast sponsorships + expanded PR. Production: 3+ runs. Hire: part-time
 marketing coordinator + part-time operations manager (or 1 full-time
 generalist). Begin international expansion (Canada).</td>
@@ -469,7 +445,7 @@ optionality.</p>
 <table>
 <colgroup>
 <col style="width: 14%" />
-<col style="width:50%">
+<col style="width: 50%" />
 <col style="width: 35%" />
 </colgroup>
 <tbody>
@@ -489,7 +465,7 @@ participants, 600+ target races). Slide 5: Product (materials,
 performance data, FLIR image, patent-pending status). Slide 6: Traction
 (Year 1 revenue, units sold, races served, composting impact, customer
 satisfaction scores, review count). Slide 7: Business model (DTC
-channels + B2B at margins per P8A Section 3, unit economics by channel).
+channels + B2B at margins per <a href="sub-p8a.html" style="color:var(--accent)">P8A</a> Section 3, unit economics by channel).
 Slide 8: Go-to-market (B2B pipeline + DTC strategy + seasonal marketing
 model). Slide 9: Competitive landscape (Heatsheets comparison, barriers
 to entry: BPI certification, composting network, race director
@@ -498,7 +474,7 @@ advisors if any). Slide 11: Financials (Year 1 actual + Year 2
 projections, 3 scenarios per Section 3). Slide 12: Ask (amount raising,
 use of funds, terms). Slide 13: Vision (Year 3–5: product line
 expansion, international, category leadership).</td>
-<td>DESIGN: clean, visual, minimal text per slide. Use P1B brand
+<td>DESIGN: clean, visual, minimal text per slide. Use <a href="sub-p1b.html" style="color:var(--accent)">P1B</a> brand
 identity (Earth Green, Dawn Gold, DM Sans). Include: product photos,
 FLIR image, race-day photos, composting lifecycle infographic. TOOLS:
 Canva ($0–$13/month), Google Slides (free), or Pitch (pitch.com, free
@@ -510,9 +486,9 @@ authentic.</td>
 <td><strong>Financial model (spreadsheet)</strong></td>
 <td>Google Sheet or Excel with tabs: ASSUMPTIONS (COGS, pricing, volume
 scenarios, marketing spend, headcount), YEAR 1 ACTUAL (monthly P&amp;L
-from P8B Section 2), YEAR 2 PROJECTIONS (3 scenarios: conservative,
+from <a href="sub-p8b.html" style="color:var(--accent)">P8B</a> Section 2), YEAR 2 PROJECTIONS (3 scenarios: conservative,
 moderate, aggressive per Section 3), YEAR 3 PROJECTIONS (high-level, 2
-scenarios), UNIT ECONOMICS (per P8A Section 3 with actual Year 1 data),
+scenarios), UNIT ECONOMICS (per <a href="sub-p8a.html" style="color:var(--accent)">P8A</a> Section 3 with actual Year 1 data),
 and CAP TABLE (current ownership, proposed investment, post-money
 valuation, dilution). The model should be: editable (investor will
 change assumptions to test scenarios), clearly labeled (every assumption
@@ -532,10 +508,10 @@ projections.</td>
 ambassador feedback) with: name, race, quote, and photo if available.
 2–3 race director testimonials: “We used [BRAND] ponchos at [Race Name]
 and our runners loved them. We’re ordering again next season.” 1–2
-composting verification reports (P4D Section 4): “[X] lbs of poncho
+composting verification reports (<a href="sub-p4d.html" style="color:var(--accent)">P4D</a> Section 4): “[X] lbs of poncho
 waste composted at [facility name] in [Y] weeks.” Amazon review
 screenshots (4.5+ star average). Media coverage clippings (if any per
-P7C). Case study summary from pilot race (P5B Section 6).</td>
+<a href="sub-p7c.html" style="color:var(--accent)">P7C</a>). Case study summary from pilot race (<a href="sub-p5b.html" style="color:var(--accent)">P5B</a> Section 6).</td>
 <td>Customer evidence is the MOST PERSUASIVE element of the fundraising
 package. Investors see: hundreds of pitch decks with optimistic
 financial projections. They see very few with: actual customer quotes,
@@ -565,7 +541,7 @@ signals professionalism that differentiates the founder.</td>
 </tr>
 <tr class="even">
 <td><strong>Monthly investor updates</strong></td>
-<td>Per P8B Section 6: the 12 months of consistent monthly updates sent
+<td>Per <a href="sub-p8b.html" style="color:var(--accent)">P8B</a> Section 6: the 12 months of consistent monthly updates sent
 throughout Year 1 become the STRONGEST fundraising tool. An investor who
 has received 12 months of transparent updates has: watched the business
 grow from $0 to $X in revenue, seen the founder acknowledge and address
@@ -611,7 +587,7 @@ that guides every Year 2 decision.</p>
 <table>
 <colgroup>
 <col style="width: 14%" />
-<col style="width:50%">
+<col style="width: 50%" />
 <col style="width: 35%" />
 </colgroup>
 <tbody>
@@ -624,7 +600,7 @@ that guides every Year 2 decision.</p>
 <td><strong>Revenue by channel</strong></td>
 <td>Shopify DTC: $[X]. Amazon DTC: $[X]. B2B Standard: $[X]. B2B
 Co-Brand: $[X]. Expo Direct: $[X]. TOTAL REVENUE: $[X].</td>
-<td>Compare to: P8A Section 5 scenarios. Which scenario did reality most
+<td>Compare to: <a href="sub-p8a.html" style="color:var(--accent)">P8A</a> Section 5 scenarios. Which scenario did reality most
 closely match? Why?</td>
 </tr>
 <tr class="odd">
@@ -633,7 +609,7 @@ closely match? Why?</td>
 inventory purchases, freight, import duties, FBA fees, Shopify
 transaction fees. TOTAL COGS: $[X]. GROSS MARGIN: Revenue − COGS = $[X]
 ([X]%).</td>
-<td>Compare actual COGS per unit to P8A Section 3 estimates. Were
+<td>Compare actual COGS per unit to <a href="sub-p8a.html" style="color:var(--accent)">P8A</a> Section 3 estimates. Were
 estimates accurate? Where did reality diverge? Update the unit economics
 model with actual data for Year 2 planning.</td>
 </tr>
@@ -659,7 +635,7 @@ identify areas to reduce or grow revenue to improve the ratio.</td>
 <td><strong>Net income</strong></td>
 <td>Revenue − COGS − Marketing − Operating = NET INCOME: $[X]
 ([X]%).</td>
-<td>Year 1 net income range per P8A: Bootstrap ($5,257 loss) to ($4,314
+<td>Year 1 net income range per <a href="sub-p8a.html" style="color:var(--accent)">P8A</a>: Bootstrap ($5,257 loss) to ($4,314
 profit). Full Launch ($22,958 loss) to ($25,888 profit). The ACTUAL
 number determines: the Year 2 path (self-fund if profitable, raise
 capital if not but product-market fit is proven).</td>
@@ -711,7 +687,7 @@ repeat rate, AOV, CLV, email list, reviews). Tab 6: STRATEGIC LEARNINGS
 <p><strong>MONTH 6: Conduct the Month 6 Pipeline Check (Section 1).
 Score all 7 metrics against thresholds. Determine: GREEN/YELLOW/RED.
 Execute the corresponding action plan. Document: the Month 6 assessment
-in the investor update email (P8B Section 6) with honest
+in the investor update email (<a href="sub-p8b.html" style="color:var(--accent)">P8B</a> Section 6) with honest
 analysis.</strong></p>
 <p><strong>MONTH 10: Conduct the Month 10 Financial Review (Section 2).
 Score all 6 metrics. Determine: COMMIT/CONDITIONAL COMMIT/EVALUATE
@@ -728,7 +704,7 @@ deck + data room.</strong></p>
 <p>BUDGET: Google Sheets (financial models, P&amp;L): $0. Pitch deck
 design (Canva/Pitch): $0–$13. Data room (Google Drive): $0. Legal review
 of SAFE note (if raising): $500–$2,000 (or use standard YC SAFE template
-for $0). TOTAL P8D: $0–$2,013. The decision frameworks cost nothing to
+for $0). TOTAL <a href="sub-p8d.html" style="color:var(--accent)">P8D</a>: $0–$2,013. The decision frameworks cost nothing to
 prepare and save everything by preventing: premature investment in a
 failing business, premature abandonment of a viable business, or
 uninformed fundraising that wastes the founder’s time and
@@ -743,16 +719,11 @@ director means the whole market wants this”), and recency bias (“last
 week was great so the whole business must be working”). Data cuts
 through all three biases and reveals: the actual state of the business,
 the actual trajectory, and the actual options.</p>
-<p><strong>P8 is complete.</strong> The financial foundation is built: a
-cash flow forecast (P8A), a cash management system (P8B), a tax
-compliance framework (P8C), and a decision framework (P8D). Together,
+<p><strong><a href="p8.html" style="color:var(--accent)">P8</a> is complete.</strong> The financial foundation is built: a
+cash flow forecast (<a href="sub-p8a.html" style="color:var(--accent)">P8A</a>), a cash management system (<a href="sub-p8b.html" style="color:var(--accent)">P8B</a>), a tax
+compliance framework (<a href="sub-p8c.html" style="color:var(--accent)">P8C</a>), and a decision framework (<a href="sub-p8d.html" style="color:var(--accent)">P8D</a>). Together,
 they ensure: the founder knows the numbers, manages the cash, complies
 with obligations, and makes informed decisions at every critical
 juncture. The business is financially ready to launch, operate, and
 scale.</p>
-
-        </div>
-    </div></div>
-<footer style="text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px">
-Sustainable Race-Start Warmth Poncho — D2C Brand GTM Project · 60 Subprojects · 391 Tasks · ~15,500¶ · April 2026
-</footer></body></html>
+</div></div></div><footer>Sustainable Race-Start Warmth Poncho — GTM Project · 60 Subprojects · 391 Tasks · ~120K Words · April 2026<br><a href="https://apseter.github.io/Retail_Ventures_Command_Center/">← Retail Ventures Command Center</a> · <a href="index.html">Project Home</a></footer></body></html>

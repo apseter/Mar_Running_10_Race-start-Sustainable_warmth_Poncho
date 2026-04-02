@@ -1,89 +1,65 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>P8C: Tax Compliance — Race Start Warmth GTM</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-<style>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>P8C — Race Start Warmth GTM</title><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet"><style>
 :root{--bg:#0a0e1a;--surface:#111827;--card:#1a2332;--border:#2a3a4e;--accent:#10b981;--accent2:#3b82f6;--text:#e2e8f0;--muted:#94a3b8;--white:#fff;--red:#ef4444;--amber:#f59e0b;--green:#10b981}
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
 a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
 .container{max-width:1200px;margin:0 auto;padding:0 24px}
-/* Nav */
-nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
-nav .inner{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;max-width:1200px;margin:0 auto}
-nav .brand{font-weight:700;font-size:15px;color:var(--accent)}
-nav .links{display:flex;gap:8px;flex-wrap:wrap}
-nav .links a{color:var(--muted);font-size:13px;padding:4px 10px;border-radius:6px;transition:.2s}
+nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
+nav .inner{display:flex;align-items:center;justify-content:space-between;padding:10px 24px;max-width:1200px;margin:0 auto;flex-wrap:wrap;gap:8px}
+nav .brand{font-weight:700;font-size:14px;color:var(--accent);white-space:nowrap}
+nav .links{display:flex;gap:4px;flex-wrap:wrap}
+nav .links a{color:var(--muted);font-size:12px;padding:4px 8px;border-radius:6px;transition:.2s;white-space:nowrap}
 nav .links a:hover,nav .links a.active{color:var(--white);background:var(--card);text-decoration:none}
-/* Hero */
-.hero{padding:60px 0 40px;text-align:center}
-.hero h1{font-size:2.4em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hero p{color:var(--muted);font-size:1.1em;max-width:700px;margin:0 auto}
-/* Stats bar */
-.stats{display:flex;justify-content:center;gap:32px;padding:24px 0;flex-wrap:wrap}
-.stat{text-align:center}.stat .num{font-size:1.8em;font-weight:800;color:var(--white)}.stat .label{font-size:.75em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
-/* Cards */
-.grid{display:grid;gap:16px;margin:24px 0}
-.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}
-.grid-3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
-.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;transition:.2s}
-.card:hover{border-color:var(--accent);transform:translateY(-2px)}
-.card h3{font-size:1.1em;margin-bottom:8px}.card p{color:var(--muted);font-size:.9em}
-.card .badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:8px}
-.card .meta{font-size:.8em;color:var(--muted);margin-top:12px}
-/* Section */
-.section{padding:40px 0}.section h2{font-size:1.6em;font-weight:700;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--border)}
-/* Table */
-table{width:100%;border-collapse:collapse;font-size:.85em;margin:16px 0}
-th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:52px}
-td{padding:8px 12px;border-bottom:1px solid var(--border)}
-tr:hover td{background:rgba(16,185,129,.05)}
-.status-complete{color:var(--green);font-weight:600}.status-not{color:var(--muted)}
-/* Progress */
-.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:8px}
-.progress .bar{height:100%;background:var(--accent);border-radius:3px}
-/* Back link */
-.back{display:inline-block;color:var(--muted);font-size:.9em;margin-bottom:20px}
-.back:hover{color:var(--accent)}
-/* Download */
-.dl-card{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin:8px 0;transition:.2s}
-.dl-card:hover{border-color:var(--accent);text-decoration:none}
-.dl-card .icon{font-size:2em}.dl-card .info h4{color:var(--white);margin-bottom:4px}.dl-card .info p{color:var(--muted);font-size:.85em}
-/* Footer */
-footer{text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px}
-@media(max-width:768px){.stats{gap:16px}.stat .num{font-size:1.3em}nav .links{gap:4px}nav .links a{font-size:11px;padding:3px 6px}.hero h1{font-size:1.6em}}
-
-.doc-content{max-width:900px;margin:0 auto;padding:20px 0}
-.doc-content h1{font-size:1.8em;font-weight:800;color:var(--white);margin:32px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
-.doc-content h2{font-size:1.4em;font-weight:700;color:var(--accent);margin:28px 0 12px}
-.doc-content h3{font-size:1.15em;font-weight:600;color:var(--accent2);margin:20px 0 10px}
-.doc-content p{margin:8px 0;line-height:1.7}
-.doc-content table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85em}
-.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;border:1px solid var(--border)}
-.doc-content td{padding:8px 12px;border:1px solid var(--border);vertical-align:top}
-.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
-.doc-content ul,.doc-content ol{margin:8px 0 8px 24px}
-.doc-content li{margin:4px 0;line-height:1.6}
-.doc-content strong{color:var(--white)}
-.doc-content em{color:var(--muted)}
-.doc-content blockquote{border-left:3px solid var(--accent);padding:8px 16px;margin:12px 0;background:var(--card);border-radius:0 8px 8px 0}
-.nav-sub{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 24px;padding:12px 16px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
-.nav-sub a{font-size:.8em;color:var(--muted);padding:4px 10px;border-radius:4px;transition:.2s;white-space:nowrap}
+nav .links a.cc-link{color:var(--accent2);border:1px solid var(--accent2);font-weight:600}
+nav .links a.cc-link:hover{background:var(--accent2);color:var(--white)}
+.hero{padding:50px 0 30px;text-align:center}
+.hero h1{font-size:2.2em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:1.05em;max-width:700px;margin:0 auto}
+.stats{display:flex;justify-content:center;gap:28px;padding:20px 0;flex-wrap:wrap}
+.stat{text-align:center}.stat .num{font-size:1.7em;font-weight:800;color:var(--white)}.stat .label{font-size:.7em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.grid{display:grid;gap:16px;margin:24px 0}.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}.grid-3{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;transition:.2s;display:block}
+.card:hover{border-color:var(--accent);transform:translateY(-2px);text-decoration:none}
+.card h3{font-size:1.05em;margin-bottom:6px;color:var(--white)}.card p{color:var(--muted);font-size:.88em}
+.badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.65em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:6px}
+.badge-amber{background:var(--amber)}.badge-blue{background:var(--accent2)}
+.card .meta{font-size:.78em;color:var(--muted);margin-top:10px}
+.section{padding:32px 0}.section h2{font-size:1.5em;font-weight:700;margin-bottom:20px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+table{width:100%;border-collapse:collapse;font-size:.83em;margin:16px 0}
+th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:48px}
+td{padding:8px 12px;border-bottom:1px solid var(--border)}tr:hover td{background:rgba(16,185,129,.04)}
+.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:6px}
+.progress .bar{height:100%;border-radius:3px}
+.back{display:inline-block;color:var(--muted);font-size:.88em;margin-bottom:16px}.back:hover{color:var(--accent)}
+.dl-card{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;margin:8px 0;transition:.2s}
+.dl-card:hover{border-color:var(--accent);text-decoration:none}.dl-card .icon{font-size:1.8em}.dl-card .info h4{color:var(--white);margin-bottom:2px;font-size:.95em}.dl-card .info p{color:var(--muted);font-size:.8em}
+.phase-tag{display:inline-block;font-size:.65em;font-weight:600;padding:2px 6px;border-radius:3px;margin-right:4px}
+.phase-plan{background:rgba(16,185,129,.15);color:var(--green)}.phase-exec{background:rgba(245,158,11,.15);color:var(--amber)}.phase-not{background:rgba(148,163,184,.1);color:var(--muted)}
+.nav-sub{display:flex;flex-wrap:wrap;gap:5px;margin:12px 0 20px;padding:10px 14px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
+.nav-sub a{font-size:.78em;color:var(--muted);padding:3px 8px;border-radius:4px;transition:.2s;white-space:nowrap}
 .nav-sub a:hover,.nav-sub a.active{color:var(--white);background:var(--surface);text-decoration:none}
-</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a></div></div></nav><div class="container">
-    <div style="padding-top:30px">
+.doc-content{max-width:900px;margin:0 auto;padding:16px 0}
+.doc-content h1{font-size:1.7em;font-weight:800;color:var(--white);margin:28px 0 14px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+.doc-content h2{font-size:1.3em;font-weight:700;color:var(--accent);margin:24px 0 10px}
+.doc-content h3{font-size:1.1em;font-weight:600;color:var(--accent2);margin:18px 0 8px}
+.doc-content p{margin:6px 0;line-height:1.65}.doc-content table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.83em}
+.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:8px 10px;font-weight:600;border:1px solid var(--border)}
+.doc-content td{padding:7px 10px;border:1px solid var(--border);vertical-align:top}
+.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.doc-content ul,.doc-content ol{margin:6px 0 6px 20px}.doc-content li{margin:3px 0;line-height:1.55}
+.doc-content strong{color:var(--white)}.doc-content em{color:var(--muted)}
+footer{text-align:center;padding:32px 0;color:var(--muted);font-size:.78em;border-top:1px solid var(--border);margin-top:50px}
+footer a{color:var(--accent2)}
+@media(max-width:768px){.stats{gap:14px}.stat .num{font-size:1.2em}nav .links a{font-size:10px;padding:3px 5px}.hero h1{font-size:1.5em}}
+</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="projections.html" class="">Projections</a><a href="action-plan.html" class="">Action Plan</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a><a href="https://apseter.github.io/Retail_Ventures_Command_Center/" class="cc-link" target="_blank">🏠 Command Center</a></div></div></nav><div class="container"><div style="padding-top:28px">
         <a href="p8.html" class="back">← 💰 P8: Financial Ops</a>
         <div class="nav-sub"><a href="p8.html">💰 P8 Overview</a><a href="sub-p8a.html">P8A</a><a href="sub-p8b.html">P8B</a><a href="sub-p8c.html" class="active">P8C</a><a href="sub-p8d.html">P8D</a></div>
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px">
-            <div>
-                <span style="background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px">P8C</span>
-                <span style="color:var(--muted);font-size:.85em;margin-left:8px">P8: Financial Ops</span>
-            </div>
-            <a href="files/P8C_Tax_Compliance.docx" style="font-size:.85em;color:var(--accent);padding:6px 14px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+            <div><span class="badge">P8C</span> <span style="color:var(--muted);font-size:.83em">P8: Financial Ops</span></div>
+            <a href="files/P8C_Tax_Compliance.docx" style="font-size:.83em;color:var(--accent);padding:5px 12px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
         </div>
-        <div class="doc-content">
-            <p><strong>P8C: TAX &amp;</strong></p>
+        <div class="doc-content"><p><strong><a href="sub-p8c.html" style="color:var(--accent)">P8C</a>: TAX &amp;</strong></p>
 <p><strong>COMPLIANCE</strong></p>
-<p>Sub-Project P8C | Financial Operations | Weeks 1–Ongoing</p>
+<p>Sub-Project <a href="sub-p8c.html" style="color:var(--accent)">P8C</a> | Financial Operations | Weeks 1–Ongoing</p>
 <p><em>Complete Tax &amp; Compliance Guide: Multi-State Sales Tax
 Registration, Quarterly Estimated Tax Payments, 8-Category Deductible
 Expense Tracking, R&amp;D Tax Credit Analysis, Year 1 Tax Filing
@@ -119,7 +95,7 @@ sufficient connection between the business and a state.</p>
 <table>
 <colgroup>
 <col style="width: 14%" />
-<col style="width:50%">
+<col style="width: 50%" />
 <col style="width: 35%" />
 </colgroup>
 <tbody>
@@ -207,7 +183,7 @@ compliance burden.</td>
 <p>1.1 Sales Tax Priority Action Plan</p>
 <p>WEEK 1–2: Register for sales tax in the founder’s HOME STATE
 (required regardless of volume). WEEK 8–10: After Amazon FBA is set up
-(P6C): check the FBA Inventory Placement Report to identify which states
+(<a href="sub-p6c.html" style="color:var(--accent)">P6C</a>): check the FBA Inventory Placement Report to identify which states
 Amazon stores inventory in. Register for sales tax in each of those
 states. Configure Shopify to collect tax in registered states (Settings
 → Taxes → United States → enable per state). MONTH 6: Review actual
@@ -228,7 +204,7 @@ applied at tax filing.</p>
 <table>
 <colgroup>
 <col style="width: 14%" />
-<col style="width:50%">
+<col style="width: 50%" />
 <col style="width: 35%" />
 </colgroup>
 <tbody>
@@ -248,7 +224,7 @@ liability ÷ 4. SAFE HARBOR: if you pay 100% of LAST year’s tax liability
 in estimated payments (or 110% if AGI &gt;$150K), you avoid penalties —
 even if this year’s liability is higher.</td>
 <td>Year 1 estimated payments may be $0 if the business operates at a
-loss (common for Bootstrap scenario per P8A Section 1). If so: no
+loss (common for Bootstrap scenario per <a href="sub-p8a.html" style="color:var(--accent)">P8A</a> Section 1). If so: no
 estimated payments required. If Year 1 is profitable: calculate
 estimated tax by Month 6 and begin payments in Q3.</td>
 </tr>
@@ -263,7 +239,7 @@ net business income: self-employment tax = ~$4,239.</td>
 business owners. It applies even if federal INCOME tax is $0 (due to
 deductions). SET ASIDE: 25–30% of net business income for combined
 income tax + self-employment tax. Transfer this percentage to a
-dedicated savings account after each month’s P&amp;L review (P8B Section
+dedicated savings account after each month’s P&amp;L review (<a href="sub-p8b.html" style="color:var(--accent)">P8B</a> Section
 2).</td>
 </tr>
 <tr class="even">
@@ -275,7 +251,7 @@ schedule, and safe harbor rules. States without income tax (TX, FL, WA,
 NV, WY, SD, AK, NH, TN): no state estimated payments needed.</td>
 <td>State estimated tax requirements vary widely. Some states require
 estimated payments only above a threshold ($500–$1,000 in estimated
-liability). The CPA (engaged per P8A Section 7.6) should advise on
+liability). The CPA (engaged per <a href="sub-p8a.html" style="color:var(--accent)">P8A</a> Section 7.6) should advise on
 state-specific requirements during the Year 1 setup.</td>
 </tr>
 <tr class="odd">
@@ -321,7 +297,7 @@ deductible.</p>
 <table>
 <colgroup>
 <col style="width: 16%" />
-<col style="width:50%">
+<col style="width: 50%" />
 <col style="width: 33%" />
 </colgroup>
 <tbody>
@@ -388,7 +364,7 @@ DOES qualify. Take a photo of the space for documentation.</td>
 <tr class="odd">
 <td><strong>Travel</strong></td>
 <td>Flights, hotels, rental cars, meals, and transportation for: factory
-visits (P3A), expo attendance (P5D), race-day pilot execution (P5B),
+visits (<a href="sub-p3a.html" style="color:var(--accent)">P3A</a>), expo attendance (<a href="sub-p5d.html" style="color:var(--accent)">P5D</a>), race-day pilot execution (<a href="sub-p5b.html" style="color:var(--accent)">P5B</a>),
 industry events (Running USA Conference, TRE), and investor/partner
 meetings. Meals: 50% deductible (IRS rules). Transportation: 100%
 deductible. Lodging: 100% deductible for business nights (personal
@@ -402,7 +378,7 @@ travel expense.</td>
 <tr class="even">
 <td><strong>Professional services</strong></td>
 <td>CPA/accountant ($300–$1,000/year), attorney ($500–$2,000 for
-business formation, trademark filing, contracts per P9), business
+business formation, trademark filing, contracts per <a href="p9.html" style="color:var(--accent)">P9</a>), business
 insurance premiums, any consultants or freelancers hired for:
 photography, graphic design, writing, or other business services.</td>
 <td>Track: every invoice from professionals. Issue Form 1099-NEC to any
@@ -428,12 +404,12 @@ every business trip from home qualifies.</td>
 </table>
 <p>3.1 Expense Tracking System</p>
 <p>REAL-TIME TRACKING: use QuickBooks/Wave for automatic bank feed
-categorization (per P8A Section 7). RECEIPT CAPTURE: take a photo of
+categorization (per <a href="sub-p8a.html" style="color:var(--accent)">P8A</a> Section 7). RECEIPT CAPTURE: take a photo of
 every receipt immediately and store in Google Drive
 (/Business/Receipts/[Year]/[Month]/). Alternatively: Expensify
 ($5/month) or Dext (formerly Receipt Bank, $20/month) for automated
 receipt scanning and categorization. MONTHLY RECONCILIATION: during the
-monthly P&amp;L review (P8B Section 2), verify: all expenses are
+monthly P&amp;L review (<a href="sub-p8b.html" style="color:var(--accent)">P8B</a> Section 2), verify: all expenses are
 categorized, all receipts exist for expenses &gt;$75, and no personal
 expenses are mixed in. YEAR-END: the CPA will request: annual P&amp;L by
 category, all receipts, home office calculation, mileage log, and 1099
@@ -445,14 +421,14 @@ preparation takes 20–40+ hours and deductions are missed.</p>
 developing new products and processes.</strong> The compostable poncho
 involves: novel material combinations (NatureFlex + PLA spunbond),
 technical uncertainty about thermal performance, and iterative
-experimentation (P2A–P2C material testing, P2D certification testing).
+experimentation (<a href="sub-p2a.html" style="color:var(--accent)">P2A</a>–<a href="sub-p2c.html" style="color:var(--accent)">P2C</a> material testing, <a href="sub-p2d.html" style="color:var(--accent)">P2D</a> certification testing).
 These activities LIKELY qualify for the R&amp;D credit — but the
 determination must be made by a qualified CPA or R&amp;D credit
 specialist.</p>
 <table>
 <colgroup>
 <col style="width: 14%" />
-<col style="width:50%">
+<col style="width: 50%" />
 <col style="width: 35%" />
 </colgroup>
 <tbody>
@@ -470,7 +446,7 @@ logistics process), (2) involve technical uncertainty (YES: will the
 NatureFlex + PLA lamination provide sufficient warmth? Will the
 perforation tear at 3–5N consistently?), (3) involve a process of
 experimentation (YES: material testing, prototype iteration, FLIR
-thermal testing per P2A–P2C), and (4) rely on hard sciences or
+thermal testing per <a href="sub-p2a.html" style="color:var(--accent)">P2A</a>–<a href="sub-p2c.html" style="color:var(--accent)">P2C</a>), and (4) rely on hard sciences or
 engineering (YES: materials science, thermodynamics, mechanical
 engineering of perforation).</td>
 <td>The poncho’s development involves GENUINE technical uncertainty and
@@ -491,7 +467,7 @@ is NOT eligible for the credit unless the founder is on a W-2 payroll
 of business structure.</td>
 <td>Year 1 qualifying expenses may include: material samples
 ($100–$500), prototype production ($200–$500), BPI certification testing
-fees ($2,000–$5,000 per P2D Section 3), FLIR testing ($100–$300), and
+fees ($2,000–$5,000 per <a href="sub-p2d.html" style="color:var(--accent)">P2D</a> Section 3), FLIR testing ($100–$300), and
 any other material-science or design-engineering expenses. Total
 qualifying expenses: $2,400–$6,300.</td>
 </tr>
@@ -530,7 +506,7 @@ assembled claim without documentation is vulnerable.</td>
 <tr class="even">
 <td><strong>CPA guidance</strong></td>
 <td>Discuss R&amp;D credit eligibility with the CPA during the Month
-10–11 tax preparation engagement (per P8A Section 7.6). Some CPAs
+10–11 tax preparation engagement (per <a href="sub-p8a.html" style="color:var(--accent)">P8A</a> Section 7.6). Some CPAs
 specialize in R&amp;D credits; if the founder’s CPA does not, consider:
 a specialist R&amp;D credit firm (Neo.Tax, $1,000–$3,000 for preparation
 + filing, or percentage-of-credit-based pricing) for Year 1 to establish
@@ -541,7 +517,7 @@ modest ($300–$600). Establishing the claim in Year 1 creates: a
 precedent (easier to continue claiming in future years), documentation
 habits (logs and records are maintained from the start), and cumulative
 value (Year 2+ credits grow as R&amp;D spending increases with product
-line expansion per P2F).</td>
+line expansion per <a href="sub-p2f.html" style="color:var(--accent)">P2F</a>).</td>
 </tr>
 </tbody>
 </table>
@@ -576,7 +552,7 @@ duplicate entries, returns not credited).</td>
 <tr class="odd">
 <td><strong>Organize expenses</strong></td>
 <td>Export: QuickBooks/Wave annual expense report by category. Verify:
-all expenses are categorized correctly (per P8A Section 7 chart of
+all expenses are categorized correctly (per <a href="sub-p8a.html" style="color:var(--accent)">P8A</a> Section 7 chart of
 accounts). Common misclassifications: personal expenses logged as
 business, COGS categorized as operating expense, and marketing
 sub-channels lumped together. Resolve: re-categorize any errors.</td>
@@ -584,7 +560,7 @@ sub-channels lumped together. Resolve: re-categorize any errors.</td>
 <tr class="even">
 <td><strong>Inventory count</strong></td>
 <td>Count: total units of unsold inventory (in FBA warehouses, in
-3PL/home storage, in transit). Value: at COGS per unit (P8A Section 3).
+3PL/home storage, in transit). Value: at COGS per unit (<a href="sub-p8a.html" style="color:var(--accent)">P8A</a> Section 3).
 The year-end inventory value is: an asset on the balance sheet, NOT a
 deductible expense. Only inventory that was SOLD during the year is
 deductible as COGS. If 5,000 units were purchased and 3,000 were sold:
@@ -633,7 +609,7 @@ licensed customs broker.</p>
 <table>
 <colgroup>
 <col style="width: 14%" />
-<col style="width:50%">
+<col style="width: 50%" />
 <col style="width: 35%" />
 </colgroup>
 <tbody>
@@ -644,7 +620,7 @@ licensed customs broker.</p>
 </tr>
 <tr class="even">
 <td><strong>Current classification</strong></td>
-<td>HTS 3926.20.9050 (per P4A Section 2): “Articles of apparel and
+<td>HTS 3926.20.9050 (per <a href="sub-p4a.html" style="color:var(--accent)">P4A</a> Section 2): “Articles of apparel and
 clothing accessories of plastics.” Duty rate: 3.4% ad valorem +
 potential Section 301 tariff (25% if sourced from China). Total
 effective duty: 3.4–28.4% depending on country of origin and Section 301
@@ -664,7 +640,7 @@ item, the rate may change. HTS 4823 (articles of paper/cellulose): if
 the NatureFlex cellulose film qualifies as a “cellulose-based article”
 rather than a plastic, the classification and duty rate could be
 significantly different.</td>
-<td>Consult: the customs broker (per P4A Section 1 forwarder selection)
+<td>Consult: the customs broker (per <a href="sub-p4a.html" style="color:var(--accent)">P4A</a> Section 1 forwarder selection)
 for a binding ruling request to US Customs and Border Protection (CBP).
 A binding ruling provides: a definitive classification that CBP must
 honor at import. Cost: $0 (CBP doesn’t charge for binding rulings) but
@@ -675,7 +651,7 @@ the request.</td>
 <td><strong>Country of origin strategies</strong></td>
 <td>If sourced from China: Section 301 tariffs (25%) may apply, making
 total duty 28.4%. MITIGATION: (A) source from a non-Section 301 country
-(UK via Parkside, per P3A Section 1 — UK products are NOT subject to
+(UK via Parkside, per <a href="sub-p3a.html" style="color:var(--accent)">P3A</a> Section 1 — UK products are NOT subject to
 Section 301). (B) Source from a country with a preferential trade
 agreement: if manufacturing in a country with a US Free Trade Agreement
 (Australia, Canada, Mexico, South Korea, etc.), the duty rate may be
@@ -697,7 +673,7 @@ recovered through a “duty drawback” claim. Duty drawback returns up to
 Form 7551 within 5 years of import. Volume threshold: drawback is
 generally worth pursuing when annual duties exceed $2,000–$5,000.</td>
 <td>Duty drawback is a YEAR 2+ optimization relevant only if
-international B2B sales begin per P2F Section 6. Track: import duties
+international B2B sales begin per <a href="sub-p2f.html" style="color:var(--accent)">P2F</a> Section 6. Track: import duties
 paid by shipment for drawback eligibility documentation.</td>
 </tr>
 <tr class="even">
@@ -709,7 +685,7 @@ commercial production orders (which will exceed $800). Use: de minimis
 entry for all sample and prototype shipments to avoid duty on
 non-commercial imports.</td>
 <td>The $800 de minimis is useful during the product development phase
-(P2A–P2C) when the founder is importing small quantities of material
+(<a href="sub-p2a.html" style="color:var(--accent)">P2A</a>–<a href="sub-p2c.html" style="color:var(--accent)">P2C</a>) when the founder is importing small quantities of material
 samples and prototypes. No formal customs entry is required for
 shipments under $800.</td>
 </tr>
@@ -740,7 +716,7 @@ schedule based on Year 1 actual liability.</strong></p>
 <p>BUDGET: Sales tax registration: $0 (free in most states). TaxJar
 AutoFile (Month 6+): $19–$99/month. CPA Year 1 tax prep: $300–$1,000.
 R&amp;D credit specialist (optional): $1,000–$3,000. Customs broker
-binding ruling: $200–$500. Expensify (optional): $5/month. TOTAL P8C:
+binding ruling: $200–$500. Expensify (optional): $5/month. TOTAL <a href="sub-p8c.html" style="color:var(--accent)">P8C</a>:
 $500–$4,600 Year 1.</p>
 <p>8. Conclusion: Taxes Are a Cost of Business, Not a Surprise</p>
 <p><strong>A founder who sets aside 25–30% of net income for taxes,
@@ -758,9 +734,4 @@ founder didn’t know existed, and structural optimization (S-Corp
 election, home office method selection) that saves thousands per year.
 The CPA is not an expense — they are an investment with a 3–10×
 return.</p>
-
-        </div>
-    </div></div>
-<footer style="text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px">
-Sustainable Race-Start Warmth Poncho — D2C Brand GTM Project · 60 Subprojects · 391 Tasks · ~15,500¶ · April 2026
-</footer></body></html>
+</div></div></div><footer>Sustainable Race-Start Warmth Poncho — GTM Project · 60 Subprojects · 391 Tasks · ~120K Words · April 2026<br><a href="https://apseter.github.io/Retail_Ventures_Command_Center/">← Retail Ventures Command Center</a> · <a href="index.html">Project Home</a></footer></body></html>

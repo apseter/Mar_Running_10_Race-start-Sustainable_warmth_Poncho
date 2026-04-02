@@ -1,88 +1,64 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>P7C: PR Media — Race Start Warmth GTM</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-<style>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>P7C — Race Start Warmth GTM</title><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet"><style>
 :root{--bg:#0a0e1a;--surface:#111827;--card:#1a2332;--border:#2a3a4e;--accent:#10b981;--accent2:#3b82f6;--text:#e2e8f0;--muted:#94a3b8;--white:#fff;--red:#ef4444;--amber:#f59e0b;--green:#10b981}
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
 a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
 .container{max-width:1200px;margin:0 auto;padding:0 24px}
-/* Nav */
-nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
-nav .inner{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;max-width:1200px;margin:0 auto}
-nav .brand{font-weight:700;font-size:15px;color:var(--accent)}
-nav .links{display:flex;gap:8px;flex-wrap:wrap}
-nav .links a{color:var(--muted);font-size:13px;padding:4px 10px;border-radius:6px;transition:.2s}
+nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
+nav .inner{display:flex;align-items:center;justify-content:space-between;padding:10px 24px;max-width:1200px;margin:0 auto;flex-wrap:wrap;gap:8px}
+nav .brand{font-weight:700;font-size:14px;color:var(--accent);white-space:nowrap}
+nav .links{display:flex;gap:4px;flex-wrap:wrap}
+nav .links a{color:var(--muted);font-size:12px;padding:4px 8px;border-radius:6px;transition:.2s;white-space:nowrap}
 nav .links a:hover,nav .links a.active{color:var(--white);background:var(--card);text-decoration:none}
-/* Hero */
-.hero{padding:60px 0 40px;text-align:center}
-.hero h1{font-size:2.4em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hero p{color:var(--muted);font-size:1.1em;max-width:700px;margin:0 auto}
-/* Stats bar */
-.stats{display:flex;justify-content:center;gap:32px;padding:24px 0;flex-wrap:wrap}
-.stat{text-align:center}.stat .num{font-size:1.8em;font-weight:800;color:var(--white)}.stat .label{font-size:.75em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
-/* Cards */
-.grid{display:grid;gap:16px;margin:24px 0}
-.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}
-.grid-3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
-.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;transition:.2s}
-.card:hover{border-color:var(--accent);transform:translateY(-2px)}
-.card h3{font-size:1.1em;margin-bottom:8px}.card p{color:var(--muted);font-size:.9em}
-.card .badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:8px}
-.card .meta{font-size:.8em;color:var(--muted);margin-top:12px}
-/* Section */
-.section{padding:40px 0}.section h2{font-size:1.6em;font-weight:700;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--border)}
-/* Table */
-table{width:100%;border-collapse:collapse;font-size:.85em;margin:16px 0}
-th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:52px}
-td{padding:8px 12px;border-bottom:1px solid var(--border)}
-tr:hover td{background:rgba(16,185,129,.05)}
-.status-complete{color:var(--green);font-weight:600}.status-not{color:var(--muted)}
-/* Progress */
-.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:8px}
-.progress .bar{height:100%;background:var(--accent);border-radius:3px}
-/* Back link */
-.back{display:inline-block;color:var(--muted);font-size:.9em;margin-bottom:20px}
-.back:hover{color:var(--accent)}
-/* Download */
-.dl-card{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin:8px 0;transition:.2s}
-.dl-card:hover{border-color:var(--accent);text-decoration:none}
-.dl-card .icon{font-size:2em}.dl-card .info h4{color:var(--white);margin-bottom:4px}.dl-card .info p{color:var(--muted);font-size:.85em}
-/* Footer */
-footer{text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px}
-@media(max-width:768px){.stats{gap:16px}.stat .num{font-size:1.3em}nav .links{gap:4px}nav .links a{font-size:11px;padding:3px 6px}.hero h1{font-size:1.6em}}
-
-.doc-content{max-width:900px;margin:0 auto;padding:20px 0}
-.doc-content h1{font-size:1.8em;font-weight:800;color:var(--white);margin:32px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
-.doc-content h2{font-size:1.4em;font-weight:700;color:var(--accent);margin:28px 0 12px}
-.doc-content h3{font-size:1.15em;font-weight:600;color:var(--accent2);margin:20px 0 10px}
-.doc-content p{margin:8px 0;line-height:1.7}
-.doc-content table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85em}
-.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;border:1px solid var(--border)}
-.doc-content td{padding:8px 12px;border:1px solid var(--border);vertical-align:top}
-.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
-.doc-content ul,.doc-content ol{margin:8px 0 8px 24px}
-.doc-content li{margin:4px 0;line-height:1.6}
-.doc-content strong{color:var(--white)}
-.doc-content em{color:var(--muted)}
-.doc-content blockquote{border-left:3px solid var(--accent);padding:8px 16px;margin:12px 0;background:var(--card);border-radius:0 8px 8px 0}
-.nav-sub{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 24px;padding:12px 16px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
-.nav-sub a{font-size:.8em;color:var(--muted);padding:4px 10px;border-radius:4px;transition:.2s;white-space:nowrap}
+nav .links a.cc-link{color:var(--accent2);border:1px solid var(--accent2);font-weight:600}
+nav .links a.cc-link:hover{background:var(--accent2);color:var(--white)}
+.hero{padding:50px 0 30px;text-align:center}
+.hero h1{font-size:2.2em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:1.05em;max-width:700px;margin:0 auto}
+.stats{display:flex;justify-content:center;gap:28px;padding:20px 0;flex-wrap:wrap}
+.stat{text-align:center}.stat .num{font-size:1.7em;font-weight:800;color:var(--white)}.stat .label{font-size:.7em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.grid{display:grid;gap:16px;margin:24px 0}.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}.grid-3{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;transition:.2s;display:block}
+.card:hover{border-color:var(--accent);transform:translateY(-2px);text-decoration:none}
+.card h3{font-size:1.05em;margin-bottom:6px;color:var(--white)}.card p{color:var(--muted);font-size:.88em}
+.badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.65em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:6px}
+.badge-amber{background:var(--amber)}.badge-blue{background:var(--accent2)}
+.card .meta{font-size:.78em;color:var(--muted);margin-top:10px}
+.section{padding:32px 0}.section h2{font-size:1.5em;font-weight:700;margin-bottom:20px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+table{width:100%;border-collapse:collapse;font-size:.83em;margin:16px 0}
+th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:48px}
+td{padding:8px 12px;border-bottom:1px solid var(--border)}tr:hover td{background:rgba(16,185,129,.04)}
+.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:6px}
+.progress .bar{height:100%;border-radius:3px}
+.back{display:inline-block;color:var(--muted);font-size:.88em;margin-bottom:16px}.back:hover{color:var(--accent)}
+.dl-card{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;margin:8px 0;transition:.2s}
+.dl-card:hover{border-color:var(--accent);text-decoration:none}.dl-card .icon{font-size:1.8em}.dl-card .info h4{color:var(--white);margin-bottom:2px;font-size:.95em}.dl-card .info p{color:var(--muted);font-size:.8em}
+.phase-tag{display:inline-block;font-size:.65em;font-weight:600;padding:2px 6px;border-radius:3px;margin-right:4px}
+.phase-plan{background:rgba(16,185,129,.15);color:var(--green)}.phase-exec{background:rgba(245,158,11,.15);color:var(--amber)}.phase-not{background:rgba(148,163,184,.1);color:var(--muted)}
+.nav-sub{display:flex;flex-wrap:wrap;gap:5px;margin:12px 0 20px;padding:10px 14px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
+.nav-sub a{font-size:.78em;color:var(--muted);padding:3px 8px;border-radius:4px;transition:.2s;white-space:nowrap}
 .nav-sub a:hover,.nav-sub a.active{color:var(--white);background:var(--surface);text-decoration:none}
-</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a></div></div></nav><div class="container">
-    <div style="padding-top:30px">
+.doc-content{max-width:900px;margin:0 auto;padding:16px 0}
+.doc-content h1{font-size:1.7em;font-weight:800;color:var(--white);margin:28px 0 14px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+.doc-content h2{font-size:1.3em;font-weight:700;color:var(--accent);margin:24px 0 10px}
+.doc-content h3{font-size:1.1em;font-weight:600;color:var(--accent2);margin:18px 0 8px}
+.doc-content p{margin:6px 0;line-height:1.65}.doc-content table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.83em}
+.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:8px 10px;font-weight:600;border:1px solid var(--border)}
+.doc-content td{padding:7px 10px;border:1px solid var(--border);vertical-align:top}
+.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.doc-content ul,.doc-content ol{margin:6px 0 6px 20px}.doc-content li{margin:3px 0;line-height:1.55}
+.doc-content strong{color:var(--white)}.doc-content em{color:var(--muted)}
+footer{text-align:center;padding:32px 0;color:var(--muted);font-size:.78em;border-top:1px solid var(--border);margin-top:50px}
+footer a{color:var(--accent2)}
+@media(max-width:768px){.stats{gap:14px}.stat .num{font-size:1.2em}nav .links a{font-size:10px;padding:3px 5px}.hero h1{font-size:1.5em}}
+</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="projections.html" class="">Projections</a><a href="action-plan.html" class="">Action Plan</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a><a href="https://apseter.github.io/Retail_Ventures_Command_Center/" class="cc-link" target="_blank">🏠 Command Center</a></div></div></nav><div class="container"><div style="padding-top:28px">
         <a href="p7.html" class="back">← 📣 P7: Marketing & PR</a>
         <div class="nav-sub"><a href="p7.html">📣 P7 Overview</a><a href="sub-p7a.html">P7A</a><a href="sub-p7b.html">P7B</a><a href="sub-p7c.html" class="active">P7C</a><a href="sub-p7d.html">P7D</a><a href="sub-p7e.html">P7E</a><a href="sub-p7f.html">P7F</a></div>
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px">
-            <div>
-                <span style="background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px">P7C</span>
-                <span style="color:var(--muted);font-size:.85em;margin-left:8px">P7: Marketing & PR</span>
-            </div>
-            <a href="files/P7C_PR_Media.docx" style="font-size:.85em;color:var(--accent);padding:6px 14px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+            <div><span class="badge">P7C</span> <span style="color:var(--muted);font-size:.83em">P7: Marketing & PR</span></div>
+            <a href="files/P7C_PR_Media.docx" style="font-size:.83em;color:var(--accent);padding:5px 12px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
         </div>
-        <div class="doc-content">
-            <p><strong>P7C: PR &amp; MEDIA</strong></p>
-<p>Sub-Project P7C | Marketing, PR &amp; Community | Weeks 16–28</p>
+        <div class="doc-content"><p><strong><a href="sub-p7c.html" style="color:var(--accent)">P7C</a>: PR &amp; MEDIA</strong></p>
+<p>Sub-Project <a href="sub-p7c.html" style="color:var(--accent)">P7C</a> | Marketing, PR &amp; Community | Weeks 16–28</p>
 <p><em>Complete PR Strategy: 10-Section Press Release Template, 6
 Running Media Targets, 5 Sustainability Media Targets, 4 Local News
 Channels, PR Coverage Documentation System, and 6 Awards
@@ -116,7 +92,7 @@ paragraph still gets the full story.</p>
 <table>
 <colgroup>
 <col style="width: 14%" />
-<col style="width:50%">
+<col style="width: 50%" />
 <col style="width: 35%" />
 </colgroup>
 <tbody>
@@ -174,7 +150,7 @@ warm in the cold morning corral,” said [Founder Name], founder of
 US marathon season, that’s an estimated 60,000–120,000 lbs of LDPE
 plastic going to landfill each year from start lines alone.”</td>
 <td>The problem paragraph establishes the SCALE and URGENCY of the waste
-issue using data from P0A. The founder’s quote makes it personal and
+issue using data from <a href="sub-p0a.html" style="color:var(--accent)">P0A</a>. The founder’s quote makes it personal and
 quotable for journalists.</td>
 </tr>
 <tr class="odd">
@@ -199,7 +175,7 @@ the patent-pending tear-away (novelty hook for journalists).</td>
 distributed to runners. [Y]% were collected at the start line and
 commercially composted, diverting [Z] lbs from landfill. Post-race
 surveys showed [W]% runner satisfaction.”</td>
-<td>Include this paragraph ONLY after pilot races (P5B) are complete. If
+<td>Include this paragraph ONLY after pilot races (<a href="sub-p5b.html" style="color:var(--accent)">P5B</a>) are complete. If
 no pilot data yet: omit and replace with a forward-looking statement:
 “The brand will debut at [first pilot race] in [month], with plans to
 serve [X] races in its first season.”</td>
@@ -327,7 +303,7 @@ word-of-mouth recommendations.</td>
 <td>marathonhandbook.com</td>
 <td>Editor or contributor (contact via website)</td>
 <td>Pitch as: gear review or guest article (“The Hidden Waste Problem at
-Marathon Start Lines” — repurpose Blog 1 from P6D). Marathon Handbook
+Marathon Start Lines” — repurpose Blog 1 from <a href="sub-p6d.html" style="color:var(--accent)">P6D</a>). Marathon Handbook
 publishes accessible content for recreational marathon runners.</td>
 <td>DR 50+. High relevance: the site’s entire audience is marathon
 runners preparing for races.</td>
@@ -336,7 +312,7 @@ runners preparing for races.</td>
 <td><strong>Canadian Running</strong></td>
 <td>canadianrunningmagazine.com</td>
 <td>Gear editor</td>
-<td>Pitch for Year 2 international expansion (P2F Section 6). Canadian
+<td>Pitch for Year 2 international expansion (<a href="sub-p2f.html" style="color:var(--accent)">P2F</a> Section 6). Canadian
 running = very cold start lines. Subject: “Compostable poncho designed
 for cold-weather race starts — launching in Canada [Year 2].”</td>
 <td>Sets up Year 2 Canadian market entry. Canadian Running reaches a
@@ -376,7 +352,7 @@ inbox.</p>
 <p><strong>Sustainability media reaches the eco-conscious consumer AND
 the corporate sustainability professional.</strong> A feature in
 GreenBiz or Sustainable Brands is seen by: the CSO at a race sponsor
-(who may fund compostable ponchos per P5E), the sustainability director
+(who may fund compostable ponchos per <a href="sub-p5e.html" style="color:var(--accent)">P5E</a>), the sustainability director
 at a race series (who may champion the product internally), and the
 eco-conscious runner who subscribes to TreeHugger (who becomes a DTC
 customer). Sustainability media serves BOTH B2B and DTC conversion.</p>
@@ -408,7 +384,7 @@ logistics model (collection, transport, verification) as a BUSINESS
 MODEL innovation, not just a product.</td>
 <td>GreenBiz readers include: corporate sustainability professionals,
 ESG analysts, and green business founders. A feature here reaches the
-SPONSOR audience (P5E) and positions the brand as a circular economy
+SPONSOR audience (<a href="sub-p5e.html" style="color:var(--accent)">P5E</a>) and positions the brand as a circular economy
 leader.</td>
 </tr>
 <tr class="odd">
@@ -446,7 +422,7 @@ runner-founded brand is proving that compostable products can scale at
 mass events.”</td>
 <td>Triple Pundit’s audience includes: impact investors, social
 entrepreneurs, and sustainability professionals. A feature here may
-attract: investment interest (angel/pre-seed per P8) and industry
+attract: investment interest (angel/pre-seed per <a href="p8.html" style="color:var(--accent)">P8</a>) and industry
 partnership inquiries.</td>
 </tr>
 <tr class="even">
@@ -457,7 +433,7 @@ partnership inquiries.</td>
 audience includes: event sustainability professionals in Asia, Europe,
 and Oceania. Subject: “Compostable race poncho launches in the US with
 plans to go global.”</td>
-<td>Long-term positioning for international expansion (P2F Section 6: 8
+<td>Long-term positioning for international expansion (<a href="sub-p2f.html" style="color:var(--accent)">P2F</a> Section 6: 8
 international markets targeted for Year 2–3).</td>
 </tr>
 </tbody>
@@ -501,7 +477,7 @@ marathon as a community event.</p>
 <td>Chicago Tribune, New York Post/Daily News, Boston Globe, Washington
 Post, Philadelphia Inquirer</td>
 <td>Contact: sports desk or environment/sustainability reporter</td>
-<td>Pitch AFTER the pilot race (P5B) with LOCAL data: “[City] Marathon
+<td>Pitch AFTER the pilot race (<a href="sub-p5b.html" style="color:var(--accent)">P5B</a>) with LOCAL data: “[City] Marathon
 debuts compostable ponchos — [X] lbs of waste composted instead of
 landfilled.” Attach: press release + 3–5 race-day photos from the pilot.
 The LOCAL angle makes this newsworthy: it’s a [city] marathon story, not
@@ -569,7 +545,7 @@ start line, 4–5 AM.” Offer: B-roll of runners in ponchos, tear-away
 demo, composting bins. Visual story = TV gold. POST-RACE (1–2 days
 after): “[X] compostable ponchos composted at [City] Marathon, diverting
 [Y] lbs from landfill.” Angle: results and data. Attach: post-race
-composting report (P4D Section 4) + race-day photos. The POST-RACE pitch
+composting report (<a href="sub-p4d.html" style="color:var(--accent)">P4D</a> Section 4) + race-day photos. The POST-RACE pitch
 has the HIGHEST conversion rate: it’s a results story with real data,
 not a “coming soon” teaser.</p>
 <p>5. PR Coverage Documentation</p>
@@ -656,7 +632,7 @@ with: high-res product photos (5–10 images, JPEG + PNG, 300 DPI),
 founder headshot (professional quality), brand logos (EPS + PNG,
 full-color + white + black versions), FLIR thermal comparison image,
 pilot race photos (4–6 best), and infographics from the waste stats
-series (P7B Section 3). (4) A “Media Inquiries” contact: founder’s email
+series (<a href="sub-p7b.html" style="color:var(--accent)">P7B</a> Section 3). (4) A “Media Inquiries” contact: founder’s email
 + phone + response-time commitment (“We respond to all media inquiries
 within 24 hours”). The press kit page should be SELF-SERVICE: a
 journalist should be able to write a story about the brand using ONLY
@@ -732,7 +708,7 @@ for the assessment.</td>
 <tr class="even">
 <td><strong>1% for the Planet Environmental Partner Award</strong></td>
 <td>Annual, submission to 1% for the Planet</td>
-<td>If the brand joins 1% for the Planet (per P5C Section 5): eligible
+<td>If the brand joins 1% for the Planet (per <a href="sub-p5c.html" style="color:var(--accent)">P5C</a> Section 5): eligible
 for their partner recognition awards. These celebrate members who
 demonstrate exceptional environmental commitment.</td>
 <td>1% for the Planet awards reach: the entire 1% member network (5,000+
@@ -761,7 +737,7 @@ niche.</td>
 (for February–March conference). These are the most relevant and
 achievable for a new brand with pilot data. YEAR 1–2: submit to Outside
 Best Gear (mid-year for next year’s publication), 1% for the Planet
-Environmental Partner (after joining 1% per P5C Section 5), and Fast
+Environmental Partner (after joining 1% per <a href="sub-p5c.html" style="color:var(--accent)">P5C</a> Section 5), and Fast
 Company World Changing Ideas (October–December). YEAR 2: begin B Corp
 Certification process (6–12 month process, requires 12 months of
 operational data). ONGOING: monitor new awards in the sustainability,
@@ -795,7 +771,7 @@ Certification application.</strong></p>
 Product samples for journalists (15 outlets × 2–3 ponchos each): $52–$81
 in product COGS + $120–$225 in shipping. Press kit page: $0 (built on
 existing Shopify site). Award application fees: $0–$200 (most are free
-or low-cost). PR tracking tools: $0 (Google Sheet). TOTAL P7C:
+or low-cost). PR tracking tools: $0 (Google Sheet). TOTAL <a href="sub-p7c.html" style="color:var(--accent)">P7C</a>:
 $271–$605. EXPECTED RETURN: if even 2–3 outlets publish coverage:
 100K–1M+ reader impressions, 2–3 DR 50+ backlinks (worth $1,000–$5,000
 in equivalent SEO value), and “As Featured In” badges that enhance every
@@ -819,9 +795,4 @@ pitches generate value that no amount of advertising can replicate. One
 Runner’s World feature is worth more than $10,000 in Facebook ads — and
 it lasts forever on their website, forever in Google’s index, and
 forever in the brand’s press kit.</p>
-
-        </div>
-    </div></div>
-<footer style="text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px">
-Sustainable Race-Start Warmth Poncho — D2C Brand GTM Project · 60 Subprojects · 391 Tasks · ~15,500¶ · April 2026
-</footer></body></html>
+</div></div></div><footer>Sustainable Race-Start Warmth Poncho — GTM Project · 60 Subprojects · 391 Tasks · ~120K Words · April 2026<br><a href="https://apseter.github.io/Retail_Ventures_Command_Center/">← Retail Ventures Command Center</a> · <a href="index.html">Project Home</a></footer></body></html>

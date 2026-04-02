@@ -1,93 +1,69 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>P1: Critical Gap Analysis — Race Start Warmth GTM</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-<style>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>P1 — Race Start Warmth GTM</title><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet"><style>
 :root{--bg:#0a0e1a;--surface:#111827;--card:#1a2332;--border:#2a3a4e;--accent:#10b981;--accent2:#3b82f6;--text:#e2e8f0;--muted:#94a3b8;--white:#fff;--red:#ef4444;--amber:#f59e0b;--green:#10b981}
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
 a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
 .container{max-width:1200px;margin:0 auto;padding:0 24px}
-/* Nav */
-nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
-nav .inner{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;max-width:1200px;margin:0 auto}
-nav .brand{font-weight:700;font-size:15px;color:var(--accent)}
-nav .links{display:flex;gap:8px;flex-wrap:wrap}
-nav .links a{color:var(--muted);font-size:13px;padding:4px 10px;border-radius:6px;transition:.2s}
+nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
+nav .inner{display:flex;align-items:center;justify-content:space-between;padding:10px 24px;max-width:1200px;margin:0 auto;flex-wrap:wrap;gap:8px}
+nav .brand{font-weight:700;font-size:14px;color:var(--accent);white-space:nowrap}
+nav .links{display:flex;gap:4px;flex-wrap:wrap}
+nav .links a{color:var(--muted);font-size:12px;padding:4px 8px;border-radius:6px;transition:.2s;white-space:nowrap}
 nav .links a:hover,nav .links a.active{color:var(--white);background:var(--card);text-decoration:none}
-/* Hero */
-.hero{padding:60px 0 40px;text-align:center}
-.hero h1{font-size:2.4em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hero p{color:var(--muted);font-size:1.1em;max-width:700px;margin:0 auto}
-/* Stats bar */
-.stats{display:flex;justify-content:center;gap:32px;padding:24px 0;flex-wrap:wrap}
-.stat{text-align:center}.stat .num{font-size:1.8em;font-weight:800;color:var(--white)}.stat .label{font-size:.75em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
-/* Cards */
-.grid{display:grid;gap:16px;margin:24px 0}
-.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}
-.grid-3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
-.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;transition:.2s}
-.card:hover{border-color:var(--accent);transform:translateY(-2px)}
-.card h3{font-size:1.1em;margin-bottom:8px}.card p{color:var(--muted);font-size:.9em}
-.card .badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:8px}
-.card .meta{font-size:.8em;color:var(--muted);margin-top:12px}
-/* Section */
-.section{padding:40px 0}.section h2{font-size:1.6em;font-weight:700;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--border)}
-/* Table */
-table{width:100%;border-collapse:collapse;font-size:.85em;margin:16px 0}
-th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:52px}
-td{padding:8px 12px;border-bottom:1px solid var(--border)}
-tr:hover td{background:rgba(16,185,129,.05)}
-.status-complete{color:var(--green);font-weight:600}.status-not{color:var(--muted)}
-/* Progress */
-.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:8px}
-.progress .bar{height:100%;background:var(--accent);border-radius:3px}
-/* Back link */
-.back{display:inline-block;color:var(--muted);font-size:.9em;margin-bottom:20px}
-.back:hover{color:var(--accent)}
-/* Download */
-.dl-card{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin:8px 0;transition:.2s}
-.dl-card:hover{border-color:var(--accent);text-decoration:none}
-.dl-card .icon{font-size:2em}.dl-card .info h4{color:var(--white);margin-bottom:4px}.dl-card .info p{color:var(--muted);font-size:.85em}
-/* Footer */
-footer{text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px}
-@media(max-width:768px){.stats{gap:16px}.stat .num{font-size:1.3em}nav .links{gap:4px}nav .links a{font-size:11px;padding:3px 6px}.hero h1{font-size:1.6em}}
-
-.doc-content{max-width:900px;margin:0 auto;padding:20px 0}
-.doc-content h1{font-size:1.8em;font-weight:800;color:var(--white);margin:32px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
-.doc-content h2{font-size:1.4em;font-weight:700;color:var(--accent);margin:28px 0 12px}
-.doc-content h3{font-size:1.15em;font-weight:600;color:var(--accent2);margin:20px 0 10px}
-.doc-content p{margin:8px 0;line-height:1.7}
-.doc-content table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85em}
-.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;border:1px solid var(--border)}
-.doc-content td{padding:8px 12px;border:1px solid var(--border);vertical-align:top}
-.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
-.doc-content ul,.doc-content ol{margin:8px 0 8px 24px}
-.doc-content li{margin:4px 0;line-height:1.6}
-.doc-content strong{color:var(--white)}
-.doc-content em{color:var(--muted)}
-.doc-content blockquote{border-left:3px solid var(--accent);padding:8px 16px;margin:12px 0;background:var(--card);border-radius:0 8px 8px 0}
-.nav-sub{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 24px;padding:12px 16px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
-.nav-sub a{font-size:.8em;color:var(--muted);padding:4px 10px;border-radius:4px;transition:.2s;white-space:nowrap}
+nav .links a.cc-link{color:var(--accent2);border:1px solid var(--accent2);font-weight:600}
+nav .links a.cc-link:hover{background:var(--accent2);color:var(--white)}
+.hero{padding:50px 0 30px;text-align:center}
+.hero h1{font-size:2.2em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:1.05em;max-width:700px;margin:0 auto}
+.stats{display:flex;justify-content:center;gap:28px;padding:20px 0;flex-wrap:wrap}
+.stat{text-align:center}.stat .num{font-size:1.7em;font-weight:800;color:var(--white)}.stat .label{font-size:.7em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.grid{display:grid;gap:16px;margin:24px 0}.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}.grid-3{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;transition:.2s;display:block}
+.card:hover{border-color:var(--accent);transform:translateY(-2px);text-decoration:none}
+.card h3{font-size:1.05em;margin-bottom:6px;color:var(--white)}.card p{color:var(--muted);font-size:.88em}
+.badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.65em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:6px}
+.badge-amber{background:var(--amber)}.badge-blue{background:var(--accent2)}
+.card .meta{font-size:.78em;color:var(--muted);margin-top:10px}
+.section{padding:32px 0}.section h2{font-size:1.5em;font-weight:700;margin-bottom:20px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+table{width:100%;border-collapse:collapse;font-size:.83em;margin:16px 0}
+th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:48px}
+td{padding:8px 12px;border-bottom:1px solid var(--border)}tr:hover td{background:rgba(16,185,129,.04)}
+.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:6px}
+.progress .bar{height:100%;border-radius:3px}
+.back{display:inline-block;color:var(--muted);font-size:.88em;margin-bottom:16px}.back:hover{color:var(--accent)}
+.dl-card{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;margin:8px 0;transition:.2s}
+.dl-card:hover{border-color:var(--accent);text-decoration:none}.dl-card .icon{font-size:1.8em}.dl-card .info h4{color:var(--white);margin-bottom:2px;font-size:.95em}.dl-card .info p{color:var(--muted);font-size:.8em}
+.phase-tag{display:inline-block;font-size:.65em;font-weight:600;padding:2px 6px;border-radius:3px;margin-right:4px}
+.phase-plan{background:rgba(16,185,129,.15);color:var(--green)}.phase-exec{background:rgba(245,158,11,.15);color:var(--amber)}.phase-not{background:rgba(148,163,184,.1);color:var(--muted)}
+.nav-sub{display:flex;flex-wrap:wrap;gap:5px;margin:12px 0 20px;padding:10px 14px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
+.nav-sub a{font-size:.78em;color:var(--muted);padding:3px 8px;border-radius:4px;transition:.2s;white-space:nowrap}
 .nav-sub a:hover,.nav-sub a.active{color:var(--white);background:var(--surface);text-decoration:none}
-</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a></div></div></nav><div class="container">
-    <div style="padding-top:30px">
+.doc-content{max-width:900px;margin:0 auto;padding:16px 0}
+.doc-content h1{font-size:1.7em;font-weight:800;color:var(--white);margin:28px 0 14px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+.doc-content h2{font-size:1.3em;font-weight:700;color:var(--accent);margin:24px 0 10px}
+.doc-content h3{font-size:1.1em;font-weight:600;color:var(--accent2);margin:18px 0 8px}
+.doc-content p{margin:6px 0;line-height:1.65}.doc-content table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.83em}
+.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:8px 10px;font-weight:600;border:1px solid var(--border)}
+.doc-content td{padding:7px 10px;border:1px solid var(--border);vertical-align:top}
+.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.doc-content ul,.doc-content ol{margin:6px 0 6px 20px}.doc-content li{margin:3px 0;line-height:1.55}
+.doc-content strong{color:var(--white)}.doc-content em{color:var(--muted)}
+footer{text-align:center;padding:32px 0;color:var(--muted);font-size:.78em;border-top:1px solid var(--border);margin-top:50px}
+footer a{color:var(--accent2)}
+@media(max-width:768px){.stats{gap:14px}.stat .num{font-size:1.2em}nav .links a{font-size:10px;padding:3px 5px}.hero h1{font-size:1.5em}}
+</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="projections.html" class="">Projections</a><a href="action-plan.html" class="">Action Plan</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a><a href="https://apseter.github.io/Retail_Ventures_Command_Center/" class="cc-link" target="_blank">🏠 Command Center</a></div></div></nav><div class="container"><div style="padding-top:28px">
         <a href="p1.html" class="back">← 🎨 P1: Brand Development</a>
-        <div class="nav-sub"><a href="p1.html">🎨 P1 Overview</a><a href="sub-p1a.html">P1A</a><a href="sub-p1b.html">P1B</a><a href="sub-p1c.html">P1C</a><a href="sub-p1d.html">P1D</a><a href="sub-p1e.html">P1E</a><a href="sub-p1.html" class="active">P1</a></div>
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px">
-            <div>
-                <span style="background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px">P1</span>
-                <span style="color:var(--muted);font-size:.85em;margin-left:8px">P1: Brand Development</span>
-            </div>
-            <a href="files/P1_Critical_Gap_Analysis.docx" style="font-size:.85em;color:var(--accent);padding:6px 14px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
+        <div class="nav-sub"><a href="p1.html">🎨 P1 Overview</a><a href="sub-p1a.html">P1A</a><a href="sub-p1b.html">P1B</a><a href="sub-p1c.html">P1C</a><a href="sub-p1d.html">P1D</a><a href="sub-p1e.html">P1E</a></div>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+            <div><span class="badge">P1</span> <span style="color:var(--muted);font-size:.83em">P1: Brand Development</span></div>
+            <a href="files/P1_Critical_Gap_Analysis.docx" style="font-size:.83em;color:var(--accent);padding:5px 12px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
         </div>
-        <div class="doc-content">
-            <p><strong>P1 CRITICAL EVALUATION</strong></p>
+        <div class="doc-content"><p><strong><a href="p1.html" style="color:var(--accent)">P1</a> CRITICAL EVALUATION</strong></p>
 <p><strong>&amp; GAP ANALYSIS</strong></p>
-<p>Comprehensive Audit of All 30 P1 Tasks | 15 Identified Gaps with
+<p>Comprehensive Audit of All 30 <a href="p1.html" style="color:var(--accent)">P1</a> Tasks | 15 Identified Gaps with
 Action Items</p>
 <p>March 2026 | Internal Review Document</p>
 <p>Executive Assessment</p>
-<p><strong>OVERALL VERDICT: P1 is 80–85% complete and substantially
+<p><strong>OVERALL VERDICT: <a href="p1.html" style="color:var(--accent)">P1</a> is 80–85% complete and substantially
 exceeds the typical depth of a brand development package at this
 stage.</strong> Of the 30 GTM tracker tasks, 19 are fully complete with
 actionable, comprehensive content. 7 are structurally complete but have
@@ -142,8 +118,8 @@ selling to institutional buyers.</p>
 </tr>
 </tbody>
 </table>
-<p>2. Task-by-Task Audit: All 30 P1 GTM Tracker Tasks</p>
-<p><strong>Each of the 30 P1 tasks from the GTM Master Tracker is
+<p>2. Task-by-Task Audit: All 30 <a href="p1.html" style="color:var(--accent)">P1</a> GTM Tracker Tasks</p>
+<p><strong>Each of the 30 <a href="p1.html" style="color:var(--accent)">P1</a> tasks from the GTM Master Tracker is
 evaluated below</strong> against the actual deliverable content. Status:
 ✅ COMPLETE = fully actionable; ⚠️ = partially complete or process-only;
 ❌ = significant gap requiring action.</p>
@@ -168,7 +144,7 @@ evaluated below</strong> against the actual deliverable content. Status:
 <tr class="even">
 <td><strong>1.01</strong></td>
 <td>Brainstorm 25+ brand name candidates</td>
-<td>P1A Sec 2</td>
+<td><a href="sub-p1a.html" style="color:var(--accent)">P1A</a> Sec 2</td>
 <td>30+ candidates across 6 strategies</td>
 <td>✅ COMPLETE</td>
 <td>None — exceeds target</td>
@@ -176,7 +152,7 @@ evaluated below</strong> against the actual deliverable content. Status:
 <tr class="odd">
 <td><strong>1.02</strong></td>
 <td>USPTO trademark search for top 10</td>
-<td>P1A Sec 4</td>
+<td><a href="sub-p1a.html" style="color:var(--accent)">P1A</a> Sec 4</td>
 <td>Filing guide + TESS process + trademarkability assessment</td>
 <td>⚠️ PROCESS ONLY</td>
 <td>ACTION: No actual TESS searches were run. Document provides the HOW
@@ -186,7 +162,7 @@ document cleared/flagged status.</td>
 <tr class="even">
 <td><strong>1.03</strong></td>
 <td>Verify .com domain + social handles for top 5</td>
-<td>P1A Sec 5</td>
+<td><a href="sub-p1a.html" style="color:var(--accent)">P1A</a> Sec 5</td>
 <td>Process documented + tools listed</td>
 <td>⚠️ PROCESS ONLY</td>
 <td>ACTION: No live availability checks were performed. Need real-time
@@ -196,7 +172,7 @@ Facebook, Strava. Document results.</td>
 <tr class="odd">
 <td><strong>1.04</strong></td>
 <td>Test 3–5 finalists via runner polls</td>
-<td>P1A Sec 6</td>
+<td><a href="sub-p1a.html" style="color:var(--accent)">P1A</a> Sec 6</td>
 <td>Testing framework with 5 channels + 8 eval criteria + 3-phase
 protocol</td>
 <td>✅ FRAMEWORK COMPLETE</td>
@@ -206,7 +182,7 @@ comprehensive</td>
 <tr class="even">
 <td><strong>1.05</strong></td>
 <td>File trademark application</td>
-<td>P1A Sec 4.4</td>
+<td><a href="sub-p1a.html" style="color:var(--accent)">P1A</a> Sec 4.4</td>
 <td>TEAS Plus/Standard options, Classes 25+24, $500–$700, timeline</td>
 <td>✅ COMPLETE</td>
 <td>None — filing instructions are thorough</td>
@@ -214,7 +190,7 @@ comprehensive</td>
 <tr class="odd">
 <td><strong>1.06</strong></td>
 <td>Secure domain, social handles, Google Workspace</td>
-<td>P1A Sec 5.2–5.3</td>
+<td><a href="sub-p1a.html" style="color:var(--accent)">P1A</a> Sec 5.2–5.3</td>
 <td>Namechk/KnowEm tools, Google Workspace setup at $6–12/mo</td>
 <td>✅ COMPLETE</td>
 <td>None</td>
@@ -222,7 +198,7 @@ comprehensive</td>
 <tr class="even">
 <td><strong>1.07</strong></td>
 <td>Define brand positioning statement</td>
-<td>P1B Sec 1</td>
+<td><a href="sub-p1b.html" style="color:var(--accent)">P1B</a> Sec 1</td>
 <td>Positioning defined: “The first running brand built around the start
 line”</td>
 <td>✅ COMPLETE</td>
@@ -232,7 +208,7 @@ For/Who/That/Unlike structure). See Gap #1.</td>
 <tr class="odd">
 <td><strong>1.08</strong></td>
 <td>Design logo: 3+ concepts → 1 selected</td>
-<td>P1B Sec 5</td>
+<td><a href="sub-p1b.html" style="color:var(--accent)">P1B</a> Sec 5</td>
 <td>Logo specs, design brief, format requirements, co-brand rules</td>
 <td>⚠️ BRIEF ONLY</td>
 <td>ACTION: Design brief is comprehensive but no actual logo concepts
@@ -243,7 +219,7 @@ emulate/avoid. See Gap #2.</td>
 <tr class="even">
 <td><strong>1.09</strong></td>
 <td>Develop color palette</td>
-<td>P1B Sec 3</td>
+<td><a href="sub-p1b.html" style="color:var(--accent)">P1B</a> Sec 3</td>
 <td>8-color system with hex codes, usage rules, WCAG accessibility</td>
 <td>✅ COMPLETE</td>
 <td>None — thorough and actionable</td>
@@ -251,17 +227,17 @@ emulate/avoid. See Gap #2.</td>
 <tr class="odd">
 <td><strong>1.10</strong></td>
 <td>Design product packaging</td>
-<td>P1B Sec 6</td>
+<td><a href="sub-p1b.html" style="color:var(--accent)">P1B</a> Sec 6</td>
 <td>5 packaging components with materials, dimensions, design
 briefs</td>
 <td>⚠️ BRIEF ONLY</td>
 <td>Minor gap: QR code strategy mentioned in GTM tracker task but not
-fully specified in P1B. See Gap #3.</td>
+fully specified in <a href="sub-p1b.html" style="color:var(--accent)">P1B</a>. See Gap #3.</td>
 </tr>
 <tr class="even">
 <td><strong>1.11</strong></td>
 <td>Create co-brand template</td>
-<td>P1B Sec 7</td>
+<td><a href="sub-p1b.html" style="color:var(--accent)">P1B</a> Sec 7</td>
 <td>Template specs, drop zones, design rules, sizing</td>
 <td>✅ COMPLETE</td>
 <td>None — correctly identified as #1 B2B asset</td>
@@ -269,17 +245,17 @@ fully specified in P1B. See Gap #3.</td>
 <tr class="odd">
 <td><strong>1.12</strong></td>
 <td>Design sustainability one-pager / data sheet</td>
-<td>P1C Sec 8</td>
+<td><a href="sub-p1c.html" style="color:var(--accent)">P1C</a> Sec 8</td>
 <td>Front/back content specified in detail</td>
 <td>✅ COMPLETE</td>
-<td>Covered in P1C (messaging) not P1B (design). Cross-reference works,
+<td>Covered in <a href="sub-p1c.html" style="color:var(--accent)">P1C</a> (messaging) not <a href="sub-p1b.html" style="color:var(--accent)">P1B</a> (design). Cross-reference works,
 but design specs (bleed, margins, print resolution) are missing. See Gap
 #4.</td>
 </tr>
 <tr class="even">
 <td><strong>1.13</strong></td>
 <td>Build brand guidelines document</td>
-<td>P1B Sec 10.1</td>
+<td><a href="sub-p1b.html" style="color:var(--accent)">P1B</a> Sec 10.1</td>
 <td>Mentioned in timeline as Week 8 deliverable</td>
 <td>⚠️ UNDERSPECIFIED</td>
 <td>ACTION: The brand guidelines document is listed as a deliverable but
@@ -290,7 +266,7 @@ a detailed outline of what the guidelines PDF should contain. See Gap
 <tr class="odd">
 <td><strong>1.14</strong></td>
 <td>Write brand origin story (250-word + 50-word)</td>
-<td>P1C Sec 1</td>
+<td><a href="sub-p1c.html" style="color:var(--accent)">P1C</a> Sec 1</td>
 <td>All 3 versions written: 250-word DTC, 50-word short, B2B</td>
 <td>✅ COMPLETE</td>
 <td>None — excellent</td>
@@ -298,7 +274,7 @@ a detailed outline of what the guidelines PDF should contain. See Gap
 <tr class="even">
 <td><strong>1.15</strong></td>
 <td>Develop B2B messaging framework</td>
-<td>P1C Sec 3</td>
+<td><a href="sub-p1c.html" style="color:var(--accent)">P1C</a> Sec 3</td>
 <td>7 key messages with headlines, evidence, hierarchy</td>
 <td>✅ COMPLETE</td>
 <td>None — thorough with email template</td>
@@ -306,7 +282,7 @@ a detailed outline of what the guidelines PDF should contain. See Gap
 <tr class="odd">
 <td><strong>1.16</strong></td>
 <td>Develop DTC messaging framework</td>
-<td>P1C Sec 4</td>
+<td><a href="sub-p1c.html" style="color:var(--accent)">P1C</a> Sec 4</td>
 <td>7 key messages mapped to 3 personas</td>
 <td>✅ COMPLETE</td>
 <td>None</td>
@@ -314,17 +290,17 @@ a detailed outline of what the guidelines PDF should contain. See Gap
 <tr class="even">
 <td><strong>1.17</strong></td>
 <td>Test 5+ tagline candidates</td>
-<td>P1C Sec 5 + P1A Sec 7</td>
-<td>8 taglines in P1C, 6 taglines in P1A (some overlap)</td>
+<td><a href="sub-p1c.html" style="color:var(--accent)">P1C</a> Sec 5 + <a href="sub-p1a.html" style="color:var(--accent)">P1A</a> Sec 7</td>
+<td>8 taglines in <a href="sub-p1c.html" style="color:var(--accent)">P1C</a>, 6 taglines in <a href="sub-p1a.html" style="color:var(--accent)">P1A</a> (some overlap)</td>
 <td>⚠️ OVERLAP ISSUE</td>
-<td>ACTION: Tagline candidates appear in BOTH P1A and P1C with partial
+<td>ACTION: Tagline candidates appear in BOTH <a href="sub-p1a.html" style="color:var(--accent)">P1A</a> and <a href="sub-p1c.html" style="color:var(--accent)">P1C</a> with partial
 overlap and inconsistent rankings. Need to CONSOLIDATE into a single
 canonical list with unified testing plan. See Gap #6.</td>
 </tr>
 <tr class="odd">
 <td><strong>1.18</strong></td>
 <td>Write product copy: Amazon, Shopify, B2B</td>
-<td>P1C Sec 6–8</td>
+<td><a href="sub-p1c.html" style="color:var(--accent)">P1C</a> Sec 6–8</td>
 <td>Amazon title + 5 bullets + description; Shopify full page; B2B data
 sheet content</td>
 <td>✅ COMPLETE</td>
@@ -333,7 +309,7 @@ sheet content</td>
 <tr class="even">
 <td><strong>1.19</strong></td>
 <td>Build impact messaging framework</td>
-<td>P1C Sec 9</td>
+<td><a href="sub-p1c.html" style="color:var(--accent)">P1C</a> Sec 9</td>
 <td>7 levels from per-poncho to industry scale; legally defensible
 claims</td>
 <td>✅ COMPLETE</td>
@@ -342,7 +318,7 @@ claims</td>
 <tr class="odd">
 <td><strong>1.20</strong></td>
 <td>Storyboard 60–90s brand film</td>
-<td>P1D Sec 1–2</td>
+<td><a href="sub-p1d.html" style="color:var(--accent)">P1D</a> Sec 1–2</td>
 <td>9-scene 90s storyboard + 6-scene 60s cut, both with
 timecodes/audio/notes</td>
 <td>✅ COMPLETE</td>
@@ -351,7 +327,7 @@ timecodes/audio/notes</td>
 <tr class="even">
 <td><strong>1.21</strong></td>
 <td>Produce brand film (guide production)</td>
-<td>P1D Sec 3–4</td>
+<td><a href="sub-p1d.html" style="color:var(--accent)">P1D</a> Sec 3–4</td>
 <td>4 production tiers ($0–$50K), 7 video cuts, crew/equipment/editing
 specs</td>
 <td>✅ COMPLETE</td>
@@ -360,7 +336,7 @@ specs</td>
 <tr class="odd">
 <td><strong>1.22</strong></td>
 <td>Capture race start-line waste photography</td>
-<td>P1D Sec 6</td>
+<td><a href="sub-p1d.html" style="color:var(--accent)">P1D</a> Sec 6</td>
 <td>7-moment photography guide, target races, legal considerations</td>
 <td>✅ COMPLETE</td>
 <td>Minor gap: no SHOT LIST CHECKLIST (printable one-page reference for
@@ -369,7 +345,7 @@ race day). See Gap #7.</td>
 <tr class="even">
 <td><strong>1.23</strong></td>
 <td>Create product photography</td>
-<td>P1D Sec 5</td>
+<td><a href="sub-p1d.html" style="color:var(--accent)">P1D</a> Sec 5</td>
 <td>9-shot plan mapped to Amazon requirements, DIY + pro guides</td>
 <td>✅ COMPLETE</td>
 <td>None — Amazon 2026 specs are current</td>
@@ -377,7 +353,7 @@ race day). See Gap #7.</td>
 <tr class="odd">
 <td><strong>1.24</strong></td>
 <td>Create B2B pitch deck</td>
-<td>P1D Sec 8</td>
+<td><a href="sub-p1d.html" style="color:var(--accent)">P1D</a> Sec 8</td>
 <td>10-slide structure with content + design notes for each slide</td>
 <td>⚠️ STRUCTURE ONLY</td>
 <td>ACTION: Slide structure is defined but ACTUAL SLIDE COPY (the exact
@@ -387,7 +363,7 @@ notes and bullet text per slide. See Gap #8.</td>
 <tr class="even">
 <td><strong>1.25</strong></td>
 <td>Build landing page with email capture</td>
-<td>P1E Sec 1</td>
+<td><a href="sub-p1e.html" style="color:var(--accent)">P1E</a> Sec 1</td>
 <td>8-section blueprint, A/B test plan, Meta ads testing</td>
 <td>✅ COMPLETE</td>
 <td>None — comprehensive</td>
@@ -395,16 +371,16 @@ notes and bullet text per slide. See Gap #8.</td>
 <tr class="odd">
 <td><strong>1.26</strong></td>
 <td>Set up email marketing + welcome sequence</td>
-<td>P1E Sec 2–3</td>
+<td><a href="sub-p1e.html" style="color:var(--accent)">P1E</a> Sec 2–3</td>
 <td>Platform comparison, Klaviyo setup checklist, 5-email sequence
 framework</td>
 <td>✅ COMPLETE</td>
-<td>Full email copy lives in P1C Sec 13 — cross-reference is clear</td>
+<td>Full email copy lives in <a href="sub-p1c.html" style="color:var(--accent)">P1C</a> Sec 13 — cross-reference is clear</td>
 </tr>
 <tr class="even">
 <td><strong>1.27</strong></td>
 <td>Seed pre-launch list via Reddit, Facebook, Strava</td>
-<td>P1E Sec 4</td>
+<td><a href="sub-p1e.html" style="color:var(--accent)">P1E</a> Sec 4</td>
 <td>8 channels with audience sizes, expected signups, execution
 guides</td>
 <td>✅ COMPLETE</td>
@@ -413,17 +389,17 @@ guides</td>
 <tr class="odd">
 <td><strong>1.28</strong></td>
 <td>Build B2B prospect list: 50+ race directors</td>
-<td>P1E Sec 5</td>
+<td><a href="sub-p1e.html" style="color:var(--accent)">P1E</a> Sec 5</td>
 <td>7 data sources, spreadsheet structure, 3-email outreach
 sequence</td>
 <td>✅ COMPLETE</td>
-<td>Minor gap: no integration with P0C’s 53-race database — the two
+<td>Minor gap: no integration with <a href="sub-p0c.html" style="color:var(--accent)">P0C</a>’s 53-race database — the two
 lists should be merged. See Gap #9.</td>
 </tr>
 <tr class="even">
 <td><strong>1.29</strong></td>
 <td>Create referral incentive program</td>
-<td>P1E Sec 6</td>
+<td><a href="sub-p1e.html" style="color:var(--accent)">P1E</a> Sec 6</td>
 <td>3-tier program (runner-to-runner, runner-to-RD, RD-to-RD), tool
 setup</td>
 <td>✅ COMPLETE</td>
@@ -433,7 +409,7 @@ mechanic</td>
 <tr class="odd">
 <td><strong>1.30</strong></td>
 <td>Partner with 2–3 running influencers</td>
-<td>P1E Sec 7</td>
+<td><a href="sub-p1e.html" style="color:var(--accent)">P1E</a> Sec 7</td>
 <td>5-tier influencer strategy, outreach template, content guidelines,
 FTC compliance</td>
 <td>✅ COMPLETE</td>
@@ -466,7 +442,7 @@ launch-ready brand. They are ordered by document, not severity.</p>
 <tr class="even">
 <td><strong>GAP #1</strong></td>
 <td>MISSING: Formal Brand Positioning Framework</td>
-<td>P1B</td>
+<td><a href="sub-p1b.html" style="color:var(--accent)">P1B</a></td>
 <td>MEDIUM</td>
 <td>The positioning statement exists (“The first running brand built
 around the start line”) but lacks a structured framework. Need a formal
@@ -483,14 +459,14 @@ garbage bags plotted.</td>
 <tr class="odd">
 <td><strong>GAP #2</strong></td>
 <td>MISSING: Competitive Logo Visual Analysis</td>
-<td>P1B</td>
+<td><a href="sub-p1b.html" style="color:var(--accent)">P1B</a></td>
 <td>LOW-MEDIUM</td>
 <td>The competitive VISUAL audit (Section 2) covers colors, typography,
 and mood for 6 brands but does not show or describe the actual LOGO
 STYLES (icon shapes, wordmark styles, mark+type relationships). A
-designer receiving the P1B brief has no visual reference for competitive
+designer receiving the <a href="sub-p1b.html" style="color:var(--accent)">P1B</a> brief has no visual reference for competitive
 logos to differentiate from.</td>
-<td>ACTION: Add a subsection to P1B Section 5 with 2–3 sentences per
+<td>ACTION: Add a subsection to <a href="sub-p1b.html" style="color:var(--accent)">P1B</a> Section 5 with 2–3 sentences per
 competitor describing their logo type (e.g., “Tracksmith: illustrated
 hare icon + serif wordmark; heritage/academic feel. Allbirds: abstract
 bird icon + rounded sans wordmark; minimal/approachable”). Include
@@ -500,12 +476,12 @@ or any cliché eco icon.”</td>
 <tr class="even">
 <td><strong>GAP #3</strong></td>
 <td>INCOMPLETE: QR Code Strategy for Packaging</td>
-<td>P1B</td>
+<td><a href="sub-p1b.html" style="color:var(--accent)">P1B</a></td>
 <td>MEDIUM</td>
 <td>GTM tracker task 1.10 specifically mentions “QR code” on packaging
-but P1B Section 6 does not specify WHAT the QR code links to, how it’s
+but <a href="sub-p1b.html" style="color:var(--accent)">P1B</a> Section 6 does not specify WHAT the QR code links to, how it’s
 tracked, or the user flow after scanning.</td>
-<td>ACTION: Add QR code specification to P1B Section 6: QR links to
+<td>ACTION: Add QR code specification to <a href="sub-p1b.html" style="color:var(--accent)">P1B</a> Section 6: QR links to
 brand-specific landing page (e.g., brand.com/scan) with composting
 instructions, brand story video, and email capture form. Use dynamic QR
 (via QR.io or Bitly) so destination URL can be updated without
@@ -515,15 +491,15 @@ users scan).</td>
 <tr class="odd">
 <td><strong>GAP #4</strong></td>
 <td>MISSING: Data Sheet Print Production Specs</td>
-<td>P1C/P1B</td>
+<td><a href="sub-p1c.html" style="color:var(--accent)">P1C</a>/<a href="sub-p1b.html" style="color:var(--accent)">P1B</a></td>
 <td>LOW</td>
-<td>P1C Section 8 provides the CONTENT for the B2B data sheet but
-neither P1C nor P1B specifies the PRINT PRODUCTION specs: bleed
+<td><a href="sub-p1c.html" style="color:var(--accent)">P1C</a> Section 8 provides the CONTENT for the B2B data sheet but
+neither <a href="sub-p1c.html" style="color:var(--accent)">P1C</a> nor <a href="sub-p1b.html" style="color:var(--accent)">P1B</a> specifies the PRINT PRODUCTION specs: bleed
 (0.125″), safe zone (0.25″ from edge), resolution (300 DPI), color mode
 (CMYK for print), paper stock recommendation (recycled 100lb gloss or
 uncoated), and file format (press-ready PDF/X-1a).</td>
-<td>ACTION: Add a “Print Production Notes” paragraph to either P1B
-Section 6 or P1C Section 8 specifying: 8.5–11″ final size, 8.75–11.25″
+<td>ACTION: Add a “Print Production Notes” paragraph to either <a href="sub-p1b.html" style="color:var(--accent)">P1B</a>
+Section 6 or <a href="sub-p1c.html" style="color:var(--accent)">P1C</a> Section 8 specifying: 8.5–11″ final size, 8.75–11.25″
 with bleed, 300 DPI minimum, CMYK color, 100lb recycled gloss stock,
 PDF/X-1a output. Estimated print cost: $0.30–$0.60/sheet at 250+
 quantity (Vistaprint, MOO, or local print shop).</td>
@@ -531,13 +507,13 @@ quantity (Vistaprint, MOO, or local print shop).</td>
 <tr class="even">
 <td><strong>GAP #5</strong></td>
 <td>UNDERSPECIFIED: Brand Guidelines Document Structure</td>
-<td>P1B</td>
+<td><a href="sub-p1b.html" style="color:var(--accent)">P1B</a></td>
 <td>MEDIUM-HIGH</td>
 <td>Task 1.13 requires a comprehensive brand guidelines document, but
-P1B only mentions it as a timeline deliverable without defining its
+<a href="sub-p1b.html" style="color:var(--accent)">P1B</a> only mentions it as a timeline deliverable without defining its
 TABLE OF CONTENTS. A designer tasked with creating this needs to know
 exactly what pages to produce.</td>
-<td>ACTION: Add a detailed brand guidelines outline to P1B Section 10:
+<td>ACTION: Add a detailed brand guidelines outline to <a href="sub-p1b.html" style="color:var(--accent)">P1B</a> Section 10:
 Page 1: Cover (logo + version + date). Pages 2–3: Brand Story +
 Positioning Statement. Pages 4–5: Logo (primary, secondary, icon-only,
 clear space, minimum size, do’s/don’ts, color variants). Pages 6–7:
@@ -545,9 +521,9 @@ Color Palette (hex, RGB, CMYK, Pantone for each color, usage ratios,
 accessibility). Pages 8–9: Typography (font families, hierarchy, sizing,
 spacing, web vs. print). Pages 10–11: Photography Style (tone, subjects,
 editing style, examples of do/don’t). Pages 12–13: Voice &amp; Tone
-(summary of P1C principles with examples). Pages 14–15: Packaging +
-Product Application (specs from P1B Sec 6). Pages 16–17: Co-Branding
-Rules (from P1B Sec 7). Page 18: Digital Assets (social templates, email
+(summary of <a href="sub-p1c.html" style="color:var(--accent)">P1C</a> principles with examples). Pages 14–15: Packaging +
+Product Application (specs from <a href="sub-p1b.html" style="color:var(--accent)">P1B</a> Sec 6). Pages 16–17: Co-Branding
+Rules (from <a href="sub-p1b.html" style="color:var(--accent)">P1B</a> Sec 7). Page 18: Digital Assets (social templates, email
 headers, web banners). Page 19–20: Contact + Version History.</td>
 </tr>
 </tbody>
@@ -573,29 +549,29 @@ headers, web banners). Page 19–20: Contact + Version History.</td>
 <tr class="even">
 <td><strong>GAP #6</strong></td>
 <td>INCONSISTENCY: Tagline Candidates Across Documents</td>
-<td>P1A + P1C</td>
+<td><a href="sub-p1a.html" style="color:var(--accent)">P1A</a> + <a href="sub-p1c.html" style="color:var(--accent)">P1C</a></td>
 <td>MEDIUM</td>
-<td>P1A Section 7 lists 6 taglines. P1C Section 5 lists 8 taglines.
+<td><a href="sub-p1a.html" style="color:var(--accent)">P1A</a> Section 7 lists 6 taglines. <a href="sub-p1c.html" style="color:var(--accent)">P1C</a> Section 5 lists 8 taglines.
 There is partial overlap but different rankings and some taglines appear
 in one document but not the other. A founder reading both documents
 would be confused about which list is canonical.</td>
-<td>ACTION: Consolidate into ONE canonical tagline list in P1C (the
-messaging document is the authoritative source). Update P1A to reference
-P1C for taglines: “For the full tagline candidate list and testing
-framework, see P1C Section 5.” The canonical list should contain ALL
+<td>ACTION: Consolidate into ONE canonical tagline list in <a href="sub-p1c.html" style="color:var(--accent)">P1C</a> (the
+messaging document is the authoritative source). Update <a href="sub-p1a.html" style="color:var(--accent)">P1A</a> to reference
+<a href="sub-p1c.html" style="color:var(--accent)">P1C</a> for taglines: “For the full tagline candidate list and testing
+framework, see <a href="sub-p1c.html" style="color:var(--accent)">P1C</a> Section 5.” The canonical list should contain ALL
 unique taglines from both documents (deduplicated) with a single unified
 priority ranking.</td>
 </tr>
 <tr class="odd">
 <td><strong>GAP #7</strong></td>
 <td>MISSING: Race-Day Photography Shot Checklist</td>
-<td>P1D</td>
+<td><a href="sub-p1d.html" style="color:var(--accent)">P1D</a></td>
 <td>LOW</td>
-<td>P1D Section 6 provides a detailed time-based photography guide but
+<td><a href="sub-p1d.html" style="color:var(--accent)">P1D</a> Section 6 provides a detailed time-based photography guide but
 lacks a PRINTABLE ONE-PAGE CHECKLIST that a founder could take to a
 race. Race mornings are chaotic — a structured checklist ensures no
 shots are missed.</td>
-<td>ACTION: Add a one-page “Race-Day Shot Checklist” appendix to P1D
+<td>ACTION: Add a one-page “Race-Day Shot Checklist” appendix to <a href="sub-p1d.html" style="color:var(--accent)">P1D</a>
 with 20–25 specific shots as checkboxes grouped by time window: PRE-RACE
 (□ bus arrival, □ headlamps in dark, □ coffee cups/cold breath), CORRAL
 (□ garbage bags on runners, □ thrift-store layers, □ huddled groups, □
@@ -606,9 +582,9 @@ Goodwill bins, □ clothing mountain, □ empty road after collection).</td>
 <tr class="even">
 <td><strong>GAP #8</strong></td>
 <td>INCOMPLETE: B2B Pitch Deck Slide Copy</td>
-<td>P1D</td>
+<td><a href="sub-p1d.html" style="color:var(--accent)">P1D</a></td>
 <td>HIGH</td>
-<td>P1D Section 8 provides a 10-slide STRUCTURE with content themes and
+<td><a href="sub-p1d.html" style="color:var(--accent)">P1D</a> Section 8 provides a 10-slide STRUCTURE with content themes and
 design notes, but does NOT provide the ACTUAL WORDS on each slide. A
 founder building the deck still has to write every headline, subhead,
 and data callout. This is the #1 B2B sales tool — it should be
@@ -621,32 +597,32 @@ without any additional briefing.</td>
 </tr>
 <tr class="odd">
 <td><strong>GAP #9</strong></td>
-<td>MISSING: P0C ↔︎ P1E Database Integration Guide</td>
-<td>P1E + P0C</td>
+<td>MISSING: <a href="sub-p0c.html" style="color:var(--accent)">P0C</a> ↔︎ <a href="sub-p1e.html" style="color:var(--accent)">P1E</a> Database Integration Guide</td>
+<td><a href="sub-p1e.html" style="color:var(--accent)">P1E</a> + <a href="sub-p0c.html" style="color:var(--accent)">P0C</a></td>
 <td>MEDIUM</td>
-<td>P0C created a 53-race prioritized database (Tier 1–3) and P1E
+<td><a href="sub-p0c.html" style="color:var(--accent)">P0C</a> created a 53-race prioritized database (Tier 1–3) and <a href="sub-p1e.html" style="color:var(--accent)">P1E</a>
 Section 5 creates a separate B2B prospect list from 7 sources. These
 should be MERGED into a single master prospect database, but no document
 specifies how.</td>
-<td>ACTION: Add a subsection to P1E Section 5: “5.3 Merging P0C and P1E
-Prospect Lists.” Steps: (1) Export P0C Tier 1–3 races into P1E
-spreadsheet format. (2) Deduplicate by race name. (3) Add P1E-sourced
-races that don’t appear in P0C. (4) Enrich with race director contact
+<td>ACTION: Add a subsection to <a href="sub-p1e.html" style="color:var(--accent)">P1E</a> Section 5: “5.3 Merging <a href="sub-p0c.html" style="color:var(--accent)">P0C</a> and <a href="sub-p1e.html" style="color:var(--accent)">P1E</a>
+Prospect Lists.” Steps: (1) Export <a href="sub-p0c.html" style="color:var(--accent)">P0C</a> Tier 1–3 races into <a href="sub-p1e.html" style="color:var(--accent)">P1E</a>
+spreadsheet format. (2) Deduplicate by race name. (3) Add <a href="sub-p1e.html" style="color:var(--accent)">P1E</a>-sourced
+races that don’t appear in <a href="sub-p0c.html" style="color:var(--accent)">P0C</a>. (4) Enrich with race director contact
 info from LinkedIn/RunSignUp. Target: 75–100 unique qualified prospects
-(P0C’s 53 + P1E’s additional sources).</td>
+(<a href="sub-p0c.html" style="color:var(--accent)">P0C</a>’s 53 + <a href="sub-p1e.html" style="color:var(--accent)">P1E</a>’s additional sources).</td>
 </tr>
 <tr class="even">
 <td><strong>GAP #10</strong></td>
 <td>MISSING: Crisis Communication / Negative PR Response Plan</td>
-<td>ALL P1</td>
+<td>ALL <a href="p1.html" style="color:var(--accent)">P1</a></td>
 <td>MEDIUM-HIGH</td>
-<td>No P1 document addresses what to say if: (1) a poncho fails at a
+<td>No <a href="p1.html" style="color:var(--accent)">P1</a> document addresses what to say if: (1) a poncho fails at a
 race (tears, doesn’t keep runner warm), (2) a composting claim is
 challenged publicly, (3) a greenwashing accusation goes viral, or (4) a
 competitor publicly attacks the product. A brand this dependent on
 sustainability claims NEEDS prepared responses BEFORE launch.</td>
 <td>ACTION: Create a “Crisis Response Framework” section (could be added
-to P1C or as a standalone addendum). Include 4 scenarios with
+to <a href="sub-p1c.html" style="color:var(--accent)">P1C</a> or as a standalone addendum). Include 4 scenarios with
 pre-written response templates: (A) Product failure at race —
 acknowledge + replace + investigate. (B) Composting claim challenge —
 cite BPI certification + offer to share test data. (C) Greenwashing
@@ -677,13 +653,13 @@ back.</td>
 <tr class="even">
 <td><strong>GAP #11</strong></td>
 <td>MISSING: Accessibility &amp; Inclusivity in Brand Guidelines</td>
-<td>P1B</td>
+<td><a href="sub-p1b.html" style="color:var(--accent)">P1B</a></td>
 <td>MEDIUM</td>
-<td>P1B covers WCAG color contrast but does NOT address broader
+<td><a href="sub-p1b.html" style="color:var(--accent)">P1B</a> covers WCAG color contrast but does NOT address broader
 accessibility: alt text standards for images, inclusive language
 guidelines (body diversity in photography, gender-neutral copy, adaptive
 athletes in imagery), or ADA compliance for the landing page.</td>
-<td>ACTION: Add an “Accessibility &amp; Inclusivity” section to P1B: (1)
+<td>ACTION: Add an “Accessibility &amp; Inclusivity” section to <a href="sub-p1b.html" style="color:var(--accent)">P1B</a>: (1)
 Alt text: every product image needs descriptive alt text for screen
 readers. (2) Photography: include diverse runners in all lifestyle
 imagery (race, body type, age, ability). (3) Copy: use gender-neutral
@@ -695,14 +671,14 @@ limitations.</td>
 <tr class="odd">
 <td><strong>GAP #12</strong></td>
 <td>MISSING: Post-Launch Email Campaigns (Beyond Welcome Sequence)</td>
-<td>P1C + P1E</td>
+<td><a href="sub-p1c.html" style="color:var(--accent)">P1C</a> + <a href="sub-p1e.html" style="color:var(--accent)">P1E</a></td>
 <td>MEDIUM</td>
-<td>P1C provides a 5-email welcome sequence and P1E references it, but
+<td><a href="sub-p1c.html" style="color:var(--accent)">P1C</a> provides a 5-email welcome sequence and <a href="sub-p1e.html" style="color:var(--accent)">P1E</a> references it, but
 NEITHER document provides post-launch email campaigns: abandoned cart
 flow, post-purchase flow (review request + referral), re-engagement
 (lapsed subscribers), race-season campaign calendar, or B2B nurture
 sequence.</td>
-<td>ACTION: Add a “Post-Launch Email Flows” section to P1C or P1E with 4
+<td>ACTION: Add a “Post-Launch Email Flows” section to <a href="sub-p1c.html" style="color:var(--accent)">P1C</a> or <a href="sub-p1e.html" style="color:var(--accent)">P1E</a> with 4
 automated flows: (1) Cart Abandonment (3 emails over 72 hours). (2)
 Post-Purchase (Day 3: how-to-use guide, Day 7: review request, Day 14:
 referral invite). (3) Re-Engagement (Day 60: “We miss you” + 15% off).
@@ -712,32 +688,32 @@ partnerships, pilot data).</td>
 <tr class="even">
 <td><strong>GAP #13</strong></td>
 <td>MISSING: Amazon A+ Content / Brand Story Module</td>
-<td>P1C + P1D</td>
+<td><a href="sub-p1c.html" style="color:var(--accent)">P1C</a> + <a href="sub-p1d.html" style="color:var(--accent)">P1D</a></td>
 <td>MEDIUM</td>
-<td>P1C provides Amazon bullet points and product description but does
+<td><a href="sub-p1c.html" style="color:var(--accent)">P1C</a> provides Amazon bullet points and product description but does
 NOT address Amazon A+ Content (Enhanced Brand Content), which increases
 conversion by 3–10%. A+ Content allows rich images, comparison charts,
 and brand storytelling below the fold. This is a significant conversion
 driver being left on the table.</td>
-<td>ACTION: Add an “Amazon A+ Content Plan” section to P1C or P1D
+<td>ACTION: Add an “Amazon A+ Content Plan” section to <a href="sub-p1c.html" style="color:var(--accent)">P1C</a> or <a href="sub-p1d.html" style="color:var(--accent)">P1D</a>
 specifying: Module 1: Brand story header (logo + 250-word origin from
-P1C). Module 2: 4-image feature grid (warmth, compostable, convenience,
+<a href="sub-p1c.html" style="color:var(--accent)">P1C</a>). Module 2: 4-image feature grid (warmth, compostable, convenience,
 poncho fit). Module 3: Comparison chart (our poncho vs. garbage bag vs.
 Heatsheets vs. GreenGear on 5 criteria). Module 4: Composting lifecycle
-infographic (4-step from P1D). Module 5: FAQ (3–5 common questions).
+infographic (4-step from <a href="sub-p1d.html" style="color:var(--accent)">P1D</a>). Module 5: FAQ (3–5 common questions).
 Requires Brand Registry on Amazon.</td>
 </tr>
 <tr class="odd">
 <td><strong>GAP #14</strong></td>
 <td>MISSING: SEO Content Strategy for Shopify</td>
-<td>P1E</td>
+<td><a href="sub-p1e.html" style="color:var(--accent)">P1E</a></td>
 <td>MEDIUM</td>
-<td>P1E focuses on email list building and social seeding but does NOT
+<td><a href="sub-p1e.html" style="color:var(--accent)">P1E</a> focuses on email list building and social seeding but does NOT
 address organic search / SEO for the Shopify store. Target keywords like
 “compostable poncho,” “marathon start line warmth,” “race day poncho”
 have low competition and could drive consistent organic traffic at $0
 CAC.</td>
-<td>ACTION: Add an “SEO Foundation” section to P1E with: (1) 10–15
+<td>ACTION: Add an “SEO Foundation” section to <a href="sub-p1e.html" style="color:var(--accent)">P1E</a> with: (1) 10–15
 target keywords with estimated search volume. (2) Blog content plan: 4–6
 SEO-optimized articles for Shopify blog (“What to Wear at a Marathon
 Start Line,” “How to Stay Warm Before a Race,” “Are Compostable Products
@@ -748,14 +724,14 @@ blog/week starting Week 8.</td>
 <tr class="even">
 <td><strong>GAP #15</strong></td>
 <td>MISSING: International Messaging Considerations</td>
-<td>P1C</td>
+<td><a href="sub-p1c.html" style="color:var(--accent)">P1C</a></td>
 <td>LOW</td>
-<td>P1C messaging is entirely US-centric. Given P0G’s international
+<td><a href="sub-p1c.html" style="color:var(--accent)">P1C</a> messaging is entirely US-centric. Given <a href="sub-p0g.html" style="color:var(--accent)">P0G</a>’s international
 expansion roadmap (London, Berlin, Toronto by Year 2), the messaging
 framework should note where US-specific references would need adaptation
 (e.g., “NASA” resonates globally but “NYRR” does not; “BPI certified” is
 US-only, EU needs EN 13432).</td>
-<td>ACTION: Add a brief “International Messaging Notes” paragraph to P1C
+<td>ACTION: Add a brief “International Messaging Notes” paragraph to <a href="sub-p1c.html" style="color:var(--accent)">P1C</a>
 Section 15 flagging: (1) Replace BPI references with EN 13432/TÜV for EU
 audiences. (2) Swap US race examples for local races (London, Berlin,
 Toronto). (3) “NASA” technology reference works globally. (4) Price
@@ -765,61 +741,61 @@ US-centric phrase — verify recognition in EU/UK/Canada.</td>
 </tbody>
 </table>
 <p>4. Cross-Document Consistency Issues</p>
-<p>4.1 Tagline Duplication (P1A ↔︎ P1C)</p>
-<p>P1A Section 7 contains 6 tagline candidates. P1C Section 5 contains 8
+<p>4.1 Tagline Duplication (<a href="sub-p1a.html" style="color:var(--accent)">P1A</a> ↔︎ <a href="sub-p1c.html" style="color:var(--accent)">P1C</a>)</p>
+<p><a href="sub-p1a.html" style="color:var(--accent)">P1A</a> Section 7 contains 6 tagline candidates. <a href="sub-p1c.html" style="color:var(--accent)">P1C</a> Section 5 contains 8
 tagline candidates. Some overlap, some are unique to one document. The
 rankings differ. A founder would not know which list is authoritative.
-ACTION: P1C should be the canonical source. P1A should cross-reference
-P1C for taglines.</p>
+ACTION: <a href="sub-p1c.html" style="color:var(--accent)">P1C</a> should be the canonical source. <a href="sub-p1a.html" style="color:var(--accent)">P1A</a> should cross-reference
+<a href="sub-p1c.html" style="color:var(--accent)">P1C</a> for taglines.</p>
 <p>4.2 Brand Voice Definition Location</p>
-<p>Brand voice principles live in P1C Section 2, but P1B Section 1 also
+<p>Brand voice principles live in <a href="sub-p1c.html" style="color:var(--accent)">P1C</a> Section 2, but <a href="sub-p1b.html" style="color:var(--accent)">P1B</a> Section 1 also
 defines what the brand should “feel like.” These are complementary but
-could create confusion for a designer who reads P1B but not P1C. ACTION:
-P1B should explicitly reference P1C Section 2 for brand voice, and
+could create confusion for a designer who reads <a href="sub-p1b.html" style="color:var(--accent)">P1B</a> but not <a href="sub-p1c.html" style="color:var(--accent)">P1C</a>. ACTION:
+<a href="sub-p1b.html" style="color:var(--accent)">P1B</a> should explicitly reference <a href="sub-p1c.html" style="color:var(--accent)">P1C</a> Section 2 for brand voice, and
 include a 2–3 sentence summary only.</p>
 <p>4.3 B2B Data Sheet: Split Across Two Documents</p>
-<p>The data sheet CONTENT is in P1C Section 8. The data sheet DESIGN
-specs are in P1B Section 6 (partially). The data sheet PRINT PRODUCTION
+<p>The data sheet CONTENT is in <a href="sub-p1c.html" style="color:var(--accent)">P1C</a> Section 8. The data sheet DESIGN
+specs are in <a href="sub-p1b.html" style="color:var(--accent)">P1B</a> Section 6 (partially). The data sheet PRINT PRODUCTION
 specs are missing entirely (Gap #4). A designer producing this asset
 needs to reference 2–3 documents. ACTION: Create a single
-cross-reference note at the top of P1C Section 8: “For design specs, see
-P1B Section 6. For print production specs, see [new section].”</p>
+cross-reference note at the top of <a href="sub-p1c.html" style="color:var(--accent)">P1C</a> Section 8: “For design specs, see
+<a href="sub-p1b.html" style="color:var(--accent)">P1B</a> Section 6. For print production specs, see [new section].”</p>
 <p>4.4 Email Sequence: Split Across Two Documents</p>
-<p>Full email copy is in P1C Section 13. Performance framework and
-optimization strategy is in P1E Section 3. This split is intentional and
-logical (messaging vs. operations), but P1E should explicitly state
-“Full copy for all 5 emails is in P1C Section 13” at the top of Section
+<p>Full email copy is in <a href="sub-p1c.html" style="color:var(--accent)">P1C</a> Section 13. Performance framework and
+optimization strategy is in <a href="sub-p1e.html" style="color:var(--accent)">P1E</a> Section 3. This split is intentional and
+logical (messaging vs. operations), but <a href="sub-p1e.html" style="color:var(--accent)">P1E</a> should explicitly state
+“Full copy for all 5 emails is in <a href="sub-p1c.html" style="color:var(--accent)">P1C</a> Section 13” at the top of Section
 3. Currently it does (verified) — no action needed.</p>
 <p>4.5 Pricing References</p>
-<p>P1C Amazon bullets reference “BPI certified” and “95% body heat” —
-both claims that require substantiation. P1C Section 11 covers FTC
-compliance. P1E Section 1.2 mentions Meta ads. All pricing references
-($9.99, $24.99 3-pack, $44.99 5-pack) are consistent across P1C and P1E.
+<p><a href="sub-p1c.html" style="color:var(--accent)">P1C</a> Amazon bullets reference “BPI certified” and “95% body heat” —
+both claims that require substantiation. <a href="sub-p1c.html" style="color:var(--accent)">P1C</a> Section 11 covers FTC
+compliance. <a href="sub-p1e.html" style="color:var(--accent)">P1E</a> Section 1.2 mentions Meta ads. All pricing references
+($9.99, $24.99 3-pack, $44.99 5-pack) are consistent across <a href="sub-p1c.html" style="color:var(--accent)">P1C</a> and <a href="sub-p1e.html" style="color:var(--accent)">P1E</a>.
 No inconsistencies found.</p>
 <p>5. Quality Assessment by Document</p>
-<p>5.1 P1A: Brand Naming &amp; Trademark — Grade: A-</p>
+<p>5.1 <a href="sub-p1a.html" style="color:var(--accent)">P1A</a>: Brand Naming &amp; Trademark — Grade: A-</p>
 <p>Strengths: 30+ candidates across 6 strategies exceeds the 25+ target.
 Top 10 shortlist is well-reasoned. Trademark filing guide is thorough.
 Testing framework is sophisticated (3-phase with PickFu quantitative
 validation). Weaknesses: No actual TESS searches performed. No live
-domain checks. Tagline overlap with P1C.</p>
-<p>5.2 P1B: Visual Identity &amp; Design System — Grade: B+</p>
+domain checks. Tagline overlap with <a href="sub-p1c.html" style="color:var(--accent)">P1C</a>.</p>
+<p>5.2 <a href="sub-p1b.html" style="color:var(--accent)">P1B</a>: Visual Identity &amp; Design System — Grade: B+</p>
 <p>Strengths: 8-color palette with hex codes and WCAG compliance.
 Typography system is professional. Logo brief is detailed. Competitive
 visual audit covers 6 brands. Moodboard effectively defines the “dawn
 warmth” territory. Weaknesses: Brand guidelines outline is missing (Gap
 #5). No competitive logo analysis (Gap #2). QR code strategy incomplete
 (Gap #3). No accessibility/inclusivity section (Gap #11).</p>
-<p>5.3 P1C: Brand Messaging &amp; Story — Grade: A</p>
-<p>Strengths: The most comprehensive P1 document. Origin story in 3
+<p>5.3 <a href="sub-p1c.html" style="color:var(--accent)">P1C</a>: Brand Messaging &amp; Story — Grade: A</p>
+<p>Strengths: The most comprehensive <a href="p1.html" style="color:var(--accent)">P1</a> document. Origin story in 3
 versions. 5-principle brand voice with channel-specific application. 7+7
 B2B/DTC messages with persona mapping. Amazon copy is publication-ready.
 FTC compliance framework is a standout addition. Competitive messaging
 teardown adds strategic depth. 5-email welcome sequence with full copy.
 30+ social media post concepts. Weaknesses: No post-launch email flows
 (Gap #12). No Amazon A+ Content plan (Gap #13). No international
-messaging notes (Gap #15). Tagline overlap with P1A (Gap #6).</p>
-<p>5.4 P1D: Brand Film &amp; Visual Content — Grade: A-</p>
+messaging notes (Gap #15). Tagline overlap with <a href="sub-p1a.html" style="color:var(--accent)">P1A</a> (Gap #6).</p>
+<p>5.4 <a href="sub-p1d.html" style="color:var(--accent)">P1D</a>: Brand Film &amp; Visual Content — Grade: A-</p>
 <p>Strengths: 90s storyboard is exceptionally detailed (9 scenes with
 timecodes, audio, production notes). 4 production tiers make it
 executable at any budget. 9-shot Amazon photography plan matches 2026
@@ -827,13 +803,13 @@ requirements. FLIR thermal camera section is a brilliant addition.
 10-slide pitch deck structure is solid. Weaknesses: Pitch deck has
 structure but NO SLIDE COPY (Gap #8 — HIGH severity). No race-day shot
 checklist (Gap #7).</p>
-<p>5.5 P1E: Pre-Launch List Building — Grade: A</p>
+<p>5.5 <a href="sub-p1e.html" style="color:var(--accent)">P1E</a>: Pre-Launch List Building — Grade: A</p>
 <p>Strengths: The most operationally complete document. 8-section
 landing page blueprint with A/B test plan. Email platform comparison is
 data-driven. 8 seeding channels with expected signup volumes. B2B
 prospect methodology is thorough. Referral program correctly identifies
 runner-to-RD as highest-value. Tech stack and budget ($414–$644) are
-actionable. Weaknesses: No SEO/blog strategy (Gap #14). No P0C database
+actionable. Weaknesses: No SEO/blog strategy (Gap #14). No <a href="sub-p0c.html" style="color:var(--accent)">P0C</a> database
 integration guide (Gap #9).</p>
 <p>6. Priority Action List: What to Fix and When</p>
 <p>6.1 BEFORE LAUNCH (Must Complete)</p>
@@ -859,7 +835,7 @@ story, feature grid, comparison chart, composting lifecycle, FAQ).
 Estimated effort: 2–3 hours. Requires Amazon Brand Registry.</p>
 <p>6.3 WITHIN 4 WEEKS (Optimization)</p>
 <p><strong>Gaps #1, #3, #6, #9, #11, #14:</strong> Brand positioning
-canvas, QR code strategy, tagline consolidation, P0C↔︎P1E database merge,
+canvas, QR code strategy, tagline consolidation, <a href="sub-p0c.html" style="color:var(--accent)">P0C</a>↔︎<a href="sub-p1e.html" style="color:var(--accent)">P1E</a> database merge,
 accessibility guidelines, SEO blog plan. Total estimated effort: 6–8
 hours across all items.</p>
 <p>6.4 NICE-TO-HAVE (When Time Allows)</p>
@@ -867,27 +843,22 @@ hours across all items.</p>
 print production specs, race-day shot checklist, international messaging
 notes. Total estimated effort: 2–3 hours.</p>
 <p>7. Final Verdict</p>
-<p><strong>P1 is a strong, substantially complete brand development
+<p><strong><a href="p1.html" style="color:var(--accent)">P1</a> is a strong, substantially complete brand development
 package.</strong> The 5 documents contain ~1,870 paragraphs of original
 research-backed content spanning naming, visual identity, messaging,
 content production, and pre-launch operations. The quality of the
-messaging framework (P1C) and the visual content production plan (P1D)
+messaging framework (<a href="sub-p1c.html" style="color:var(--accent)">P1C</a>) and the visual content production plan (<a href="sub-p1d.html" style="color:var(--accent)">P1D</a>)
 is exceptional.</p>
 <p><strong>The 15 gaps identified are refinements, not
 rebuilds.</strong> The two HIGH-severity items (pitch deck copy and
 crisis response) require approximately 5–7 hours of additional work. The
 remaining gaps require approximately 15–20 hours total. Once these are
-addressed, P1 will be one of the most comprehensive brand development
+addressed, <a href="p1.html" style="color:var(--accent)">P1</a> will be one of the most comprehensive brand development
 packages for a pre-launch DTC product at this investment level.</p>
-<p><strong>The most important next step:</strong> before moving to P2
+<p><strong>The most important next step:</strong> before moving to <a href="p2.html" style="color:var(--accent)">P2</a>
 (Product Design &amp; Engineering), fix Gap #8 (pitch deck copy) and Gap
 #10 (crisis response). These are the two items most likely to be needed
-DURING P2 execution, as material suppliers and race directors will
+DURING <a href="p2.html" style="color:var(--accent)">P2</a> execution, as material suppliers and race directors will
 request the pitch deck and the brand must be prepared for public-facing
 sustainability claims from Day 1 of B2B outreach.</p>
-
-        </div>
-    </div></div>
-<footer style="text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px">
-Sustainable Race-Start Warmth Poncho — D2C Brand GTM Project · 60 Subprojects · 391 Tasks · ~15,500¶ · April 2026
-</footer></body></html>
+</div></div></div><footer>Sustainable Race-Start Warmth Poncho — GTM Project · 60 Subprojects · 391 Tasks · ~120K Words · April 2026<br><a href="https://apseter.github.io/Retail_Ventures_Command_Center/">← Retail Ventures Command Center</a> · <a href="index.html">Project Home</a></footer></body></html>

@@ -1,89 +1,65 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>P5B: Pilot Race Execution — Race Start Warmth GTM</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-<style>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>P5B — Race Start Warmth GTM</title><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet"><style>
 :root{--bg:#0a0e1a;--surface:#111827;--card:#1a2332;--border:#2a3a4e;--accent:#10b981;--accent2:#3b82f6;--text:#e2e8f0;--muted:#94a3b8;--white:#fff;--red:#ef4444;--amber:#f59e0b;--green:#10b981}
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
 a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
 .container{max-width:1200px;margin:0 auto;padding:0 24px}
-/* Nav */
-nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
-nav .inner{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;max-width:1200px;margin:0 auto}
-nav .brand{font-weight:700;font-size:15px;color:var(--accent)}
-nav .links{display:flex;gap:8px;flex-wrap:wrap}
-nav .links a{color:var(--muted);font-size:13px;padding:4px 10px;border-radius:6px;transition:.2s}
+nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
+nav .inner{display:flex;align-items:center;justify-content:space-between;padding:10px 24px;max-width:1200px;margin:0 auto;flex-wrap:wrap;gap:8px}
+nav .brand{font-weight:700;font-size:14px;color:var(--accent);white-space:nowrap}
+nav .links{display:flex;gap:4px;flex-wrap:wrap}
+nav .links a{color:var(--muted);font-size:12px;padding:4px 8px;border-radius:6px;transition:.2s;white-space:nowrap}
 nav .links a:hover,nav .links a.active{color:var(--white);background:var(--card);text-decoration:none}
-/* Hero */
-.hero{padding:60px 0 40px;text-align:center}
-.hero h1{font-size:2.4em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hero p{color:var(--muted);font-size:1.1em;max-width:700px;margin:0 auto}
-/* Stats bar */
-.stats{display:flex;justify-content:center;gap:32px;padding:24px 0;flex-wrap:wrap}
-.stat{text-align:center}.stat .num{font-size:1.8em;font-weight:800;color:var(--white)}.stat .label{font-size:.75em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
-/* Cards */
-.grid{display:grid;gap:16px;margin:24px 0}
-.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}
-.grid-3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
-.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;transition:.2s}
-.card:hover{border-color:var(--accent);transform:translateY(-2px)}
-.card h3{font-size:1.1em;margin-bottom:8px}.card p{color:var(--muted);font-size:.9em}
-.card .badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:8px}
-.card .meta{font-size:.8em;color:var(--muted);margin-top:12px}
-/* Section */
-.section{padding:40px 0}.section h2{font-size:1.6em;font-weight:700;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--border)}
-/* Table */
-table{width:100%;border-collapse:collapse;font-size:.85em;margin:16px 0}
-th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:52px}
-td{padding:8px 12px;border-bottom:1px solid var(--border)}
-tr:hover td{background:rgba(16,185,129,.05)}
-.status-complete{color:var(--green);font-weight:600}.status-not{color:var(--muted)}
-/* Progress */
-.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:8px}
-.progress .bar{height:100%;background:var(--accent);border-radius:3px}
-/* Back link */
-.back{display:inline-block;color:var(--muted);font-size:.9em;margin-bottom:20px}
-.back:hover{color:var(--accent)}
-/* Download */
-.dl-card{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin:8px 0;transition:.2s}
-.dl-card:hover{border-color:var(--accent);text-decoration:none}
-.dl-card .icon{font-size:2em}.dl-card .info h4{color:var(--white);margin-bottom:4px}.dl-card .info p{color:var(--muted);font-size:.85em}
-/* Footer */
-footer{text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px}
-@media(max-width:768px){.stats{gap:16px}.stat .num{font-size:1.3em}nav .links{gap:4px}nav .links a{font-size:11px;padding:3px 6px}.hero h1{font-size:1.6em}}
-
-.doc-content{max-width:900px;margin:0 auto;padding:20px 0}
-.doc-content h1{font-size:1.8em;font-weight:800;color:var(--white);margin:32px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
-.doc-content h2{font-size:1.4em;font-weight:700;color:var(--accent);margin:28px 0 12px}
-.doc-content h3{font-size:1.15em;font-weight:600;color:var(--accent2);margin:20px 0 10px}
-.doc-content p{margin:8px 0;line-height:1.7}
-.doc-content table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85em}
-.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;border:1px solid var(--border)}
-.doc-content td{padding:8px 12px;border:1px solid var(--border);vertical-align:top}
-.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
-.doc-content ul,.doc-content ol{margin:8px 0 8px 24px}
-.doc-content li{margin:4px 0;line-height:1.6}
-.doc-content strong{color:var(--white)}
-.doc-content em{color:var(--muted)}
-.doc-content blockquote{border-left:3px solid var(--accent);padding:8px 16px;margin:12px 0;background:var(--card);border-radius:0 8px 8px 0}
-.nav-sub{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 24px;padding:12px 16px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
-.nav-sub a{font-size:.8em;color:var(--muted);padding:4px 10px;border-radius:4px;transition:.2s;white-space:nowrap}
+nav .links a.cc-link{color:var(--accent2);border:1px solid var(--accent2);font-weight:600}
+nav .links a.cc-link:hover{background:var(--accent2);color:var(--white)}
+.hero{padding:50px 0 30px;text-align:center}
+.hero h1{font-size:2.2em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:1.05em;max-width:700px;margin:0 auto}
+.stats{display:flex;justify-content:center;gap:28px;padding:20px 0;flex-wrap:wrap}
+.stat{text-align:center}.stat .num{font-size:1.7em;font-weight:800;color:var(--white)}.stat .label{font-size:.7em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.grid{display:grid;gap:16px;margin:24px 0}.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}.grid-3{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;transition:.2s;display:block}
+.card:hover{border-color:var(--accent);transform:translateY(-2px);text-decoration:none}
+.card h3{font-size:1.05em;margin-bottom:6px;color:var(--white)}.card p{color:var(--muted);font-size:.88em}
+.badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.65em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:6px}
+.badge-amber{background:var(--amber)}.badge-blue{background:var(--accent2)}
+.card .meta{font-size:.78em;color:var(--muted);margin-top:10px}
+.section{padding:32px 0}.section h2{font-size:1.5em;font-weight:700;margin-bottom:20px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+table{width:100%;border-collapse:collapse;font-size:.83em;margin:16px 0}
+th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:48px}
+td{padding:8px 12px;border-bottom:1px solid var(--border)}tr:hover td{background:rgba(16,185,129,.04)}
+.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:6px}
+.progress .bar{height:100%;border-radius:3px}
+.back{display:inline-block;color:var(--muted);font-size:.88em;margin-bottom:16px}.back:hover{color:var(--accent)}
+.dl-card{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;margin:8px 0;transition:.2s}
+.dl-card:hover{border-color:var(--accent);text-decoration:none}.dl-card .icon{font-size:1.8em}.dl-card .info h4{color:var(--white);margin-bottom:2px;font-size:.95em}.dl-card .info p{color:var(--muted);font-size:.8em}
+.phase-tag{display:inline-block;font-size:.65em;font-weight:600;padding:2px 6px;border-radius:3px;margin-right:4px}
+.phase-plan{background:rgba(16,185,129,.15);color:var(--green)}.phase-exec{background:rgba(245,158,11,.15);color:var(--amber)}.phase-not{background:rgba(148,163,184,.1);color:var(--muted)}
+.nav-sub{display:flex;flex-wrap:wrap;gap:5px;margin:12px 0 20px;padding:10px 14px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
+.nav-sub a{font-size:.78em;color:var(--muted);padding:3px 8px;border-radius:4px;transition:.2s;white-space:nowrap}
 .nav-sub a:hover,.nav-sub a.active{color:var(--white);background:var(--surface);text-decoration:none}
-</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a></div></div></nav><div class="container">
-    <div style="padding-top:30px">
-        <a href="p5.html" class="back">← 🤝 P5: B2B Sales</a>
+.doc-content{max-width:900px;margin:0 auto;padding:16px 0}
+.doc-content h1{font-size:1.7em;font-weight:800;color:var(--white);margin:28px 0 14px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+.doc-content h2{font-size:1.3em;font-weight:700;color:var(--accent);margin:24px 0 10px}
+.doc-content h3{font-size:1.1em;font-weight:600;color:var(--accent2);margin:18px 0 8px}
+.doc-content p{margin:6px 0;line-height:1.65}.doc-content table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.83em}
+.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:8px 10px;font-weight:600;border:1px solid var(--border)}
+.doc-content td{padding:7px 10px;border:1px solid var(--border);vertical-align:top}
+.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.doc-content ul,.doc-content ol{margin:6px 0 6px 20px}.doc-content li{margin:3px 0;line-height:1.55}
+.doc-content strong{color:var(--white)}.doc-content em{color:var(--muted)}
+footer{text-align:center;padding:32px 0;color:var(--muted);font-size:.78em;border-top:1px solid var(--border);margin-top:50px}
+footer a{color:var(--accent2)}
+@media(max-width:768px){.stats{gap:14px}.stat .num{font-size:1.2em}nav .links a{font-size:10px;padding:3px 5px}.hero h1{font-size:1.5em}}
+</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="projections.html" class="">Projections</a><a href="action-plan.html" class="">Action Plan</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a><a href="https://apseter.github.io/Retail_Ventures_Command_Center/" class="cc-link" target="_blank">🏠 Command Center</a></div></div></nav><div class="container"><div style="padding-top:28px">
+        <a href="p5.html" class="back">← 🤝 P5: B2B Sales Engine</a>
         <div class="nav-sub"><a href="p5.html">🤝 P5 Overview</a><a href="sub-p5a.html">P5A</a><a href="sub-p5b.html" class="active">P5B</a><a href="sub-p5c.html">P5C</a><a href="sub-p5d.html">P5D</a><a href="sub-p5e.html">P5E</a><a href="sub-p5f.html">P5F</a></div>
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px">
-            <div>
-                <span style="background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px">P5B</span>
-                <span style="color:var(--muted);font-size:.85em;margin-left:8px">P5: B2B Sales</span>
-            </div>
-            <a href="files/P5B_Pilot_Race_Execution.docx" style="font-size:.85em;color:var(--accent);padding:6px 14px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+            <div><span class="badge">P5B</span> <span style="color:var(--muted);font-size:.83em">P5: B2B Sales Engine</span></div>
+            <a href="files/P5B_Pilot_Race_Execution.docx" style="font-size:.83em;color:var(--accent);padding:5px 12px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
         </div>
-        <div class="doc-content">
-            <p><strong>P5B: PILOT RACE</strong></p>
+        <div class="doc-content"><p><strong><a href="sub-p5b.html" style="color:var(--accent)">P5B</a>: PILOT RACE</strong></p>
 <p><strong>EXECUTION</strong></p>
-<p>Sub-Project P5B | B2B Sales Engine | Weeks 16–26</p>
+<p>Sub-Project <a href="sub-p5b.html" style="color:var(--accent)">P5B</a> | B2B Sales Engine | Weeks 16–26</p>
 <p><em>Complete Pilot Playbook: 10-Section Agreement Template, Co-Brand
 Coordination Timeline, Race-Day Minute-by-Minute Plan, 8-Category Data
 Collection Framework, 7-Step Debrief Protocol, Case Study Structure, and
@@ -139,7 +115,7 @@ has multiple events (half, full, 10K).</td>
 <tr class="odd">
 <td><strong>Quantity + SKU</strong></td>
 <td>[X] standard units + [Y] co-brand units. Total: [Z] units.</td>
-<td>Quantity confirmed via PO. Include ±15% adjustment clause (P3B
+<td>Quantity confirmed via PO. Include ±15% adjustment clause (<a href="sub-p3b.html" style="color:var(--accent)">P3B</a>
 Section 2). Specify: standard only, co-brand only, or mixed.</td>
 </tr>
 <tr class="even">
@@ -165,14 +141,14 @@ director balks at 50/50: offer 100% on shipment for pilot-sized orders
 <td>Ship to: [venue address or 3PL]. Required arrival: [date, ≥3 weeks
 before race]. Delivery contact: [name, phone]. Special instructions:
 [storage requirements, receiving window].</td>
-<td>Per P4C Section 3 race-venue delivery protocol. Confirm delivery
+<td>Per <a href="sub-p4c.html" style="color:var(--accent)">P4C</a> Section 3 race-venue delivery protocol. Confirm delivery
 logistics 6–8 weeks before race date.</td>
 </tr>
 <tr class="odd">
 <td><strong>Co-brand specifications</strong></td>
 <td>Logos provided by: [date]. Mockup approval by: [date]. Print method:
 [1-color flexo / 2-color / screen]. Colors: [Pantone references].</td>
-<td>Per P3C co-brand workflow. Start co-brand process ≥10 weeks before
+<td>Per <a href="sub-p3c.html" style="color:var(--accent)">P3C</a> co-brand workflow. Start co-brand process ≥10 weeks before
 race date for standard timeline, ≥8 weeks for rush.</td>
 </tr>
 <tr class="even">
@@ -181,7 +157,7 @@ race date for standard timeline, ≥8 weeks for rush.</td>
 placed by [race ops / brand]. Bin signage: provided by brand. Composting
 bags: provided by brand. Volunteer sorting: provided by race ([X]
 volunteers). Pickup: [partner] truck at [staging area] by [time].</td>
-<td>Per P4D race-day collection guide. All composting logistics
+<td>Per <a href="sub-p4d.html" style="color:var(--accent)">P4D</a> race-day collection guide. All composting logistics
 coordinated in advance — NOT improvised on race morning. Composting
 partner must confirm acceptance in writing before the agreement is
 signed.</td>
@@ -229,7 +205,7 @@ standard B2B pricing). Small margin for the brand. Best for: races that
 are willing but price-sensitive. Position as: “pilot rate” that
 automatically transitions to standard pricing on reorder. OPTION C
 (Standard): $3.50–$5.00/unit (full B2B pricing). Full margin. Best for:
-races that are already committed (Champion tier per P5A Section 2) and
+races that are already committed (Champion tier per <a href="sub-p5a.html" style="color:var(--accent)">P5A</a> Section 2) and
 don’t need a pricing incentive to try. RECOMMENDED: use Option A for the
 first 2–3 pilots (the case study data is worth more than the margin),
 then transition to Option B or C for subsequent races.</p>
@@ -256,7 +232,7 @@ recommended for pilot races where print quality must be flawless.</p>
 <tr class="even">
 <td><strong>Week −10 (10 weeks before race)</strong></td>
 <td>Pilot agreement signed. PO confirmed with payment terms.</td>
-<td>Send “Logo Requirements” email to race director (P3C Section 1 Step
+<td>Send “Logo Requirements” email to race director (<a href="sub-p3c.html" style="color:var(--accent)">P3C</a> Section 1 Step
 2). Attach: logo specification sheet, deadline calendar, co-brand
 process overview 1-pager.</td>
 <td>If race date is Oct 15: this is approximately Aug 6. Earlier is
@@ -265,7 +241,7 @@ better.</td>
 <tr class="odd">
 <td><strong>Week −9</strong></td>
 <td>Race director provides logos.</td>
-<td>Create co-brand mockup within 24 hours of receiving logos (P3C
+<td>Create co-brand mockup within 24 hours of receiving logos (<a href="sub-p3c.html" style="color:var(--accent)">P3C</a>
 Section 1 Step 3). Email mockup PDF for approval.</td>
 <td>If logos haven’t arrived: send reminder on Day 5 and Day 8. On Day
 10: call race director. Explain: late logos compress the timeline and
@@ -277,7 +253,7 @@ may force rush production surcharges.</td>
 <td>Convert approved mockup to production-ready artwork (EPS/AI with
 Pantone separations). Send to factory with PO reference.</td>
 <td>If revisions needed: turn around within 24 hours. Maximum 3 free
-revision rounds per P3C Section 1 Step 4.</td>
+revision rounds per <a href="sub-p3c.html" style="color:var(--accent)">P3C</a> Section 1 Step 4.</td>
 </tr>
 <tr class="odd">
 <td><strong>Week −7 to −5</strong></td>
@@ -291,15 +267,15 @@ step.</td>
 <tr class="even">
 <td><strong>Week −5 to −3</strong></td>
 <td>Factory produces co-brand run within bulk production batch.</td>
-<td>Monitor weekly per P3B Section 4 production monitoring checklist.
+<td>Monitor weekly per <a href="sub-p3b.html" style="color:var(--accent)">P3B</a> Section 4 production monitoring checklist.
 Co-brand QC: check first, middle, and last unit off press.</td>
 <td>Co-brand units packed in separate, clearly labeled master cartons
-per P3D Section 4.</td>
+per <a href="sub-p3d.html" style="color:var(--accent)">P3D</a> Section 4.</td>
 </tr>
 <tr class="odd">
 <td><strong>Week −3</strong></td>
 <td>Ship to race venue or 3PL.</td>
-<td>Per P4C Section 3 race-venue delivery protocol. Include: packing
+<td>Per <a href="sub-p4c.html" style="color:var(--accent)">P4C</a> Section 3 race-venue delivery protocol. Include: packing
 list, composting logistics guide, receiving instructions card, proof
 sample reference copy.</td>
 <td>Ship ≥3 weeks before race date. Follow up on expected delivery day
@@ -338,7 +314,7 @@ area.</td>
 <tr class="odd">
 <td><strong>5:15 AM</strong></td>
 <td>Set up compost bins + signage.</td>
-<td>Place bins per P4D Section 3 Step 1 (every 50–100m past start line,
+<td>Place bins per <a href="sub-p4d.html" style="color:var(--accent)">P4D</a> Section 3 Step 1 (every 50–100m past start line,
 both sides, 500m total). Attach signage to every bin (zip ties). Line
 bins with compostable bags. Photograph: bin deployment, signage
 visibility.</td>
@@ -346,7 +322,7 @@ visibility.</td>
 <tr class="even">
 <td><strong>5:30 AM</strong></td>
 <td>Brief sorting volunteers.</td>
-<td>15-minute briefing per P4D Section 3 Step 3: job description,
+<td>15-minute briefing per <a href="sub-p4d.html" style="color:var(--accent)">P4D</a> Section 3 Step 3: job description,
 sorting rules, pocket cards distributed, gloves distributed. Assign: 1
 volunteer per 3–5 bins. Photograph: volunteer team.</td>
 </tr>
@@ -424,7 +400,7 @@ structured data categories).</p>
 <p><strong>Data transforms a pilot from “we tried it at a race” into “we
 proved it works at a race.”</strong> The 8 data categories below provide
 every metric needed for: the case study (Section 6), the post-race
-composting report (P4D Section 4), the P2F Section 1 feedback framework
+composting report (<a href="sub-p4d.html" style="color:var(--accent)">P4D</a> Section 4), the <a href="sub-p2f.html" style="color:var(--accent)">P2F</a> Section 1 feedback framework
 (product improvement), and the reorder conversation (Section 7).</p>
 <table>
 <colgroup>
@@ -464,7 +440,7 @@ filled fastest?) to optimize placement for next race.</td>
 <td>50–100 runner surveys at the finish area. Calculate: mean, median, %
 rating 4–5 (“satisfied”).</td>
 <td>4.0+ average = strong product-market fit. &lt;3.5 average =
-investigate specific complaints and feed into P2F product
+investigate specific complaints and feed into <a href="sub-p2f.html" style="color:var(--accent)">P2F</a> product
 improvement.</td>
 </tr>
 <tr class="odd">
@@ -474,7 +450,7 @@ improvement.</td>
 by total bags. OR: composting partner’s truck has a scale — request the
 total weight from the partner’s load ticket.</td>
 <td>Convert to: equivalent trash bags avoided (weight ÷ 10 lbs/bag),
-equivalent CO₂e avoided (weight in tons × 0.5 metric tons CO₂e per P4D
+equivalent CO₂e avoided (weight in tons × 0.5 metric tons CO₂e per <a href="sub-p4d.html" style="color:var(--accent)">P4D</a>
 Section 4).</td>
 </tr>
 <tr class="even">
@@ -499,7 +475,7 @@ collection rate (rain = ponchos kept longer).</td>
 <tr class="even">
 <td><strong>Photography</strong></td>
 <td>200+ photos + 5–10 short video clips</td>
-<td>Photograph per P1D Amazon photography plan adapted for race day:
+<td>Photograph per <a href="sub-p1d.html" style="color:var(--accent)">P1D</a> Amazon photography plan adapted for race day:
 ponchos in corrals, runners tearing off, shed ponchos, bins, volunteers
 sorting, truck loading. Video: 15–30 sec clips of distribution, tearing,
 collection, and a 30–60 sec time-lapse if possible.</td>
@@ -552,7 +528,7 @@ event.</td>
 runners seem comfortable? Did you notice any issues with the tear-away
 (difficulty tearing, tearing too easily, incomplete tears)? Did you
 receive any complaints from runners? Any positive feedback?</td>
-<td>LISTEN for: specific complaints (these feed into P2F product
+<td>LISTEN for: specific complaints (these feed into <a href="sub-p2f.html" style="color:var(--accent)">P2F</a> product
 improvement), specific praise (these become case study quotes), and
 comparisons to previous solutions (“runners seemed much warmer than when
 we used garbage bags”).</td>
@@ -627,7 +603,7 @@ visual evidence (race-day photos).</p>
 <table>
 <colgroup>
 <col style="width: 11%" />
-<col style="width:50%">
+<col style="width: 50%" />
 <col style="width: 38%" />
 </colgroup>
 <tbody>
@@ -670,7 +646,7 @@ rate (&lt;X%), runner quote. Before/after comparison: “Before: 500 lbs
 LDPE waste to landfill. After: 450 lbs composted, 0 lbs to
 landfill.”</td>
 <td>NUMBERS sell B2B. Race directors and their boards respond to
-quantified impact. Use the P4D post-race composting report data.</td>
+quantified impact. Use the <a href="sub-p4d.html" style="color:var(--accent)">P4D</a> post-race composting report data.</td>
 </tr>
 <tr class="even">
 <td><strong>Race director quote</strong></td>
@@ -704,7 +680,7 @@ phone number.</td>
 </tr>
 <tr class="odd">
 <td><strong>Format</strong></td>
-<td>2–4 page branded PDF (P1B design system). Also posted as a webpage
+<td>2–4 page branded PDF (<a href="sub-p1b.html" style="color:var(--accent)">P1B</a> design system). Also posted as a webpage
 at brand.com/case-studies/[race-name]. Also condensed into a 1-page
 summary for inclusion in B2B sample kits (replaces or supplements the
 generic data sheet after the first pilot is complete).</td>
@@ -721,7 +697,7 @@ race-day photos. Draft the Results section with preliminary data
 (collection rate, survey scores, weight diverted). WEEK 2–3: Request
 race director quote and approval. Receive composting partner’s
 Certificate of Composting (may take up to 30 days). Finalize Results
-with confirmed data. WEEK 3–4: Design case study PDF in Canva or P1B
+with confirmed data. WEEK 3–4: Design case study PDF in Canva or <a href="sub-p1b.html" style="color:var(--accent)">P1B</a>
 design system. Review with race director for accuracy and approval. WEEK
 4–6: Publish on brand.com/case-studies. Add to B2B sample kit. Include
 in all future email outreach (replace the generic data sheet with the
@@ -752,7 +728,7 @@ days of race). Follow up with formal quote within 30 days of race.
 Target: PO signed within 60 days of race — while the positive experience
 is fresh and before the race director moves on to other priorities.</td>
 <td>Race directors who commit early (6+ months before next race) get
-early-bird pricing (P5F Section 4: 10–15% discount). This incentivizes
+early-bird pricing (<a href="sub-p5f.html" style="color:var(--accent)">P5F</a> Section 4: 10–15% discount). This incentivizes
 early commitment and gives the brand production planning certainty.</td>
 </tr>
 <tr class="odd">
@@ -771,7 +747,7 @@ run out at the start line.</td>
 <td>Offer: “Would you like to include sponsor logos this year? We can
 add 1–2 additional colors for a small surcharge. This creates a
 potential revenue stream for your race — sponsors pay for the co-branded
-ponchos.” Transition from race-funded to sponsor-funded per P3C Section
+ponchos.” Transition from race-funded to sponsor-funded per <a href="sub-p3c.html" style="color:var(--accent)">P3C</a> Section
 4 Sponsor-Funded tier.</td>
 <td>The sponsor-funded model is the ultimate lock-in: the race director
 pays nothing, the sponsor gets visibility, the brand gets volume. Once a
@@ -783,7 +759,7 @@ continuing.</td>
 <td>After 2 successful seasons: propose a 2–3 year framework agreement
 with: guaranteed annual volume, locked pricing (±5% escalation/year),
 priority production slots, and first-right-of-refusal on new product
-features (V2 premium poncho, bib sleeve, finish-line wrap per P2F
+features (V2 premium poncho, bib sleeve, finish-line wrap per <a href="sub-p2f.html" style="color:var(--accent)">P2F</a>
 roadmap).</td>
 <td>Multi-year agreements provide revenue predictability and production
 planning certainty. Offer a 3–5% additional discount for 2-year
@@ -818,15 +794,15 @@ weeks of each race.</strong></p>
 <p><strong>WEEK 24–28: Complete case studies for all pilot races.
 Publish on website and add to B2B materials. Secure reorder commitments
 from pilot race directors. Generate referral introductions. Feed product
-feedback into P2F improvement cycle.</strong></p>
+feedback into <a href="sub-p2f.html" style="color:var(--accent)">P2F</a> improvement cycle.</strong></p>
 <p>BUDGET: Pilot product (at cost, 2–5 races × 500–2,000 units ×
 $3.50/unit): $3,500–$35,000 (covered by race director payment — net cost
 to brand is $0 if at-cost pricing, or margin if discounted/standard
 pricing). Composting logistics (brand-paid for pilots, 2–5 races):
-$400–$4,000 per P4D. Travel (founder attendance, 2–5 races): $500–$3,000
+$400–$4,000 per <a href="sub-p4d.html" style="color:var(--accent)">P4D</a>. Travel (founder attendance, 2–5 races): $500–$3,000
 (flights + 1–2 nights hotel + ground transport per race). Race-day
 supplies (scale, zip ties, tape, extra bags, printed surveys): $50–$100
-per race. Case study design (Canva): $0–$13/month. TOTAL P5B net brand
+per race. Case study design (Canva): $0–$13/month. TOTAL <a href="sub-p5b.html" style="color:var(--accent)">P5B</a> net brand
 cost: $1,350–$8,100 (excluding product cost recovered from race
 payments). This investment generates: 2–5 case studies, 50–100 runner
 survey responses, 200+ photographs, and 2–5 reorder commitments worth
@@ -847,9 +823,4 @@ staffer who mentions another race they work with. The pilot is not just
 a product test — it is the brand’s introduction to the running industry.
 The impression left on race morning echoes through every B2B
 conversation for the next 5 years.</p>
-
-        </div>
-    </div></div>
-<footer style="text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px">
-Sustainable Race-Start Warmth Poncho — D2C Brand GTM Project · 60 Subprojects · 391 Tasks · ~15,500¶ · April 2026
-</footer></body></html>
+</div></div></div><footer>Sustainable Race-Start Warmth Poncho — GTM Project · 60 Subprojects · 391 Tasks · ~120K Words · April 2026<br><a href="https://apseter.github.io/Retail_Ventures_Command_Center/">← Retail Ventures Command Center</a> · <a href="index.html">Project Home</a></footer></body></html>

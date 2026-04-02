@@ -1,89 +1,65 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>P6B: Shopify Store Build — Race Start Warmth GTM</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-<style>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>P6B — Race Start Warmth GTM</title><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet"><style>
 :root{--bg:#0a0e1a;--surface:#111827;--card:#1a2332;--border:#2a3a4e;--accent:#10b981;--accent2:#3b82f6;--text:#e2e8f0;--muted:#94a3b8;--white:#fff;--red:#ef4444;--amber:#f59e0b;--green:#10b981}
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
 a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
 .container{max-width:1200px;margin:0 auto;padding:0 24px}
-/* Nav */
-nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
-nav .inner{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;max-width:1200px;margin:0 auto}
-nav .brand{font-weight:700;font-size:15px;color:var(--accent)}
-nav .links{display:flex;gap:8px;flex-wrap:wrap}
-nav .links a{color:var(--muted);font-size:13px;padding:4px 10px;border-radius:6px;transition:.2s}
+nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
+nav .inner{display:flex;align-items:center;justify-content:space-between;padding:10px 24px;max-width:1200px;margin:0 auto;flex-wrap:wrap;gap:8px}
+nav .brand{font-weight:700;font-size:14px;color:var(--accent);white-space:nowrap}
+nav .links{display:flex;gap:4px;flex-wrap:wrap}
+nav .links a{color:var(--muted);font-size:12px;padding:4px 8px;border-radius:6px;transition:.2s;white-space:nowrap}
 nav .links a:hover,nav .links a.active{color:var(--white);background:var(--card);text-decoration:none}
-/* Hero */
-.hero{padding:60px 0 40px;text-align:center}
-.hero h1{font-size:2.4em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hero p{color:var(--muted);font-size:1.1em;max-width:700px;margin:0 auto}
-/* Stats bar */
-.stats{display:flex;justify-content:center;gap:32px;padding:24px 0;flex-wrap:wrap}
-.stat{text-align:center}.stat .num{font-size:1.8em;font-weight:800;color:var(--white)}.stat .label{font-size:.75em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
-/* Cards */
-.grid{display:grid;gap:16px;margin:24px 0}
-.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}
-.grid-3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
-.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;transition:.2s}
-.card:hover{border-color:var(--accent);transform:translateY(-2px)}
-.card h3{font-size:1.1em;margin-bottom:8px}.card p{color:var(--muted);font-size:.9em}
-.card .badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:8px}
-.card .meta{font-size:.8em;color:var(--muted);margin-top:12px}
-/* Section */
-.section{padding:40px 0}.section h2{font-size:1.6em;font-weight:700;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--border)}
-/* Table */
-table{width:100%;border-collapse:collapse;font-size:.85em;margin:16px 0}
-th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:52px}
-td{padding:8px 12px;border-bottom:1px solid var(--border)}
-tr:hover td{background:rgba(16,185,129,.05)}
-.status-complete{color:var(--green);font-weight:600}.status-not{color:var(--muted)}
-/* Progress */
-.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:8px}
-.progress .bar{height:100%;background:var(--accent);border-radius:3px}
-/* Back link */
-.back{display:inline-block;color:var(--muted);font-size:.9em;margin-bottom:20px}
-.back:hover{color:var(--accent)}
-/* Download */
-.dl-card{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin:8px 0;transition:.2s}
-.dl-card:hover{border-color:var(--accent);text-decoration:none}
-.dl-card .icon{font-size:2em}.dl-card .info h4{color:var(--white);margin-bottom:4px}.dl-card .info p{color:var(--muted);font-size:.85em}
-/* Footer */
-footer{text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px}
-@media(max-width:768px){.stats{gap:16px}.stat .num{font-size:1.3em}nav .links{gap:4px}nav .links a{font-size:11px;padding:3px 6px}.hero h1{font-size:1.6em}}
-
-.doc-content{max-width:900px;margin:0 auto;padding:20px 0}
-.doc-content h1{font-size:1.8em;font-weight:800;color:var(--white);margin:32px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
-.doc-content h2{font-size:1.4em;font-weight:700;color:var(--accent);margin:28px 0 12px}
-.doc-content h3{font-size:1.15em;font-weight:600;color:var(--accent2);margin:20px 0 10px}
-.doc-content p{margin:8px 0;line-height:1.7}
-.doc-content table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85em}
-.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;border:1px solid var(--border)}
-.doc-content td{padding:8px 12px;border:1px solid var(--border);vertical-align:top}
-.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
-.doc-content ul,.doc-content ol{margin:8px 0 8px 24px}
-.doc-content li{margin:4px 0;line-height:1.6}
-.doc-content strong{color:var(--white)}
-.doc-content em{color:var(--muted)}
-.doc-content blockquote{border-left:3px solid var(--accent);padding:8px 16px;margin:12px 0;background:var(--card);border-radius:0 8px 8px 0}
-.nav-sub{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 24px;padding:12px 16px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
-.nav-sub a{font-size:.8em;color:var(--muted);padding:4px 10px;border-radius:4px;transition:.2s;white-space:nowrap}
+nav .links a.cc-link{color:var(--accent2);border:1px solid var(--accent2);font-weight:600}
+nav .links a.cc-link:hover{background:var(--accent2);color:var(--white)}
+.hero{padding:50px 0 30px;text-align:center}
+.hero h1{font-size:2.2em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:1.05em;max-width:700px;margin:0 auto}
+.stats{display:flex;justify-content:center;gap:28px;padding:20px 0;flex-wrap:wrap}
+.stat{text-align:center}.stat .num{font-size:1.7em;font-weight:800;color:var(--white)}.stat .label{font-size:.7em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.grid{display:grid;gap:16px;margin:24px 0}.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}.grid-3{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;transition:.2s;display:block}
+.card:hover{border-color:var(--accent);transform:translateY(-2px);text-decoration:none}
+.card h3{font-size:1.05em;margin-bottom:6px;color:var(--white)}.card p{color:var(--muted);font-size:.88em}
+.badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.65em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:6px}
+.badge-amber{background:var(--amber)}.badge-blue{background:var(--accent2)}
+.card .meta{font-size:.78em;color:var(--muted);margin-top:10px}
+.section{padding:32px 0}.section h2{font-size:1.5em;font-weight:700;margin-bottom:20px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+table{width:100%;border-collapse:collapse;font-size:.83em;margin:16px 0}
+th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:48px}
+td{padding:8px 12px;border-bottom:1px solid var(--border)}tr:hover td{background:rgba(16,185,129,.04)}
+.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:6px}
+.progress .bar{height:100%;border-radius:3px}
+.back{display:inline-block;color:var(--muted);font-size:.88em;margin-bottom:16px}.back:hover{color:var(--accent)}
+.dl-card{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;margin:8px 0;transition:.2s}
+.dl-card:hover{border-color:var(--accent);text-decoration:none}.dl-card .icon{font-size:1.8em}.dl-card .info h4{color:var(--white);margin-bottom:2px;font-size:.95em}.dl-card .info p{color:var(--muted);font-size:.8em}
+.phase-tag{display:inline-block;font-size:.65em;font-weight:600;padding:2px 6px;border-radius:3px;margin-right:4px}
+.phase-plan{background:rgba(16,185,129,.15);color:var(--green)}.phase-exec{background:rgba(245,158,11,.15);color:var(--amber)}.phase-not{background:rgba(148,163,184,.1);color:var(--muted)}
+.nav-sub{display:flex;flex-wrap:wrap;gap:5px;margin:12px 0 20px;padding:10px 14px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
+.nav-sub a{font-size:.78em;color:var(--muted);padding:3px 8px;border-radius:4px;transition:.2s;white-space:nowrap}
 .nav-sub a:hover,.nav-sub a.active{color:var(--white);background:var(--surface);text-decoration:none}
-</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a></div></div></nav><div class="container">
-    <div style="padding-top:30px">
+.doc-content{max-width:900px;margin:0 auto;padding:16px 0}
+.doc-content h1{font-size:1.7em;font-weight:800;color:var(--white);margin:28px 0 14px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+.doc-content h2{font-size:1.3em;font-weight:700;color:var(--accent);margin:24px 0 10px}
+.doc-content h3{font-size:1.1em;font-weight:600;color:var(--accent2);margin:18px 0 8px}
+.doc-content p{margin:6px 0;line-height:1.65}.doc-content table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.83em}
+.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:8px 10px;font-weight:600;border:1px solid var(--border)}
+.doc-content td{padding:7px 10px;border:1px solid var(--border);vertical-align:top}
+.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.doc-content ul,.doc-content ol{margin:6px 0 6px 20px}.doc-content li{margin:3px 0;line-height:1.55}
+.doc-content strong{color:var(--white)}.doc-content em{color:var(--muted)}
+footer{text-align:center;padding:32px 0;color:var(--muted);font-size:.78em;border-top:1px solid var(--border);margin-top:50px}
+footer a{color:var(--accent2)}
+@media(max-width:768px){.stats{gap:14px}.stat .num{font-size:1.2em}nav .links a{font-size:10px;padding:3px 5px}.hero h1{font-size:1.5em}}
+</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="projections.html" class="">Projections</a><a href="action-plan.html" class="">Action Plan</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a><a href="https://apseter.github.io/Retail_Ventures_Command_Center/" class="cc-link" target="_blank">🏠 Command Center</a></div></div></nav><div class="container"><div style="padding-top:28px">
         <a href="p6.html" class="back">← 💻 P6: DTC Digital</a>
         <div class="nav-sub"><a href="p6.html">💻 P6 Overview</a><a href="sub-p6a.html">P6A</a><a href="sub-p6b.html" class="active">P6B</a><a href="sub-p6c.html">P6C</a><a href="sub-p6d.html">P6D</a><a href="sub-p6e.html">P6E</a></div>
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px">
-            <div>
-                <span style="background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px">P6B</span>
-                <span style="color:var(--muted);font-size:.85em;margin-left:8px">P6: DTC Digital</span>
-            </div>
-            <a href="files/P6B_Shopify_Store_Build.docx" style="font-size:.85em;color:var(--accent);padding:6px 14px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+            <div><span class="badge">P6B</span> <span style="color:var(--muted);font-size:.83em">P6: DTC Digital</span></div>
+            <a href="files/P6B_Shopify_Store_Build.docx" style="font-size:.83em;color:var(--accent);padding:5px 12px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
         </div>
-        <div class="doc-content">
-            <p><strong>P6B: SHOPIFY</strong></p>
+        <div class="doc-content"><p><strong><a href="sub-p6b.html" style="color:var(--accent)">P6B</a>: SHOPIFY</strong></p>
 <p><strong>STORE BUILD</strong></p>
-<p>Sub-Project P6B | DTC Digital Infrastructure | Weeks 10–14</p>
+<p>Sub-Project <a href="sub-p6b.html" style="color:var(--accent)">P6B</a> | DTC Digital Infrastructure | Weeks 10–14</p>
 <p><em>Complete Shopify Storefront: 8-Section Homepage Blueprint,
 Product Listings &amp; Page Anatomy, Impact Counter Implementation,
 Payments/Shipping/Tax Configuration, Klaviyo Email Automation, B2B
@@ -119,7 +95,7 @@ conversion (product showcase) → credibility (race logos) → connection
 <table>
 <colgroup>
 <col style="width: 14%" />
-<col style="width:50%">
+<col style="width: 50%" />
 <col style="width: 35%" />
 </colgroup>
 <tbody>
@@ -132,11 +108,11 @@ conversion (product showcase) → credibility (race logos) → connection
 <td><strong>Hero section</strong></td>
 <td>Full-width hero image: runner in poncho at dawn, start-line
 atmosphere, golden light, metallized lining catching the sun. Headline:
-“Race Warm. Leave No Trace.” (or winning tagline from P1A/P1C).
+“Race Warm. Leave No Trace.” (or winning tagline from <a href="sub-p1a.html" style="color:var(--accent)">P1A</a>/<a href="sub-p1c.html" style="color:var(--accent)">P1C</a>).
 Subheadline: “The first BPI-certified compostable warmth poncho for
 marathon start lines.” CTA button: “Shop Now” (links to product page).
 Secondary CTA: “Race Directors: Get a Free Sample Kit” (links to B2B
-landing page, P6B Section 6).</td>
+landing page, <a href="sub-p6b.html" style="color:var(--accent)">P6B</a> Section 6).</td>
 <td>ABOVE THE FOLD. The hero image and headline must communicate the
 ENTIRE value proposition in 3 seconds: warmth + sustainability +
 runners. Test: if someone screenshots only the top of the homepage, can
@@ -155,7 +131,7 @@ has.</td>
 <tr class="even">
 <td><strong>Social proof</strong></td>
 <td>Scrolling testimonial carousel OR static quote blocks: 2–3 runner
-quotes + 1 race director quote from pilot races (P5B Section 5).
+quotes + 1 race director quote from pilot races (<a href="sub-p5b.html" style="color:var(--accent)">P5B</a> Section 5).
 Include: headshot or avatar, name, race name, star rating. “‘Kept me
 warm in the corral and I didn’t feel guilty about the waste. Game
 changer.’ — Sarah M., Chicago Marathon runner.”</td>
@@ -187,7 +163,7 @@ via the product page. The homepage is the first upsell opportunity.</td>
 <tr class="odd">
 <td><strong>As Seen At</strong></td>
 <td>Logo bar: logos of races where the poncho has been used (pilot races
-per P5B). “As Seen At: [Race Name] • [Race Name] • [Race Name].” If no
+per <a href="sub-p5b.html" style="color:var(--accent)">P5B</a>). “As Seen At: [Race Name] • [Race Name] • [Race Name].” If no
 pilot races yet: “Debuting at [Race Name] Fall 2026.”</td>
 <td>Race logos provide instant credibility for runners. A runner
 training for Chicago Marathon who sees the Chicago Marathon logo on the
@@ -195,7 +171,7 @@ site is significantly more likely to purchase.</td>
 </tr>
 <tr class="even">
 <td><strong>Brand story</strong></td>
-<td>1–2 paragraph brand story from P1C Section 1.2 (50–100 word
+<td>1–2 paragraph brand story from <a href="sub-p1c.html" style="color:var(--accent)">P1C</a> Section 1.2 (50–100 word
 version). Include: founder photo, the “why” behind the brand, and a link
 to brand.com/about for the full story. Background: Warm Charcoal
 (#2B2D2F) with Mist White text.</td>
@@ -207,11 +183,11 @@ one-time buyers.</td>
 <td><strong>Email capture footer</strong></td>
 <td>Inline email signup: “Join the Movement — Sustainability tips,
 race-day warmth guides, and early access to new products.” Input field +
-“Subscribe” button. Connected to Klaviyo list (P6B Section 5).
+“Subscribe” button. Connected to Klaviyo list (<a href="sub-p6b.html" style="color:var(--accent)">P6B</a> Section 5).
 Incentive: “Get 10% off your first order.”</td>
 <td>The footer email capture catches visitors who scroll the entire
 homepage but don’t purchase. Target: 3–6% of homepage visitors sign up
-(per P6A Section 6 KPI targets).</td>
+(per <a href="sub-p6a.html" style="color:var(--accent)">P6A</a> Section 6 KPI targets).</td>
 </tr>
 </tbody>
 </table>
@@ -222,10 +198,10 @@ IMAGERY: the hero image, product photos, and race-day photography do the
 heavy lifting. Text supports the images, not the other way around.
 SINGLE CTA PER SECTION: each section has one clear action (shop, sign
 up, learn more, inquire). Multiple CTAs per section create choice
-paralysis. BRAND CONSISTENCY: all design elements follow P1B visual
+paralysis. BRAND CONSISTENCY: all design elements follow <a href="sub-p1b.html" style="color:var(--accent)">P1B</a> visual
 identity: Earth Green (#2D6A4F), Dawn Gold (#D4A843), Warm Charcoal
 (#2B2D2F), Mist White (#F5F2EB). Typography: DM Sans headings, Inter
-body. Imagery: warm dawn tones per P1D photography direction.</p>
+body. Imagery: warm dawn tones per <a href="sub-p1d.html" style="color:var(--accent)">P1D</a> photography direction.</p>
 <p>2. Product Listings: 3 SKUs</p>
 <p><strong>Three DTC SKUs launch on Shopify, each with a specific
 strategic purpose:</strong> the single ($9.99) is the trial purchase for
@@ -304,7 +280,7 @@ mirrors the buyer’s decision process: see it (images), want it (headline
 </tr>
 <tr class="even">
 <td><strong>Image gallery</strong></td>
-<td>7–9 images per P1D Amazon photography plan: (1) hero/white
+<td>7–9 images per <a href="sub-p1d.html" style="color:var(--accent)">P1D</a> Amazon photography plan: (1) hero/white
 background, (2) lifestyle/start line, (3) detail/metallized lining, (4)
 packaging, (5) tear-away sequence, (6) composting lifecycle, (7) size
 guide, (8) FLIR thermal comparison, (9) co-brand example (if available).
@@ -345,7 +321,7 @@ friction by 40–60% on mobile (per Shopify’s data).</td>
 <td><strong>Description (below fold)</strong></td>
 <td>Expanded product details: materials (NatureFlex NM + PLA spunbond),
 certifications (BPI, ASTM D6400, Patent Pending), composting
-instructions (4-step lifecycle from P1B Section 6), care/storage (store
+instructions (4-step lifecycle from <a href="sub-p1b.html" style="color:var(--accent)">P1B</a> Section 6), care/storage (store
 below 77°F, 10–12 month shelf life), and allergen notice (“Contains
 natural rubber latex”). Also: the brand story snippet with “Read our
 full story” link.</td>
@@ -378,7 +354,7 @@ accountability (the brand publishes its impact transparently).</p>
 <table>
 <colgroup>
 <col style="width: 14%" />
-<col style="width:50%">
+<col style="width: 50%" />
 <col style="width: 35%" />
 </colgroup>
 <tbody>
@@ -422,11 +398,11 @@ that pulls Shopify order count and calculates impact metrics in real
 time. Displays dynamically on the homepage.</td>
 <td>RECOMMENDED: Option A for launch. Takes 10 minutes to set up, 2
 minutes to update weekly. The manual update cadence matches the Monday
-KPI dashboard review (P6A Section 6).</td>
+KPI dashboard review (<a href="sub-p6a.html" style="color:var(--accent)">P6A</a> Section 6).</td>
 </tr>
 <tr class="odd">
 <td><strong>Seeding the counter</strong></td>
-<td>Pre-launch: if pilot race data exists (P5B), seed the counter with
+<td>Pre-launch: if pilot race data exists (<a href="sub-p5b.html" style="color:var(--accent)">P5B</a>), seed the counter with
 real numbers from pilot races (“2,500 garbage bags replaced, 150 lbs
 composted, 3 races served”). If no pilot data yet: start at 0 and let
 the counter grow from actual sales/races. Do NOT fabricate numbers — the
@@ -504,7 +480,7 @@ automated multi-state filing when volume warrants.</td>
 <td><strong>Store policies</strong></td>
 <td>Create 4 policy pages in Shopify Admin → Settings → Policies: (1)
 Shipping Policy: delivery timelines, free shipping threshold, carrier
-information. (2) Return Policy: per P4B Section 6.1 (30-day,
+information. (2) Return Policy: per <a href="sub-p4b.html" style="color:var(--accent)">P4B</a> Section 6.1 (30-day,
 unused/unopened, full refund). (3) Privacy Policy: disclose GA4, Meta
 Pixel, Clarity, cookies, email collection. Use Shopify’s built-in
 privacy policy generator + customize for tracking tools. (4) Terms of
@@ -544,7 +520,7 @@ automatically by the app).</td>
 (immediate): “Welcome to [BRAND]! Here’s your 10% off code: WELCOME10.
 Use it on your first order.” Include: hero image, 3-step product
 overview, CTA to shop. Email 2 (Day 3): “Why We Built This” — the brand
-story from P1C Section 1.2. Emotional connection, founder photo, mission
+story from <a href="sub-p1c.html" style="color:var(--accent)">P1C</a> Section 1.2. Emotional connection, founder photo, mission
 statement. CTA: “Shop Our Story.” Email 3 (Day 7): “Your 10% Off Expires
 Soon” — urgency reminder with product images and CTA. Include:
 testimonial quote from a pilot race runner.</td>
@@ -569,7 +545,7 @@ satisfaction check + composting instructions. CTA: “Learn how to compost
 your poncho.” Email 3 (Day 7): “Leave a Review” request. “Tell other
 runners what you think! Leave a review and get 15% off your next order.”
 Direct link to Shopify review page (Judge.me or Loox). Email 4 (Day 14):
-“Share the Warmth” referral prompt per P1E Section 6: “Give $5, Get $5.
+“Share the Warmth” referral prompt per <a href="sub-p1e.html" style="color:var(--accent)">P1E</a> Section 6: “Give $5, Get $5.
 Share your referral link: brand.com/refer/[unique-code].”</td>
 </tr>
 <tr class="even">
@@ -593,7 +569,7 @@ deliverability). Re-add if they visit the site or make a purchase.</td>
 </tbody>
 </table>
 <p>5.1 Email Design Guidelines</p>
-<p>ALL Klaviyo emails must follow P1B visual identity: header with brand
+<p>ALL Klaviyo emails must follow <a href="sub-p1b.html" style="color:var(--accent)">P1B</a> visual identity: header with brand
 logo on Earth Green background, body on Mist White, CTA buttons in Earth
 Green with white text, footer with social links + unsubscribe.
 Mobile-first design: 600px max width, single-column layout, 14px+ body
@@ -640,7 +616,7 @@ $3.50/unit (pricing comparison vs. Heatsheets $4.55). Each pillar: icon
 </tr>
 <tr class="odd">
 <td><strong>Case study preview</strong></td>
-<td>If pilot case study exists (P5B Section 6): embedded 2–3 paragraph
+<td>If pilot case study exists (<a href="sub-p5b.html" style="color:var(--accent)">P5B</a> Section 6): embedded 2–3 paragraph
 summary with: race name, key data (units distributed, collection rate,
 waste diverted), race director quote, and “Read Full Case Study” link.
 If no case study yet: “Pilot Program Now Open — Be among the first races
@@ -661,13 +637,13 @@ or HubSpot captures the form submission as a new contact with
 <td><strong>Trust elements</strong></td>
 <td>Logo bar: “Trusted by [Race Name], [Race Name], [Race Name]” (from
 pilot races). Certification badges: BPI Certified, Patent Pending, 1%
-for the Planet (if joined per P5C Section 5). Founder photo + direct
+for the Planet (if joined per <a href="sub-p5c.html" style="color:var(--accent)">P5C</a> Section 5). Founder photo + direct
 contact info: “Questions? Reach me directly: [email] | [phone].”</td>
 </tr>
 <tr class="even">
 <td><strong>Co-brand gallery</strong></td>
 <td>3–5 co-brand mockup images showing ponchos with different race logos
-(placeholder or real per P3C Section 6). “Your race. Your logo. Your
+(placeholder or real per <a href="sub-p3c.html" style="color:var(--accent)">P3C</a> Section 6). “Your race. Your logo. Your
 sustainability story.” This is the visual conversion tool — race
 directors see their competitors’ logos on ponchos and think: “We should
 do this too.”</td>
@@ -762,7 +738,7 @@ filtered by “mobile” to identify mobile-specific friction points.</td>
 </table>
 <p>8. Timeline &amp; Budget</p>
 <p><strong>WEEK 10–11: Choose Shopify plan (Basic, $39/month). Purchase
-and connect domain (brand.com, if not already done in P1A). Select theme
+and connect domain (brand.com, if not already done in <a href="sub-p1a.html" style="color:var(--accent)">P1A</a>). Select theme
 (Dawn free or Prestige/Impact $350). Set up: homepage hero section,
 navigation, and basic brand styling (colors, fonts, logo). Configure
 Shopify Payments + PayPal.</strong></p>
@@ -774,7 +750,7 @@ impact counter section on the homepage. Create store policies (shipping,
 return, privacy, terms).</strong></p>
 <p><strong>WEEK 13–14: Install and configure Klaviyo: welcome series (3
 emails), abandoned cart (3 emails), post-purchase (4 emails). Design
-email templates per P1B visual identity. Build the B2B landing page
+email templates per <a href="sub-p1b.html" style="color:var(--accent)">P1B</a> visual identity. Build the B2B landing page
 (brand.com/b2b) with inquiry form and sample kit request. Install review
 app (Judge.me or Loox). Optimize for mobile: test on 3 devices, fix any
 issues.</strong></p>
@@ -782,13 +758,13 @@ issues.</strong></p>
 flow (browse → product page → add to cart → checkout → purchase → order
 confirmation email → post-purchase email sequence). Verify: GA4 tracks
 the purchase, Meta Pixel fires, Clarity records the session, Klaviyo
-captures the customer. Launch the store. HANDOFF to P6C (Amazon
-Marketplace) and P6D (SEO &amp; Content).</strong></p>
+captures the customer. Launch the store. HANDOFF to <a href="sub-p6c.html" style="color:var(--accent)">P6C</a> (Amazon
+Marketplace) and <a href="sub-p6d.html" style="color:var(--accent)">P6D</a> (SEO &amp; Content).</strong></p>
 <p>BUDGET: Shopify Basic: $39/month. Domain (if not already purchased):
 $12–$15/year. Theme (if premium): $0–$350 (one-time). Klaviyo:
 $0–$20/month (free up to 250 contacts). Judge.me: $0 (free tier) or
 Loox: $9.99/month. Pirate Ship: $0 (free platform, pay per label). TOTAL
-P6B: $39–$69/month + $0–$365 one-time.</p>
+<a href="sub-p6b.html" style="color:var(--accent)">P6B</a>: $39–$69/month + $0–$365 one-time.</p>
 <p>9. Conclusion: The Store Is the Brand Experience</p>
 <p><strong>A runner who visits brand.com should FEEL the brand before
 they buy the product.</strong> The hero image should evoke the cold dawn
@@ -804,9 +780,4 @@ OWNED. The customer relationship is OWNED. Every Shopify visitor who
 signs up for email becomes a direct relationship the brand controls
 forever — no algorithm, no marketplace fee, no platform risk. Build the
 store to sell ponchos. Build the email list to build a business.</p>
-
-        </div>
-    </div></div>
-<footer style="text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px">
-Sustainable Race-Start Warmth Poncho — D2C Brand GTM Project · 60 Subprojects · 391 Tasks · ~15,500¶ · April 2026
-</footer></body></html>
+</div></div></div><footer>Sustainable Race-Start Warmth Poncho — GTM Project · 60 Subprojects · 391 Tasks · ~120K Words · April 2026<br><a href="https://apseter.github.io/Retail_Ventures_Command_Center/">← Retail Ventures Command Center</a> · <a href="index.html">Project Home</a></footer></body></html>

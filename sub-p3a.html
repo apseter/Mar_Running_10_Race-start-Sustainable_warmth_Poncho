@@ -1,89 +1,65 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>P3A: Factory Selection Negotiation — Race Start Warmth GTM</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-<style>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>P3A — Race Start Warmth GTM</title><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet"><style>
 :root{--bg:#0a0e1a;--surface:#111827;--card:#1a2332;--border:#2a3a4e;--accent:#10b981;--accent2:#3b82f6;--text:#e2e8f0;--muted:#94a3b8;--white:#fff;--red:#ef4444;--amber:#f59e0b;--green:#10b981}
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
 a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
 .container{max-width:1200px;margin:0 auto;padding:0 24px}
-/* Nav */
-nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
-nav .inner{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;max-width:1200px;margin:0 auto}
-nav .brand{font-weight:700;font-size:15px;color:var(--accent)}
-nav .links{display:flex;gap:8px;flex-wrap:wrap}
-nav .links a{color:var(--muted);font-size:13px;padding:4px 10px;border-radius:6px;transition:.2s}
+nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
+nav .inner{display:flex;align-items:center;justify-content:space-between;padding:10px 24px;max-width:1200px;margin:0 auto;flex-wrap:wrap;gap:8px}
+nav .brand{font-weight:700;font-size:14px;color:var(--accent);white-space:nowrap}
+nav .links{display:flex;gap:4px;flex-wrap:wrap}
+nav .links a{color:var(--muted);font-size:12px;padding:4px 8px;border-radius:6px;transition:.2s;white-space:nowrap}
 nav .links a:hover,nav .links a.active{color:var(--white);background:var(--card);text-decoration:none}
-/* Hero */
-.hero{padding:60px 0 40px;text-align:center}
-.hero h1{font-size:2.4em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hero p{color:var(--muted);font-size:1.1em;max-width:700px;margin:0 auto}
-/* Stats bar */
-.stats{display:flex;justify-content:center;gap:32px;padding:24px 0;flex-wrap:wrap}
-.stat{text-align:center}.stat .num{font-size:1.8em;font-weight:800;color:var(--white)}.stat .label{font-size:.75em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
-/* Cards */
-.grid{display:grid;gap:16px;margin:24px 0}
-.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}
-.grid-3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
-.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;transition:.2s}
-.card:hover{border-color:var(--accent);transform:translateY(-2px)}
-.card h3{font-size:1.1em;margin-bottom:8px}.card p{color:var(--muted);font-size:.9em}
-.card .badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:8px}
-.card .meta{font-size:.8em;color:var(--muted);margin-top:12px}
-/* Section */
-.section{padding:40px 0}.section h2{font-size:1.6em;font-weight:700;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--border)}
-/* Table */
-table{width:100%;border-collapse:collapse;font-size:.85em;margin:16px 0}
-th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:52px}
-td{padding:8px 12px;border-bottom:1px solid var(--border)}
-tr:hover td{background:rgba(16,185,129,.05)}
-.status-complete{color:var(--green);font-weight:600}.status-not{color:var(--muted)}
-/* Progress */
-.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:8px}
-.progress .bar{height:100%;background:var(--accent);border-radius:3px}
-/* Back link */
-.back{display:inline-block;color:var(--muted);font-size:.9em;margin-bottom:20px}
-.back:hover{color:var(--accent)}
-/* Download */
-.dl-card{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin:8px 0;transition:.2s}
-.dl-card:hover{border-color:var(--accent);text-decoration:none}
-.dl-card .icon{font-size:2em}.dl-card .info h4{color:var(--white);margin-bottom:4px}.dl-card .info p{color:var(--muted);font-size:.85em}
-/* Footer */
-footer{text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px}
-@media(max-width:768px){.stats{gap:16px}.stat .num{font-size:1.3em}nav .links{gap:4px}nav .links a{font-size:11px;padding:3px 6px}.hero h1{font-size:1.6em}}
-
-.doc-content{max-width:900px;margin:0 auto;padding:20px 0}
-.doc-content h1{font-size:1.8em;font-weight:800;color:var(--white);margin:32px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
-.doc-content h2{font-size:1.4em;font-weight:700;color:var(--accent);margin:28px 0 12px}
-.doc-content h3{font-size:1.15em;font-weight:600;color:var(--accent2);margin:20px 0 10px}
-.doc-content p{margin:8px 0;line-height:1.7}
-.doc-content table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85em}
-.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;border:1px solid var(--border)}
-.doc-content td{padding:8px 12px;border:1px solid var(--border);vertical-align:top}
-.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
-.doc-content ul,.doc-content ol{margin:8px 0 8px 24px}
-.doc-content li{margin:4px 0;line-height:1.6}
-.doc-content strong{color:var(--white)}
-.doc-content em{color:var(--muted)}
-.doc-content blockquote{border-left:3px solid var(--accent);padding:8px 16px;margin:12px 0;background:var(--card);border-radius:0 8px 8px 0}
-.nav-sub{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 24px;padding:12px 16px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
-.nav-sub a{font-size:.8em;color:var(--muted);padding:4px 10px;border-radius:4px;transition:.2s;white-space:nowrap}
+nav .links a.cc-link{color:var(--accent2);border:1px solid var(--accent2);font-weight:600}
+nav .links a.cc-link:hover{background:var(--accent2);color:var(--white)}
+.hero{padding:50px 0 30px;text-align:center}
+.hero h1{font-size:2.2em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:1.05em;max-width:700px;margin:0 auto}
+.stats{display:flex;justify-content:center;gap:28px;padding:20px 0;flex-wrap:wrap}
+.stat{text-align:center}.stat .num{font-size:1.7em;font-weight:800;color:var(--white)}.stat .label{font-size:.7em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.grid{display:grid;gap:16px;margin:24px 0}.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}.grid-3{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;transition:.2s;display:block}
+.card:hover{border-color:var(--accent);transform:translateY(-2px);text-decoration:none}
+.card h3{font-size:1.05em;margin-bottom:6px;color:var(--white)}.card p{color:var(--muted);font-size:.88em}
+.badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.65em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:6px}
+.badge-amber{background:var(--amber)}.badge-blue{background:var(--accent2)}
+.card .meta{font-size:.78em;color:var(--muted);margin-top:10px}
+.section{padding:32px 0}.section h2{font-size:1.5em;font-weight:700;margin-bottom:20px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+table{width:100%;border-collapse:collapse;font-size:.83em;margin:16px 0}
+th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:48px}
+td{padding:8px 12px;border-bottom:1px solid var(--border)}tr:hover td{background:rgba(16,185,129,.04)}
+.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:6px}
+.progress .bar{height:100%;border-radius:3px}
+.back{display:inline-block;color:var(--muted);font-size:.88em;margin-bottom:16px}.back:hover{color:var(--accent)}
+.dl-card{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;margin:8px 0;transition:.2s}
+.dl-card:hover{border-color:var(--accent);text-decoration:none}.dl-card .icon{font-size:1.8em}.dl-card .info h4{color:var(--white);margin-bottom:2px;font-size:.95em}.dl-card .info p{color:var(--muted);font-size:.8em}
+.phase-tag{display:inline-block;font-size:.65em;font-weight:600;padding:2px 6px;border-radius:3px;margin-right:4px}
+.phase-plan{background:rgba(16,185,129,.15);color:var(--green)}.phase-exec{background:rgba(245,158,11,.15);color:var(--amber)}.phase-not{background:rgba(148,163,184,.1);color:var(--muted)}
+.nav-sub{display:flex;flex-wrap:wrap;gap:5px;margin:12px 0 20px;padding:10px 14px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
+.nav-sub a{font-size:.78em;color:var(--muted);padding:3px 8px;border-radius:4px;transition:.2s;white-space:nowrap}
 .nav-sub a:hover,.nav-sub a.active{color:var(--white);background:var(--surface);text-decoration:none}
-</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a></div></div></nav><div class="container">
-    <div style="padding-top:30px">
+.doc-content{max-width:900px;margin:0 auto;padding:16px 0}
+.doc-content h1{font-size:1.7em;font-weight:800;color:var(--white);margin:28px 0 14px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+.doc-content h2{font-size:1.3em;font-weight:700;color:var(--accent);margin:24px 0 10px}
+.doc-content h3{font-size:1.1em;font-weight:600;color:var(--accent2);margin:18px 0 8px}
+.doc-content p{margin:6px 0;line-height:1.65}.doc-content table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.83em}
+.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:8px 10px;font-weight:600;border:1px solid var(--border)}
+.doc-content td{padding:7px 10px;border:1px solid var(--border);vertical-align:top}
+.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.doc-content ul,.doc-content ol{margin:6px 0 6px 20px}.doc-content li{margin:3px 0;line-height:1.55}
+.doc-content strong{color:var(--white)}.doc-content em{color:var(--muted)}
+footer{text-align:center;padding:32px 0;color:var(--muted);font-size:.78em;border-top:1px solid var(--border);margin-top:50px}
+footer a{color:var(--accent2)}
+@media(max-width:768px){.stats{gap:14px}.stat .num{font-size:1.2em}nav .links a{font-size:10px;padding:3px 5px}.hero h1{font-size:1.5em}}
+</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="projections.html" class="">Projections</a><a href="action-plan.html" class="">Action Plan</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a><a href="https://apseter.github.io/Retail_Ventures_Command_Center/" class="cc-link" target="_blank">🏠 Command Center</a></div></div></nav><div class="container"><div style="padding-top:28px">
         <a href="p3.html" class="back">← 🏭 P3: Manufacturing</a>
         <div class="nav-sub"><a href="p3.html">🏭 P3 Overview</a><a href="sub-p3a.html" class="active">P3A</a><a href="sub-p3b.html">P3B</a><a href="sub-p3c.html">P3C</a><a href="sub-p3d.html">P3D</a><a href="sub-p3e.html">P3E</a></div>
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px">
-            <div>
-                <span style="background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px">P3A</span>
-                <span style="color:var(--muted);font-size:.85em;margin-left:8px">P3: Manufacturing</span>
-            </div>
-            <a href="files/P3A_Factory_Selection_Negotiation.docx" style="font-size:.85em;color:var(--accent);padding:6px 14px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+            <div><span class="badge">P3A</span> <span style="color:var(--muted);font-size:.83em">P3: Manufacturing</span></div>
+            <a href="files/P3A_Factory_Selection_Negotiation.docx" style="font-size:.83em;color:var(--accent);padding:5px 12px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
         </div>
-        <div class="doc-content">
-            <p><strong>P3A: FACTORY SELECTION</strong></p>
+        <div class="doc-content"><p><strong><a href="sub-p3a.html" style="color:var(--accent)">P3A</a>: FACTORY SELECTION</strong></p>
 <p><strong>&amp; NEGOTIATION</strong></p>
-<p>Sub-Project P3A | Manufacturing &amp; Sourcing | Weeks 10–14</p>
+<p>Sub-Project <a href="sub-p3a.html" style="color:var(--accent)">P3A</a> | Manufacturing &amp; Sourcing | Weeks 10–14</p>
 <p><em>Complete Sourcing Playbook: 5-Factory Shortlist, 8-Document Audit
 Framework, Negotiation Targets for 8 Key Terms, Certification
 Verification Protocol, Golden Sample Specification, Backup Supplier
@@ -91,19 +67,19 @@ Terms, Communication Protocol, and 13-Section Production Agreement
 Outline</em></p>
 <p>March 2026 | Confidential</p>
 <p>Executive Summary</p>
-<p><strong>P3A transitions the project from product development to
-manufacturing reality.</strong> P2 designed and tested the product. P3A
+<p><strong><a href="sub-p3a.html" style="color:var(--accent)">P3A</a> transitions the project from product development to
+manufacturing reality.</strong> <a href="p2.html" style="color:var(--accent)">P2</a> designed and tested the product. <a href="sub-p3a.html" style="color:var(--accent)">P3A</a>
 selects, qualifies, and contracts the factory that will produce it at
 scale. The factory relationship is the single most consequential
 business decision in Year 1: the right partner delivers quality,
 flexibility, and reliability; the wrong partner delivers delays,
 defects, and brand damage. This document provides the complete framework
 for making that decision with rigor.</p>
-<p><strong>5 factories are shortlisted from P2 prototyping + new
+<p><strong>5 factories are shortlisted from <a href="p2.html" style="color:var(--accent)">P2</a> prototyping + new
 sourcing.</strong> Each is evaluated against 8 mandatory audit
 documents, negotiated on 8 key terms, verified independently on
 compostability certifications, required to produce 10 golden samples to
-P2E QC standards, and contracted via a 13-section Production Agreement.
+<a href="sub-p2e.html" style="color:var(--accent)">P2E</a> QC standards, and contracted via a 13-section Production Agreement.
 A backup supplier is qualified simultaneously, and a 5-channel
 communication protocol ensures nothing falls through the cracks during
 production.</p>
@@ -119,11 +95,11 @@ is disrupted. DEPRIORITIZED: ShinHigh Packaging (China) — deprioritized
 due to: Section 301 tariff risk (7.5% additional on List 4A goods),
 longer lead times (6–10 weeks vs. 4–6 weeks UK), and IP protection
 concerns. China sourcing remains an option if tariff environment
-improves. See P10A Section 2 for Year 2 dual-supplier qualification
+improves. See <a href="sub-p10a.html" style="color:var(--accent)">P10A</a> Section 2 for Year 2 dual-supplier qualification
 strategy.</p>
 <p>1. Factory Shortlist: 5 Candidates</p>
 <p><strong>The shortlist combines 3 factories already evaluated during
-P2C prototyping</strong> (with known quality, pricing, and communication
+<a href="sub-p2c.html" style="color:var(--accent)">P2C</a> prototyping</strong> (with known quality, pricing, and communication
 profiles) plus 2–3 new factories sourced via Alibaba and trade shows to
 benchmark pricing and expand options. New factories must complete FULL
 qualification before receiving the tech spec.</p>
@@ -187,7 +163,7 @@ experience</td>
 <td>$0.80–$1.20/unit at 5K; $0.60–$0.90 at 25K (estimated)</td>
 <td>COST LEADER. Lowest per-unit cost. Amazon audit passed = FBA-ready
 packaging experience. Risk: longer lead time, language barrier, Section
-301 tariff exposure (verify HTS classification per P2A Sec 11.5).</td>
+301 tariff exposure (verify HTS classification per <a href="sub-p2a.html" style="color:var(--accent)">P2A</a> Sec 11.5).</td>
 </tr>
 <tr class="odd">
 <td><strong>TIPA Corp</strong></td>
@@ -238,7 +214,7 @@ units. Please provide: capabilities overview, relevant certifications,
 MOQ, estimated pricing at 5K/25K/50K volumes, and lead time.” (5)
 Shortlist 2–3 factories that respond professionally, demonstrate
 relevant experience, and quote within the target price range. ONLY share
-the full tech spec AFTER NDA is signed (per P2B Section 11.3).</p>
+the full tech spec AFTER NDA is signed (per <a href="sub-p2b.html" style="color:var(--accent)">P2B</a> Section 11.3).</p>
 <p>1.2 Trade Show Sourcing</p>
 <p>Attend 1–2 relevant trade shows to meet potential suppliers in
 person: (1) Pack Expo (packexpo.com): largest North American packaging
@@ -249,7 +225,7 @@ strong compostable packaging representation. Annual in Amsterdam. (3)
 Canton Fair (cantonfair.org.cn): largest Chinese trade fair. Phase 2
 (building materials + packaging) in April and October. Free admission.
 Best for meeting China-based suppliers face-to-face. (4) RRCA National
-Convention (P0C Section 8): running industry trade show. April 2026.
+Convention (<a href="sub-p0c.html" style="color:var(--accent)">P0C</a> Section 8): running industry trade show. April 2026.
 Attend for B2B networking, but also scout any race-event supply vendors
 who may offer or connect to compostable product manufacturers.</p>
 <p>2. Factory Audit Documentation: 8-Document Framework</p>
@@ -326,7 +302,7 @@ are BPI-certified.</td>
 <td>Request BPI certificate numbers. Cross-check on bpiworld.org product
 database. If factory claims “our materials are BPI-certified”: request
 the material supplier’s BPI cert, not the factory’s. Our product will
-need its OWN BPI certification (P2D) regardless of what the factory
+need its OWN BPI certification (<a href="sub-p2d.html" style="color:var(--accent)">P2D</a>) regardless of what the factory
 claims.</td>
 </tr>
 <tr class="odd">
@@ -443,9 +419,9 @@ deliver within 4 weeks production.</td>
 </tr>
 <tr class="odd">
 <td><strong>Quality guarantee</strong></td>
-<td>Maximum defect rate: 3% of shipped units (per P2E Section 1.2 AQL
+<td>Maximum defect rate: 3% of shipped units (per <a href="sub-p2e.html" style="color:var(--accent)">P2E</a> Section 1.2 AQL
 framework). If exceeded: factory replaces defective units at factory’s
-cost, including freight. Defect definition: explicitly reference P2E
+cost, including freight. Defect definition: explicitly reference <a href="sub-p2e.html" style="color:var(--accent)">P2E</a>
 20-point QC checklist with Critical/Major/Minor classification.</td>
 <td>Include defect definitions in the Production Agreement (Section 8).
 Without written definitions, “quality guarantee” is unenforceable.
@@ -519,7 +495,7 @@ fabricated. Do NOT accept supplier’s PDF alone.</td>
 <tr class="even">
 <td><strong>Verify test lab independently</strong></td>
 <td>Factory provides lab test report</td>
-<td>Contact the lab directly (Normec OWS, AMC, RespirTek — per P2D
+<td>Contact the lab directly (Normec OWS, AMC, RespirTek — per <a href="sub-p2d.html" style="color:var(--accent)">P2D</a>
 Section 2) to confirm the test was conducted and the results are
 authentic.</td>
 <td>Lab test report fraud is uncommon but not unheard of in
@@ -532,7 +508,7 @@ risk.</td>
 <td>This means the raw FILM has BPI certification — not the finished
 poncho. The poncho (assembled with bonding, elastic, ink, toggle)
 requires its OWN BPI certification. Supplier’s material cert helps by
-simplifying the product cert process (P2D Section 3) but does NOT
+simplifying the product cert process (<a href="sub-p2d.html" style="color:var(--accent)">P2D</a> Section 3) but does NOT
 substitute for it.</td>
 <td>This is the most common misunderstanding in compostable product
 sourcing. Always clarify: “Is this a product certification or a material
@@ -551,7 +527,7 @@ verify at dincertco.tuv.com.</td>
 <td>All suppliers</td>
 <td>Request: (A) SDS showing no fluorinated chemicals, (B) total
 fluorine test report (&lt;100 ppm), (C) signed PFAS-free manufacturer
-declaration. Per P2D Section 3.1.</td>
+declaration. Per <a href="sub-p2d.html" style="color:var(--accent)">P2D</a> Section 3.1.</td>
 <td>BPI hard requirement since Jan 2020. No PFAS documentation = no BPI
 certification = no US market launch.</td>
 </tr>
@@ -614,7 +590,7 @@ $50–$150 for international express</td>
 </tr>
 <tr class="odd">
 <td><strong>Inspection upon receipt</strong></td>
-<td>Run FULL P2E 20-point QC checklist + 7-test tear-away protocol +
+<td>Run FULL <a href="sub-p2e.html" style="color:var(--accent)">P2E</a> 20-point QC checklist + 7-test tear-away protocol +
 print durability spot-check (tape adhesion + body-heat wear test).
 Document ALL results with photographs. APPROVE or REJECT within 5
 business days of receipt.</td>
@@ -631,7 +607,7 @@ fails: serious conversation about whether this factory can meet the spec
 <p>6. Backup Supplier Terms</p>
 <p><strong>The backup supplier must be pre-qualified and maintained
 “warm”</strong> so that production can shift within 2–4 weeks of
-activating a contingency (per P2A Section 11). This section defines the
+activating a contingency (per <a href="sub-p2a.html" style="color:var(--accent)">P2A</a> Section 11). This section defines the
 specific terms negotiated with the backup factory.</p>
 <table>
 <colgroup>
@@ -646,13 +622,13 @@ specific terms negotiated with the backup factory.</p>
 <tr class="even">
 <td><strong>Qualification status</strong></td>
 <td>Backup factory must have produced ≥50 acceptable prototype units
-during P2C and scored ≥300/500 on the P2C supplier scorecard</td>
+during <a href="sub-p2c.html" style="color:var(--accent)">P2C</a> and scored ≥300/500 on the <a href="sub-p2c.html" style="color:var(--accent)">P2C</a> supplier scorecard</td>
 </tr>
 <tr class="odd">
 <td><strong>Warm-relationship order</strong></td>
 <td>Place 1 small order per year (500–1,000 units, $400–$1,500) from
 backup factory to keep tooling current, operator familiarity fresh, and
-account active per P2A Section 11.3</td>
+account active per <a href="sub-p2a.html" style="color:var(--accent)">P2A</a> Section 11.3</td>
 </tr>
 <tr class="even">
 <td><strong>Activation timeline</strong></td>
@@ -670,7 +646,7 @@ pricing.”</td>
 </tr>
 <tr class="even">
 <td><strong>Activation triggers</strong></td>
-<td>Same 5 triggers defined in P2A Section 11.2: lead time &gt;8 weeks,
+<td>Same 5 triggers defined in <a href="sub-p2a.html" style="color:var(--accent)">P2A</a> Section 11.2: lead time &gt;8 weeks,
 price increase &gt;15%, 2 consecutive quality failures, force majeure,
 certification lapse</td>
 </tr>
@@ -765,7 +741,7 @@ update).</td>
 <td>Anytime</td>
 <td>Phone call (factory owner/GM direct mobile)</td>
 <td>Factory owner or general manager</td>
-<td>Activate for: batch rejection, recall situation (P2E Section 9.3),
+<td>Activate for: batch rejection, recall situation (<a href="sub-p2e.html" style="color:var(--accent)">P2E</a> Section 9.3),
 force majeure, contract dispute. Founder must have factory owner’s
 PERSONAL mobile number for emergencies.</td>
 <td>Document all emergency communications in writing (email) within 24
@@ -777,7 +753,7 @@ hours of the call for legal record.</td>
 <p>For China-based suppliers: communication is typically in English, but
 misunderstandings are common with technical specifications. MITIGATION:
 (1) Translate the Factory Tech Spec into Mandarin Chinese ($100–$300,
-per P2B Section 7.1). (2) Use WeChat for instant messaging (more
+per <a href="sub-p2b.html" style="color:var(--accent)">P2B</a> Section 7.1). (2) Use WeChat for instant messaging (more
 reliable than email in China; factory staff check WeChat more frequently
 than email). (3) Schedule video calls during overlapping business hours:
 7–9 AM US Eastern = 7–9 PM China Standard Time. (4) For critical
@@ -815,7 +791,7 @@ Specification.</td>
 </tr>
 <tr class="odd">
 <td><strong>2. Product Specification</strong></td>
-<td>Reference the P2B Factory Tech Spec as Exhibit A (attached). All
+<td>Reference the <a href="sub-p2b.html" style="color:var(--accent)">P2B</a> Factory Tech Spec as Exhibit A (attached). All
 production must conform to the Tech Spec. Any deviation requires written
 buyer approval. Tech Spec supersedes verbal agreements.</td>
 </tr>
@@ -843,9 +819,9 @@ forfeiture.</td>
 </tr>
 <tr class="odd">
 <td><strong>6. Quality Standards</strong></td>
-<td>Reference P2E QC checklist as Exhibit B. Define AQL levels (Critical
+<td>Reference <a href="sub-p2e.html" style="color:var(--accent)">P2E</a> QC checklist as Exhibit B. Define AQL levels (Critical
 0%, Major 2.5%, Minor 4.0%). Factory agrees that buyer’s QC checklist is
-the acceptance standard. Golden sample approval process per P2E Section
+the acceptance standard. Golden sample approval process per <a href="sub-p2e.html" style="color:var(--accent)">P2E</a> Section
 6. Third-party inspection rights: buyer may arrange inspection at any
 time during production with 48 hours notice.</td>
 </tr>
@@ -900,8 +876,8 @@ Arbitration: ICC or HKIAC rules. Language: English. Before arbitration:
 </tr>
 <tr class="even">
 <td><strong>13. Exhibits</strong></td>
-<td>Exhibit A: Factory Technical Specification (P2B Sec 7). Exhibit B:
-QC Checklist with AQL levels (P2E Sec 1). Exhibit C: Non-Disclosure
+<td>Exhibit A: Factory Technical Specification (<a href="sub-p2b.html" style="color:var(--accent)">P2B</a> Sec 7). Exhibit B:
+QC Checklist with AQL levels (<a href="sub-p2e.html" style="color:var(--accent)">P2E</a> Sec 1). Exhibit C: Non-Disclosure
 Agreement. Exhibit D: Golden Sample photographs (reference
 standard).</td>
 </tr>
@@ -914,7 +890,7 @@ in addition to a signature — the chop is the legally binding mark in
 Chinese business law. Confirm the chop matches the legal entity named in
 the agreement.</p>
 <p>9. Timeline: 5-Week Factory Selection Sprint</p>
-<p><strong>WEEK 10: Finalize shortlist (3 from P2C + 2–3 new via
+<p><strong>WEEK 10: Finalize shortlist (3 from <a href="sub-p2c.html" style="color:var(--accent)">P2C</a> + 2–3 new via
 Alibaba). Send standardized RFQ to new candidates. Request audit
 documentation from all 5. Send NDA to all candidates for
 signature.</strong></p>
@@ -926,19 +902,19 @@ cannot meet minimum requirements.</strong></p>
 factory. Order 10 golden samples from primary. Begin backup supplier
 negotiations simultaneously. Draft Production Agreement (or engage
 attorney).</strong></p>
-<p><strong>WEEK 13: Receive golden samples. Run full P2E QC inspection.
+<p><strong>WEEK 13: Receive golden samples. Run full <a href="sub-p2e.html" style="color:var(--accent)">P2E</a> QC inspection.
 If APPROVED: finalize Production Agreement. Execute (sign). If REJECTED:
 request re-samples; proceed with backup factory golden samples in
 parallel.</strong></p>
 <p><strong>WEEK 14: Production Agreement signed. Communication protocol
-established. Golden samples approved and retained. HANDOFF to P3B (Bulk
+established. Golden samples approved and retained. HANDOFF to <a href="sub-p3b.html" style="color:var(--accent)">P3B</a> (Bulk
 Production Run). Place first production order.</strong></p>
 <p>BUDGET: Attorney fees for Production Agreement ($500–$3,000). Golden
 sample express shipping ($50–$150). Trade show attendance ($200–$500 if
 applicable). NDA drafting ($0–$500 if using template vs.
 attorney-drafted). Alibaba Gold Supplier verification ($0 — buyer views
 are free). Dun &amp; Bradstreet or import records check ($50–$150 per
-factory). TOTAL P3A: $800–$4,300.</p>
+factory). TOTAL <a href="sub-p3a.html" style="color:var(--accent)">P3A</a>: $800–$4,300.</p>
 <p>10. Conclusion: The Factory Is Your Co-Founder</p>
 <p><strong>For a single-product brand, the factory is effectively a
 co-founder.</strong> They control the quality of every unit, the
@@ -956,9 +932,4 @@ factory if budget allows. Meet the people who will build your product.
 Shake hands with the production manager. Show them a photo of a runner
 standing in a cold corral in a garbage bag. Tell them: “This is who
 we’re building for.” The factory that gets it — that’s your partner.</p>
-
-        </div>
-    </div></div>
-<footer style="text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px">
-Sustainable Race-Start Warmth Poncho — D2C Brand GTM Project · 60 Subprojects · 391 Tasks · ~15,500¶ · April 2026
-</footer></body></html>
+</div></div></div><footer>Sustainable Race-Start Warmth Poncho — GTM Project · 60 Subprojects · 391 Tasks · ~120K Words · April 2026<br><a href="https://apseter.github.io/Retail_Ventures_Command_Center/">← Retail Ventures Command Center</a> · <a href="index.html">Project Home</a></footer></body></html>

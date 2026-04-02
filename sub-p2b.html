@@ -1,96 +1,72 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>P2B: Industrial Design Engineering — Race Start Warmth GTM</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-<style>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>P2B — Race Start Warmth GTM</title><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet"><style>
 :root{--bg:#0a0e1a;--surface:#111827;--card:#1a2332;--border:#2a3a4e;--accent:#10b981;--accent2:#3b82f6;--text:#e2e8f0;--muted:#94a3b8;--white:#fff;--red:#ef4444;--amber:#f59e0b;--green:#10b981}
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
 a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
 .container{max-width:1200px;margin:0 auto;padding:0 24px}
-/* Nav */
-nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
-nav .inner{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;max-width:1200px;margin:0 auto}
-nav .brand{font-weight:700;font-size:15px;color:var(--accent)}
-nav .links{display:flex;gap:8px;flex-wrap:wrap}
-nav .links a{color:var(--muted);font-size:13px;padding:4px 10px;border-radius:6px;transition:.2s}
+nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
+nav .inner{display:flex;align-items:center;justify-content:space-between;padding:10px 24px;max-width:1200px;margin:0 auto;flex-wrap:wrap;gap:8px}
+nav .brand{font-weight:700;font-size:14px;color:var(--accent);white-space:nowrap}
+nav .links{display:flex;gap:4px;flex-wrap:wrap}
+nav .links a{color:var(--muted);font-size:12px;padding:4px 8px;border-radius:6px;transition:.2s;white-space:nowrap}
 nav .links a:hover,nav .links a.active{color:var(--white);background:var(--card);text-decoration:none}
-/* Hero */
-.hero{padding:60px 0 40px;text-align:center}
-.hero h1{font-size:2.4em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hero p{color:var(--muted);font-size:1.1em;max-width:700px;margin:0 auto}
-/* Stats bar */
-.stats{display:flex;justify-content:center;gap:32px;padding:24px 0;flex-wrap:wrap}
-.stat{text-align:center}.stat .num{font-size:1.8em;font-weight:800;color:var(--white)}.stat .label{font-size:.75em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
-/* Cards */
-.grid{display:grid;gap:16px;margin:24px 0}
-.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}
-.grid-3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
-.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;transition:.2s}
-.card:hover{border-color:var(--accent);transform:translateY(-2px)}
-.card h3{font-size:1.1em;margin-bottom:8px}.card p{color:var(--muted);font-size:.9em}
-.card .badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:8px}
-.card .meta{font-size:.8em;color:var(--muted);margin-top:12px}
-/* Section */
-.section{padding:40px 0}.section h2{font-size:1.6em;font-weight:700;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--border)}
-/* Table */
-table{width:100%;border-collapse:collapse;font-size:.85em;margin:16px 0}
-th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:52px}
-td{padding:8px 12px;border-bottom:1px solid var(--border)}
-tr:hover td{background:rgba(16,185,129,.05)}
-.status-complete{color:var(--green);font-weight:600}.status-not{color:var(--muted)}
-/* Progress */
-.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:8px}
-.progress .bar{height:100%;background:var(--accent);border-radius:3px}
-/* Back link */
-.back{display:inline-block;color:var(--muted);font-size:.9em;margin-bottom:20px}
-.back:hover{color:var(--accent)}
-/* Download */
-.dl-card{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin:8px 0;transition:.2s}
-.dl-card:hover{border-color:var(--accent);text-decoration:none}
-.dl-card .icon{font-size:2em}.dl-card .info h4{color:var(--white);margin-bottom:4px}.dl-card .info p{color:var(--muted);font-size:.85em}
-/* Footer */
-footer{text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px}
-@media(max-width:768px){.stats{gap:16px}.stat .num{font-size:1.3em}nav .links{gap:4px}nav .links a{font-size:11px;padding:3px 6px}.hero h1{font-size:1.6em}}
-
-.doc-content{max-width:900px;margin:0 auto;padding:20px 0}
-.doc-content h1{font-size:1.8em;font-weight:800;color:var(--white);margin:32px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
-.doc-content h2{font-size:1.4em;font-weight:700;color:var(--accent);margin:28px 0 12px}
-.doc-content h3{font-size:1.15em;font-weight:600;color:var(--accent2);margin:20px 0 10px}
-.doc-content p{margin:8px 0;line-height:1.7}
-.doc-content table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85em}
-.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;border:1px solid var(--border)}
-.doc-content td{padding:8px 12px;border:1px solid var(--border);vertical-align:top}
-.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
-.doc-content ul,.doc-content ol{margin:8px 0 8px 24px}
-.doc-content li{margin:4px 0;line-height:1.6}
-.doc-content strong{color:var(--white)}
-.doc-content em{color:var(--muted)}
-.doc-content blockquote{border-left:3px solid var(--accent);padding:8px 16px;margin:12px 0;background:var(--card);border-radius:0 8px 8px 0}
-.nav-sub{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 24px;padding:12px 16px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
-.nav-sub a{font-size:.8em;color:var(--muted);padding:4px 10px;border-radius:4px;transition:.2s;white-space:nowrap}
+nav .links a.cc-link{color:var(--accent2);border:1px solid var(--accent2);font-weight:600}
+nav .links a.cc-link:hover{background:var(--accent2);color:var(--white)}
+.hero{padding:50px 0 30px;text-align:center}
+.hero h1{font-size:2.2em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:1.05em;max-width:700px;margin:0 auto}
+.stats{display:flex;justify-content:center;gap:28px;padding:20px 0;flex-wrap:wrap}
+.stat{text-align:center}.stat .num{font-size:1.7em;font-weight:800;color:var(--white)}.stat .label{font-size:.7em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.grid{display:grid;gap:16px;margin:24px 0}.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}.grid-3{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;transition:.2s;display:block}
+.card:hover{border-color:var(--accent);transform:translateY(-2px);text-decoration:none}
+.card h3{font-size:1.05em;margin-bottom:6px;color:var(--white)}.card p{color:var(--muted);font-size:.88em}
+.badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.65em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:6px}
+.badge-amber{background:var(--amber)}.badge-blue{background:var(--accent2)}
+.card .meta{font-size:.78em;color:var(--muted);margin-top:10px}
+.section{padding:32px 0}.section h2{font-size:1.5em;font-weight:700;margin-bottom:20px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+table{width:100%;border-collapse:collapse;font-size:.83em;margin:16px 0}
+th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:48px}
+td{padding:8px 12px;border-bottom:1px solid var(--border)}tr:hover td{background:rgba(16,185,129,.04)}
+.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:6px}
+.progress .bar{height:100%;border-radius:3px}
+.back{display:inline-block;color:var(--muted);font-size:.88em;margin-bottom:16px}.back:hover{color:var(--accent)}
+.dl-card{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;margin:8px 0;transition:.2s}
+.dl-card:hover{border-color:var(--accent);text-decoration:none}.dl-card .icon{font-size:1.8em}.dl-card .info h4{color:var(--white);margin-bottom:2px;font-size:.95em}.dl-card .info p{color:var(--muted);font-size:.8em}
+.phase-tag{display:inline-block;font-size:.65em;font-weight:600;padding:2px 6px;border-radius:3px;margin-right:4px}
+.phase-plan{background:rgba(16,185,129,.15);color:var(--green)}.phase-exec{background:rgba(245,158,11,.15);color:var(--amber)}.phase-not{background:rgba(148,163,184,.1);color:var(--muted)}
+.nav-sub{display:flex;flex-wrap:wrap;gap:5px;margin:12px 0 20px;padding:10px 14px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
+.nav-sub a{font-size:.78em;color:var(--muted);padding:3px 8px;border-radius:4px;transition:.2s;white-space:nowrap}
 .nav-sub a:hover,.nav-sub a.active{color:var(--white);background:var(--surface);text-decoration:none}
-</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a></div></div></nav><div class="container">
-    <div style="padding-top:30px">
+.doc-content{max-width:900px;margin:0 auto;padding:16px 0}
+.doc-content h1{font-size:1.7em;font-weight:800;color:var(--white);margin:28px 0 14px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+.doc-content h2{font-size:1.3em;font-weight:700;color:var(--accent);margin:24px 0 10px}
+.doc-content h3{font-size:1.1em;font-weight:600;color:var(--accent2);margin:18px 0 8px}
+.doc-content p{margin:6px 0;line-height:1.65}.doc-content table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.83em}
+.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:8px 10px;font-weight:600;border:1px solid var(--border)}
+.doc-content td{padding:7px 10px;border:1px solid var(--border);vertical-align:top}
+.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.doc-content ul,.doc-content ol{margin:6px 0 6px 20px}.doc-content li{margin:3px 0;line-height:1.55}
+.doc-content strong{color:var(--white)}.doc-content em{color:var(--muted)}
+footer{text-align:center;padding:32px 0;color:var(--muted);font-size:.78em;border-top:1px solid var(--border);margin-top:50px}
+footer a{color:var(--accent2)}
+@media(max-width:768px){.stats{gap:14px}.stat .num{font-size:1.2em}nav .links a{font-size:10px;padding:3px 5px}.hero h1{font-size:1.5em}}
+</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="projections.html" class="">Projections</a><a href="action-plan.html" class="">Action Plan</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a><a href="https://apseter.github.io/Retail_Ventures_Command_Center/" class="cc-link" target="_blank">🏠 Command Center</a></div></div></nav><div class="container"><div style="padding-top:28px">
         <a href="p2.html" class="back">← ⚙️ P2: Product Design</a>
         <div class="nav-sub"><a href="p2.html">⚙️ P2 Overview</a><a href="sub-p2a.html">P2A</a><a href="sub-p2b.html" class="active">P2B</a><a href="sub-p2c.html">P2C</a><a href="sub-p2d.html">P2D</a><a href="sub-p2e.html">P2E</a><a href="sub-p2f.html">P2F</a></div>
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px">
-            <div>
-                <span style="background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px">P2B</span>
-                <span style="color:var(--muted);font-size:.85em;margin-left:8px">P2: Product Design</span>
-            </div>
-            <a href="files/P2B_Industrial_Design_Engineering.docx" style="font-size:.85em;color:var(--accent);padding:6px 14px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+            <div><span class="badge">P2B</span> <span style="color:var(--muted);font-size:.83em">P2: Product Design</span></div>
+            <a href="files/P2B_Industrial_Design_Engineering.docx" style="font-size:.83em;color:var(--accent);padding:5px 12px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
         </div>
-        <div class="doc-content">
-            <p><strong>P2B: INDUSTRIAL DESIGN</strong></p>
+        <div class="doc-content"><p><strong><a href="sub-p2b.html" style="color:var(--accent)">P2B</a>: INDUSTRIAL DESIGN</strong></p>
 <p><strong>&amp; ENGINEERING</strong></p>
-<p>Sub-Project P2B | Product Design &amp; Material Engineering | Weeks
+<p>Sub-Project <a href="sub-p2b.html" style="color:var(--accent)">P2B</a> | Product Design &amp; Material Engineering | Weeks
 6–10</p>
 <p><em>Complete Engineering Specification: Silhouette, Hood, Closures,
 Tear-Away System, Branding Zones, Fold Pattern, Factory Tech Spec, and
 Prototype Iteration Plan</em></p>
 <p>March 2026 | Confidential</p>
 <p>Executive Summary</p>
-<p><strong>This document translates P2A’s material selection into a
+<p><strong>This document translates <a href="sub-p2a.html" style="color:var(--accent)">P2A</a>’s material selection into a
 production-ready product design.</strong> It provides every dimension,
 engineering specification, and manufacturing instruction needed for a
 converter to produce the poncho. The design prioritizes four principles
@@ -198,7 +174,7 @@ above-knee). Below 5’0″: poncho reaches knees, functional but long.
 Above 6’4″: poncho reaches upper thigh, less coverage but still
 functional.</p>
 <p>PRODUCT LISTING COPY: Say “one size fits most adults” (NOT “one size
-fits all” per P1B Section 11.5 inclusivity guidelines). Specify
+fits all” per <a href="sub-p1b.html" style="color:var(--accent)">P1B</a> Section 11.5 inclusivity guidelines). Specify
 dimensions: “55″W × 34″L body (42″ total with hood). Fits chest up to
 54″, height 5’0″–6’4″.” Being explicit about fit range reduces returns
 and builds trust.</p>
@@ -296,7 +272,7 @@ wind loading but weak enough to tear with minimal force.</p>
 <colgroup>
 <col style="width: 19%" />
 <col style="width: 30%" />
-<col style="width:50%">
+<col style="width: 50%" />
 </colgroup>
 <tbody>
 <tr class="odd">
@@ -334,7 +310,7 @@ N) = runner can’t tear with cold wet hands. Test with spring gauge.</td>
 <tr class="even">
 <td><strong>Tear time</strong></td>
 <td>Target: ≤3 seconds from grab to full removal</td>
-<td>Measured during field trial (P2A Sec 5) across 3 conditions: warm
+<td>Measured during field trial (<a href="sub-p2a.html" style="color:var(--accent)">P2A</a> Sec 5) across 3 conditions: warm
 dry hands, cold wet hands, while walking briskly</td>
 </tr>
 <tr class="odd">
@@ -448,7 +424,7 @@ functional without snaps?</td>
 </tbody>
 </table>
 <p><strong>V1 SIMPLIFICATION RECOMMENDATION: Launch without
-snaps.</strong> Evaluate in P2A field trial (Section 5) whether the
+snaps.</strong> Evaluate in <a href="sub-p2a.html" style="color:var(--accent)">P2A</a> field trial (Section 5) whether the
 poncho is functional without closures. If the elastic hood + body width
 + side slits provide adequate wind management for 75%+ of testers,
 ELIMINATE snaps entirely. This saves $0.10–$0.25/unit COGS, removes 5
@@ -494,7 +470,7 @@ icons educate user</td>
 <td><strong>HOOD (optional)</strong></td>
 <td>3″ W × 3″ H (8 × 8 cm)</td>
 <td>Center-back of hood</td>
-<td>Brand icon only (icon-only logo variant from P1B)</td>
+<td>Brand icon only (icon-only logo variant from <a href="sub-p1b.html" style="color:var(--accent)">P1B</a>)</td>
 <td>Visible from behind when hood is up; subtle brand reinforcement</td>
 </tr>
 <tr class="odd">
@@ -658,14 +634,14 @@ master carton</td>
 <tr class="odd">
 <td><strong>6. Print Specifications</strong></td>
 <td>Print method: flexographic (preferred) or screen. Colors: 1–2 spot
-colors (Earth Green + Warm Charcoal from P1B). Print zones: back panel,
+colors (Earth Green + Warm Charcoal from <a href="sub-p1b.html" style="color:var(--accent)">P1B</a>). Print zones: back panel,
 front chest, hood, pull tab. Registration tolerance: ±1mm. Ink:
 certified compostable (Sun Chemical SunUno Solimax AP or hubergroup).
 Artwork files: vector EPS/AI at 1:1 scale with bleed marks</td>
 </tr>
 <tr class="even">
 <td><strong>7. Quality Acceptance Criteria</strong></td>
-<td>20-point QC checklist (from P2E): visual inspection (no
+<td>20-point QC checklist (from <a href="sub-p2e.html" style="color:var(--accent)">P2E</a>): visual inspection (no
 metallization defects, no delamination, consistent color), dimensional
 check (±0.5″), tear-away test (3–5 N initiation, clean path 10/10), seam
 strength (&gt;5 N/cm), elastic tension (holds on head in wind), snap
@@ -676,7 +652,7 @@ packability (fits in 6″×4.5″ bag)</td>
 <td><strong>8. Packaging Specifications</strong></td>
 <td>Inner bag: compostable PLA film, 30–40µm, semi-transparent,
 heat-sealed, 130×180mm. Card/sleeve: compostable card stock, 130×60mm,
-printed front/back per P1B Sec 6. Sticker: compostable cellulose, 40mm
+printed front/back per <a href="sub-p1b.html" style="color:var(--accent)">P1B</a> Sec 6. Sticker: compostable cellulose, 40mm
 circle, brand logo + BPI mark. Master carton: 50 or 100 units,
 corrugated, 400×300×250mm (50-ct) or 400×300×500mm (100-ct), with
 barcode + handling labels</td>
@@ -748,7 +724,7 @@ through channel), add pull tab (taped). Test tear-away by scoring film
 with box cutter along tear line.</td>
 <td>Week 6</td>
 <td>Validate improved fit, elastic hood retention, simulated tear-away.
-Use for field trial Session 1 (P2A).</td>
+Use for field trial Session 1 (<a href="sub-p2a.html" style="color:var(--accent)">P2A</a>).</td>
 </tr>
 <tr class="even">
 <td><strong>Proto V0.3 (converter sample)</strong></td>
@@ -810,7 +786,7 @@ conservative perforation (1.0mm bridge); wind-test at 20 mph before
 production.</strong></p>
 <p><strong>RISK 2: Tear-away too strong → runner can’t remove with cold
 hands. Probability: MEDIUM. Impact: HIGH (bad reviews). Mitigation:
-field trial with cold-wet-hand test (P2A Sec 5); enlarge pull tab if
+field trial with cold-wet-hand test (<a href="sub-p2a.html" style="color:var(--accent)">P2A</a> Sec 5); enlarge pull tab if
 needed.</strong></p>
 <p><strong>RISK 3: Elastic fails composting test. Probability:
 LOW-MEDIUM. Impact: HIGH (certification failure). Mitigation: use
@@ -828,7 +804,7 @@ Probability: LOW-MEDIUM. Impact: MEDIUM (negative reviews, returns).
 Mitigation: honest sizing in product listing; test on 8+ body types in
 field trial; consider XL variant for V1.5.</strong></p>
 <p>11. Intellectual Property &amp; Patent Strategy</p>
-<p><strong>[GAP P2-03 CLOSED]</strong> The tear-away perforation system
+<p><strong>[GAP <a href="p2.html" style="color:var(--accent)">P2</a>-03 CLOSED]</strong> The tear-away perforation system
 on a compostable metallized laminate film is genuinely novel
 engineering. No existing product combines laser-perforated tear-away
 lines with a metallized compostable cellulose/PLA laminate designed for
@@ -879,7 +855,7 @@ change the visual appearance to avoid the design patent.</p>
 <p>11.3 Trade Secret Protection</p>
 <p>Until patents are filed, protect all product specifications as TRADE
 SECRETS. Requirements: (1) All converters, suppliers, and consultants
-sign NDAs BEFORE receiving the factory tech spec (P2B Section 7). Use a
+sign NDAs BEFORE receiving the factory tech spec (<a href="sub-p2b.html" style="color:var(--accent)">P2B</a> Section 7). Use a
 mutual NDA template ($0 — free templates at docracy.com or
 rocketlawyer.com, or $200–$500 for attorney-drafted). (2) Mark all
 technical documents “CONFIDENTIAL — Trade Secret” on every page. (3)
@@ -902,7 +878,7 @@ brand (builds over time through consistent use). (2) Non-functionality —
 the visual elements are ornamental, not functional (the green color is
 ornamental; the metallized silver is functional and cannot be protected
 as trade dress). Strategy: use consistent visual identity from Day 1
-(per P1B design system) to build trade dress recognition, then register
+(per <a href="sub-p1b.html" style="color:var(--accent)">P1B</a> design system) to build trade dress recognition, then register
 after 1–2 years of market presence.</p>
 <p>11.5 IP Timeline &amp; Checklist</p>
 <p><strong>☐ BEFORE Week 8 (before sending factory tech spec to
@@ -936,7 +912,7 @@ letter ($500–1,500 via patent attorney) BEFORE escalating to litigation.
 Most small competitors will stop upon receiving a C&amp;D backed by a
 granted patent. Budget for C&amp;D: $500–1,500 per incident.</p>
 <p>12. Adaptive Athlete Accessibility</p>
-<p><strong>[GAP P2-18 CLOSED]</strong> P1B Section 11.3 commits the
+<p><strong>[GAP <a href="p2.html" style="color:var(--accent)">P2</a>-18 CLOSED]</strong> <a href="sub-p1b.html" style="color:var(--accent)">P1B</a> Section 11.3 commits the
 brand to inclusive photography including adaptive athletes. But
 inclusivity in marketing without inclusivity in product design is
 performative. Major marathons have 1–3% adaptive athletes (wheelchair
@@ -957,7 +933,7 @@ back and push-rims obstruct the motion. (4) TEAR-AWAY: the center-front
 tear-away design should work for seated users (pull tab at neckline is
 accessible from a seated position).</p>
 <p>V1 MITIGATION: (1) Test the standard poncho on 1–2 wheelchair users
-during P2C corral simulation (recruit through Achilles International
+during <a href="sub-p2c.html" style="color:var(--accent)">P2C</a> corral simulation (recruit through Achilles International
 local chapter or the race’s adaptive athlete coordinator). (2) Document
 fit honestly: if the poncho works for wheelchair users with adjustments
 (e.g., tuck hemline under thighs), note this in the product listing
@@ -984,7 +960,7 @@ different die-cut and closure configuration.</p>
 <p>Visually impaired runners race with a guide connected by a tether.
 The poncho’s side slits and oversized armholes accommodate tether
 attachment without modification. The tear-away pull tab must be
-identifiable BY FEEL (already specified in P2B Section 3 —
+identifiable BY FEEL (already specified in <a href="sub-p2b.html" style="color:var(--accent)">P2B</a> Section 3 —
 raised/textured tab, contrasting from body material). For visually
 impaired runners, ADD BRAILLE OR RAISED TEXT on the packaging card: a
 simple embossed “PULL HERE” near the pull tab location improves
@@ -1001,11 +977,11 @@ specific, and invites dialogue rather than claiming universal fit that
 may not be true. Update messaging as adaptive variant becomes available
 in V1.5/V2.</p>
 <p>13. Timeline: 5-Week Design Sprint</p>
-<p><strong>WEEK 6: Finalize dimensions based on P2A field trial
+<p><strong>WEEK 6: Finalize dimensions based on <a href="sub-p2a.html" style="color:var(--accent)">P2A</a> field trial
 feedback. Produce V0.1 hand prototypes. Test fit on 5+ body types. Draft
 initial dimensional drawings.</strong></p>
 <p><strong>WEEK 7: Iterate to V0.2. Add elastic hood, simulated
-tear-away. Use in P2A field trial Sessions 2–3. Begin drafting factory
+tear-away. Use in <a href="sub-p2a.html" style="color:var(--accent)">P2A</a> field trial Sessions 2–3. Begin drafting factory
 tech spec document.</strong></p>
 <p><strong>WEEK 8: Finalize all dimensions, tear-away specifications,
 branding zones. Send tech spec + artwork to 2–3 converters for V0.3
@@ -1015,8 +991,8 @@ received. Test tear-away force with spring gauge. Test seam strength.
 Test print quality.</strong></p>
 <p><strong>WEEK 10: Approve V0.3 or iterate to V0.3.1. Finalize factory
 tech spec document. Select converter. Negotiate production terms.
-Prepare for P2C (Prototype Production).</strong></p>
-<p>Budget for P2B sprint: $500–$1,500. Includes: hand prototype
+Prepare for <a href="sub-p2c.html" style="color:var(--accent)">P2C</a> (Prototype Production).</strong></p>
+<p>Budget for <a href="sub-p2b.html" style="color:var(--accent)">P2B</a> sprint: $500–$1,500. Includes: hand prototype
 materials ($100–$200), dimensional drawing creation ($0 if DIY in
 Illustrator, or $200–$500 for freelance technical illustrator),
 converter sample deposit ($200–$500), and spring gauge for tear-away
@@ -1037,9 +1013,4 @@ perforation tuning (2mm cut / 1mm bridge as starting point) validated by
 until the tear-away passes 10/10 clean tears in cold-wet-hand testing.
 If this single feature works, the product works. If it doesn’t, nothing
 else matters.</p>
-
-        </div>
-    </div></div>
-<footer style="text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px">
-Sustainable Race-Start Warmth Poncho — D2C Brand GTM Project · 60 Subprojects · 391 Tasks · ~15,500¶ · April 2026
-</footer></body></html>
+</div></div></div><footer>Sustainable Race-Start Warmth Poncho — GTM Project · 60 Subprojects · 391 Tasks · ~120K Words · April 2026<br><a href="https://apseter.github.io/Retail_Ventures_Command_Center/">← Retail Ventures Command Center</a> · <a href="index.html">Project Home</a></footer></body></html>

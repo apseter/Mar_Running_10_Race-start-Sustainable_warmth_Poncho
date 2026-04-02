@@ -1,96 +1,72 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>P3B: Bulk Production Run — Race Start Warmth GTM</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
-<style>
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>P3B — Race Start Warmth GTM</title><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet"><style>
 :root{--bg:#0a0e1a;--surface:#111827;--card:#1a2332;--border:#2a3a4e;--accent:#10b981;--accent2:#3b82f6;--text:#e2e8f0;--muted:#94a3b8;--white:#fff;--red:#ef4444;--amber:#f59e0b;--green:#10b981}
-*{margin:0;padding:0;box-sizing:border-box}
-body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
 a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
 .container{max-width:1200px;margin:0 auto;padding:0 24px}
-/* Nav */
-nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100;backdrop-filter:blur(10px)}
-nav .inner{display:flex;align-items:center;justify-content:space-between;padding:12px 24px;max-width:1200px;margin:0 auto}
-nav .brand{font-weight:700;font-size:15px;color:var(--accent)}
-nav .links{display:flex;gap:8px;flex-wrap:wrap}
-nav .links a{color:var(--muted);font-size:13px;padding:4px 10px;border-radius:6px;transition:.2s}
+nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
+nav .inner{display:flex;align-items:center;justify-content:space-between;padding:10px 24px;max-width:1200px;margin:0 auto;flex-wrap:wrap;gap:8px}
+nav .brand{font-weight:700;font-size:14px;color:var(--accent);white-space:nowrap}
+nav .links{display:flex;gap:4px;flex-wrap:wrap}
+nav .links a{color:var(--muted);font-size:12px;padding:4px 8px;border-radius:6px;transition:.2s;white-space:nowrap}
 nav .links a:hover,nav .links a.active{color:var(--white);background:var(--card);text-decoration:none}
-/* Hero */
-.hero{padding:60px 0 40px;text-align:center}
-.hero h1{font-size:2.4em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
-.hero p{color:var(--muted);font-size:1.1em;max-width:700px;margin:0 auto}
-/* Stats bar */
-.stats{display:flex;justify-content:center;gap:32px;padding:24px 0;flex-wrap:wrap}
-.stat{text-align:center}.stat .num{font-size:1.8em;font-weight:800;color:var(--white)}.stat .label{font-size:.75em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
-/* Cards */
-.grid{display:grid;gap:16px;margin:24px 0}
-.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}
-.grid-3{grid-template-columns:repeat(auto-fill,minmax(280px,1fr))}
-.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:24px;transition:.2s}
-.card:hover{border-color:var(--accent);transform:translateY(-2px)}
-.card h3{font-size:1.1em;margin-bottom:8px}.card p{color:var(--muted);font-size:.9em}
-.card .badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:8px}
-.card .meta{font-size:.8em;color:var(--muted);margin-top:12px}
-/* Section */
-.section{padding:40px 0}.section h2{font-size:1.6em;font-weight:700;margin-bottom:24px;padding-bottom:12px;border-bottom:1px solid var(--border)}
-/* Table */
-table{width:100%;border-collapse:collapse;font-size:.85em;margin:16px 0}
-th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:52px}
-td{padding:8px 12px;border-bottom:1px solid var(--border)}
-tr:hover td{background:rgba(16,185,129,.05)}
-.status-complete{color:var(--green);font-weight:600}.status-not{color:var(--muted)}
-/* Progress */
-.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:8px}
-.progress .bar{height:100%;background:var(--accent);border-radius:3px}
-/* Back link */
-.back{display:inline-block;color:var(--muted);font-size:.9em;margin-bottom:20px}
-.back:hover{color:var(--accent)}
-/* Download */
-.dl-card{display:flex;align-items:center;gap:16px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;margin:8px 0;transition:.2s}
-.dl-card:hover{border-color:var(--accent);text-decoration:none}
-.dl-card .icon{font-size:2em}.dl-card .info h4{color:var(--white);margin-bottom:4px}.dl-card .info p{color:var(--muted);font-size:.85em}
-/* Footer */
-footer{text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px}
-@media(max-width:768px){.stats{gap:16px}.stat .num{font-size:1.3em}nav .links{gap:4px}nav .links a{font-size:11px;padding:3px 6px}.hero h1{font-size:1.6em}}
-
-.doc-content{max-width:900px;margin:0 auto;padding:20px 0}
-.doc-content h1{font-size:1.8em;font-weight:800;color:var(--white);margin:32px 0 16px;padding-bottom:8px;border-bottom:1px solid var(--border)}
-.doc-content h2{font-size:1.4em;font-weight:700;color:var(--accent);margin:28px 0 12px}
-.doc-content h3{font-size:1.15em;font-weight:600;color:var(--accent2);margin:20px 0 10px}
-.doc-content p{margin:8px 0;line-height:1.7}
-.doc-content table{width:100%;border-collapse:collapse;margin:16px 0;font-size:.85em}
-.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;border:1px solid var(--border)}
-.doc-content td{padding:8px 12px;border:1px solid var(--border);vertical-align:top}
-.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
-.doc-content ul,.doc-content ol{margin:8px 0 8px 24px}
-.doc-content li{margin:4px 0;line-height:1.6}
-.doc-content strong{color:var(--white)}
-.doc-content em{color:var(--muted)}
-.doc-content blockquote{border-left:3px solid var(--accent);padding:8px 16px;margin:12px 0;background:var(--card);border-radius:0 8px 8px 0}
-.nav-sub{display:flex;flex-wrap:wrap;gap:6px;margin:16px 0 24px;padding:12px 16px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
-.nav-sub a{font-size:.8em;color:var(--muted);padding:4px 10px;border-radius:4px;transition:.2s;white-space:nowrap}
+nav .links a.cc-link{color:var(--accent2);border:1px solid var(--accent2);font-weight:600}
+nav .links a.cc-link:hover{background:var(--accent2);color:var(--white)}
+.hero{padding:50px 0 30px;text-align:center}
+.hero h1{font-size:2.2em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:1.05em;max-width:700px;margin:0 auto}
+.stats{display:flex;justify-content:center;gap:28px;padding:20px 0;flex-wrap:wrap}
+.stat{text-align:center}.stat .num{font-size:1.7em;font-weight:800;color:var(--white)}.stat .label{font-size:.7em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.grid{display:grid;gap:16px;margin:24px 0}.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}.grid-3{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;transition:.2s;display:block}
+.card:hover{border-color:var(--accent);transform:translateY(-2px);text-decoration:none}
+.card h3{font-size:1.05em;margin-bottom:6px;color:var(--white)}.card p{color:var(--muted);font-size:.88em}
+.badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.65em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:6px}
+.badge-amber{background:var(--amber)}.badge-blue{background:var(--accent2)}
+.card .meta{font-size:.78em;color:var(--muted);margin-top:10px}
+.section{padding:32px 0}.section h2{font-size:1.5em;font-weight:700;margin-bottom:20px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+table{width:100%;border-collapse:collapse;font-size:.83em;margin:16px 0}
+th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:48px}
+td{padding:8px 12px;border-bottom:1px solid var(--border)}tr:hover td{background:rgba(16,185,129,.04)}
+.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:6px}
+.progress .bar{height:100%;border-radius:3px}
+.back{display:inline-block;color:var(--muted);font-size:.88em;margin-bottom:16px}.back:hover{color:var(--accent)}
+.dl-card{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;margin:8px 0;transition:.2s}
+.dl-card:hover{border-color:var(--accent);text-decoration:none}.dl-card .icon{font-size:1.8em}.dl-card .info h4{color:var(--white);margin-bottom:2px;font-size:.95em}.dl-card .info p{color:var(--muted);font-size:.8em}
+.phase-tag{display:inline-block;font-size:.65em;font-weight:600;padding:2px 6px;border-radius:3px;margin-right:4px}
+.phase-plan{background:rgba(16,185,129,.15);color:var(--green)}.phase-exec{background:rgba(245,158,11,.15);color:var(--amber)}.phase-not{background:rgba(148,163,184,.1);color:var(--muted)}
+.nav-sub{display:flex;flex-wrap:wrap;gap:5px;margin:12px 0 20px;padding:10px 14px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
+.nav-sub a{font-size:.78em;color:var(--muted);padding:3px 8px;border-radius:4px;transition:.2s;white-space:nowrap}
 .nav-sub a:hover,.nav-sub a.active{color:var(--white);background:var(--surface);text-decoration:none}
-</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a></div></div></nav><div class="container">
-    <div style="padding-top:30px">
+.doc-content{max-width:900px;margin:0 auto;padding:16px 0}
+.doc-content h1{font-size:1.7em;font-weight:800;color:var(--white);margin:28px 0 14px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+.doc-content h2{font-size:1.3em;font-weight:700;color:var(--accent);margin:24px 0 10px}
+.doc-content h3{font-size:1.1em;font-weight:600;color:var(--accent2);margin:18px 0 8px}
+.doc-content p{margin:6px 0;line-height:1.65}.doc-content table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.83em}
+.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:8px 10px;font-weight:600;border:1px solid var(--border)}
+.doc-content td{padding:7px 10px;border:1px solid var(--border);vertical-align:top}
+.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.doc-content ul,.doc-content ol{margin:6px 0 6px 20px}.doc-content li{margin:3px 0;line-height:1.55}
+.doc-content strong{color:var(--white)}.doc-content em{color:var(--muted)}
+footer{text-align:center;padding:32px 0;color:var(--muted);font-size:.78em;border-top:1px solid var(--border);margin-top:50px}
+footer a{color:var(--accent2)}
+@media(max-width:768px){.stats{gap:14px}.stat .num{font-size:1.2em}nav .links a{font-size:10px;padding:3px 5px}.hero h1{font-size:1.5em}}
+</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="projections.html" class="">Projections</a><a href="action-plan.html" class="">Action Plan</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="files.html" class="">Files</a><a href="https://apseter.github.io/Retail_Ventures_Command_Center/" class="cc-link" target="_blank">🏠 Command Center</a></div></div></nav><div class="container"><div style="padding-top:28px">
         <a href="p3.html" class="back">← 🏭 P3: Manufacturing</a>
         <div class="nav-sub"><a href="p3.html">🏭 P3 Overview</a><a href="sub-p3a.html">P3A</a><a href="sub-p3b.html" class="active">P3B</a><a href="sub-p3c.html">P3C</a><a href="sub-p3d.html">P3D</a><a href="sub-p3e.html">P3E</a></div>
-        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;flex-wrap:wrap;gap:8px">
-            <div>
-                <span style="background:var(--accent);color:var(--bg);font-size:.7em;font-weight:700;padding:2px 8px;border-radius:4px">P3B</span>
-                <span style="color:var(--muted);font-size:.85em;margin-left:8px">P3: Manufacturing</span>
-            </div>
-            <a href="files/P3B_Bulk_Production_Run.docx" style="font-size:.85em;color:var(--accent);padding:6px 14px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;flex-wrap:wrap;gap:8px">
+            <div><span class="badge">P3B</span> <span style="color:var(--muted);font-size:.83em">P3: Manufacturing</span></div>
+            <a href="files/P3B_Bulk_Production_Run.docx" style="font-size:.83em;color:var(--accent);padding:5px 12px;border:1px solid var(--border);border-radius:6px">📄 Download DOCX</a>
         </div>
-        <div class="doc-content">
-            <p><strong>P3B: BULK PRODUCTION</strong></p>
+        <div class="doc-content"><p><strong><a href="sub-p3b.html" style="color:var(--accent)">P3B</a>: BULK PRODUCTION</strong></p>
 <p><strong>RUN</strong></p>
-<p>Sub-Project P3B | Manufacturing &amp; Sourcing | Weeks 14–18</p>
+<p>Sub-Project <a href="sub-p3b.html" style="color:var(--accent)">P3B</a> | Manufacturing &amp; Sourcing | Weeks 14–18</p>
 <p><em>Complete Production Playbook: 3 Order Scenarios, PO Template,
 Co-Brand Production Process, Weekly Monitoring Checklist, Payment
 Authorization, B2B Sample Kit Specification, and Process Documentation
 Archive</em></p>
 <p>March 2026 | Confidential</p>
 <p>Executive Summary</p>
-<p><strong>P3B converts the factory relationship established in P3A into
+<p><strong><a href="sub-p3b.html" style="color:var(--accent)">P3B</a> converts the factory relationship established in <a href="sub-p3a.html" style="color:var(--accent)">P3A</a> into
 physical inventory.</strong> This is where capital meets manufacturing:
 a purchase order is placed, a deposit is wired, raw materials are
 sourced, and 3,000–25,000 ponchos come off the production line over 3–4
@@ -148,7 +124,7 @@ launch + B2B sample distribution. Unlocks better per-unit pricing
 ($1.20–$1.60 vs. $1.50–$2.20 at Bootstrap volumes). Enough inventory for
 a full race season.</td>
 <td>Recommended if: $35–50K capital, 3+ race director LOIs confirmed,
-confident in product-market fit from P2C testing.</td>
+confident in product-market fit from <a href="sub-p2c.html" style="color:var(--accent)">P2C</a> testing.</td>
 </tr>
 <tr class="even">
 <td><strong>Full Launch (aggressive)</strong></td>
@@ -167,10 +143,10 @@ pre-launch email list (1,000+), or external funding
 <p>1.1 Order Quantity Calculator</p>
 <p>To determine the right quantity: (1) Sum all CONFIRMED B2B orders
 (race directors who have signed POs or LOIs with specified quantities).
-(2) Add DTC Amazon estimate from P2F Section 8.1 demand model
+(2) Add DTC Amazon estimate from <a href="sub-p2f.html" style="color:var(--accent)">P2F</a> Section 8.1 demand model
 (conservative: 50–100 units/month for first 3 months = 150–300 units).
 (3) Add B2B sample kits (Section 6): 150–250 units packed in 30–50 kits.
-(4) Add 10% emergency buffer (P2E Section 11.5 Race Emergency Kit + P2A
+(4) Add 10% emergency buffer (<a href="sub-p2e.html" style="color:var(--accent)">P2E</a> Section 11.5 Race Emergency Kit + <a href="sub-p2a.html" style="color:var(--accent)">P2A</a>
 Section 11.4 finished goods safety stock). (5) Add 5–10% for expo
 samples, press samples, photography, and quality testing reserves. TOTAL
 = Confirmed B2B + DTC estimate + sample kits + emergency buffer +
@@ -187,7 +163,7 @@ finishes. Also reduces risk of entire inventory sitting in transit
 simultaneously.</p>
 <p>2. Purchase Order Template</p>
 <p><strong>The PO is the legally binding order document that triggers
-production.</strong> It references the Production Agreement (P3A Section
+production.</strong> It references the Production Agreement (<a href="sub-p3a.html" style="color:var(--accent)">P3A</a> Section
 8) for general terms and specifies the order-specific details: quantity,
 pricing, delivery, and special instructions. Use this 10-section
 template for every order.</p>
@@ -209,7 +185,7 @@ warehouse or Amazon FBA prep center)</td>
 </tr>
 <tr class="odd">
 <td><strong>Product Description</strong></td>
-<td>Product name, SKU, material specification reference (P2B Tech Spec
+<td>Product name, SKU, material specification reference (<a href="sub-p2b.html" style="color:var(--accent)">P2B</a> Tech Spec
 Rev [X], dated [date]). State: “Production must conform to the approved
 golden sample dated [date] and the attached Technical
 Specification.”</td>
@@ -242,9 +218,9 @@ arrive ≥2 weeks before first race).</td>
 </tr>
 <tr class="even">
 <td><strong>Quality Standards</strong></td>
-<td>Production must meet P2E QC checklist (Exhibit B to Production
+<td>Production must meet <a href="sub-p2e.html" style="color:var(--accent)">P2E</a> QC checklist (Exhibit B to Production
 Agreement). AQL: Critical 0%, Major 2.5%, Minor 4.0%. Buyer reserves
-right to arrange third-party pre-shipment inspection per P3A Section 7
+right to arrange third-party pre-shipment inspection per <a href="sub-p3a.html" style="color:var(--accent)">P3A</a> Section 7
 communication protocol.</td>
 </tr>
 <tr class="odd">
@@ -261,7 +237,7 @@ with PO number + total units.</td>
 per 10 cartons). (2) FNSKU labels applied per Amazon FBA requirements on
 all DTC units (provide FNSKU label file with PO). (3) Co-brand units
 packed separately from standard units with clear carton labeling. (4)
-Retain 3 golden samples from this production run per P2E Section 6.</td>
+Retain 3 golden samples from this production run per <a href="sub-p2e.html" style="color:var(--accent)">P2E</a> Section 6.</td>
 </tr>
 <tr class="odd">
 <td><strong>Signatures</strong></td>
@@ -309,15 +285,15 @@ Low-resolution printing = blurry logos = race director rejection.</td>
 </tr>
 <tr class="odd">
 <td><strong>2. Create co-brand mockup</strong></td>
-<td>Using the Canva/Figma co-brand template (P1B Section 7 + P2B Section
+<td>Using the Canva/Figma co-brand template (<a href="sub-p1b.html" style="color:var(--accent)">P1B</a> Section 7 + <a href="sub-p2b.html" style="color:var(--accent)">P2B</a> Section
 5.2): plug in race logo (top of back panel, up to 10″×8″), sponsor logo
 (middle, up to 8″×6″), brand logo (bottom, fixed 4″×2″). Generate a
 photo-realistic mockup showing the poncho with all logos in position.
 Export as PDF. Turnaround: within 24 hours of receiving logos (this
-speed is a competitive advantage cited in P0G).</td>
+speed is a competitive advantage cited in <a href="sub-p0g.html" style="color:var(--accent)">P0G</a>).</td>
 <td>The mockup is the SALES CLOSER. Race directors who see their logo on
 a professional poncho mockup convert at 3–5× the rate of those who
-receive a generic product sheet (P1B Section 7).</td>
+receive a generic product sheet (<a href="sub-p1b.html" style="color:var(--accent)">P1B</a> Section 7).</td>
 </tr>
 <tr class="even">
 <td><strong>3. Race director approves proof</strong></td>
@@ -334,9 +310,9 @@ writing (email confirmation is sufficient).</td>
 <tr class="odd">
 <td><strong>4. Send artwork to factory</strong></td>
 <td>Convert approved mockup into production-ready artwork files: (A)
-EPS/AI vector file at 1:1 scale with branding zone template from P2B
+EPS/AI vector file at 1:1 scale with branding zone template from <a href="sub-p2b.html" style="color:var(--accent)">P2B</a>
 Section 5.2. (B) Print specification sheet: colors (Pantone references),
-print method (flexo or screen per P2C Section 4.1), registration marks.
+print method (flexo or screen per <a href="sub-p2c.html" style="color:var(--accent)">P2C</a> Section 4.1), registration marks.
 (C) Reference golden sample photograph showing print position.</td>
 <td>NEVER send a Canva/Figma mockup directly to the factory as the print
 file. Mockups are presentation tools, not production files. Convert to
@@ -387,12 +363,12 @@ approval (3 days) → artwork to factory (1 day) → proof sample (5–7 days)
 business days (3–4 weeks). RUSH CO-BRAND: Skip proof sample for repeat
 orders. Logos received → mockup (1 day) → approval (2 days) → artwork to
 factory (1 day) → production (5–7 days) = TOTAL 9–11 business days (2
-weeks). Rush surcharge: 15–25% per P3A Section 3 negotiated terms.</p>
+weeks). Rush surcharge: 15–25% per <a href="sub-p3a.html" style="color:var(--accent)">P3A</a> Section 3 negotiated terms.</p>
 <p>3.2 Co-Brand Inventory Management</p>
 <p>Each co-brand design is a SEPARATE SKU for inventory tracking.
 Labeling: master cartons labeled with race name + quantity + PO number.
 Storage: at 3PL, co-brand pallets are stored separately from standard
-inventory. Tracking: in the P2F Section 8.4 inventory tracker
+inventory. Tracking: in the <a href="sub-p2f.html" style="color:var(--accent)">P2F</a> Section 8.4 inventory tracker
 spreadsheet, each co-brand design gets its own row with: race name,
 quantity produced, quantity shipped, quantity remaining, ship-by date.
 FIFO applies to co-brand units too — but co-brand inventory has a
@@ -440,7 +416,7 @@ quality on sample unit, wide shot of laminated roll</td>
 <tr class="even">
 <td><strong>Week 2</strong></td>
 <td>Die-cutting + perforation</td>
-<td>Body panels die-cut to P2B dimensions. Hood pieces cut. Laser
+<td>Body panels die-cut to <a href="sub-p2b.html" style="color:var(--accent)">P2B</a> dimensions. Hood pieces cut. Laser
 perforation of tear-away lines (2mm cut / 1mm bridge). Factory QC:
 dimensional check on 5 units, tear-away force check on 5 units (spring
 gauge, 3–5 N target).</td>
@@ -464,15 +440,15 @@ reference</td>
 <td>Assembly</td>
 <td>Hood bonded to body. Elastic threaded through hood channel. Cordlock
 attached. Pull tab reinforced. (Snaps applied if used.) Factory QC: full
-P2E 20-point checklist on 10-unit sample from production run.</td>
-<td>Factory sends: completed assembly photos (4 angles), P2E checklist
+<a href="sub-p2e.html" style="color:var(--accent)">P2E</a> 20-point checklist on 10-unit sample from production run.</td>
+<td>Factory sends: completed assembly photos (4 angles), <a href="sub-p2e.html" style="color:var(--accent)">P2E</a> checklist
 results scan/photo, any QC failures documented with corrective action
 taken</td>
 </tr>
 <tr class="odd">
 <td><strong>Week 3–4</strong></td>
 <td>Folding + packaging</td>
-<td>Ponchos folded to 6″×4.5″ flat pack per P2B fold pattern. Inserted
+<td>Ponchos folded to 6″×4.5″ flat pack per <a href="sub-p2b.html" style="color:var(--accent)">P2B</a> fold pattern. Inserted
 into compostable inner bags. Card/sleeve applied. Sticker seal applied.
 FNSKU labels applied to DTC units.</td>
 <td>Factory sends: packaged unit photo (front + back), measurement
@@ -492,7 +468,7 @@ carton label detail, temperature strip placement confirmation</td>
 <td><strong>Week 4 (pre-shipment)</strong></td>
 <td>Pre-shipment inspection</td>
 <td>Third-party inspector (QIMA/SGS) or founder video-call walk-through.
-AQL sampling per P2E Section 1.2. Full 20-point QC + tear-away Tests 1–3
+AQL sampling per <a href="sub-p2e.html" style="color:var(--accent)">P2E</a> Section 1.2. Full 20-point QC + tear-away Tests 1–3
 + print spot-check. APPROVE or REJECT.</td>
 <td>Inspector report uploaded within 24 hours. If APPROVE: authorize
 shipment + 70% payment release. If REJECT: hold shipment, factory
@@ -511,7 +487,7 @@ Factory reports equipment breakdown affecting perforations or bonding.
 print) on more than 1 of the photographed samples. (5) Factory requests
 a timeline extension &gt;5 business days. Response: activate
 communication protocol Channel 5 (emergency escalation to factory owner
-per P3A Section 7). Document all communications in writing.</p>
+per <a href="sub-p3a.html" style="color:var(--accent)">P3A</a> Section 7). Document all communications in writing.</p>
 <p>5. Payment Authorization: 4-Stage Framework</p>
 <p><strong>Money leaves the founder’s account at 4 defined stages, each
 gated by a specific milestone.</strong> NEVER release payment ahead of
@@ -630,11 +606,11 @@ and key stakeholders.</td>
 <td>1 printed co-brand mockup (Canva-generated, color, on card
 stock)</td>
 <td>Shows the race director what THEIR poncho would look like with THEIR
-logo. The #1 conversion tool (P1B Section 7).</td>
+logo. The #1 conversion tool (<a href="sub-p1b.html" style="color:var(--accent)">P1B</a> Section 7).</td>
 </tr>
 <tr class="even">
 <td><strong>B2B data sheet</strong></td>
-<td>2 copies (double-sided, printed on recycled card stock per P1C
+<td>2 copies (double-sided, printed on recycled card stock per <a href="sub-p1c.html" style="color:var(--accent)">P1C</a>
 Section 8.1 print specs)</td>
 <td>Technical and sustainability information for the race director’s
 procurement team.</td>
@@ -655,7 +631,7 @@ compostable?”</td>
 </tr>
 <tr class="odd">
 <td><strong>Composting logistics guide</strong></td>
-<td>1 copy (1–2 page summary of P2D Section 8: bin placement, collection
+<td>1 copy (1–2 page summary of <a href="sub-p2d.html" style="color:var(--accent)">P2D</a> Section 8: bin placement, collection
 protocol, facility finder)</td>
 <td>Addresses the #1 operations objection: “How do we actually compost
 these?”</td>
@@ -665,7 +641,7 @@ these?”</td>
 <td>1 printed card showing poncho vs. garbage bag vs. bare skin thermal
 image</td>
 <td>Visual proof of warmth performance. Instantly communicates “this
-actually works” (P1D Section 7).</td>
+actually works” (<a href="sub-p1d.html" style="color:var(--accent)">P1D</a> Section 7).</td>
 </tr>
 <tr class="odd">
 <td><strong>QR code card</strong></td>
@@ -693,7 +669,7 @@ kraft box ($1.50–2.50), tissue paper ($0.20), printed inserts ($2–3 for
 data sheet + pricing sheet + composting guide + FLIR card + QR card),
 poncho product ($5.75–9.00 at COGS × 5 units). Total per kit: $15–25.
 TOTAL for 40 kits: $600–$1,000.</p>
-<p>DISTRIBUTION: Prioritize the 53 races in the P0C database by tier
+<p>DISTRIBUTION: Prioritize the 53 races in the <a href="sub-p0c.html" style="color:var(--accent)">P0C</a> database by tier
 (Tier 1 flagship first, then Tier 2 priority, then Tier 3 prospects).
 Mail kits 6–8 weeks before race registration opens for the target
 season. Include a personalized cover letter referencing the specific
@@ -735,7 +711,7 @@ as: PO-2026-[number]-[factory name]-[date].pdf</td>
 </tr>
 <tr class="even">
 <td><strong>3. QC Checklist (printable)</strong></td>
-<td>P2E 20-point checklist + defect classification (C/M/m) formatted as
+<td><a href="sub-p2e.html" style="color:var(--accent)">P2E</a> 20-point checklist + defect classification (C/M/m) formatted as
 a single-page laminated card. Print 5 copies: 1 for factory, 1 for
 founder, 1 for 3PL, 1 for third-party inspector, 1 spare.</td>
 </tr>
@@ -745,7 +721,7 @@ founder, 1 for 3PL, 1 for third-party inspector, 1 spare.</td>
 consolidator (ParcelForce, DHL, 3–5 days). China (ShinHigh/Alibaba):
 ocean freight (FCL or LCL, 25–35 days) or air freight (DHL/FedEx, 5–7
 days, 4–5× cost). US (ProAmpac): ground freight (UPS/FedEx Ground, 3–7
-days). Customs: HTS classification (verify per P2A Section 11.5), duty
+days). Customs: HTS classification (verify per <a href="sub-p2a.html" style="color:var(--accent)">P2A</a> Section 11.5), duty
 rate, customs broker contact info. Required documents: commercial
 invoice, packing list, B/L (ocean) or AWB (air), certificate of
 origin.</td>
@@ -765,7 +741,7 @@ completion date (filled in per order).</td>
 value, deposit paid (date, amount), balance paid (date, amount),
 shipping cost, customs/duty cost, inspection cost, total landed cost,
 landed cost per unit. Summary: year-to-date spend, average landed cost
-per unit (track trend over time), cost variance vs. P0F targets.</td>
+per unit (track trend over time), cost variance vs. <a href="sub-p0f.html" style="color:var(--accent)">P0F</a> targets.</td>
 </tr>
 <tr class="even">
 <td><strong>7. Artwork Archive</strong></td>
@@ -805,7 +781,7 @@ quantity, carton dimensions).</strong></p>
 <p><strong>WEEK 15: Confirm material receipt at factory (monitoring
 Phase 1). Begin lamination and die-cutting (Phases 2–3). Assemble B2B
 sample kit materials (order kraft boxes, print inserts). Begin Amazon
-Seller Central listing setup (P2E Section 10).</strong></p>
+Seller Central listing setup (<a href="sub-p2e.html" style="color:var(--accent)">P2E</a> Section 10).</strong></p>
 <p><strong>WEEK 16: Printing phase (Phase 4). Assembly begins (Phase 5).
 Receive weekly update + photos from factory. Evaluate quality from
 photos. Send co-brand proof samples for race director approval. Begin
@@ -819,17 +795,17 @@ launch.</strong></p>
 days, air: 5–7 days, UK courier: 3–5 days). While in transit: finalize
 3PL receiving plan, complete Amazon FBA prep, and continue B2B outreach
 with sample kits. Document production process (Section 7: lessons
-learned log). HANDOFF to P3C (Custom Branding System) and P3D (Packaging
+learned log). HANDOFF to <a href="sub-p3c.html" style="color:var(--accent)">P3C</a> (Custom Branding System) and <a href="sub-p3d.html" style="color:var(--accent)">P3D</a> (Packaging
 &amp; Labeling) for ongoing operational refinement.</strong></p>
 <p>BUDGET: Production order ($4,500–$50,000 depending on scenario).
 Pre-shipment inspection ($300–$700). Shipping ($500–$5,000 depending on
 volume and method). B2B sample kits ($600–$1,000 for 40 kits). TOTAL
-P3B: $5,900–$56,700.</p>
+<a href="sub-p3b.html" style="color:var(--accent)">P3B</a>: $5,900–$56,700.</p>
 <p>9. Conclusion: Production Is Where the Plan Becomes Real</p>
 <p><strong>18 months of research, design, and planning converge on a
 single moment: the factory starts the machines.</strong> The first
-poncho off the production line is the physical manifestation of P0’s
-market research, P1’s brand vision, P2’s engineering, and P3A’s supplier
+poncho off the production line is the physical manifestation of <a href="p0.html" style="color:var(--accent)">P0</a>’s
+market research, <a href="p1.html" style="color:var(--accent)">P1</a>’s brand vision, <a href="p2.html" style="color:var(--accent)">P2</a>’s engineering, and <a href="sub-p3a.html" style="color:var(--accent)">P3A</a>’s supplier
 relationship. It either confirms or contradicts every assumption. The
 weekly monitoring protocol ensures there are no surprises at the end —
 quality is built into the process, not inspected at the finish line.</p>
@@ -840,9 +816,4 @@ the skin, the metallic lining catching the light — generates a purchase
 order. Prioritize getting samples into hands over perfecting the Amazon
 listing. The physical product sells itself in ways no screenshot or
 specification sheet can match.</p>
-
-        </div>
-    </div></div>
-<footer style="text-align:center;padding:40px 0;color:var(--muted);font-size:.8em;border-top:1px solid var(--border);margin-top:60px">
-Sustainable Race-Start Warmth Poncho — D2C Brand GTM Project · 60 Subprojects · 391 Tasks · ~15,500¶ · April 2026
-</footer></body></html>
+</div></div></div><footer>Sustainable Race-Start Warmth Poncho — GTM Project · 60 Subprojects · 391 Tasks · ~120K Words · April 2026<br><a href="https://apseter.github.io/Retail_Ventures_Command_Center/">← Retail Ventures Command Center</a> · <a href="index.html">Project Home</a></footer></body></html>
