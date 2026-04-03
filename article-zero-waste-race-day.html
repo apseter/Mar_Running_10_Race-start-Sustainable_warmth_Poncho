@@ -1,0 +1,126 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Zero-Waste Race Day Guide</title><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet"><style>
+:root{--bg:#0a0e1a;--surface:#111827;--card:#1a2332;--border:#2a3a4e;--accent:#10b981;--accent2:#3b82f6;--text:#e2e8f0;--muted:#94a3b8;--white:#fff;--red:#ef4444;--amber:#f59e0b;--green:#10b981}
+*{margin:0;padding:0;box-sizing:border-box}body{font-family:'Inter',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.6}
+a{color:var(--accent);text-decoration:none}a:hover{text-decoration:underline}
+.container{max-width:1200px;margin:0 auto;padding:0 24px}
+nav{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
+nav .inner{display:flex;align-items:center;justify-content:space-between;padding:10px 24px;max-width:1200px;margin:0 auto;flex-wrap:wrap;gap:8px}
+nav .brand{font-weight:700;font-size:14px;color:var(--accent);white-space:nowrap}
+nav .links{display:flex;gap:4px;flex-wrap:wrap}
+nav .links a{color:var(--muted);font-size:12px;padding:4px 8px;border-radius:6px;transition:.2s;white-space:nowrap}
+nav .links a:hover,nav .links a.active{color:var(--white);background:var(--card);text-decoration:none}
+nav .links a.cc-link{color:var(--accent2);border:1px solid var(--accent2);font-weight:600}
+nav .links a.cc-link:hover{background:var(--accent2);color:var(--white)}
+.hero{padding:50px 0 30px;text-align:center}
+.hero h1{font-size:2.2em;font-weight:800;margin-bottom:12px;background:linear-gradient(135deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.hero p{color:var(--muted);font-size:1.05em;max-width:700px;margin:0 auto}
+.stats{display:flex;justify-content:center;gap:28px;padding:20px 0;flex-wrap:wrap}
+.stat{text-align:center}.stat .num{font-size:1.7em;font-weight:800;color:var(--white)}.stat .label{font-size:.7em;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+.grid{display:grid;gap:16px;margin:24px 0}.grid-2{grid-template-columns:repeat(auto-fill,minmax(350px,1fr))}.grid-3{grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+.card{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:20px;transition:.2s;display:block}
+.card:hover{border-color:var(--accent);transform:translateY(-2px);text-decoration:none}
+.card h3{font-size:1.05em;margin-bottom:6px;color:var(--white)}.card p{color:var(--muted);font-size:.88em}
+.badge{display:inline-block;background:var(--accent);color:var(--bg);font-size:.65em;font-weight:700;padding:2px 8px;border-radius:4px;margin-bottom:6px}
+.badge-amber{background:var(--amber)}.badge-blue{background:var(--accent2)}
+.card .meta{font-size:.78em;color:var(--muted);margin-top:10px}
+.section{padding:32px 0}.section h2{font-size:1.5em;font-weight:700;margin-bottom:20px;padding-bottom:10px;border-bottom:1px solid var(--border)}
+table{width:100%;border-collapse:collapse;font-size:.83em;margin:16px 0}
+th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 12px;font-weight:600;position:sticky;top:48px}
+td{padding:8px 12px;border-bottom:1px solid var(--border)}tr:hover td{background:rgba(16,185,129,.04)}
+.progress{height:6px;background:var(--surface);border-radius:3px;overflow:hidden;margin-top:6px}
+.progress .bar{height:100%;border-radius:3px}
+.back{display:inline-block;color:var(--muted);font-size:.88em;margin-bottom:16px}.back:hover{color:var(--accent)}
+.dl-card{display:flex;align-items:center;gap:14px;background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px;margin:8px 0;transition:.2s}
+.dl-card:hover{border-color:var(--accent);text-decoration:none}.dl-card .icon{font-size:1.8em}.dl-card .info h4{color:var(--white);margin-bottom:2px;font-size:.95em}.dl-card .info p{color:var(--muted);font-size:.8em}
+.phase-tag{display:inline-block;font-size:.65em;font-weight:600;padding:2px 6px;border-radius:3px;margin-right:4px}
+.phase-plan{background:rgba(16,185,129,.15);color:var(--green)}.phase-exec{background:rgba(245,158,11,.15);color:var(--amber)}.phase-not{background:rgba(148,163,184,.1);color:var(--muted)}
+.nav-sub{display:flex;flex-wrap:wrap;gap:5px;margin:12px 0 20px;padding:10px 14px;background:var(--card);border-radius:8px;border:1px solid var(--border)}
+.nav-sub a{font-size:.78em;color:var(--muted);padding:3px 8px;border-radius:4px;transition:.2s;white-space:nowrap}
+.nav-sub a:hover,.nav-sub a.active{color:var(--white);background:var(--surface);text-decoration:none}
+.doc-content{max-width:900px;margin:0 auto;padding:16px 0}
+.doc-content h1{font-size:1.7em;font-weight:800;color:var(--white);margin:28px 0 14px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+.doc-content h2{font-size:1.3em;font-weight:700;color:var(--accent);margin:24px 0 10px}
+.doc-content h3{font-size:1.1em;font-weight:600;color:var(--accent2);margin:18px 0 8px}
+.doc-content p{margin:6px 0;line-height:1.65}.doc-content table{width:100%;border-collapse:collapse;margin:14px 0;font-size:.83em}
+.doc-content th{background:var(--surface);color:var(--accent);text-align:left;padding:8px 10px;font-weight:600;border:1px solid var(--border)}
+.doc-content td{padding:7px 10px;border:1px solid var(--border);vertical-align:top}
+.doc-content tr:nth-child(even) td{background:rgba(255,255,255,.02)}
+.doc-content ul,.doc-content ol{margin:6px 0 6px 20px}.doc-content li{margin:3px 0;line-height:1.55}
+.doc-content strong{color:var(--white)}.doc-content em{color:var(--muted)}
+footer{text-align:center;padding:32px 0;color:var(--muted);font-size:.78em;border-top:1px solid var(--border);margin-top:50px}
+footer a{color:var(--accent2)}
+@media(max-width:768px){.stats{gap:14px}.stat .num{font-size:1.2em}nav .links a{font-size:10px;padding:3px 5px}.hero h1{font-size:1.5em}}
+
+.article{max-width:780px;margin:0 auto;padding:20px 0}
+.article h1{font-size:2em;font-weight:800;color:var(--white);margin:0 0 16px;line-height:1.25}
+.article .byline{color:var(--muted);font-size:.88em;margin-bottom:28px;padding-bottom:16px;border-bottom:1px solid var(--border)}
+.article h2{font-size:1.4em;font-weight:700;color:var(--accent);margin:32px 0 14px}
+.article h3{font-size:1.15em;font-weight:600;color:var(--accent2);margin:24px 0 10px}
+.article p{margin:12px 0;line-height:1.75;font-size:1.02em}
+.article strong{color:var(--white)}
+.article em{color:var(--muted)}
+.article ul,.article ol{margin:12px 0 12px 28px}.article li{margin:6px 0;line-height:1.65}
+.article blockquote{border-left:3px solid var(--accent);padding:12px 20px;margin:20px 0;background:var(--card);border-radius:0 8px 8px 0;font-style:italic;color:var(--muted)}
+.article table{width:100%;border-collapse:collapse;margin:20px 0;font-size:.88em}
+.article th{background:var(--surface);color:var(--accent);text-align:left;padding:10px 14px;font-weight:600;border:1px solid var(--border)}
+.article td{padding:10px 14px;border:1px solid var(--border)}
+.article .cta{display:inline-block;background:var(--accent);color:var(--bg);font-weight:700;padding:12px 28px;border-radius:8px;margin:20px 0;font-size:.95em}
+.article .cta:hover{opacity:.9;text-decoration:none}
+.article hr{border:none;border-top:1px solid var(--border);margin:28px 0}
+.related{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:12px;margin:24px 0}
+.related a{background:var(--card);border:1px solid var(--border);border-radius:8px;padding:16px;transition:.2s;display:block;color:var(--white);font-weight:600;font-size:.9em}
+.related a:hover{border-color:var(--accent);text-decoration:none}
+</style></head><body><nav><div class="inner"><a href="index.html" class="brand">🏃 Race Start Warmth GTM</a><div class="links"><a href="index.html" class="">Dashboard</a><a href="executive-summary.html" class="">Exec Summary</a><a href="financials.html" class="">Financials</a><a href="projections.html" class="">Projections</a><a href="action-plan.html" class="">Action Plan</a><a href="all-tasks.html" class="">All Tasks</a><a href="gaps.html" class="">Gaps</a><a href="content.html" class="active">Content</a><a href="files.html" class="">Files</a><a href="https://apseter.github.io/Retail_Ventures_Command_Center/" class="cc-link" target="_blank">🏠 Command Center</a></div></div></nav><div class="container"><div class="article" style="padding-top:36px">
+    <a href="content.html" class="back">← Content Library</a>
+    <h1>Zero-Waste Race Day: A Runner's Complete Guide</h1>
+    <div class="byline">Target keyword: "zero waste marathon" · ~2,000 words · <a href="sub-p7b.html">Content Marketing (P7B)</a></div>
+
+    <p>You spent 16 weeks training for this marathon. You dialed in your nutrition, your pacing strategy, your gear. But have you thought about what happens to everything you discard along the course?</p>
+    <p>The average marathon runner generates 2–3 pounds of waste on race day: a garbage bag at the start, gel wrappers on the course, cups at aid stations, and a Mylar blanket at the finish. Multiply by 30,000–50,000 runners and a single race produces <strong>30–75 tons of event waste</strong>.</p>
+    <p>Zero-waste racing isn't about perfection. It's about making deliberate choices at each stage of race day that reduce your impact without sacrificing your performance.</p>
+
+    <hr>
+
+    <h2>Before the Race: Registration to Expo</h2>
+    <h3>Choose sustainable races</h3>
+    <p>Some races are further along the sustainability journey than others. Look for: Council for Responsible Sport certification, published waste-diversion reports, composting programs at the start/finish, and partnerships with environmental organizations. These signals tell you the race director is investing in sustainability, not just marketing it.</p>
+    <h3>Decline the race shirt (if you won't wear it)</h3>
+    <p>Many races now offer an opt-out for the participant shirt — sometimes with a small registration discount. If you have 47 race shirts in your drawer and won't wear number 48, declining prevents one more garment from entering the textile waste stream.</p>
+    <h3>Bring your own bag to the expo</h3>
+    <p>Race expos distribute plastic bags stuffed with sponsor samples, flyers, and promotional products. Most of it goes in the trash within 24 hours. Bring a reusable bag and take only what you'll actually use.</p>
+
+    <h2>Start Line: The Biggest Impact Moment</h2>
+    <p>The start line is where the most waste is generated per minute of any point in the race. In the 30–60 minutes before the gun, 30,000+ runners discard their warmth layers simultaneously.</p>
+    <h3>Replace the garbage bag</h3>
+    <p>A BPI-certified compostable warmth poncho provides equivalent warmth to a garbage bag and composts in 12–24 weeks at a commercial facility instead of sitting in a landfill for 500 years. If your race offers a compostable option, choose it. If it doesn't, ask the race director why not.</p>
+    <h3>If you must use a garbage bag</h3>
+    <p>Cut armholes and a neck hole the night before — don't bring a new bag and tear it at the start line (creating plastic fragments). After removing it, place it in a designated collection bin rather than dropping it on the road.</p>
+    <h3>Donated clothing</h3>
+    <p>The Goodwill/donation model works if the clothing is clean and wearable. Don't donate a sweatshirt you found in a dumpster — it will become textile waste, not a donation. If you're going to donate a start-line layer, make it something someone would actually want to wear.</p>
+
+    <h2>On Course: Gels, Cups, and Wrappers</h2>
+    <h3>Gel wrappers</h3>
+    <p>Standard gel wrappers are non-recyclable plastic film. They're small enough that most runners drop them on the course rather than carrying them. Alternative: carry a small zip bag (2" × 3" resealable) and stash your used wrappers. It adds zero weight and prevents 8–12 wrappers from becoming roadside litter.</p>
+    <h3>Aid station cups</h3>
+    <p>Paper cups at aid stations are compostable in theory but contaminated with sports drink in practice. Most end up in landfill. Some races are experimenting with cupless systems (runners carry their own collapsible cup) or edible water pods. If your race offers either option, use it.</p>
+
+    <h2>Finish Line: Recovery Without Waste</h2>
+    <h3>Mylar blankets</h3>
+    <p>The metallized PET blankets distributed at finish lines are effective at reflecting body heat. They're also nearly impossible to recycle — the thin material jams recycling equipment. If your race offers a compostable finish-line wrap as an alternative, take it.</p>
+    <h3>Finisher medal</h3>
+    <p>This one is personal. Medals are zinc alloy with ribbon — durable but energy-intensive to produce. If you don't keep medals, some races now offer medal opt-out or tree-planting alternatives. If you do keep them, consider: one display for your favorites and recycling the rest through a metals recycler.</p>
+
+    <h2>The Race Director's Role</h2>
+    <p>Individual runner choices matter, but the largest sustainability gains come from race director decisions:</p>
+    <ul>
+    <li><strong>Composting infrastructure:</strong> partnering with commercial composting facilities to divert start-line and finish-line waste from landfill</li>
+    <li><strong>Product selection:</strong> choosing BPI-certified compostable warmth products instead of LDPE bags and PET Mylar</li>
+    <li><strong>Aid station design:</strong> reducing cup waste through refill stations, collapsible cups, or edible pods</li>
+    <li><strong>Measurement:</strong> publishing waste-diversion data so runners and sponsors can see the impact</li>
+    </ul>
+    <p>If you're a runner who wants your race to improve: email the race director. Cite specific alternatives. Race directors respond to participant feedback — especially when multiple runners make the same request.</p>
+
+    <hr>
+    <p><em>For composting logistics at race events, see <a href="sub-p4d.html">P4D: Composting Partner Network</a>. For the complete B2B pitch to race directors, see <a href="sub-p5a.html">P5A: B2B Pipeline Development</a>.</em></p>
+    <div class="related"><a href="article-startline-waste.html">📖 Start-Line Waste Problem →</a><a href="article-compostable-vs-biodegradable.html">📖 Compostable vs. Biodegradable →</a><a href="article-composting-at-races.html">📖 How Composting Works →</a></div>
+    </div></div><footer style="text-align:center;padding:32px 0;color:var(--muted);font-size:.78em;border-top:1px solid var(--border);margin-top:50px">Sustainable Race-Start Warmth Poncho — GTM Project · 60 Subprojects · 391 Tasks · ~120K Words · April 2026<br><a href="https://apseter.github.io/Retail_Ventures_Command_Center/" style="color:#3b82f6">← Retail Ventures Command Center</a> · <a href="index.html" style="color:#10b981">Project Home</a></footer></body></html>
